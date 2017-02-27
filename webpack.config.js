@@ -61,7 +61,7 @@ var cleanWebpackPlugin = new CleanWebpackPlugin([PATHS.build], {
   root: __dirname,
   verbose: true,
   dry: false,
-  exclude: ['.git', 'index.php']
+  exclude: ['.gitkeep']
 });
 
 var htmlWebpackPlugin = new HtmlWebpackPlugin({

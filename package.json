@@ -2,11 +2,16 @@
   "name": "addiction_network_frontend",
   "private": true,
   "version": "1.0.0",
-  "description": "This is the frontend part of the addiction network project.",
+  "description": "This is the frontend project of the addiction network Application.",
+  "engines": {
+    "node": "4.8.0",
+    "npm": "4.4.0"
+  },
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --progress",
+    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,7 +23,8 @@
   },
   "dependencies": {
     "angular": "^1.6.2",
-    "angular-route": "^1.6.2"
+    "angular-route": "^1.6.2",
+    "express": "^4.14.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.15",
