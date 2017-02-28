@@ -27,6 +27,11 @@ var common = {
       use: [{
         loader: 'file-loader'
       }]
+    }, {
+      test: /\.html$/,
+      use: {
+        loader: 'raw-loader'
+      }
     }]
   },
   entry: PATHS.app,
@@ -44,9 +49,6 @@ var common = {
 
 // copy angular and angular-route to build directory
 var copyWebpackPlugin = new CopyWebpackPlugin([{
-  from: 'app/sponsoredListing/sponsoredListing.html',
-  to: PATHS.build
-}, {
   from: 'node_modules/angular/angular.min.js',
   to: PATHS.build
 }, {

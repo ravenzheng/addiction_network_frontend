@@ -1,13 +1,14 @@
 var angular = require('angular'),
   // ngRoute = require('angular-route'),
-  moduleName = 'app.sponsoredListing',
+  ctrl = require('./listingCtrl'),
+  htmlTemplate = require('./sponsoredListing.html'),
   service = require('./listingService'),
-  ctrl = require('./listingCtrl');
+  moduleName = 'app.sponsoredListing';
 
 angular.module(moduleName, ['ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
-      templateUrl: './sponsoredListing.html',
+      template: htmlTemplate,
       controller: 'SponsoredListingCtrl'
     })
   }])

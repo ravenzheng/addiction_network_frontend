@@ -13,3 +13,7 @@ npm run start
 npm run build
 ```
 2. Open heroku dashboard and choose the project to manually deploy. (Will use automatic deploy when the build gets stable).
+
+
+#### Referrences
+[How to use Webpack with Angular + templateCache?](http://stackoverflow.com/questions/33300289/how-to-use-webpack-with-angular-templatecache)
