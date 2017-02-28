@@ -44,14 +44,23 @@ var common = {
 
 // copy angular and angular-route to build directory
 var copyWebpackPlugin = new CopyWebpackPlugin([{
-  from: 'node_modules/angular/angular.min.js',
-  to: PATHS.build
-}, {
-  from: 'node_modules/angular-route/angular-route.min.js',
-  to: PATHS.build
-}, {
   from: 'app/sponsoredListing/sponsoredListing.html',
   to: PATHS.build
+}, {
+  from: 'node_modules/angular/angular.min.js',
+  to: 'js'
+}, {
+  from: 'node_modules/angular-route/angular-route.min.js',
+  to: 'js'
+}, {
+  from: 'app/css',
+  to: 'css'
+}, {
+  from: 'app/fonts',
+  to: 'fonts'
+}, {
+  from: 'app/images',
+  to: 'images'
 }], {
   debug: 'warning'
 });
