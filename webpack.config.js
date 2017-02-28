@@ -46,7 +46,10 @@ var common = {
 var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'app/sponsoredListing/sponsoredListing.html',
   to: PATHS.build
-}, {
+},{
+  from: 'app/home/home.html',
+  to: PATHS.build
+},{
   from: 'node_modules/angular/angular.min.js',
   to: 'js'
 }, {
