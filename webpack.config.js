@@ -48,19 +48,19 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   to: PATHS.build
 }, {
   from: 'node_modules/angular/angular.min.js',
-  to: 'js'
+  to: PATHS.build
 }, {
   from: 'node_modules/angular-route/angular-route.min.js',
-  to: 'js'
+  to: PATHS.build
 }, {
-  from: 'app/css',
-  to: 'css'
+  from: 'app/plugins',
+  to: 'plugins'
 }, {
-  from: 'app/fonts',
-  to: 'fonts'
+  from: 'app/themes',
+  to: 'themes'
 }, {
-  from: 'app/images',
-  to: 'images'
+  from: 'app/uploads',
+  to: 'uploads'
 }], {
   debug: 'warning'
 });
