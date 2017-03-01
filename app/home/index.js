@@ -1,18 +1,18 @@
 var angular = require('angular'),
   // ngRoute = require('angular-route'),
   ctrl = require('./listingCtrl'),
-  htmlTemplate = require('./sponsoredListing.html'),
   service = require('./listingService'),
-  moduleName = 'app.sponsoredListing';
+  htmlTemplate = require('./home.html'),
+  moduleName = 'app.home';
 
 angular.module(moduleName, ['ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/sponsorhome', {
+    $routeProvider.when('/', {
       template: htmlTemplate,
-      controller: 'SponsoredListingCtrl'
+      controller: 'HomeCtrl'
     })
   }])
   .factory('SponsoredListingService', service)
-  .controller('SponsoredListingCtrl', ctrl);
+  .controller('HomeCtrl', ctrl);
 
 module.exports = moduleName;
