@@ -10,7 +10,7 @@ angular.module(moduleName, ['ngRoute'])
     $routeProvider.when('/sponsorhome', {
       template: htmlTemplate,
       controller: 'SponsoredListingCtrl'
-    })
+    });
   }])
   .factory('SponsoredListingService', service)
   .controller('SponsoredListingCtrl', ctrl);
