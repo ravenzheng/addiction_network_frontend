@@ -4,7 +4,8 @@ var angular = require('angular'),
 angular.module(appName, [
     require('./home/'),
     require('./sidePanel'),
-    require('./sponsoredListing')
+    require('./sponsoredListing'),
+    require('./treatmentcenterDetail')
   ])
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {

@@ -1,7 +1,6 @@
 var angular = require('angular'),
-  // ngRoute = require('angular-route'),
   ctrl = require('./listingCtrl'),
-  htmlTemplate = require('./sponsoredListing.html'),
+  htmlTemplate = require('./view.html'),
   service = require('./listingService'),
   moduleName = 'app.sponsoredListing';
 
