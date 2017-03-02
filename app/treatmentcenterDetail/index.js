@@ -4,7 +4,9 @@ var angular = require('angular'),
   service = require('./service'),
   moduleName = 'app.treatmentcenterDetail';
 
-angular.module(moduleName, ['ngRoute'])
+angular.module(moduleName, [
+    require('./inquiryFormCard')
+  ])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/treatment_center_detail', {
       template: htmlTemplate,

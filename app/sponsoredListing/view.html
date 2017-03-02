@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
       <div class="left_content left_align">
-        <h1><label>{{ entry.heading_1 }}</label></h1>
+        <h1>
+          <label>{{ entry.heading_1 }}</label>
+        </h1>
         <p>{{ entry.content_1 }}</p>
         <div class="row">
           <!------ Sponsor Listing -------->
@@ -11,7 +13,9 @@
               <li ng-repeat="listing in entry.listings" class="width-100">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="sponsor_img">
-                    <a ng-href="{{ listing.center_web_link }}" class="thumbnail" target="blank"> <img ng-src="{{ listing.listing_image }}" alt="" /> </a>
+                    <a ng-href="{{ listing.center_web_link }}" class="thumbnail" target="blank">
+                      <img ng-src="{{ listing.listing_image }}" alt=""/>
+                    </a>
                   </div>
                   <div class="sponsor_img" style="width:65%;">
                     <h3>
@@ -30,4 +34,9 @@
     </div>
     <side-panel></side-panel>
   </div>
+</div>
+iv>
+</div>
+<side-panel></side-panel>
+</div>
 </div>

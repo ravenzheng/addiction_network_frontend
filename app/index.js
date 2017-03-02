@@ -2,7 +2,8 @@ var angular = require('angular'),
   appName = 'AddictionNetworkApp';
 
 angular.module(appName, [
-    require('./home/'),
+    'ngRoute',
+    require('./home'),
     require('./sidePanel'),
     require('./sponsoredListing'),
     require('./treatmentcenterDetail')
