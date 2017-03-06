@@ -5,10 +5,11 @@ var angular = require('angular'),
   moduleName = 'app.treatmentcenterDetail';
 
 angular.module(moduleName, [
+    'ngRoute',
     require('./inquiryFormCard')
   ])
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/treatment_center_detail', {
+    $routeProvider.when('/treatment_center/:id/detail', {
       template: htmlTemplate,
       controller: 'TreatmentcenterDetailCtrl'
     });

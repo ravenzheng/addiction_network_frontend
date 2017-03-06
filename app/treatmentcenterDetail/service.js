@@ -1,8 +1,10 @@
 function service($http, endPoint) {
   return {
-    queryBySlug: function (slug) {
-      return $http.post(endPoint + '/treatment_center_detail', {
-        'slug': slug
+    queryById: function (id) {
+      var req = $http.get(endPoint + '/treatment_center/' + id + '/detail')
+      return req.then(function (res) {
+        var statusCode = res.status;
+        return res.data;
       });
     }
   };

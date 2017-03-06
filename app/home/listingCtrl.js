@@ -5,7 +5,8 @@ function listingCtrl($scope, $routeParams, ListingService) {
   var listings = result.listings.map(function (listing) {
     var content_paragraph = listing.content_paragraph;
     var listing_href = content_paragraph.toLowerCase().replace(/ /g, '_');
-    listing.listing_href = '#/treatment_center_detail/?slug=' + listing_href;
+    listing.id = 1;
+    listing.listing_href = '#/treatment_center/' + listing.id + '/detail';
     return listing;
   });
   result.listings = listings;
