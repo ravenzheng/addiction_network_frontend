@@ -1,6 +1,7 @@
 var CleanWebpackPlugin = require('clean-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
+  HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin'),
   merge = require('webpack-merge'),
   path = require('path'),
   webpack = require('webpack'),
@@ -63,6 +64,9 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
 }, {
   from: 'app/uploads',
   to: 'uploads'
+}, {
+  from: 'app/js',
+  to: 'js'
 }], {
   debug: 'warning'
 });
@@ -78,6 +82,39 @@ var cleanWebpackPlugin = new CleanWebpackPlugin([PATHS.build], {
 var htmlWebpackPlugin = new HtmlWebpackPlugin({
   title: 'Addiction Network',
   template: 'app/index.html'
+});
+
+var cssAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
+  assets: [
+    'themes/addiction/css/bootstrap.css',
+    'themes/addiction/css/bootstrap-select.css',
+    'themes/addiction/css/custom.css',
+    'themes/addiction/css/fwslider.css',
+    'themes/addiction/css/map-style.css',
+    'themes/addiction/css/bootstrap-multiselect.css',
+    'themes/addiction/css/developer.css'
+  ],
+  append: false
+});
+
+var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
+  assets: [
+    'themes/addiction/js/css3-mediaqueries.js',
+    'themes/addiction/css/jQuery-Multiselect/js/bootstrap-multiselect.js',
+    'themes/addiction/js/common.js',
+    'themes/addiction/js/multiple.js',
+    'themes/addiction/js/maskinput.js',
+    'themes/addiction/js/fileupload.js',
+    'themes/addiction/js/functions.js',
+    'js/comment-reply.min.js',
+    'js/imagesloaded.min.js',
+    'js/masonry.min.js',
+    'js/jquery/jquery.masonry.min.js',
+    'js/wp-embed.min.js',
+    'angular.min.js',
+    'angular-route.min.js'
+  ],
+  append: false
 });
 
 // minify the source code for production
@@ -96,6 +133,8 @@ var devConfig = merge(common, {
   plugins: [
     cleanWebpackPlugin,
     copyWebpackPlugin,
+    cssAssetsPlugin,
+    jsAssetsPlugin,
     htmlWebpackPlugin
   ],
   watch: true,
@@ -116,6 +155,8 @@ var prodConfig = merge(common, {
   plugins: [
     cleanWebpackPlugin,
     copyWebpackPlugin,
+    cssAssetsPlugin,
+    jsAssetsPlugin,
     htmlWebpackPlugin,
     uglifyJsPlugin
   ]
