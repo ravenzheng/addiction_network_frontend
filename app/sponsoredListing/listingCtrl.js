@@ -1,14 +1,12 @@
-var result = require('./result.json');
-
-function listingCtrl($scope, $routeParams, ListingService) {
+function listingCtrl($scope, $routeParams, service) {
   $scope.type = $routeParams.type;
-  $scope.entry = result;
-  // ListingService.queryByType($scope.type).then(function (response) {
-  //   var result = response.data;
-  //   $scope.entry = result;
-  // }).catch(function (err) {
-  //   console.log(err);
-  // });
+  $scope.type = 'Rehab for Men';
+  service.queryByType($scope.type).then(function (response) {
+    var result = response.data;
+    $scope.entry = result;
+  }).catch(function (err) {
+    console.log(err);
+  });
 }
 
 module.exports = ['$scope', '$routeParams', 'SponsoredListingService', listingCtrl];
