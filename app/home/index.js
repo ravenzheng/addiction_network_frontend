@@ -14,7 +14,7 @@ angular.module(moduleName, ['ngRoute'])
   }])
   .factory('SponsoredListingService', service)
   .controller('HomeCtrl', ctrl)
-  .controller('advertisements', function($scope, $http) {
+  .controller('advertisements', ["$scope", "$http", function($scope, $http) {
 	$http({
 		  method: 'GET',
 		  url: 'https://ancient-everglades-10056.herokuapp.com/advertisements',
@@ -25,6 +25,6 @@ angular.module(moduleName, ['ngRoute'])
 		  }, function errorCallback(response) {
 			$scope.advertisements = response.statusText;
 		  });
-	});
+	}]);
 
 module.exports = moduleName;
