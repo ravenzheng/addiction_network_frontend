@@ -18,16 +18,16 @@
             <h1 class="listing_content">
                     <label>{{ entry.heading_featured_treatment_center }}</label>
                 </h1> </div>
-          <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12" ng-repeat="listing in entry.listings">
+          <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12" ng-repeat="listing in featured_listing.listings">
             <div class="listing_block">
               <div class="block_img">
-                <a class="thumbnail" ng-href="{{ listing.listing_href }}"> <img class="" ng-src="{{ listing.thumbnail }}"> </a>
+                <a class="thumbnail" ng-href="#/treatment_center/{{listing.id}}/detail"> <img class="" ng-src="{{ listing.listing_image }}"> </a>
               </div>
               <div class="block_content">
                 <div class="block_heading">
-                  <h2 class="feat_head"><a ng-href="{{ listing.listing_href }}">{{ listing.content_feat_head}}</a></h2> </div>
-                <p> {{ listing.content_paragraph}} </p>
-              </div> <a ng-href="{{ listing.listing_href }}">{{ listing.content_view_listing}}</a> </div>
+                  <h2 class="feat_head"><a ng-href="#/treatment_center/{{listing.id}}/detail">{{ listing.center_name}}</a></h2> </div>
+                <p> {{ listing.description}} </p>
+              </div> <a ng-href="#/treatment_center/{{listing.id}}/detail">View Listing</a> </div>
           </div>
           <!-- Treatment Directory -->
           <!--  Map State Heading     -->
