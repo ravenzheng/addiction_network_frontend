@@ -6,7 +6,7 @@ var angular = require('angular'),
 
 angular.module(moduleName, ['ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/sponsorhome', {
+    $routeProvider.when('/sponsorhome/:slug', {
       template: htmlTemplate,
       controller: 'SponsoredListingCtrl'
     });

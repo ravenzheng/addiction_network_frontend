@@ -9,7 +9,7 @@ function SidePanelCtrl($scope, $element, $attrs) {
     var slug = elem.toLowerCase();
     slug = slug.replace(/ |\//g, '_');
     return {
-      link: '#/sponsorhome/?slug=' + slug,
+      link: '#/sponsorhome/' + slug,
       name: elem
     };
   });
