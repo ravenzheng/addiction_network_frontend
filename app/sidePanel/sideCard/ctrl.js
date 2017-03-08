@@ -10,6 +10,7 @@ function SidePanelCtrl($scope, $element, $attrs) {
     slug = slug.replace(/ |\//g, '_');
     return {
       link: '#/sponsorhome/' + slug,
+      link: '#/sponsorhome/' + elem,
       name: elem
     };
   });
