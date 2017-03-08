@@ -1,7 +1,6 @@
 function listingCtrl($scope, $routeParams, service) {
-  $scope.type = $routeParams.type;
-  $scope.type = 'Rehab for Men';
-  service.queryByType($scope.type).then(function (response) {
+  $scope.slug = $routeParams.slug;
+  service.queryByType($scope.slug).then(function (response) {
     var result = response.data;
     $scope.entry = result;
   }).catch(function (err) {
