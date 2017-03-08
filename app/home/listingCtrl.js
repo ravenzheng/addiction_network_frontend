@@ -1,6 +1,6 @@
 var result = require('./home.json');
 
-function listingCtrl($scope, $routeParams, ListingService) {
+function listingCtrl($scope, $http, $routeParams, ListingService) {
   $scope.type = $routeParams.type;
   var listings = result.listings.map(function (listing) {
     var content_paragraph = listing.content_paragraph;
@@ -11,6 +11,15 @@ function listingCtrl($scope, $routeParams, ListingService) {
   });
   result.listings = listings;
   $scope.entry = result;
+  
+	$http({
+		  method: 'GET',
+		  url: 'https://ancient-everglades-10056.herokuapp.com/featured_listings',
+		}).then(function successCallback(response) {
+			$scope.featured_listing = response.data;
+		  }, function errorCallback(response) {
+			$scope.featured_listing = response.statusText;
+		  });
   // ListingService.queryByType($scope.type).then(function (response) {
   //   var result = response.data;
   //   $scope.entry = result;
@@ -19,4 +28,4 @@ function listingCtrl($scope, $routeParams, ListingService) {
   // });
 }
 
-module.exports = ['$scope', '$routeParams', 'SponsoredListingService', listingCtrl];
+module.exports = ['$scope', '$http', '$routeParams', 'SponsoredListingService', listingCtrl];
