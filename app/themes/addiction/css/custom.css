@@ -1220,6 +1220,12 @@ font-family:serif;
 	width: auto;
 	float: left;	
 	}
+.img_outer_ban img {
+    max-height: 100px;
+}
+.company_adds img {
+    max-height: 100px;
+}	
 
 }
 
