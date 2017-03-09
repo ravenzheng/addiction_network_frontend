@@ -2,7 +2,7 @@
 	var i;
 	for(i=1; i<52; i++){
 		addEvent('map_'+i);
-	}
+	
 })
 
 $(function(){
