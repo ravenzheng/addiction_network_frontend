@@ -12,7 +12,7 @@ angular.module(moduleName, ['ngRoute'])
       controller: 'HomeCtrl'
     })
   }])
-  .factory('SponsoredListingService', service)
+  .factory('HomeListingService', service)
   .controller('HomeCtrl', ctrl);
 
 module.exports = moduleName;
