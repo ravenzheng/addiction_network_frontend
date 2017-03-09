@@ -1,55 +1,8 @@
 ﻿$(function(){
-			addEvent('map_1');
-			addEvent('map_2');
-			addEvent('map_3');
-			addEvent('map_4');
-			addEvent('map_5');
-			addEvent('map_6');
-			addEvent('map_7');
-			addEvent('map_8');
-			addEvent('map_9');
-			addEvent('map_10');
-			addEvent('map_11');
-			addEvent('map_12');
-			addEvent('map_13');
-			addEvent('map_14');
-			addEvent('map_15');
-			addEvent('map_16');
-			addEvent('map_17');
-			addEvent('map_18');
-			addEvent('map_19');
-			addEvent('map_20');
-			addEvent('map_21');
-			addEvent('map_22');
-			addEvent('map_23');
-			addEvent('map_24');
-			addEvent('map_25');
-			addEvent('map_26');
-			addEvent('map_27');
-			addEvent('map_28');
-			addEvent('map_29');
-			addEvent('map_30');
-			addEvent('map_31');
-			addEvent('map_32');
-			addEvent('map_33');
-			addEvent('map_34');
-			addEvent('map_35');
-			addEvent('map_36');
-			addEvent('map_37');
-			addEvent('map_38');
-			addEvent('map_39');
-			addEvent('map_40');
-			addEvent('map_41');
-			addEvent('map_42');
-			addEvent('map_43');
-			addEvent('map_44');
-			addEvent('map_45');
-			addEvent('map_46');
-			addEvent('map_47');
-			addEvent('map_48');
-			addEvent('map_49');
-			addEvent('map_50');
-			addEvent('map_51');
+	var i;
+	for(i=1; i<52; i++){
+		addEvent('map_'+i);
+	}
 })
 
 $(function(){
