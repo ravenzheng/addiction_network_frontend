@@ -14,4 +14,4 @@ angular.module(moduleName, ['ngRoute'])
   .factory('SponsoredListingService', service)
   .controller('SponsoredListingCtrl', ctrl);
 
-module.exports = moduleName;
+module.exports = moduleName; 
