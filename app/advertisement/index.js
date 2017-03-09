@@ -3,7 +3,7 @@ var angular = require('angular'),
   moduleName = 'app.advertisement';
 
 angular.module(moduleName, ['ngRoute'])
-  .controller('advertisements', ["$scope", "$http", function($scope, $http) {
+  .controller('AdvertisementCtrl', ["$scope", "$http", function($scope, $http) {
 	$http({
 		  method: 'GET',
 		  url: 'https://ancient-everglades-10056.herokuapp.com/advertisements',
