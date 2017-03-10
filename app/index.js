@@ -9,6 +9,7 @@ angular.module(appName, [
     require('./treatmentcenterDetail'),
 	require('./advertisement')
   ])
+  .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
