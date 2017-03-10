@@ -4,7 +4,7 @@ function listingCtrl($scope, $routeParams, service) {
     var result = response.data;
     $scope.entry = result;
   }).catch(function (err) {
-    console.log(err);
+    console.log(err); 
   });
 }
 

@@ -90,7 +90,6 @@ var cssAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'themes/addiction/css/bootstrap-select.css',
     'themes/addiction/css/custom.css',
     'themes/addiction/css/fwslider.css',
-    'themes/addiction/css/map-style.css',
     'themes/addiction/css/bootstrap-multiselect.css',
     'themes/addiction/css/developer.css'
   ],

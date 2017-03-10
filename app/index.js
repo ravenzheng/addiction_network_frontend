@@ -6,7 +6,8 @@ angular.module(appName, [
     require('./home'),
     require('./sidePanel'),
     require('./sponsoredListing'),
-    require('./treatmentcenterDetail')
+    require('./treatmentcenterDetail'),
+	require('./advertisement')
   ])
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
