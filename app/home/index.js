@@ -1,18 +1,18 @@
 var angular = require('angular'),
-  // ngRoute = require('angular-route'),
-  ctrl = require('./listingCtrl'),
-  service = require('./listingService'),
-  htmlTemplate = require('./home.html'),
   moduleName = 'app.home';
 
 angular.module(moduleName, ['ngRoute'])
+  .component('stateMap', require('./map'))
+  .component('welcome', require('./welcome'))
+  .component('featuredTreatmentCenter', require('./featuredTreatmentCenter'))
+  .component('searchByState', require('./searchByState'))
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
-      template: htmlTemplate,
+      template: require('./view.html'),
       controller: 'HomeCtrl'
     })
   }])
-  .factory('HomeListingService', service)
-  .controller('HomeCtrl', ctrl);
+  .factory('HomeListingService', require('./service'))
+  .controller('HomeCtrl', require('./ctrl'));
 
 module.exports = moduleName;
