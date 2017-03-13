@@ -5,13 +5,11 @@ var angular = require('angular'),
   moduleName = 'app.treatmentcenterMap';
   
 angular.module(moduleName, ['ngRoute'])
-.component('stateMapTreatment', require('./map'))
-.component('searchByStateTreatment', require('./searchByState'))
-  .config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/treatment-center-map', {
       template: htmlTemplate,
-      controller: 'TreatmentcenterMapCtrl'
-    });
+      controller: 'TreatmentcenterMapCtrl',
+      });
   }])
   .factory('TreatmentcenterMapService', service)
   .controller('TreatmentcenterMapCtrl', ctrl);

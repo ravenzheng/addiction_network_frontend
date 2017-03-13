@@ -42,7 +42,7 @@ function getarrayValue(url) {
         return obj["catg"].join(",");
     }
 }
-function ctrl($scope, $routeParams, service) {
+function ctrl($scope, $routeParams, service, $location) {
     var id = $routeParams.id;
     var url = window.location.href;
     if (window.location.href.indexOf("srch-keyword") > -1) {
