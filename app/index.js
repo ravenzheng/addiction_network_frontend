@@ -7,8 +7,9 @@ angular.module(appName, [
     require('./sidePanel'),
     require('./sponsoredListing'),
     require('./treatmentcenterDetail'),
-	require('./advertisement')
+    require('./advertisement')
   ])
+  .component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {

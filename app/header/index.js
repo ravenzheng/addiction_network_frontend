@@ -1,8 +1,8 @@
-function FooterCtrl() {
+function HeaderCtrl() {
   /* todo */
 }
 
 module.exports = {
   template: require('./view.html'),
-  controller: FooterCtrl
+  controller: HeaderCtrl
 };
