@@ -5,7 +5,7 @@
       <label>Find Treatment</label>
     </h2>
       <div class="form-group"> <label for="State" class="font_weight_normal">Select State</label> <select id="State" name="state" class="form-control selectpicker">
-        <option ng-repeat="state in states" value="{{ state }}">
+        <option ng-repeat="state in $ctrl.states" value="{{ state }}">
           {{ state }}
         </option>
       </select> </div>

@@ -4,8 +4,7 @@ var angular = require('angular'),
 angular.module(appName, [
     'ngRoute',
     require('./home'),
-    require('./sidePanel'),
-    require('./sponsoredListing'),
+    require('./sponsorHome'),
     require('./treatmentcenterDetail'),
     require('./treatmentcenterMap'),
     require('./advertisement')

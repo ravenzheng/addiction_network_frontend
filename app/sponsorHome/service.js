@@ -1,4 +1,4 @@
-function listingService($http, endPoint) {
+function service($http, endPoint) {
   return {
     queryByType: function (type) {
       return $http.post(endPoint + '/sponsored_listings', {
@@ -8,4 +8,4 @@ function listingService($http, endPoint) {
   };
 }
 
-module.exports = ['$http', 'endPoint', listingService];
+module.exports = ['$http', 'endPoint', service];
