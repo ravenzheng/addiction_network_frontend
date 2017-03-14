@@ -8,7 +8,7 @@ angular.module(moduleName, ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/treatment-center-map', {
       template: htmlTemplate,
-      controller: 'TreatmentcenterMapCtrl',
+      controller: 'TreatmentcenterMapCtrl'
       });
   }])
   .factory('TreatmentcenterMapService', service)
