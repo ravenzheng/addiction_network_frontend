@@ -1,7 +1,8 @@
 var states = require('./states.json');
 
-function ctrl($scope) {
-  $scope.states = states;
+function ctrl() {
+  var vm = this;
+  vm.states = states;
 }
 
-module.exports = ['$scope', ctrl];
+module.exports = ctrl;

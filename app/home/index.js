@@ -1,7 +1,10 @@
 var angular = require('angular'),
   moduleName = 'app.home';
 
-angular.module(moduleName, ['ngRoute'])
+angular.module(moduleName, [
+    'ngRoute',
+    require('../sidePanel')
+  ])
   .component('stateMap', require('./map'))
   .component('welcome', require('./welcome'))
   .component('featuredTreatmentCenter', require('./featuredTreatmentCenter'))
