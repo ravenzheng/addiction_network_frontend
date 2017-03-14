@@ -7,6 +7,7 @@ angular.module(appName, [
     require('./sidePanel'),
     require('./sponsoredListing'),
     require('./treatmentcenterDetail'),
+    require('./treatmentcenterMap'),
     require('./advertisement')
   ])
   .component('header', require('./header'))
