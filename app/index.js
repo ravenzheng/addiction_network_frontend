@@ -8,7 +8,7 @@ angular.module(appName, [
     require('./treatmentcenterDetail'),
     require('./treatmentcenterMap'),
     require('./advertisement'),
-	require('./addListing')
+	require('./addTreatmentCenter')
   ])
   .component('header', require('./header'))
   .component('footer', require('./footer'))

@@ -1,12 +1,12 @@
 function ctrl($scope, $routeParams, service) {
-	$scope.required = true;
+    $scope.required = true;
     $scope.type = $routeParams.type;
     var id = $routeParams.id;
 
     var auth = '';
 
     service.getAuthtoken($scope).then(function (response) {
-        //console.log('response: ' + response.user.auth_token);
+        console.log('response: ' + response.user.auth_token);
 
         auth = response.user.auth_token;
         user_id = response.user.id;
@@ -41,19 +41,18 @@ function ctrl($scope, $routeParams, service) {
         //console.log('test'+$scope.addlist.listing_image);	 	
 
         //return;
-        service.addTreatmentCenter($scope, auth, formdata, file).then(function (response) {
+        service.addListing($scope, auth, formdata, file).then(function (response) {
 
-            console.log('response3: ' + response);
+            console.log('response2: ' + response);
             //var result = response.data;
             //$scope.featured_listing = response.data;
             $scope.success_msg = 1;
         }).catch(function (err) {
-            $("#email_err").html(err.data.user.email.errors);
-			$("#pass_err").html(err.data.user.password.errors);
+            console.log('error: ' + err);
         });
 
     }
 
 }
 
-module.exports = ['$scope', '$routeParams', 'addTreatmentCenterService', ctrl];
+module.exports = ['$scope', '$routeParams', 'AddlistService', ctrl];

@@ -6,17 +6,17 @@ var angular = require('angular'),
   service = require('./service'),
   //directive = require('./directive'),
   
-  moduleName = 'app.addTreatmentCenter';
+  moduleName = 'app.addListing';
 
 angular.module(moduleName, [
     'ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/center-detail/', {
+    $routeProvider.when('/add-treatment-center/', {
       template: htmlTemplate,
-      controller: 'AddTreatmentCenterCtrl'
+      controller: 'AddListingCtrl'
     });
   }])
-  .factory('addTreatmentCenterService', service) //.factory('AddlistDirectivee', directive)
+  .factory('AddlistService', service) //.factory('AddlistDirectivee', directive)
 
   .directive('ngFiles', ['$parse', function ($parse) {
 
@@ -31,27 +31,8 @@ angular.module(moduleName, [
                 link: fn_link
             }
         } ])
-	.directive("validPasswordC", function() {
-		return {
-				require: 'ngModel',
-				scope: {
-					reference: '=validPasswordC'
-				},
-				link: function(scope, elm, attrs, ctrl) {
-					ctrl.$parsers.unshift(function(viewValue, $scope) {
-						var noMatch = viewValue != scope.reference
-						ctrl.$setValidity('noMatch', !noMatch);
-						return (noMatch)?noMatch:!noMatch;
-				  });
 
-				  scope.$watch("reference", function(value) {
-					ctrl.$setValidity('noMatch', value === ctrl.$viewValue);
 
-				  });
-				}
-		  }
-	})
-
-  .controller('AddTreatmentCenterCtrl', ctrl);
+  .controller('AddListingCtrl', ctrl);
 
 module.exports = moduleName;
