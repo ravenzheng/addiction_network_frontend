@@ -7,7 +7,8 @@ angular.module(appName, [
     require('./sponsorHome'),
     require('./treatmentcenterDetail'),
     require('./treatmentcenterMap'),
-    require('./advertisement')
+    require('./advertisement'),
+	require('./addListing')
   ])
   .component('header', require('./header'))
   .component('footer', require('./footer'))
