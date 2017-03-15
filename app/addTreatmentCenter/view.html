@@ -1,0 +1,210 @@
+<div class="middle_content_div">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					<div class="left_content">
+						<h1>
+							<label>Add Treatment Center</label>
+						</h1>
+						
+						<div class="row">
+							<form name="addlistForm" ng-submit="submitForm()" enctype="multipart/form-data" ng-controller="AddListingCtrl">
+								<input name="customertype" value="owner" type="hidden">
+								<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+	                            
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+																													
+  										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Treatment Center Name  </label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="Treatment Center Name" id="tcname" name="center_name" class="form-control required" type="text" ng-model="addlist.center_name" ng-required="required">
+													
+										</div>		
+									</div>
+								<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Description</label> 	
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+									<textarea name="briefoverview" ng-model="addlist.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview"></textarea>
+																																					
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">																									
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<label for="web_link">Listing Image: </label> 																										
+									</div>
+									<div class="col-md-8 col-sm-8 col-xs-12">
+										<input name="listing_image[]" id="galler_image" class="span2 text_file multi center_image" type="file">
+									</div>		
+								</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Heading1 </label>																						
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input id="website"  name="heading1" class="form-control required" type="text" ng-model="addlist.heading_1" placeholder="Heading1">													
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Heading2 </label>																						
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input id="website"  name="heading2" class="form-control required" type="text" ng-model="addlist.heading_2" placeholder="Heading2">													
+										</div>		
+									</div>
+									
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Heading3 </label>																						
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input id="website"  name="heading3" class="form-control required" type="text" ng-model="addlist.heading_3" placeholder="Heading3">													
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Heading4 </label>																						
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input id="website"  name="heading4" class="form-control required" type="text" ng-model="addlist.heading_4" placeholder="Heading4">													
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Content1</label> 	
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+									<textarea name="briefoverview" ng-model="addlist.content_1" class="form-control required" rows="2" cols="50" placeholder="Content 1"></textarea>
+																																					
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Content 2</label> 	
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+									<textarea name="briefoverview" ng-model="addlist.content_2" class="form-control required" rows="2" cols="50" placeholder="Content 2"></textarea>
+																																					
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Content 3</label> 	
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+									<textarea name="briefoverview" ng-model="addlist.content_3" class="form-control required" rows="2" cols="50" placeholder="Content 3"></textarea>
+																																					
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Content 4</label> 	
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+									<textarea name="briefoverview" ng-model="addlist.content_4" class="form-control required" rows="2" cols="50" placeholder="Content 4"></textarea>
+																																					
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Address Line 1 </label>																						
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input id="website"  name="address_line_1" class="form-control required" type="text" ng-model="addlist.address_line_1" placeholder="Address Line 1">													
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Address Line 2 </label>																						
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input id="website"  name="address_line_2" class="form-control required" type="text" ng-model="addlist.address_line_2" placeholder="Address Line 2">													
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Intake Email </label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" ng-model="addlist.email">		
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Intake Phone</label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" type="text" ng-model="addlist.phone"> 																										
+										</div>		
+									</div>
+			                      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">City  </label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="City" id="city" name="city" class="form-control required" type="text" ng-model="addlist.city">									
+										</div>		
+									</div>
+                             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">State  </label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="State" id="state" name="state" class="form-control required" type="text" ng-model="addlist.state"> 																										
+										</div>		
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Country  </label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="Country" id="country" name="country" class="form-control required" type="text" ng-model="addlist.country"> 																										
+										</div>		
+									</div>
+									   <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<label for="cpwd">Zip   </label> 																										
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<input placeholder="Zip" id="zip" name="zip" class="form-control required" number="true" minlength="5" maxlength="5" type="text" ng-model="addlist.pincode"> 																										
+										</div>		
+									</div>
+										<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">																									
+										<div class="col-md-4 col-sm-1 col-xs-1">
+											<label for="cpwd">Featured  </label> 																										
+										</div>
+										<div class="col-md-1 col-sm-4 col-xs-4">
+											<input id="featured" name="featured" class="form-control required" number="true" minlength="5" maxlength="5" type="checkbox" ng-model="addlist.featured"> 																										
+										</div>		
+									</div>								
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">																									
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<label for="web_link">Upload Gallery Images: </label> 																										
+									</div>
+									<div class="col-md-8 col-sm-8 col-xs-12">
+										<input name="image_data[]" id="galler_image" class="span2 text_file multi center_image" type="file">
+									</div>		
+								</div>
+								<div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
+										<input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" id="submit" type="submit">
+
+										<span style="color:green;" ng-show="success_msg">Added </span>																							
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub">																									
+										<div class="company_adds">
+															                   										
+																
+										</div>
+									</div>																					
+								</div>	
+							</form>							
+						</div>																					
+					</div>																		
+				</div>
+				
+			</div>
+		 </div>
+	</div>
