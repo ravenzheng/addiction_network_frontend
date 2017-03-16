@@ -1,72 +1,53 @@
-// JSON Body: {
-//   treatment_center: {
-//     center_name: ‘’,
-//     description: ‘’,
-//     center_web_link: ‘’,
-//     listing_image: < image file > ,
-//     heading_1: ,
-//     heading_2: ,
-//     heading_3: ‘’,
-//     heading_4: ‘’,
-//     content_1: ‘’,
-//     content_2: ‘’,
-//     content_3: ‘’,
-//     content_4: ‘’,
-//     address_line_1: ‘’,
-//     address_line_2: ‘’,
-//     city: ‘’,
-//     pincode: ‘’,
-//     state: ‘’,
-//     phone: ‘’,
-//     email: ‘’,
-//     featured: < true / false > ,
-//     image_data: [ < image file > , < image file > , < image file > ]
-//
-//   }
-// }
-
-function ctrl($scope, UserService, TreatmentCenterService) {
-  console.log('add treatment center')
+function ctrl($scope, $location, TreatmentCenterService) {
   var vm = this;
-  vm.center_name = 'No 2 Center';
-  vm.center_web_link = 'www.no2center.com';
-  vm.address_line_1 = '1 Center Rd';
-  vm.city = 'SLO';
-  vm.description = 'This is an awesome center.';
+  vm.state = '';
+  vm.onStateUpdate = function (selected) {
+    vm.state = selected;
+  };
   vm.submit = function () {
-    console.log($scope.listing_image);
     var data = {
       'center_name': vm.center_name,
+      'description': vm.description,
       'center_web_link': vm.center_web_link,
-      'address': vm.address,
-      'city': vm.city,
-      'zipcode': vm.zipcode,
-      'phone': vm.phone,
-      'email': vm.email,
       'listing_image': vm.listing_image,
+      // 'heading_1': vm.heading_1,
+      // 'heading_2': vm.heading_2,
+      // 'heading_3': vm.heading_3,
+      // 'heading_4': vm.heading_4,
       'content_1': vm.content_1,
       'content_2': vm.content_2,
       'content_3': vm.content_3,
       'content_4': vm.content_4,
-      'featured': false,
-      'image_data': vm.image_data
+      'address_line_1': vm.address_line_1,
+      'address_line_2': vm.address_line_2,
+      'city': vm.city,
+      'pincode': vm.pincode,
+      'state': vm.state,
+      'phone': vm.phone,
+      'email': vm.email,
+      'featured': false
     };
 
     var formData = new FormData();
-    formData.append('treatmentcenter', data)
-
-    var testEmail = 'best@test.com';
-    var testPassword = '12345678';
-    UserService.signIn(testEmail, testPassword).then(function (result) {
-      var user = result.user;
-      return TreatmentCenterService.add(user.auth_token, formData).then(function (result) {
-        // redirect to url /featured-treatment-center
-      })
+    for (var key in data) {
+      formData.append('treatment_center[' + key + ']', data[key]);
+    }
+    if (vm.image_data) {
+      var image_data = vm.image_data
+      var len = image_data.length;
+      for (var i = 0; i < len; i++) {
+        formData.append('treatment_center[image_data][]', image_data.item(i));
+      }
+    }
+    TreatmentCenterService.add(formData).then(function (result) {
+      // if succeeded, redirect to url /featured-treatment-center
+      $location.url('/featured-treatment-center');
+      // $scope.$apply();
     }).catch(function (error) {
-      // todo, display the error message in the frontend page.
+      // if failed, display the error message in the page
       console.log(error.message);
     });
   }
 }
 
-module.exports = ['$scope', 'UserService', 'TreatmentCenterService', ctrl];
+module.exports = ['$scope', '$location', 'TreatmentCenterService', ctrl];

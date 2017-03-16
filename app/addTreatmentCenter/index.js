@@ -9,10 +9,13 @@ angular.module(moduleName, [
   .factory('TreatmentCenterService', require('./service'))
   .controller('AddTreatmentCenterCtrl', require('./ctrl'))
   .component('addTreatmentCenterMain', require('./main'))
+  .component('addTreatmentCenter', {
+    template: require('./view.html'),
+    controller: 'AddTreatmentCenterCtrl'
+  })
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/add-treatment-center', {
-      template: require('./view.html'),
-      controller: 'AddTreatmentCenterCtrl'
+      template: '<add-treatment-center></add-treatment-center>'
     });
   }]);
 

@@ -1,9 +1,7 @@
 <div class="col-md-8 col-sm-8 col-xs-12 col-lg-9">
   <div class="heading_main_div">
     <h2>
-      <label>
-        Add Treatment Center
-      </label>
+      <label>Add Treatment Center</label>
     </h2>
   </div>
   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
@@ -19,525 +17,107 @@
     </div>
     <form ng-submit="$ctrl.submit()" id="treatmentCenter" class="form-horizontal" enctype="multipart/form-data" novalidate="novalidate" __bizdiag="1043787928" __biza="WJ__">
 
+      <!-- Category -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
-
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="category">Select Category:
-          </label>
+          <label for="category">Select Category:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
-
-          <select name="center_category" class="form-control selectpicker required" id="category" style="display: none;">
+          <select name="center_category" class="form-control selectpicker required">
             <option value="">Select</option>
             <option value="inpatient">Inpatient</option>
             <option value="outpatient">Outpatient</option>
             <option value="sober-living">Sober Living</option>
             <option value="adolescent">Adolescent</option>
           </select>
-          <div class="btn-group bootstrap-select form-control required">
-            <button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="category" title="Select">
-              <span class="filter-option pull-left">Select</span>&nbsp;<span class="caret"></span>
-            </button>
-            <div class="dropdown-menu open">
-              <ul class="dropdown-menu inner selectpicker" role="menu">
-                <li rel="0" class="selected">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">Select</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="1">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">Inpatient</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="2">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">Outpatient</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="3">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">Sober Living</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="4">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">Adolescent</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
-
       </div>
 
+      <!-- Center Name -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="tname">
-            Center Name:
-          </label>
+          <label for="tname">Center Name:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <input ng-model="$ctrl.center_name" type="text" name="center_name" class="form-control required" id="tname" placeholder="Treatment Center Name" value="No 2 Center"/>
+          <input ng-model="$ctrl.center_name" type="text" class="form-control required" placeholder="Treatment Center Name"/>
         </div>
       </div>
+
+      <!-- Center Website Link -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="web_link">
-            Website Link:
-          </label>
+          <label for="web_link">Website Link:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <input ng-model="$ctrl.center_web_link" type="text" name="center_website" class="form-control required url" id="web_link" placeholder="http://www.google.com" value=""></input>
+          <input ng-model="$ctrl.center_web_link" type="text" class="form-control required url" placeholder="http://www.google.com" value=""/>
         </div>
       </div>
+
+      <!-- Street Address -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="addr">Street Address:
-          </label>
+          <label for="addr">Street Address:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <input ng-model="$ctrl.address_line_1" type="text" name="center_address" class="form-control required" id="addr" placeholder="" value="">
+          <input ng-model="$ctrl.address_line_1" type="text" class="form-control required" placeholder=""/>
           <input type="hidden" name="centerapprove" value="0"/>
         </div>
       </div>
+
+      <!-- City -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="city">
-            City:
-          </label>
+          <label for="city">City:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <input ng-model="$ctrl.city" type="text" name="center_city" class="form-control required" id="city" placeholder="center city" value=""/>
-        </div>
-      </div>
-      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="state">
-            Select State:
-          </label>
-        </div>
-        <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
-          <select ng-model="$ctrl.state" name="center_state" class="form-control selectpicker required" id="state" style="display: none;">
-            <option value="">Select State</option>
-            <option value="ALABAMA">ALABAMA</option>
-            <option value="ALASKA">ALASKA</option>
-            <option value="ARIZONA">ARIZONA</option>
-            <option value="ARKANSAS">ARKANSAS</option>
-            <option value="CALIFORNIA">CALIFORNIA</option>
-            <option value="COLORADO">COLORADO</option>
-            <option value="CONNECTICUT">CONNECTICUT</option>
-            <option value="DELAWARE">DELAWARE</option>
-            <option value="FLORIDA">FLORIDA</option>
-            <option value="GEORGIA">GEORGIA</option>
-            <option value="HAWAII">HAWAII</option>
-            <option value="IDAHO">IDAHO</option>
-            <option value="ILLINOIS">ILLINOIS</option>
-            <option value="INDIANA">INDIANA</option>
-            <option value="IOWA">IOWA</option>
-            <option value="KANSAS">KANSAS</option>
-            <option value="KENTUCKY">KENTUCKY</option>
-            <option value="LOUISIANA">LOUISIANA</option>
-            <option value="MAINE">MAINE</option>
-            <option value="MARYLAND">MARYLAND</option>
-            <option value="MASSACHUSETTS">MASSACHUSETTS</option>
-            <option value="MICHIGAN">MICHIGAN</option>
-            <option value="MINNESOTA">MINNESOTA</option>
-            <option value="MISSISSIPPI">MISSISSIPPI</option>
-            <option value="MISSOURI">MISSOURI</option>
-            <option value="MONTANA">MONTANA</option>
-            <option value="NEBRASKA">NEBRASKA</option>
-            <option value="NEVADA">NEVADA</option>
-            <option value="NEW HAMPSHIRE">NEW HAMPSHIRE</option>
-            <option value="NEW JERSEY">NEW JERSEY</option>
-            <option value="NEW MEXICO">NEW MEXICO</option>
-            <option value="NEW YORK">NEW YORK</option>
-            <option value="NORTH CAROLINA">NORTH CAROLINA</option>
-            <option value="NORTH DAKOTA">NORTH DAKOTA</option>
-            <option value="OHIO">OHIO</option>
-            <option value="OKLAHOMA">OKLAHOMA</option>
-            <option value="OREGON">OREGON</option>
-            <option value="PENNSYLVANIA">PENNSYLVANIA</option>
-            <option value="RHODE ISLAND">RHODE ISLAND</option>
-            <option value="SOUTH CAROLINA">SOUTH CAROLINA</option>
-            <option value="SOUTH DAKOTA">SOUTH DAKOTA</option>
-            <option value="TENNESSEE">TENNESSEE</option>
-            <option value="TEXAS">TEXAS</option>
-            <option value="UTAH">UTAH</option>
-            <option value="VERMONT">VERMONT</option>
-            <option value="VIRGINIA">VIRGINIA</option>
-            <option value="WASHINGTON">WASHINGTON</option>
-            <option value="WEST VIRGINIA">WEST VIRGINIA</option>
-            <option value="WISCONSIN">WISCONSIN</option>
-            <option value="WYOMING">WYOMING</option>
-            <option value="WASHINGTON DC">WASHINGTON DC</option>
-          </select>
-          <div class="btn-group bootstrap-select form-control required">
-            <button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="state" title="Select State">
-              <span class="filter-option pull-left">Select State</span>&nbsp;<span class="caret"></span>
-            </button>
-            <div class="dropdown-menu open">
-              <ul class="dropdown-menu inner selectpicker" role="menu">
-                <li rel="0" class="selected">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">Select State</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="1">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">ALABAMA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="2">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">ALASKA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="3">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">ARIZONA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="4">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">ARKANSAS</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="5">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">CALIFORNIA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="6">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">COLORADO</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="7">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">CONNECTICUT</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="8">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">DELAWARE</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="9">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">FLORIDA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="10">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">GEORGIA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="11">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">HAWAII</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="12">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">IDAHO</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="13">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">ILLINOIS</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="14">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">INDIANA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="15">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">IOWA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="16">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">KANSAS</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="17">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">KENTUCKY</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="18">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">LOUISIANA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="19">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MAINE</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="20">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MARYLAND</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="21">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MASSACHUSETTS</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="22">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MICHIGAN</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="23">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MINNESOTA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="24">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MISSISSIPPI</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="25">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MISSOURI</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="26">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">MONTANA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="27">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NEBRASKA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="28">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NEVADA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="29">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NEW HAMPSHIRE</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="30">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NEW JERSEY</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="31">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NEW MEXICO</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="32">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NEW YORK</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="33">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NORTH CAROLINA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="34">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">NORTH DAKOTA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="35">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">OHIO</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="36">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">OKLAHOMA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="37">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">OREGON</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="38">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">PENNSYLVANIA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="39">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">RHODE ISLAND</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="40">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">SOUTH CAROLINA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="41">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">SOUTH DAKOTA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="42">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">TENNESSEE</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="43">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">TEXAS</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="44">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">UTAH</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="45">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">VERMONT</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="46">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">VIRGINIA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="47">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">WASHINGTON</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="48">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">WEST VIRGINIA</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="49">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">WISCONSIN</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="50">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">WYOMING</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-                <li rel="51">
-                  <a tabindex="0" class="" style="">
-                    <span class="text">WASHINGTON DC</span>
-                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <input ng-model="$ctrl.city" type="text" class="form-control required" placeholder="center city" value=""/>
         </div>
       </div>
 
-      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+      <!-- Select State -->
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="zip">
-            Zipcode:
-          </label>
+          <label for="state">Select State:</label>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-12">
-          <input ng-model="$ctrl.zipcode" type="text" name="center_zip" class="form-control required" number="true" maxlength="5" minlength="5" id="zip" placeholder="14100" value=""/>
+        <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+          <state-select on-update="$ctrl.onStateUpdate(selected)"></state-select>
         </div>
       </div>
+
+      <!-- Zipcode -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="phone">
-            Phone:
-          </label>
+          <label for="zip">Zipcode:</label>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+          <input ng-model="$ctrl.pincode" type="text" name="center_zip" class="form-control required" number="true" maxlength="5" minlength="5" id="zip" placeholder="14100" value=""/>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <label for="phone">Phone:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <input ng-model="$ctrl.phone" type="text" name="center_phone" class="form-control required" id="phone" number="true" maxlength="10" minlength="10" placeholder="09855438504" value=""/>
         </div>
       </div>
+
+      <!-- Email -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="phone">
-            Email:
-          </label>
+          <label for="phone">Email:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <input ng-model="$ctrl.email" type="email" name="center_email" class="form-control required" email="placeholder=&quot;abc@gmail.com&quot;" value="">
         </div>
       </div>
 
+      <!-- Email -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="img_upload">
-            Logo:
-          </label>
+          <label for="img_upload">Logo:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <div class="">
@@ -549,47 +129,48 @@
           </div>
         </div>
       </div>
+
+      <!-- Description content_1 -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="description">
-            Description:
-          </label>
+          <label for="description">Description:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <textarea ng-model="$ctrl.content_1" name="center_description" rows="3" cols="100%" class="form-control required" id="description1" placeholder="">This is an awesome treatmentcenter.</textarea>
+          <textarea ng-model="$ctrl.content_1" name="center_description" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
         </div>
       </div>
+
+      <!-- About  Facility content_2 -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="about">
-            About Facility:
-          </label>
+          <label for="about">About Facility:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <textarea ng-model="$ctrl.content_2" name="center_facility" rows="3" cols="100%" class="form-control required" id="description2" placeholder=""></textarea>
         </div>
       </div>
+
+      <!-- Treatment Approach content_3 -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="center_approach">
-            Treatment Approach:
-          </label>
+          <label for="center_approach">Treatment Approach:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <textarea ng-model="$ctrl.content_3" name="center_approach" rows="3" cols="100%" class="form-control required" id="description3" placeholder=""></textarea>
-        </div>
-      </div>
-      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <label for="center_philosophy">
-            Unique Selling Points:
-          </label>
-        </div>
-        <div class="col-md-8 col-sm-8 col-xs-12">
-          <textarea ng-model="$ctrl.content_4" name="center_philosophy" rows="3" cols="100%" class="form-control required" id="description4" placeholder=""></textarea>
+          <textarea ng-model="$ctrl.content_3" name="center_approach" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
         </div>
       </div>
 
+      <!-- Unique Selling Points content_4 -->
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <label for="center_philosophy">Unique Selling Points:</label>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+          <textarea ng-model="$ctrl.content_4" name="center_philosophy" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <!-- Upload Gallery Images image_data -->
       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
         <div class="col-md-4 col-sm-4 col-xs-12">
           <label for="web_link">Upload Gallery Images:
@@ -612,8 +193,7 @@
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
       <div class="company_adds margin_top_25">
         <div class="company_adds">
-          <a href="http://www.monarchshores.com"><img class="img-responsive" src="http://www.addictionnetwork.com/wp-content/uploads/advertisement_images/medium/1428518360-MonarchAN.jpg"></a>
-
+          <a href="http://www.monarchshores.com"><img class="img-responsive" src="uploads/advertisement_images/medium/1428518360-MonarchAN.jpg"></a>
         </div>
       </div>
     </div>
