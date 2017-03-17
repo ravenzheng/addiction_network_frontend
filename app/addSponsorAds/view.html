@@ -1,0 +1,186 @@
+<div class="middle_content_div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="left_content">
+                    <h1>
+                        <label>Add Sponsor Ad</label>
+                    </h1>
+
+                    <div class="row">
+                        <form name="sponsorAdsForm" ng-controller="addSponsorAdsCtrl as $ctrl" enctype="multipart/form-data">
+                            <input name="customertype" value="owner" type="hidden">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="title">Title: </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="Title" name="title" id="title" class="form-control required" type="text" ng-model="$ctrl.title">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="name">Name: </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="Name" name="name" id="name" class="form-control required" type="text" ng-model="$ctrl.name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="upload_img">Upload Image</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
+
+                                        <input file-model="$ctrl.image" type="file" name="image" id="image" class="center_image" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="cpwd">Description</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <textarea name="briefoverview" ng-model="$ctrl.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview"></textarea>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="cpwd">Website </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="website " id="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="cpwd">Sponsor Ads </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+
+                                        <select multiple="multiple" name="sponsored_ad[sponsored_listing_layout_ids][]" id="sponsored_ad_sponsored_listing_layout_ids" ng-model="$ctrl.Sponsored_listing_layout_ids"><option value="84">MD</option>
+                                            <option value="83">DE</option>
+                                            <option value="82">NJ</option>
+                                            <option value="81">CI</option>
+                                            <option value="80">AK</option>
+                                            <option value="79">MA</option>
+                                            <option value="78">FL</option>
+                                            <option value="77">GA</option>
+                                            <option value="76">AL</option>
+                                            <option value="75">MS</option>
+                                            <option value="74">TN</option>
+                                            <option value="73">NC</option>
+                                            <option value="72">ME</option>
+                                            <option value="71">NH</option>
+                                            <option value="70">VT</option>
+                                            <option value="69">NY</option>
+                                            <option value="68">PA</option>
+                                            <option value="67">VA</option>
+                                            <option value="66">WV</option>
+                                            <option value="65">OH</option>
+                                            <option value="64">TN</option>
+                                            <option value="63">KY</option>
+                                            <option value="62">IN</option>
+                                            <option value="61">IL</option>
+                                            <option value="60">WI</option>
+                                            <option value="59">LA</option>
+                                            <option value="58">AR</option>
+                                            <option value="57">MO</option>
+                                            <option value="56">IA</option>
+                                            <option value="55">MN</option>
+                                            <option value="54">OK</option>
+                                            <option value="53">KS</option>
+                                            <option value="52">NE</option>
+                                            <option value="51">SD</option>
+                                            <option value="50">ND</option>
+                                            <option value="49">TX</option>
+                                            <option value="48">CO</option>
+                                            <option value="47">WY</option>
+                                            <option value="46">MT</option>
+                                            <option value="45">AZ</option>
+                                            <option value="44">UV</option>
+                                            <option value="43">NV</option>
+                                            <option value="42">ID</option>
+                                            <option value="41">OR</option>
+                                            <option value="40">CA</option>
+                                            <option value="39">WA</option>
+                                            <option value="38">Crystal Meth Rehab Centers</option>
+                                            <option value="37">Opiate Addiction Centers</option>
+                                            <option value="36">Prescriptions Drug Rehabs</option>
+                                            <option value="35">Heroin Rehab Centers</option>
+                                            <option value="34">Heroin Rehab Centers</option>
+                                            <option value="33">Prescriptions Drug Rehabs</option>
+                                            <option value="32">Opiate Addiction Centers</option>
+                                            <option value="31">Marijuana Rehab Centers</option>
+                                            <option value="30">Sober Livings / Transitional Living</option>
+                                            <option value="29">Insurance Friendly Rehabs</option>
+                                            <option value="28">Scholarships Available</option>
+                                            <option value="27">Financing Available</option>
+                                            <option value="26">Private Pay Rehab Centers</option>
+                                            <option value="25">On Site Detox</option>
+                                            <option value="24">Rehabs with One on One Counseling</option>
+                                            <option value="23">Rehabs with One on One Counseling</option>
+                                            <option value="22">Outpatient Treatment Centers</option>
+                                            <option value="21">Mountain Lodge Recovery Centers</option>
+                                            <option value="20">Residential Addiction Rehabs</option>
+                                            <option value="19">Mountain Lodge Recovery Centers</option>
+                                            <option value="18">Wilderness Camps</option>
+                                            <option value="17">Rehabs on the Ocean</option>
+                                            <option value="16">Lake Front Addiction Centers</option>
+                                            <option value="15">Lake Front Addiction Centers</option>
+                                            <option value="14">12 Step Based Treatment Centers</option>
+                                            <option value="13">Dual Diagnosis Rehab Centers</option>
+                                            <option value="12">Faith Based Rehab Centers</option>
+                                            <option value="11">Non 12 Step Rehab Centers</option>
+                                            <option value="10">Holistic Addiction Rehab Centers</option>
+                                            <option value="9">Luxury Rehab Centers</option>
+                                            <option value="8">Young Adult Rehabs</option>
+                                            <option value="7">LGBT Friendly Rehabs</option>
+                                            <option value="6">Rehab for Women</option>
+                                            <option value="5">Teen / Adolescent Rehabs</option>
+                                            <option value="4">Mature Adult Rehabs</option>
+                                            <option value="3">Executive Treatment</option>
+                                            <option value="2">Holistic Addiction Rehab Centers</option>
+                                            <option value="1">Rehab for Men</option></select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="text"> Payment Amount</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="Payment Amount" id="payment_amount" name="payment_amount" class="form-control required" type="number" ng-model="$ctrl.payment_amount">
+                                    </div>
+                                </div>
+
+                                <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
+                                    <input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" id="submit" type="button" ng-click="$ctrl.submit()">
+
+                                    <span ng-show="$ctrl.success_msg" style="color:green;">Added</span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub">
+                                    <div class="company_adds">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 padding_0">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
