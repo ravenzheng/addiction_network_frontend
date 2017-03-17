@@ -33,3 +33,5 @@ npm run start
 * [$location](https://docs.angularjs.org/guide/migration#commit-aa077e8)
 * [Understanding the github Flow](https://guides.github.com/introduction/flow/)
 * [Github Flow](http://scottchacon.com/2011/08/31/github-flow.html)
+* [AngularJS -UploadFile](https://www.tutorialspoint.com/angularjs/angularjs_upload_file.htm)
+* [FormData.append()](https://developer.mozilla.org/en-US/docs/Web/API/FormData/append)

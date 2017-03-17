@@ -50,7 +50,7 @@ var common = {
 
 // copy angular and angular-route to build directory
 var copyWebpackPlugin = new CopyWebpackPlugin([{
-  from: 'node_modules/angular/angular.min.js',
+  from: 'node_modules/angular/angular.js',
   to: PATHS.build
 }, {
   from: 'node_modules/angular-route/angular-route.min.js',
@@ -111,7 +111,7 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'js/masonry.min.js',
     'js/jquery/jquery.masonry.min.js',
     'js/wp-embed.min.js',
-    'angular.min.js',
+    'angular.js',
     'angular-route.min.js'
   ],
   append: false
