@@ -4,7 +4,6 @@ var angular = require('angular'),
 angular.module(moduleName, [])
   .component('profileNavSection', require('./profileNavSection'))
   .component('stateSelect', require('./stateSelect'))
-  .directive('fileModel', require('./fileModel'))
   .directive('validPasswordC', require('./validPasswordC'));
   .directive('fileModel', require('./fileModel'));
 module.exports = moduleName;
