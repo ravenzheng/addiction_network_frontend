@@ -1,6 +1,6 @@
 function service($http, endPoint, UserService) {
     return {
-        addTreatmentCenterSignUp: function (auth, formData) {
+        addTreatmentCenterSignUp: function(auth, formData) {
             var req = $http({
                 url: endPoint + '/registrations',
                 method: "POST",
@@ -11,18 +11,18 @@ function service($http, endPoint, UserService) {
                     'Content-Type': undefined
                 }
             });
-            return req.then(function (res) {
+            return req.then(function(res) {
                 var statusCode = res.status;
                 return res.data;
             });
         },
-        getAuthtoken: function () {
+        getAuthtoken: function() {
             var email = 'best@test.com';
             var passwd = '12345678'
-            return UserService.signIn(email, passwd).then(function (result) {
+            return UserService.signIn(email, passwd).then(function(result) {
                 var token = UserService.getToken();
                 return token;
-            }).catch(function (error) {
+            }).catch(function(error) {
                 throw error;
             });
         }

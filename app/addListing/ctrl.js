@@ -1,6 +1,6 @@
 function ctrl($scope, service) {
     var vm = this;
-    vm.submit = function () {
+    vm.submit = function() {
         var formData = new FormData();
         var data_signup = {
             'email': vm.email,
@@ -50,19 +50,18 @@ function ctrl($scope, service) {
             }
         }
         var auth = '';
-        service.getAuthtoken().then(function (response) {
+        service.getAuthtoken().then(function(response) {
             auth = response;
-        }).catch(function (err) {
+        }).catch(function(err) {
             alert(err);
         });
-        service.addTreatmentCenterSignUp(auth, formData).then(function (response) {
+        service.addTreatmentCenterSignUp(auth, formData).then(function(response) {
             alert("Your Listing has been saved");
             location.reload(true);
-        }).catch(function (err) {
+        }).catch(function(err) {
             $("#email_err").html(err.data.user.email.errors);
             $("#pass_err").html(err.data.user.password.errors);
         });
-
     }
 }
 module.exports = ['$scope', 'addTreatmentCenterSignUpService', ctrl];

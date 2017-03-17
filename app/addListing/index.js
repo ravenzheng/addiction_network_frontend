@@ -2,14 +2,12 @@ var angular = require('angular'),
     ctrl = require('./ctrl'),
     htmlTemplate = require('./view.html'),
     service = require('./service'),
-    //directive = require('./directive'),
     moduleName = 'app.addTreatmentCenterSignUp';
 
 angular.module(moduleName, [
         'ngRoute',
-	require('../components')
+        require('../components')
     ])
-
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/center-detail/', {
             template: htmlTemplate,
@@ -18,6 +16,4 @@ angular.module(moduleName, [
     }])
     .factory('addTreatmentCenterSignUpService', service)
     .controller('AddTreatmentCenterCtrlSignUp', ctrl);
-
 module.exports = moduleName;
-
