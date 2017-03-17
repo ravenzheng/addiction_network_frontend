@@ -12,8 +12,8 @@ angular.module(appName, [
     require('./myProfile'),
     require('./addTreatmentCenter'),
     require('./featuredTreatmentCenter'),
-    require('./addSponsorAds')
-   	require('./addListing')
+    require('./addSponsorAds'),
+    require('./addListing')
   ])
   .component('header', require('./header'))
   .component('footer', require('./footer'))
