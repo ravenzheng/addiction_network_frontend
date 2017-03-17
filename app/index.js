@@ -13,7 +13,6 @@ angular.module(appName, [
     require('./addTreatmentCenter'),
     require('./featuredTreatmentCenter'),
    	require('./addListing')
-    require('./featuredTreatmentCenter')
   ])
   .component('header', require('./header'))
   .component('footer', require('./footer'))
