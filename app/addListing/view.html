@@ -8,7 +8,7 @@
                     </h1>
                     <h4 class="sub_heading_under_sign_up"> Contact Information:</h4>
                     <div class="row">
-                        <form name="addlistForm" ng-submit="submitForm()" enctype="multipart/form-data" ng-controller="AddTreatmentCenterCtrlSignUp">
+                        <form name="addlistForm" enctype="multipart/form-data" ng-controller="AddTreatmentCenterCtrlSignUp as $ctrl">
                             <input name="customertype" value="owner" type="hidden">
                             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -17,7 +17,7 @@
                                         <label for="cpwd">Email  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Email" id="email" name="center_name" class="form-control required" type="email" ng-model="addtreatmentcenteruser.email" ng-required="required">
+                                        <input placeholder="Email" id="email" name="center_name" class="form-control required" type="email" ng-model="$ctrl.email" ng-required="required">
                                         <span id="email_err"> </span>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                         <label for="cpwd">Password  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Password" id="password" name="password" class="form-control required" type="password" ng-model="addtreatmentcenteruser.password" ng-required="required">
+                                        <input placeholder="Password" id="password" name="password" class="form-control required" type="password" ng-model="$ctrl.password" ng-required="required">
                                         <span id="pass_err"> </span>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                         <label for="cpwd">Password Confirmation  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Password Confirmation" id="confirm_password" name="confirm_password" class="form-control required" type="password" ng-model="addtreatmentcenteruser.confirm_password" ng-required="required" valid-password-c="addtreatmentcenteruser.password">
+                                        <input placeholder="Password Confirmation" id="confirm_password" name="confirm_password" class="form-control required" type="password" ng-model="$ctrl.confirm_password" ng-required="required" valid-password-c="$ctrl.password">
                                         <span ng-show="addlistForm.confirm_password.$error.noMatch">Password does not match! </span>
                                     </div>
 
@@ -49,7 +49,7 @@
                                         <label for="cpwd">First Name </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="First Name" id="first_name" name="user_first_name" class="form-control required" type="text" ng-model="addtreatmentcenteruser.first_name">
+                                        <input placeholder="First Name" id="first_name" name="user_first_name" class="form-control required" type="text" ng-model="$ctrl.first_name">
 
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                         <label for="cpwd">Last Name </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Last Name" id="last_name" name="user_last_name" class="form-control required" type="text" ng-model="addtreatmentcenteruser.last_name">
+                                        <input placeholder="Last Name" id="last_name" name="user_last_name" class="form-control required" type="text" ng-model="$ctrl.last_name">
 
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                         <label for="cpwd">Company </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Company" id="last_name" name="user_company" class="form-control required" type="text" ng-model="addtreatmentcenteruser.company">
+                                        <input placeholder="Company" id="last_name" name="user_company" class="form-control required" type="text" ng-model="$ctrl.company">
 
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                         <label for="cpwd">Phone </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Phone" id="user_phone" name="user_phone" class="form-control required" type="text" ng-model="addtreatmentcenteruser.phone">
+                                        <input placeholder="Phone" id="user_phone" name="user_phone" class="form-control required" type="text" ng-model="$ctrl.phone">
 
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
                                         <label for="cpwd">Treatment Center Name  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Treatment Center Name" id="tcname" name="center_name" class="form-control required" type="text" ng-model="addtreatmentcenter.center_name">
+                                        <input placeholder="Treatment Center Name" id="tcname" name="center_name" class="form-control required" type="text" ng-model="$ctrl.center_name">
 
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                         <label for="cpwd">Description</label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <textarea name="briefoverview" ng-model="addtreatmentcenter.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview"></textarea>
+                                        <textarea name="briefoverview" ng-model="$ctrl.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview"></textarea>
 
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                         <label for="web_link">Listing Image: </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input name="listing_image[]" id="listing_image" file-model="addtreatmentcenter.listing_image" class="span2 text_file multi center_image" type="file">
+                                        <input name="listing_image[]" id="listing_image" file-model="$ctrl.listing_image" class="span2 text_file multi center_image" type="file">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -120,7 +120,7 @@
                                         <label for="cpwd">Heading1 </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input id="website" name="heading1" class="form-control required" type="text" ng-model="addtreatmentcenter.heading_1" placeholder="Heading1">
+                                        <input id="website" name="heading1" class="form-control required" type="text" ng-model="$ctrl.heading_1" placeholder="Heading1">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -128,7 +128,7 @@
                                         <label for="cpwd">Heading2 </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input id="website" name="heading2" class="form-control required" type="text" ng-model="addtreatmentcenter.heading_2" placeholder="Heading2">
+                                        <input id="website" name="heading2" class="form-control required" type="text" ng-model="$ctrl.heading_2" placeholder="Heading2">
                                     </div>
                                 </div>
 
@@ -137,7 +137,7 @@
                                         <label for="cpwd">Heading3 </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input id="website" name="heading3" class="form-control required" type="text" ng-model="addtreatmentcenter.heading_3" placeholder="Heading3">
+                                        <input id="website" name="heading3" class="form-control required" type="text" ng-model="$ctrl.heading_3" placeholder="Heading3">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -145,7 +145,7 @@
                                         <label for="cpwd">Heading4 </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input id="website" name="heading4" class="form-control required" type="text" ng-model="addtreatmentcenter.heading_4" placeholder="Heading4">
+                                        <input id="website" name="heading4" class="form-control required" type="text" ng-model="$ctrl.heading_4" placeholder="Heading4">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -153,7 +153,7 @@
                                         <label for="cpwd">Content1</label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <textarea name="briefoverview" ng-model="addtreatmentcenter.content_1" class="form-control required" rows="2" cols="50" placeholder="Content 1"></textarea>
+                                        <textarea name="briefoverview" ng-model="$ctrl.content_1" class="form-control required" rows="2" cols="50" placeholder="Content 1"></textarea>
 
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                         <label for="cpwd">Content 2</label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <textarea name="briefoverview" ng-model="addtreatmentcenter.content_2" class="form-control required" rows="2" cols="50" placeholder="Content 2"></textarea>
+                                        <textarea name="briefoverview" ng-model="$ctrl.content_2" class="form-control required" rows="2" cols="50" placeholder="Content 2"></textarea>
 
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                         <label for="cpwd">Content 3</label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <textarea name="briefoverview" ng-model="addtreatmentcenter.content_3" class="form-control required" rows="2" cols="50" placeholder="Content 3"></textarea>
+                                        <textarea name="briefoverview" ng-model="$ctrl.content_3" class="form-control required" rows="2" cols="50" placeholder="Content 3"></textarea>
 
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@
                                         <label for="cpwd">Content 4</label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <textarea name="briefoverview" ng-model="addtreatmentcenter.content_4" class="form-control required" rows="2" cols="50" placeholder="Content 4"></textarea>
+                                        <textarea name="briefoverview" ng-model="$ctrl.content_4" class="form-control required" rows="2" cols="50" placeholder="Content 4"></textarea>
 
                                     </div>
                                 </div>
@@ -189,7 +189,7 @@
                                         <label for="cpwd">Address Line 1 </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input id="website" name="address_line_1" class="form-control required" type="text" ng-model="addtreatmentcenter.address_line_1" placeholder="Address Line 1">
+                                        <input id="website" name="address_line_1" class="form-control required" type="text" ng-model="$ctrl.address_line_1" placeholder="Address Line 1">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -197,7 +197,7 @@
                                         <label for="cpwd">Address Line 2 </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input id="website" name="address_line_2" class="form-control required" type="text" ng-model="addtreatmentcenter.address_line_2" placeholder="Address Line 2">
+                                        <input id="website" name="address_line_2" class="form-control required" type="text" ng-model="$ctrl.address_line_2" placeholder="Address Line 2">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -205,7 +205,7 @@
                                         <label for="cpwd">Intake Email </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" ng-model="addtreatmentcenter.email">
+                                        <input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" ng-model="$ctrl.intakeemail">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -213,7 +213,7 @@
                                         <label for="cpwd">Intake Phone</label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" type="text" ng-model="addtreatmentcenter.phone">
+                                        <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" type="text" ng-model="$ctrl.intakephone">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -221,7 +221,7 @@
                                         <label for="cpwd">City  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="City" id="city" name="city" class="form-control required" type="text" ng-model="addtreatmentcenter.city">
+                                        <input placeholder="City" id="city" name="city" class="form-control required" type="text" ng-model="$ctrl.city">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -229,7 +229,7 @@
                                         <label for="cpwd">State  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="State" id="state" name="state" class="form-control required" type="text" ng-model="addtreatmentcenter.state">
+                                        <input placeholder="State" id="state" name="state" class="form-control required" type="text" ng-model="$ctrl.state">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -237,7 +237,7 @@
                                         <label for="cpwd">Country  </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Country" id="country" name="country" class="form-control required" type="text" ng-model="addtreatmentcenter.country">
+                                        <input placeholder="Country" id="country" name="country" class="form-control required" type="text" ng-model="$ctrl.country">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -245,7 +245,7 @@
                                         <label for="cpwd">Zip   </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input placeholder="Zip" id="zip" name="zip" class="form-control required" number="true" minlength="5" maxlength="5" type="text" ng-model="addtreatmentcenter.pincode">
+                                        <input placeholder="Zip" id="zip" name="zip" class="form-control required" number="true" minlength="5" maxlength="5" type="text" ng-model="$ctrl.pincode">
                                     </div>
                                 </div>
 
@@ -254,11 +254,11 @@
                                         <label for="web_link">Upload Gallery Images: </label>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input name="image_data[]" id="galler_image" class="span2 text_file multi center_image" type="file" file-model="addtreatmentcenter.image_data">
+                                        <input name="image_data[]" id="galler_image" class="span2 text_file multi center_image" type="file" file-model="$ctrl.image_data">
                                     </div>
                                 </div>
                                 <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
-                                    <input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" id="submit" type="submit">
+                                    <input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" id="submit" type="button" ng-click="$ctrl.submit()">
 
                                     <span style="color:green;" ng-show="success_msg">Added </span>
                                 </div>
