@@ -1,7 +1,9 @@
 var angular = require('angular'),
   moduleName = 'app.sidePanel';
 
-angular.module(moduleName, [])
+angular.module(moduleName, [
+    require('../components')
+  ])
   .component('findTreatmentSideCard', require('./findTreatmentSideCard'))
   .component('sideCard', require('./sideCard'))
   .component('sidePanel', {

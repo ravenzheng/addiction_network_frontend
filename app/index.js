@@ -3,11 +3,15 @@ var angular = require('angular'),
 
 angular.module(appName, [
     'ngRoute',
+    require('./components'), // provide common components
     require('./home'),
     require('./sponsorHome'),
     require('./treatmentcenterDetail'),
     require('./treatmentcenterMap'),
     require('./advertisement'),
+    require('./myProfile'),
+    require('./addTreatmentCenter'),
+    require('./featuredTreatmentCenter'),
 	require('./addListing')
   ])
   .component('header', require('./header'))
