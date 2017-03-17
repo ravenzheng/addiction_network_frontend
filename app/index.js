@@ -12,7 +12,8 @@ angular.module(appName, [
     require('./myProfile'),
     require('./addTreatmentCenter'),
     require('./featuredTreatmentCenter'),
-	require('./addListing')
+   	require('./addListing')
+    require('./featuredTreatmentCenter')
   ])
   .component('header', require('./header'))
   .component('footer', require('./footer'))
