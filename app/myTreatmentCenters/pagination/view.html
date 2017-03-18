@@ -1,0 +1,7 @@
+<div id="pagination-box">
+  <a ng-show="$ctrl.currentPage < 6" ng-click="$ctrl.previous()">Previous</a>
+  <a ng-repeat="i in $ctrl.range($ctrl.totalPage) track by $index" ng-href="#/my-treatment-centers/{{i}}/{{$ctrl.order}}">
+    {{ i }}
+  </a>
+  <a ng-show="$ctrl.currentPage < 6" ng-click="$ctrl.next()">Next</a>
+</div>

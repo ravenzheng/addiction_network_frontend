@@ -8,7 +8,7 @@ var links = [{
   href: '#/change-password',
   name: 'Change Password'
 }, {
-  href: '#/my-treatment-center',
+  href: '#/my-treatment-centers',
   name: 'My Treatment Centers'
 }, {
   href: '#/sponsor-ads',

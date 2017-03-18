@@ -2,7 +2,7 @@
   <div class="container">
     <div class="left_content top_text">
       <h1>
-        <label>{{ entry.center_name }}</label>
+        <label>{{ $ctrl.entry.center_name }}</label>
       </h1>
     </div>
     <div class="row">
@@ -47,7 +47,7 @@
             <div class="innerMessage"></div>
           </div>
           <h1>
-            <label>{{ entry.center_name}}
+            <label>{{ $ctrl.entry.center_name}}
               Details</label>
           </h1>
           <div class="row">
@@ -57,7 +57,7 @@
                   <label for="userf">Name:</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ entry.center_name }}</p>
+                  <p>{{ $ctrl.entry.center_name }}</p>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -65,7 +65,7 @@
                   <label for="userl">Details:</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ entry.description }}</p>
+                  <p>{{ $ctrl.entry.description }}</p>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -73,7 +73,7 @@
                   <label>Website Link:</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <a href="{{ entry.website_link }}">{{ entry.center_web_link }}</a>
+                  <a href="{{ $ctrl.entry.website_link }}">{{ $ctrl.entry.center_web_link }}</a>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -81,7 +81,7 @@
                   <label>Phone Number:</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ entry.phone }}</p>
+                  <p>{{ $ctrl.entry.phone }}</p>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -89,7 +89,7 @@
                   <label>Address:</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ entry.address }}</p>
+                  <p>{{ $ctrl.entry.address }}</p>
                 </div>
               </div>
             </div>
@@ -97,32 +97,31 @@
 
           <!--   About us    -->
           <h1 class="display_full">
-            <label>{{ entry.heading_1 }}</label>
+            <label>{{ $ctrl.entry.heading_1 }}</label>
           </h1>
           <div class="margin_top_adjust_go col-md-12 col-sm-12 col-xs-12 ">
-            <span class="text_style_about margin_bottom_adjust_go">{{ entry.content_1 }}</span>
+            <span class="text_style_about margin_bottom_adjust_go">{{ $ctrl.entry.content_1 }}</span>
           </div>
 
           <!--   Treatment Approach    -->
           <h1 class="display_full">
-            <label>{{ entry.heading_2 }}</label>
+            <label>{{ $ctrl.entry.heading_2 }}</label>
           </h1>
           <div class="margin_top_adjust_go col-md-12 col-sm-12 col-xs-12">
-            <span class="text_style_about margin_bottom_adjust_go">{{ entry.content_2 }}</span>
+            <span class="text_style_about margin_bottom_adjust_go">{{ $ctrl.entry.content_2 }}</span>
           </div>
 
           <!--   Unique Points   -->
           <h1 class="display_full">
-            <label>{{ entry.heading_3 }}</label>
+            <label>{{ $ctrl.entry.heading_3 }}</label>
           </h1>
           <div class="margin_top_adjust_go col-md-12 col-sm-12 col-xs-12">
-            <span class="text_style_about margin_bottom_adjust_go">{{ entry.content_3 }}</span>
+            <span class="text_style_about margin_bottom_adjust_go">{{ $ctrl.entry.content_3 }}</span>
           </div>
 
           <!--   Reviews    -->
           <h1 class="display_full">
-            <label>{{ entry.heading_4 }}
-            </label>
+            <label>{{ $ctrl.entry.heading_4 }}</label>
           </h1>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -152,8 +151,7 @@
                     </h4>
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub color_for_star">
                       <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label for="rat">Select Rating:
-                        </label>
+                        <label for="rat">Select Rating:</label>
                       </div>
                       <div class="col-md-8 col-sm-8 col-xs-12">
                         <div class="user_ratings">
@@ -207,23 +205,23 @@
           <div class="text_style_detail_page">
             <span>Location:</span>
             <p class="margin_top_adjust_go">
-              <i class="glyphicon glyphicon-map-marker"></i>{{ entry.address }}
+              <i class="glyphicon glyphicon-map-marker"></i>{{ $ctrl.entry.address }}
             </p>
           </div>
           <div class="text_style_detail_page">
             <span class="margin_top_adjust_go">Call Us:</span>
             <p class="margin_top_adjust_go">
-              <i class="glyphicon glyphicon-phone-alt"></i>{{ entry.phone_no}}</p>
+              <i class="glyphicon glyphicon-phone-alt"></i>{{ $ctrl.entry.phone}}</p>
           </div>
           <div class="text_style_detail_page">
             <span class="margin_top_adjust_go">Email Us:</span>
             <p class="margin_top_adjust_go">
-              <i class="glyphicon glyphicon-envelope mail_icon"></i>{{ entry.email}}
+              <i class="glyphicon glyphicon-envelope mail_icon"></i>{{ $ctrl.entry.email}}
             </p>
           </div>
         </div>
         <div class="detail_form_main map_margin">
-          <div class="detail_heading">{{ entry.address }}
+          <div class="detail_heading">{{ $ctrl.entry.address }}
             <h2>
               <label>Map</label>
             </h2>

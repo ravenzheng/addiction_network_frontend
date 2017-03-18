@@ -1,0 +1,38 @@
+<div class="col-md-8 col-sm-8 col-xs-12 col-lg-9">
+  <div class="heading_main_div">
+    <h2>
+      <label>
+        My Treatment Centers
+      </label>
+    </h2>
+  </div>
+  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right ">
+      <a href="#/add-treatment-center/">
+        <div class="col-md-12 col-xs-12 col-sm-12 padding_0">
+          <span class="pull-right modal_btn btn btn-primary margin_bottom_15_add text-right">
+            Add Treatment Center
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Center listings in a table -->
+    <center-table centers="$ctrl.currentCenters"></center-table>
+
+    <!-- Pagination -->
+    <pagination page-size="$ctrl.pageSize" total-page="$ctrl.totalPage" current-page="$ctrl.currentPage"></pagination>
+
+    <!-- Ad -->
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+      <div class="company_adds">
+        <div class="company_adds">
+          <a href="http://www.bhdf.com" target="_blank">
+            <img src="http://www.addictionnetwork.com/wp-content/uploads/advertisement_images/medium/1464206739-addiction way out.jpg">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

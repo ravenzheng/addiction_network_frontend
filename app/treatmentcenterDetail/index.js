@@ -1,20 +1,19 @@
 var angular = require('angular'),
-  ctrl = require('./ctrl'),
-  htmlTemplate = require('./view.html'),
-  service = require('./service'),
   moduleName = 'app.treatmentcenterDetail';
 
 angular.module(moduleName, [
-    'ngRoute',
-    require('./inquiryFormCard')
+    'ngRoute'
   ])
+  .factory('TreatmentcenterDetailService', require('./service'))
+  .component('inquiryFormCard', require('./inquiryFormCard'))
+  .component('treatmentcenterDetail', {
+    template: require('./view.html'),
+    controller: require('./ctrl')
+  })
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/treatment_center/:id/detail', {
-      template: htmlTemplate,
-      controller: 'TreatmentcenterDetailCtrl'
+    $routeProvider.when('/treatment_center/:id', {
+      template: '<treatmentcenter-detail></treatmentcenter-detail>'
     });
-  }])
-  .factory('TreatmentcenterDetailService', service)
-  .controller('TreatmentcenterDetailCtrl', ctrl);
+  }]);
 
 module.exports = moduleName;
