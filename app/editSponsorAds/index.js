@@ -1,7 +1,7 @@
 var angular = require('angular'),
     ctrl = require('./ctrl'),
     htmlTemplate = require('./view.html'),
-    htmlTemplateView = require('./view_sponsor.html'),
+    htmlTemplateView = require('./edit.html'),
     service = require('./service'),
     moduleName = 'app.editSponsorAds';
 

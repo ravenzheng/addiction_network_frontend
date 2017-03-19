@@ -1,6 +1,6 @@
 function service($http, endPoint) {
     return {
-        sponsorEdit: function (formdata, auth, id) {
+        editSponsor: function (formdata, auth, id) {
             var req = $http({
                 url: endPoint + '/listing_user/sponsored_ads/' + id,
                 method: "PATCH",
@@ -17,7 +17,7 @@ function service($http, endPoint) {
                 return data;
             });
         },
-        sponsorGetData: function (id, auth, formdata) {
+        getSponsorData: function (id, auth, formdata) {
             var req = $http({
                 url: endPoint + '/listing_user/sponsored_ads/' + id,
                 method: "PATCH",
