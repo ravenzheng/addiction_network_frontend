@@ -14,6 +14,7 @@ angular.module(appName, [
     require('./featuredTreatmentCenter'),
     require('./addSponsorAds'),
     require('./addListing'),
+    require('./editSponsorAds'),
     require('./sponsorAds')
   ])
   .component('header', require('./header'))

@@ -1,0 +1,93 @@
+<div class="middle_content_div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="left_content">
+                    <h1>
+                        <label>Edit Sponsor Ad</label>
+                    </h1>
+                    <div class="row">
+                        <form name="sponsorAdsForm" ng-controller="editSponsorAdsCtrl as $ctrl">
+                            <input name="customertype" value="owner" type="hidden">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="title">Title: </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="Title" name="title" id="title" class="form-control required" type="text" ng-model="$ctrl.title">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="name">Name:</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="Name" name="name" id="name" class="form-control required" type="text" ng-model="$ctrl.name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="upload_img">Upload Image</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input name="image" id="image" class="span2 text_file center_image" file-model="$ctrl.image" type="file">
+
+                                        <img ng-src="{{$ctrl.oldimage}}" width="100">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="cpwd">Description</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <textarea name="briefoverview" ng-model="$ctrl.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview"></textarea>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="cpwd">Website </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="website " id="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="cpwd">Sponsor Ads </label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <spons-ads-categories on-update="$ctrl.onCatgUpdate(selected)"></spons-ads-categories>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label for="text"> Payment Amount</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input placeholder="Payment Amount" id="payment_amount" name="payment_amount" class="form-control required" type="number" ng-model="$ctrl.payment_amount">
+                                    </div>
+                                </div>
+
+                                <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
+                                    <input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" ng-click="$ctrl.submit()" id="submit" type="button">
+                                    <span ng-show="$ctrl.success_msg">Updated </span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub">
+                                    <div class="company_adds">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
