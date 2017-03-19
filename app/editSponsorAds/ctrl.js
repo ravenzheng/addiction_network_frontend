@@ -31,7 +31,7 @@ function ctrl($routeParams, service) {
         for (var key in data_sponsor) {
             formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
         }
-        service.sponsorGetData(id, auth, formData).then(function(response) {
+        service.getSponsorData(id, auth, formData).then(function(response) {
             vm.image = response.banner_ads.image;
             if (vm.image != vm.oldimage) {
                 vm.oldimage = response.banner_ads.image;
@@ -61,7 +61,7 @@ function ctrl($routeParams, service) {
         for (var key in data_sponsor) {
             formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
         }
-        service.sponsorEdit(formData, auth, id).then(function(response) {
+        service.editSponsor(formData, auth, id).then(function(response) {
             vm.success_msg = 1;
             get_data();
 
