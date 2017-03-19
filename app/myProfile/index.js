@@ -4,7 +4,7 @@ var angular = require('angular'),
 angular.module(moduleName, [
     'ngRoute',
     require('../components'),
-    require('../user')
+    require('../services')
   ])
   .component('profileMain', require('./main'))
   .component('myProfile', {

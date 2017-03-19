@@ -6,6 +6,8 @@
       </label>
     </h2>
   </div>
+
+  <!-- Add treatment center button -->
   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right ">
       <a href="#/add-treatment-center/">
@@ -21,7 +23,7 @@
     <center-table centers="$ctrl.currentCenters"></center-table>
 
     <!-- Pagination -->
-    <pagination page-size="$ctrl.pageSize" total-page="$ctrl.totalPage" current-page="$ctrl.currentPage"></pagination>
+    <pagination page-size="$ctrl.pageSize" total-page="$ctrl.totalPage" current-page="$ctrl.currentPage" on-update="$ctrl.onPageUpdate(page)"></pagination>
 
     <!-- Ad -->
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">

@@ -3,7 +3,7 @@ var angular = require('angular'),
 
 angular.module(moduleName, [
     'ngRoute',
-    require('../user')
+    require('../services')
   ])
   .factory('MyTreatmentCentersService', require('./service'))
   .component('centerTable', require('./centerTable'))
@@ -14,10 +14,10 @@ angular.module(moduleName, [
   })
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/my-treatment-centers', {
-      redirectTo: '/my-treatment-centers/1/ASC'
+      redirectTo: '/my-treatment-centers'
     });
-    $routeProvider.when('/my-treatment-centers/:page/:order', {
-      template: '<my-treatment-centers></my-treatment-centers>'
+    $routeProvider.when('/my-treatment-centers', {
+      template: '<my-treatment-centers></my-treatment-centers>',
     });
   }])
 

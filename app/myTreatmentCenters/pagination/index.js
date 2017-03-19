@@ -1,37 +1,50 @@
-function PaginationCtrl() {
+function PaginationCtrl($location) {
   var vm = this;
-  vm.order = 'ASC';
   vm.range = range;
-  vm.previous = gotoPrevious;
-  vm.next = gotoNext;
+  vm.goto = goto;
+  vm.gotoPrevious = gotoPrevious;
+  vm.gotoNext = gotoNext;
 
   function range(number) {
     var arr = [];
-    for (var i = 0; i < number; i++) {
-      arr.push(i + 1);
+    for (var i = 1; i <= number; i++) {
+      arr.push(i);
     }
     return arr;
   }
 
+  function goto(page) {
+    if (page !== vm.currentPage) {
+      vm.currentPage = page;
+      vm.onUpdate({
+        'page': vm.currentPage
+      });
+    }
+  }
+
   function gotoPrevious() {
     if (vm.currentPage > 1) {
-      vm.currentPage--;
+      goto(vm.currentPage - 1);
     }
   }
 
   function gotoNext() {
     if (vm.currentPage < vm.totalPage) {
-      vm.currentPage++;
+      goto(vm.currentPage + 1);
     }
   }
 }
+
+PaginationCtrl.$inject = ['$location'];
 
 module.exports = {
   template: require('./view.html'),
   controller: PaginationCtrl,
   bindings: {
+    order: '<',
     pageSize: '<',
     totalPage: '<',
-    currentPage: '='
+    currentPage: '<',
+    onUpdate: '&'
   }
 };

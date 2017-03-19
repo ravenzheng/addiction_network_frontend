@@ -12,6 +12,7 @@ angular.module(appName, [
     require('./myProfile'),
     require('./myTreatmentCenters'),
     require('./addTreatmentCenter'),
+    require('./editTreatmentCenter'),
     require('./featuredTreatmentCenter'),
     require('./addSponsorAds'),
     require('./addListing'),
@@ -23,6 +24,9 @@ angular.module(appName, [
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
+  }])
+  .config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.otherwise('/');
   }]);
 
 angular.bootstrap(document.getElementsByTagName('body')[0], [appName]);
