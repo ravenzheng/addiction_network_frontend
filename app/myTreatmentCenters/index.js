@@ -5,7 +5,6 @@ angular.module(moduleName, [
     'ngRoute',
     require('../services')
   ])
-  .factory('MyTreatmentCentersService', require('./service'))
   .component('centerTable', require('./centerTable'))
   .component('pagination', require('./pagination'))
   .component('centersMain', require('./main'))

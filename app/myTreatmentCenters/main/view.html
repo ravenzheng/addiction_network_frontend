@@ -7,8 +7,13 @@
     </h2>
   </div>
 
-  <!-- Add treatment center button -->
   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
+    <!-- Prompt Message to diplay operation result-->
+    <!-- <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right ">
+      <p>{{ $ctrl.prompt }}</p>
+    </div> -->
+
+    <!-- Add treatment center button -->
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right ">
       <a href="#/add-treatment-center/">
         <div class="col-md-12 col-xs-12 col-sm-12 padding_0">
@@ -20,7 +25,7 @@
     </div>
 
     <!-- Center listings in a table -->
-    <center-table centers="$ctrl.currentCenters"></center-table>
+    <center-table centers="$ctrl.currentCenters" on-activate="$ctrl.onActivate(id)" on-delete="$ctrl.onDelete(id)"></center-table>
 
     <!-- Pagination -->
     <pagination page-size="$ctrl.pageSize" total-page="$ctrl.totalPage" current-page="$ctrl.currentPage" on-update="$ctrl.onPageUpdate(page)"></pagination>
