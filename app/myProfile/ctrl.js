@@ -1,15 +1,11 @@
-function ctrl($scope, UserService) {
+function ctrl(UserService) {
   var vm = this;
-  var testEmail = 'best@test.com';
-  var testPassword = '12345678';
-  UserService.signIn(testEmail, testPassword).then(function () {
-    return UserService.queryProfile().then(function (result) {
-      $scope.profile = result.user;
-    });
+  UserService.queryProfile().then(function (profile) {
+    vm.profile = profile;
   }).catch(function (error) {
     // todo, display in message in the frontend page
-    console.log(error.message);
+    console.log(error);
   });
 }
 
-module.exports = ['$scope', 'UserService', ctrl];
+module.exports = ['UserService', ctrl];

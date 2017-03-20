@@ -3,15 +3,13 @@ var angular = require('angular'),
 
 angular.module(moduleName, [
     'ngRoute',
-    require('../user'),
-    require('../components')
+    require('../components'),
+    require('../services')
   ])
-  .factory('TreatmentCenterService', require('./service'))
-  .controller('AddTreatmentCenterCtrl', require('./ctrl'))
   .component('addTreatmentCenterMain', require('./main'))
   .component('addTreatmentCenter', {
     template: require('./view.html'),
-    controller: 'AddTreatmentCenterCtrl'
+    controller: require('./ctrl')
   })
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/add-treatment-center', {

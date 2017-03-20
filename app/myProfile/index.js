@@ -3,15 +3,19 @@ var angular = require('angular'),
 
 angular.module(moduleName, [
     'ngRoute',
-    require('../user')
+    require('../components'),
+    require('../services')
   ])
   .component('profileMain', require('./main'))
+  .component('myProfile', {
+    template: require('./view.html'),
+    controller: require('./ctrl')
+  })
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/my-profile', {
-      template: require('./view.html'),
-      controller: 'ProfileCtrl'
+      template: '<my-profile></my-profile>'
     });
-  }])
-  .controller('ProfileCtrl', require('./ctrl'));
+  }]);
+
 
 module.exports = moduleName;

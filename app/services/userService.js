@@ -1,4 +1,4 @@
-function service($http, endPoint) {
+function service($http, $q, endPoint) {
   var _service = this;
   _service.user = null;
   _service.signIn = signIn;
@@ -21,18 +21,35 @@ function service($http, endPoint) {
 
   // return token if user signed in.
   function getToken() {
-    return _service.user ? _service.user.auth_token : null;
+    // for testing purpose, This has to be removed in production.
+    var email = 'best@test.com';
+    var passwd = '12345678'
+    return _service.signIn(email, passwd).then(function (result) {
+      return result.user.auth_token;
+    });
+
+    // for production
+    // var deferred = $q.defer();
+    // if (_service.user) {
+    //   deferred.resolve(_service.user.auth_token);
+    // } else {
+    //   // if token can not be acquired, redirect user to sign in page
+    //   deferred.reject('No signed in user detected.')
+    // }
+    // return deferred.promise;
   }
 
   // query profile data with auth_token
   function queryProfile() {
-    return _service.getToken().then(function (result) {
+    return _service.getToken().then(function (token) {
       var req = $http.get(endPoint + '/profile', {
         headers: {
-          Authorization: auth_token
+          'Authorization': token
         }
       });
-      return _handle(req);
+      return _handle(req).then(function (result) {
+        return result.user;
+      });
     });
   }
 
@@ -53,4 +70,4 @@ function service($http, endPoint) {
   }
 }
 
-module.exports = ['$http', 'endPoint', service];
+module.exports = ['$http', '$q', 'endPoint', service];

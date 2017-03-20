@@ -35,3 +35,6 @@ npm run start
 * [Github Flow](http://scottchacon.com/2011/08/31/github-flow.html)
 * [AngularJS -UploadFile](https://www.tutorialspoint.com/angularjs/angularjs_upload_file.htm)
 * [FormData.append()](https://developer.mozilla.org/en-US/docs/Web/API/FormData/append)
+* [Styling Broken Image](https://bitsofco.de/styling-broken-images/)
+* [Git Clean: Delete Already-Merged Branches](http://stevenharman.net/git-clean-delete-already-merged-branches)
+*[How can I delete all git branches which have been merged?](http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged)
