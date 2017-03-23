@@ -42,8 +42,8 @@ function getarrayValue(url) {
         return obj["catg"].join(",");
     }
 }
-function ctrl($scope, $routeParams, service) {
-    var id = $routeParams.id;
+function ctrl($scope, $stateParams, service) {
+    var id = $stateParams.id;
     var url = window.location.href;
     if (window.location.href.indexOf("srch-keyword") > -1) {
         $scope.hide_map = "hide";
@@ -78,4 +78,4 @@ function ctrl($scope, $routeParams, service) {
     });
 }
 
-module.exports = ['$scope', '$routeParams', 'TreatmentcenterMapService', ctrl];
+module.exports = ['$scope', '$stateParams', 'TreatmentcenterMapService', ctrl];

@@ -6,20 +6,20 @@
 <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12" ng-repeat="listing in $ctrl.listings">
   <div class="listing_block">
     <div class="block_img">
-      <a class="thumbnail" ng-href="{{ listing.link }}">
+      <a class="thumbnail" ui-sref="{{ listing.uiSref }}">
         <img class="" ng-src="{{ listing.listing_image }}">
       </a>
     </div>
     <div class="block_content">
       <div class="block_heading">
         <h2 class="feat_head">
-          <a ng-href="{{ listing.link }}">{{ listing.center_name}}</a>
+          <a ui-sref="{{ listing.uiSref }}">{{ listing.center_name }}</a>
         </h2>
       </div>
       <p>
         {{ listing.description }}
       </p>
     </div>
-    <a ng-href="{{ listing.link }}">View Listing</a>
+    <a ui-sref="{{ listing.uiSref }}">View Listing</a>
   </div>
 </div>

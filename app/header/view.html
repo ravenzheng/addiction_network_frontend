@@ -19,9 +19,9 @@
       </div>
     </div>
     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-      <div class="img_outer_ban" ng-controller="AdvertisementCtrl">
+      <!-- <div class="img_outer_ban" ng-controller="AdvertisementCtrl">
         <a href="http://www.avalonmalibu.com/?apcid=9230​"><img class="" src="/uploads/advertisement_images/medium/1428517999-headerbanner2.jpg?1489120733"/></a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -43,40 +43,19 @@
         <a class="addthis_button_google_plusone_badge"></a>
         <a class="addthis_button_compact"></a>
       </div>-->
+      <!-- Social Links -->
       <ul class="social_ul">
-        <li>
-          <a href="https://www.facebook.com/theaddictionnetwork" target="_blank"><img src="themes/addiction/images/fb-2.png"></a>
-        </li>
-        <li>
-          <a href="https://twitter.com/AddictionNet1" target="_blank"><img src="themes/addiction/images/twitter-ff-2.png"></a>
-        </li>
-        <li>
-          <a href="https://www.google.com/+Addictionnetwork1" target="_blank"><img src="themes/addiction/images/gglplus.png"></a>
+        <li ng-repeat="socialLink in $ctrl.socialLinks">
+          <a ng-href="{{ socialLink.href }}" target="_blank">
+            <img ng-src="{{ socialLink.img }}"/>
+          </a>
         </li>
       </ul>
       <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=andr923"></script>
       <div class="nav_align ">
         <ul class="nav navbar-nav new_class_for_sub_menu header_main_menu fonnt">
-          <li>
-            <a class='comm' href="#">Home</a>
-          </li>
-          <li>
-            <a class='comm' href="#/treatment-center-map">Treatment Centers</a>
-          </li>
-          <li>
-            <a class='comm' href="#/about">About Us</a>
-          </li>
-          <li>
-            <a class='comm' href="#/blog/">Blog</a>
-          </li>
-          <li>
-            <a class='comm' href="#/contact-us/">Contact Us</a>
-          </li>
-          <li>
-            <a class='comm' href="#/my-profile">My Profile</a>
-          </li>
-          <li>
-            <a class='comm' href="#/center-detail" class="active">Add Listing</a>
+          <li ng-repeat="link in $ctrl.internalLinks">
+            <a class='comm' ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
           </li>
         </ul>
       </div>

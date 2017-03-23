@@ -6,18 +6,29 @@ var angular = require('angular'),
   moduleName = 'app.editSponsorAds';
 
 angular.module(moduleName, [
-    'ngRoute',
+    'ui.router',
     require('../components'),
     require('../services')
   ])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/sponsor-ads-edit/:id/:title', {
-      template: htmlTemplate
-    }).when('/sponsor-ads-view/:id/:title', {
-      template: htmlTemplateView
-    });
-  }])
   .factory('editSponsorAdsService', service)
-  .controller('editSponsorAdsCtrl', ctrl);
+  .controller('editSponsorAdsCtrl', ctrl)
+  .component('sponsorAdsEdit', {
+    template: require('./edit.html')
+  })
+  .component('sponsorAdsView', {
+    template: require('./view.html')
+  })
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'sponsorAdsEdit',
+      url: '/sponsor-ads-edit/:id/:title',
+      template: '<sponsor-ads-edit></sponsor-ads-edit>'
+    });
+    $stateProvider.state({
+      name: 'sponsorAdsView',
+      url: '/sponsor-ads-view/:id/:title',
+      template: '<sponsor-ads-view></sponsor-ads-view>'
+    });
+  }]);
 
 module.exports = moduleName;

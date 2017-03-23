@@ -1,21 +1,20 @@
 var angular = require('angular'),
-  moduleName = 'app.myProfile';
+  moduleName = 'app.treatmentCenterDetail';
 
 angular.module(moduleName, [
     'ui.router',
-    require('../components'),
     require('../services')
   ])
-  .component('profileMain', require('./main'))
-  .component('myProfile', {
+  .component('inquiryFormCard', require('./inquiryFormCard'))
+  .component('treatmentCenterDetail', {
     template: require('./view.html'),
     controller: require('./ctrl')
   })
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state({
-      name: 'myProfile',
-      url: '/my-profile',
-      template: '<my-profile></my-profile>'
+      name: 'treatmentCenterDetail',
+      url: '/treatment-center-detail/:id',
+      template: '<treatment-center-detail></treatment-center-detail>'
     });
   }]);
 

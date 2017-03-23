@@ -2,7 +2,7 @@ var angular = require('angular'),
   moduleName = 'app.editTreatmentCenter';
 
 angular.module(moduleName, [
-    'ngRoute',
+    'ui.router',
     require('../components'),
     require('../services')
   ])
@@ -12,9 +12,11 @@ angular.module(moduleName, [
     template: require('./view.html'),
     controller: require('./ctrl')
   })
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/edit-treatment-center/:id', {
-      template: '<edit-treatment-center></edit-treatment-center>'
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'editTreatmentCenter',
+      url: '/edit-treatment-center/:id',
+      template: '<edit-treatment-center></edit-treatment-center>',
     });
   }]);
 
