@@ -142,7 +142,11 @@ var devConfig = merge(common, {
   devServer: {
     contentBase: PATHS.build,
     compress: true,
-    port: 3000
+    port: 3000,
+    overlay: {
+      errors: true,
+      warnings: true
+    }
   }
 });
 
