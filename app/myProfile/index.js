@@ -6,6 +6,7 @@ angular.module(moduleName, [
   require('../components'),
   require('../services')
 ]).component('profileMain', require('./main'))
+
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')
