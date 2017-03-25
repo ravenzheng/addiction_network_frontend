@@ -1,16 +1,21 @@
 var angular = require('angular'),
-  ctrl = require('./ctrl'),
-  htmlTemplate = require('./view.html'),
-  service = require('./service'),
   moduleName = 'app.SponsorAds';
+
 angular.module(moduleName, [
-    'ngRoute'])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/sponsor-ads/', {
-      template: htmlTemplate,
+    'ui.router'
+  ])
+  .factory('SponsorAdsService', require('./service'))
+  .component('sponsorAds', {
+    template: require('./view.html'),
+    controller: require('./ctrl')
+  })
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'sponsorAds',
+      url: '/sponsor-ads',
+      template: '<sponsor-ads></sponsor-ads>'
     });
-  }])
-  .factory('SponsorAdsService', service)
-  .controller('SponsorAdsCtrl', ctrl);
+  }]);
+
 
 module.exports = moduleName;

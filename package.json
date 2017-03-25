@@ -12,8 +12,12 @@
     "start": "webpack-dev-server --open",
     "build": "webpack --progress",
     "postinstall": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint app/ --ext .js"
   },
+  "precommit": [
+    "lint"
+  ],
   "keywords": [
     "angular"
   ],
@@ -23,7 +27,7 @@
   },
   "dependencies": {
     "angular": "^1.6.2",
-    "angular-route": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
     "bootstrap": "3.2.0",
     "clean-webpack-plugin": "^0.1.15",
     "copy-webpack-plugin": "^4.0.1",
@@ -35,5 +39,11 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-merge": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-es5": "^0.5.0",
+    "eslint-plugin-html": "^2.0.1",
+    "pre-commit": "^1.2.2"
   }
 }

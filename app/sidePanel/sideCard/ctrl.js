@@ -1,15 +1,15 @@
 var originalDateset = require('./slug.json');
 
-function SidePanelCtrl($attrs) {
+function SideCardCtrl($attrs) {
   var type = $attrs.type;
   var arr = originalDateset[type];
   this.type = type;
-  this.listings = arr.map(function (elem) {
+  this.listings = arr.map(function (listing) {
     return {
-      link: '#/sponsorhome/' + elem,
-      name: elem
+      uiSref: 'sponsorHome({slug: "' + listing + '"})',
+      name: listing
     };
   });
 }
 
-module.exports = ['$attrs', SidePanelCtrl];
+module.exports = ['$attrs', SideCardCtrl];

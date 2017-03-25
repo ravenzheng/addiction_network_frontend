@@ -2,7 +2,7 @@ var angular = require('angular'),
   moduleName = 'app.myTreatmentCenters';
 
 angular.module(moduleName, [
-    'ngRoute',
+    'ui.router',
     require('../services')
   ])
   .component('centerTable', require('./centerTable'))
@@ -11,12 +11,11 @@ angular.module(moduleName, [
   .component('myTreatmentCenters', {
     template: require('./view.html')
   })
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/my-treatment-centers', {
-      redirectTo: '/my-treatment-centers'
-    });
-    $routeProvider.when('/my-treatment-centers', {
-      template: '<my-treatment-centers></my-treatment-centers>',
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'myTreatmentCenters',
+      url: '/my-treatment-centers',
+      template: '<my-treatment-centers></my-treatment-centers>'
     });
   }])
 

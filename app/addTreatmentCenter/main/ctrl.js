@@ -1,4 +1,4 @@
-function ctrl($scope, $location, TreatmentCenterService) {
+function ctrl($location, TreatmentCenterService) {
   var vm = this;
   vm.state = '';
   vm.onStateUpdate = function (selected) {
@@ -50,4 +50,4 @@ function ctrl($scope, $location, TreatmentCenterService) {
   }
 }
 
-module.exports = ['$scope', '$location', 'TreatmentCenterService', ctrl];
+module.exports = ['$location', 'TreatmentCenterService', ctrl];

@@ -2,16 +2,20 @@ var angular = require('angular'),
   moduleName = 'app.sponsorHome';
 
 angular.module(moduleName, [
-    'ngRoute',
+    'ui.router',
     require('../sidePanel')
   ])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/sponsorhome/:slug', {
-      template: require('./view.html'),
-      controller: 'SponsoredListingCtrl'
-    });
-  }])
   .factory('SponsoredListingService', require('./service'))
-  .controller('SponsoredListingCtrl', require('./ctrl'));
+  .component('sponsorHome', {
+    template: require('./view.html'),
+    controller: require('./ctrl')
+  })
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'sponsorHome',
+      url: '/sponsor-home/:slug',
+      template: '<sponsor-home></sponsor-home>'
+    });
+  }]);
 
 module.exports = moduleName;
