@@ -2,11 +2,10 @@ var angular = require('angular'),
   moduleName = 'app.myProfile';
 
 angular.module(moduleName, [
-    'ui.router',
-    require('../components'),
-    require('../services')
-  ])
-  .component('profileMain', require('./main'))
+  'ui.router',
+  require('../components'),
+  require('../services')
+]).component('profileMain', require('./main'))
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')

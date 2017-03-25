@@ -2,10 +2,9 @@ var angular = require('angular'),
   moduleName = 'app.treatmentCenterDetail';
 
 angular.module(moduleName, [
-    'ui.router',
-    require('../services')
-  ])
-  .component('inquiryFormCard', require('./inquiryFormCard'))
+  'ui.router',
+  require('../services')
+]).component('inquiryFormCard', require('./inquiryFormCard'))
   .component('treatmentCenterDetail', {
     template: require('./view.html'),
     controller: require('./ctrl')

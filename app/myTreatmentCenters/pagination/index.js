@@ -1,4 +1,4 @@
-function PaginationCtrl($location) {
+function PaginationCtrl() {
   var vm = this;
   vm.range = range;
   vm.goto = goto;
@@ -34,8 +34,6 @@ function PaginationCtrl($location) {
     }
   }
 }
-
-PaginationCtrl.$inject = ['$location'];
 
 module.exports = {
   template: require('./view.html'),

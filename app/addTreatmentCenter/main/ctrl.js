@@ -33,13 +33,13 @@ function ctrl($location, TreatmentCenterService) {
       formData.append('treatment_center[' + key + ']', data[key]);
     }
     if (vm.image_data) {
-      var image_data = vm.image_data
-      var len = image_data.length;
+      var imageData = vm.image_data;
+      var len = imageData.length;
       for (var i = 0; i < len; i++) {
-        formData.append('treatment_center[image_data][]', image_data.item(i));
+        formData.append('treatment_center[image_data][]', imageData.item(i));
       }
     }
-    TreatmentCenterService.add(formData).then(function (result) {
+    TreatmentCenterService.add(formData).then(function ( /* result */ ) {
       // if succeeded, redirect to url /featured-treatment-center
       $location.url('/featured-treatment-center');
       // $scope.$apply();
@@ -47,7 +47,7 @@ function ctrl($location, TreatmentCenterService) {
       // if failed, display the error message in the page
       console.log(error.message);
     });
-  }
+  };
 }
 
 module.exports = ['$location', 'TreatmentCenterService', ctrl];

@@ -3,7 +3,7 @@ function ctrl(service) {
   vm.centers = [];
   vm.currentCenters = [];
   vm.pageSize = 10;
-  vm.totalPage = "0";
+  vm.totalPage = 0;
   vm.currentPage = 1;
   vm.order = 'ASC'; // ASC or DESC;
   vm.onPageUpdate = onPageUpdate;
@@ -45,7 +45,7 @@ function ctrl(service) {
   function onActivate(id) {
     service.activate(id).then(function (result) {
       var index = _findCenterById(id);
-      if (index != -1) {
+      if (index !== -1) {
         var center = vm.centers[index];
         center.active = result.active;
         var seg = center.active ? 'activated' : 'deactivated';
@@ -58,9 +58,9 @@ function ctrl(service) {
 
   // delete a treatment center by id
   function onDelete(id) {
-    service.remove(id).then(function (result) {
+    service.remove(id).then(function ( /* result */ ) {
       var index = _findCenterById(id);
-      if (index != -1) {
+      if (index !== -1) {
         var center = vm.centers[index];
         vm.centers.splice(index, 1);
         vm.prompt = center.center_name + 'is deleted successfully';
@@ -94,7 +94,6 @@ function ctrl(service) {
     }
     return -1;
   }
-
 }
 
 module.exports = ['TreatmentCenterService', ctrl];

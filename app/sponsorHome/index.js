@@ -2,10 +2,9 @@ var angular = require('angular'),
   moduleName = 'app.sponsorHome';
 
 angular.module(moduleName, [
-    'ui.router',
-    require('../sidePanel')
-  ])
-  .factory('SponsoredListingService', require('./service'))
+  'ui.router',
+  require('../sidePanel')
+]).factory('SponsoredListingService', require('./service'))
   .component('sponsorHome', {
     template: require('./view.html'),
     controller: require('./ctrl')
