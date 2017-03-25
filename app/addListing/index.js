@@ -1,19 +1,22 @@
 var angular = require('angular'),
-    ctrl = require('./ctrl'),
-    htmlTemplate = require('./view.html'),
-    service = require('./service'),
-    moduleName = 'app.addTreatmentCenterSignUp';
+  service = require('./service'),
+  moduleName = 'app.addTreatmentCenterSignUp';
 
 angular.module(moduleName, [
-        'ngRoute',
-        require('../components')
-    ])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/center-detail/', {
-            template: htmlTemplate,
-            controller: 'AddTreatmentCenterCtrlSignUp'
-        });
-    }])
-    .factory('addTreatmentCenterSignUpService', service)
-    .controller('AddTreatmentCenterCtrlSignUp', ctrl);
+    'ui.router',
+    require('../components')
+  ])
+  .factory('addTreatmentCenterSignUpService', require('./service'))
+  .component('centerDetail', {
+    template: require('./view.html'),
+    controller: require('./ctrl')
+  })
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'centerDetail',
+      url: '/center-detail',
+      template: '<center-detail></center-detail>'
+    });
+  }]);
+
 module.exports = moduleName;

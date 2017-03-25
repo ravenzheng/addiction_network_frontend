@@ -2,12 +2,11 @@ var angular = require('angular'),
   appName = 'AddictionNetworkApp';
 
 angular.module(appName, [
-    'ngRoute',
-    require('./components'), // provide common components
+    'ui.router',
     require('./home'),
     require('./sponsorHome'),
-    require('./treatmentcenterDetail'),
-    require('./treatmentcenterMap'),
+    require('./treatmentCenterDetail'),
+    require('./treatmentCenterMap'),
     require('./advertisement'),
     require('./myProfile'),
     require('./myTreatmentCenters'),
@@ -25,8 +24,8 @@ angular.module(appName, [
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
   }])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.otherwise('/');
+  .config(['$urlRouterProvider', function ($urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
   }]);
 
 angular.bootstrap(document.getElementsByTagName('body')[0], [appName]);

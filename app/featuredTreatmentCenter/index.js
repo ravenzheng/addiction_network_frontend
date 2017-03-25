@@ -2,13 +2,18 @@ var angular = require('angular'),
   moduleName = 'app.featuredTreatmentCenter';
 
 angular.module(moduleName, [
-    'ngRoute',
+    'ui.router',
     require('../sidePanel')
   ])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/featured-treatment-center', {
-      template: require('./view.html')
+  .component('featuredTreatmentCenterPage', {
+    template: require('./view.html')
+  })
+  .config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state({
+      name: 'featuredTreatmentCenterPage',
+      url: '/featured-treatment-center',
+      template: '<featured-treatment-center-page></featured-treatment-center-page>'
     });
-  }])
+  }]);
 
 module.exports = moduleName;

@@ -1,6 +1,6 @@
-function ctrl($scope, $routeParams, $location, service) {
+function ctrl($scope, $stateParams, $location, service) {
   var vm = this;
-  var id = $routeParams.id;
+  var id = $stateParams.id;
   service.queryDetail(id).then(function (result) {
     for (var key in result) {
       vm[key] = result[key];
@@ -57,4 +57,4 @@ function ctrl($scope, $routeParams, $location, service) {
   }
 }
 
-module.exports = ['$scope', '$routeParams', '$location', 'TreatmentCenterService', ctrl];
+module.exports = ['$scope', '$stateParams', '$location', 'TreatmentCenterService', ctrl];

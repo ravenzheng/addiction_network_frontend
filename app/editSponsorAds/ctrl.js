@@ -1,9 +1,9 @@
-function ctrl($routeParams, service) {
-    var id = $routeParams.id;
-    var title = $routeParams.title;
-    var name = $routeParams.name;
-    var description = $routeParams.description;
-    var website = $routeParams.website;
+function ctrl($stateParams, service) {
+    var id = $stateParams.id;
+    var title = $stateParams.title;
+    var name = $stateParams.name;
+    var description = $stateParams.description;
+    var website = $stateParams.website;
     var vm = this;
     vm.catg = '';
     vm.onCatgUpdate = function(selected) {
@@ -79,4 +79,4 @@ function ctrl($routeParams, service) {
         
     }
 }
-module.exports = ['$routeParams', 'editSponsorAdsService', ctrl];
+module.exports = ['$stateParams', 'editSponsorAdsService', ctrl];
