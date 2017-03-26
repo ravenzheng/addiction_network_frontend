@@ -3,6 +3,9 @@ var angular = require('angular'),
 
 angular.module(moduleName, [])
   .service('UserService', require('./userService'))
-  .factory('TreatmentCenterService', require('./treatmentCenterService'));
+  .factory('TreatmentCenterService', require('./treatmentCenterService'))
+  .factory('SponsorAdsService', require('./sponsorAdsService'))
+  .factory('AdvertisementService', require('./advertisementService'))
+  .factory('ComponentsService', require('./componentsService'));
 
 module.exports = moduleName;
