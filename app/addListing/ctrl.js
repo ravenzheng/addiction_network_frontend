@@ -1,5 +1,18 @@
 function ctrl(service) {
   var vm = this;
+  service.getStates().then(function (response) {
+      vm.states=response;
+    }).catch(function (err) {
+      console.log(err);
+    });
+    vm.getCities = function () {
+    var state=vm.state;
+    service.getCities(state).then(function (response) {
+      vm.cities=response;
+    }).catch(function (err) {
+      console.log(err);
+    });
+    }
   vm.submit = function () {
     var formData = new FormData();
     var data_signup = {
@@ -55,7 +68,7 @@ function ctrl(service) {
     }).catch(function (err) {
       alert(err);
     });
-    service.addTreatmentCenterSignUp(auth, formData).then(function (response) {
+    service.addTreatmentCenterSignUp(auth, formData).then(function () {
       alert("Your Listing has been saved");
       location.reload(true);
     }).catch(function (err) {

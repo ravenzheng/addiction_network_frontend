@@ -8,14 +8,15 @@ angular.module(appName, [
     require('./treatmentCenterDetail'),
     require('./treatmentCenterMap'),
     require('./advertisement'),
+    require('./bannerAds'),
     require('./myProfile'),
     require('./myTreatmentCenters'),
     require('./addTreatmentCenter'),
     require('./editTreatmentCenter'),
     require('./featuredTreatmentCenter'),
-    require('./addSponsorAds'),
+    //require('./addSponsorAds'),
     require('./addListing'),
-    require('./editSponsorAds'),
+    //require('./editSponsorAds'),
     require('./sponsorAds')
   ])
   .component('header', require('./header'))

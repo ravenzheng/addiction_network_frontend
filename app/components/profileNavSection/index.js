@@ -14,7 +14,7 @@ var links = [{
   href: '#/sponsor-ads',
   name: 'Sponsor Pages'
 }, {
-  href: '#/advertisement',
+  href: '#/banner-ads',
   name: 'Banner Ads'
 }];
 

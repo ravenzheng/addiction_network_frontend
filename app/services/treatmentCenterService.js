@@ -6,6 +6,7 @@ function service($http, endPoint, UserService) {
     edit: edit,
     activate: activate,
     remove: remove,
+    addSignup: addSignup
   };
 
   function queryDetail(id) {
@@ -28,6 +29,19 @@ function service($http, endPoint, UserService) {
   function add(formData) {
     return UserService.getToken().then(function (token) {
       var req = $http.post(endPoint + '/listing_user/treatment_centers', formData, {
+        transformRequest: angular.identity,
+        headers: {
+          'Authorization': token,
+          'Content-Type': undefined
+        }
+      });
+      return _handle(req);
+    });
+  }
+  
+   function addSignup(formData) {
+    return UserService.getToken().then(function (token) {
+      var req = $http.post(endPoint + '/registrations', formData, {
         transformRequest: angular.identity,
         headers: {
           'Authorization': token,

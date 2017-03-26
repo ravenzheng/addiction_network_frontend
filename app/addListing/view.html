@@ -236,20 +236,26 @@
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                   <div class="col-md-4 col-sm-4 col-xs-12">
-                    <label for="cpwd">City
-                    </label>
-                  </div>
-                  <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input placeholder="City" id="city" name="city" class="form-control required" type="text" ng-model="$ctrl.city">
-                  </div>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-                  <div class="col-md-4 col-sm-4 col-xs-12">
                     <label for="cpwd">State
                     </label>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input placeholder="State" id="state" name="state" class="form-control required" type="text" ng-model="$ctrl.state">
+                      <select ng-change="$ctrl.getCities()" ng-model="$ctrl.state">
+                          <option ng-selected="true" value="">Select State</option>
+                          <option  ng-repeat="states in $ctrl.states track by $index" value="{{states}}">{{states}}</option>                 
+                      </select>
+                  </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <label for="cpwd">City
+                    </label>
+                  </div>
+                   <div class="col-md-8 col-sm-8 col-xs-12">
+                      <select ng-model="$ctrl.city">
+                           <option ng-selected="true" value="">Select City</option>
+                          <option ng-repeat="cities in $ctrl.cities track by $index" value="{{cities}}">{{cities}}</option>                 
+                      </select>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
