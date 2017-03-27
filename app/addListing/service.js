@@ -40,10 +40,8 @@ function service($http, endPoint, UserService) {
       });
     },
     getAuthtoken: function () {
-      var email = 'best@test.com';
-      var passwd = '12345678'
-      return UserService.signIn(email, passwd).then(function (result) {
-        var token = UserService.getToken();
+      return UserService.getToken().then(function (result) {
+        var token = result;
         return token;
       }).catch(function (error) {
         throw error;
