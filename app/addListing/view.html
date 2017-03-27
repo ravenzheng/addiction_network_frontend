@@ -20,7 +20,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Email" id="email" name="email" class="form-control required" type="email" ng-model="$ctrl.email" required="true">
-                    <span id="email_err"></span>
+                    <span id="email_err">{{$ctrl.email_err}}</span>
                     <p ng-show="addlistForm.email.$error.required" class="help-block">Required</p>
                   </div>
                 </div>
@@ -31,7 +31,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Password" id="password" name="password" class="form-control required" type="password" ng-model="$ctrl.password " required="true" >
-                    <span id="pass_err"></span>
+                    <span>{{$ctrl.pass_err}}</span>
                     <p ng-show="addlistForm.password.$error.required" class="help-block">Required</p>
                   </div>
                 </div>
@@ -206,7 +206,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" required="true" ng-model="$ctrl.intakeemail">
-                    <span id="intakeemail_err"> </span>  
+                    <span>{{$ctrl.intakeemail_err}}</span>  
                     <span ng-show="addlistForm.intakeemail.$invalid" class="help-block">Invalid Email</span>
                   </div>
                 </div>
