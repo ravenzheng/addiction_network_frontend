@@ -16,6 +16,10 @@ angular.module(appName, [
   require('./featuredTreatmentCenter'),
   require('./addListing'),
   require('./sponsorAds'),
+  require('./addSponsorAds'),
+  require('./addListing'),
+  require('./editSponsorAds'),
+  require('./sponsorAds')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))

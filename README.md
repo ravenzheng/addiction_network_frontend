@@ -38,3 +38,4 @@ npm run start
 * [Styling Broken Image](https://bitsofco.de/styling-broken-images/)
 * [Git Clean: Delete Already-Merged Branches](http://stevenharman.net/git-clean-delete-already-merged-branches)
 *[How can I delete all git branches which have been merged?](http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged)
+* [Set up a minimal, yet useful javescript dev environment](https://dev.to/corgibytes/setting-up-a-minimal-yet-useful-javascript-dev-environment)
