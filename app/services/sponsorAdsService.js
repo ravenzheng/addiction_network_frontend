@@ -7,11 +7,11 @@ function service($http, endPoint, UserService) {
         updateStatus: updateStatus,
         getSponsoredSelect:getSponsoredSelect
     };
-    function sponsorList() {
+    function sponsorList(page) {
         return UserService.getToken().then(function (result) {
             var token = result;
             var req = $http({
-                url: endPoint + '/listing_user/sponsored_ads/',
+                url: endPoint + '/listing_user/sponsored_ads?page='+page,
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',

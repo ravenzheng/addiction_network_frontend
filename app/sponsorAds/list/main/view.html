@@ -27,7 +27,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="list in $ctrl.sponsor.sponsored_ads">
+                <tr current-page="$ctrl.pagination.current" ng-repeat="list in $ctrl.sponsor.sponsored_ads">
                   <td class="block_make" data-title="Image">
                     <div class="img_outer_in_tb">
                       <div class="img_inner_in_tb">
@@ -49,6 +49,11 @@
                 </tr>
               </tbody>
             </table>
+            <div class="pagination">
+              <a href="#">&laquo;</a>
+              <a href="javascript:;" ng-click="$ctrl.pageChanged(i)" ng-repeat="i in $ctrl.totalPages track by $index" >{{i}}</a>                                            
+              <a href="#">&raquo;</a>
+            </div>
           </div>
         </div>
       </div>

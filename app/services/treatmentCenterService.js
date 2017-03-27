@@ -6,12 +6,11 @@ function service($http, endPoint, UserService) {
     edit: edit,
     activate: activate,
     remove: remove,
-    addSignup: addSignup,
-    remove: remove
+    addSignup: addSignup
   };
 
   function queryDetail(id) {
-    var req = $http.get(endPoint + '/treatment_center/' + id + '/detail');
+    var req = $http.get(endPoint + '/treatment_center/' + id + '/detail')
     return _handle(req);
   }
 
@@ -93,10 +92,12 @@ function service($http, endPoint, UserService) {
       var status = res.status;
       if (status === 200) {
         return res.data;
+      } else {
+        throw new Error(res.statusText);
       }
-      throw new Error(res.statusText);
     });
   }
+
 }
 
 module.exports = ['$http', 'endPoint', 'UserService', service];
