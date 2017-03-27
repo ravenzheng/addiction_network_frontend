@@ -1,19 +1,25 @@
 function ctrl(service) {
   var vm = this;
   service.getStates().then(function (response) {
-      vm.states=response;
-    }).catch(function (err) {
-      console.log(err);
-    });
-    vm.getCities = function () {
-    var state=vm.state;
+    vm.states = response;
+  }).catch(function (err) {
+    console.log(err);
+  });
+  vm.getCities = function () {
+    var state = vm.state;
     service.getCities(state).then(function (response) {
-      vm.cities=response;
+      vm.cities = response;
     }).catch(function (err) {
       console.log(err);
     });
+  }
+  vm.submit = function (form) {
+
+    if (!form.$valid) {
+      console.log('form not valid, check validation');
+      alert('Form is not valid');
+      return;
     }
-  vm.submit = function () {
     var formData = new FormData();
     var data_signup = {
       'email': vm.email,
@@ -68,12 +74,22 @@ function ctrl(service) {
     }).catch(function (err) {
       alert(err);
     });
+
+    $("#email_err").html('');
+    $("#pass_err").html('');
+    $("#intakeemail_err").html('');
+
     service.addTreatmentCenterSignUp(auth, formData).then(function () {
       alert("Your Listing has been saved");
       location.reload(true);
     }).catch(function (err) {
-      $("#email_err").html(err.data.user.email.errors);
-      $("#pass_err").html(err.data.user.password.errors);
+      if (err.data.user) {
+        $("#email_err").html(err.data.user.email.errors);
+        $("#pass_err").html(err.data.user.password.errors);
+
+      } else if (err.data.treatment_center) {
+        $("#intakeemail_err").html(err.data.treatment_center.email.errors);
+      }
     });
   }
 }

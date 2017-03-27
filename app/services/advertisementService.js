@@ -4,7 +4,10 @@ function service($http, endPoint, UserService) {
         advertisementAdd: add,
         advertisementEdit: edit,
         getAdvertisementData: getData,
-        updateStatus: updateStatus   
+        updateStatus: updateStatus
+                //    sponsorAdStatus: sponsorAdStatus,  
+                //    editSponsor: editSponsor,
+                //    getSponsorData: getSponsorData    
     };
     function list() {
         return UserService.getToken().then(function (result) {
