@@ -1,7 +1,7 @@
 function fileModel($parse) {
   return {
     restrict: 'A',
-    link: function (scope, element, attrs, controller) {
+    link: function (scope, element, attrs) {
       var model = $parse(attrs.fileModel);
       var multiple = attrs.multiple;
       var modelSetter = model.assign;

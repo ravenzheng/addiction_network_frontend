@@ -2,10 +2,9 @@ var angular = require('angular'),
   moduleName = 'app.myTreatmentCenters';
 
 angular.module(moduleName, [
-    'ui.router',
-    require('../services')
-  ])
-  .component('centerTable', require('./centerTable'))
+  'ui.router',
+  require('../services')
+]).component('centerTable', require('./centerTable'))
   .component('pagination', require('./pagination'))
   .component('centersMain', require('./main'))
   .component('myTreatmentCenters', {
@@ -17,6 +16,6 @@ angular.module(moduleName, [
       url: '/my-treatment-centers',
       template: '<my-treatment-centers></my-treatment-centers>'
     });
-  }])
+  }]);
 
 module.exports = moduleName;

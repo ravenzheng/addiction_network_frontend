@@ -23,7 +23,7 @@ function service($http, $q, endPoint) {
   function getToken() {
     // for testing purpose, This has to be removed in production.
     var email = 'best@test.com';
-    var passwd = '12345678'
+    var passwd = '12345678';
     return _service.signIn(email, passwd).then(function (result) {
       return result.user.auth_token;
     });
@@ -60,9 +60,8 @@ function service($http, $q, endPoint) {
       var status = res.status;
       if (status === 200) {
         return res.data;
-      } else {
-        throw new Error(res.statusText);
       }
+      throw new Error(res.statusText);
     }).catch(function (error) {
       console.log(error.message);
       throw new Error(errorMsg);
