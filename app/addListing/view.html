@@ -225,11 +225,11 @@
                     <label for="cpwd">State</label>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <select ng-change="$ctrl.getCities()" name="state" ng-model="$ctrl.state">
+                    <select ng-change="$ctrl.getCities()" name="state" ng-model="$ctrl.state" required="true">
                       <option value="">Select State</option>
                       <option  ng-repeat="states in $ctrl.states track by $index" value="{{states}}">{{states}}</option>
                     </select>
-                    <span ng-show="addlistForm.state.$invalid">Select State</span>
+                    <span ng-show="addlistForm.state.$invalid">Required</span>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -238,11 +238,11 @@
                     </label>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <select ng-model="$ctrl.city" name="city">
+                    <select ng-model="$ctrl.city" name="city" required="true">
                       <option value="">Select City</option>
                       <option ng-repeat="cities in $ctrl.cities track by $index" value="{{cities}}">{{cities}}</option>
                     </select>
-                    <span ng-show="addlistForm.city.$invalid">Select City</span>
+                    <span ng-show="addlistForm.city.$invalid">Required</span>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
