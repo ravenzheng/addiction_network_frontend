@@ -1,6 +1,25 @@
 function ctrl(service) {
   var vm = this;
-  vm.submit = function () {
+  service.getStates().then(function (response) {
+    vm.states = response;
+  }).catch(function (err) {
+    console.log(err);
+  });
+  vm.getCities = function () {
+    var state = vm.state;
+    service.getCities(state).then(function (response) {
+      vm.cities = response;
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }
+  vm.submit = function (form) {
+
+    if (!form.$valid) {
+      console.log('form not valid, check validation');
+      alert('Form is not valid');
+      return;
+    }
     var formData = new FormData();
     var data_signup = {
       'email': vm.email,
@@ -55,12 +74,19 @@ function ctrl(service) {
     }).catch(function (err) {
       alert(err);
     });
-    service.addTreatmentCenterSignUp(auth, formData).then(function (response) {
+    vm.email_err='';
+    vm.pass_err='';
+    vm.intakeemail_err='';
+    service.addTreatmentCenterSignUp(auth, formData).then(function () {
       alert("Your Listing has been saved");
       location.reload(true);
     }).catch(function (err) {
-      $("#email_err").html(err.data.user.email.errors);
-      $("#pass_err").html(err.data.user.password.errors);
+      if (err.data.user) {
+        vm.email_err=err.data.user.email.errors[0];
+        vm.pass_err=err.data.user.password.errors[0];
+      } else if (err.data.treatment_center) {
+          vm.intakeemail_err=err.data.treatment_center.email.errors[0];
+      }
     });
   }
 }

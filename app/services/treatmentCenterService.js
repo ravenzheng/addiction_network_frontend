@@ -5,11 +5,12 @@ function service($http, endPoint, UserService) {
     add: add,
     edit: edit,
     activate: activate,
-    remove: remove
+    remove: remove,
+    addSignup: addSignup
   };
 
   function queryDetail(id) {
-    var req = $http.get(endPoint + '/treatment_center/' + id + '/detail');
+    var req = $http.get(endPoint + '/treatment_center/' + id + '/detail')
     return _handle(req);
   }
 
@@ -28,6 +29,19 @@ function service($http, endPoint, UserService) {
   function add(formData) {
     return UserService.getToken().then(function (token) {
       var req = $http.post(endPoint + '/listing_user/treatment_centers', formData, {
+        transformRequest: angular.identity,
+        headers: {
+          'Authorization': token,
+          'Content-Type': undefined
+        }
+      });
+      return _handle(req);
+    });
+  }
+  
+   function addSignup(formData) {
+    return UserService.getToken().then(function (token) {
+      var req = $http.post(endPoint + '/registrations', formData, {
         transformRequest: angular.identity,
         headers: {
           'Authorization': token,
@@ -78,10 +92,12 @@ function service($http, endPoint, UserService) {
       var status = res.status;
       if (status === 200) {
         return res.data;
+      } else {
+        throw new Error(res.statusText);
       }
-      throw new Error(res.statusText);
     });
   }
+
 }
 
 module.exports = ['$http', 'endPoint', 'UserService', service];

@@ -14,6 +14,7 @@ var links = [{
   uiSref: 'sponsorAds',
   name: 'Sponsor Pages'
 }, {
+  href: '#/banner-ads',
   uiSref: 'advertisement',
   name: 'Banner Ads'
 }];
