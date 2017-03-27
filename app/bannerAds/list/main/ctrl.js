@@ -12,12 +12,13 @@ function ctrl(AdvertisementService) {
   list.actDect = function (id) {
     console.clear();
     AdvertisementService.updateStatus(id).then(function (response) {
+      var status = angular.element(document.querySelector('#status-' + id));
       if (response.active) {
         list.active = response.active;
-        $('#status-' + id).html("Deactivate");
+        status.html("Deactivate");
       } else {
         list.active = response.active;
-        $('#status-' + id).html("Activate");
+        status.html("Activate");
       }
     }).catch(function (err) {
       console.log('error: ' + err);
