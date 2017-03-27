@@ -13,10 +13,11 @@
     "build": "webpack --progress",
     "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint app/ --ext .js"
+    "lint": "eslint app/addListing --ext .js && htmlhint app/addListing/view.html",
+    "lintHtml": "htmlhint --config=.htmlhintrc app/**/*.html"
   },
   "precommit": [
-    "lint"
+    "lintHtml"
   ],
   "keywords": [
     "angular"
@@ -44,6 +45,7 @@
     "eslint": "^3.18.0",
     "eslint-config-es5": "^0.5.0",
     "eslint-plugin-html": "^2.0.1",
+    "htmlhint": "^0.9.13",
     "pre-commit": "^1.2.2"
   }
 }
