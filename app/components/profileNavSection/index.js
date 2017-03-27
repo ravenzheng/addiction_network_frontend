@@ -1,23 +1,22 @@
 var links = [{
-  href: '#/my-profile',
+  uiSref: 'myProfile',
   name: 'My Profile'
 }, {
-  href: '#/account-settings',
+  uiSref: 'accountSettings',
   name: 'Account Settings'
 }, {
-  href: '#/change-password',
+  uiSref: 'changePassword',
   name: 'Change Password'
 }, {
-  href: '#/my-treatment-centers',
+  uiSref: 'myTreatmentCenters',
   name: 'My Treatment Centers'
 }, {
-  href: '#/sponsor-ads',
+  uiSref: 'sponsorAds',
   name: 'Sponsor Pages'
 }, {
-  href: '#/advertisement',
+  uiSref: 'advertisement',
   name: 'Banner Ads'
 }];
-
 
 function ProfileNavSectionCtrl() {
   var vm = this;

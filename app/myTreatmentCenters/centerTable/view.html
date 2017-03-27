@@ -18,8 +18,8 @@
             <td data-title="Image" class="block_make">
               <div class="img_outer_in_tb">
                 <div class="img_inner_in_tb">
-                  <a ng-href="{{ center.viewLink }}">
-                    <img ng-src="{{ center.listing_image }}" alt="{{ center.center_name }}"/>
+                  <a ui-sref="{{ center.viewLink }}">
+                    <img ng-src="{{ center.listing_image }}" alt="{{ center.center_name }}" />
                   </a>
                 </div>
               </div>
@@ -27,7 +27,7 @@
 
             <!-- Name -->
             <td data-title="Name">
-              <a ng-href="{{ center.viewLink }}" style="color:black;">{{ center.center_name }}</a>
+              <a ui-sref="{{ center.viewLink }}" style="color:black;">{{ center.center_name }}</a>
             </td>
 
             <!-- Category -->
@@ -35,10 +35,10 @@
 
             <!-- Action view, edit, delete, activate/deactivate -->
             <td data-title="Action">
-              <a ng-href="{{ center.viewLink }}" data-toggle="tooltip" data-placement="bottom" title="View">
+              <a ui-sref="{{ center.viewLink }}" data-toggle="tooltip" data-placement="bottom" title="View">
                 <i class="glyphicon glyphicon-eye-open"></i>
               </a>
-              <a ng-href="{{ center.editLink }}" data-toggle="tooltip" data-placement="bottom" title="Edit">
+              <a ui-sref="{{ center.editLink }}" data-toggle="tooltip" data-placement="bottom" title="Edit">
                 <i class="glyphicon glyphicon-edit"></i>
               </a>
               <a href ng-click="$ctrl.onDelete({id: center.id })" data-toggle="tooltip" data-placement="bottom" title="Delete">

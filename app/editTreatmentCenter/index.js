@@ -2,11 +2,10 @@ var angular = require('angular'),
   moduleName = 'app.editTreatmentCenter';
 
 angular.module(moduleName, [
-    'ui.router',
-    require('../components'),
-    require('../services')
-  ])
-  .component('thumbnailDelete', require('./thumbnailDelete'))
+  'ui.router',
+  require('../components'),
+  require('../services')
+]).component('thumbnailDelete', require('./thumbnailDelete'))
   .component('editTreatmentCenterMain', require('./main'))
   .component('editTreatmentCenter', {
     template: require('./view.html'),
@@ -16,7 +15,7 @@ angular.module(moduleName, [
     $stateProvider.state({
       name: 'editTreatmentCenter',
       url: '/edit-treatment-center/:id',
-      template: '<edit-treatment-center></edit-treatment-center>',
+      template: '<edit-treatment-center></edit-treatment-center>'
     });
   }]);
 
