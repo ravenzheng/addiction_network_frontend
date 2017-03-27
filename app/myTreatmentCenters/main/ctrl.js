@@ -17,10 +17,8 @@ function ctrl(service) {
     service.queryList().then(function (result) {
       var centers = result.treatment_centers;
       vm.centers = centers.map(function (center) {
-        center.viewLink = '#/treatment_center/' + center.id;
-        center.editLink = '#/edit-treatment-center/' + center.id;
-        center.deleteLink = '#/my-treatment-centers/' + center.id;
-        center.activateLink = '#/my-treatment-centers?post_id';
+        center.viewLink = 'treatmentCenterDetail({id:' + center.id + '})';
+        center.editLink = 'editTreatmentCenter({id:' + center.id + '})';
         return center;
       });
       vm.totalPage = Math.ceil(centers.length / vm.pageSize);
