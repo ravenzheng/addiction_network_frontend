@@ -13,7 +13,7 @@
     "build": "webpack --progress",
     "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint app --ext .js && htmlhint app/**/*.html"
+    "lint": "eslint app --ext .js --config .eslintrc.json && htmlhint --config .htmlhintrc app/**/*.html"
   },
   "precommit": [
     "lint"
