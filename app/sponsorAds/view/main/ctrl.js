@@ -16,7 +16,7 @@ function getSponsorData(vm, sponser_id, SponsorService) {
   for (var key in data_sponsor) {
     formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
   }
-  SponsorService.getSponsorData(sponser_id, formData).then(function (response) {
+  SponsorService.editSponsor(formData,sponser_id).then(function (response) {
     vm.content = response.banner_ads.content;
     if (vm.content != vm.oldcontent) {
       vm.oldcontent = response.banner_ads.content;
