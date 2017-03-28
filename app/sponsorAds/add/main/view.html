@@ -11,10 +11,9 @@
           <!-- bg_add_treat -->
           <div class="col-md-12 col-xs-12 col-sm-12 padding_0">
             <a href="javascript:history.go(-1);">
-            <span class="modal_btn btn btn-primary margin_bottom_15_add pull-right  text-right">
-            <i class="glyphicon glyphicon-hand-left"></i>
-            Back
-            </span>
+              <span class="modal_btn btn btn-primary margin_bottom_15_add pull-right  text-right">
+                <i class="glyphicon glyphicon-hand-left"></i> Back
+              </span>
             </a>
           </div>
         </div>
@@ -59,7 +58,8 @@
                 <label for="cpwd">Website </label>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
-                <input placeholder="website " id="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website">
+                <input placeholder="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{3,6}$/">
+                <span ng-show="sponsorAdsForm.website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
               </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -67,7 +67,7 @@
                 <label for="cpwd">Sponsor Ads </label>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
-                <select name="$ctrl.sponsored_listing_layout_ids[]" ng-model="$ctrl.sponsored_listing_layout_ids" id="sposnor_ad_cat" class="required multiselect" multiple="multiple" title="Select (Price in $)" >
+                <select name="$ctrl.sponsored_listing_layout_ids[]" ng-model="$ctrl.sponsored_listing_layout_ids" id="sposnor_ad_cat" class="required multiselect" multiple="multiple" title="Select (Price in $)">
                   <optgroup>
                     <option ng-repeat="normal in $ctrl.sponsored_ad_select_normal" value="{{normal.id}}">{{normal.name}}</option>
                   </optgroup>
@@ -86,7 +86,7 @@
               </div>
             </div>
             <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
-              <input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" id="submit" type="button" ng-click="$ctrl.submit()">
+              <input class="btn btn-primary modal_btn btn_size pull-left" value="Submit" id="submit" type="button" ng-disabled="sponsorAdsForm.website.$invalid" ng-click="$ctrl.submit()">
               <span ng-show="$ctrl.success_msg" style="color:green;">Added</span>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub">

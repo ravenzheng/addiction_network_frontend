@@ -1,23 +1,23 @@
 function ctrl($stateParams, AdvertisementService) {
   var vm = this;
-  var banner_id = $stateParams.id;
+  var bannerID = $stateParams.id;
 
   //getting data
-  getBannerData(vm, banner_id, AdvertisementService);
+  getBannerData(vm, bannerID, AdvertisementService);
 
 }
 module.exports = ['$stateParams', 'AdvertisementService', ctrl];
 
-function getBannerData(vm, banner_id, AdvertisementService) {
+function getBannerData(vm, bannerID, AdvertisementService) {
 
   var formData = new FormData();
-  var data_banner = {
-    "id": banner_id
+  var bannerData = {
+    "id": bannerID
   };
-  for (var key in data_banner) {
-    formData.append('banner_ads[' + key + ']', data_banner[key]);
+  for (var key in bannerData) {
+    formData.append('banner_ads[' + key + ']', bannerData[key]);
   }
-  AdvertisementService.getAdvertisementData(banner_id, formData).then(function (response) {
+  AdvertisementService.getAdvertisementData(bannerID, formData).then(function (response) {
     vm.content = response.banner_ads.content;
     if (vm.content != vm.oldcontent) {
       vm.oldcontent = response.banner_ads.content;
@@ -27,6 +27,6 @@ function getBannerData(vm, banner_id, AdvertisementService) {
     vm.center_web_link = response.banner_ads.center_web_link;
 
   }).catch(function (err) {
-    console.log('error: ' + err);
+    throw err;
   });
 }

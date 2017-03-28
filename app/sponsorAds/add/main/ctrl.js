@@ -5,11 +5,11 @@ function ctrl(SponsorService) {
     vm.sponsored_ad_select_normal = response.normal;
     vm.sponsored_ad_select_state = response.normal;
   }).catch(function (err) {
-    console.log('error: ' + err);
+    throw err;
   });
   vm.submit = function () {
     var formData = new FormData();
-    var data_sponsor = {
+    var sponsorData = {
       'title': vm.title,
       'name': vm.name,
       'image': vm.image,
@@ -17,8 +17,8 @@ function ctrl(SponsorService) {
       'website': vm.website,
       'sponsored_listing_layout_ids': [vm.sponsored_listing_layout_ids]
     };
-    for (var key in data_sponsor) {
-      formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
+    for (var key in sponsorData) {
+      formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
     }
     SponsorService.sponsorAdd(formData).then(function () {
       vm.success_msg = 1;
@@ -27,7 +27,7 @@ function ctrl(SponsorService) {
       }, 3000);
 
     }).catch(function (err) {
-      console.log(err.message);
+      throw err;
     });
   }
 

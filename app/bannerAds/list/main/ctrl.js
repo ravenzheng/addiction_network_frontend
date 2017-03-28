@@ -1,16 +1,16 @@
 function ctrl(AdvertisementService) {
   var list = this;
+
   function list_banners() {
     AdvertisementService.advertisementList().then(function (response) {
       list.advertisement = response;
     }).catch(function (err) {
-      console.log('error: ' + err.data.errors);
+      throw err;
     });
   }
   list_banners();
 
   list.actDect = function (id) {
-    console.clear();
     AdvertisementService.updateStatus(id).then(function (response) {
       var status = angular.element(document.querySelector('#status-' + id));
       if (response.active) {
@@ -21,7 +21,7 @@ function ctrl(AdvertisementService) {
         status.html("Activate");
       }
     }).catch(function (err) {
-      console.log('error: ' + err);
+      throw err;
     });
   }
 }

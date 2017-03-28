@@ -1,22 +1,22 @@
 function ctrl($stateParams, SponsorService) {
   var vm = this;
-  var sponsor_id = $stateParams.id;
+  var sponsorID = $stateParams.id;
 
   //getting data
-  getSponsorData(vm, sponsor_id, SponsorService);
+  getSponsorData(vm, sponsorID, SponsorService);
 
 }
 module.exports = ['$stateParams', 'SponsorService', ctrl];
 
-function getSponsorData(vm, sponser_id, SponsorService) {
+function getSponsorData(vm, sponsorID, SponsorService) {
   var formData = new FormData();
-  var data_sponsor = {
-    "id": sponser_id
+  var sponsorData = {
+    "id": sponsorID
   };
-  for (var key in data_sponsor) {
-    formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
+  for (var key in sponsorData) {
+    formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
   }
-  SponsorService.editSponsor(formData,sponser_id).then(function (response) {
+  SponsorService.editSponsor(formData, sponsorID).then(function (response) {
     vm.content = response.banner_ads.content;
     if (vm.content != vm.oldcontent) {
       vm.oldcontent = response.banner_ads.content;
@@ -28,6 +28,6 @@ function getSponsorData(vm, sponser_id, SponsorService) {
     vm.description = response.banner_ads.description;
 
   }).catch(function (err) {
-    console.log('error: ' + err);
+    throw err;
   });
 }

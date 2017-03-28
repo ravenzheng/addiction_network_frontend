@@ -1,46 +1,46 @@
 function ctrl($stateParams, SponsorService) {
   var vm = this;
-  var sponsor_id = $stateParams.id;
+  var sponsorID = $stateParams.id;
   vm.success_msg = 0;
   vm.submit = function () {
-      var formData = new FormData();
-      var data_sponsor = {
-        "id": sponsor_id,
-        'title': vm.title,
-        'name': vm.name,
-        'image': vm.image,
-        'description': vm.description,
-        'website': vm.website,
-        'sponsored_listing_layout_ids': [vm.sponsored_listing_layout_ids]
-      };
-      for (var key in data_sponsor) {
-        formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
-      }
-      SponsorService.editSponsor(formData, sponsor_id).then(function () {
-        vm.success_msg = 1;
-        setTimeout(function () {
-          vm.success_msg = 0;
-        }, 3000);
-
-      }).catch(function (err) {
-        console.log(err.message);
-      });
+    var formData = new FormData();
+    var sponsorData = {
+      "id": sponsorID,
+      'title': vm.title,
+      'name': vm.name,
+      'image': vm.image,
+      'description': vm.description,
+      'website': vm.website,
+      'sponsored_listing_layout_ids': [vm.sponsored_listing_layout_ids]
+    };
+    for (var key in sponsorData) {
+      formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
     }
-    //getting data
-  editSponsor(vm, sponsor_id, SponsorService);
+    SponsorService.editSponsor(formData, sponsorID).then(function () {
+      vm.success_msg = 1;
+      setTimeout(function () {
+        vm.success_msg = 0;
+      }, 3000);
+
+    }).catch(function (err) {
+      throw err;
+    });
+  }
+  //getting data
+  editSponsor(vm, sponsorID, SponsorService);
 
 }
 module.exports = ['$stateParams', 'SponsorService', ctrl];
 
-function editSponsor(vm, sponsor_id, SponsorService) {
+function editSponsor(vm, sponsorID, SponsorService) {
   var formData = new FormData();
-  var data_sponsor = {
-    "id": sponsor_id
+  var sponsorData = {
+    "id": sponsorID
   };
-  for (var key in data_sponsor) {
-    formData.append('sponsored_ad[' + key + ']', data_sponsor[key]);
+  for (var key in sponsorData) {
+    formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
   }
-  SponsorService.editSponsor(formData, sponsor_id).then(function (response) {
+  SponsorService.editSponsor(formData, sponsorID).then(function (response) {
     vm.content = response.banner_ads.content;
     if (vm.content != vm.oldcontent) {
       vm.oldcontent = response.banner_ads.content;
@@ -51,11 +51,9 @@ function editSponsor(vm, sponsor_id, SponsorService) {
     vm.image = response.banner_ads.image;
     vm.description = response.banner_ads.description;
     vm.payment_amount = response.banner_ads.payment_amount;
-   
+
     var ids = [];
     var i = 0;
-    var count;
-    count = response.banner_ads.sponsored_pages.length;
     for (var key in response.banner_ads.sponsored_pages) {
       ids[i] = String(response.banner_ads.sponsored_pages[key].id);
       i++;
@@ -67,9 +65,9 @@ function editSponsor(vm, sponsor_id, SponsorService) {
       vm.sponsored_ad_select_state = response.state;
 
     }).catch(function (err) {
-      console.log('error: ' + err);
+      vm.error_message = err;
     });
   }).catch(function (err) {
-    console.log('error: ' + err);
+    throw err;
   });
 }
