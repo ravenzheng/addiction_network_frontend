@@ -13,7 +13,8 @@ angular.module(appName, [
   require('./addSponsorAds'),
   require('./addListing'),
   require('./editSponsorAds'),
-  require('./sponsorAds')
+  require('./sponsorAds'),
+  require('./bannerAds')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))

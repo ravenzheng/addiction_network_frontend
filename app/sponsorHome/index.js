@@ -12,7 +12,7 @@ angular.module(moduleName, [
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state({
       name: 'sponsorHome',
-      url: '/sponsor-home/:slug',
+      url: '/sponsorhome/:slug',
       template: '<sponsor-home></sponsor-home>'
     });
   }]);
