@@ -40,7 +40,7 @@ var common = {
   plugins: [],
   externals: {
     'angular': 'angular',
-    'angular-route': 'angular-route'
+    'angular-ui-router': 'angular-ui-router'
   },
   resolve: {
     extensions: ['.js']

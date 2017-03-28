@@ -1,14 +1,14 @@
 var links = [{
-  uiSref: 'myProfile',
+  uiSref: 'myProfile.index',
   name: 'My Profile'
 }, {
-  uiSref: 'accountSettings',
+  uiSref: 'myProfile.accountSettings',
   name: 'Account Settings'
 }, {
-  uiSref: 'changePassword',
+  uiSref: 'myProfile.changePassword',
   name: 'Change Password'
 }, {
-  uiSref: 'myTreatmentCenters',
+  uiSref: 'myProfile.myTreatmentCenters',
   name: 'My Treatment Centers'
 }, {
   uiSref: 'sponsorAds',
