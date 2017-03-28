@@ -9,6 +9,7 @@ module.exports = {
   template: require('./view.html'),
   controller: StateSelectctrl,
   bindings: {
+    selected: '@',
     onUpdate: '&'
   }
 };

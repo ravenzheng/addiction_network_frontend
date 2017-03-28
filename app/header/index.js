@@ -17,7 +17,7 @@ var internalLinks = [{
   uiSref: 'centerDetail',
   name: 'Add Listing'
 }, {
-  uiSref: 'myProfile',
+  uiSref: 'myProfile.index',
   name: 'My Profile'
 }];
 

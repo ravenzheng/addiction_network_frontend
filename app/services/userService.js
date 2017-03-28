@@ -4,6 +4,8 @@ function service($http, $q, endPoint) {
   _service.signIn = signIn;
   _service.getToken = getToken;
   _service.queryProfile = queryProfile;
+  _service.editProfile = editProfile;
+  _service.changePassword = changePassword;
 
   // sign in with email and password
   function signIn(email, password) {
@@ -53,18 +55,40 @@ function service($http, $q, endPoint) {
     });
   }
 
+  // edit profile data
+  function editProfile(formData) {
+    return _service.getToken().then(function (token) {
+      var req = $http.post(endPoint + '/profile', formData, {
+        transformRequest: angular.identity,
+        headers: {
+          'Authorization': token,
+          'Content-Type': undefined
+        }
+      });
+      return _handle(req);
+    });
+  }
+
+  // change password
+  function changePassword(formData) {
+    return _service.getToken().then(function (token) {
+      var req = $http.post(endPoint + '/password', formData, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      return _handle(req);
+    });
+  }
+
   // handle rejection of promise
   function _handle(req) {
-    var errorMsg = 'Oops! An error occured, we are unable to retrieve data.';
     return req.then(function (res) {
       var status = res.status;
       if (status === 200) {
         return res.data;
       }
       throw new Error(res.statusText);
-    }).catch(function (error) {
-      console.log(error.message);
-      throw new Error(errorMsg);
     });
   }
 }

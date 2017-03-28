@@ -18,7 +18,7 @@ function ctrl(service) {
       var centers = result.treatment_centers;
       vm.centers = centers.map(function (center) {
         center.viewLink = 'treatmentCenterDetail({id:' + center.id + '})';
-        center.editLink = 'editTreatmentCenter({id:' + center.id + '})';
+        center.editLink = 'myProfile.editTreatmentCenter({id:' + center.id + '})';
         return center;
       });
       vm.totalPage = Math.ceil(centers.length / vm.pageSize);
