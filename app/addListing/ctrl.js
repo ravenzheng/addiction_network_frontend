@@ -9,7 +9,7 @@ function ctrl(service) {
     "margin-left": "5px"
   };
 
-  vm.analyze = function (value) {
+  vm.analyze = function () {
   };
 
 
