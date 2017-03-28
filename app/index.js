@@ -10,9 +10,7 @@ angular.module(appName, [
   require('./advertisement'),
   require('./myProfile'),
   require('./featuredTreatmentCenter'),
-  require('./addSponsorAds'),
   require('./addListing'),
-  require('./editSponsorAds'),
   require('./sponsorAds'),
   require('./bannerAds')
 ]).component('header', require('./header'))

@@ -10,8 +10,9 @@ function ctrl(service) {
     service.changePassword(formData).then(function ( /* result */ ) {
       // update status in the page
     }).catch(function (error) {
+      throw error;
       // if failed, display the error message in the page
-      console.log(error.message);
+      //console.log(error.message);
     });
   }
 }

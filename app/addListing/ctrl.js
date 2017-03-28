@@ -1,17 +1,15 @@
 function ctrl(service) {
   var vm = this;
-  vm.passRegex="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/";
+  vm.passRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/';
 
   vm.passwordStrength = {
-    "float": "left",
-    "width": "100px",
-    "height": "25px",
-    "margin-left": "5px"
+    'float': 'left',
+    'width': '100px',
+    'height': '25px',
+    'margin-left': '5px'
   };
 
-  vm.analyze = function () {
-  };
-
+  vm.analyze = function () {};
 
   service.getStates().then(function (response) {
     vm.states = response;
