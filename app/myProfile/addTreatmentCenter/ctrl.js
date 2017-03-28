@@ -45,7 +45,7 @@ function ctrl($location, TreatmentCenterService) {
       // $scope.$apply();
     }).catch(function (error) {
       // if failed, display the error message in the page
-      console.log(error.message);
+      throw error;
     });
   };
 }

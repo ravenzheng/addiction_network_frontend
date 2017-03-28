@@ -31,7 +31,7 @@ function MapCtrl($scope, $element, $location) {
     if (current_path == "/") {
       var targetURL = '/sponsorhome/' + stateData.shortname;
     } else {
-      var targetURL = '/treatment-center-map/?mapState=' + treatmentState;
+      targetURL = '/treatment-center-map/?mapState=' + treatmentState;
     }
     // $scope.$apply needs to be called to have the url change into effect
     $location.url(targetURL);

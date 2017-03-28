@@ -1,5 +1,4 @@
 var angular = require('angular'),
-  service = require('./service'),
   moduleName = 'app.addTreatmentCenterSignUp';
 
 angular.module(moduleName, [
@@ -9,7 +8,7 @@ angular.module(moduleName, [
   .factory('addTreatmentCenterSignUpService', require('./service'))
   .component('centerDetail', {
     template: require('./view.html'),
-    controller: require('./ctrl')
+    controller: 'addListingCtrl'//require('./ctrl')
   })
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state({
@@ -17,6 +16,6 @@ angular.module(moduleName, [
       url: '/center-detail',
       template: '<center-detail></center-detail>'
     });
-  }]);
+  }]).controller('addListingCtrl',require('./ctrl'));
 
 module.exports = moduleName;
