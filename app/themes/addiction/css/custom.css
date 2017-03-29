@@ -639,6 +639,7 @@ p {
     position: relative;
     margin-bottom: 34px;
     border-radius: 5px;
+    min-height:260px;
 }
 
 .listing_block:hover {

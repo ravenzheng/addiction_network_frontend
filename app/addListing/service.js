@@ -5,7 +5,7 @@ function service($http, endPoint, UserService) {
         var token = result;
         var req = $http({
           url: endPoint + '/registrations',
-          method: "POST",
+          method: 'POST',
           data: formData,
           transformRequest: angular.identity,
           headers: {
@@ -23,7 +23,7 @@ function service($http, endPoint, UserService) {
     getStates: function () {
       var req = $http({
         url: endPoint + '/states',
-        method: "GET",
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -35,7 +35,7 @@ function service($http, endPoint, UserService) {
     getCities: function (state) {
       var req = $http({
         url: endPoint + '/cities_states/' + state,
-        method: "GET",
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -43,7 +43,7 @@ function service($http, endPoint, UserService) {
       return req.then(function (res) {
         return res.data;
       });
-    },
+    }
   };
 }
 module.exports = ['$http', 'endPoint', 'UserService', service];

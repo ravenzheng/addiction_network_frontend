@@ -4,9 +4,7 @@ function FindTreatmentSideCardCtrl() {
     vm.selectedState = selected;
   };
   vm.submit = function () {
-    // send request
-    // todo
-    console.log(vm.selectedState);
+
   };
 }
 module.exports = {

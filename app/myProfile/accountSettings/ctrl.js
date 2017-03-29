@@ -1,4 +1,4 @@
-function ctrl(service) {
+function ctrl($log, service) {
   var vm = this;
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
@@ -32,9 +32,9 @@ function ctrl(service) {
       // update status in the page
     }).catch(function (error) {
       // if failed, display the error message in the page
-      console.log(error.message);
+      $log.error(error.message);
     });
   }
 }
 
-module.exports = ['UserService', ctrl];
+module.exports = ['$log', 'UserService', ctrl];

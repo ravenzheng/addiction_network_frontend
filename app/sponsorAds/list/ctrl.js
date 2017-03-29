@@ -1,4 +1,4 @@
 function ctrl() {
-  //todo  
+  // todo
 }
 module.exports = ctrl;

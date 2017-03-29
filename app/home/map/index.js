@@ -26,17 +26,16 @@ function MapCtrl($scope, $element, $location) {
     var target = event.target;
     var id = target.getAttribute('id');
     var stateData = getStateDataById(id);
-    var current_path = $location.path();
+    var currentPath = $location.path();
     var treatmentState = stateData.fullname;
-    if (current_path == "/") {
+    if (currentPath === '/') {
       var targetURL = '/sponsorhome/' + stateData.shortname;
     } else {
-      targetURL = '/treatment-center-map/?mapState=' + treatmentState;
+      targetURL = '/treatment-center-map/' + treatmentState;
     }
     // $scope.$apply needs to be called to have the url change into effect
     $location.url(targetURL);
     $scope.$apply();
-    //console.log(id, stateData.fullname, targetURL);
   });
 
   // find the exact state data from map confing data (map.json) by id
@@ -57,4 +56,4 @@ MapCtrl.$inject = ['$scope', '$element', '$location'];
 module.exports = {
   template: require('./view.html'),
   controller: MapCtrl
-}
+};

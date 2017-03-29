@@ -58,7 +58,7 @@
                 <label for="cpwd">Website </label>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
-                <input placeholder="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{3,6}$/">
+                <input placeholder="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2}$/">
                 <span ng-show="sponsorAdsForm.website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
               </div>
             </div>

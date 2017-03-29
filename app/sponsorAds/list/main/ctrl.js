@@ -1,16 +1,16 @@
-function ctrl(SponsorService) {
+function ctrl($log, SponsorService) {
   var list = this;
 
   list.totalAds = 0;
-  list.totalPages = new Array();
+  list.totalPages = [];
   list.currentPage = 1;
 
   list.pageChanged = function (newPage) {
-    list_sponsors(newPage);
+    sponsorList(newPage);
     window.scrollTo(0, 100);
   };
 
-  function list_sponsors(page) {
+  function sponsorList(page) {
     SponsorService.sponsorList(page).then(function (response) {
       list.sponsor = response;
 
@@ -19,27 +19,25 @@ function ctrl(SponsorService) {
         list.totalPages.push(i);
       }
       list.currentPage = response.current_page;
-
     }).catch(function (err) {
       throw err;
     });
   }
-  list_sponsors(1);
-  list.actDect = function (id) {  
+  sponsorList(1);
+  list.actDect = function (id) {
     SponsorService.updateStatus(id).then(function (response) {
       var status = angular.element(document.querySelector('#status-' + id));
       if (response.active) {
         list.active = response.active;
-        status.html("Deactivate");
+        status.html('Deactivate');
       } else {
         list.active = response.active;
-        status.html("Activate");
+        status.html('Activate');
       }
-
     }).catch(function (err) {
       throw err;
     });
-  }
+  };
 }
 
-module.exports = ['SponsorService', ctrl];
+module.exports = ['$log', 'SponsorService', ctrl];

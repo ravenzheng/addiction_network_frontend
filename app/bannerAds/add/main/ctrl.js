@@ -1,4 +1,4 @@
-function ctrl(AdvertisementService) {
+function ctrl($log, AdvertisementService) {
   var vm = this;
   vm.success_msg = 0;
   vm.submit = function () {
@@ -14,15 +14,14 @@ function ctrl(AdvertisementService) {
     }
     AdvertisementService.advertisementAdd(formData).then(function () {
       vm.success_msg = 1;
+      window.location.href = '/#banner-ads';
       setTimeout(function () {
         vm.success_msg = 0;
       }, 3000);
-
     }).catch(function (err) {
-      throw err;
+      $log.error(err);
     });
-  }
-
+  };
 }
 
-module.exports = ['AdvertisementService', ctrl];
+module.exports = ['$log', 'AdvertisementService', ctrl];

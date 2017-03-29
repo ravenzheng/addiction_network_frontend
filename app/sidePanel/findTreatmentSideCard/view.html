@@ -1,5 +1,6 @@
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 padding_0">
-  <form ng-submit="$ctrl.submit()">
+  <form method="GET" action="#/treatment-center-map/">
+    <input type="hidden" name="srch-keyword" ng-model="$ctrl.srchkeyword" value="">
     <div class="right_content">
       <h2>
         <label>Find Treatment</label>

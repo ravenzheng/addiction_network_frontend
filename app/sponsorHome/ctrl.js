@@ -1,11 +1,12 @@
-function ctrl($stateParams, service) {
+function ctrl($log, $stateParams, service) {
   var vm = this;
   vm.slug = $stateParams.slug;
   service.queryByType(vm.slug).then(function (response) {
     vm.entry = response.data;
+    window.scrollTo(0, 100);
   }).catch(function (err) {
-    console.log(err);
+    $log.error(err);
   });
 }
 
-module.exports = ['$stateParams', 'SponsoredListingService', ctrl];
+module.exports = ['$log', '$stateParams', 'SponsoredListingService', ctrl];

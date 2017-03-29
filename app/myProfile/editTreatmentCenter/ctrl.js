@@ -1,4 +1,4 @@
-function ctrl($scope, $stateParams, $location, service) {
+function ctrl($log, $scope, $stateParams, $location, service) {
   var vm = this;
   var id = $stateParams.id;
   service.queryDetail(id).then(function (result) {
@@ -52,9 +52,9 @@ function ctrl($scope, $stateParams, $location, service) {
       // $scope.$apply();
     }).catch(function (error) {
       // if failed, display the error message in the page
-      console.log(error.message);
+      $log.error(error.message);
     });
   };
 }
 
-module.exports = ['$scope', '$stateParams', '$location', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$scope', '$stateParams', '$location', 'TreatmentCenterService', ctrl];

@@ -1,9 +1,6 @@
 var angular = require('angular'),
   moduleName = 'app.BannerAds';
-angular.module(moduleName, [
-    'ui.router',
-    require('../components')
-  ])
+angular.module(moduleName, ['ui.router', require('../components')])
   .factory('AdvertisementService', require('../services/advertisementService'))
   .component('bannerAdsListMain', require('./list/main'))
   .component('bannerAdsList', {
@@ -17,7 +14,7 @@ angular.module(moduleName, [
   })
   .component('bannerAdsEditMain', require('./edit/main'))
   .component('bannerAdsEdit', {
-    template: require('./edit/view.html'),
+    template: require('./edit/view.html')
   })
   .component('bannerAdsViewMain', require('./view/main'))
   .component('bannerAdsView', {

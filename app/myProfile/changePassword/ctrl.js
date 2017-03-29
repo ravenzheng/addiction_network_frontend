@@ -1,4 +1,4 @@
-function ctrl(service) {
+function ctrl($log, service) {
   var vm = this;
   vm.submit = submit;
 
@@ -10,11 +10,9 @@ function ctrl(service) {
     service.changePassword(formData).then(function ( /* result */ ) {
       // update status in the page
     }).catch(function (error) {
-      throw error;
-      // if failed, display the error message in the page
-      //console.log(error.message);
+      $log.error(error.message);
     });
   }
 }
 
-module.exports = ['UserService', ctrl];
+module.exports = ['$log', 'UserService', ctrl];
