@@ -59,6 +59,9 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'node_modules/angular-ui-router/release/angular-ui-router.min.js',
   to: PATHS.build
 }, {
+  from: 'node_modules/angular-ui-bootstrap/dist',
+  to: PATHS.build
+}, {
   from: 'app/plugins',
   to: 'plugins'
 }, {
@@ -95,7 +98,8 @@ var cssAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'themes/addiction/css/fwslider.css',
     'themes/addiction/css/bootstrap-multiselect.css',
     'themes/addiction/css/developer.css',
-    'themes/addiction/css/map-style.css'
+    'themes/addiction/css/map-style.css',
+    'ui-bootstrap-csp.css'
   ],
   append: false
 });
@@ -116,7 +120,8 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'js/wp-embed.min.js',
     'angular.js',
     'angular-animate.min.js',
-    'angular-ui-router.min.js'
+    'angular-ui-router.min.js',
+    'ui-bootstrap-tpls.js'
   ],
   append: false
 });

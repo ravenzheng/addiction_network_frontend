@@ -1,4 +1,6 @@
-function ctrl(service) {
+module.exports = ['$log', '$rootScope', 'Status', 'UserService', ctrl];
+
+function ctrl($log, $rootScope, Status, service) {
   var vm = this;
   vm.submit = submit;
 
@@ -8,13 +10,16 @@ function ctrl(service) {
     formData.append('user[password]', vm.password);
     formData.append('user[password_confirmation]', vm.passwordConfirmation);
     service.changePassword(formData).then(function ( /* result */ ) {
-      // update status in the page
-    }).catch(function (error) {
-      throw error;
-      // if failed, display the error message in the page
-      //console.log(error.message);
+      // clear all the input
+      vm.oldPassword = '';
+      vm.password = '';
+      vm.passwordConfirmation = '';
+      // show the success message
+      $rootScope.$emit(Status.SUCCEEDED, Status.CHANGE_PASSWORD_SUCCEESS_MSG);
+    }).catch(function (err) {
+      $log.error(err);
+      // show the failure message
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   }
 }
-
-module.exports = ['UserService', ctrl];
