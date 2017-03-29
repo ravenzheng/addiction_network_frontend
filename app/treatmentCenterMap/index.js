@@ -20,6 +20,6 @@ angular.module(moduleName, ['ui.router'])
         mapState: null
       }
     });
-  }]);
+  }]).controller('searchCtrl', require('./ctrl'));
 
 module.exports = moduleName;

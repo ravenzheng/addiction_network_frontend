@@ -22,12 +22,15 @@ function MapCtrl($scope, $element, $location) {
     target.setAttribute('fill', config.downcolor);
   });
 
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
   $element.on('mouseup', selector, function (event) {
     var target = event.target;
     var id = target.getAttribute('id');
     var stateData = getStateDataById(id);
     var currentPath = $location.path();
-    var treatmentState = stateData.fullname;
+    var treatmentState = capitalize(stateData.fullname);
     if (currentPath === '/') {
       var targetURL = '/sponsorhome/' + stateData.shortname;
     } else {

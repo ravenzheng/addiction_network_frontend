@@ -1,8 +1,8 @@
-function StateSelectctrl($http) {
+function StateSelectctrl($http, endPoint) {
   var vm = this;
   // vm.states = states;
   var req = $http({
-    url: 'https://ancient-everglades-10056.herokuapp.com/states',
+    url: endPoint + '/states',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -22,4 +22,4 @@ module.exports = {
   }
 };
 
-StateSelectctrl.$inject = ['$http'];
+StateSelectctrl.$inject = ['$http', 'endPoint'];

@@ -18,6 +18,7 @@ function ctrl($log, $scope, $location, $stateParams, service) {
   var zipcode = getParameterByName('zip');
   var miles = getParameterByName('distance');
   var state = getParameterByName('state');
+  var isSearch = getParameterByName('srch-keyword');
   if (state) {
     var newstate = state.split(':');
     if (newstate[1]) {
@@ -25,23 +26,29 @@ function ctrl($log, $scope, $location, $stateParams, service) {
     }
   }
   var cat = getarrayValue(url);
-  if (mapState === undefined) {
+  if (isSearch === 'search') {
     var finalData = {
       'zipcode': zipcode,
       'miles': miles,
       'state': state,
       'categories': cat
     };
-  } else {
+  } else if (mapState) {
     finalData = {
       state: mapState
     };
     $scope.hide_map = 'hide';
+  } else {
+    $scope.hide_map = 'show';
   }
-
   service.queryBySearch(finalData).then(function (result) {
     // result.address = result.address_line_1 + result.address_line_1;
-    $scope.search_by_filter = result;
+    var data = result.data.listings;
+    if (!data || !data.length) {
+      var noResult = angular.element(document.querySelector('#no_results'));
+      noResult.removeAttr('class');
+    }
+    $scope.search_by_filter = data;
   }).catch(function (err) {
     $log.error(err);
   });
@@ -84,5 +91,5 @@ function getarrayValue(url) {
     }
     return obj.catg.join(',');
   }
-  return url;
+  return null;
 }
