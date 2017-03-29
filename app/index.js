@@ -1,8 +1,8 @@
-var angular = require('angular'),
-  appName = 'AddictionNetworkApp';
+var appName = 'AddictionNetworkApp';
 
 angular.module(appName, [
   'ui.router',
+  'ngAnimate',
   require('./home'),
   require('./sponsorHome'),
   require('./treatmentCenterDetail'),
