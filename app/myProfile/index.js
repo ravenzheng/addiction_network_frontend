@@ -48,7 +48,7 @@ angular.module(moduleName, [
     $stateProvider.state({
       name: 'myProfile.addTreatmentCenter',
       url: '/add-treatment-center',
-      component: '<add-treatment-center></add-treatment-center>'
+      template: '<add-treatment-center></add-treatment-center>'
     });
     $stateProvider.state({
       name: 'myProfile.editTreatmentCenter',
