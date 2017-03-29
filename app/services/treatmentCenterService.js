@@ -5,7 +5,8 @@ function service($http, endPoint, UserService) {
     add: add,
     edit: edit,
     activate: activate,
-    remove: remove
+    remove: remove,
+    inquiry: inquiry
   };
 
   function queryDetail(id) {
@@ -71,6 +72,12 @@ function service($http, endPoint, UserService) {
       });
       return _handle(req);
     });
+  }
+
+  // inquiry on treatment center detail page
+  function inquiry(data) {
+    var req = $http.post(endPoint + '/inquiry', data);
+    return _handle(req);
   }
 
   function _handle(req) {

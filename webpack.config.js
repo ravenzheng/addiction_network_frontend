@@ -53,6 +53,9 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'node_modules/angular/angular.js',
   to: PATHS.build
 }, {
+  from: 'node_modules/angular-animate/angular-animate.min.js',
+  to: PATHS.build
+}, {
   from: 'node_modules/angular-ui-router/release/angular-ui-router.min.js',
   to: PATHS.build
 }, {
@@ -112,6 +115,7 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'js/jquery/jquery.masonry.min.js',
     'js/wp-embed.min.js',
     'angular.js',
+    'angular-animate.min.js',
     'angular-ui-router.min.js'
   ],
   append: false
