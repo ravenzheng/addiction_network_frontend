@@ -1,4 +1,6 @@
-function ctrl($location, TreatmentCenterService) {
+module.exports = ['$log', '$rootScope', '$state', 'Status', 'TreatmentCenterService', ctrl];
+
+function ctrl($log, $rootScope, $state, Status, service) {
   var vm = this;
   vm.state = '';
   vm.onStateUpdate = function (selected) {
@@ -39,15 +41,12 @@ function ctrl($location, TreatmentCenterService) {
         formData.append('treatment_center[image_data][]', imageData.item(i));
       }
     }
-    TreatmentCenterService.add(formData).then(function ( /* result */ ) {
-      // if succeeded, redirect to url /featured-treatment-center
-      $location.url('/featured-treatment-center');
-      // $scope.$apply();
-    }).catch(function (error) {
-      // if failed, display the error message in the page
-      throw error;
+    service.add(formData).then(function ( /* result */ ) {
+      $state.go('featuredTreatmentCenterPage');
+      $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_ADD_SUCCEESS_MSG);
+    }).catch(function (err) {
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
 }
-
-module.exports = ['$location', 'TreatmentCenterService', ctrl];

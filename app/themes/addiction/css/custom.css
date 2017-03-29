@@ -133,7 +133,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   }
 }
 
-
 /*  toggle navbar-collapse at specific width   */
 
 @media (min-width:1200px;
@@ -260,9 +259,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
     text-align: center;
     margin-bottom: 10px;
   }
-  .margin_top_in_xs {
-    margin-top: 15px;
-  }
   .contact_info_wrap_div {
     margin-top: 15px;
   }
@@ -289,23 +285,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   }
   .inner_slider_div {
     display: none;
-  }
-  .media-carousel .carousel-control.right {
-    margin-top: -7%!important;
-    top: 50%!important;
-  }
-  .media-carousel .carousel-control.left {
-    margin-top: -7%!important;
-    top: 50%!important;
-  }
-  .media-carousel img {
-    height: 150px!important;
-  }
-  .carousel-inner {
-    max-height: 317px;
-  }
-  .treatment_directory .carousel-inner .item .row a {
-    margin-bottom: 46px!important;
   }
   .sign_up_box_inner .absolute_div_user {
     left: 44%;
@@ -437,14 +416,12 @@ p {
   border-bottom: 1px dotted #b25628;
 }
 
-
 /*.navbar-collapse .nav .dropdown  .dropdown-menu>li>a:hover{color:#b25628;}*/
 
 .navbar-collapse .nav .dropdown .dropdown-menu>li>a:hover {
   color: #73ac4b;
   ;
 }
-
 
 /************search area css here***********/
 
@@ -537,7 +514,6 @@ p {
   text-decoration: none;
   color: #fff;
 }
-
 
 /************middle css here***********/
 
@@ -773,7 +749,6 @@ p {
   margin-top: 10px
 }
 
-
 /* footer section css */
 
 .footer_section {
@@ -837,7 +812,6 @@ p {
   width: 100%;
   float: left;
 }
-
 
 /* second footer */
 
@@ -906,99 +880,6 @@ p {
   text-align: justify;
 }
 
-
-/* treatment directory css here */
-
-.treatment_directory {
-  width: 100%;
-  float: left;
-}
-
-.treatment_directory .carousel-inner .item .row a {
-  margin-bottom: 7px;
-  display: block;
-}
-
-.treatment_directory label {
-  display: block;
-  color: #73AC4B;
-}
-
-.treatment_directory a>span {
-  margin-right: 7px;
-}
-
-.treatment_directory p {
-  padding-bottom: 5px;
-}
-
-
-/* carousel */
-
-.media-carousel {
-  margin-bottom: 0;
-  padding: 0 40px 30px 40px;
-}
-
-
-/* Previous button  */
-
-.media-carousel .carousel-control.left {
-  left: -12px;
-  background-image: none;
-  background: none repeat scroll 0 0 #222222;
-  border: 4px solid #FFFFFF;
-  border-radius: 23px 23px 23px 23px;
-  height: 40px;
-  width: 40px;
-  margin-top: -8%;
-  top: 50%;
-}
-
-
-/* Next button  */
-
-.media-carousel .carousel-control.right {
-  right: -12px !important;
-  background-image: none;
-  background: none repeat scroll 0 0 #222222;
-  border: 4px solid #FFFFFF;
-  border-radius: 23px 23px 23px 23px;
-  height: 40px;
-  width: 40px;
-  margin-top: -8%;
-  top: 50%;
-}
-
-
-/* Changes the position of the indicators */
-
-.media-carousel .carousel-indicators {
-  right: 50%;
-  top: auto;
-  bottom: 0px;
-  margin-right: -19px;
-}
-
-
-/* Changes the colour of the indicators */
-
-.media-carousel .carousel-indicators li {
-  background: #c0c0c0;
-}
-
-.media-carousel .carousel-indicators .active {
-  background: #333333;
-}
-
-.media-carousel img {
-  width: 250px;
-  height: 100px
-}
-
-
-/* End carousel */
-
 .right_content ul {
   margin-bottom: 17px;
 }
@@ -1016,7 +897,6 @@ p {
   font-family: arial;
   width: 100%;
 }
-
 
 /*   Sign In  Form Css Modal   */
 
@@ -1223,9 +1103,7 @@ h3.sub_heading_under_sign_up {
   background: url(../images/header-bg_pattern.png) repeat;
 }
 
-
 /*  Sign In   Form css Modal  */
-
 
 /* Listing Page     */
 
@@ -1271,7 +1149,6 @@ h3.sub_heading_under_sign_up {
   margin-left: 0;
 }
 
-
 /*margin-top:15px; */
 
 .main_sidebar li {
@@ -1309,7 +1186,6 @@ h3.sub_heading_under_sign_up {
   font-weight: normal;
   float: left;
 }
-
 
 /* height: 40px; */
 
@@ -1372,9 +1248,7 @@ h3.sub_heading_under_sign_up {
   -ms-opacity: 0.5 !important;
 }
 
-
 /* Listing Page     */
-
 
 /*      24 July      */
 
@@ -1452,17 +1326,13 @@ h3.sub_heading_under_sign_up {
   width: 40px;
 }
 
-
 /*
 .sticky_above{position:fixed;top: 0% ;left:0%;height:56px;background:#73ac4b;width:135px;}
 */
 
-
 /* go to line 64   */
 
-
 /*      24 July      */
-
 
 /*      25 July      */
 
@@ -1518,7 +1388,6 @@ h3.sub_heading_under_sign_up {
 .form_wrap_margin .bootstrap-select {
   margin-bottom: 0px !important;
 }
-
 
 /*   Listing Wrap    */
 
@@ -1635,7 +1504,6 @@ h3.sub_heading_under_sign_up {
   text-decoration: underline;
 }
 
-
 /*.text_style_under_block:before{ background: none repeat scroll 0 0 #2172a7; bottom: 9px;content: ""; height: 2px; left: 0; margin: auto; position: absolute; right: 0;width: 84px;}*/
 
 .detail_div_under_block {
@@ -1675,12 +1543,9 @@ h3.sub_heading_under_sign_up {
   background: none repeat scroll 0 0 #f1f1f1;
 }
 
-
 /*   Listing Wrap    */
 
-
 /*      25 July      */
-
 
 /*  30July  */
 
@@ -1697,9 +1562,7 @@ h3.sub_heading_under_sign_up {
   padding: 8px 5px 15px 15px !important;
 }
 
-
 /*  30July  */
-
 
 /*    Profile    */
 
@@ -1773,9 +1636,7 @@ h3.sub_heading_under_sign_up {
   margin-top: 108px;
 }
 
-
 /*    Profile    */
-
 
 /*    Account Settings    */
 
@@ -1808,9 +1669,7 @@ h3.sub_heading_under_sign_up {
   cursor: pointer;
 }
 
-
 /*    Account Settings    */
-
 
 /*    Add Treatment Center       */
 
@@ -1823,9 +1682,7 @@ h3.sub_heading_under_sign_up {
   margin-top: 25px;
 }
 
-
 /*    Add Treatment Center       */
-
 
 /* my Center View */
 
@@ -1848,9 +1705,7 @@ h3.sub_heading_under_sign_up {
   display: block;
 }
 
-
 /* my Center View */
-
 
 /***detail view page start from here****/
 
@@ -1970,9 +1825,7 @@ h3.sub_heading_under_sign_up {
   margin: 0 7px 0 0;
 }
 
-
 /***detail view page ends on here****/
-
 
 /*Detail Page 2      */
 
@@ -1980,39 +1833,12 @@ h3.sub_heading_under_sign_up {
   font-family: "Glyphicons Halflings" !important;
 }
 
-.text_style_detail_page span {
-  border-bottom: 1px solid #444444;
-  float: left;
-  font-family: "oswaldbook";
-  font-size: 18px;
-  padding-bottom: 5px;
-  width: 100%;
-}
-
-.text_style_detail_page p {
-  font-family: 'Arial';
-  font-size: 16px;
-  float: left;
-  width: 100%;
-}
-
-.text_style_detail_page i {
-  color: #115a8f;
-  font-size: 18px;
-  font-family: "Glyphicons Halflings" !important;
-}
 
 .margin_top_new {
   margin-top: 25px;
 }
 
 .contact_info_wrap_div {
-  float: left;
-  width: 100%;
-}
-
-.text_style_detail_page {
-  color: #444;
   float: left;
   width: 100%;
 }
@@ -2069,9 +1895,7 @@ h3.sub_heading_under_sign_up {
   color: #73ac4b;
 }
 
-
 /*Detail Page 2      */
-
 
 /*    No More Tables Advertisements      */
 
@@ -2142,7 +1966,6 @@ h3.sub_heading_under_sign_up {
   position: relative;
 }
 
-
 /*.img_inner_in_tb img:hover{box-shadow:0 4px 4px #444;-moz-box-shadow:0 4px 4px #444;-ms-box-shadow:0 4px 4px #444;-webkit-box-shadow:0 4px 4px #444;-o-box-shadow:0 4px 4px #444;}*/
 
 #no-more-tables:hover {
@@ -2212,9 +2035,7 @@ h3.sub_heading_under_sign_up {
   }
 }
 
-
 /*    No More Tables Advertisements      */
-
 
 /*   Blog Page      */
 
@@ -2461,9 +2282,7 @@ li.media {
   font-family: 'Arial';
 }
 
-
 /*   Blog Page      */
-
 
 /* gallery starts */
 
@@ -2569,7 +2388,6 @@ address {
   display: inline-block;
 }
 
-
 /* Changes made by Kunal Goyal on 5Sep-14 */
 
 .addthis_32x32_style {
@@ -2580,7 +2398,6 @@ address {
 .addthis_toolbox a span img {
   vertical-align: inherit;
 }
-
 
 /* Changes made by Kunal Goyal on 5Sep-14 */
 
@@ -2662,17 +2479,7 @@ address {
   width: 100%;
 }
 
-
 /*******coded by Sahil Johar************/
-
-.margin_top_in_xs .text_style_detail_page span {
-  border-bottom: 1px solid #000;
-}
-
-.text_style_detail_page span {
-  border: none;
-}
-
 .main_heading_h2 {
   font-size: 28px;
   margin: 15px 0;
@@ -2820,7 +2627,6 @@ address {
   float: left;
 }
 
-
 /****** Sponsor Page Start *****/
 
 .sponsor_div {
@@ -2942,7 +2748,6 @@ address {
   margin: 0px !important;
   width: auto !important;
 }
-
 
 /*  css by palwinder 05-11-2014 */
 

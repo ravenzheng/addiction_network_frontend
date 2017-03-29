@@ -1,4 +1,6 @@
-function ctrl(service) {
+module.exports = ['$log', '$rootScope', 'Status', 'TreatmentCenterService', ctrl];
+
+function ctrl($log, $rootScope, Status, service) {
   var vm = this;
   vm.centers = [];
   vm.currentCenters = [];
@@ -76,8 +78,10 @@ function ctrl(service) {
         }
       }
       vm.currentCenters = calCurrentCenters(vm.currentPage, vm.pageSize);
-    }).catch(function (error) {
-      vm.prompt = error;
+      $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_DELETE_SUCCEESS_MSG);
+    }).catch(function (err) {
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   }
 
@@ -93,5 +97,3 @@ function ctrl(service) {
     return -1;
   }
 }
-
-module.exports = ['TreatmentCenterService', ctrl];
