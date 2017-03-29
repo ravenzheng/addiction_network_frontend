@@ -1,7 +1,7 @@
 function ctrl($stateParams, AdvertisementService) {
   var vm = this;
   var bannerID = $stateParams.id;
-  //getting data
+  // getting data
   getBannerData(vm, bannerID, AdvertisementService);
 
   vm.success_msg = 0;
@@ -23,37 +23,31 @@ function ctrl($stateParams, AdvertisementService) {
         vm.success_msg = 0;
       }, 3000);
 
-      //refreshing data
+      // refreshing data
       getBannerData(vm, bannerID, AdvertisementService);
-
-      alert('Updated Sucessfully');
-
     }).catch(function (err) {
       throw err;
     });
-  }
-
+  };
 }
 module.exports = ['$stateParams', 'AdvertisementService', ctrl];
 
 function getBannerData(vm, bannerID, AdvertisementService) {
-
   var formData = new FormData();
   var bannerData = {
-    "id": bannerID
+    'id': bannerID
   };
   for (var key in bannerData) {
     formData.append('banner_ads[' + key + ']', bannerData[key]);
   }
   AdvertisementService.getAdvertisementData(bannerID, formData).then(function (response) {
     vm.content = response.banner_ads.content;
-    if (vm.content != vm.oldcontent) {
+    if (vm.content !== vm.oldcontent) {
       vm.oldcontent = response.banner_ads.content;
     }
     vm.position = response.banner_ads.position;
     vm.name = response.banner_ads.name;
     vm.center_web_link = response.banner_ads.center_web_link;
-
   }).catch(function (err) {
     vm.error_message = err;
   });

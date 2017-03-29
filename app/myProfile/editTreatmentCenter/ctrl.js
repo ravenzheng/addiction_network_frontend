@@ -1,3 +1,4 @@
+function ctrl($log, $scope, $stateParams, $location, service) {
 module.exports = ['$log', '$rootScope', '$state', '$stateParams', 'Status', 'TreatmentCenterService', ctrl];
 
 function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
@@ -49,6 +50,17 @@ function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
       }
     }
     service.edit(id, formData).then(function ( /* result */ ) {
+      // if succeeded, redirect to url /featured-treatment-center
+      $location.url('/featured-treatment-center');
+      // $scope.$apply();
+    }).catch(function (error) {
+      // if failed, display the error message in the page
+      $log.error(error.message);
+    });
+  };
+}
+
+module.exports = ['$log', '$scope', '$stateParams', '$location', 'TreatmentCenterService', ctrl];
       $state.go('featuredTreatmentCenterPage');
       $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {

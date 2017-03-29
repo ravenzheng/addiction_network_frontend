@@ -2,7 +2,7 @@ function service($log, $http, endPoint) {
   var errorMsg = 'Oops! An error occured, we are unable to retrieve data.';
   return {
     query: function () {
-      var req = $http.get(endPoint + '/featured_listings');
+      var req = $http.get(endPoint + '/advertisements');
       return req.then(function (res) {
         var status = res.status;
         if (status === 200) {

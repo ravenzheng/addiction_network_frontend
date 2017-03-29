@@ -1,13 +1,10 @@
-function service($http, endPoint, UserService) {
+function service($log, $http, endPoint, UserService) {
   return {
     advertisementList: list,
     advertisementAdd: add,
     advertisementEdit: edit,
     getAdvertisementData: getData,
     updateStatus: updateStatus
-    //    sponsorAdStatus: sponsorAdStatus,
-    //    editSponsor: editSponsor,
-    //    getSponsorData: getSponsorData
   };
 
   function list() {
@@ -15,7 +12,7 @@ function service($http, endPoint, UserService) {
       var token = result;
       var req = $http({
         url: endPoint + '/listing_user/banner_ads',
-        method: "GET",
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
@@ -30,7 +27,7 @@ function service($http, endPoint, UserService) {
       var token = result;
       var req = $http({
         url: endPoint + '/listing_user/banner_ads',
-        method: "POST",
+        method: 'POST',
         data: formdata,
         transformRequest: angular.identity,
         headers: {
@@ -47,7 +44,7 @@ function service($http, endPoint, UserService) {
       var token = result;
       var req = $http({
         url: endPoint + '/listing_user/banner_ads/' + id,
-        method: "PATCH",
+        method: 'PATCH',
         data: formdata,
         transformRequest: angular.identity,
         headers: {
@@ -64,7 +61,7 @@ function service($http, endPoint, UserService) {
       var token = result;
       var req = $http({
         url: endPoint + '/listing_user/banner_ads/' + id,
-        method: "PATCH",
+        method: 'PATCH',
         data: formdata,
         transformRequest: angular.identity,
         headers: {
@@ -77,12 +74,11 @@ function service($http, endPoint, UserService) {
   }
 
   function updateStatus(id) {
-
     return UserService.getToken().then(function (result) {
       var token = result;
       var req = $http({
         url: endPoint + '/listing_user/banner_ad/' + id + '/activate_deactivate',
-        method: "POST",
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
@@ -97,11 +93,10 @@ function service($http, endPoint, UserService) {
       var status = res.status;
       if (status === 200) {
         return res.data;
-      } else {
-        throw new Error(res.statusText);
       }
+      return $log.error(res.statusText);
     });
   }
 }
 
-module.exports = ['$http', 'endPoint', 'UserService', service];
+module.exports = ['$log', '$http', 'endPoint', 'UserService', service];

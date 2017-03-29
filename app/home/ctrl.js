@@ -1,4 +1,4 @@
-function ctrl(service) {
+function ctrl($log, service) {
   var vm = this;
   service.query().then(function (result) {
     var listings = result.listings.map(function (listing) {
@@ -8,8 +8,8 @@ function ctrl(service) {
     vm.listings = listings;
   }).catch(function (err) {
     // todo, display the error message in the page.
-    console.log(err);
+    $log.error(err);
   });
 }
 
-module.exports = ['HomeListingService', ctrl];
+module.exports = ['$log', 'HomeListingService', ctrl];

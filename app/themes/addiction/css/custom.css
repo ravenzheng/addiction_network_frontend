@@ -607,14 +607,15 @@ p {
 }
 
 .listing_block {
-  width: 100%;
-  float: left;
-  border: 7px solid #E5E5E5;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  position: relative;
-  margin-bottom: 34px;
-  border-radius: 5px;
+    width: 100%;
+    float: left;
+    border: 7px solid #E5E5E5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    position: relative;
+    margin-bottom: 34px;
+    border-radius: 5px;
+    min-height:260px;
 }
 
 .listing_block:hover {

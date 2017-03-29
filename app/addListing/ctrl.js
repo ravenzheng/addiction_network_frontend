@@ -1,4 +1,4 @@
-function ctrl(service) {
+function ctrl($log, service) {
   var vm = this;
   vm.passRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/';
 
@@ -26,7 +26,7 @@ function ctrl(service) {
   };
   vm.submit = function (form) {
     if (!form.$valid) {
-      alert('Form is not valid');
+      $log.error('Invalid form');
       return;
     }
     var formData = new FormData();
@@ -37,12 +37,12 @@ function ctrl(service) {
       'first_name': vm.first_name,
       'last_name': vm.last_name,
       'company': vm.company,
-      'phone': vm.phone,
+      'phone': vm.phone
     };
     for (var key in sigupData) {
       formData.append('user[' + key + ']', sigupData[key]);
     }
-    if (vm.center_name != "") {
+    if (vm.center_name !== '') {
       var treatmentcenterData = {
         'center_name': vm.center_name,
         'description': vm.description,
@@ -71,17 +71,16 @@ function ctrl(service) {
       }
     }
     if (vm.image_data) {
-      var image_data = vm.image_data;
-      var len = image_data.length;
+      var imageData = vm.image_data;
+      var len = imageData.length;
       for (var i = 0; i < len; i++) {
-        formData.append('treatment_center[image_data][]', image_data.item(i));
+        formData.append('treatment_center[image_data][]', imageData.item(i));
       }
     }
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
     service.addTreatmentCenterSignUp(formData).then(function () {
-      alert("Your Listing has been saved");
       location.reload(true);
     }).catch(function (err) {
       if (err.data.user) {
@@ -94,4 +93,4 @@ function ctrl(service) {
   };
 }
 
-module.exports = ['addTreatmentCenterSignUpService', ctrl];
+module.exports = ['$log', 'addTreatmentCenterSignUpService', ctrl];
