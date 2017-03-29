@@ -8,47 +8,12 @@
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-12">
         <!-- slider -->
-        <div id="main_area">
-          <!-- Slider -->
-          <div class="row">
-            <div class="col-xs-12" id="slider">
-              <!-- Top part of the slider -->
-              <div class="row">
-                <div class="col-sm-12" id="carousel-bounding-box">
-                  <div class="carousel slide" id="myCarousel" tabindex="-1">
-                    <!-- Carousel items -->
-                    <div class="carousel-inner "></div>
-                    <a class="left carousel-control anchor_active" href="#myCarousel" role="button" data-slide="prev">
-                      <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                      <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--/Slider-->
-            <div class="col-md-12">
-              <div class="carousel slide media-carousel carousel-2" id="media" tabindex="-1">
-                <div class="carousel-inner carousel-inner-2"></div>
-                <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
-                <a data-slide="next" href="#media" class="right carousel-control">›</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- slider -->
+        <center-detail-carousel images="$ctrl.entry.center_images"></center-detail-carousel>
+
         <div class="left_content">
-          <div class="outerMessage" style="display: none;">
-            <div class="innerMessage"></div>
-          </div>
-          <div id="success" style="display: none;">
-            <div class="innerMessage"></div>
-          </div>
+          <!-- Detail -->
           <h1>
-            <label>{{ $ctrl.entry.center_name}} Details
-            </label>
+            <label>{{ $ctrl.entry.center_name}} Details</label>
           </h1>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -165,17 +130,15 @@
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                       <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label for="userf">Name:
-                        </label>
+                        <label for="userf">Name:</label>
                       </div>
                       <div class="col-md-8 col-sm-8 col-xs-12">
-                        <input name="username" type="text" class="form-control required comm" id="userf" placeholder="Name">
+                        <input name="username" type="text" class="form-control required comm" placeholder="Name" />
                       </div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                       <div class="col-md-4 col-sm-4 col-xs-12">
-                        <label for="message">Review:
-                        </label>
+                        <label for="message">Review:</label>
                       </div>
                       <div class="col-md-8 col-sm-8 col-xs-12">
                         <textarea name="reviews" id="message" rows="4" cols="100%" class="form-control required comm"></textarea>
@@ -204,20 +167,20 @@
       </div>
       <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
         <div class="contact_info_wrap_div">
-          <img src="http://www.addictionnetwork.com/wp-content/uploads/treatment_center_images/medium/1430401661-logo-new start detox logo.jpg" style="margin-bottom : 10px;">
-          <div class="text_style_detail_page">
+          <img ng-src="{{ $ctrl.entry.listing_image }}" alt="{{ $ctrl.entry.center_name }}" />
+          <div class="center-detail-side">
             <span>Location:</span>
             <p class="margin_top_adjust_go">
               <i class="glyphicon glyphicon-map-marker"></i>{{ $ctrl.entry.address }}
             </p>
           </div>
-          <div class="text_style_detail_page">
+          <div class="center-detail-side">
             <span class="margin_top_adjust_go">Call Us:</span>
             <p class="margin_top_adjust_go">
               <i class="glyphicon glyphicon-phone-alt"></i>{{ $ctrl.entry.phone }}
             </p>
           </div>
-          <div class="text_style_detail_page">
+          <div class="center-detail-side">
             <span class="margin_top_adjust_go">Email Us:</span>
             <p class="margin_top_adjust_go">
               <i class="glyphicon glyphicon-envelope mail_icon"></i>{{ $ctrl.entry.email }}
@@ -232,7 +195,7 @@
           </div>
           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 padding_0 main_wrap_form_inner_sub">
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-              <iframe width="100%" height="250px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=123 Main Street Tustin CALIFORNIA, 92705&amp;ie=UTF8&amp;hq=&amp;hnear=123 Main Street Tustin CALIFORNIA, 92705&amp;z=11&amp;iwloc=near&amp;output=embed"></iframe>
+              <iframe width="100%" height="250px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="{{ $ctrl.entry.mapLink }}"></iframe>
             </div>
           </div>
         </div>

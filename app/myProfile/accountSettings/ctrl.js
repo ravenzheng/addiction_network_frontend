@@ -1,4 +1,6 @@
 function ctrl($log, service) {
+module.exports = ['$log', '$rootScope', 'Status', 'UserService', ctrl];
+function ctrl($log, $rootScope, Status, service) {
   var vm = this;
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
@@ -38,3 +40,10 @@ function ctrl($log, service) {
 }
 
 module.exports = ['$log', 'UserService', ctrl];
+      $rootScope.$emit(Status.SUCCEEDED, Status.PROFILE_EDIT_SUCCEESS_MSG);
+    }).catch(function (err) {
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+    });
+  }
+}

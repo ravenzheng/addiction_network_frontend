@@ -1,0 +1,32 @@
+.center-detail-side {
+  color: #444;
+  float: left;
+  width: 100%;
+}
+
+.center-detail-side span {
+  border-bottom: 1px solid #444444;
+  float: left;
+  font-family: "oswaldbook";
+  font-size: 18px;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.center-detail-side p {
+  font-family: 'Arial';
+  font-size: 16px;
+  float: left;
+  width: 100%;
+}
+
+.center-detail-side i {
+  color: #115a8f;
+  font-size: 18px;
+  font-family: "Glyphicons Halflings" !important;
+  margin-right: 10px;
+}
+
+.contact_info_wrap_div img {
+  margin-bottom : 10px;
+}

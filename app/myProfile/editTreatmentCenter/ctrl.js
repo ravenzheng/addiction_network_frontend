@@ -1,4 +1,7 @@
 function ctrl($log, $scope, $stateParams, $location, service) {
+module.exports = ['$log', '$rootScope', '$state', '$stateParams', 'Status', 'TreatmentCenterService', ctrl];
+
+function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
   var vm = this;
   var id = $stateParams.id;
   service.queryDetail(id).then(function (result) {
@@ -58,3 +61,11 @@ function ctrl($log, $scope, $stateParams, $location, service) {
 }
 
 module.exports = ['$log', '$scope', '$stateParams', '$location', 'TreatmentCenterService', ctrl];
+      $state.go('featuredTreatmentCenterPage');
+      $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_EDIT_SUCCEESS_MSG);
+    }).catch(function (err) {
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+    });
+  };
+}
