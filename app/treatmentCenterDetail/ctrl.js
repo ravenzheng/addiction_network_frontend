@@ -8,7 +8,7 @@ module.exports = ['$log', '$httpParamSerializer', '$sce', '$scope', '$stateParam
 function ctrl($log, $httpParamSerializer, $sce, $scope, $stateParams, Status, service) {
   var vm = this;
   vm.$onInit = onInit;
-  $scope.$on(Status.SUCCEEDED, function () {
+  $scope.$on(Status.RATING_SUBMIT_SUCCEEDED, function () {
     onInit();
   });
 

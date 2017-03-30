@@ -69,16 +69,20 @@
   margin: 0 7px 0 0;
 }
 
-.review-form-box .show-hide {
+.review-form-box .submit-review {
+  margin-bottom: 15px;
+}
+
+.review-form-box .review-form {
   max-height: 300px;
 }
 
-.review-form-box .show-hide.ng-hide {
+.review-form-box .review-form.ng-hide {
   max-height: 0px;
 }
 
-.review-form-box .show-hide.ng-hide-add,
-.review-form-box .show-hide.ng-hide-remove {
+.review-form-box .review-form.ng-hide-add,
+.review-form-box .review-form.ng-hide-remove {
   overflow: hidden;
   transition: max-height linear 0.3s;
 }

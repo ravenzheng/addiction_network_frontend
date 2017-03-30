@@ -52,7 +52,7 @@ function ctrl($log, $rootScope, $scope, Status, service) {
       vm.name = '';
       vm.review = '';
       $rootScope.$emit(Status.SUCCEEDED, Status.SUBMIT_SUCCESS_MSG);
-      $scope.$emit(Status.SUCCEEDED);
+      $scope.$emit(Status.RATING_SUBMIT_SUCCEEDED);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
