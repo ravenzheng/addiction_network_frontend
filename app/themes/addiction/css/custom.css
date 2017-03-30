@@ -1766,66 +1766,6 @@ h3.sub_heading_under_sign_up {
   padding: 10px 0 0 0;
 }
 
-.review_heading h1 {
-  background: url("../images/title-striped-bg.png");
-  background-repeat: repeat-x;
-  text-align: center;
-  background-position: 40px;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.review_heading h1>label {
-  background: #fff;
-  padding: 0 16px 0 16px;
-  color: #73ac4b;
-  font-size: 28px;
-  text-align: center;
-  font-weight: bold;
-  width: 100%;
-}
-
-.review_star {
-  margin: 7px 0 0 0;
-}
-
-.review_inner h2 {
-  float: left;
-  width: 100%;
-  color: #73AC4B;
-  font-size: 16px;
-}
-
-.user_ratings {
-  margin: 5px 0 0 0;
-  float: left;
-  width: 100%:
-}
-
-.user_ratings img {
-  width: 20px;
-}
-
-.review_main {
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 10px;
-}
-
-.review_inner p {
-  float: left;
-  width: 100%;
-  margin: 5px 0 0 0;
-}
-
-.review_inner p a {
-  margin-bottom: 7px;
-  font-family: 'oswaldbook';
-}
-
-.review_inner p a span {
-  margin: 0 7px 0 0;
-}
-
 /***detail view page ends on here****/
 
 /*Detail Page 2      */
@@ -2825,4 +2765,15 @@ address {
   text-align: right;
   margin-right: 10px;
   clear: both;
+}
+
+label.error {
+  color:red;
+}
+
+.right {
+  float: right;
+}
+.left {
+  float: left;
 }
