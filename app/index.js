@@ -1,5 +1,5 @@
 var appName = 'AddictionNetworkApp';
-angular.module(appName, ['ui.router', require('./home'), require('./sponsorHome'), require('./treatmentCenterDetail'), require('./treatmentCenterMap'), require('./advertisement'), require('./myProfile'), require('./featuredTreatmentCenter'), require('./addListing'), require('./sponsorAds'), require('./advertisement'), require('./bannerAds')]).component('header', require('./header'))
+
 angular.module(appName, [
   'ngAnimate',
   'ui.router',
@@ -23,4 +23,5 @@ angular.module(appName, [
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
   }]);
+
 angular.bootstrap(document.getElementsByTagName('body')[0], [appName]);

@@ -1,4 +1,3 @@
-function ctrl($log, service) {
 module.exports = ['$log', '$rootScope', 'Status', 'UserService', ctrl];
 
 function ctrl($log, $rootScope, Status, service) {
@@ -11,14 +10,6 @@ function ctrl($log, $rootScope, Status, service) {
     formData.append('user[password]', vm.password);
     formData.append('user[password_confirmation]', vm.passwordConfirmation);
     service.changePassword(formData).then(function ( /* result */ ) {
-      // update status in the page
-    }).catch(function (error) {
-      $log.error(error.message);
-    });
-  }
-}
-
-module.exports = ['$log', 'UserService', ctrl];
       // clear all the input
       vm.oldPassword = '';
       vm.password = '';

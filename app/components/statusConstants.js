@@ -1,6 +1,7 @@
 module.exports = {
   SUCCEEDED: 'succeeded',
   FAILED: 'failed',
+  RATING_SUBMIT_SUCCEEDED: 'rating_submit_succeeded',
   DURATION: 2500,
   CHANGE_PASSWORD_SUCCEESS_MSG: 'Your password is updated successfully.',
   PROFILE_EDIT_SUCCEESS_MSG: 'Your profile is updated successfully.',
