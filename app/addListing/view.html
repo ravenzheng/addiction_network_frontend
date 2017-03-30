@@ -210,7 +210,7 @@
                     </label>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" ng-model="$ctrl.intakeemail"  required="true">
+                    <input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" ng-model="$ctrl.intakeemail" required="true">
                     <span>{{$ctrl.intakeemail_err}}</span>
                     <span ng-show="addlistForm.intakeemail.$invalid" class="help-block">Invalid Email</span>
                   </div>
@@ -232,7 +232,7 @@
                     <label for="cpwd">State</label>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <select ng-change="$ctrl.getCities()" name="state" ng-model="$ctrl.state" required="true">
+                    <select ng-change="$ctrl.getCities()" name="state" ng-model="$ctrl.state">
                       <option value="">Select State</option>
                       <option ng-repeat="states in $ctrl.states track by $index" value="{{states}}">{{states}}</option>
                     </select>

@@ -1,9 +1,6 @@
 var angular = require('angular'),
   moduleName = 'app.SponsorAds';
-angular.module(moduleName, [
-    'ui.router',
-    require('../components')
-  ])
+angular.module(moduleName, ['ui.router', require('../components')])
   .factory('SponsorService', require('../services/sponsorAdsService'))
   .component('sponsorAdsListMain', require('./list/main'))
   .component('sponsorAdsList', {
@@ -17,7 +14,7 @@ angular.module(moduleName, [
   })
   .component('sponsorAdsEditMain', require('./edit/main'))
   .component('sponsorAdsEdit', {
-    template: require('./edit/view.html'),
+    template: require('./edit/view.html')
   })
   .component('sponsorAdsViewMain', require('./view/main'))
   .component('sponsorAdsView', {

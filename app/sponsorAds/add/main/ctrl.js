@@ -22,15 +22,14 @@ function ctrl(SponsorService) {
     }
     SponsorService.sponsorAdd(formData).then(function () {
       vm.success_msg = 1;
+      window.location.href = '/#sponsor-ads';
       setTimeout(function () {
         vm.success_msg = 0;
       }, 3000);
-
     }).catch(function (err) {
       throw err;
     });
-  }
-
+  };
 }
 
 module.exports = ['SponsorService', ctrl];

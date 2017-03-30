@@ -1,10 +1,7 @@
 var angular = require('angular'),
   moduleName = 'app.home';
 
-angular.module(moduleName, [
-    'ui.router',
-    require('../sidePanel')
-  ])
+angular.module(moduleName, ['ui.router', require('../sidePanel')])
   .factory('HomeListingService', require('./service'))
   .component('stateMap', require('./map'))
   .component('welcome', require('./welcome'))

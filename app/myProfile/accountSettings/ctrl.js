@@ -1,5 +1,5 @@
+function ctrl($log, service) {
 module.exports = ['$log', '$rootScope', 'Status', 'UserService', ctrl];
-
 function ctrl($log, $rootScope, Status, service) {
   var vm = this;
   vm.onStateUpdate = function (selected) {
@@ -31,6 +31,15 @@ function ctrl($log, $rootScope, Status, service) {
       formData.append('user[' + key + ']', data[key]);
     }
     service.editProfile(formData).then(function ( /* result */ ) {
+      // update status in the page
+    }).catch(function (error) {
+      // if failed, display the error message in the page
+      $log.error(error.message);
+    });
+  }
+}
+
+module.exports = ['$log', 'UserService', ctrl];
       $rootScope.$emit(Status.SUCCEEDED, Status.PROFILE_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {
       $log.error(err);

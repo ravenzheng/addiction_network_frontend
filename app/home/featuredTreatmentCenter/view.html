@@ -13,11 +13,11 @@
     <div class="block_content">
       <div class="block_heading">
         <h2 class="feat_head">
-          <a ui-sref="{{ listing.uiSref }}">{{ listing.center_name }}</a>
+          <a ui-sref="{{ listing.uiSref }}">{{ listing.center_name | limitTo:14 }}...</a>
         </h2>
       </div>
       <p>
-        {{ listing.description }}
+        {{ listing.center_name | limitTo:20 }}
       </p>
     </div>
     <a ui-sref="{{ listing.uiSref }}">View Listing</a>
