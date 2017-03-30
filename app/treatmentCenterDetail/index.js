@@ -7,6 +7,9 @@ angular.module(moduleName, [
   require('../services')
 ]).component('inquiryFormCard', require('./inquiryFormCard'))
   .component('centerDetailCarousel', require('./carousel'))
+  .component('reviewRating', require('./reviewRating'))
+  .component('reviewListBox', require('./reviewListBox'))
+  .component('reviewFormBox', require('./reviewFormBox'))
   .component('treatmentCenterDetail', {
     template: require('./view.html'),
     controller: require('./ctrl')

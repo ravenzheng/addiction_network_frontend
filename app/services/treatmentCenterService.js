@@ -6,7 +6,8 @@ function service($http, endPoint, UserService) {
     edit: edit,
     activate: activate,
     remove: remove,
-    inquiry: inquiry
+    inquiry: inquiry,
+    submitRating: submitRating
   };
 
   function queryDetail(id) {
@@ -77,6 +78,12 @@ function service($http, endPoint, UserService) {
   // inquiry on treatment center detail page
   function inquiry(data) {
     var req = $http.post(endPoint + '/inquiry', data);
+    return _handle(req);
+  }
+
+  // submit rating
+  function submitRating(id, data) {
+    var req = $http.post(endPoint + '/ratings/' + id, data);
     return _handle(req);
   }
 
