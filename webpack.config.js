@@ -111,6 +111,7 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'themes/addiction/js/multiple.js',
     'themes/addiction/js/maskinput.js',
     'themes/addiction/js/functions.js',
+    'themes/addiction/js/lodash.min.js',
     // 'themes/addiction/js/fileupload.js',
     // 'js/comment-reply.min.js',
     // 'js/imagesloaded.min.js',
