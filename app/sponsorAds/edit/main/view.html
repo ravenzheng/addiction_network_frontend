@@ -73,7 +73,7 @@
               <label for="web_link"> Website URL: </label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <input name="sponsor_ad_website" class="form-control required url" type="text" id="sponsor_web_link" placeholder="http://www.google.com" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2}$/">
+              <input name="sponsor_ad_website" class="form-control required url" type="text" id="sponsor_web_link" placeholder="http://www.google.com" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,10}$/">
               <span ng-show="sponsorAdsEdit.sponsor_ad_website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
             </div>
           </div>
@@ -82,17 +82,7 @@
               <label for="tname"> Sponsor Ads: </label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
-              <!-- <select name="$ctrl.sponsored_listing_layout_ids[]" ng-model="$ctrl.sponsored_listing_layout_ids" id="sposnor_ad_cat" class="required multiselect" multiple="multiple" title="Select (Price in $)">
-                <optgroup>
-                  <option ng-repeat="normal in $ctrl.sponsored_ad_select_normal" value="{{normal.id}}">{{normal.name}}</option>
-                </optgroup>
-                <optgroup>
-                  <option ng-repeat="state in $ctrl.sponsored_ad_select_state" value="{{state.id}}">{{state.name}}</option>
-                </optgroup>
-              </select> -->
-
               <div ng-dropdown-multiselect="" options="$ctrl.sponsored_ad_select" checkboxes="true" selected-model="$ctrl.multiselectModelLayoutIds " extra-settings="$ctrl.multiselectModelSettings"></div>
-
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0 ">
