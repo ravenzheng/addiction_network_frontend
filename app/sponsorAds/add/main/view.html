@@ -42,7 +42,8 @@
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
                 <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
-                <input file-model="$ctrl.image" type="file" name="image" id="image" class="center_image" />
+                <input file-model="$ctrl.image" type="file" name="image" id="image" class="center_image" accept="image/*" />
+                <span ng-show="$ctrl.err_type">Please upload an image only. </span>
               </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -58,7 +59,7 @@
                 <label for="cpwd">Website </label>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
-                <input placeholder="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2}$/">
+                <input placeholder="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,10}$/">
                 <span ng-show="sponsorAdsForm.website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
               </div>
             </div>
@@ -67,14 +68,15 @@
                 <label for="cpwd">Sponsor Ads </label>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-12">
-                <select name="$ctrl.sponsored_listing_layout_ids[]" ng-model="$ctrl.sponsored_listing_layout_ids" id="sposnor_ad_cat" class="required multiselect" multiple="multiple" title="Select (Price in $)">
+                <!-- <select name="$ctrl.sponsored_listing_layout_ids[]" ng-model="$ctrl.sponsored_listing_layout_ids" ng-dropdown-multiselect="" checkboxes="true" id="sposnor_ad_cat" class="required multiselect" multiple="multiple" title="Select (Price in $)">
                   <optgroup>
                     <option ng-repeat="normal in $ctrl.sponsored_ad_select_normal" value="{{normal.id}}">{{normal.name}}</option>
                   </optgroup>
                   <optgroup>
                     <option ng-repeat="normal in $ctrl.sponsored_ad_select_state" value="{{normal.id}}">{{normal.name}}</option>
                   </optgroup>
-                </select>
+                </select> -->
+                <div ng-dropdown-multiselect="" options="$ctrl.sponsored_ad_select" checkboxes="true" selected-model="$ctrl.multiselectModelLayoutIds " extra-settings="$ctrl.multiselectModelSettings"></div>
               </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">

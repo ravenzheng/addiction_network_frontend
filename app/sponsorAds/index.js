@@ -1,6 +1,6 @@
 var angular = require('angular'),
   moduleName = 'app.SponsorAds';
-angular.module(moduleName, ['ui.router', require('../components')])
+angular.module(moduleName, ['ui.router', 'angularjs-dropdown-multiselect', require('../components')])
   .factory('SponsorService', require('../services/sponsorAdsService'))
   .component('sponsorAdsListMain', require('./list/main'))
   .component('sponsorAdsList', {
@@ -40,5 +40,7 @@ angular.module(moduleName, ['ui.router', require('../components')])
     });
   }])
   .controller('SponsorAdsCtrl', require('./list/ctrl'));
+// .directive('ngDropdownMultiselect', require('./edit/main/multiselectDirective'));
+// .directive('ngDropdownMultiselect', //require('../components/multiselectDropdown/multiselectDirective'));
 
 module.exports = moduleName;

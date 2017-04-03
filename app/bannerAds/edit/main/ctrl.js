@@ -6,13 +6,23 @@ function ctrl($stateParams, AdvertisementService) {
 
   vm.success_msg = 0;
   vm.submit = function () {
+    // validating file type
+    vm.err_type = 0;
+    if (vm.content || vm.content.length) {
+      if (typeof vm.content === 'object') {
+        var imageType = String(vm.content.type);
+        if (imageType.includes('image/') === false) {
+          vm.err_type = 1;
+          return;
+        }
+      }
+    }
     var formData = new FormData();
     var bannerData = {
       'position': vm.position,
       'name': vm.name,
       'content': vm.content,
       'center_web_link': vm.center_web_link
-
     };
     for (var key in bannerData) {
       formData.append('banner_ads[' + key + ']', bannerData[key]);
