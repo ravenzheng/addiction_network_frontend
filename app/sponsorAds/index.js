@@ -39,6 +39,8 @@ angular.module(moduleName, ['ui.router', require('../components')])
       template: '<sponsor-ads-view></sponsor-ads-view>'
     });
   }])
-  .controller('SponsorAdsCtrl', require('./list/ctrl'));
+  .controller('SponsorAdsCtrl', require('./list/ctrl'))
+  // .directive('ngDropdownMultiselect', require('./edit/main/multiselectDirective'));
+  .directive('ngDropdownMultiselect', require('../components/multiselectDropdown/multiselectDirective'));
 
 module.exports = moduleName;
