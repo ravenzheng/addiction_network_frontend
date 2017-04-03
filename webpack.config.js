@@ -62,6 +62,9 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'node_modules/angular-ui-bootstrap/dist',
   to: PATHS.build
 }, {
+  from: 'node_modules/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js',
+  to: PATHS.build
+}, {
   from: 'app/plugins',
   to: 'plugins'
 }, {
@@ -120,7 +123,8 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'angular.js',
     'angular-animate.min.js',
     'angular-ui-router.min.js',
-    'ui-bootstrap-tpls.js'
+    'ui-bootstrap-tpls.js',
+    'angularjs-dropdown-multiselect.min.js'
   ],
   append: false
 });

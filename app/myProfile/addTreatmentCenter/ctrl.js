@@ -2,6 +2,33 @@ module.exports = ['$log', '$rootScope', '$state', 'Status', 'TreatmentCenterServ
 
 function ctrl($log, $rootScope, $state, Status, service) {
   var vm = this;
+  vm.multiselectModelCategories = [];
+  vm.multiselectModelSettings = {
+    scrollableHeight: '200px',
+    scrollable: true,
+    checkBoxes: true,
+    showCheckAll: false,
+    showUncheckAll: false
+  };
+
+  vm.treatmentCenterCategories = [
+    {
+      'label': 'Inpatient',
+      'id': 'inpatient'
+    },
+    {
+      'label': 'Outpatient',
+      'id': 'outpatient'
+    },
+    {
+      'label': 'Sober Living',
+      'id': 'sober-living'
+    },
+    {
+      'label': 'Adolescent',
+      'id': 'adolescent'
+    }
+  ];
   vm.state = '';
   vm.onStateUpdate = function (selected) {
     vm.state = selected;

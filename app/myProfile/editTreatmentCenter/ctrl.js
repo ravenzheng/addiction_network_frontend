@@ -3,6 +3,33 @@ module.exports = ['$log', '$rootScope', '$state', '$stateParams', 'Status', 'Tre
 function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
   var vm = this;
   var id = $stateParams.id;
+  vm.multiselectModelCategories = [];
+  vm.multiselectModelSettings = {
+    scrollableHeight: '200px',
+    scrollable: true,
+    checkBoxes: true,
+    showCheckAll: false,
+    showUncheckAll: false
+  };
+
+  vm.treatmentCenterCategories = [
+    {
+      'label': 'Inpatient',
+      'id': 'inpatient'
+    },
+    {
+      'label': 'Outpatient',
+      'id': 'outpatient'
+    },
+    {
+      'label': 'Sober Living',
+      'id': 'sober-living'
+    },
+    {
+      'label': 'Adolescent',
+      'id': 'adolescent'
+    }
+  ];
   service.queryDetail(id).then(function (result) {
     for (var key in result) {
       vm[key] = result[key];
