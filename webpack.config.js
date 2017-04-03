@@ -149,7 +149,7 @@ var devConfig = merge(common, {
   devtool: 'source-map',
   devServer: {
     contentBase: PATHS.build,
-    compress: true,
+    stats: 'minimal',
     port: 3000,
     overlay: {
       errors: true,
