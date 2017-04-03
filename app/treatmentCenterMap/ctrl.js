@@ -16,8 +16,14 @@ function ctrl($log, $scope, $location, $stateParams, service) {
   }
   var mapState = $stateParams.mapState;
   var zipcode = getParameterByName('zip');
+  if (zipcode) {
+    var zipcodeSelect = angular.element(document.querySelector('#search_zip'));
+    zipcodeSelect.attr('value', zipcode);
+  }
   var miles = getParameterByName('distance');
   var state = getParameterByName('state');
+  vm.currentState = state;
+  vm.selected = 'selected = selected';
   var isSearch = getParameterByName('srch-keyword');
   if (state) {
     var newstate = state.split(':');
@@ -88,6 +94,8 @@ function getarrayValue(url) {
       var value = spl[1];
       obj[name] = obj[name] || [];
       obj[name].push(value);
+      var category = angular.element(document.querySelector('#category_search_' + value));
+      category.attr('checked', 'checked');
     }
     return obj.catg.join(',');
   }

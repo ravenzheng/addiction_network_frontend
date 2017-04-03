@@ -16,25 +16,25 @@
                       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 form_wrap_margin new_class_for_label">
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control category" value="1" name="catg[]" type="checkbox">
+                          <input class="form-control category" value="1" name="catg[]" type="checkbox" id="category_search_1">
                           <label for="cat1" class="inline">
                             Inpatient </label>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control category" value="2" name="catg[]" type="checkbox">
+                          <input class="form-control category" value="2" name="catg[]" type="checkbox" id="category_search_2">
                           <label for="cat1" class="inline">
                             Outpatient </label>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control category" value="3" name="catg[]" type="checkbox">
+                          <input class="form-control category" value="3" name="catg[]" type="checkbox" id="category_search_3">
                           <label for="cat1" class="inline">
                             Sober Living </label>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control category" value="4" name="catg[]" type="checkbox">
+                          <input class="form-control category" value="4" name="catg[]" type="checkbox" id="category_search_4">
                           <label for="cat1" class="inline">
                             Adolescent </label>
                         </div>
@@ -68,7 +68,7 @@
                           <label for="zip"> Zipcode: </label>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 padding_0">
-                          <input type="text" class="form-control zip" value="" name="zip" id="zip" placeholder="">
+                          <input type="text" class="form-control zip" value="" name="zip" id="search_zip" placeholder="">
                         </div>
                       </div>
                       <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 form_wrap_margin">
@@ -149,7 +149,7 @@
           <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" ng-repeat="listing in search_by_filter">
             <div class="listing_wrap">
               <div class="img_under_block_outer">
-                <a ng-href="#/treatment_center/{{listing.id}}/detail">
+                <a ng-href="#/treatment-center-detail/{{listing.id}}">
                   <img class="" ng-src="{{ listing.listing_image}}"> </a>
               </div>
               <div class="head_under_block">
@@ -164,10 +164,8 @@
               <div class="detail_div_under_block"><a ng-href="#/treatment-center-detail/{{listing.id}}">More Details</a> </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 </div>

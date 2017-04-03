@@ -47,8 +47,9 @@
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
                   <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
-                  <input file-model="$ctrl.content" type="file" name="content" id="content" class="center_image" />
+                  <input file-model="$ctrl.content" type="file" name="content" id="content" class="center_image" accept="image/*" />
                   <img ng-src="{{$ctrl.oldcontent}}" width="100">
+                  <span ng-show="$ctrl.err_type">Please upload an image only. </span>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -56,7 +57,7 @@
                   <label for="cpwd">Center Web Link</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                  <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" placeholder="Center Web Link" type="text" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2}$/" />
+                  <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" placeholder="Center Web Link" type="text" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,10}$/" />
                   <span ng-show="advertisementEditForm.center_web_link.$error.pattern" class="help-block">Invalid Format (Correct format: www.google.com)</span>
                 </div>
               </div>
@@ -64,19 +65,15 @@
                 <input class="btn btn-primary modal_btn btn_size pull-right" value="Submit" id="submit" type="button" ng-click="$ctrl.submit()" ng-disabled="advertisementEditForm.position.$invalid || advertisementEditForm.center_web_link.$invalid">
                 <span ng-show="$ctrl.success_msg" class="pull-left" style="color:green;">Updated</span>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub">
-                <div class="company_adds">
+              <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                <div class="company_adds margin_top_25">
+                  <div class="company_adds">
+                    <img class="img-reponsive" id="footer_ad">
+                  </div>
                 </div>
               </div>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-      <div class="company_adds margin_top_25">
-        <div class="company_adds">
-          <img class="img-reponsive" id="footer_ad">
         </div>
       </div>
     </div>

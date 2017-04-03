@@ -26,13 +26,15 @@
           <label for="category">Select Category:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
-          <select name="center_category" class="form-control selectpicker required">
+          <!-- <select name="center_category" class="form-control selectpicker required">
             <option value="">Select</option>
             <option value="inpatient">Inpatient</option>
             <option value="outpatient">Outpatient</option>
             <option value="sober-living">Sober Living</option>
             <option value="adolescent">Adolescent</option>
-          </select>
+          </select> -->
+          <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenterCategories" checkboxes="true" selected-model="$ctrl.multiselectModelCategories" extra-settings="$ctrl.multiselectModelSettings"></div>
+
         </div>
       </div>
 
@@ -125,10 +127,11 @@
         <div class="col-md-8 col-sm-8 col-xs-12">
           <div class="">
             <a href="javascript:void(0)">
-              <input file-model="$ctrl.listing_image" type="file" name="center_image" id="img_upload" class="center_image" />
+              <input file-model="$ctrl.listing_image" type="file" name="center_image" id="img_upload" class="center_image" accept="image/*" />
             </a>
             <span style="float:left;">Please upload an image with exact size of 308*180 KB.
             </span>
+            <span ng-show="$ctrl.err_type">Please upload an image only. </span>
           </div>
         </div>
       </div>
@@ -181,7 +184,7 @@
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <div id="galler_image_wrap">
-            <input file-model="$ctrl.image_data" type="file" multiple name="treatment_center_gallery_images[]" id="galler_image" class="span2 text_file multi center_image" value="" />
+            <input file-model="$ctrl.image_data" type="file" multiple name="treatment_center_gallery_images[]" id="galler_image" class="span2 text_file multi center_image" value="" accept="image/*" />
             <span id="galler_image_wrap_labels"></span>
           </div>
         </div>
