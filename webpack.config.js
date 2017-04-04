@@ -62,6 +62,9 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'node_modules/angular-ui-bootstrap/dist',
   to: PATHS.build
 }, {
+  from: 'node_modules/angular-mocks/angular-mocks.js',
+  to: PATHS.build
+}, {
   from: 'app/plugins',
   to: 'plugins'
 }, {
@@ -79,10 +82,7 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
 
 // clean previously built files
 var cleanWebpackPlugin = new CleanWebpackPlugin([PATHS.build], {
-  root: __dirname,
-  verbose: true,
-  dry: false,
-  exclude: ['.gitkeep']
+  root: __dirname
 });
 
 var htmlWebpackPlugin = new HtmlWebpackPlugin({
@@ -108,12 +108,9 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'themes/addiction/js/css3-mediaqueries.js',
     'themes/addiction/css/jQuery-Multiselect/js/bootstrap-multiselect.js',
     'themes/addiction/js/common.js',
-    'themes/addiction/js/multiple.js',
+    // 'themes/addiction/js/multiple.js',
     'themes/addiction/js/maskinput.js',
-    'themes/addiction/js/functions.js',
-    // 'themes/addiction/js/fileupload.js',
-    // 'js/comment-reply.min.js',
-    // 'js/imagesloaded.min.js',
+    // 'themes/addiction/js/functions.js',
     'js/masonry.min.js',
     'js/jquery/jquery.masonry.min.js',
     'js/wp-embed.min.js',
@@ -149,7 +146,7 @@ var devConfig = merge(common, {
   devtool: 'source-map',
   devServer: {
     contentBase: PATHS.build,
-    stats: 'minimal',
+    stats: 'errors-only',
     port: 3000,
     overlay: {
       errors: true,
@@ -174,6 +171,30 @@ var prodConfig = merge(common, {
   ]
 });
 
+// for production
+var testConfig = merge(common, {
+  stats: 'errors-only',
+  watch: false,
+  output: {
+    path: PATHS.build,
+    filename: 'bundle.js'
+  },
+  plugins: [
+    cleanWebpackPlugin,
+    copyWebpackPlugin,
+    cssAssetsPlugin,
+    jsAssetsPlugin,
+    htmlWebpackPlugin
+    // uglifyJsPlugin
+  ]
+});
+
+var configMap = {
+  'start': devConfig,
+  'pretest': testConfig,
+  'pretest-single-run': testConfig,
+  'build': prodConfig
+};
 var event = process.env.npm_lifecycle_event;
-var config = (event === 'build' ? prodConfig : devConfig);
+var config = configMap[event];
 module.exports = config;
