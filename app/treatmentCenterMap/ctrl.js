@@ -1,95 +1,44 @@
-function ctrl($log, $scope, $location, $stateParams, service) {
+module.exports = ['$log', '$scope', '$location', '$stateParams', '$state', ctrl];
+
+function ctrl($log, $scope, $location, $stateParams, $state) {
   var vm = this;
+  vm.onFormStateSelect = onFormStateSelect;
+  vm.onMapStateSelect = onMapStateSelect;
+  vm.submit = submit;
 
-  service.getStates().then(function (response) {
-    vm.states = response;
-  }).catch(function (err) {
-    vm.error_message = err;
-  });
-
-  var url = window.location.href;
-
-  if (window.location.href.indexOf('srch-keyword') > -1) {
-    $scope.hide_map = 'hide';
-  } else {
-    $scope.hide_map = 'show';
+  // listen the onUpdate event of state-select
+  function onFormStateSelect(selected) {
+    vm.state = selected;
   }
-  var mapState = $stateParams.mapState;
-  var zipcode = getParameterByName('zip');
-  var miles = getParameterByName('distance');
-  var state = getParameterByName('state');
-  var isSearch = getParameterByName('srch-keyword');
-  if (state) {
-    var newstate = state.split(':');
-    if (newstate[1]) {
-      state = newstate[1];
+
+  // listen the onSelect event of map-box component
+  function onMapStateSelect(state) {
+    $state.go('treatmentCenterMap.list', {
+      state: state.fullname
+    });
+  }
+
+  // submit search form
+  function submit() {
+    var categories = [];
+    if (vm.catg1) {
+      categories.push(1);
     }
-  }
-  var cat = getarrayValue(url);
-  if (isSearch === 'search') {
-    var finalData = {
-      'zipcode': zipcode,
-      'miles': miles,
-      'state': state,
-      'categories': cat
+    if (vm.catg2) {
+      categories.push(2);
+    }
+    if (vm.catg3) {
+      categories.push(3);
+    }
+    if (vm.catg4) {
+      categories.push(4);
+    }
+    var params = {
+      categories: categories.join(','),
+      state: vm.state,
+      zipcode: vm.zipcode,
+      miles: vm.miles
     };
-  } else if (mapState) {
-    finalData = {
-      state: mapState
-    };
-    $scope.hide_map = 'hide';
-  } else {
-    $scope.hide_map = 'show';
+    $state.go('treatmentCenterMap.list', params);
   }
-  service.queryBySearch(finalData).then(function (result) {
-    // result.address = result.address_line_1 + result.address_line_1;
-    var data = result.data.listings;
-    if (!data || !data.length) {
-      var noResult = angular.element(document.querySelector('#no_results'));
-      noResult.removeAttr('class');
-    }
-    $scope.search_by_filter = data;
-  }).catch(function (err) {
-    $log.error(err);
-  });
-}
-
-module.exports = ['$log', '$scope', '$location', '$stateParams', 'TreatmentcenterMapService', ctrl];
-
-function getParameterByName(name, url) {
-  if (window.location.href.indexOf('srch-keyword') > -1) {
-    if (!url) {
-      var path = url;
-      path = window.location.href;
-    }
-    var stateName = name;
-    stateName = stateName.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + stateName + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(path);
-    if (!results) {
-      return null;
-    }
-    if (!results[2]) {
-      return '';
-    }
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
-  return url;
-}
-
-function getarrayValue(url) {
-  if (window.location.href.indexOf('catg') > -1) {
-    var str = decodeURIComponent(url);
-    var match = str.match(/[^=&?]+\s*=\s*[^&#]*/g);
-    var obj = {};
-    for (var i = match.length; i--;) {
-      var spl = match[i].split('=');
-      var name = spl[0].replace('[]', '');
-      var value = spl[1];
-      obj[name] = obj[name] || [];
-      obj[name].push(value);
-    }
-    return obj.catg.join(',');
-  }
-  return null;
 }

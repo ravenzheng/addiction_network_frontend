@@ -1,9 +1,10 @@
-var angular = require('angular'),
-  moduleName = 'app.home';
+var moduleName = 'app.home';
 
-angular.module(moduleName, ['ui.router', require('../sidePanel')])
-  .factory('HomeListingService', require('./service'))
-  .component('stateMap', require('./map'))
+angular.module(moduleName, [
+  'ui.router',
+  require('../components'),
+  require('../sidePanel')
+]).factory('HomeListingService', require('./service'))
   .component('welcome', require('./welcome'))
   .component('featuredTreatmentCenter', require('./featuredTreatmentCenter'))
   .component('searchByState', require('./searchByState'))

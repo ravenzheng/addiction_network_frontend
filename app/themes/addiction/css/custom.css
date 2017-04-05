@@ -922,8 +922,11 @@ p {
   margin-left: 0 !important;
 }
 
-.font_weight_normal {
+.font-normal {
   font-weight: normal;
+}
+.font-bold {
+  font-weight: bold;
 }
 
 .heading_modal {
