@@ -22,7 +22,6 @@ function ctrl($log, $state) {
       zipcode: vm.zipcode,
       miles: vm.miles
     };
-    $log.info(stateParams);
     $state.go('treatmentCenterMap.list', stateParams);
   }
 }

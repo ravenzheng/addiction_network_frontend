@@ -5,7 +5,6 @@ function ctrl($log, $stateParams, service) {
   vm.$onInit = onInit;
 
   function onInit() {
-    $log.info($stateParams);
     var data = $stateParams;
     service.search(data).then(function (result) {
       // get an empty listings
