@@ -1,4 +1,4 @@
-moduleName = 'app.aboutUs';
+var moduleName = 'app.aboutUs';
 
 angular.module(moduleName, ['ui.router'])
   .component('about', {
