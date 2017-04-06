@@ -1,5 +1,4 @@
-var angular = require('angular'),
-  moduleName = 'app.aboutUs';
+moduleName = 'app.aboutUs';
 
 angular.module(moduleName, ['ui.router'])
   .component('about', {
