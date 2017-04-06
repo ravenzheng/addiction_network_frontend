@@ -1,0 +1,12 @@
+<div ng-show="$ctrl.display" class="left_content" id="cities">
+  <section>
+    <div class="h3">Browse the Best Rehabs in {{ $ctrl.state}}</div>
+    <ul class="list-locations list-columns">
+      <li ng-repeat="city in $ctrl.cities track by $index">
+        <a>
+          <i class="glyphicon glyphicon-map-marker"></i>{{ city }}
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>

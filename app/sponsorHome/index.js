@@ -5,6 +5,8 @@ angular.module(moduleName, [
   require('../services'),
   require('../sidePanel')
 ]).filter('urlFilter', require('./urlFilter'))
+  .component('sponsorListingBox', require('./sponsorListingBox'))
+  .component('cityListingBox', require('./cityListingBox'))
   .component('sponsorHome', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -12,7 +14,7 @@ angular.module(moduleName, [
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state({
       name: 'sponsorHome',
-      url: '/sponsorhome/:slug',
+      url: '/sponsorhome/:slug?state',
       template: '<sponsor-home></sponsor-home>'
     });
   }]);

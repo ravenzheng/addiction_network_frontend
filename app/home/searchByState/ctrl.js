@@ -4,7 +4,8 @@ function ctrl($state) {
   var vm = this;
   vm.onStateSelect = function (state) {
     $state.go('sponsorHome', {
-      slug: state.shortname
+      slug: state.shortname,
+      state: true
     });
   };
 }

@@ -1,8 +1,6 @@
-module.exports = ['$element', ctrl];
+module.exports = ['$element', 'mapConfig', ctrl];
 
-var config = require('./map.json');
-
-function ctrl($element) {
+function ctrl($element, config) {
   var vm = this;
   // assign the map config to the controller, so html template can access it
   vm.config = config;
