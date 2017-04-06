@@ -1,8 +1,14 @@
 function ctrl($rootScope, $timeout, Status) {
+  var unbindFn1;
+  var unbindFn2;
   var vm = this;
-  var unbindFn1 = $rootScope.$on(Status.SUCCEEDED, handleActionStatusEvent);
-  var unbindFn2 = $rootScope.$on(Status.FAILED, handleActionStatusEvent);
+  vm.$onInit = onInit;
   vm.$onDestroy = onDestroy;
+
+  function onInit() {
+    unbindFn1 = $rootScope.$on(Status.SUCCEEDED, handleActionStatusEvent);
+    unbindFn2 = $rootScope.$on(Status.FAILED, handleActionStatusEvent);
+  }
 
   function handleActionStatusEvent(event, data) {
     var eventName = event.name;

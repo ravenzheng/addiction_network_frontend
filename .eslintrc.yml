@@ -14,6 +14,9 @@ rules:
     - warn
     - array
   angular/no-service-method: off
+  jasmine/no-spec-dupes:
+    - warn
+    - branch
   one-var: off
   func-names: off
   global-require: off

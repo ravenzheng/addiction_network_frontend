@@ -24,5 +24,5 @@ angular.module(appName, [
     $urlRouterProvider.otherwise('/');
   }]);
 
-// eslint-disable-next-line
+// eslint-disable-next-line angular/document-service
 angular.bootstrap(document.getElementsByTagName('body')[0], [appName]);
