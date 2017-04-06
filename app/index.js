@@ -14,7 +14,8 @@ angular.module(appName, [
   require('./featuredTreatmentCenter'),
   require('./addListing'),
   require('./aboutUs'),
-  require('./login')
+  require('./login'),
+  require('./logout')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
