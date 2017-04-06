@@ -2,9 +2,31 @@ module.exports = ['$log', '$scope', '$location', '$stateParams', '$state', ctrl]
 
 function ctrl($log, $scope, $location, $stateParams, $state) {
   var vm = this;
+  vm.$onInit = onInit;
   vm.onFormStateSelect = onFormStateSelect;
   vm.onMapStateSelect = onMapStateSelect;
   vm.submit = submit;
+
+  function onInit() {
+    if (!$stateParams) {
+      return;
+    }
+    if ($stateParams.categories) {
+      var categories = $stateParams.categories.split(',');
+      categories.forEach(function (catg) {
+        var catgInt = parseInt(catg, 10);
+        if (isNaN(catgInt)) {
+          return;
+        }
+        if (catgInt <= 4 && catgInt >= 1) {
+          vm['catg' + catg] = true;
+        }
+      });
+    }
+    vm.state = $stateParams.state || '';
+    vm.zipcode = $stateParams.zipcode || '';
+    vm.miles = $stateParams.miles || '';
+  }
 
   // listen the onUpdate event of state-select
   function onFormStateSelect(selected) {

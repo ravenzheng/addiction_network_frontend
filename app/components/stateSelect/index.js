@@ -9,7 +9,7 @@ module.exports = {
   template: require('./view.html'),
   controller: ctrl,
   bindings: {
-    selected: '@',
+    selected: '<',
     onUpdate: '&'
   }
 };

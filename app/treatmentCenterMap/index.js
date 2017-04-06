@@ -24,7 +24,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: 'treatmentCenterMap.list',
-      url: '/list?state?zipcode?miles',
+      url: '/list?categories?state?zipcode?miles',
       template: '<center-list-box></center-list-box>'
     });
   }]);
