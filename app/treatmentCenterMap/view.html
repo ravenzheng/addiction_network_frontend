@@ -8,7 +8,7 @@
             <ul class="main_sidebar padding_0">
               <!--  category -->
               <li>
-                <a href="#panel2" class="bg_list_page_search" data-toggle="collapse" data-parent=".ul_wrapper_sidebar"> Category <span class="caret"></span> </a>
+                <a class="bg_list_page_search" data-toggle="collapse" data-parent=".ul_wrapper_sidebar"> Category <span class="caret"></span> </a>
                 <ul class="panel-collapse collapse padding_0 in only_border" id="panel2">
                   <li>
                     <div class="under_ul_wrap_sidebar bg_gray">
@@ -43,7 +43,7 @@
               </li>
               <!--        Advanced Search         -->
               <li>
-                <a href="#panel1" data-toggle="collapse" data-parent=".ul_wrapper_sidebar" class="bg_list_page_search"> Advanced Search <span class="caret"></span> </a>
+                <a data-toggle="collapse" data-parent=".ul_wrapper_sidebar" class="bg_list_page_search"> Advanced Search <span class="caret"></span> </a>
                 <ul class="panel-collapse collapse padding_0 in new_class_for_border_list" id="panel1">
                   <li>
                     <div class="under_ul_wrap_sidebar">
@@ -52,7 +52,7 @@
                           <label for="state"> State: </label>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 padding_0">
-                          <state-select on-update="$ctrl.onFormStateSelect(selected)"></state-select>
+                          <state-select selected="$ctrl.state" on-update="$ctrl.onFormStateSelect(selected)"></state-select>
                         </div>
                         <p class="font-bold text-center">OR</p>
                       </div>
