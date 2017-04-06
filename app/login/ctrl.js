@@ -1,4 +1,4 @@
-function ctrl($log, UserService, $rootScope, $window) {
+function ctrl($log, UserService, $rootScope, $window, $document) {
   var vm = this;
   vm.submit = function () {
     var email = vm.email;
@@ -8,7 +8,7 @@ function ctrl($log, UserService, $rootScope, $window) {
       $window.location.href = '/#my-profile/index';
     }).catch(function (errors) {
       // todo, display the error message in the page.
-      var error = angular.element(document.querySelector('#error_if'));
+      var error = angular.element($document[0].querySelector('#error_if'));
       error.html('Invalid email or password');
       $log.error(errors);
     });
@@ -16,4 +16,4 @@ function ctrl($log, UserService, $rootScope, $window) {
   };
 }
 
-module.exports = ['$log', 'UserService', '$rootScope', '$window', ctrl];
+module.exports = ['$log', 'UserService', '$rootScope', '$window', '$document', ctrl];
