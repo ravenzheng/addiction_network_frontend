@@ -31,7 +31,7 @@ describe('TreatmentCenterService', function () {
     'remove',
     'inquiry',
     'submitRating',
-    'search'
+    'search',
     'getStates',
     'getCities'
   ];
