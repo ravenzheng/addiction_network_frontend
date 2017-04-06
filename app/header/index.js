@@ -8,7 +8,7 @@ var internalLinks = [{
   uiSref: 'aboutUs',
   name: 'About Us'
 }, {
-  uiSref: 'blogPage',
+  uiSref: 'blog',
   name: 'Blog'
 }, {
   uiSref: 'contactUs',
@@ -70,6 +70,7 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService) {
     function (event, toState, toParams, fromState) {
       var token = localStorageService.get('token');
       var tostate = toState.name.split('.');
+      $log.error('blog: ' + tostate[0] + ' -->' + fromState.name);
       if (tostate[0] === 'blog') {
         $window.location = 'http://www.addictionnetwork.com/blog/?angular_ads=advertisement';
       }
