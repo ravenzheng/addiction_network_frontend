@@ -15,7 +15,8 @@ angular.module(appName, [
   require('./addListing'),
   require('./aboutUs'),
   require('./login'),
-  require('./logout')
+  require('./logout'),
+  require('./blog')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
