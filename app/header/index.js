@@ -61,7 +61,7 @@ var socialLinks = [{
   img: 'themes/addiction/images/gglplus.png'
 }];
 
-function HeaderCtrl($log, $scope, $rootScope, $document, $window, localStorageService) {
+function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService) {
   /* todo */
   this.socialLinks = socialLinks;
   this.internalLinks = internalLinks;
@@ -89,4 +89,4 @@ module.exports = {
   controller: HeaderCtrl
 };
 
-HeaderCtrl.$inject = ['$log', '$scope', '$rootScope', '$document', '$window', 'localStorageService'];
+HeaderCtrl.$inject = ['$log', '$scope', '$rootScope', '$window', 'localStorageService'];
