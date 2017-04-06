@@ -4,6 +4,7 @@ angular.module(appName, [
   'ngAnimate',
   'ui.router',
   'ui.bootstrap',
+  'LocalStorageModule',
   require('./home'),
   require('./sponsorHome'),
   require('./treatmentCenterDetail'),
@@ -12,9 +13,9 @@ angular.module(appName, [
   require('./myProfile'),
   require('./featuredTreatmentCenter'),
   require('./addListing'),
-  require('./sponsorAds'),
-  require('./bannerAds'),
-  require('./aboutUs')
+  require('./aboutUs'),
+  require('./login'),
+  require('./logout')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))

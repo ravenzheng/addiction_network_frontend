@@ -48,10 +48,14 @@
       <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=andr923 "></script>
       <div class="nav_align">
         <ul class="nav navbar-nav new_class_for_sub_menu header_main_menu fonnt ">
-          <li ng-repeat="link in $ctrl.internalLinks">
-            <a class="comm " ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
+          <li ng-if="$root.login==1" ng-repeat="link in $ctrl.internalLinks" ng-model="$root.login">
+            <a class="comm " id="{{link.id}}" ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
+          </li>
+          <li ng-if="$root.login!=1" ng-repeat="link in $ctrl.internalLinksNoAuth" ng-model="$root.login">
+            <a class="comm " id="{{link.id}}" ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
           </li>
         </ul>
+
       </div>
     </div>
     <!--/.nav-collapse -->

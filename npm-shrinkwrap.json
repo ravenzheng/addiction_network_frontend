@@ -46,6 +46,16 @@
       "from": "angular-ui-router@>=0.4.2 <0.5.0",
       "resolved": "https://registry.npmjs.org/angular-ui-router/-/angular-ui-router-0.4.2.tgz"
     },
+    "angularjs-dropdown-multiselect": {
+      "version": "2.0.0-beta.6",
+      "from": "angularjs-dropdown-multiselect@latest",
+      "resolved": "https://registry.npmjs.org/angularjs-dropdown-multiselect/-/angularjs-dropdown-multiselect-2.0.0-beta.6.tgz"
+    },
+    "angular-local-storage": {
+      "version": "0.5.2",
+      "from": "angular-local-storage@latest",
+      "resolved": "https://registry.npmjs.org/angular-local-storage/-/angular-local-storage-0.5.2.tgz"
+    },
     "ansi-regex": {
       "version": "2.1.1",
       "from": "ansi-regex@>=2.0.0 <3.0.0",

@@ -11,10 +11,10 @@ var links = [{
   uiSref: 'myProfile.myTreatmentCenters',
   name: 'My Treatment Centers'
 }, {
-  uiSref: 'sponsorAdsList',
+  uiSref: 'myProfile.sponsorAds',
   name: 'Sponsor Pages'
 }, {
-  uiSref: 'bannerAdsList',
+  uiSref: 'myProfile.bannerAds',
   name: 'Banner Ads'
 }];
 
