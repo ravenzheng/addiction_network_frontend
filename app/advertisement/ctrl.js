@@ -1,7 +1,7 @@
-module.exports = ['$log', 'AdvertisementService', '$rootScope', '$document', ctrl];
+module.exports = ['$log', 'AdvertisementService', '$scope', '$document', ctrl];
 
-function ctrl($log, service, $rootScope, $document) {
-  $rootScope.$on('$stateChangeSuccess',
+function ctrl($log, service, $scope, $document) {
+  $scope.$on('$stateChangeSuccess',
     function () {
       service.queryGlobalAds().then(function (result) {
         var header = angular.element($document[0].querySelector('#header_ad'));

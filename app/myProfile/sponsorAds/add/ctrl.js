@@ -46,9 +46,9 @@ function ctrl($rootScope, $window, Status, SponsorService) {
     }
     // validating file type
     vm.err_type = 0;
-    if (vm.image !== undefined) {
+    if (angular.isUndefined(vm.image)) {
       if (vm.image || vm.image.length) {
-        if (typeof vm.image === 'object') {
+        if (angular.isObject(vm.image)) {
           var imageType = String(vm.image.type);
           if (imageType.includes('image/') === false) {
             vm.err_type = 1;

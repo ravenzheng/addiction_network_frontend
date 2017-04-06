@@ -7,7 +7,7 @@ function ctrl($log, $stateParams, $rootScope, Status, AdvertisementService) {
     // validating file type
     vm.err_type = 0;
     if (vm.content) {
-      if (typeof vm.content === 'object') {
+      if (angular.isObject(vm.content)) {
         var imageType = String(vm.content.type);
         if (imageType.includes('image/') === false) {
           vm.err_type = 1;
