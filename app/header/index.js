@@ -2,7 +2,7 @@ var internalLinks = [{
   uiSref: 'home',
   name: 'Home'
 }, {
-  uiSref: 'treatmentCenterMap',
+  uiSref: 'treatmentCenterMap.index',
   name: 'Treatment Centers'
 }, {
   uiSref: 'aboutUs',

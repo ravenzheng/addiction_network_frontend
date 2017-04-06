@@ -7,7 +7,9 @@ function service($http, endPoint, UserService) {
     activate: activate,
     remove: remove,
     inquiry: inquiry,
-    submitRating: submitRating
+    submitRating: submitRating,
+    search: search,
+    getStates: getStates
   };
 
   function queryDetail(id) {
@@ -84,6 +86,23 @@ function service($http, endPoint, UserService) {
   // submit rating
   function submitRating(id, data) {
     var req = $http.post(endPoint + '/ratings/' + id, data);
+    return _handle(req);
+  }
+
+  // treatment center search
+  function search(finalData) {
+    if (finalData.state) {
+      var state = finalData.state;
+      state = state[0].toUpperCase() + state.slice(1).toLowerCase();
+      finalData.state = state;
+    }
+    var req = $http.post(endPoint + '/search_treatment_centers', finalData);
+    return _handle(req);
+  }
+
+  // get states?
+  function getStates() {
+    var req = $http.get(endPoint + '/states');
     return _handle(req);
   }
 

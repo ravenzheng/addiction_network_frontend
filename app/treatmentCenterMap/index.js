@@ -1,8 +1,11 @@
-var angular = require('angular'),
-  moduleName = 'app.treatmentCenterMap';
+var moduleName = 'app.treatmentCenterMap';
 
-angular.module(moduleName, ['ui.router'])
-  .factory('TreatmentcenterMapService', require('./service'))
+angular.module(moduleName, [
+  'ui.router',
+  require('../components'),
+  require('../services')
+]).component('centerListBox', require('./centerListBox'))
+  .component('mapBox', require('./mapBox'))
   .component('treatmentCenterMap', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -11,15 +14,19 @@ angular.module(moduleName, ['ui.router'])
     $stateProvider.state({
       name: 'treatmentCenterMap',
       url: '/treatment-center-map',
+      abstract: true,
       template: '<treatment-center-map></treatment-center-map>'
-    }).state({
-      name: 'treatmentCenterMapState',
-      url: '/treatment-center-map/:mapState',
-      template: '<treatment-center-map></treatment-center-map>',
-      params: {
-        mapState: null
-      }
     });
-  }]).controller('searchCtrl', require('./ctrl'));
+    $stateProvider.state({
+      name: 'treatmentCenterMap.index',
+      url: '',
+      template: '<map-box on-select="$ctrl.onMapStateSelect(state)"></map-box>'
+    });
+    $stateProvider.state({
+      name: 'treatmentCenterMap.list',
+      url: '/list?state?zipcode?miles',
+      template: '<center-list-box></center-list-box>'
+    });
+  }]);
 
 module.exports = moduleName;
