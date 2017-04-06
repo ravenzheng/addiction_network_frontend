@@ -1,8 +1,8 @@
-var angular = require('angular'),
-  moduleName = 'app.components';
+var moduleName = 'app.components';
 
 angular.module(moduleName, [])
   .constant('Status', require('./statusConstants'))
+  .constant('states', require('./states.json'))
   .component('statusView', require('./statusView'))
   .component('profileNavSection', require('./profileNavSection'))
   .component('stateSelect', require('./stateSelect'))
