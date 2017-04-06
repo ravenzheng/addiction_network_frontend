@@ -14,6 +14,11 @@ angular.module(moduleName, [
   .component('myTreatmentCenters', require('./myTreatmentCenters'))
   .component('addTreatmentCenter', require('./addTreatmentCenter'))
   .component('editTreatmentCenter', require('./editTreatmentCenter'))
+  .component('bannerAds', require('./bannerAds'))
+  .component('bannerAdsAdd', require('./bannerAds/add'))
+  .component('bannerAdsEdit', require('./bannerAds/edit'))
+  .component('bannerAdsView', require('./bannerAds/view'))
+  .filter('urlFilter', require('./urlFilter'))
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -54,6 +59,26 @@ angular.module(moduleName, [
       name: 'myProfile.editTreatmentCenter',
       url: '/edit-treatment-center/:id',
       template: '<edit-treatment-center></edit-treatment-center>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.bannerAds',
+      url: '/banner-ads',
+      template: '<banner-ads></banner-ads>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.bannerAdsAdd',
+      url: '/banner-ads/add-banner',
+      template: '<banner-ads-add></banner-ads-add>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.bannerAdsEdit',
+      url: '/banner-ads/edit-banner/:id',
+      template: '<banner-ads-edit></banner-ads-edit>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.bannerAdsView',
+      url: '/banner-ads/view-banner/:id',
+      template: '<banner-ads-view></banner-ads-view>'
     });
   }]);
 
