@@ -31,7 +31,9 @@ describe('TreatmentCenterService', function () {
     'remove',
     'inquiry',
     'submitRating',
-    'search'
+    'search',
+    'getStates',
+    'getCities'
   ];
   methods.forEach(function (method) {
     it('should have method `' + method + '`.', function () {
@@ -129,4 +131,10 @@ describe('TreatmentCenterService', function () {
 
   // submitRating
   describe('submitRating - todo', function () {});
+
+  // get states
+  describe('getStates - todo', function () {});
+
+  // get cities
+  describe('getCities - todo', function () {});
 });

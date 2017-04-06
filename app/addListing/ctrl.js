@@ -1,6 +1,6 @@
-module.exports = ['$log', 'MapService', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, mapService, treatmentCenterService) {
+function ctrl($log, service) {
   var vm = this;
   vm.passRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/';
 
@@ -12,10 +12,15 @@ function ctrl($log, mapService, treatmentCenterService) {
   };
 
   vm.analyze = function () {};
+  service.getStates().then(function (response) {
+    vm.states = response;
+  }).catch(function (err) {
+    vm.error_message = err;
+  });
 
   vm.getCities = function () {
     var state = vm.state;
-    mapService.getCities(state).then(function (response) {
+    service.getCities(state).then(function (response) {
       vm.cities = response;
     }).catch(function (err) {
       vm.error_message = err;
@@ -77,7 +82,7 @@ function ctrl($log, mapService, treatmentCenterService) {
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
-    treatmentCenterService.addTreatmentCenterSignUp(formData).then(function () {
+    service.addTreatmentCenterSignUp(formData).then(function () {
       location.reload(true);
     }).catch(function (err) {
       if (err.data.user) {
