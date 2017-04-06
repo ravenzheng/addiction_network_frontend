@@ -1,14 +1,16 @@
+module.exports = ['$log', '$stateParams', '$window', 'TreatmentCenterService', ctrl];
+
 function ctrl($log, $stateParams, $window, service) {
   var vm = this;
-  vm.$onInit = function () {
+  vm.$onInit = onInit;
+
+  function onInit() {
     vm.slug = $stateParams.slug;
-    service.queryByType(vm.slug).then(function (response) {
-      vm.entry = response.data;
+    service.querySponsoredListings(vm.slug).then(function (result) {
+      vm.entry = result;
       $window.scrollTo(0, 100);
     }).catch(function (err) {
       $log.error(err);
     });
-  };
+  }
 }
-
-module.exports = ['$log', '$stateParams', '$window', 'SponsoredListingService', ctrl];

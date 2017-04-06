@@ -1,5 +1,7 @@
+module.exports = ['$log', 'AdvertisementService', ctrl];
+
 function ctrl($log, service) {
-  service.query().then(function (result) {
+  service.queryGlobalAds().then(function (result) {
     var header = angular.element(document.querySelector('#header_ad'));
     var footer = angular.element(document.querySelector('#footer_ad'));
     var sidebar = angular.element(document.querySelector('#sidebar_ad'));
@@ -11,4 +13,3 @@ function ctrl($log, service) {
     $log.error(err);
   });
 }
-module.exports = ['$log', 'advertisementService', ctrl];

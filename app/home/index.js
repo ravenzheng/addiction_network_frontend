@@ -3,9 +3,9 @@ var moduleName = 'app.home';
 angular.module(moduleName, [
   'ui.router',
   require('../components'),
+  require('../services'),
   require('../sidePanel')
-]).factory('HomeListingService', require('./service'))
-  .component('welcome', require('./welcome'))
+]).component('welcome', require('./welcome'))
   .component('featuredTreatmentCenter', require('./featuredTreatmentCenter'))
   .component('searchByState', require('./searchByState'))
   .component('home', {

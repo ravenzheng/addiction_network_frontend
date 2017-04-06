@@ -1,5 +1,8 @@
+module.exports = ['$log', '$http', 'endPoint', 'UserService', service];
+
 function service($log, $http, endPoint, UserService) {
   return {
+    queryGlobalAds: queryGlobalAds,
     advertisementList: list,
     advertisementAdd: add,
     advertisementEdit: edit,
@@ -7,10 +10,14 @@ function service($log, $http, endPoint, UserService) {
     updateStatus: updateStatus
   };
 
+  // header, footer, side
+  function queryGlobalAds() {
+    return $http.get(endPoint + '/advertisements');
+  }
+
   function list() {
-    return UserService.getToken().then(function (result) {
-      var token = result;
-      var req = $http({
+    return UserService.getToken().then(function (token) {
+      return $http({
         url: endPoint + '/listing_user/banner_ads',
         method: 'GET',
         headers: {
@@ -18,14 +25,12 @@ function service($log, $http, endPoint, UserService) {
           'Authorization': token
         }
       });
-      return _handle(req);
     });
   }
 
   function add(formdata) {
-    return UserService.getToken().then(function (result) {
-      var token = result;
-      var req = $http({
+    return UserService.getToken().then(function (token) {
+      return $http({
         url: endPoint + '/listing_user/banner_ads',
         method: 'POST',
         data: formdata,
@@ -35,14 +40,12 @@ function service($log, $http, endPoint, UserService) {
           'Content-Type': undefined
         }
       });
-      return _handle(req);
     });
   }
 
   function edit(id, formdata) {
-    return UserService.getToken().then(function (result) {
-      var token = result;
-      var req = $http({
+    return UserService.getToken().then(function (token) {
+      return $http({
         url: endPoint + '/listing_user/banner_ads/' + id,
         method: 'PATCH',
         data: formdata,
@@ -52,14 +55,12 @@ function service($log, $http, endPoint, UserService) {
           'Content-Type': undefined
         }
       });
-      return _handle(req);
     });
   }
 
   function getData(id, formdata) {
-    return UserService.getToken().then(function (result) {
-      var token = result;
-      var req = $http({
+    return UserService.getToken().then(function (token) {
+      return $http({
         url: endPoint + '/listing_user/banner_ads/' + id,
         method: 'PATCH',
         data: formdata,
@@ -69,14 +70,12 @@ function service($log, $http, endPoint, UserService) {
           'Content-Type': undefined
         }
       });
-      return _handle(req);
     });
   }
 
   function updateStatus(id) {
-    return UserService.getToken().then(function (result) {
-      var token = result;
-      var req = $http({
+    return UserService.getToken().then(function (token) {
+      return $http({
         url: endPoint + '/listing_user/banner_ad/' + id + '/activate_deactivate',
         method: 'POST',
         headers: {
@@ -84,19 +83,6 @@ function service($log, $http, endPoint, UserService) {
           'Authorization': token
         }
       });
-      return _handle(req);
-    });
-  }
-
-  function _handle(req) {
-    return req.then(function (res) {
-      var status = res.status;
-      if (status === 200) {
-        return res.data;
-      }
-      return $log.error(res.statusText);
     });
   }
 }
-
-module.exports = ['$log', '$http', 'endPoint', 'UserService', service];

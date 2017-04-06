@@ -15,7 +15,7 @@ describe('Sponsor Home Controller', function () {
       slug: 'Rehab for Men'
     };
     _$window = $injector.get('$window');
-    _service = $injector.get('SponsoredListingService');
+    _service = $injector.get('TreatmentCenterService');
     _$rootScope = $injector.get('$rootScope');
     _$q = $injector.get('$q');
     spyOn(_$window, 'scrollTo');
@@ -31,30 +31,30 @@ describe('Sponsor Home Controller', function () {
   }));
 
   it('should call `$window.scrollTo` method when service is resolved', function () {
-    spyOn(_service, 'queryByType').and.callFake(function () {
+    spyOn(_service, 'querySponsoredListings').and.callFake(function () {
       var deferred = _$q.defer();
       deferred.resolve({
         data: []
       });
       return deferred.promise;
     });
-    expect(_service.queryByType.calls.any()).toBeFalsy();
+    expect(_service.querySponsoredListings.calls.any()).toBeFalsy();
     ctrl.$onInit();
-    expect(_service.queryByType).toHaveBeenCalled();
+    expect(_service.querySponsoredListings).toHaveBeenCalled();
     _$rootScope.$digest();
     expect(_$window.scrollTo.calls.count()).toEqual(1);
     expect(_$log.error.calls.any()).toBeFalsy();
   });
 
   it('should call `$log.error` method when service is rejected', function () {
-    spyOn(_service, 'queryByType').and.callFake(function () {
+    spyOn(_service, 'querySponsoredListings').and.callFake(function () {
       var deferred = _$q.defer();
       deferred.reject('Oops!');
       return deferred.promise;
     });
-    expect(_service.queryByType.calls.any()).toBeFalsy();
+    expect(_service.querySponsoredListings.calls.any()).toBeFalsy();
     ctrl.$onInit();
-    expect(_service.queryByType).toHaveBeenCalled();
+    expect(_service.querySponsoredListings).toHaveBeenCalled();
     _$rootScope.$digest();
     expect(_$window.scrollTo.calls.any()).toBeFalsy();
     expect(_$log.error.calls.count()).toEqual(1);

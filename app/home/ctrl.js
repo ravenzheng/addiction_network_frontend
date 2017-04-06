@@ -1,15 +1,23 @@
+module.exports = ['$log', 'TreatmentCenterService', ctrl];
+
 function ctrl($log, service) {
   var vm = this;
-  service.query().then(function (result) {
-    var listings = result.listings.map(function (listing) {
-      listing.uiSref = 'treatmentCenterDetail({id: "' + listing.id + '"})';
-      return listing;
-    });
-    vm.listings = listings;
-  }).catch(function (err) {
-    // todo, display the error message in the page.
-    $log.error(err);
-  });
-}
+  vm.$onInit = onInit;
 
-module.exports = ['$log', 'HomeListingService', ctrl];
+  function onInit() {
+    service.queryFeaturedListings().then(function (result) {
+      var listings = result.listings;
+      if (!listings.length) {
+        // get an empty listings from backend. what should we do?
+        return;
+      }
+      vm.listings = listings.map(function (listing) {
+        listing.uiSref = 'treatmentCenterDetail({id: "' + listing.id + '"})';
+        return listing;
+      });
+    }).catch(function (err) {
+      // todo, display the error message in the page.
+      $log.error(err);
+    });
+  }
+}

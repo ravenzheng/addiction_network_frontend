@@ -20,6 +20,9 @@ describe('TreatmentCenterService', function () {
   });
 
   var methods = [
+    'addTreatmentCenterSignUp',
+    'queryFeaturedListings',
+    'querySponsoredListings',
     'queryDetail',
     'queryList',
     'add',
@@ -27,11 +30,52 @@ describe('TreatmentCenterService', function () {
     'activate',
     'remove',
     'inquiry',
-    'submitRating'
+    'submitRating',
+    'search'
   ];
   methods.forEach(function (method) {
     it('should have method `' + method + '`.', function () {
       expect(angular.isFunction(service[method])).toBe(true);
+    });
+  });
+
+  // addTreatmentCenterSignUp
+  describe('addTreatmentCenterSignUp - todo', function () {});
+
+  // queryFeaturedListings
+  describe('queryFeaturedListings - todo', function () {});
+
+  // querySponsoredListings
+  describe('querySponsoredListings', function () {
+    var type,
+      data,
+      requestURL;
+    beforeEach(function () {
+      type = 'new listing';
+      data = {
+        'sponsored_listing_type': type
+      };
+      requestURL = endPoint + '/sponsored_listings';
+    });
+
+    it('should get sponsored listings when backend is fine.', function () {
+      var mockResponse = [];
+      $httpBackend.whenPOST(requestURL, data).respond(mockResponse);
+      service.querySponsoredListings(type).then(function (result) {
+        expect(result).toEqual(mockResponse);
+      });
+      $httpBackend.flush();
+      $rootScope.$digest();
+    });
+
+    it('should throw error when backend is broken.', function () {
+      $httpBackend.whenPOST(requestURL, data).respond(500, '');
+      service.querySponsoredListings(type).catch(function (res) {
+        expect(res.status).toEqual(500);
+        expect(res.data).toEqual('');
+      });
+      $httpBackend.flush();
+      $rootScope.$digest();
     });
   });
 
