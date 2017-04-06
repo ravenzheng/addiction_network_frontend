@@ -13,7 +13,9 @@ function service($http, endPoint, UserService) {
     remove: remove,
     inquiry: inquiry,
     submitRating: submitRating,
-    search: search
+    search: search,
+    getStates: getStates,
+    getCities: getCities
   };
 
   // home page, addListing
@@ -121,5 +123,23 @@ function service($http, endPoint, UserService) {
       finalData.state = state;
     }
     return $http.post(endPoint + '/search_treatment_centers', finalData);
+  }
+
+  // get states
+  function getStates() {
+    return $http.get(endPoint + '/states', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
+  // get cities
+  function getCities(state) {
+    return $http.get(endPoint + '/cities_states/' + state, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 }
