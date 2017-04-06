@@ -10,12 +10,17 @@ function ctrl($log, $rootScope, Status, $window, AdvertisementService) {
         return;
       }
     }
+    if (angular.isDefined(vm.center_web_link)) {
+      var link = vm.center_web_link;
+    } else {
+      link = '';
+    }
     var formData = new FormData();
     var bannerData = {
       'position': vm.position,
       'name': vm.name,
       'content': vm.content,
-      'center_web_link': vm.center_web_link
+      'center_web_link': link
     };
     for (var key in bannerData) {
       formData.append('banner_ads[' + key + ']', bannerData[key]);

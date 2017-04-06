@@ -29,15 +29,20 @@ function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorServic
         }
       }
     }
+
     var formData = new FormData();
+    if (angular.isDefined(vm.website)) {
+      var website = vm.website;
+    } else {
+      website = '';
+    }
     var sponsorData = {
-      'id': sponsorID,
       'title': vm.title,
       'name': vm.name,
       'image': vm.image,
       'description': vm.description,
-      'website': vm.website,
-      'sponsored_listing_layout_ids': sponsoredListingIds // [vm.sponsored_listing_layout_ids]
+      'website': website,
+      'sponsored_listing_layout_ids': sponsoredListingIds
     };
     for (key in sponsorData) {
       formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
