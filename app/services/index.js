@@ -5,6 +5,7 @@ angular.module(moduleName, [])
   .factory('AdvertisementService', require('./advertisementService'))
   .factory('MapService', require('./mapService'))
   .factory('TreatmentCenterService', require('./treatmentCenterService'))
+  .factory('SponsorService', require('./sponsorAdsService'))
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(require('./dataInterceptor'));
   }]);

@@ -2780,3 +2780,6 @@ label.error {
 .left {
   float: left;
 }
+.checkboxInput{
+  width:auto !important;
+}
