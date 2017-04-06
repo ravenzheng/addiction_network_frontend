@@ -5,12 +5,13 @@ function ctrl($log, $stateParams, $window, service) {
   vm.$onInit = onInit;
 
   function onInit() {
-    vm.slug = $stateParams.slug;
-    service.querySponsoredListings(vm.slug).then(function (result) {
-      vm.entry = result;
-      $window.scrollTo(0, 100);
-    }).catch(function (err) {
-      $log.error(err);
-    });
+    // $log.info($stateParams);
+    // vm.slug = $stateParams.slug;
+    // service.querySponsoredListings(vm.slug).then(function (result) {
+    //   vm.entry = result;
+    //   $window.scrollTo(0, 100);
+    // }).catch(function (err) {
+    //   $log.error(err);
+    // });
   }
 }

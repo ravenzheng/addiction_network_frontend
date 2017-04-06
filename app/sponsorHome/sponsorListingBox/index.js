@@ -1,6 +1,4 @@
 module.exports = {
   template: require('./view.html'),
-  bindings: {
-    'entry': '<'
-  }
+  controller: require('./ctrl')
 };

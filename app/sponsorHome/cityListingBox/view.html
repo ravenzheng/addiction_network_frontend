@@ -1,9 +1,11 @@
-<div ng-show="$ctrl.display" class="left_content" id="cities">
+<div class="left_content" id="cities">
+  <h1 class="section-heading">
+    <label>Browse the Best Rehabs in {{ $ctrl.stateName }}</label>
+  </h1>
   <section>
-    <div class="h3">Browse the Best Rehabs in {{ $ctrl.state}}</div>
     <ul class="list-locations list-columns">
       <li ng-repeat="city in $ctrl.cities track by $index">
-        <a>
+        <a href ng-click="$ctrl.goToCity(city)">
           <i class="glyphicon glyphicon-map-marker"></i>{{ city }}
         </a>
       </li>

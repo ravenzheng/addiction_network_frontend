@@ -1,25 +1,23 @@
-module.exports = ['$log', '$state', 'MapService', ctrl];
+module.exports = ['$log', '$stateParams', '$state', 'MapService', ctrl];
 
-function ctrl($log, $state, service) {
+function ctrl($log, $stateParams, $state, service) {
   var vm = this;
   vm.$onInit = onInit;
+  vm.goToCity = goToCity;
 
   function onInit() {
-    if (!$state.is('sponsorHome')) {
-      vm.display = false;
-      return;
-    }
-    if (!$state.params || $state.params.state !== 'true') {
-      vm.display = false;
-      return;
-    }
-    vm.display = true;
-    vm.state = $state.params.slug;
-    service.getCitiesByState(vm.state).then(function (result) {
+    vm.stateName = $stateParams.stateName;
+    service.getCitiesByState(vm.stateName).then(function (result) {
       vm.cities = result;
       $log.info(result);
     }).catch(function (err) {
       $log.error(err);
+    });
+  }
+
+  function goToCity(city) {
+    $state.go('sponsorHome.city', {
+      cityName: city
     });
   }
 }

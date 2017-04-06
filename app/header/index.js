@@ -73,7 +73,7 @@ function HeaderCtrl($log, $scope, $rootScope, localStorageService) {
         $rootScope.login = 1;
       } else {
         var tostate = toState.name.split('.');
-        $log.error('tostate: ' + tostate[0] + ' -->' + fromState.name);
+        $log.info('tostate: ' + tostate[0] + ' -->' + fromState.name);
         if (tostate[0] === 'myProfile') {
           event.preventDefault();
         }

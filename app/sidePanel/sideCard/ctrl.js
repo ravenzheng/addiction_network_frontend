@@ -20,9 +20,8 @@ function ctrl($attrs, $state) {
   }
 
   function nagivateTo(listing) {
-    $state.go('sponsorHome', {
-      slug: listing.name,
-      state: false
+    $state.go('sponsorHome.filter', {
+      filterName: listing.name
     });
   }
 }
