@@ -1,14 +1,9 @@
-function ctrl($http, endPoint, service) {
+function ctrl(states) {
   var vm = this;
-  vm.$onInit = onInit;
-
-  function onInit() {
-    service.getStates().then(function (states) {
-      vm.stats = states;
-    });
-  }
+  vm.states = states;
 }
-ctrl.$inject = ['$http', 'endPoint', 'MapService'];
+
+ctrl.$inject = ['states'];
 
 module.exports = {
   template: require('./view.html'),
