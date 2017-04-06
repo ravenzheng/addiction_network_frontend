@@ -3,6 +3,7 @@ var angular = require('angular'),
 
 angular.module(moduleName, [
   'ui.router',
+  'angularjs-dropdown-multiselect',
   require('../components'),
   require('../services')
 ]).component('thumbnailDelete', require('./sub/thumbnailDelete'))
@@ -18,6 +19,10 @@ angular.module(moduleName, [
   .component('bannerAdsAdd', require('./bannerAds/add'))
   .component('bannerAdsEdit', require('./bannerAds/edit'))
   .component('bannerAdsView', require('./bannerAds/view'))
+  .component('sponsorAds', require('./sponsorAds'))
+  .component('sponsorAdsAdd', require('./sponsorAds/add'))
+  .component('sponsorAdsEdit', require('./sponsorAds/edit'))
+  .component('sponsorAdsView', require('./sponsorAds/view'))
   .filter('urlFilter', require('./urlFilter'))
   .component('myProfile', {
     template: require('./view.html'),
@@ -79,6 +84,26 @@ angular.module(moduleName, [
       name: 'myProfile.bannerAdsView',
       url: '/banner-ads/view-banner/:id',
       template: '<banner-ads-view></banner-ads-view>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.sponsorAds',
+      url: '/sponsor-ads',
+      template: '<sponsor-ads></sponsor-ads>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.sponsorAdsAdd',
+      url: '/sponsor-ads/add-sponsor',
+      template: '<sponsor-ads-add></sponsor-ads-add>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.sponsorAdsEdit',
+      url: '/sponsor-ads/edit-sponsor/:id',
+      template: '<sponsor-ads-edit></sponsor-ads-edit>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.sponsorAdsView',
+      url: '/sponsor-ads/view-sponsor/:id',
+      template: '<sponsor-ads-view></sponsor-ads-view>'
     });
   }]);
 
