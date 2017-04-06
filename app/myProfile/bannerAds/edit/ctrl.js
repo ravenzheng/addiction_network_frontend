@@ -1,36 +1,41 @@
-function ctrl($stateParams, AdvertisementService) {
+function ctrl($log, $stateParams, $rootScope, Status, AdvertisementService) {
   var vm = this;
   var bannerID = $stateParams.id;
   // getting data
   getBannerData(vm, bannerID, AdvertisementService);
-
-  vm.success_msg = 0;
   vm.submit = function () {
+    // validating file type
+    vm.err_type = 0;
+    if (vm.content) {
+      if (typeof vm.content === 'object') {
+        var imageType = String(vm.content.type);
+        if (imageType.includes('image/') === false) {
+          vm.err_type = 1;
+          return;
+        }
+      }
+    }
     var formData = new FormData();
     var bannerData = {
       'position': vm.position,
       'name': vm.name,
       'content': vm.content,
       'center_web_link': vm.center_web_link
-
     };
     for (var key in bannerData) {
       formData.append('banner_ads[' + key + ']', bannerData[key]);
     }
     AdvertisementService.advertisementEdit(bannerID, formData).then(function () {
-      vm.success_msg = 1;
-      setTimeout(function () {
-        vm.success_msg = 0;
-      }, 3000);
-
+      $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_EDIT_SUCCEESS_MSG);
       // refreshing data
       getBannerData(vm, bannerID, AdvertisementService);
     }).catch(function (err) {
-      throw err;
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
 }
-module.exports = ['$stateParams', 'AdvertisementService', ctrl];
+module.exports = ['$log', '$stateParams', '$rootScope', 'Status', 'AdvertisementService', ctrl];
 
 function getBannerData(vm, bannerID, AdvertisementService) {
   var formData = new FormData();
