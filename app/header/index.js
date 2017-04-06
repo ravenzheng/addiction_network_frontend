@@ -9,7 +9,8 @@ var internalLinks = [{
   name: 'About Us'
 }, {
   uiSref: 'blog',
-  name: 'Blog'
+  name: 'Blog',
+  id: 'blog'
 }, {
   uiSref: 'contactUs',
   name: 'Contact Us'

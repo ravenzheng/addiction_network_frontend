@@ -2783,3 +2783,6 @@ label.error {
 .checkboxInput{
   width:auto !important;
 }
+#blog{
+  cursor:pointer;
+}

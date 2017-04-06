@@ -1,4 +1,4 @@
-function ctrl($scope, $stateParams, $rootScope, Status, SponsorService) {
+function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorService) {
   var vm = this;
   vm.multiselectModelLayoutIds = [];
   vm.multiselectModelSettings = {
@@ -21,7 +21,7 @@ function ctrl($scope, $stateParams, $rootScope, Status, SponsorService) {
     // validating file type
     vm.err_type = 0;
     if (vm.image || vm.image.length) {
-      if (typeof vm.image === 'object') {
+      if (angular.isObject(vm.image)) {
         var imageType = String(vm.image.type);
         if (imageType.includes('image/') === false) {
           vm.err_type = 1;
@@ -29,21 +29,26 @@ function ctrl($scope, $stateParams, $rootScope, Status, SponsorService) {
         }
       }
     }
+
     var formData = new FormData();
+    if (angular.isDefined(vm.website)) {
+      var website = vm.website;
+    } else {
+      website = '';
+    }
     var sponsorData = {
-      'id': sponsorID,
       'title': vm.title,
       'name': vm.name,
       'image': vm.image,
       'description': vm.description,
-      'website': vm.website,
-      'sponsored_listing_layout_ids': sponsoredListingIds // [vm.sponsored_listing_layout_ids]
+      'website': website,
+      'sponsored_listing_layout_ids': sponsoredListingIds
     };
     for (key in sponsorData) {
       formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
     }
     SponsorService.editSponsor(formData, sponsorID).then(function (response) {
-      var setImage = angular.element(document.querySelector('#sponsor_image'));
+      var setImage = angular.element($document.querySelector('#sponsor_image'));
       setImage.attr('src', response.banner_ads.image);
       $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {
@@ -54,7 +59,7 @@ function ctrl($scope, $stateParams, $rootScope, Status, SponsorService) {
   // getting data
   editSponsor(vm, sponsorID, SponsorService);
 }
-module.exports = ['$scope', '$stateParams', '$rootScope', 'Status', 'SponsorService', ctrl];
+module.exports = ['$scope', '$stateParams', '$rootScope', '$document', 'Status', 'SponsorService', ctrl];
 
 function editSponsor(vm, sponsorID, SponsorService) {
   var formData = new FormData();
