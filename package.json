@@ -32,6 +32,7 @@
   "dependencies": {
     "angular": "^1.6.2",
     "angular-animate": "^1.6.3",
+    "angular-local-storage": "https://registry.npmjs.org/angular-local-storage/-/angular-local-storage-0.5.2.tgz",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^0.4.2",
     "angularjs-dropdown-multiselect": "^2.0.0-beta.7",

@@ -1,6 +1,6 @@
-module.exports = ['$http', '$q', 'endPoint', service];
+module.exports = ['$http', '$q', 'endPoint', 'localStorageService', service];
 
-function service($http, $q, endPoint) {
+function service($http, $q, endPoint, localStorageService) {
   var _service = this;
   _service.user = null;
   _service.signIn = signIn;
@@ -18,6 +18,7 @@ function service($http, $q, endPoint) {
       }
     }).then(function (result) {
       _service.user = result.user;
+      localStorageService.set('token', result.user.auth_token);
       return result;
     });
   }
@@ -25,21 +26,20 @@ function service($http, $q, endPoint) {
   // return token if user signed in.
   function getToken() {
     // for testing purpose, This has to be removed in production.
-    var email = 'best@test.com';
-    var passwd = '12345678';
-    return _service.signIn(email, passwd).then(function (result) {
-      return result.user.auth_token;
-    });
-
-    // for production
-    // var deferred = $q.defer();
-    // if (_service.user) {
-    //   deferred.resolve(_service.user.auth_token);
-    // } else {
-    //   // if token can not be acquired, redirect user to sign in page
-    //   deferred.reject('No signed in user detected.')
-    // }
-    // return deferred.promise;
+    var token = localStorageService.get('token');
+    var deferred = $q.defer();
+    if (token !== null) {
+      deferred.resolve(token);
+    } else {
+      var email = 'best@test.com';
+      var passwd = 'test12345';
+      return _service.signIn(email, passwd).then(function (result) {
+        localStorageService.set('token', result.user.auth_token);
+        return result.user.auth_token;
+      });
+      // if token can not be acquired, redirect user to sign in page
+    }
+    return deferred.promise;
   }
 
   // query profile data with auth_token
