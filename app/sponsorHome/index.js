@@ -2,9 +2,9 @@ var moduleName = 'app.sponsorHome';
 
 angular.module(moduleName, [
   'ui.router',
+  require('../services'),
   require('../sidePanel')
-]).factory('SponsoredListingService', require('./service'))
-  .filter('urlFilter', require('./urlFilter'))
+]).filter('urlFilter', require('./urlFilter'))
   .component('sponsorHome', {
     template: require('./view.html'),
     controller: require('./ctrl')

@@ -1,8 +1,10 @@
-var angular = require('angular'),
-  moduleName = 'app.BannerAds';
-angular.module(moduleName, ['ui.router', require('../components')])
-  .factory('AdvertisementService', require('../services/advertisementService'))
-  .component('bannerAdsListMain', require('./list/main'))
+var moduleName = 'app.BannerAds';
+
+angular.module(moduleName, [
+  'ui.router',
+  require('../components'),
+  require('../services')
+]).component('bannerAdsListMain', require('./list/main'))
   .component('bannerAdsList', {
     template: require('./list/view.html'),
     controller: 'BannerAdsCtrl'

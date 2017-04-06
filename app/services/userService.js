@@ -1,3 +1,5 @@
+module.exports = ['$http', '$q', 'endPoint', service];
+
 function service($http, $q, endPoint) {
   var _service = this;
   _service.user = null;
@@ -9,13 +11,12 @@ function service($http, $q, endPoint) {
 
   // sign in with email and password
   function signIn(email, password) {
-    var req = $http.post(endPoint + '/sessions', {
+    return $http.post(endPoint + '/sessions', {
       'sessions': {
         email: email,
         password: password
       }
-    });
-    return _handle(req).then(function (result) {
+    }).then(function (result) {
       _service.user = result.user;
       return result;
     });
@@ -44,13 +45,10 @@ function service($http, $q, endPoint) {
   // query profile data with auth_token
   function queryProfile() {
     return _service.getToken().then(function (token) {
-      var req = $http.get(endPoint + '/profile', {
+      return $http.get(endPoint + '/profile', {
         headers: {
           'Authorization': token
         }
-      });
-      return _handle(req).then(function (result) {
-        return result.user;
       });
     });
   }
@@ -58,39 +56,24 @@ function service($http, $q, endPoint) {
   // edit profile data
   function editProfile(formData) {
     return _service.getToken().then(function (token) {
-      var req = $http.post(endPoint + '/profile', formData, {
+      return $http.post(endPoint + '/profile', formData, {
         transformRequest: angular.identity,
         headers: {
           'Authorization': token,
           'Content-Type': undefined
         }
       });
-      return _handle(req);
     });
   }
 
   // change password
   function changePassword(formData) {
     return _service.getToken().then(function (token) {
-      var req = $http.post(endPoint + '/password', formData, {
+      return $http.post(endPoint + '/password', formData, {
         headers: {
           'Authorization': token
         }
       });
-      return _handle(req);
-    });
-  }
-
-  // handle rejection of promise
-  function _handle(req) {
-    return req.then(function (res) {
-      var status = res.status;
-      if (status === 200) {
-        return res.data;
-      }
-      throw new Error(res.statusText);
     });
   }
 }
-
-module.exports = ['$http', '$q', 'endPoint', service];

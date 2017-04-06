@@ -1,25 +1,20 @@
-function StateSelectctrl($http, endPoint) {
+function ctrl($http, endPoint, service) {
   var vm = this;
-  // vm.states = states;
-  var req = $http({
-    url: endPoint + '/states',
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  req.then(function (res) {
-    vm.states = res.data;
-    // return res.data;
-  });
+  vm.$onInit = onInit;
+
+  function onInit() {
+    service.getStates().then(function (states) {
+      vm.stats = states;
+    });
+  }
 }
+ctrl.$inject = ['$http', 'endPoint', 'MapService'];
+
 module.exports = {
   template: require('./view.html'),
-  controller: StateSelectctrl,
+  controller: ctrl,
   bindings: {
     selected: '@',
     onUpdate: '&'
   }
 };
-
-StateSelectctrl.$inject = ['$http', 'endPoint'];
