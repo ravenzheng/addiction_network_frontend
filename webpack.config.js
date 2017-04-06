@@ -62,9 +62,6 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'node_modules/angular-ui-bootstrap/dist',
   to: PATHS.build
 }, {
-  from: 'node_modules/angular-mocks/angular-mocks.js',
-  to: PATHS.build
-}, {
   from: 'app/plugins',
   to: 'plugins'
 }, {
@@ -79,6 +76,11 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
 }], {
   debug: 'warning'
 });
+
+var copyWebpackPluginForTest = new CopyWebpackPlugin([{
+  from: 'node_modules/angular-mocks/angular-mocks.js',
+  to: PATHS.build
+}]);
 
 // clean previously built files
 var cleanWebpackPlugin = new CleanWebpackPlugin([PATHS.build], {
@@ -182,6 +184,7 @@ var testConfig = merge(common, {
   plugins: [
     cleanWebpackPlugin,
     copyWebpackPlugin,
+    copyWebpackPluginForTest,
     cssAssetsPlugin,
     jsAssetsPlugin,
     htmlWebpackPlugin
