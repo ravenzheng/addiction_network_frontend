@@ -9,22 +9,16 @@ var internalLinks = [{
   name: 'About Us'
 }, {
   uiSref: 'blog',
-  name: 'Blog',
-  id: 'blog'
+  name: 'Blog'
 }, {
   uiSref: 'contactUs',
   name: 'Contact Us'
 }, {
-  uiSref: 'centerDetail',
-  name: 'Add Listing'
+  uiSref: 'myProfile.index',
+  name: 'My Profile'
 }, {
   uiSref: 'logout',
-  name: 'Logout',
-  id: 'adic-logout'
-}, {
-  uiSref: 'myProfile.index',
-  name: 'My Profile',
-  id: 'adic-my-profile'
+  name: 'Logout'
 }];
 
 var internalLinksNoAuth = [{
@@ -38,8 +32,7 @@ var internalLinksNoAuth = [{
   name: 'About Us'
 }, {
   uiSref: 'blog',
-  name: 'Blog',
-  id: 'blog'
+  name: 'Blog'
 }, {
   uiSref: 'contactUs',
   name: 'Contact Us'
@@ -48,8 +41,7 @@ var internalLinksNoAuth = [{
   name: 'Add Listing'
 }, {
   uiSref: 'login',
-  name: 'Login',
-  id: 'adic-login'
+  name: 'Login'
 }];
 var socialLinks = [{
   href: 'https://www.facebook.com/theaddictionnetwork',
@@ -68,20 +60,17 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService) {
   this.internalLinks = internalLinks;
   this.internalLinksNoAuth = internalLinksNoAuth;
   $scope.$on('$stateChangeStart',
-    function (event, toState, toParams, fromState) {
+    function (event, toState) {
       var token = localStorageService.get('token');
       var tostate = toState.name.split('.');
-      $log.error('blog: ' + tostate[0] + ' -->' + fromState.name);
       if (tostate[0] === 'blog') {
         $window.location = 'http://www.addictionnetwork.com/blog/?angular_ads=advertisement';
       }
       if (token) {
         $rootScope.login = 1;
-      } else {
-        $log.error('tostate: ' + tostate[0] + ' -->' + fromState.name);
-        if (tostate[0] === 'myProfile') {
-          event.preventDefault();
-        }
+      } else if (tostate[0] === 'myProfile') {
+        // $log.error('tostate: ' + tostate[0] + ' -->' + fromState.name);
+        event.preventDefault();
       }
     });
 }
