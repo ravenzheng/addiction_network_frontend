@@ -26,13 +26,8 @@
           <label for="category">Select Category:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
-          <select name="center_category" class="form-control selectpicker required">
-            <option value="">Select</option>
-            <option value="inpatient">Inpatient</option>
-            <option value="outpatient">Outpatient</option>
-            <option value="sober-living">Sober Living</option>
-            <option value="adolescent">Adolescent</option>
-          </select>
+          <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenterCategories" checkboxes="true" selected-model="$ctrl.multiselectModelCategories" extra-settings="$ctrl.multiselectModelSettings"></div>
+
         </div>
       </div>
 

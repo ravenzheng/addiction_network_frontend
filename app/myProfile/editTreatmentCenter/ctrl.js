@@ -12,13 +12,47 @@ function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
   };
+  vm.multiselectModelCategories = [];
+  vm.multiselectModelSettings = {
+    scrollableHeight: '200px',
+    scrollable: true,
+    checkBoxes: true,
+    showCheckAll: false,
+    showUncheckAll: false
+  };
+
+  vm.treatmentCenterCategories = [
+    {
+      'label': 'Inpatient',
+      'id': '1'
+    },
+    {
+      'label': 'Outpatient',
+      'id': '2'
+    },
+    {
+      'label': 'Sober Living',
+      'id': '3'
+    },
+    {
+      'label': 'Adolescent',
+      'id': '4'
+    }
+  ];
 
   vm.submit = function () {
+    var categoryName = [];
+    for (var key in vm.multiselectModelCategories) {
+      var categories = String(vm.multiselectModelCategories[key].id);
+      categoryName[key] = categories;
+    }
+
     var data = {
       'center_name': vm.center_name,
       'description': vm.description,
       'center_web_link': vm.center_web_link,
       'listing_image': vm.listing_image,
+      'category_id': categoryName,
       // 'heading_1': vm.heading_1,
       // 'heading_2': vm.heading_2,
       // 'heading_3': vm.heading_3,
@@ -38,7 +72,7 @@ function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
     };
 
     var formData = new FormData();
-    for (var key in data) {
+    for (key in data) {
       formData.append('treatment_center[' + key + ']', data[key]);
     }
     if (vm.image_data) {
