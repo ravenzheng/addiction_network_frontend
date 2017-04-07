@@ -1,6 +1,6 @@
-module.exports = ['$log', '$rootScope', 'Status', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$injector', '$rootScope', 'Status', '$uibModal', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, $rootScope, Status, service) {
+function ctrl($log, $injector, $rootScope, Status, $uibModal, service) {
   var vm = this;
   vm.centers = [];
   vm.currentCenters = [];
@@ -11,7 +11,25 @@ function ctrl($log, $rootScope, Status, service) {
   vm.onPageUpdate = onPageUpdate;
   vm.onActivate = onActivate;
   vm.onDelete = onDelete;
-
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Delete Treatment Center!</h3></div><div class="modal-body" id="modal-body">Are you sure you want to delete?</div><div class="modal-footer"><button class="btn btn-primary" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
+  vm.open = function (id) {
+    var modalInstance = $injector.get('$uibModal').open({
+      animation: vm.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      template: deletePrompt,
+      controller: function () {
+        $rootScope.ok = function () {
+          onDelete(id);
+          modalInstance.close();
+        };
+        $rootScope.cancel = function () {
+          modalInstance.dismiss('cancel');
+        };
+      },
+      bindToController: true
+    });
+  };
   init();
 
   // get center list from server
