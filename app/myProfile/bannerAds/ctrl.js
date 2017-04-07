@@ -1,4 +1,4 @@
-function ctrl(AdvertisementService) {
+function ctrl($document, AdvertisementService) {
   var list = this;
 
   function bannersList() {
@@ -12,7 +12,7 @@ function ctrl(AdvertisementService) {
 
   list.actDect = function (id) {
     AdvertisementService.updateStatus(id).then(function (response) {
-      var status = angular.element(document.querySelector('#status-' + id));
+      var status = angular.element($document.querySelector('#status-' + id));
       if (response.active) {
         list.active = response.active;
         status.html('Deactivate');
@@ -26,4 +26,4 @@ function ctrl(AdvertisementService) {
   };
 }
 
-module.exports = ['AdvertisementService', ctrl];
+module.exports = ['$document', 'AdvertisementService', ctrl];

@@ -46,9 +46,9 @@ function ctrl($rootScope, $window, Status, SponsorService) {
     }
     // validating file type
     vm.err_type = 0;
-    if (vm.image !== undefined) {
+    if (angular.isDefined(vm.image)) {
       if (vm.image || vm.image.length) {
-        if (typeof vm.image === 'object') {
+        if (angular.isObject(vm.image)) {
           var imageType = String(vm.image.type);
           if (imageType.includes('image/') === false) {
             vm.err_type = 1;
@@ -58,12 +58,17 @@ function ctrl($rootScope, $window, Status, SponsorService) {
       }
     }
     var formData = new FormData();
+    if (angular.isDefined(vm.website)) {
+      var website = vm.website;
+    } else {
+      website = '';
+    }
     var sponsorData = {
       'title': vm.title,
       'name': vm.name,
       'image': vm.image,
       'description': vm.description,
-      'website': vm.website,
+      'website': website,
       'sponsored_listing_layout_ids': sponsoredListingIds
     };
     for (key in sponsorData) {

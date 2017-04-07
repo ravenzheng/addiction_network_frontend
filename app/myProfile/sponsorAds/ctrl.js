@@ -1,4 +1,4 @@
-function ctrl($log, SponsorService) {
+function ctrl($log, $window, $document, SponsorService) {
   var list = this;
   list.totalAds = 0;
   list.totalPages = [];
@@ -6,7 +6,7 @@ function ctrl($log, SponsorService) {
 
   list.pageChanged = function (newPage) {
     sponsorList(newPage);
-    window.scrollTo(0, 100);
+    $window.scrollTo(0, 100);
   };
 
   function sponsorList(page) {
@@ -25,7 +25,7 @@ function ctrl($log, SponsorService) {
   sponsorList(1);
   list.actDect = function (id) {
     SponsorService.updateStatus(id).then(function (response) {
-      var status = angular.element(document.querySelector('#status-' + id));
+      var status = angular.element($document.querySelector('#status-' + id));
       if (response.active) {
         list.active = response.active;
         status.html('Deactivate');
@@ -39,4 +39,4 @@ function ctrl($log, SponsorService) {
   };
 }
 
-module.exports = ['$log', 'SponsorService', ctrl];
+module.exports = ['$log', '$window', '$document', 'SponsorService', ctrl];
