@@ -1,15 +1,27 @@
+module.exports = ['$attrs', '$state', ctrl];
+
 var originalDateset = require('./slug.json');
 
-function SideCardCtrl($attrs) {
-  var type = $attrs.type;
-  var arr = originalDateset[type];
-  this.type = type;
-  this.listings = arr.map(function (listing) {
-    return {
-      uiSref: 'sponsorHome({slug: "' + listing + '"})',
-      name: listing
-    };
-  });
-}
+function ctrl($attrs, $state) {
+  var vm = this;
+  vm.$onInit = onInit;
+  vm.nagivateTo = nagivateTo;
 
-module.exports = ['$attrs', SideCardCtrl];
+  function onInit() {
+    var type = $attrs.type;
+    vm.filter = type;
+    var arr = originalDateset[type];
+    vm.listings = arr.map(function (listing) {
+      return {
+        uiSref: 'sponsorHome({slug: "' + listing + '"})',
+        name: listing
+      };
+    });
+  }
+
+  function nagivateTo(listing) {
+    $state.go('sponsorHome.filter', {
+      filterName: listing.name
+    });
+  }
+}
