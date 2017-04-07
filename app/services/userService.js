@@ -1,6 +1,6 @@
-module.exports = ['$http', '$q', 'endPoint', 'localStorageService', service];
+module.exports = ['$http', '$q', '$window', 'endPoint', 'localStorageService', service];
 
-function service($http, $q, endPoint, localStorageService) {
+function service($http, $q, $window, endPoint, localStorageService) {
   var _service = this;
   _service.user = null;
   _service.signIn = signIn;
@@ -31,13 +31,9 @@ function service($http, $q, endPoint, localStorageService) {
     if (token !== null) {
       deferred.resolve(token);
     } else {
-      var email = 'best@test.com';
-      var passwd = 'test12345';
-      return _service.signIn(email, passwd).then(function (result) {
-        localStorageService.set('token', result.user.auth_token);
-        return result.user.auth_token;
-      });
+      localStorageService.remove('token');
       // if token can not be acquired, redirect user to sign in page
+      $window.location.href = '/#/login';
     }
     return deferred.promise;
   }
