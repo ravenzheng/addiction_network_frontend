@@ -49,10 +49,10 @@
       <div class="nav_align">
         <ul class="nav navbar-nav new_class_for_sub_menu header_main_menu fonnt ">
           <li ng-if="$root.login==1" ng-repeat="link in $ctrl.internalLinks" ng-model="$root.login">
-            <a class="comm " id="{{link.id}}" ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
+            <a class="comm" ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
           </li>
           <li ng-if="$root.login!=1" ng-repeat="link in $ctrl.internalLinksNoAuth" ng-model="$root.login">
-            <a class="comm " id="{{link.id}}" ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
+            <a class="comm" ui-sref="{{ link.uiSref }}">{{ link.name }}</a>
           </li>
         </ul>
       </div>

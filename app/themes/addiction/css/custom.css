@@ -2775,6 +2775,6 @@ label.error {
 .checkboxInput{
   width:auto !important;
 }
-#blog{
+.navbar-default .navbar-nav > li > a{
   cursor:pointer;
 }
