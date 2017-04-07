@@ -10,6 +10,7 @@ angular.module(moduleName, [])
   .component('stateMap', require('./stateMap'))
   .component('sponsAdsCategories', require('./sponsAdsCategories'))
   .component('sponsListIds', require('./sponsListIds'))
+  .component('sectionHeading', require('./sectionHeading'))
   .directive('fileModel', require('./fileModel'))
   .directive('validPasswordC', require('./validPasswordC'));
 
