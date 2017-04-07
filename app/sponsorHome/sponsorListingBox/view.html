@@ -15,14 +15,14 @@
           <li ng-repeat="listing in $ctrl.entry.listings" class="width-100">
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="sponsor_img">
-                <a ng-href="{{ listing.center_web_link | urlFilter }}" class="thumbnail" target="_blank">
-                  <img ng-src="{{ listing.listing_image }}" alt="" />
+                <a ng-href="{{ listing.website | urlFilter }}" class="thumbnail" target="_blank">
+                  <img ng-src="{{ listing.image }}" alt="" />
                 </a>
               </div>
               <div class="sponsor_img" style="width:65%;">
                 <h3>
-                  <a ng-href="{{ listing.center_web_link | urlFilter }}" target="_blank">
-                    {{ listing.center_name }}
+                  <a ng-href="{{ listing.website | urlFilter }}" target="_blank">
+                    {{ listing.name }}
                   </a>
                 </h3>
                 <p>{{ listing.description }}</p>
