@@ -16,6 +16,9 @@ var links = [{
 }, {
   uiSref: 'myProfile.bannerAds',
   name: 'Banner Ads'
+}, {
+  uiSref: 'myProfile.paymentDetails',
+  name: 'Payment Details'
 }];
 
 function ProfileNavSectionCtrl() {

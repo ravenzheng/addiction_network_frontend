@@ -23,6 +23,10 @@ angular.module(moduleName, [
   .component('sponsorAdsAdd', require('./sponsorAds/add'))
   .component('sponsorAdsEdit', require('./sponsorAds/edit'))
   .component('sponsorAdsView', require('./sponsorAds/view'))
+  .component('paymentDetails', require('./paymentDetails'))
+  .component('paymentDetailsAdd', require('./paymentDetails/add'))
+  .component('paymentDetailsEdit', require('./paymentDetails/edit'))
+  .component('paymentDetailsView', require('./paymentDetails/view'))
   .filter('urlFilter', require('./urlFilter'))
   .component('myProfile', {
     template: require('./view.html'),
@@ -104,6 +108,27 @@ angular.module(moduleName, [
       name: 'myProfile.sponsorAdsView',
       url: '/sponsor-ads/view-sponsor/:id',
       template: '<sponsor-ads-view></sponsor-ads-view>'
+    });
+    // paymentDetails
+    $stateProvider.state({
+      name: 'myProfile.paymentDetails',
+      url: '/payment-details',
+      template: '<payment-details></payment-details>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.paymentDetailsAdd',
+      url: '/payment-details/add-payment',
+      template: '<payment-details-add></payment-details-add>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.paymentDetailsEdit',
+      url: '/payment-details/edit-detail/:id',
+      template: '<payment-details-edit></payment-details-edit>'
+    });
+    $stateProvider.state({
+      name: 'myProfile.paymentDetailsView',
+      url: '/payment-details/view-payments/:id',
+      template: '<payment-details-view></payment-details-view>'
     });
   }]);
 

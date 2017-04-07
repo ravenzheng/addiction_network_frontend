@@ -20,7 +20,7 @@ function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorServic
 
     // validating file type
     vm.err_type = 0;
-    if (vm.image || vm.image.length) {
+    if (vm.image) {
       if (angular.isObject(vm.image)) {
         var imageType = String(vm.image.type);
         if (imageType.includes('image/') === false) {
@@ -47,9 +47,7 @@ function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorServic
     for (key in sponsorData) {
       formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
     }
-    SponsorService.editSponsor(formData, sponsorID).then(function (response) {
-      var setImage = angular.element($document.querySelector('#sponsor_image'));
-      setImage.attr('src', response.banner_ads.image);
+    SponsorService.editSponsor(formData, sponsorID).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
