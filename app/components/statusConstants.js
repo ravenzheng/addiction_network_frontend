@@ -11,7 +11,10 @@ module.exports = {
   BANNER_ADD_SUCCEESS_MSG: 'Banner added successfully.',
   SPONSOR_EDIT_SUCCEESS_MSG: 'Sponsor updated successfully.',
   SPONSOR_ADD_SUCCEESS_MSG: 'Sponsor added successfully.',
+  PAYMENT_EDIT_SUCCEESS_MSG: 'Payment Details updated successfully.',
+  PAYMENT_ADD_SUCCEESS_MSG: 'Payment Details added successfully.',
   ADD_LISTING_SUCCEESS_MSG: 'Listing added successfully.',
+  PAYMENT_DELETE_SUCCEESS_MSG: 'Your Payment Details has been deleted successfully.',
   INQUIRY_SUCCESS_MSG: 'Your inquiry has been submitted successfully. We will contact soon.',
   SUBMIT_SUCCESS_MSG: 'Submitted successfully',
   FAILURE_MSG: 'Oops! Something is up. We are sorry for the inconvenience.'
