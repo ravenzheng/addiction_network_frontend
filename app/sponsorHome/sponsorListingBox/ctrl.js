@@ -1,6 +1,6 @@
-module.exports = ['$log', '$state', '$stateParams', '$window', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$state', '$stateParams', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, $state, $stateParams, $window, service) {
+function ctrl($log, $state, $stateParams, service) {
   var vm = this;
   vm.$onInit = onInit;
 
@@ -24,8 +24,9 @@ function ctrl($log, $state, $stateParams, $window, service) {
     }
     service.querySponsoredListings(keyword).then(function (result) {
       vm.entry = result;
-      $window.scrollTo(0, 100);
+      vm.displayError = false;
     }).catch(function (err) {
+      vm.displayError = true;
       $log.error(err);
     });
   }

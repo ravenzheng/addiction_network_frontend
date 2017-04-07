@@ -7,9 +7,19 @@ function ctrl($log, $stateParams, $state, service) {
 
   function onInit() {
     vm.stateName = $stateParams.stateName;
-    service.getCitiesByState(vm.stateName).then(function (result) {
-      vm.cities = result;
-      $log.info(result);
+    var uiState = $state.current.name;
+    var promise;
+    if (uiState === 'sponsorHome.cities') {
+      promise = service.getCitiesByState(vm.stateName);
+    }
+    if (uiState === 'sponsorHome.counties') {
+      promise = service.getCountiesByState(vm.stateName);
+    }
+    if (!promise) {
+      return;
+    }
+    promise.then(function (result) {
+      vm.places = result;
     }).catch(function (err) {
       $log.error(err);
     });

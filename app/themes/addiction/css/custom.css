@@ -530,11 +530,7 @@ p {
 .left_content {
   width: 100%;
   float: left;
-  margin-top: 50px;
-}
-
-.container .left_align h1 {
-  text-align: center;
+  margin-top: 30px;
 }
 
 .left_content>p {

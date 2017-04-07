@@ -1,10 +1,10 @@
-<div class="left_content" id="cities">
+<div class="left_content">
   <h1 class="section-heading">
     <label>Browse the Best Rehabs in {{ $ctrl.stateName }}</label>
   </h1>
   <section>
     <ul class="list-locations list-columns">
-      <li ng-repeat="city in $ctrl.cities track by $index">
+      <li ng-repeat="city in $ctrl.places track by $index">
         <a href ng-click="$ctrl.goToCity(city)">
           <i class="glyphicon glyphicon-map-marker"></i>{{ city }}
         </a>
