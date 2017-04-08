@@ -521,10 +521,6 @@ p {
 
 /************middle css here***********/
 
-.container .top_text {
-  margin: 0 0 50px 0;
-}
-
 .middle_content_div {
   width: 100%;
   float: left;
@@ -535,6 +531,7 @@ p {
   width: 100%;
   float: left;
   margin-top: 30px;
+  min-height: 445px;
 }
 
 .left_content>p {
@@ -781,7 +778,6 @@ p {
 
 .about_div>ul>li>a>span {
   margin: 3px 7px 0 0;
-  float: left;
 }
 
 .about_div>ul>li>a:hover {
@@ -1722,47 +1718,12 @@ h3.sub_heading_under_sign_up {
 
 /***detail view page start from here****/
 
-.banner_main {
-  float: left;
-  width: 100%;
-}
-
-.detail_form_main {
-  float: left;
-  width: 100%;
-  margin: 50px 0 0 0;
-  background: #f2f2f2;
-}
-
 .detail_inner label {
   color: #2172A7;
   float: left;
   font-size: 16px;
   font-weight: normal;
   padding-top: 6px;
-}
-
-.detail_heading {
-  float: left;
-  width: 100%;
-  padding: 0px 15px 0 15px;
-}
-
-.detail_heading>h2 {
-  background: url("../images/title-solid-bg.png");
-  background-repeat: repeat-x;
-  text-align: center;
-  background-position: 0;
-  line-height: 10px;
-  margin-top: 6px;
-  margin-bottom: 15px;
-}
-
-.detail_heading>h2>label {
-  background: #F2F2F2;
-  font-size: 15px;
-  padding: 0px 18px 3px 19px;
-  color: #73ac4b;
 }
 
 .treatment_detail p {

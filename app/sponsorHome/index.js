@@ -33,7 +33,7 @@ angular.module(moduleName, [
     $stateProvider.state({
       name: 'sponsorHome.counties',
       url: '/sponsorhome/counties/:stateName',
-      template: '<county-listing-box></county-listing-box>'
+      template: '<county-list-box></county-list-box>'
     });
     $stateProvider.state({
       name: 'sponsorHome.county',
@@ -48,7 +48,7 @@ angular.module(moduleName, [
     $stateProvider.state({
       name: 'sponsorHome.cities',
       url: '/sponsorhome/cities/:stateName/:countyName',
-      template: '<city-listing-box></city-listing-box>'
+      template: '<city-list-box></city-list-box>'
     });
   }]);
 

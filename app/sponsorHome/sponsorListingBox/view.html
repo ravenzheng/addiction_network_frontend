@@ -1,7 +1,8 @@
 <div class="left_content left_align">
-  <div ng-show="$ctrl.displayError" class="empty-list-error">
-    <p class="empty-list-error-text">Oops! We are currently unable to provide any listings at this area. Sorry for any inconvenience.</p>
-  </div>
+  <!-- Display the message when the dataset is empty -->
+  <empty-list-error display="$ctrl.displayError"></empty-list-error>
+
+  <!-- Actual sponsor listing data -->
   <div ng-hide="$ctrl.displayError" class="sponsor-listing">
     <section-heading>{{ $ctrl.entry.heading_1 }}</section-heading>
     <p>{{ $ctrl.entry.content_1 }}</p>
