@@ -21,7 +21,7 @@ var common = {
     }, {
       test: /\.(jpg|png)$/,
       use: [{
-        loader: 'file?name=[path][name].[hash].[ext]'
+        loader: 'file-loader'
       }]
     }, {
       test: /\.(ttf|eot|wvg|woff(2)?)(\?[a-z0-9]+)?$/,

@@ -7,26 +7,24 @@ function ctrl($log, $stateParams, $state, service) {
 
   function onInit() {
     vm.stateName = $stateParams.stateName;
-    var uiState = $state.current.name;
-    var promise;
-    if (uiState === 'sponsorHome.cities') {
-      promise = service.getCitiesByState(vm.stateName);
-    }
-    if (uiState === 'sponsorHome.counties') {
-      promise = service.getCountiesByState(vm.stateName);
-    }
-    if (!promise) {
-      return;
-    }
-    promise.then(function (result) {
-      vm.places = result;
+    vm.countyName = $stateParams.countyName;
+    service.getCitiesByCounty(vm.countyName).then(function (result) {
+      if (!result.length) {
+        throw new Error('Got an empty dataset at cityListBox');
+      }
+      result.sort();
+      vm.cities = result;
+      vm.displayError = false;
     }).catch(function (err) {
       $log.error(err);
+      vm.displayError = true;
     });
   }
 
   function goToCity(city) {
     $state.go('sponsorHome.city', {
+      stateName: vm.stateName,
+      countyName: vm.countyName,
       cityName: city
     });
   }

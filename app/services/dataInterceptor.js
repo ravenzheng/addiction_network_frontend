@@ -8,7 +8,7 @@ function interceptor($log) {
       }
       var status = response.status;
       if (status === 200) { // OK
-        $log.info(response.config.url, response.data);
+        // $log.info(response.config.url, response.data);
         return response.data;
       }
       $log.error(response.statusText);

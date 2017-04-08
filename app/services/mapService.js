@@ -34,6 +34,6 @@ function service($http, endPoint, mapConfig) {
   }
 
   function getCitiesByCounty(county) {
-    return $http.get(endPoint + '/cities_counties/' + county);
+    return $http.get(endPoint + '/cities/' + county);
   }
 }
