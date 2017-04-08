@@ -1,9 +1,7 @@
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 padding_0">
   <form ng-submit="$ctrl.submit()">
     <div class="right_content">
-      <h2>
-        <label>Find Treatment</label>
-      </h2>
+      <card-heading>Find Treatment</card-heading>
       <div class="form-group">
         <label for="State" class="font-normal">Select State</label>
         <state-select on-update="$ctrl.onStateUpdate(selected)"></state-select>

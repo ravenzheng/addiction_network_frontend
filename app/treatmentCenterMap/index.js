@@ -1,5 +1,7 @@
 var moduleName = 'app.treatmentCenterMap';
 
+require('./style.css');
+
 angular.module(moduleName, [
   'ui.router',
   require('../components'),

@@ -1,10 +1,10 @@
-.sponsor-listing-error {
+.empty-list-error {
   background-color: #F2F2F2;
   font-size: 24px;
   padding: 12px 30px;
   width: 100%;
 }
 
-.sponsor-listing-error-text {  
+.empty-list-error-text {
   font-size: 24px;
 }

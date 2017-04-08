@@ -9,17 +9,17 @@ function ctrl($log, $stateParams, service) {
     service.search(data).then(function (result) {
       // get an empty listings
       if (!result.listings.length) {
-        vm.emptyListings = true;
-        return;
+        throw new Error('Got an empty dataset at centerListBox.');
       }
-      vm.emptyListings = false;
       var listings = result.listings.map(function (listing) {
         listing.uiSref = 'treatmentCenterDetail({id: "' + listing.id + '"})';
         return listing;
       });
       vm.listings = listings;
+      vm.displayError = false;
     }).catch(function (err) {
       $log.error(err);
+      vm.displayError = true;
     });
   }
 }

@@ -30,9 +30,9 @@
     "url": "https://github.com/ravenzheng/addiction_network_frontend.git"
   },
   "dependencies": {
-    "angular": "^1.6.2",
-    "angular-animate": "^1.6.3",
-    "angular-local-storage": "https://registry.npmjs.org/angular-local-storage/-/angular-local-storage-0.5.2.tgz",
+    "angular": "1.6.3",
+    "angular-animate": "1.6.3",
+    "angular-local-storage":"0.5.2",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^0.4.2",
     "angularjs-dropdown-multiselect": "^2.0.0-beta.7",
@@ -41,6 +41,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.27.3",
     "express": "^4.14.1",
+    "file-loader": "^0.11.1",
     "html-loader": "^0.4.5",
     "html-webpack-include-assets-plugin": "0.0.4",
     "html-webpack-plugin": "^2.28.0",
@@ -51,7 +52,7 @@
     "webpack-merge": "^3.0.0"
   },
   "devDependencies": {
-    "angular-mocks": "^1.6.3",
+    "angular-mocks": "1.6.3",
     "eslint": "^3.18.0",
     "eslint-config-angular": "^0.5.0",
     "eslint-config-es5": "^0.5.0",
