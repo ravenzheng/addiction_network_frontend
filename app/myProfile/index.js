@@ -1,5 +1,4 @@
-var angular = require('angular'),
-  moduleName = 'app.myProfile';
+var moduleName = 'app.myProfile';
 
 angular.module(moduleName, [
   'ui.router',
@@ -9,6 +8,7 @@ angular.module(moduleName, [
 ]).component('thumbnailDelete', require('./sub/thumbnailDelete'))
   .component('centerTable', require('./sub/centerTable'))
   .component('pagination', require('./sub/pagination'))
+  .component('profileNavSection', require('./profileNavSection'))
   .component('profileMain', require('./profileMain'))
   .component('accountSettings', require('./accountSettings'))
   .component('changePassword', require('./changePassword'))
@@ -32,102 +32,102 @@ angular.module(moduleName, [
     template: require('./view.html'),
     controller: require('./ctrl')
   })
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
-      name: 'myProfile',
+      name: UIState.MY_PROFILE.INDEX,
       url: '/my-profile',
       abstract: true,
       template: '<my-profile></my-profile>'
     });
     $stateProvider.state({
-      name: 'myProfile.index',
-      url: '/index',
+      name: UIState.MY_PROFILE.PROFILE,
+      url: '/profile',
       template: '<profile-main profile="$ctrl.profile"></profile-main>'
     });
     $stateProvider.state({
-      name: 'myProfile.accountSettings',
+      name: UIState.MY_PROFILE.ACCOUNT_SETTING,
       url: '/account-settings',
       template: '<account-settings profile="$ctrl.profile"></account-settings>'
     });
     $stateProvider.state({
-      name: 'myProfile.changePassword',
+      name: UIState.MY_PROFILE.CHANGE_PASSWORD,
       url: '/change-password',
       template: '<change-password></change-password>'
     });
     $stateProvider.state({
-      name: 'myProfile.myTreatmentCenters',
+      name: UIState.MY_PROFILE.MY_CENTERS,
       url: '/my-treatment-centers',
       template: '<my-treatment-centers></my-treatment-centers>'
     });
     $stateProvider.state({
-      name: 'myProfile.addTreatmentCenter',
+      name: UIState.MY_PROFILE.ADD_CENTER,
       url: '/add-treatment-center',
       template: '<add-treatment-center></add-treatment-center>'
     });
     $stateProvider.state({
-      name: 'myProfile.editTreatmentCenter',
+      name: UIState.MY_PROFILE.EDIT_CENTER,
       url: '/edit-treatment-center/:id',
       template: '<edit-treatment-center></edit-treatment-center>'
     });
     $stateProvider.state({
-      name: 'myProfile.bannerAds',
+      name: UIState.MY_PROFILE.BANNER_ADS,
       url: '/banner-ads',
       template: '<banner-ads></banner-ads>'
     });
     $stateProvider.state({
-      name: 'myProfile.bannerAdsAdd',
+      name: UIState.MY_PROFILE.BANNER_ADS_ADD,
       url: '/banner-ads/add-banner',
       template: '<banner-ads-add></banner-ads-add>'
     });
     $stateProvider.state({
-      name: 'myProfile.bannerAdsEdit',
+      name: UIState.MY_PROFILE.BANNER_ADS_EDIT,
       url: '/banner-ads/edit-banner/:id',
       template: '<banner-ads-edit></banner-ads-edit>'
     });
     $stateProvider.state({
-      name: 'myProfile.bannerAdsView',
+      name: UIState.MY_PROFILE.BANNER_ADS_VIEW,
       url: '/banner-ads/view-banner/:id',
       template: '<banner-ads-view></banner-ads-view>'
     });
     $stateProvider.state({
-      name: 'myProfile.sponsorAds',
+      name: UIState.MY_PROFILE.SPONSOR_ADS,
       url: '/sponsor-ads',
       template: '<sponsor-ads></sponsor-ads>'
     });
     $stateProvider.state({
-      name: 'myProfile.sponsorAdsAdd',
+      name: UIState.MY_PROFILE.SPONSOR_ADS_ADD,
       url: '/sponsor-ads/add-sponsor',
       template: '<sponsor-ads-add></sponsor-ads-add>'
     });
     $stateProvider.state({
-      name: 'myProfile.sponsorAdsEdit',
+      name: UIState.MY_PROFILE.SPONSOR_ADS_EDIT,
       url: '/sponsor-ads/edit-sponsor/:id',
       template: '<sponsor-ads-edit></sponsor-ads-edit>'
     });
     $stateProvider.state({
-      name: 'myProfile.sponsorAdsView',
+      name: UIState.MY_PROFILE.SPONSOR_ADS_VIEW,
       url: '/sponsor-ads/view-sponsor/:id',
       template: '<sponsor-ads-view></sponsor-ads-view>'
     });
     // paymentDetails
     $stateProvider.state({
-      name: 'myProfile.paymentDetails',
+      name: UIState.MY_PROFILE.PAYMENT_DETAILS,
       url: '/payment-details',
       template: '<payment-details></payment-details>'
     });
     $stateProvider.state({
-      name: 'myProfile.paymentDetailsAdd',
+      name: UIState.MY_PROFILE.PAYMENT_DETAILS_ADD,
       url: '/payment-details/add-payment',
       template: '<payment-details-add></payment-details-add>'
     });
     $stateProvider.state({
-      name: 'myProfile.paymentDetailsEdit',
-      url: '/payment-details/edit-detail/:id',
+      name: UIState.MY_PROFILE.PAYMENT_DETAILS_EDIT,
+      url: '/payment-details/edit-payment/:id',
       template: '<payment-details-edit></payment-details-edit>'
     });
     $stateProvider.state({
-      name: 'myProfile.paymentDetailsView',
-      url: '/payment-details/view-payments/:id',
+      name: UIState.MY_PROFILE.PAYMENT_DETAILS_VIEW,
+      url: '/payment-details/view-payment/:id',
       template: '<payment-details-view></payment-details-view>'
     });
   }]);

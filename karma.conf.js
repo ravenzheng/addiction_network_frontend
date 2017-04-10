@@ -18,6 +18,8 @@ module.exports = function (config) {
       'build/angular-ui-router.min.js',
       'build/ui-bootstrap-tpls.js',
       'build/angular-mocks.js',
+      'build/angular-local-storage.min.js',
+      'build/angularjs-dropdown-multiselect.min.js',
       'build/bundle.js',
       'app/**/*.spec.js'
     ],
@@ -91,7 +93,7 @@ module.exports = function (config) {
 
       // errors-only, minimal, none, normal, verbose
       stats: 'errors-only',
-      devtool: 'inline-source-map'
+      devtool: 'source-map'
     },
 
     webpackMiddleware: {

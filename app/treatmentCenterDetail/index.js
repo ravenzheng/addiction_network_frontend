@@ -14,9 +14,9 @@ angular.module(moduleName, [
     template: require('./view.html'),
     controller: require('./ctrl')
   })
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
-      name: 'treatmentCenterDetail',
+      name: UIState.CENTER_DETAIL,
       url: '/treatment-center-detail/:id',
       template: '<treatment-center-detail></treatment-center-detail>'
     });

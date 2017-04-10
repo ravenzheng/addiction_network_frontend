@@ -5,9 +5,9 @@ angular.module(moduleName, ['ui.router'])
     template: require('./view.html')
   })
   .component('content', require('./content'))
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
-      name: 'aboutUs',
+      name: UIState.ABOUT_US,
       url: '/about',
       template: '<about></about>'
     });

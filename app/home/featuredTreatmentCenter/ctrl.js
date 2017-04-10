@@ -1,6 +1,6 @@
-module.exports = ['$log', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', 'UIState', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, service) {
+function ctrl($log, UIState, service) {
   var vm = this;
   vm.$onInit = onInit;
 
@@ -12,7 +12,7 @@ function ctrl($log, service) {
         return;
       }
       vm.listings = listings.map(function (listing) {
-        listing.uiSref = 'treatmentCenterDetail({id: "' + listing.id + '"})';
+        listing.uiSref = UIState.CENTER_DETAIL + '({id: "' + listing.id + '"})';
         return listing;
       });
     }).catch(function (err) {

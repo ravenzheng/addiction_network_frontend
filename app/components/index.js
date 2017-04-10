@@ -1,14 +1,14 @@
 var moduleName = 'app.components';
 
 angular.module(moduleName, [])
-  .constant('Status', require('./statusConstants'))
   .constant('states', require('./states.json'))
   .constant('mapConfig', require('./map.json'))
+  .constant('Status', require('./statusConstants'))
+  .constant('UIState', require('./uiStateConstants'))
   .component('statusView', require('./statusView'))
   .component('cardHeading', require('./cardHeading'))
   .component('emptyListError', require('./emptyListError'))
   .component('footerAd', require('./footerAd'))
-  .component('profileNavSection', require('./profileNavSection'))
   .component('sectionHeading', require('./sectionHeading'))
   .component('sponsAdsCategories', require('./sponsAdsCategories'))
   .component('sponsListIds', require('./sponsListIds'))
