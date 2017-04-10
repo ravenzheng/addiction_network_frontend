@@ -6,8 +6,18 @@ function ctrl($log, $stateParams, $state, service) {
   vm.goToCity = goToCity;
 
   function onInit() {
-    vm.stateName = $stateParams.stateName;
-    vm.countyName = $stateParams.countyName;
+    var area = $stateParams.countyName;
+    $log.info(area);
+    if (area.indexOf('-') === -1) {
+      // invalid $stateParams, go back to home.
+      $state.go('home');
+      return;
+    }
+    // request cities of state. #/sponsorhome/cities/Cook-IL
+    var segs = area.split('-');
+    vm.countyName = segs[0];
+    vm.stateName = segs[1];
+    vm.area = segs[0];
     service.getCitiesByCounty(vm.countyName).then(function (result) {
       if (!result.length) {
         throw new Error('Got an empty dataset at cityListBox');

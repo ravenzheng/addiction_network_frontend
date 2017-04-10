@@ -8,9 +8,11 @@ angular.module(moduleName, [
   require('../services'),
   require('../sidePanel')
 ]).filter('urlFilter', require('./urlFilter'))
-  .component('sponsorListingBox', require('./sponsorListingBox'))
   .component('cityListBox', require('./cityListBox'))
+  .component('cityListBoxOfCounty', require('./cityListBoxOfCounty'))
+  .component('cityListBoxOfState', require('./cityListBoxOfState'))
   .component('countyListBox', require('./countyListBox'))
+  .component('sponsorListingBox', require('./sponsorListingBox'))
   .component('sponsorHome', {
     template: require('./view.html')
   })
@@ -37,18 +39,23 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: 'sponsorHome.county',
-      url: '/sponsorhome/county/:stateName/:countyName',
+      url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:countyName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
       name: 'sponsorHome.city',
-      url: '/sponsorhome/city/:stateName/:countyName/:cityName',
+      url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:cityName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.cities',
-      url: '/sponsorhome/cities/:stateName/:countyName',
-      template: '<city-list-box></city-list-box>'
+      name: 'sponsorHome.citiesOfState',
+      url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}',
+      template: '<city-list-box-of-state></city-list-box-of-state>'
+    });
+    $stateProvider.state({
+      name: 'sponsorHome.citiesOfCounty',
+      url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}/{countyName}',
+      template: '<city-list-box-of-county></city-list-box-county>'
     });
   }]);
 
