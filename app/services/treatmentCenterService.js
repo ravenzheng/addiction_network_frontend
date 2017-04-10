@@ -20,17 +20,14 @@ function service($http, endPoint, UserService) {
 
   // home page, addListing
   function addTreatmentCenterSignUp(formData) {
-    return UserService.getToken().then(function (token) {
-      return $http({
-        url: endPoint + '/registrations',
-        method: 'POST',
-        data: formData,
-        transformRequest: angular.identity,
-        headers: {
-          'Authorization': token,
-          'Content-Type': undefined
-        }
-      });
+    return $http({
+      url: endPoint + '/registrations',
+      method: 'POST',
+      data: formData,
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined
+      }
     });
   }
 
