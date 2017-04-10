@@ -1,6 +1,6 @@
-module.exports = ['$log', 'TreatmentCenterService', ctrl];
+module.exports = ['$window', '$log', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, service) {
+function ctrl($window, $log, service) {
   var vm = this;
   vm.passRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/';
 
@@ -83,7 +83,7 @@ function ctrl($log, service) {
     vm.pass_err = '';
     vm.intakeemail_err = '';
     service.addTreatmentCenterSignUp(formData).then(function () {
-      location.reload(true);
+      $window.location.href = '/#/login';
     }).catch(function (err) {
       if (err.data.user) {
         vm.email_err = err.data.user.email.errors[0];
