@@ -1,14 +1,13 @@
-var angular = require('angular'),
-  moduleName = 'app.featuredTreatmentCenter';
+var moduleName = 'app.featuredTreatmentCenter';
 
 angular.module(moduleName, [
   'ui.router',
   require('../sidePanel')
 ]).component('featuredTreatmentCenterPage', {
   template: require('./view.html')
-}).config(['$stateProvider', function ($stateProvider) {
+}).config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
   $stateProvider.state({
-    name: 'featuredTreatmentCenterPage',
+    name: UIState.FEATURED_CENTER,
     url: '/featured-treatment-center',
     template: '<featured-treatment-center-page></featured-treatment-center-page>'
   });

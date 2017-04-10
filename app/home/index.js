@@ -12,9 +12,9 @@ angular.module(moduleName, [
     template: require('./view.html'),
     controller: require('./ctrl')
   })
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
-      name: 'home',
+      name: UIState.HOME,
       url: '/',
       template: '<home></home>'
     });

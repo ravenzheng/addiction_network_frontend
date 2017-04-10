@@ -1,10 +1,9 @@
-describe('Treatment Cetner Detail Route', function () {
+describe('Home Route', function () {
   // Define global references for injections
   var $state,
     $rootScope,
     UIState,
     state,
-    params,
     expectedURL;
 
   beforeEach(angular.mock.module('AddictionNetworkApp'));
@@ -17,14 +16,11 @@ describe('Treatment Cetner Detail Route', function () {
     UIState = $injector.get('UIState');
   }));
 
-  it('should have state `treatmentCenterDetail`', function () {
+  it('should have state `home`', function () {
     // Test whether the url is correct
-    state = UIState.CENTER_DETAIL;
-    params = {
-      id: 100
-    };
-    expectedURL = '#/treatment-center-detail/100';
-    expect($state.href(state, params)).toEqual(expectedURL);
+    state = UIState.HOME;
+    expectedURL = '#/';
+    expect($state.href(state)).toEqual(expectedURL);
     // Test whether our state activates correctly
     $state.go(state);
     $rootScope.$digest();

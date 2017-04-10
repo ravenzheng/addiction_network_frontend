@@ -16,44 +16,44 @@ angular.module(moduleName, [
   .component('sponsorHome', {
     template: require('./view.html')
   })
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
-      name: 'sponsorHome',
+      name: UIState.SPONSOR_HOME.INDEX,
       abstract: true,
       template: '<sponsor-home></sponsor-home>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.filter',
+      name: UIState.SPONSOR_HOME.FILTER,
       url: '/sponsorhome/filter/:filterName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.state',
+      name: UIState.SPONSOR_HOME.STATE,
       url: '/sponsorhome/state/:stateName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.counties',
+      name: UIState.SPONSOR_HOME.COUNTIES,
       url: '/sponsorhome/counties/:stateName',
       template: '<county-list-box></county-list-box>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.county',
+      name: UIState.SPONSOR_HOME.COUNTY,
       url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:countyName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.city',
+      name: UIState.SPONSOR_HOME.CITY,
       url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:cityName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.citiesOfState',
+      name: UIState.SPONSOR_HOME.CITIES_OF_STATE,
       url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}',
       template: '<city-list-box-of-state></city-list-box-of-state>'
     });
     $stateProvider.state({
-      name: 'sponsorHome.citiesOfCounty',
+      name: UIState.SPONSOR_HOME.CITIES_OF_COUNTY,
       url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}/{countyName}',
       template: '<city-list-box-of-county></city-list-box-county>'
     });

@@ -1,48 +1,51 @@
+var UIState = require('../components/uiStateConstants');
+
 var internalLinks = [{
-  uiSref: 'home',
+  uiSref: UIState.HOME,
   name: 'Home'
 }, {
-  uiSref: 'treatmentCenterMap.index',
+  uiSref: UIState.CENTER_MAP.MAP,
   name: 'Treatment Centers'
 }, {
-  uiSref: 'aboutUs',
+  uiSref: UIState.ABOUT_US,
   name: 'About Us'
 }, {
-  uiSref: 'blog',
+  uiSref: UIState.BLOG,
   name: 'Blog'
 }, {
-  uiSref: 'contactUs',
+  uiSref: UIState.CONTACT_US,
   name: 'Contact Us'
 }, {
-  uiSref: 'myProfile.index',
+  uiSref: UIState.MY_PROFILE.PROFILE,
   name: 'My Profile'
 }, {
-  uiSref: 'logout',
+  uiSref: UIState.LOGOUT,
   name: 'Logout'
 }];
 
 var internalLinksNoAuth = [{
-  uiSref: 'home',
+  uiSref: UIState.HOME,
   name: 'Home'
 }, {
-  uiSref: 'treatmentCenterMap.index',
+  uiSref: UIState.CENTER_MAP.MAP,
   name: 'Treatment Centers'
 }, {
-  uiSref: 'aboutUs',
+  uiSref: UIState.ABOUT_US,
   name: 'About Us'
 }, {
-  uiSref: 'blog',
+  uiSref: UIState.BLOG,
   name: 'Blog'
 }, {
-  uiSref: 'contactUs',
+  uiSref: UIState.CONTACT_US,
   name: 'Contact Us'
 }, {
-  uiSref: 'centerDetail',
+  uiSref: UIState.ADD_LISTING,
   name: 'Add Listing'
 }, {
-  uiSref: 'login',
+  uiSref: UIState.LOGIN,
   name: 'Login'
 }];
+
 var socialLinks = [{
   href: 'https://www.facebook.com/theaddictionnetwork',
   img: 'themes/addiction/images/fb-2.png'

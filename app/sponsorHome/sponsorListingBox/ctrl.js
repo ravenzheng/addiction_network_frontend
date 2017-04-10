@@ -1,11 +1,12 @@
-module.exports = ['$log', '$state', '$stateParams', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$state', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, $state, $stateParams, service) {
+function ctrl($log, $state, service) {
   var vm = this;
   vm.$onInit = onInit;
 
   function onInit() {
     var keyword = '';
+    var $stateParams = $state.params;
     if ($state.is('sponsorHome.filter')) {
       keyword = $stateParams.filterName;
     }

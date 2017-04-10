@@ -2,9 +2,9 @@ var moduleName = 'app.blog';
 
 angular.module(moduleName, [
   'ui.router'
-]).config(['$stateProvider', function ($stateProvider) {
+]).config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
   $stateProvider.state({
-    name: 'blog'
+    name: UIState.BLOG
   });
 }]);
 
