@@ -63,19 +63,6 @@ function ctrl($log, $scope, $state, $stateParams) {
         stateName: vm.stateName
       });
     }
-
-    // if ($state.is('sponsorHome.state') || $state.is('sponsorHome.counties')) {
-    //   $state.go('sponsorHome.citiesOfState', {
-    //     stateName: vm.stateName
-    //   });
-    //   return;
-    // }
-    // if ($state.is('sponsorHome.county')) {
-    //   $state.go('sponsorHome.citiesOfCounty', {
-    //     stateName: vm.stateName,
-    //     countyName: vm.countyName
-    //   });
-    // }
   }
 
   function goToCounties() {
