@@ -5,11 +5,14 @@ function ctrl($log, $rootScope, Status, service) {
   vm.submit = submit;
 
   function submit() {
-    var formData = new FormData();
-    formData.append('user[old_password]', vm.oldPassword);
-    formData.append('user[password]', vm.password);
-    formData.append('user[password_confirmation]', vm.passwordConfirmation);
-    service.changePassword(formData).then(function ( /* result */ ) {
+    var data = {
+      user: {
+        old_password: vm.oldPassword,
+        password: vm.password,
+        passwordConfirmation: vm.passwordConfirmation
+      }
+    };
+    service.changePassword(data).then(function ( /* result */ ) {
       // clear all the input
       vm.oldPassword = '';
       vm.password = '';
