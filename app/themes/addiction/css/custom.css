@@ -2773,3 +2773,6 @@ label.error {
 .navbar-default .navbar-nav>li>a {
   cursor: pointer;
 }
+.ng-valid-required + .help-block {
+    color: #d50000 !important;
+}
