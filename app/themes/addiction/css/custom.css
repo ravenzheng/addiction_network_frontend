@@ -2773,6 +2773,14 @@ label.error {
 .navbar-default .navbar-nav>li>a {
   cursor: pointer;
 }
-.ng-valid-required + .help-block {
-    color: #d50000 !important;
+.ng-valid-required + .help-block::before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f05a";
+  color: #d50000;
+  padding: 5px;
 }
