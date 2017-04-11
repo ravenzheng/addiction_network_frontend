@@ -2773,6 +2773,9 @@ label.error {
 .navbar-default .navbar-nav>li>a {
   cursor: pointer;
 }
+.ng-valid-required + .help-block {
+    color: #d50000 !important;
+}
 .ng-valid-required + .help-block::before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
