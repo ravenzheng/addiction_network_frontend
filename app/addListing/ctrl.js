@@ -1,6 +1,6 @@
-module.exports = ['$window', '$log', 'MapService', 'TreatmentCenterService', ctrl];
+module.exports = ['$window', '$rootScope', 'Status', '$log', 'MapService', 'TreatmentCenterService', ctrl];
 
-function ctrl($window, $log, mapService, service) {
+function ctrl($window, $rootScope, Status, $log, mapService, service) {
   var vm = this;
   vm.passRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/';
 
@@ -10,7 +10,33 @@ function ctrl($window, $log, mapService, service) {
     'height': '25px',
     'margin-left': '5px'
   };
+  vm.multiselectModelCategories = [];
+  vm.multiselectModelSettings = {
+    scrollableHeight: '200px',
+    scrollable: true,
+    checkBoxes: true,
+    showCheckAll: false,
+    showUncheckAll: false
+  };
 
+  vm.addListingCategories = [
+    {
+      'label': 'Inpatient',
+      'id': '1'
+    },
+    {
+      'label': 'Outpatient',
+      'id': '2'
+    },
+    {
+      'label': 'Sober Living',
+      'id': '3'
+    },
+    {
+      'label': 'Adolescent',
+      'id': '4'
+    }
+  ];
   vm.analyze = function () {};
   mapService.getStates().then(function (response) {
     vm.states = response;
@@ -26,12 +52,18 @@ function ctrl($window, $log, mapService, service) {
       vm.error_message = err;
     });
   };
-  vm.submit = function (form) {
-    if (!form.$valid) {
-      $log.error('Invalid form');
+  vm.submit = function () {
+    var formData = new FormData();
+    var categoryName = [];
+    for (var key in vm.multiselectModelCategories) {
+      var categories = String(vm.multiselectModelCategories[key].id);
+      categoryName[key] = categories;
+    }
+    // console.log('category name ' + categoryName);
+    if (categoryName.length === 0) {
+      $rootScope.$emit(Status.FAILED, 'Please select atleast one category');
       return;
     }
-    var formData = new FormData();
     var sigupData = {
       'email': vm.email,
       'password': vm.password,
@@ -39,9 +71,10 @@ function ctrl($window, $log, mapService, service) {
       'first_name': vm.first_name,
       'last_name': vm.last_name,
       'company': vm.company,
-      'phone': vm.phone
+      'phone': vm.phone,
+      'username': vm.username
     };
-    for (var key in sigupData) {
+    for (key in sigupData) {
       formData.append('user[' + key + ']', sigupData[key]);
     }
     if (vm.center_name !== '') {
@@ -50,16 +83,17 @@ function ctrl($window, $log, mapService, service) {
         'description': vm.description,
         'center_web_link': vm.center_web_link,
         'listing_image': vm.listing_image,
-        'heading_1': vm.heading_1,
-        'heading_2': vm.heading_2,
-        'heading_3': vm.heading_3,
-        'heading_4': vm.heading_4,
+        'heading_1': 'Overview of Program',
+        'heading_2': 'Treatment Approach',
+        'heading_3': 'Unique Selling Points',
+        'category_id': categoryName,
+        // 'heading_4': vm.heading_4,
         'content_1': vm.content_1,
         'content_2': vm.content_2,
         'content_3': vm.content_3,
-        'content_4': vm.content_4,
+        // 'content_4': vm.content_4,
         'address_line_1': vm.address_line_1,
-        'address_line_2': vm.address_line_2,
+        //  'address_line_2': vm.address_line_2,
         'city': vm.city,
         'pincode': vm.pincode,
         'state': vm.state,
@@ -72,8 +106,8 @@ function ctrl($window, $log, mapService, service) {
         formData.append('treatment_center[' + key + ']', treatmentcenterData[key]);
       }
     }
-    if (vm.image_data) {
-      var imageData = vm.image_data;
+    var imageData = vm.image_data;
+    if (imageData) {
       var len = imageData.length;
       for (var i = 0; i < len; i++) {
         formData.append('treatment_center[image_data][]', imageData.item(i));
@@ -83,13 +117,22 @@ function ctrl($window, $log, mapService, service) {
     vm.pass_err = '';
     vm.intakeemail_err = '';
     service.addTreatmentCenterSignUp(formData).then(function () {
-      $window.location.href = '/#/login';
+      $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP);
+      // $window.location.href = '/#/login';
     }).catch(function (err) {
       if (err.data.user) {
-        vm.email_err = err.data.user.email.errors[0];
-        vm.pass_err = err.data.user.password.errors[0];
-      } else if (err.data.treatment_center) {
-        vm.intakeemail_err = err.data.treatment_center.email.errors[0];
+        if (angular.isDefined(err.data.user.email)) {
+          var emailError = err.data.user.email.errors[0];
+          $rootScope.$emit(Status.FAILED, emailError);
+        }
+        if (angular.isDefined(err.data.user.password)) {
+          var passError = err.data.user.password.errors[0];
+          $rootScope.$emit(Status.FAILED, passError);
+        }
+        if (angular.isDefined(err.data.user.username)) {
+          var userError = err.data.user.username.errors[0];
+          $rootScope.$emit(Status.FAILED, userError);
+        }
       }
     });
   };
