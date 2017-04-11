@@ -62,7 +62,6 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Username" id="username" name="username" class="form-control required" type="text" ng-model="$ctrl.username" required="true">
-                    <span id="username_err">{{$ctrl.username_err}}</span>
                     <p ng-show="addlistForm.username.$error.required" class="help-block">Required</p>
                   </div>
                 </div>
@@ -73,7 +72,6 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Email" id="email" name="email" class="form-control required" type="email" ng-model="$ctrl.email" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
-                    <span id="email_err">{{$ctrl.email_err}}</span>
                     <p ng-show="addlistForm.email.$invalid" class="help-block">Required and please enter valid email</p>
                   </div>
                 </div>
@@ -141,8 +139,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Intake Email " id="intakeemail" name="intakeemail" class="form-control required" email="true" type="text" ng-model="$ctrl.intakeemail" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
-                    <span>{{$ctrl.intakeemail_err}}</span>
-                    <span ng-show="addlistForm.intakeemail.$invalid" class="help-block">Required and please enter valid email</span>
+                    <p ng-show="addlistForm.intakeemail.$invalid" class="help-block">Required and please enter valid email</p>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -151,8 +148,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" ng-minlength="10" ng-maxlength="10" maxlength="10" ng-pattern="/^-?[0-9+]*$/" type="text" ng-model="$ctrl.intakephone" required="true">
-                    <span id="intakephone_err"> </span>
-                    <span ng-show="addlistForm.intakephone.$invalid" class="help-block">Required and phone number must be 10 digits long</span>
+                    <p ng-show="addlistForm.intakephone.$invalid" class="help-block">Required and phone number must be 10 digits long</p>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -161,7 +157,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <textarea name="description" ng-model="$ctrl.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview" required="true"></textarea>
-                    <span ng-show="addlistForm.description.$error.required">Required</span>
+                    <p ng-show="addlistForm.description.$error.required">Required</p>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
@@ -180,7 +176,7 @@
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                     <input name="address_line_1" class="form-control required" type="text" ng-model="$ctrl.address_line_1" placeholder="Street Address" required="true">
-                    <span ng-show="addlistForm.address_line_1.$invalid">Required</span>
+                    <p ng-show="addlistForm.address_line_1.$invalid">Required</p>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -192,7 +188,7 @@
                       <option value="">Select State</option>
                       <option ng-repeat="states in $ctrl.states track by $index" value="{{states}}">{{states}}</option>
                     </select>
-                    <span ng-show="addlistForm.state.$invalid">Required</span>
+                    <p ng-show="addlistForm.state.$invalid">Required</p>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -205,7 +201,7 @@
                       <option value="">Select City</option>
                       <option ng-repeat="cities in $ctrl.cities track by $index" value="{{cities}}">{{cities}}</option>
                     </select>
-                    <span ng-show="addlistForm.city.$invalid">Required</span>
+                    <p ng-show="addlistForm.city.$invalid">Required</p>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -223,9 +219,8 @@
                     </label>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input placeholder="Zip" id="pincode" name="pincode" class="form-control required" number="true" minlength="5" maxlength="5" type="text" ng-model="$ctrl.pincode" required="true">
+                    <input placeholder="Zip" id="pincode" name="pincode" class="form-control required" number="true" minlength="5" maxlength="5" type="text" ng-model="$ctrl.pincode" ng-pattern="/^\d{5}$/" required="true">
                     <p ng-show="addlistForm.pincode.$invalid" class="help-block">Zip code must be 5 digits</p>
-                    <span id="zip_err"> </span>
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
