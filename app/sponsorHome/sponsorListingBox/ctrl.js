@@ -1,25 +1,26 @@
-module.exports = ['$log', '$state', '$stateParams', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, $state, $stateParams, service) {
+function ctrl($log, $state, UIState, service) {
   var vm = this;
   vm.$onInit = onInit;
 
   function onInit() {
     var keyword = '';
-    if ($state.is('sponsorHome.filter')) {
+    var $stateParams = $state.params;
+    if ($state.is(UIState.SPONSOR_HOME.FILTER)) {
       keyword = $stateParams.filterName;
     }
-    if ($state.is('sponsorHome.state')) {
+    if ($state.is(UIState.SPONSOR_HOME.STATE)) {
       keyword = $stateParams.stateName;
     }
-    if ($state.is('sponsorHome.city')) {
-      keyword = $stateParams.cityName;
-    }
-    if ($state.is('sponsorHome.county')) {
+    if ($state.is(UIState.SPONSOR_HOME.COUNTY)) {
       keyword = $stateParams.countyName;
     }
+    if ($state.is(UIState.SPONSOR_HOME.CITY)) {
+      keyword = $stateParams.cityName;
+    }
     if (!keyword) {
-      $state.go('home');
+      $state.go(UIState.HOME);
       return;
     }
     service.querySponsoredListings(keyword).then(function (result) {

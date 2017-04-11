@@ -93,7 +93,7 @@ module.exports = function (config) {
 
       // errors-only, minimal, none, normal, verbose
       stats: 'errors-only',
-      devtool: 'inline-source-map'
+      devtool: 'source-map'
     },
 
     webpackMiddleware: {

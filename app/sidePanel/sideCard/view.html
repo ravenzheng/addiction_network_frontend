@@ -3,7 +3,7 @@
     <card-heading>{{ $ctrl.filter }}</card-heading>
     <ul class="list-unstyled">
       <li ng-repeat="listing in $ctrl.listings">
-        <a href ng-click="$ctrl.nagivateTo(listing)">
+        <a ui-sref="{{ listing.uiSref }}">
           <span class="glyphicon glyphicon-chevron-right"></span>
           {{ listing.name }}
         </a>

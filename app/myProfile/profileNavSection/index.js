@@ -1,9 +1,7 @@
 module.exports = {
   template: require('./view.html'),
+  controller: require('./ctrl'),
   bindings: {
-    area: '<',
-    cities: '<',
-    displayError: '<',
-    goToCity: '&'
+    'profilePic': '<'
   }
 };
