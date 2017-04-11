@@ -1,16 +1,16 @@
 <div class="left_content">
   <section-heading>
-    Browse the Best Rehabs in {{ $ctrl.countyName }}
+    Browse the Best Rehabs in {{ $ctrl.area }}
   </section-heading>
 
   <!-- empty listings error-->
-  <empty-list-error display="$ctrl.displayError"></empty-list-error>
+  <empty-list-error display="$ctrl.cities.length === 0"></empty-list-error>
 
   <!-- city list -->
   <section ng-hide="$ctrl.displayError">
     <ul class="list-locations list-columns">
       <li ng-repeat="city in $ctrl.cities track by $index">
-        <a href ng-click="$ctrl.goToCity(city)">
+        <a href ng-click="$ctrl.goToCity({cityName: city})">
           <i class="glyphicon glyphicon-map-marker"></i>{{ city }}
         </a>
       </li>

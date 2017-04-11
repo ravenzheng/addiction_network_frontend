@@ -1,4 +1,10 @@
-.location-filter-ol {
-  -webkit-padding-start: 0px;
-  margin-bottom: 0px;
+a.area-filter-link:hover, a.area-filter-link:focus {
+  text-decoration: none
 }
+
+a.area-filter-link-disabled {
+  pointer-events: none;
+  color: #333
+}
+
+a.area-filter-link-normal {}

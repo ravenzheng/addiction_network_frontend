@@ -18,6 +18,8 @@ module.exports = function (config) {
       'build/angular-ui-router.min.js',
       'build/ui-bootstrap-tpls.js',
       'build/angular-mocks.js',
+      'build/angularjs-dropdown-multiselect.min.js',
+      'build/angular-local-storage.min.js',
       'build/bundle.js',
       'app/**/*.spec.js'
     ],
