@@ -118,7 +118,7 @@ function ctrl($window, $rootScope, Status, $log, mapService, service) {
     vm.intakeemail_err = '';
     service.addTreatmentCenterSignUp(formData).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP);
-      // $window.location.href = '/#/login';
+      $window.location.href = '/#/login';
     }).catch(function (err) {
       if (err.data.user) {
         if (angular.isDefined(err.data.user.email)) {
