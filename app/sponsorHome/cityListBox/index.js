@@ -3,6 +3,7 @@ module.exports = {
   bindings: {
     area: '<',
     cities: '<',
+    displayError: '<',
     goToCity: '&'
   }
 };

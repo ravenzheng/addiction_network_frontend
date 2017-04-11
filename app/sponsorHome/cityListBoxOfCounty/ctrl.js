@@ -13,9 +13,11 @@ function ctrl($log, $state, UIState, service) {
     service.getCitiesByCounty(vm.countyName).then(function (result) {
       result.sort();
       vm.cities = result;
+      vm.displayError = (vm.cities.length === 0);
     }).catch(function (err) {
       $log.error(err);
       vm.cities = [];
+      vm.displayError = true;
     });
   }
 
