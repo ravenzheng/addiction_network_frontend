@@ -1,19 +1,16 @@
-module.exports = ['$log', '$stateParams', '$state', 'MapService', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'MapService', ctrl];
 
-function ctrl($log, $stateParams, $state, service) {
+function ctrl($log, $state, UIState, service) {
   var vm = this;
   vm.$onInit = onInit;
   vm.goToCity = goToCity;
 
   function onInit() {
     // request cities of state. #/sponsorhome/cities/IL/Cook
-    vm.countyName = $stateParams.countyName;
-    vm.stateName = $stateParams.stateName;
+    vm.countyName = $state.params.countyName;
+    vm.stateName = $state.params.stateName;
     vm.area = vm.countyName + ' ' + vm.stateName;
     service.getCitiesByCounty(vm.countyName).then(function (result) {
-      if (!result.length) {
-        throw new Error('Got an empty dataset at cityListBox');
-      }
       result.sort();
       vm.cities = result;
     }).catch(function (err) {
@@ -23,7 +20,8 @@ function ctrl($log, $stateParams, $state, service) {
   }
 
   function goToCity(city) {
-    $state.go('sponsorHome.city', {
+    // go to city from county page
+    $state.go(UIState.SPONSOR_HOME.CITY_OF_COUNTY, {
       stateName: vm.stateName,
       countyName: vm.countyName,
       cityName: city

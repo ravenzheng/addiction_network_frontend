@@ -180,9 +180,10 @@ describe('SponsorListingBox Controller', function () {
   });
 
   describe(' with valid `countyName`, ', function () {
-    var _countyName = 'Utopia County';
+    var _countyName = 'Cook County';
     beforeEach(function () {
       _$state.go(UIState.SPONSOR_HOME.COUNTY, {
+        stateName: 'IL',
         countyName: _countyName
       });
       $rootScope.$digest();
@@ -243,9 +244,11 @@ describe('SponsorListingBox Controller', function () {
   });
 
   describe(' with valid `cityName`, ', function () {
-    var _cityName = 'Utopia';
+    var _cityName = 'Cook County';
     beforeEach(function () {
       _$state.go(UIState.SPONSOR_HOME.CITY, {
+        stateName: 'IL',
+        countyName: 'Cook County',
         cityName: _cityName
       });
       $rootScope.$digest();

@@ -15,6 +15,8 @@ describe('Sponsor Home Route', function () {
     $state = $injector.get('$state');
     $rootScope = $injector.get('$rootScope');
     UIState = $injector.get('UIState');
+    $state.go('home');
+    $rootScope.$digest();
   }));
 
   it('should have state `sponsorHome.filter`', function () {
@@ -40,7 +42,7 @@ describe('Sponsor Home Route', function () {
     expectedURL = '#/sponsorhome/state/IL';
     expect($state.href(state, params)).toEqual(expectedURL);
     // Test whether our state activates correctly
-    $state.go(state);
+    $state.go(state, params);
     $rootScope.$digest();
     expect($state.current.name).toBe(state);
   });
@@ -50,12 +52,12 @@ describe('Sponsor Home Route', function () {
     state = UIState.SPONSOR_HOME.COUNTY;
     params = {
       'stateName': 'IL',
-      'countyName': 'Cook'
+      'countyName': 'Cook County'
     };
-    expectedURL = '#/sponsorhome/county/IL/Cook';
+    expectedURL = encodeURI('#/sponsorhome/IL/Cook County');
     expect($state.href(state, params)).toEqual(expectedURL);
     // Test whether our state activates correctly
-    $state.go(state);
+    $state.go(state, params);
     $rootScope.$digest();
     expect($state.current.name).toBe(state);
   });
@@ -68,10 +70,10 @@ describe('Sponsor Home Route', function () {
       'countyName': 'Cook County',
       'cityName': 'Chicago'
     };
-    expectedURL = encodeURI('#/sponsorhome/city/IL/Cook County/Chicago');
+    expectedURL = encodeURI('#/sponsorhome/IL/Cook County/Chicago');
     expect($state.href(state, params)).toEqual(expectedURL);
     // Test whether our state activates correctly
-    $state.go(state);
+    $state.go(state, params);
     $rootScope.$digest();
     expect($state.current.name).toBe(state);
   });
@@ -85,14 +87,28 @@ describe('Sponsor Home Route', function () {
     expectedURL = encodeURI('#/sponsorhome/counties/IL');
     expect($state.href(state, params)).toEqual(expectedURL);
     // Test whether our state activates correctly
-    $state.go(state);
+    $state.go(state, params);
     $rootScope.$digest();
     expect($state.current.name).toBe(state);
   });
 
-  it('should have state `sponsorHome.cities`', function () {
+  it('should have state `sponsorHome.citiesOfState`', function () {
     // Test whether the url is correct
-    state = UIState.SPONSOR_HOME.CITIES;
+    state = UIState.SPONSOR_HOME.CITIES_OF_STATE;
+    params = {
+      'stateName': 'IL'
+    };
+    expectedURL = encodeURI('#/sponsorhome/cities/IL');
+    expect($state.href(state, params)).toEqual(expectedURL);
+    // Test whether our state activates correctly
+    $state.go(state, params);
+    $rootScope.$digest();
+    expect($state.current.name).toBe(state);
+  });
+
+  it('should have state `sponsorHome.citiesOfCounty`', function () {
+    // Test whether the url is correct
+    state = UIState.SPONSOR_HOME.CITIES_OF_COUNTY;
     params = {
       'stateName': 'IL',
       'countyName': 'Cook County'
@@ -100,7 +116,7 @@ describe('Sponsor Home Route', function () {
     expectedURL = encodeURI('#/sponsorhome/cities/IL/Cook County');
     expect($state.href(state, params)).toEqual(expectedURL);
     // Test whether our state activates correctly
-    $state.go(state);
+    $state.go(state, params);
     $rootScope.$digest();
     expect($state.current.name).toBe(state);
   });

@@ -1,27 +1,25 @@
-module.exports = ['$log', '$stateParams', '$state', 'MapService', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'MapService', ctrl];
 
-function ctrl($log, $stateParams, $state, service) {
+function ctrl($log, $state, UIState, service) {
   var vm = this;
   vm.$onInit = onInit;
   vm.goToCounty = goToCounty;
 
   function onInit() {
-    vm.stateName = $stateParams.stateName;
+    vm.stateName = $state.params.stateName;
     service.getCountiesByState(vm.stateName).then(function (result) {
-      if (!result.length) {
-        throw new Error('Got an empty dataset at countyListBox.');
-      }
       result.sort();
       vm.counties = result;
       vm.displayError = false;
     }).catch(function (err) {
       $log.error(err);
+      vm.counties = [];
       vm.displayError = true;
     });
   }
 
   function goToCounty(county) {
-    $state.go('sponsorHome.county', {
+    $state.go(UIState.SPONSOR_HOME.COUNTY, {
       stateName: vm.stateName,
       countyName: county
     });

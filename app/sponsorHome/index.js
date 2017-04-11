@@ -29,12 +29,12 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.STATE,
-      url: '/sponsorhome/state/:stateName',
+      url: '/sponsorhome/state/{stateName:[a-zA-Z]{2}}',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.COUNTIES,
-      url: '/sponsorhome/counties/:stateName',
+      url: '/sponsorhome/counties/{stateName:[a-zA-Z]{2}}',
       template: '<county-list-box></county-list-box>'
     });
     $stateProvider.state({
@@ -44,7 +44,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.CITY,
-      url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:cityName',
+      url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/{countyName}/:cityName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
