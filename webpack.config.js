@@ -106,7 +106,8 @@ var cssAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'themes/addiction/css/fwslider.css',
     'themes/addiction/css/bootstrap-multiselect.css',
     'themes/addiction/css/map-style.css',
-    'ui-bootstrap-csp.css'
+    'ui-bootstrap-csp.css',
+    'themes/addiction/css/font-awesome.min.css'
   ],
   append: false
 });
