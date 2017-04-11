@@ -1,6 +1,6 @@
-module.exports = ['$log', '$state', 'UIState', 'MapService', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'MapService', ctrl];
 
-function ctrl($log, $state, UIState, service, TreatmentCenterService) {
+function ctrl($log, $state, UIState, service) {
   var vm = this;
   vm.$onInit = onInit;
   vm.goToCity = goToCity;
@@ -9,12 +9,15 @@ function ctrl($log, $state, UIState, service, TreatmentCenterService) {
     // request cities of state. #/sponsorhome/cities/IL
     vm.stateName = $state.params.stateName;
     vm.area = vm.stateName;
-    service.getCitiesByState(vm.stateName).then(function (result) {
-      result.sort();
-      vm.cities = result;
+    service.getCitiesWithCountyByState(vm.stateName).then(function (result) {
+      var cities = flatten(result);
+      cities.sort();
+      vm.citiesWithCounty = result;
+      vm.cities = cities;
       vm.displayError = (vm.cities.length === 0);
     }).catch(function (err) {
       $log.error(err);
+      vm.citiesWithCounty = [];
       vm.cities = [];
       vm.displayError = true;
     });
@@ -54,16 +57,15 @@ function ctrl($log, $state, UIState, service, TreatmentCenterService) {
 
   function goToCity(city) {
     // go to city from state page
-    // todo. should get countyName from server first'
-    TreatmentCenterService.querySponsoredListings(city).then(function (result) {
-      if (!result.county) {
-        return;
-      }
-      $state.go(UIState.SPONSOR_HOME.CITY, {
-        stateName: vm.stateName,
-        countyName: result.county,
-        cityName: city
-      });
+    var countyName = findCountyName(city);
+    if (!countyName) {
+      // throw error
+      return;
+    }
+    $state.go(UIState.SPONSOR_HOME.CITY, {
+      stateName: vm.stateName,
+      countyName: countyName,
+      cityName: city
     });
   }
 }

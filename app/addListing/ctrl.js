@@ -1,6 +1,6 @@
-module.exports = ['$window', '$log', 'TreatmentCenterService', ctrl];
+module.exports = ['$window', '$log', 'MapService', 'TreatmentCenterService', ctrl];
 
-function ctrl($window, $log, service) {
+function ctrl($window, $log, mapService, service) {
   var vm = this;
   vm.passRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/";//"/^-?[0-9+]*$/';
 
@@ -12,7 +12,7 @@ function ctrl($window, $log, service) {
   };
 
   vm.analyze = function () {};
-  service.getStates().then(function (response) {
+  mapService.getStates().then(function (response) {
     vm.states = response;
   }).catch(function (err) {
     vm.error_message = err;
@@ -20,7 +20,7 @@ function ctrl($window, $log, service) {
 
   vm.getCities = function () {
     var state = vm.state;
-    service.getCities(state).then(function (response) {
+    mapService.getCitiesByState(state).then(function (response) {
       vm.cities = response;
     }).catch(function (err) {
       vm.error_message = err;
