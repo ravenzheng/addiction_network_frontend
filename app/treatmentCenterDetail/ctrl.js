@@ -1,13 +1,14 @@
-module.exports = ['$log', '$httpParamSerializer', '$sce', '$scope', '$stateParams', 'Status', 'TreatmentCenterService', ctrl];
+module.exports = ['$anchorScroll', '$log', '$httpParamSerializer', '$sce', '$scope', '$stateParams', 'Status', 'TreatmentCenterService', ctrl];
 
 // center_images: [{
 //  id:
 //  file:
 // }]
 
-function ctrl($log, $httpParamSerializer, $sce, $scope, $stateParams, Status, service) {
+function ctrl($anchorScroll, $log, $httpParamSerializer, $sce, $scope, $stateParams, Status, service) {
   var vm = this;
   vm.$onInit = onInit;
+  vm.$postLink = postLink;
   vm.onReviewSubmitSuccess = onInit;
 
   function onInit() {
@@ -31,5 +32,9 @@ function ctrl($log, $httpParamSerializer, $sce, $scope, $stateParams, Status, se
     }).catch(function (err) {
       $log.error(err);
     });
+  }
+
+  function postLink() {
+    $anchorScroll();
   }
 }
