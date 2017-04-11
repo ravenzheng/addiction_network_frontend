@@ -72,6 +72,7 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService) {
       if (token) {
         $rootScope.login = 1;
       } else if (tostate[0] === 'myProfile') {
+        $window.location.href = '/#/login';
         // $log.error('tostate: ' + tostate[0] + ' -->' + fromState.name);
         event.preventDefault();
       }
