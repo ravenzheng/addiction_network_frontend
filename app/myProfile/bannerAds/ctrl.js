@@ -12,7 +12,7 @@ function ctrl($document, AdvertisementService) {
 
   list.actDect = function (id) {
     AdvertisementService.updateStatus(id).then(function (response) {
-      var status = angular.element($document.querySelector('#status-' + id));
+      var status = angular.element($document[0].querySelector('#status-' + id));
       if (response.active) {
         list.active = response.active;
         status.html('Deactivate');

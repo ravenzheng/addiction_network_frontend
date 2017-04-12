@@ -5,7 +5,7 @@ function ctrl($log, UserService, $rootScope, $window, $document) {
     var password = vm.password;
     UserService.signIn(email, password).then(function () {
       $rootScope.login = 1;
-      $window.location.href = '/#my-profile/index';
+      $window.location.href = '/#my-profile/profile';
     }).catch(function (errors) {
       // todo, display the error message in the page.
       var error = angular.element($document[0].querySelector('#error_if'));
