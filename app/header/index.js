@@ -57,8 +57,9 @@ var socialLinks = [{
   img: 'themes/addiction/images/gglplus.png'
 }];
 
-function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService) {
+function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, service, $sce) {
   /* todo */
+  var vm = this;
   this.socialLinks = socialLinks;
   this.internalLinks = internalLinks;
   this.internalLinksNoAuth = internalLinksNoAuth;
@@ -76,7 +77,26 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService) {
         // $log.error('tostate: ' + tostate[0] + ' -->' + fromState.name);
         event.preventDefault();
       }
+      // for slider
+      if (toState.name !== 'home') {
+        vm.sliderShow = 0;
+      } else {
+        vm.sliderShow = 1;
+      }
     });
+
+  var slider = $rootScope.$on('$viewContentLoaded',
+    function () {
+      if (vm.sliderLoaded !== 1 || angular.isUndefined(vm.sliderLoaded)) {
+        loadSlider(vm, service, $rootScope, $log, $sce);
+        //  $log.info('slider called');
+        vm.sliderLoaded = 1;
+        vm.sliderShow = 1;
+      }
+      //  $log.info('slider html:  ' + vm.html);
+    });
+  vm.sliderLoaded = slider;
+  //  $log.info(stateStart);
 }
 
 module.exports = {
@@ -84,4 +104,15 @@ module.exports = {
   controller: HeaderCtrl
 };
 
-HeaderCtrl.$inject = ['$log', '$scope', '$rootScope', '$window', 'localStorageService'];
+HeaderCtrl.$inject = ['$log', '$scope', '$rootScope', '$window', 'localStorageService', 'SliderService', '$sce'];
+
+function loadSlider(vm, service, $rootScope, $log, $sce) {
+  service.getSlider().then(function (result) {
+    //  vm.html = $sce.trustAsHtml(result.data);
+    vm.html = $sce.trustAsHtml(result.data);
+    //  $log.info('recevied: ' + vm.html);
+  }).catch(function (err) {
+    // todo, display the error message in the page.
+    $log.error(err);
+  });
+}
