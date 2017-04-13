@@ -15,6 +15,7 @@ angular.module(moduleName, [])
   .component('stateSelect', require('./stateSelect'))
   .component('stateMap', require('./stateMap'))
   .directive('fileModel', require('./fileModel'))
-  .directive('validPasswordC', require('./validPasswordC'));
+  .directive('validPasswordC', require('./validPasswordC'))
+  .filter('urlFilter', require('./urlFilter'));
 
 module.exports = moduleName;

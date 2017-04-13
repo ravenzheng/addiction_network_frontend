@@ -1,3 +1,16 @@
+.center-detail-text {
+  float: left;
+  width: 100%;
+  padding: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.center-detail-link {
+  float: left;
+  width: auto;
+  padding: 10px 0 0 0;
+}
+
 .center-detail-map-address {
   font-size: 14px;
   font-weight: bold;
@@ -38,6 +51,14 @@
 
 .contact_info_wrap_div img {
   margin-bottom: 10px;
+}
+
+.inquiry-form-label {
+  color: #2172A7;
+  float: left;
+  font-size: 16px;
+  font-weight: normal;
+  padding-top: 6px;
 }
 
 .review-rating {

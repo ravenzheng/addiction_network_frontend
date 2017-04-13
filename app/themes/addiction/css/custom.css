@@ -1713,36 +1713,6 @@ h3.sub_heading_under_sign_up {
 }
 
 
-/* my Center View */
-
-
-/***detail view page start from here****/
-
-.detail_inner label {
-  color: #2172A7;
-  float: left;
-  font-size: 16px;
-  font-weight: normal;
-  padding-top: 6px;
-}
-
-.treatment_detail p {
-  float: left;
-  width: 100%;
-  padding: 10px 0 0 0;
-  font-size: 14px;
-}
-
-.treatment_detail a {
-  float: left;
-  width: auto;
-  padding: 10px 0 0 0;
-}
-
-
-/***detail view page ends on here****/
-
-
 /*Detail Page 2      */
 
 .glyphicon {
@@ -2773,10 +2743,12 @@ label.error {
 .navbar-default .navbar-nav>li>a {
   cursor: pointer;
 }
-.ng-valid-required + .help-block {
-    color: #d50000 !important;
+
+.ng-valid-required+.help-block {
+  color: #d50000 !important;
 }
-.ng-valid-required + .help-block::before {
+
+.ng-valid-required+.help-block::before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;

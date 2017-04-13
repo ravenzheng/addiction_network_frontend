@@ -27,7 +27,6 @@ angular.module(moduleName, [
   .component('paymentDetailsAdd', require('./paymentDetails/add'))
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
-  .filter('urlFilter', require('./urlFilter'))
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')
