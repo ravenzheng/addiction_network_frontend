@@ -4,7 +4,8 @@ angular.module(moduleName, [
   'ui.router',
   require('../sidePanel')
 ]).component('featuredTreatmentCenterPage', {
-  template: require('./view.html')
+  template: require('./view.html'),
+  controller: require('./ctrl')
 }).config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
   $stateProvider.state({
     name: UIState.FEATURED_CENTER,
