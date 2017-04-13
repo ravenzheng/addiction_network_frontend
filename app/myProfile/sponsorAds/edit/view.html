@@ -26,7 +26,8 @@
               <label for="tname"> Title: </label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <input name="title" class="form-control required" id="tname" placeholder="Sponsor Ad Title" type="text" value="{{$ctrl.title}}" ng-model="$ctrl.title">
+              <input name="title" class="form-control required" id="tname" placeholder="Sponsor Ad Title" type="text" required value="{{$ctrl.title}}" ng-model="$ctrl.title">
+              <span ng-show="sponsorAdsEdit.title.$error.required" class="help-block">Title can't be blank.</span>
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
@@ -34,7 +35,8 @@
               <label for="tname"> Name: </label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <input name="name" class="form-control required" placeholder="Sponsor Ad Name" value="{{$ctrl.name}}" type="text" ng-model="$ctrl.name">
+              <input name="name" class="form-control required" placeholder="Sponsor Ad Name" value="{{$ctrl.name}}" type="text" required ng-model="$ctrl.name">
+              <span ng-show="sponsorAdsEdit.name.$error.required" class="help-block">Name can't be blank.</span>
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
@@ -65,7 +67,8 @@
               <label for="description"> Description: </label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <textarea maxlength="255" name="sponsor_ad_descriptiion" rows="3" class="form-control required" id="description" placeholder="" ng-model="$ctrl.description">{{$ctrl.description}}</textarea>
+              <textarea maxlength="255" name="sponsor_ad_description" rows="3" class="form-control required" id="description" placeholder="" required ng-model="$ctrl.description">{{$ctrl.description}}</textarea>
+              <span ng-show="sponsorAdsEdit.sponsor_ad_description.$error.required" class="help-block">Description can't be blank.</span>
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
@@ -73,8 +76,10 @@
               <label for="web_link"> Website URL: </label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <input name="sponsor_ad_website" class="form-control required url" type="text" id="sponsor_web_link" placeholder="http://www.google.com" ng-model="$ctrl.website" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,10}$/">
+              <input name="sponsor_ad_website" class="form-control required url" type="text" id="sponsor_web_link" placeholder="http://www.google.com" ng-model="$ctrl.website" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+([a-z]{2,10})?(?:[\.])+[a-z]{2,10}$/">
               <span ng-show="sponsorAdsEdit.sponsor_ad_website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
+              <span ng-show="sponsorAdsEdit.sponsor_ad_website.$error.required" class="help-block">Website url can't be blank.</span>
+
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
@@ -95,7 +100,7 @@
             </div>
           </div>
           <div class="text-left col-md-8 col-sm-12 col-xs-8 col-lg-8 col-md-offset-4 col-lg-offset-4 col-sm-offset-4 main_wrap_form_inner_sub ">
-            <input class="btn btn-primary modal_btn pull-right btn_size " id="pay_sponsor_ad " value="Review " type="button " ng-disabled="sponsorAdsEdit.sponsor_ad_website.$invalid " ng-click="$ctrl.submit()">
+            <input class="btn btn-primary modal_btn pull-right btn_size " id="pay_sponsor_ad " value="Review " type="button " ng-disabled="sponsorAdsEdit.sponsor_ad_website.$invalid || sponsorAdsEdit.sponsor_ad_description.$invalid  || sponsorAdsEdit.title.$invalid || sponsorAdsEdit.name.$invalid" ng-click="$ctrl.submit()">
             <span ng-show="$ctrl.success_msg " style="color:green; ">Updated</span>
           </div>
         </form>

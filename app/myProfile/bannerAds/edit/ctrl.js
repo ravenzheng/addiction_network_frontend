@@ -3,6 +3,8 @@ function ctrl($log, $stateParams, $rootScope, Status, AdvertisementService) {
   var bannerID = $stateParams.id;
   // getting data
   getBannerData(vm, bannerID, AdvertisementService);
+
+  vm.content = '';
   vm.submit = function () {
     // validating file type
     vm.err_type = 0;

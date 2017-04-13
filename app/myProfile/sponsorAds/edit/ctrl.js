@@ -10,6 +10,8 @@ function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorServic
     checkBoxes: true
   };
   var sponsorID = $stateParams.id;
+
+  vm.image = '';
   vm.submit = function () {
     var sponsoredListingIds = [];
     var id = '';

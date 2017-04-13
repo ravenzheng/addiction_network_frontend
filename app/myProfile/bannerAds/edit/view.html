@@ -25,7 +25,8 @@
                   <label for="name">Name: </label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                  <input placeholder="Name" name="name" id="name" class="form-control" type="text" ng-model="$ctrl.name">
+                  <input placeholder="Name" name="name" id="name" class="form-control" type="text" required ng-model="$ctrl.name">
+                  <span ng-show="advertisementEditForm.name.$error.required" class="help-block">Name can't be blank.</span>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
@@ -57,12 +58,13 @@
                   <label for="cpwd">Center Web Link</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                  <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" placeholder="Center Web Link" type="text" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,10}$/" />
+                  <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" placeholder="Center Web Link" type="text" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+([a-z]{2,10})?(?:[\.])+[a-z]{2,10}$/" />
                   <span ng-show="advertisementEditForm.center_web_link.$error.pattern" class="help-block">Invalid Format (Correct format: www.google.com)</span>
+                  <span ng-show="advertisementEditForm.center_web_link.$error.required" class="help-block">Weburl can't be blank.</span>
                 </div>
               </div>
               <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
-                <input class="btn btn-primary modal_btn btn_size pull-right" value="Submit" id="submit" type="button" ng-click="$ctrl.submit()" ng-disabled="advertisementEditForm.position.$invalid || advertisementEditForm.center_web_link.$invalid">
+                <input class="btn btn-primary modal_btn btn_size pull-right" value="Submit" id="submit" type="button" ng-click="$ctrl.submit()" ng-disabled="advertisementEditForm.position.$invalid || advertisementEditForm.center_web_link.$invalid || advertisementEditForm.name.$invalid">
               </div>
             </div>
           </form>
