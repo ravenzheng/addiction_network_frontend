@@ -15,40 +15,40 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label for="userf">Name:</label>
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ $ctrl.entry.center_name }}</p>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <p class="center-detail-text">{{ $ctrl.entry.center_name }}</p>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label for="userl">Details:</label>
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ $ctrl.entry.description }}</p>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <p class="center-detail-text">{{ $ctrl.entry.description }} </p>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label>Website Link:</label>
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <a ng-href="{{ $ctrl.entry.center_web_link }}" target="_blank">{{ $ctrl.entry.center_web_link }}</a>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <a class="center-detail-link" ng-href="{{ $ctrl.entry.center_web_link | urlFilter }}" target="_blank">{{ $ctrl.entry.center_web_link }}</a>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label>Phone Number:</label>
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ $ctrl.entry.phone }}</p>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <p class="center-detail-text">{{ $ctrl.entry.phone }}</p>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label>Address:</label>
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-12 treatment_detail">
-                  <p>{{ $ctrl.entry.address }}</p>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <p class="center-detail-text">{{ $ctrl.entry.address }}</p>
                 </div>
               </div>
             </div>

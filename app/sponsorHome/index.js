@@ -7,8 +7,7 @@ angular.module(moduleName, [
   require('../components'),
   require('../services'),
   require('../sidePanel')
-]).filter('urlFilter', require('./urlFilter'))
-  .component('cityListBox', require('./cityListBox'))
+]).component('cityListBox', require('./cityListBox'))
   .component('cityListBoxOfCounty', require('./cityListBoxOfCounty'))
   .component('cityListBoxOfState', require('./cityListBoxOfState'))
   .component('countyListBox', require('./countyListBox'))
