@@ -1,5 +1,10 @@
 function ctrl($log, $rootScope, Status, $window, AdvertisementService) {
   var vm = this;
+
+  // initializing form data
+  vm.name = '';
+  vm.content = '';
+
   vm.submit = function () {
     // validating file type
     vm.err_type = 0;

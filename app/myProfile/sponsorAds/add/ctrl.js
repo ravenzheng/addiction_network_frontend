@@ -36,7 +36,7 @@ function ctrl($rootScope, $window, Status, SponsorService) {
   }).catch(function (err) {
     throw err;
   });
-
+  vm.image = '';
   vm.submit = function () {
     var sponsoredListingIds = [];
     var id = '';
