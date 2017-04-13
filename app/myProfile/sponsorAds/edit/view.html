@@ -1,9 +1,5 @@
 <div class="col-md-8 col-sm-8 col-xs-12 col-lg-9">
-  <div class="heading_main_div">
-    <h2>
-      <label>Edit Sponsor Ad </label>
-    </h2>
-  </div>
+  <section-heading>Edit Sponsor Ad</section-heading>
   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
@@ -21,7 +17,7 @@
           <p> You are free to add your own image and text and place them on any sponsored page on Addiction Network. This allows you to choose pages that related highly to the services you provide, as well as zero in on specific locations in the United States.</p>
         </div>
         <form name="sponsorAdsEdit" class="form-horizontal">
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="tname"> Title: </label>
             </div>
@@ -29,7 +25,7 @@
               <input name="title" class="form-control required" id="tname" placeholder="Sponsor Ad Title" type="text" value="{{$ctrl.title}}" ng-model="$ctrl.title">
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="tname"> Name: </label>
             </div>
@@ -37,7 +33,7 @@
               <input name="name" class="form-control required" placeholder="Sponsor Ad Name" value="{{$ctrl.name}}" type="text" ng-model="$ctrl.name">
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="img_upload"> Upload Image:</label>
             </div>
@@ -50,7 +46,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="description"> </label>
             </div>
@@ -60,7 +56,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="description"> Description: </label>
             </div>
@@ -68,7 +64,7 @@
               <textarea maxlength="255" name="sponsor_ad_descriptiion" rows="3" class="form-control required" id="description" placeholder="" ng-model="$ctrl.description">{{$ctrl.description}}</textarea>
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12  main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="web_link"> Website URL: </label>
             </div>
@@ -77,7 +73,7 @@
               <span ng-show="sponsorAdsEdit.sponsor_ad_website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
+          <div class="adn-row">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="tname"> Sponsor Ads: </label>
             </div>
@@ -86,7 +82,7 @@
 
             </div>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0 ">
+          <div class="adn-row ">
             <div class="col-md-4 col-sm-4 col-xs-12 ">
               <label for="web_link "> Payment Amount: </label>
             </div>
