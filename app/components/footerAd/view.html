@@ -1,3 +1,5 @@
 <div class="company_adds">
-  <img class="img-reponsive" ng-src="{{ $ctrl.src }}">
+  <a href="{{ $ctrl.url | urlFilter}}" target="_blank">
+    <img class="img-reponsive" ng-src="{{ $ctrl.src }}">
+  </a>
 </div>

@@ -8,7 +8,8 @@ function ctrl($log, $rootScope) {
 
   function onInit() {
     unbind = $rootScope.$on('AdChanged', function (event, data) {
-      vm.src = data.advertisements.footer;
+      vm.src = data.advertisements.footer.image;
+      vm.url = data.advertisements.footer.url;
     });
   }
 
