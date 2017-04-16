@@ -19,13 +19,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   }
 }
 
-(min-width:991px) {
-  .padding_right_0_in {
-    padding-right: 0px !important;
-  }
-  /*   30 July */
-}
-
 @media(min-width:1200px) and (max-width:1368px) {
   .nav_align {
     width: 60%!important;
@@ -293,12 +286,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   .right_header>ul {
     text-align: left!important;
     margin-bottom: 10px;
-  }
-  .padding_left {
-    padding-left: 0px !important;
-  }
-  .padding_right {
-    padding-right: 0px !important;
   }
   .right_header_2 {
     margin-left: 0px !important;
@@ -1173,17 +1160,8 @@ h3.sub_heading_under_sign_up {
   width: auto;
 }
 
-.color_class_new {
-  font-weight: normal;
-  font-size: 14px !important;
-}
-
 .height_class {
   height: 30px !important;
-}
-
-.bg_gray {
-  background-color: #f1f1f1;
 }
 
 .close {
@@ -1191,28 +1169,6 @@ h3.sub_heading_under_sign_up {
   -moz-opacity: 0.5 !important;
   -webkit-opacity: 0.5 !important;
   -ms-opacity: 0.5 !important;
-}
-
-
-/* Listing Page     */
-
-
-/*      24 July      */
-
-.contaimer .new_class_for_sub_menu li ul li a:hover {
-  color: #73ac4b !important;
-}
-
-.contaimer .new_class_for_sub_menu li ul li a:active {
-  color: #73ac4b !important;
-}
-
-.contaimer .new_class_for_sub_menu li ul li a:focus {
-  color: #73ac4b !important;
-}
-
-.contaimer .new_class_for_sub_menu li ul li a:active {
-  color: #73ac4b !important;
 }
 
 .margin_bottom_15 {
@@ -1261,31 +1217,9 @@ h3.sub_heading_under_sign_up {
   margin-right: 30px;
 }
 
-.padding_left {
-  padding-left: 123px;
-}
-
-.padding_right {
-  padding-right: 70px;
-}
-
 .list-inline.list-unstyled.text-right img {
   width: 40px;
 }
-
-
-/*
-.sticky_above{position:fixed;top: 0% ;left:0%;height:56px;background:#73ac4b;width:135px;}
-*/
-
-
-/* go to line 64   */
-
-
-/*      24 July      */
-
-
-/*      25 July      */
 
 .padding_left_new {
   padding-left: 20px;
@@ -2018,12 +1952,6 @@ span.posted_by span.date_span {
   margin-bottom: 10px;
 }
 
-.sidebar_blog {
-  float: left;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
 .record_link {
   color: #2172ac !important;
   font-size: 18px !important;
@@ -2262,10 +2190,6 @@ address {
   color: #fff;
 }
 
-.sidebar_blog h3.widget-title {
-  display: none;
-}
-
 .width-100 {
   width: 100%;
 }
@@ -2302,20 +2226,6 @@ address {
 .hdr_logo_div {
   padding: 10px;
   float: left;
-}
-
-.questn_div {
-  float: left;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.questn_div h2 {
-  font-size: 20px;
-  margin: 15px 0 8px 0;
-  width: 100%;
-  text-align: left;
-  color: #333;
 }
 
 .email_pass_error {
@@ -2368,36 +2278,6 @@ address {
   margin-bottom: 5px;
 }
 
-.sponsor_des {
-  float: right;
-  position: relative;
-  right: -50px;
-  width: 29%;
-}
-
-.sponsor_des h3 {
-  color: #000000;
-  float: left;
-  font-size: 16px;
-  margin: 0;
-  padding: 0 0 5px;
-  width: 100%;
-}
-
-.sponsor_des p {
-  line-height: 16px;
-  color: #444444;
-  float: left;
-  font-size: 13px;
-  margin: 0;
-  padding: 0;
-}
-
-.sponsor_des p a {
-  font-size: 12px;
-  margin: 0 0 0 5px;
-}
-
 .payerror {
   color: red;
   padding-top: 6px;
@@ -2445,15 +2325,6 @@ address {
   width: 100%;
 }
 
-.padding-20 {
-  padding-left: 20px;
-}
-
-.getmore_btn {
-  margin: 0px !important;
-  width: auto !important;
-}
-
 
 /*  css by palwinder 05-11-2014 */
 
@@ -2478,21 +2349,6 @@ address {
   float: left;
   border-bottom: none;
   margin-bottom: 5px;
-}
-
-.df {
-  width: 100%;
-}
-
-.df h3 {
-  float: left;
-  margin: 0 20px 0 0;
-  width: 195px;
-}
-
-.df p {
-  width: auto;
-  float: left;
 }
 
 .company_adds img {
