@@ -1,10 +1,13 @@
-module.exports = ctrl;
+module.exports = ['$state', 'UIState', ctrl];
 
-function ctrl() {
+function ctrl($state, UIState) {
   var vm = this;
-  vm.onStateSelect = function (state) {
-    vm.onSelect({
-      state: state
+  vm.onStateSelect = onStateSelect;
+
+  // listen the onSelect event of map-box component
+  function onStateSelect(state) {
+    $state.go(UIState.CENTER_MAP.LIST, {
+      state: state.fullname
     });
-  };
+  }
 }

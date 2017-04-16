@@ -1087,27 +1087,6 @@ h3.sub_heading_under_sign_up {
   background: url(../images/header-bg_pattern.png) repeat;
 }
 
-
-/*  Sign In   Form css Modal  */
-
-
-/* Listing Page     */
-
-.sidebar_main {
-  float: left;
-  width: 100%;
-}
-
-.ul_wrapper_sidebar {
-  float: left;
-  width: 100%;
-}
-
-.under_ul_wrap_sidebar {
-  float: left;
-  width: 100%;
-}
-
 .main_sidebar {
   list-style-type: none;
   float: left;
@@ -1115,9 +1094,6 @@ h3.sub_heading_under_sign_up {
   margin-top: 27px;
   margin-left: 0;
 }
-
-
-/*margin-top:15px; */
 
 .main_sidebar li {
   display: block;
@@ -1356,7 +1332,7 @@ h3.sub_heading_under_sign_up {
   padding: 10px;
 }
 
-.only_border {
+.border-blue {
   border: 1px solid #2172ac;
 }
 
@@ -2639,6 +2615,7 @@ label.error {
   color: #d50000;
   padding: 5px;
 }
+
 .img_inner_user_pic img {
-    max-width: 100%;
+  max-width: 100%;
 }

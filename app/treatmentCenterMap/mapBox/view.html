@@ -1,20 +1,14 @@
-<div>
-  <div class="col-md-8 col-sm-8 col-xs-12 col-lg-8">
-    <label class="map-box-hint">
-      Begin your search by clicking on the state you're considering going to treatment in, or using the advanced search on the left.
-    </label>
-  </div>
-
-  <div class="col-md-8 col-sm-8 col-xs-12 col-lg-8">
-    <section-heading>Treatment Centers</section-heading>
-    <!--- Map content  Start   -->
-    <div onselectstart="return false;" class="unselectable">
-      <div id="mapwrapper">
-        <div id="map_base">
-          <state-map on-select="$ctrl.onStateSelect(state)"></state-map>
-        </div>
+<div class="map-box">
+  <label class="map-box-hint">
+    Begin your search by clicking on the state you're considering going to treatment in, or using the advanced search on the left.
+  </label>
+  <section-heading>Treatment Centers</section-heading>
+  <!--- Map content  Start   -->
+  <div onselectstart="return false;" class="unselectable">
+    <div id="mapwrapper">
+      <div id="map_base">
+        <state-map on-select="$ctrl.onStateSelect(state)"></state-map>
       </div>
     </div>
-    <!--- Map content End -->
   </div>
 </div>
