@@ -1,9 +1,5 @@
 <div class="col-md-8 col-sm-8 col-xs-12 col-lg-9">
-  <div class="heading_main_div">
-    <h2>
-      <label>Edit Banner Ads </label>
-    </h2>
-  </div>
+  <section-heading>Edit Banner Ads</section-heading>
   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
@@ -20,7 +16,7 @@
         <div class="row">
           <form name="advertisementEditForm" enctype="multipart/form-data">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+              <div class="adn-row">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label for="name">Name: </label>
                 </div>
@@ -29,7 +25,7 @@
                   <span ng-show="advertisementEditForm.name.$error.required" class="help-block">Name can't be blank.</span>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+              <div class="adn-row">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label for="position">Position: </label>
                 </div>
@@ -42,7 +38,7 @@
                   <span ng-show="advertisementEditForm.position.$invalid">Select position</span>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+              <div class="adn-row">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label for="upload_img">Content</label>
                 </div>
@@ -53,7 +49,7 @@
                   <span ng-show="$ctrl.err_type">Please upload an image only. </span>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+              <div class="adn-row">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <label for="cpwd">Center Web Link</label>
                 </div>

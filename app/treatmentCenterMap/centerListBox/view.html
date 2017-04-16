@@ -1,9 +1,7 @@
-<div class="col-md-8 col-sm-8 col-xs-12 col-lg-8">
+<div class="center-list-box">
   <section-heading>Treatment Centers</section-heading>
-
   <!-- empty listings error-->
   <empty-list-error display="$ctrl.displayError"></empty-list-error>
-
   <!-- listings -->
   <div ng-hide="$ctrl.displayError" class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
     <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" ng-repeat="listing in $ctrl.listings">
@@ -28,7 +26,6 @@
       </div>
     </div>
   </div>
-
   <!-- footer ad -->
   <footer-ad></footer-ad>
 </div>

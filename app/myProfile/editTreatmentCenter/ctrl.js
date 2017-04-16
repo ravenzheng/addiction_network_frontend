@@ -1,6 +1,6 @@
-module.exports = ['$log', '$rootScope', '$state', '$stateParams', 'Status', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$rootScope', '$state', '$stateParams', 'Status', 'UIState', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
+function ctrl($log, $rootScope, $state, $stateParams, Status, UIState, service) {
   var vm = this;
   var id = $stateParams.id;
   service.queryDetail(id).then(function (result) {
@@ -83,7 +83,7 @@ function ctrl($log, $rootScope, $state, $stateParams, Status, service) {
       }
     }
     service.edit(id, formData).then(function ( /* result */ ) {
-      $state.go('featuredTreatmentCenterPage');
+      $state.go(UIState.FEATURED_CENTER);
       $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {
       $log.error(err);

@@ -6,11 +6,11 @@ angular.module(moduleName, [
   'ui.router',
   require('../components'),
   require('../services')
-]).component('centerListBox', require('./centerListBox'))
+]).component('searchSidePanel', require('./searchSidePanel'))
+  .component('centerListBox', require('./centerListBox'))
   .component('mapBox', require('./mapBox'))
   .component('treatmentCenterMap', {
-    template: require('./view.html'),
-    controller: require('./ctrl')
+    template: require('./view.html')
   })
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({

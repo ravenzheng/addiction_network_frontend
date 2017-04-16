@@ -10,71 +10,69 @@
           <!-- Detail -->
           <div class="row">
             <section-heading>{{ $ctrl.entry.center_name }} Details</section-heading>
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <label for="userf">Name:</label>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <p class="center-detail-text">{{ $ctrl.entry.center_name }}</p>
-                </div>
+            <div class="adn-row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <label for="name">Name:</label>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <label for="userl">Details:</label>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <p class="center-detail-text">{{ $ctrl.entry.description }} </p>
-                </div>
+              <div class="col-md-8 col-sm-8 col-xs-12">
+                <p>{{ $ctrl.entry.center_name }}</p>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <label>Website Link:</label>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <a class="center-detail-link" ng-href="{{ $ctrl.entry.center_web_link | urlFilter }}" target="_blank">{{ $ctrl.entry.center_web_link }}</a>
-                </div>
+            </div>
+            <div class="adn-row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <label for="details">Details:</label>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <label>Phone Number:</label>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <p class="center-detail-text">{{ $ctrl.entry.phone }}</p>
-                </div>
+              <div class="col-md-8 col-sm-8 col-xs-12">
+                <p>{{ $ctrl.entry.description }} </p>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <label>Address:</label>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                  <p class="center-detail-text">{{ $ctrl.entry.address }}</p>
-                </div>
+            </div>
+            <div class="adn-row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <label for="website">Website Link:</label>
+              </div>
+              <div class="col-md-8 col-sm-8 col-xs-12">
+                <a class="center-detail-link" ng-href="{{ $ctrl.entry.center_web_link | urlFilter }}" target="_blank">{{ $ctrl.entry.center_web_link }}</a>
+              </div>
+            </div>
+            <div class="adn-row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <label for="phone">Phone Number:</label>
+              </div>
+              <div class="col-md-8 col-sm-8 col-xs-12">
+                <p>{{ $ctrl.entry.phone }}</p>
+              </div>
+            </div>
+            <div class="adn-row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <label for="address">Address:</label>
+              </div>
+              <div class="col-md-8 col-sm-8 col-xs-12">
+                <p>{{ $ctrl.entry.address }}</p>
               </div>
             </div>
           </div>
 
           <!--   About us    -->
-          <div class="row">
+          <div class="row margin-bottom-10">
             <section-heading>{{ $ctrl.entry.heading_1 }}</section-heading>
-            <div class="margin_top_adjust_go col-md-12 col-sm-12 col-xs-12 ">
-              <span class="text_style_about margin_bottom_adjust_go">{{ $ctrl.entry.content_1 }}</span>
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+              <span class="text_style_about">{{ $ctrl.entry.content_1 }}</span>
             </div>
           </div>
 
           <!--   Treatment Approach    -->
-          <div class="row">
+          <div class="row margin-bottom-10">
             <section-heading>{{ $ctrl.entry.heading_2 }}</section-heading>
-            <div class="margin_top_adjust_go col-md-12 col-sm-12 col-xs-12">
-              <span class="text_style_about margin_bottom_adjust_go">{{ $ctrl.entry.content_2 }}</span>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <span class="text_style_about">{{ $ctrl.entry.content_2 }}</span>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row margin-bottom-10">
             <!--   Unique Points   -->
             <section-heading>{{ $ctrl.entry.heading_3 }}</section-heading>
-            <div class="margin_top_adjust_go col-md-12 col-sm-12 col-xs-12">
-              <span class="text_style_about margin_bottom_adjust_go">{{ $ctrl.entry.content_3 }}</span>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <span class="text_style_about">{{ $ctrl.entry.content_3 }}</span>
             </div>
           </div>
 
@@ -82,9 +80,9 @@
           <div class="row">
             <section-heading>{{ $ctrl.entry.heading_4 }}</section-heading>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+              <div class="adn-row">
                 <div class="col-md-4 col-sm-4 col-xs-12">
-                  <label>Average Rating:</label>
+                  <label for="rating">Average Rating:</label>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12 review_star">
                   <review-rating display-only star=" $ctrl.entry.center_average_rating"></review-rating>
@@ -106,19 +104,19 @@
           <img ng-src="{{ $ctrl.entry.listing_image }}" alt="{{ $ctrl.entry.center_name }}" />
           <div class="center-detail-side">
             <span>Location:</span>
-            <p class="margin_top_adjust_go">
+            <p class="margin-top-15">
               <i class="glyphicon glyphicon-map-marker"></i>{{ $ctrl.entry.address }}
             </p>
           </div>
           <div class="center-detail-side">
-            <span class="margin_top_adjust_go">Call Us:</span>
-            <p class="margin_top_adjust_go">
+            <span class="margin-top-15">Call Us:</span>
+            <p class="margin-top-15">
               <i class="glyphicon glyphicon-phone-alt"></i>{{ $ctrl.entry.phone }}
             </p>
           </div>
           <div class="center-detail-side">
-            <span class="margin_top_adjust_go">Email Us:</span>
-            <p class="margin_top_adjust_go">
+            <span class="margin-top-15">Email Us:</span>
+            <p class="margin-top-15">
               <i class="glyphicon glyphicon-envelope mail_icon"></i>{{ $ctrl.entry.email }}
             </p>
           </div>
@@ -126,7 +124,7 @@
         <div class="right_content center-detail-card">
           <p class="center-detail-map-address">{{ $ctrl.entry.address }}</p>
           <card-heading>Map</card-heading>
-          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 padding_0 main_wrap_form_inner_sub">
+          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-bottom-10">
             <iframe width="100%" height="250px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="{{ $ctrl.entry.mapLink }}"></iframe>
           </div>
         </div>

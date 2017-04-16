@@ -19,13 +19,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   }
 }
 
-(min-width:991px) {
-  .padding_right_0_in {
-    padding-right: 0px !important;
-  }
-  /*   30 July */
-}
-
 @media(min-width:1200px) and (max-width:1368px) {
   .nav_align {
     width: 60%!important;
@@ -293,12 +286,6 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   .right_header>ul {
     text-align: left!important;
     margin-bottom: 10px;
-  }
-  .padding_left {
-    padding-left: 0px !important;
-  }
-  .padding_right {
-    padding-right: 0px !important;
   }
   .right_header_2 {
     margin-left: 0px !important;
@@ -1087,46 +1074,6 @@ h3.sub_heading_under_sign_up {
   background: url(../images/header-bg_pattern.png) repeat;
 }
 
-
-/*  Sign In   Form css Modal  */
-
-
-/* Listing Page     */
-
-.heading_main_div h2 {
-  background: url("../images/title-striped-bg.png") repeat-x scroll 40px center rgba(0, 0, 0, 0);
-  font-size: 28px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.heading_main_div {
-  float: left;
-  width: 100%;
-  margin-top: 15px;
-}
-
-.heading_main_div label {
-  background: none repeat scroll 0 0 #ffffff;
-  color: #73ac4b;
-  padding: 0 16px;
-}
-
-.sidebar_main {
-  float: left;
-  width: 100%;
-}
-
-.ul_wrapper_sidebar {
-  float: left;
-  width: 100%;
-}
-
-.under_ul_wrap_sidebar {
-  float: left;
-  width: 100%;
-}
-
 .main_sidebar {
   list-style-type: none;
   float: left;
@@ -1134,9 +1081,6 @@ h3.sub_heading_under_sign_up {
   margin-top: 27px;
   margin-left: 0;
 }
-
-
-/*margin-top:15px; */
 
 .main_sidebar li {
   display: block;
@@ -1216,17 +1160,8 @@ h3.sub_heading_under_sign_up {
   width: auto;
 }
 
-.color_class_new {
-  font-weight: normal;
-  font-size: 14px !important;
-}
-
 .height_class {
   height: 30px !important;
-}
-
-.bg_gray {
-  background-color: #f1f1f1;
 }
 
 .close {
@@ -1234,28 +1169,6 @@ h3.sub_heading_under_sign_up {
   -moz-opacity: 0.5 !important;
   -webkit-opacity: 0.5 !important;
   -ms-opacity: 0.5 !important;
-}
-
-
-/* Listing Page     */
-
-
-/*      24 July      */
-
-.contaimer .new_class_for_sub_menu li ul li a:hover {
-  color: #73ac4b !important;
-}
-
-.contaimer .new_class_for_sub_menu li ul li a:active {
-  color: #73ac4b !important;
-}
-
-.contaimer .new_class_for_sub_menu li ul li a:focus {
-  color: #73ac4b !important;
-}
-
-.contaimer .new_class_for_sub_menu li ul li a:active {
-  color: #73ac4b !important;
 }
 
 .margin_bottom_15 {
@@ -1304,31 +1217,9 @@ h3.sub_heading_under_sign_up {
   margin-right: 30px;
 }
 
-.padding_left {
-  padding-left: 123px;
-}
-
-.padding_right {
-  padding-right: 70px;
-}
-
 .list-inline.list-unstyled.text-right img {
   width: 40px;
 }
-
-
-/*
-.sticky_above{position:fixed;top: 0% ;left:0%;height:56px;background:#73ac4b;width:135px;}
-*/
-
-
-/* go to line 64   */
-
-
-/*      24 July      */
-
-
-/*      25 July      */
 
 .padding_left_new {
   padding-left: 20px;
@@ -1349,22 +1240,6 @@ h3.sub_heading_under_sign_up {
 
 .right_header_2 ul li a img {
   width: 37px !important;
-}
-
-.img_outer_ban {
-  float: left;
-  width: 100%;
-  padding: 8px 15px 15px;
-}
-
-.img_outer_ban img {
-  float: left;
-  width: 100%;
-  box-shadow: 0 0 6px #444;
-  -webkit-box-shadow: 0 0 6px #444;
-  -moz-box-shadow: 0 0 6px #444;
-  -ms-box-shadow: 0 0 6px #444;
-  -o-box-shadow: 0 0 6px #444
 }
 
 #fwslider .slide img {
@@ -1391,7 +1266,7 @@ h3.sub_heading_under_sign_up {
   padding: 10px;
 }
 
-.only_border {
+.border-blue {
   border: 1px solid #2172ac;
 }
 
@@ -1557,26 +1432,8 @@ h3.sub_heading_under_sign_up {
   margin-right: 0px
 }
 
-.img_outer_ban {
-  padding: 8px 5px 15px 15px !important;
-}
-
-
-/*  30July  */
-
 
 /*    Profile    */
-
-.profile_label2 {
-  color: #444;
-  width: 100%;
-  text-align: left;
-  font-size: 15px;
-  font-family: 'Arial';
-  word-wrap: break-word;
-  padding-top: 8px;
-  display: inline-block;
-}
 
 .img_outer_user_pic {
   float: left;
@@ -1673,22 +1530,12 @@ h3.sub_heading_under_sign_up {
 }
 
 
-/*    Account Settings    */
-
-
 /*    Add Treatment Center       */
 
 .class_for_select .bootstrap-select>.btn {
   height: 40px;
   font-size: 14px;
 }
-
-.margin_top_25 {
-  margin-top: 25px;
-}
-
-
-/*    Add Treatment Center       */
 
 
 /* my Center View */
@@ -1728,10 +1575,6 @@ h3.sub_heading_under_sign_up {
   width: 100%;
 }
 
-.margin_top_adjust_go {
-  margin-top: 13px;
-}
-
 .text_style_about {
   float: left;
   width: 100%;
@@ -1741,10 +1584,6 @@ h3.sub_heading_under_sign_up {
   font-family: 'Arial';
   text-decoration: none;
   display: inline-block;
-}
-
-.margin_bottom_adjust_go {
-  margin-bottom: 15px;
 }
 
 .display_full {
@@ -2113,12 +1952,6 @@ span.posted_by span.date_span {
   margin-bottom: 10px;
 }
 
-.sidebar_blog {
-  float: left;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
 .record_link {
   color: #2172ac !important;
   font-size: 18px !important;
@@ -2183,10 +2016,6 @@ li.media {
   padding: 2px;
 }
 
-.pading_0 {
-  padding: 0;
-}
-
 .contct_heding {
   color: #73ac4b;
   padding: 16px 0;
@@ -2228,10 +2057,6 @@ li.media {
   margin: 0;
   padding-bottom: 5px;
   width: auto;
-}
-
-.margin-bottom-20 {
-  margin-bottom: 15px;
 }
 
 .page-numbers.current {
@@ -2365,83 +2190,8 @@ address {
   color: #fff;
 }
 
-.sidebar_blog h3.widget-title {
-  display: none;
-}
-
 .width-100 {
   width: 100%;
-}
-
-
-/*******coded by Sahil Johar************/
-
-.main_heading_h2 {
-  font-size: 28px;
-  margin: 15px 0;
-  width: 100%;
-  text-align: left;
-  color: #73ac4b;
-}
-
-.form_otr {
-  float: left;
-  width: 100%;
-}
-
-.pading_0 {
-  padding: 0;
-}
-
-.inner_h2_main {
-  background: url("../images/title-striped-bg.png") repeat-x scroll 40px center rgba(0, 0, 0, 0);
-  font-size: 28px;
-  margin: 25px 0 25px 0;
-  text-align: center;
-}
-
-.inner_h2_main label {
-  background: none repeat scroll 0 0 #ffffff;
-  color: #73ac4b;
-  padding: 0 16px;
-}
-
-.input_maggin_botom {
-  margin-bottom: 10px;
-}
-
-.form_otr label {
-  font-weight: normal;
-}
-
-.conti_btn {
-  background: #73ac4b;
-  border-color: #73ac4b;
-  margin-left: 5px;
-  min-width: 100px;
-  border-radius: 50px;
-  float: right;
-}
-
-.conti_btn:hover, .conti_btn:focus, .conti_btn:active {
-  background: #58aa22;
-  border-color: #73ac4b
-}
-
-.slct_div {
-  float: left;
-  width: 100%;
-}
-
-.info_div {
-  float: left;
-  width: 100%;
-}
-
-.info_div label {
-  float: left;
-  margin: 0 10px 0 0;
-  width: 125px;
 }
 
 .info {
@@ -2465,18 +2215,6 @@ address {
   margin-bottom: 20px;
 }
 
-.list-unstyled1 {
-  margin: 0 0 0 28px;
-  padding: 0;
-}
-
-.list-unstyled1 li {
-  font-size: 14px;
-  line-height: 24px;
-  list-style-image: url("../images/check.png");
-  margin: 0 0 5px 0;
-}
-
 .multi {
   color: #2172a7;
 }
@@ -2488,26 +2226,6 @@ address {
 .hdr_logo_div {
   padding: 10px;
   float: left;
-}
-
-.questn_div {
-  float: left;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.questn_div h2 {
-  font-size: 20px;
-  margin: 15px 0 8px 0;
-  width: 100%;
-  text-align: left;
-  color: #333;
-}
-
-.ad_error {
-  color: red;
-  font-style: normal;
-  margin: 0 0 0 5px;
 }
 
 .email_pass_error {
@@ -2560,36 +2278,6 @@ address {
   margin-bottom: 5px;
 }
 
-.sponsor_des {
-  float: right;
-  position: relative;
-  right: -50px;
-  width: 29%;
-}
-
-.sponsor_des h3 {
-  color: #000000;
-  float: left;
-  font-size: 16px;
-  margin: 0;
-  padding: 0 0 5px;
-  width: 100%;
-}
-
-.sponsor_des p {
-  line-height: 16px;
-  color: #444444;
-  float: left;
-  font-size: 13px;
-  margin: 0;
-  padding: 0;
-}
-
-.sponsor_des p a {
-  font-size: 12px;
-  margin: 0 0 0 5px;
-}
-
 .payerror {
   color: red;
   padding-top: 6px;
@@ -2637,31 +2325,11 @@ address {
   width: 100%;
 }
 
-.padding-20 {
-  padding-left: 20px;
-}
-
-.getmore_btn {
-  margin: 0px !important;
-  width: auto !important;
-}
-
 
 /*  css by palwinder 05-11-2014 */
 
 .left_content.left_align li {
-  background: url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png") no-repeat scroll left top rgba(0, 0, 0, 0);
-  line-height: 125%;
-  list-style-position: outside;
-  list-style-type: none;
-  margin: 10px 0;
-  padding: 0 0 1px 25px;
-  vertical-align: middle;
-  font-family: serif;
-}
-
-.liststyle li {
-  background: url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+  background: url("themes/addiction/images/arrow-right-01-16.png") no-repeat scroll left top rgba(0, 0, 0, 0);
   line-height: 125%;
   list-style-position: outside;
   list-style-type: none;
@@ -2681,25 +2349,6 @@ address {
   float: left;
   border-bottom: none;
   margin-bottom: 5px;
-}
-
-.df {
-  width: 100%;
-}
-
-.df h3 {
-  float: left;
-  margin: 0 20px 0 0;
-  width: 195px;
-}
-
-.df p {
-  width: auto;
-  float: left;
-}
-
-.img_outer_ban img {
-  max-height: 100px;
 }
 
 .company_adds img {
@@ -2736,6 +2385,69 @@ label.error {
   float: left;
 }
 
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.adn-row {
+  margin-bottom: 10px;
+  min-height: 1p;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.adn-row:before, .adn-row:after {
+  display: table;
+  content: " ";
+}
+
+.adn-row:after {
+  clear: both;
+}
+
+.adn-row p {
+  float: left;
+  width: 100%;
+  padding: 10px 0 0 0;
+  font-size: 16px;
+}
+
+.adn-row label {
+  font-weight: normal;
+  font-size: 16px;
+  padding-top: 10px;
+  color: #2172a7;
+  float: left;
+}
+
+.adn-row input {
+  border: 1px solid #ccc;
+  font-weight: normal;
+  float: left;
+  width: 100%;
+}
+
+.adn-row input.form-control::-moz-placeholder {
+  color: #ccc;
+}
+
+.adn-row input.form-control::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+.adn-row input.form-control::-ms-input-placeholder {
+  color: #ccc;
+}
+
+.adn-row textarea {
+  resize: none;
+  border: 1px solid #ccc;
+}
+
 .checkboxInput {
   width: auto !important;
 }
@@ -2759,6 +2471,7 @@ label.error {
   color: #d50000;
   padding: 5px;
 }
+
 .img_inner_user_pic img {
-    max-width: 100%;
+  max-width: 100%;
 }

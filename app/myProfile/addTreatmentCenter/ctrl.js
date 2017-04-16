@@ -1,6 +1,7 @@
-module.exports = ['$log', '$rootScope', '$state', 'Status', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$rootScope', '$state', 'Status', 'UIState',
+  'TreatmentCenterService', ctrl];
 
-function ctrl($log, $rootScope, $state, Status, service) {
+function ctrl($log, $rootScope, $state, Status, UIState, service) {
   var vm = this;
   vm.state = '';
   vm.onStateUpdate = function (selected) {
@@ -77,7 +78,7 @@ function ctrl($log, $rootScope, $state, Status, service) {
       }
     }
     service.add(formData).then(function ( /* result */ ) {
-      $state.go('featuredTreatmentCenterPage');
+      $state.go(UIState.FEATURED_CENTER);
       $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_ADD_SUCCEESS_MSG);
     }).catch(function (err) {
       $log.error(err);

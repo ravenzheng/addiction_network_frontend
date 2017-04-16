@@ -1,6 +1,6 @@
-module.exports = ['$log', '$state', ctrl];
+module.exports = ['$log', '$state', 'UIState', ctrl];
 
-function ctrl($log, $state) {
+function ctrl($log, $state, UIState) {
   var vm = this;
   vm.$onInit = onInit;
   vm.onStateUpdate = onStateUpdate;
@@ -22,6 +22,6 @@ function ctrl($log, $state) {
       zipcode: vm.zipcode,
       miles: vm.miles
     };
-    $state.go('treatmentCenterMap.list', stateParams);
+    $state.go(UIState.CENTER_MAP.LIST, stateParams);
   }
 }
