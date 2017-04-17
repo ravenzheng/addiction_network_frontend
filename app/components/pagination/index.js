@@ -29,7 +29,7 @@ function PaginationCtrl() {
   }
 
   function gotoNext() {
-    if (vm.currentPage < vm.totalPage) {
+    if (vm.currentPage < vm.totalPages) {
       goto(vm.currentPage + 1);
     }
   }
@@ -40,8 +40,7 @@ module.exports = {
   controller: PaginationCtrl,
   bindings: {
     order: '<',
-    pageSize: '<',
-    totalPage: '<',
+    totalPages: '<',
     currentPage: '<',
     onUpdate: '&'
   }

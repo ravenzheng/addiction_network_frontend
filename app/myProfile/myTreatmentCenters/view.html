@@ -1,7 +1,7 @@
 <div class="my-treatment-centers">
   <section-heading>My Treatment Centers</section-heading>
   <!-- Content Starts -->
-  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
+  <div class="profile-content">
     <!-- Add treatment center button -->
     <div class="profile-row">
       <a ui-sref="myProfile.addTreatmentCenter">
@@ -10,9 +10,9 @@
     </div>
     <div class="profile-row">
       <!-- Center listings in a table -->
-      <center-table centers="$ctrl.currentCenters" on-activate="$ctrl.onActivate(id)" on-delete="$ctrl.open(id)"></center-table>
+      <center-table centers="$ctrl.centers" on-activate="$ctrl.onActivate(id)" on-delete="$ctrl.open(id)"></center-table>
       <!-- Pagination -->
-      <pagination page-size="$ctrl.pageSize" total-page="$ctrl.totalPage" current-page="$ctrl.currentPage" on-update="$ctrl.onPageUpdate(page)"></pagination>
+      <pagination total-pages="$ctrl.totalPages" current-page="$ctrl.currentPage" on-update="$ctrl.onPageUpdate(page)"></pagination>
     </div>
   </div>
 </div>

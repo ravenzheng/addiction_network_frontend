@@ -5,7 +5,7 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li ng-repeat="i in $ctrl.range($ctrl.totalPage) track by $index">
+    <li ng-repeat="i in $ctrl.range($ctrl.totalPages) track by $index">
       <a href ng-click="$ctrl.goto(i)">{{ i }}</a>
     </li>
     <li>
