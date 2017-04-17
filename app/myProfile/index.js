@@ -1,5 +1,7 @@
 var moduleName = 'app.myProfile';
 
+require('./style.css');
+
 angular.module(moduleName, [
   'ui.router',
   'angularjs-dropdown-multiselect',

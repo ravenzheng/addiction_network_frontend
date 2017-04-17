@@ -1,71 +1,75 @@
-<div class="col-md-8 col-sm-8 col-xs-12 col-lg-9">
+<div class="profile-main">
   <section-heading>My Profile</section-heading>
-  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
-    <div class="adn-row pull-right ">
+  <div class="profile-content">
+    <div class="profile-row">
       <a ui-sref="myProfile.addTreatmentCenter">
-        <span class="pull-right modal_btn btn btn-primary text-right">
-          Add Treatment Center
-        </span>
+        <span class="btn btn-primary adn-btn right">Add Treatment Center</span>
       </a>
     </div>
-    <form class="form-horizontal" __bizdiag="0" __biza="WJ__">
+    <div class="profile-row">
+      <!-- First Name -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">First Name:</label>
+          <label>First Name:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.first_name }}</p>
         </div>
       </div>
+      <!-- Last Name -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">Last Name:</label>
+          <label>Last Name:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.last_name }}</p>
         </div>
       </div>
-
+      <!-- Email -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">Email:</label>
+          <label>Email:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.email }}</p>
         </div>
       </div>
+      <!-- About Me -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">About Me:</label>
+          <label>About Me:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.about_me }}</p>
         </div>
       </div>
+      <!-- Phone -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">Phone:</label>
+          <label>Phone:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.phone }}</p>
         </div>
       </div>
+      <!-- Address -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">Address:</label>
+          <label>Address:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.address }}</p>
         </div>
       </div>
+      <!-- Zipcode -->
       <div class="adn-row">
         <div class="col-md-4 col-sm-4 col-xs-6">
-          <label for="userf">Zipcode:</label>
+          <label>Zipcode:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
           <p>{{ $ctrl.profile.zipcode }}</p>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>
