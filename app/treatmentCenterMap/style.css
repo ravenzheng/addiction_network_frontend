@@ -1,3 +1,8 @@
+.center-list-box-content {
+  border-left: 1px solid #dddddd;
+  min-height: 732px;
+}
+
 .search-side-panel {
   margin-top: 22px;
 }

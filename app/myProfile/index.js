@@ -1,5 +1,7 @@
 var moduleName = 'app.myProfile';
 
+require('./style.css');
+
 angular.module(moduleName, [
   'ui.router',
   'angularjs-dropdown-multiselect',
@@ -7,7 +9,6 @@ angular.module(moduleName, [
   require('../services')
 ]).component('thumbnailDelete', require('./sub/thumbnailDelete'))
   .component('centerTable', require('./sub/centerTable'))
-  .component('pagination', require('./sub/pagination'))
   .component('profileNavSection', require('./profileNavSection'))
   .component('profileMain', require('./profileMain'))
   .component('accountSettings', require('./accountSettings'))

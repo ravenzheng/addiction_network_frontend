@@ -46,9 +46,9 @@ function service($http, endPoint, UserService) {
   }
 
   // my treatment centers
-  function queryList() {
+  function queryList(page) {
     return UserService.getToken().then(function (token) {
-      return $http.get(endPoint + '/listing_user/treatment_centers', {
+      return $http.get(endPoint + '/listing_user/treatment_centers?page=' + page, {
         headers: {
           'Authorization': token
         }

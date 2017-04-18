@@ -8,7 +8,7 @@ function ctrl($log, $injector, $rootScope, Status, service) {
       throw err;
     });
   }
-  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Delete Payment Details!</h3></div><div class="modal-body" id="modal-body">Are you sure you want to delete?</div><div class="modal-footer"><button class="btn btn-primary" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Delete Payment Details!</h3></div><div class="modal-body" id="modal-body">Are you sure you want to delete?</div><div class="modal-footer"><button class="btn" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
   list.open = function (id) {
     var paymentId = id.id;
     var modalInstance = $injector.get('$uibModal').open({

@@ -40,3 +40,4 @@ npm run start
 *[How can I delete all git branches which have been merged?](http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged)
 * [Set up a minimal, yet useful javescript dev environment](https://dev.to/corgibytes/setting-up-a-minimal-yet-useful-javascript-dev-environment)
 * [Understanding Angular’s $scope and $rootScope event system $emit, $broadcast and $on](https://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/#rootscopeemitbroadcast)
+[Vertically centering content of :before/:after pseudo-elements](http://stackoverflow.com/questions/14523927/vertically-centering-content-of-before-after-pseudo-elements)
