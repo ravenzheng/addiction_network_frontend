@@ -127,3 +127,33 @@ function submit() {
   ...
 }
 ```
+
+#### CSS
+Currently, stylesheet comes from several sources - `custom.css`, `style.css` in each component folder and third party css files like `bootstrap.css`.
+1. `custom.css` - common rules.
+2. `style.css` in each component - specific rules for that component view.
+  * For common components in `app/components` folder, each component folder should maintain `style.css` itself. (if applicable). E.g.
+  ```
+  app/components/cardHeading
+    - ctrl.js
+    - index.js
+    - style.css
+    - view.html
+  ```
+  Then in `index.js` file, include the `require` statement in the first line.
+  ```
+  require('./style.css');
+  ```
+  * For components (`aboutUs, adListing, ...`) in `app` folder, each component folder should maintain just one `style.css` file.  For example, `app/home` folder has several sub components `featuredTreatmentCenter`, `searchByState`, and `welcome`, the `app/home/style.css` should have all the rules related to these three sub comoponents. These sub component folder do not have to maintain `style.css` file themselves.
+  ```
+  app/home/style.css
+    - featuredTreatmentCenter
+      - ctrl.js
+      - view.html
+      // no style.css. all the css rules go to app/home/style.css file
+    - searchByState
+      ...
+    - welcome
+      ...
+  ```
+3. third party
