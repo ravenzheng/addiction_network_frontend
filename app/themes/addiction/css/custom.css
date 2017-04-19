@@ -1919,3 +1919,11 @@ label.error {
   color: #d50000;
   padding: 5px;
 }
+
+.adn-row input.default-payment{
+width: auto;
+margin-top: 0px;
+margin-right: 10px;
+vertical-align: middle;
+display: inline;
+}
