@@ -18,7 +18,13 @@ module.exports = {
   'ABOUT_US': 'aboutUs',
   'CONTACT_US': 'contactUs',
   'BLOG': 'blog',
-  'ADD_LISTING': 'addListing',
+  'ADD_LISTING': {
+    'INDEX': 'addListing',
+    'CONTACT_INFO': 'addListing.contactInfo',
+    'USER_INFO': 'addListing.userInfo',
+    'CENTER_INFO': 'addListing.centerInfo',
+    'CENTER_DETAILS': 'addListing.centerDetails'
+  },
   'LOGIN': 'login',
   'LOGOUT': 'logout',
   'MY_PROFILE': {
