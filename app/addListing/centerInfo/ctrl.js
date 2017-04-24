@@ -2,8 +2,10 @@ module.exports = ['$rootScope', '$log', '$state', 'UIState', 'MapService', ctrl]
 
 function ctrl($rootScope, $log, $state, UIState, mapService) {
   // todo
-  var vm = this;
+  // var vm = this;
+  var vm = $rootScope; // this;
   var lm = this;
+  $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.USER_INFO);
   };
@@ -62,24 +64,16 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
       'description': vm.description,
       'center_web_link': vm.center_web_link,
       'listing_image': vm.listing_image,
-      'heading_1': 'Overview of Program',
-      'heading_2': 'Treatment Approach',
-      'heading_3': 'Unique Selling Points',
-      'category_id': categoryName,
-      // 'heading_4': vm.heading_4,
-
-      // 'content_4': vm.content_4,
       'address_line_1': vm.address_line_1,
-      //  'address_line_2': vm.address_line_2,
       'city': vm.city,
       'pincode': vm.pincode,
       'state': vm.state,
-      'phone': vm.intakephone,
-      'email': vm.intakeemail,
+      'intakephone': vm.intakephone,
+      'intakeemail': vm.intakeemail,
       'featured': false,
       'listing_type': 'free'
     };
-    //  $log.info('  data:' + $rootScope.formdata);
+    // $log.info('data:' + $rootScope.centerInfo);
     $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
   };
 }

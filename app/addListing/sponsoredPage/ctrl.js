@@ -4,9 +4,12 @@ function ctrl($rootScope, $log, $state, UIState) {
   // todo
   // console.log('contact info');
   var vm = $rootScope; // this;
-  // $rootScope.activeLink = ['Contact'];
-  $rootScope.activeLink = 'Contact';
   var lm = this;
+  // $rootScope.activeLink = ['Contact'];
+  $rootScope.activeLink = 'Sponsored Pages';
+  lm.previous = function () {
+    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+  };
   lm.saveStep1 = function () {
     $rootScope.contactInfo = {
       'first_name': vm.first_name,
@@ -14,6 +17,6 @@ function ctrl($rootScope, $log, $state, UIState) {
       'company': vm.company,
       'phone': vm.phone
     };
-    $state.go(UIState.ADD_LISTING.USER_INFO);
+    $state.go(UIState.ADD_LISTING.BANNER_ADS);
   };
 }

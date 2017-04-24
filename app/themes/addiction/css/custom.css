@@ -1945,13 +1945,15 @@ display: inline;
     left: 0;
     z-index: 1;
 }
-.add-listing-nav ul.profile-nav-list li:after{
+.add-listing-nav ul.profile-nav-list li>a:after{
  content: '';
     position: absolute;
     border-style: solid;
     border-width: 17px 0 17px 20px;
     border-color: transparent transparent transparent #2172a7;
     z-index: 99999;
+    right: -20px;
+    top: 0px;
 }
 .add-listing-nav ul.profile-nav-list li a{
     font-size: 12px;
@@ -1968,4 +1970,12 @@ display: inline;
 pointer-events: none;
  background: #2172a7;
  opacity: .7;
+}
+.current_active.profile-nav-link{
+background: #58aa22 !important;
+border-color: #73ac4b !important;
+}
+.add-listing-nav ul.profile-nav-list li>a.current_active:after{
+ content: '';
+  border-color: transparent transparent transparent #58aa22;
 }

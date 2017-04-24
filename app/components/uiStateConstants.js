@@ -23,7 +23,15 @@ module.exports = {
     'CONTACT_INFO': 'addListing.contactInfo',
     'USER_INFO': 'addListing.userInfo',
     'CENTER_INFO': 'addListing.centerInfo',
-    'CENTER_DETAILS': 'addListing.centerDetails'
+    'CENTER_DETAILS': 'addListing.centerDetails',
+    'PAID_MEMBER': 'addListing.paidMember',
+    'PAYMENT_ADD': 'addListing.paymentAdd',
+    'SPONSORED_PAGE': 'addListing.sponsoredPage',
+    'BANNER_AD': 'addListing.bannerAd',
+    'FEATURED_LISTING': 'addListing.featuredListing',
+    'PAYMENT_DETAILS': 'addListing.paymentDetails',
+    'SPONSORED_PAGES': 'addListing.sponsoredPage'
+
   },
   'LOGIN': 'login',
   'LOGOUT': 'logout',

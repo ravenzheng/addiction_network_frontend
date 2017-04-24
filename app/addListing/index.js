@@ -2,6 +2,7 @@ var moduleName = 'app.addTreatmentCenterSignUp';
 
 angular.module(moduleName, [
   'ui.router',
+  'angularjs-dropdown-multiselect',
   require('../components'),
   require('../services')
 ])
@@ -10,6 +11,10 @@ angular.module(moduleName, [
   .component('centerInfo', require('./centerInfo'))
   .component('centerDetails', require('./centerDetails'))
   .component('formNavSection', require('./formNavSection'))
+  .component('paidMember', require('./paidMember'))
+  .component('paymentDetail', require('./paymentDetail'))
+  .component('sponsoredPage', require('./sponsoredPage'))
+  .component('bannerAd', require('./bannerAd'))
   .component('addListing', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -39,6 +44,26 @@ angular.module(moduleName, [
       name: UIState.ADD_LISTING.CENTER_DETAILS,
       url: '/step4',
       template: '<center-details></center-details>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.PAID_MEMBER,
+      url: '/step5',
+      template: '<paid-member></paid-member>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.PAYMENT_DETAILS,
+      url: '/step6',
+      template: '<payment-detail></payment-detail>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.SPONSORED_PAGES,
+      url: '/step7',
+      template: '<sponsored-page></sponsored-page>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.BANNER_AD,
+      url: '/step8',
+      template: '<banner-ad></banner-ad>'
     });
   }]);
 
