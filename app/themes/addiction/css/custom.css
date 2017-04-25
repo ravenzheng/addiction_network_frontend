@@ -1951,7 +1951,7 @@ display: inline;
     border-style: solid;
     border-width: 17px 0 17px 20px;
     border-color: transparent transparent transparent #2172a7;
-    z-index: 99999;
+    z-index: 99;
     right: -20px;
     top: 0px;
 }

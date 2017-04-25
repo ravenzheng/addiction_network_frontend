@@ -3,21 +3,26 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   $rootScope.activeLink = 'Banner Ads';
   // initializing form data
   vm.name = '';
-  vm.content = '';
+  //  vm.content = '';
+  vm.err_type = 1;
   var lm = this;
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
+
   vm.submit = function () {
     // validating file type
-    vm.err_type = 0;
     if (vm.content) {
       var imageType = String(vm.content.type);
       if (imageType.includes('image/') === false) {
         vm.err_type = 1;
         return;
       }
+      vm.err_type = 0;
+    } else {
+      return;
     }
+
     if (angular.isDefined(vm.center_web_link)) {
       var link = vm.center_web_link;
     } else {
@@ -36,6 +41,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     var token = localStorageService.get('signupToken');
     AdvertisementService.advertisementAddSignUp(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
+      // $state.go(UIState.ADD_LISTING.FEATURED_CENTER);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);

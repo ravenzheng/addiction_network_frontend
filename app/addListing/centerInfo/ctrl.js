@@ -9,16 +9,17 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.USER_INFO);
   };
-  vm.multiselectModelCategories = [];
-  vm.multiselectModelSettings = {
+  lm.multiselectModelCategories = [];
+  lm.multiselectModelSettings = {
     scrollableHeight: '200px',
     scrollable: true,
     checkBoxes: true,
     showCheckAll: false,
-    showUncheckAll: false
+    showUncheckAll: false,
+    required: true
   };
 
-  vm.addListingCategories = [
+  lm.addListingCategories = [
     {
       'label': 'Inpatient',
       'id': '1'
@@ -55,11 +56,12 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
 
   vm.saveStep3 = function () {
     var categoryName = [];
-    for (var key in vm.multiselectModelCategories) {
-      var categories = String(vm.multiselectModelCategories[key].id);
+    for (var key in lm.multiselectModelCategories) {
+      var categories = String(lm.multiselectModelCategories[key].id);
       categoryName[key] = categories;
     }
     $rootScope.centerInfo = {
+      'category_id': categoryName,
       'center_name': vm.center_name,
       'description': vm.description,
       'center_web_link': vm.center_web_link,

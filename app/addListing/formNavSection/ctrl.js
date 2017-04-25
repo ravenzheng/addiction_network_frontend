@@ -20,7 +20,7 @@ function ctrl(UIState) {
     name: 'Treatment Center Details'
   }, {
     uiSref: UIState.ADD_LISTING.PAID_MEMBER,
-    name: 'Paid Member'
+    name: 'Membership'
   }, {
     uiSref: UIState.ADD_LISTING.PAYMENT_DETAILS,
     name: 'Payment'

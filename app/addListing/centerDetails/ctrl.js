@@ -1,6 +1,6 @@
-module.exports = ['$rootScope', '$log', '$state', 'UIState', 'MapService', 'TreatmentCenterService', 'Status', 'localStorageService', ctrl];
+module.exports = ['$rootScope', '$log', '$state', '$injector', 'UIState', 'MapService', 'TreatmentCenterService', 'Status', 'localStorageService', ctrl];
 
-function ctrl($rootScope, $log, $state, UIState, mapService, service, Status, localStorageService) {
+function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service, Status, localStorageService) {
   // todo
   // var vm = this;
   var vm = $rootScope; // this;
@@ -8,33 +8,26 @@ function ctrl($rootScope, $log, $state, UIState, mapService, service, Status, lo
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
+
+  lm.finish = function () {
+    $state.go(UIState.LOGIN);
+  };
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
     var formData = new FormData();
     //  formData = $rootScope.formdata;
     // if (vm.center_name !== '') {
     var treatmentcenterData = {
-      'center_name': vm.centerInfo.center_name,
-      'description': vm.centerInfo.description,
-      'center_web_link': vm.centerInfo.center_web_link,
-      'listing_image': vm.centerInfo.listing_image,
       'heading_1': 'Overview of Program',
       'heading_2': 'Treatment Approach',
       'heading_3': 'Unique Selling Points',
-      'address_line_1': vm.centerInfo.address_line_1,
-      'city': vm.centerInfo.city,
-      'pincode': vm.centerInfo.pincode,
-      'state': vm.centerInfo.state,
-      'phone': vm.centerInfo.intakephone,
-      'email': vm.centerInfo.intakeemail,
-      'featured': false,
-      'listing_type': 'free',
       'content_1': vm.content_1,
       'content_2': vm.content_2,
       'content_3': vm.content_3
     };
     for (var key in $rootScope.centerInfo) {
       formData.append('treatment_center[' + key + ']', $rootScope.centerInfo[key]);
+      $log.info($rootScope.centerInfo[key]);
     }
     for (key in treatmentcenterData) {
       formData.append('treatment_center[' + key + ']', treatmentcenterData[key]);
@@ -48,18 +41,14 @@ function ctrl($rootScope, $log, $state, UIState, mapService, service, Status, lo
       }
     }
 
-    // $log.info('final');
-    // for (key in formData) {
-    //   $log.info('key: ' + key + '  data' + formData);
-    // }
-    // return;
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
     var token = localStorageService.get('signupToken');
     service.addTreatmentCenter(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
-      $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+      addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
+      // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
       //  $window.location.href = '/#/login';
     }).catch(function (err) {
       if (err.data.user) {
@@ -78,4 +67,28 @@ function ctrl($rootScope, $log, $state, UIState, mapService, service, Status, lo
       }
     });
   };
+}
+
+function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Treatment Center Added</h3></div><div class="modal-body" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
+  vm.open = function () {
+    var modalInstance = $injector.get('$uibModal').open({
+      animation: vm.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      template: deletePrompt,
+      controller: function () {
+        $rootScope.ok = function () {
+          modalInstance.close();
+          $state.go(UIState.ADD_LISTING.CENTER_INFO);
+        };
+        $rootScope.cancel = function () {
+          modalInstance.dismiss('cancel');
+          $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+        };
+      },
+      bindToController: true
+    });
+  };
+  vm.open();
 }

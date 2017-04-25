@@ -1,85 +1,95 @@
-<div class="add-sponsor-ad">
-  <div class="adn-row">
-    <h3 class="sub_heading_under_sign_up">Sponsored Pages :</h3>
-  </div>
-  <div class="profile-row">
-    <input name="customertype" value="owner" type="hidden">
-    <!-- Title -->
-    <div class="adn-row">
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
+
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+      <p> You are free to add your own image and text and place them on any sponsored page on Addiction Network. This allows you to choose pages that related highly to the services you provide, as well as zero in on specific locations in the United States.</p>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="title">Title: </label>
+        <label for="tname">Treatment Centers: </label>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Title" name="title" id="title" class="form-control required" type="text" required ng-model="$ctrl.title">
-        <span ng-show="sponsorAdsForm.title.$error.required" class="help-block">Title can't be blank.</span>
+      <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+        <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenters" ng-click="$event.stopPropagation()" selected-model="$ctrl.treatmentCentersModel" extra-settings="$ctrl.multiselectModelSettings"></div>
       </div>
     </div>
-    <!-- Name -->
-    <div class="adn-row">
+
+    <!-- <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub pading_0">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label for="tname"> Sponsor Ads: </label>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+              <div ng-dropdown-multiselect="" options="$ctrl.sponsored_ad_select" checkboxes="true" selected-model="$ctrl.multiselectModelLayoutIds " extra-settings="$ctrl.multiselectModelSettings"></div>
+
+            </div>
+          </div> -->
+
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="name">Name: </label>
+        <label for="tname"> Normal: </label>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Name" name="name" id="name" class="form-control required" type="text" required ng-model="$ctrl.name">
-        <span ng-show="sponsorAdsForm.name.$error.required" class="help-block">Name can't be blank.</span>
+      <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+        <div ng-dropdown-multiselect="" options="$ctrl.sponsoredAdNormal" ng-click="$event.stopPropagation()" checkboxes="true" selected-model="$ctrl.sponsoredAdNormalModel" extra-settings="$ctrl.multiselectModelSettings"></div>
       </div>
     </div>
-    <!-- Upload Image -->
-    <div class="adn-row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="upload_img">Upload Image</label>
+        <label for="cpwd">State</label>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
-        <input file-model="$ctrl.image" type="file" name="image" id="image" class="center_image" accept="image/*" />
-        <span ng-show="$ctrl.err_type">Please upload an image only. </span>
+      <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+        <div ng-dropdown-multiselect="" options="$ctrl.sponsoredAdState" checkboxes="true" selected-model="$ctrl.sponsoredAdStateModel" extra-settings="$ctrl.multiselectModelSettings"></div>
       </div>
     </div>
-    <!-- Description -->
-    <div class="adn-row">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="cpwd">Description</label>
+        <label for="cpwd">County: </label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <textarea name="briefoverview" ng-model="$ctrl.description" class="form-control required" rows="2" cols="50" required placeholder="Brief Overview"></textarea>
-        <span ng-show="sponsorAdsForm.briefoverview.$error.required" class="help-block">Description can't be blank.</span>
+        <div ng-dropdown-multiselect="" options="$ctrl.sponsoredAdCounty" checkboxes="true" selected-model="$ctrl.sponsoredAdCountyModel" extra-settings="$ctrl.multiselectModelSettings"></div>
       </div>
     </div>
-    <!-- Website -->
-    <div class="adn-row">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="cpwd">Website</label>
+        <label for="cpwd">City: </label>
+      </div>
+      <!-- <div class="col-md-8 col-sm-8 col-xs-12">
+              <searchandselect selecteditem="$ctrl.city" values="$ctrl.cities" key="Key" totalrecords="$ctrl.totalRecords" onscroll="getCities($ctrl.searchKey, pagenumber)"> </searchandselect>
+            </div> -->
+      <div class="col-md-8 col-sm-8 col-xs-12" infinite-scroll="$ctrl.loadMore()" infinite-scroll-distance="1" infinite-scroll-use-document-bottom="true" infinite-scroll-container="$ctrl.testScroll">
+        <div id="city" name="city" ng-dropdown-multiselect="" options="$ctrl.sponsoredAdCity" ng-click="$event.stopPropagation()" checkboxes="true" selected-model="$ctrl.sponsoredAdCityModel" extra-settings="$ctrl.multiselectModelSettings"></div>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="website" name="website" class="form-control required" type="text" ng-model="$ctrl.website" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+([a-z]{2,10})?(?:[\.])+[a-z]{2,10}$/">
-        <span ng-show="sponsorAdsForm.website.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
-        <span ng-show="sponsorAdsForm.website.$error.required" class="help-block">Website url can't be blank.</span>
+
+        <!-- <p>Selected: {{ctrl.country.selected}}</p>
+              <ui-select ng-model="ctrl.country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+                <ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
+                  <span ng-bind-html="country.name | highlight: $select.search"></span>
+                  <small ng-bind-html="country.code | highlight: $select.search"></small>
+                </ui-select-choices>
+              </ui-select> -->
+
       </div>
+
+
     </div>
-    <!-- Sponsor Ads -->
-    <div class="adn-row">
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="cpwd">Sponsor Ads </label>
-      </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <div ng-dropdown-multiselect="" options="$ctrl.sponsored_ad_select" checkboxes="true" selected-model="$ctrl.multiselectModelLayoutIds " extra-settings="$ctrl.multiselectModelSettings"></div>
-      </div>
-    </div>
-    <!-- Payment Amount -->
-    <div class="adn-row">
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="text">Payment Amount</label>
-      </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Payment Amount" id="payment_amount" name="payment_amount" class="form-control required" type="number" disabled="">
-      </div>
-    </div>
-    <!-- Submit -->
-    <div class="adn-row">
+    <!-- <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <label for="cpwd">Sidepanel: </label>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+              <sidepanel-multiselect></sidepanel-multiselect>
+            </div>
+          </div> -->
+
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
         <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
-        <button type="button" ng-click="$root.submit()" class="btn modal_btn btn_size pull-left" value="Next" id="submit" ng-disabled="sponsorAdsForm.website.$invalid || sponsorAdsForm.title.$invalid || sponsorAdsForm.name.$invalid">Next</button>
+        <button type="button" ng-click="$ctrl.submit()" class="btn modal_btn btn_size pull-left" value="Next" id="submit" ng-disabled="">Next</button>
       </div>
     </div>
+
   </div>
 </div>

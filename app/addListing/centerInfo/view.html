@@ -1,15 +1,18 @@
 <div class="row">
   <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-    <!-- <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="cpwd">Select Category:
-        </label>
+    <div class="adn-row">
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <label for="cpwd">Select Category:
+          </label>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+          <div ng-dropdown-multiselect="" options="$ctrl.addListingCategories" checkboxes="true" selected-model="$ctrl.multiselectModelCategories" extra-settings="$ctrl.multiselectModelSettings" name="categories" required=""></div>
+          <!-- <p class="help-block">Required</p> -->
+        </div>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <div ng-dropdown-multiselect="" options="$root.addListingCategories" checkboxes="true" selected-model="$root.multiselectModelCategories" extra-settings="$root.multiselectModelSettings" name="categories"></div>
-        <p class="help-block">Required</p>
-      </div>
-    </div> -->
+    </div>
+
     <div class="adn-row">
       <div class="col-md-4 col-sm-4 col-xs-12">
         <label>Treatment Center Name</label>
@@ -116,9 +119,7 @@
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
       <input class="btn modal_btn btn_size pull-left" value="Next" id="submit" type="button" ng-click="$root.saveStep3()" ng-disabled="$root.addlistForm.center_name.$invalid ||  $root.addlistForm.center_web_link.$invalid ||  $root.addlistForm.pincode.$error.required ||
-      $root.addlistForm.pincode.$invalid ||
-      $root.addlistForm.intakephone.$error.required ||
-      $root.addlistForm.intakephone.$invalid ||
+      $root.addlistForm.pincode.$invalid || $root.addlistForm.intakephone.$error.required || $root.addlistForm.intakephone.$invalid ||
       $root.addlistForm.description.$error.required || $root.addlistForm.city.$error.required || $root.addlistForm.state.$error.required || $root.addlistForm.center_name.$error.required || $root.addlistForm.user_last_name.$error.required || $root.addlistForm.user_first_name.$error.required || $root.addlistForm.user_company.$error.required || $root.addlistForm.user_phone.$error.required || $root.addlistForm.intakeemail.$error.required || $root.addlistForm.username.$error.required || $root.addlistForm.address_line_1.$error.required">
     </div>
   </div>

@@ -26,9 +26,7 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     for (var key in sigupData) {
       formData.append('user[' + key + ']', sigupData[key]);
     }
-    $log.info('signup: ' + sigupData.last_name);
     $rootScope.formdata = formData;
-
     service.addTreatmentCenterSignUp(formData).then(function (result) {
       localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
