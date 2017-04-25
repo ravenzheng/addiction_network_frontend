@@ -9,7 +9,7 @@ function ctrl($rootScope, $log, $state, UIState) {
     $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
   };
   // $rootScope.activeLink = ['Contact'];
-  $rootScope.activeLink = 'Paid Member';
+  $rootScope.activeLink = 'Membership';
   vm.submit = function () {
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
