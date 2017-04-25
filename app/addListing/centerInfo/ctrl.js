@@ -7,7 +7,7 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
   var lm = this;
   $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
-    $state.go(UIState.ADD_LISTING.USER_INFO);
+    $state.go(UIState.ADD_LISTING.PAID_MEMBER);
   };
   lm.multiselectModelCategories = [];
   lm.multiselectModelSettings = {

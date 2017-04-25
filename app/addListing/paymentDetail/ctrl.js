@@ -14,7 +14,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     }
   };
   lm.previous = function () {
-    $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+    $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
   };
   var curYear = new Date().getFullYear();
   vm.testYear = function () {

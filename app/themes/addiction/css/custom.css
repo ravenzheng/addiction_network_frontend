@@ -1979,3 +1979,26 @@ border-color: #73ac4b !important;
  content: '';
   border-color: transparent transparent transparent #58aa22;
 }
+.pricing-header{
+  height: 132px;
+  padding-top: 17px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.package-billing{
+  margin-top:20px;
+}
+.tr-background{
+background-color: #eee;
+text-align: center;
+}
+.membership-table td{
+  text-align: center;
+}
+.fa.fa-check-circle{
+  font-size:1.5em !important;
+  color: #8dad3d;
+}
+p .btn-success {
+    margin-bottom: 10px;
+}

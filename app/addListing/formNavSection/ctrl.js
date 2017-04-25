@@ -13,14 +13,14 @@ function ctrl(UIState) {
     uiSref: UIState.ADD_LISTING.USER_INFO,
     name: 'User Info'
   }, {
+    uiSref: UIState.ADD_LISTING.PAID_MEMBER,
+    name: 'Membership'
+  }, {
     uiSref: UIState.ADD_LISTING.CENTER_INFO,
     name: 'Treatment Center'
   }, {
     uiSref: UIState.ADD_LISTING.CENTER_DETAILS,
     name: 'Treatment Center Details'
-  }, {
-    uiSref: UIState.ADD_LISTING.PAID_MEMBER,
-    name: 'Membership'
   }, {
     uiSref: UIState.ADD_LISTING.PAYMENT_DETAILS,
     name: 'Payment'

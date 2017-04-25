@@ -30,7 +30,7 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     service.addTreatmentCenterSignUp(formData).then(function (result) {
       localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
-      $state.go(UIState.ADD_LISTING.CENTER_INFO);
+      $state.go(UIState.ADD_LISTING.PAID_MEMBER);
     }).catch(function (err) {
       if (err.data.user) {
         if (angular.isDefined(err.data.user.email)) {
