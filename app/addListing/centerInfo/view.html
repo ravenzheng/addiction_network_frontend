@@ -7,9 +7,10 @@
           </label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <div ng-dropdown-multiselect="" options="$ctrl.addListingCategories" checkboxes="true" selected-model="$ctrl.multiselectModelCategories" extra-settings="$ctrl.multiselectModelSettings" name="categories" required=""></div>
+          <div ng-dropdown-multiselect="" options="$ctrl.addListingCategories" checkboxes="true" selected-model="$root.multiselectModelCategories" extra-settings="$ctrl.multiselectModelSettings" name="categories" required=""></div>
           <!-- <p class="help-block">Required</p> -->
         </div>
+
       </div>
     </div>
 
@@ -27,7 +28,7 @@
         <label>Website </label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="www.google.com" id="center_web_link" url="true" name="center_web_link" class="form-control required" type="text" ng-model="$root.center_web_link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,10}$/">
+        <input placeholder="www.google.com" id="center_web_link" url="true" name="center_web_link" class="form-control required" type="text" ng-model="$root.center_web_link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z]{2,10})?(?:[\.])+([a-z/.]{2,10})$/">
         <p ng-show="$root.addlistForm.center_web_link.$invalid" class="help-block ng-hide">Invalid Format(Correct format: www.google.com)</p>
       </div>
     </div>
@@ -45,8 +46,10 @@
         <label>Intake Phone</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" ng-minlength="10" ng-maxlength="10" maxlength="10" ng-pattern="/^-?[0-9+]*$/" type="text" ng-model="$root.intakephone" required="true">
-        <p ng-show="$root.addlistForm.intakephone.$invalid" class="help-block">Required and phone number must be 10 digits long</p>
+        <!-- <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" ng-minlength="10" ng-maxlength="10" maxlength="10" ng-pattern="/^-?[0-9+]*$/" type="text" ng-model="$root.intakephone" required="true"> -->
+        <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" ng-minlength="10" ng-maxlength="12" maxlength="12" ng-pattern="/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/" type="text" ng-model="$root.intakephone" required="true">
+        <p ng-show="$root.addlistForm.intakephone.$invalid" class="help-block">Required and correct US number format: 303-557-5899, should be 10 digits</p>
+
       </div>
     </div>
     <div class="adn-row">
@@ -104,7 +107,7 @@
         <label>Country</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Country" id="country" name="country" class="form-control required" type="text" ng-model="$root.country">
+        <input placeholder="Country" id="country" name="country" class="form-control" type="text" ng-model="$root.country">
       </div>
     </div>
     <div class="adn-row">
@@ -118,7 +121,7 @@
     </div>
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
-      <input class="btn modal_btn btn_size pull-left" value="Next" id="submit" type="button" ng-click="$root.saveStep3()" ng-disabled="$root.addlistForm.center_name.$invalid ||  $root.addlistForm.center_web_link.$invalid ||  $root.addlistForm.pincode.$error.required ||
+      <input class="btn modal_btn btn_size pull-left" value="Next" id="submit" type="button" ng-click="$ctrl.GoStep5()" ng-disabled="$root.addlistForm.center_name.$invalid ||  $root.addlistForm.center_web_link.$invalid ||  $root.addlistForm.pincode.$error.required ||
       $root.addlistForm.pincode.$invalid || $root.addlistForm.intakephone.$error.required || $root.addlistForm.intakephone.$invalid ||
       $root.addlistForm.description.$error.required || $root.addlistForm.city.$error.required || $root.addlistForm.state.$error.required || $root.addlistForm.center_name.$error.required || $root.addlistForm.user_last_name.$error.required || $root.addlistForm.user_first_name.$error.required || $root.addlistForm.user_company.$error.required || $root.addlistForm.user_phone.$error.required || $root.addlistForm.intakeemail.$error.required || $root.addlistForm.username.$error.required || $root.addlistForm.address_line_1.$error.required">
     </div>

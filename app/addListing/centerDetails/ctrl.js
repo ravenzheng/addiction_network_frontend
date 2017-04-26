@@ -12,6 +12,7 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
   lm.finish = function () {
     $state.go(UIState.LOGIN);
   };
+
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
     var formData = new FormData();
@@ -27,7 +28,6 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     };
     for (var key in $rootScope.centerInfo) {
       formData.append('treatment_center[' + key + ']', $rootScope.centerInfo[key]);
-      $log.info($rootScope.centerInfo[key]);
     }
     for (key in treatmentcenterData) {
       formData.append('treatment_center[' + key + ']', treatmentcenterData[key]);
@@ -47,6 +47,8 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     var token = localStorageService.get('signupToken');
     service.addTreatmentCenter(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
+      $rootScope.centerReset = 1;
+      resetForm();
       addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
       // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
       //  $window.location.href = '/#/login';
@@ -67,6 +69,12 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
       }
     });
   };
+
+  function resetForm() {
+    vm.content_1 = null;
+    vm.content_2 = null;
+    vm.content_3 = null;
+  }
 }
 
 function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
@@ -84,7 +92,8 @@ function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
         };
         $rootScope.cancel = function () {
           modalInstance.dismiss('cancel');
-          $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+          $rootScope.addListingStepDone = 5;
+          $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
         };
       },
       bindToController: true

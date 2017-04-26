@@ -3,10 +3,11 @@
   <ul class="profile-nav-list">
     <!-- Navigation-->
     <li ng-repeat="link in $ctrl.links">
-      <a ui-sref="{{ link.uiSref }}" class="disabled1 current_active  profile-nav-link" ng-click="false" ng-if="link.name===$root.activeLink">{{ link.name }} </a>
-      <a ui-sref="{{ link.uiSref }}" ng-if="link.name!==$root.activeLink" class="disabled1  profile-nav-link" ng-click="false">{{ link.name }} </a>
+      <!-- <a ui-sref="{{ link.uiSref }}" class="disabled1 current_active  profile-nav-link" ng-click="false" ng-if="(link.name===$root.activeLink && $root.hideSteps.indexOf(link.stateName) === -1)">{{ link.name }} </a>
+      <a ui-sref="{{ link.uiSref }}" ng-if="(link.name!==$root.activeLink && $root.hideSteps.indexOf(link.stateName) === -1 )" class="disabled  profile-nav-link" ng-click="false">{{ link.name }} </a> -->
+      <a ui-sref="{{ link.uiSref }}" class="disabled1 current_active  profile-nav-link" ng-click="false" ng-if="(link.name===$root.activeLink)">{{ link.name }} </a>
+      <a ui-sref="{{ link.uiSref }}" ng-if="(link.name!==$root.activeLink)" class="disabled  profile-nav-link" ng-click="false">{{ link.name }} </a>
     </li>
-
   </ul>
 
 </div>

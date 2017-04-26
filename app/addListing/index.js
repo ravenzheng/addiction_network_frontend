@@ -36,19 +36,19 @@ angular.module(moduleName, [
       template: '<user-info></user-info>'
     });
     $stateProvider.state({
-      name: UIState.ADD_LISTING.CENTER_INFO,
+      name: UIState.ADD_LISTING.PAID_MEMBER,
       url: '/step3',
+      template: '<paid-member></paid-member>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.CENTER_INFO,
+      url: '/step4',
       template: '<center-info></center-info>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.CENTER_DETAILS,
-      url: '/step4',
-      template: '<center-details></center-details>'
-    });
-    $stateProvider.state({
-      name: UIState.ADD_LISTING.PAID_MEMBER,
       url: '/step5',
-      template: '<paid-member></paid-member>'
+      template: '<center-details></center-details>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.PAYMENT_DETAILS,

@@ -14,6 +14,7 @@ function ctrl($rootScope, $log, $state, UIState) {
       'company': vm.company,
       'phone': vm.phone
     };
+    $rootScope.addListingStepDone = 1;
     $state.go(UIState.ADD_LISTING.USER_INFO);
   };
 }

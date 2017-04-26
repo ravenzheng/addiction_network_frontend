@@ -49,6 +49,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     var token = localStorageService.get('signupToken');
     service.paymentDetailsAddSignup(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
+      $rootScope.addListingStepDone = 6;
       $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
     }).catch(function (err) {
       $log.error(err);
