@@ -8,7 +8,7 @@
         <label>Username</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Username" id="username" name="username" class="form-control required" type="text" ng-model="$root.username" required="true">
+        <input placeholder="Username" id="username" name="username" class="form-control required" type="text" ng-model="$root.username" required="true" ng-disabled="($root.addListingStepDone >= 2 || $root.disableUserinfo === 1)">
         <p ng-show="$root.addlistForm.username.$error.required" class="help-block">Required</p>
       </div>
     </div>
@@ -17,7 +17,7 @@
         <label>Email</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Email" id="email" name="email" class="form-control required" type="email" ng-model="$root.email" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
+        <input placeholder="Email" id="email" name="email" class="form-control required" type="email" ng-model="$root.email" ng-disabled="($root.addListingStepDone >= 2 || $root.disableUserinfo === 1)" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
         <p ng-show="$root.addlistForm.email.$invalid" class="help-block">Required and please enter valid email</p>
       </div>
     </div>
@@ -45,7 +45,6 @@
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
       <input class="btn modal_btn btn_size pull-left" value="Next" id="submit" type="button" ng-click="$ctrl.saveStep2()" ng-disabled="$root.addlistForm.email.$invalid || $root.addlistForm.username.$error.required || $root.addlistForm.password.$invalid || $root.addlistForm.confirm_password.$error.noMatch">
-
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
-module.exports = ['$rootScope', '$log', '$state', 'UIState', 'TreatmentCenterService', 'Status', ctrl];
+module.exports = ['$rootScope', '$log', '$state', 'UIState', 'TreatmentCenterService', 'Status', 'localStorageService',
+  ctrl];
 
-function ctrl($rootScope, $log, $state, UIState, service, Status) {
+function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageService) {
   // todo
 
   var vm = $rootScope; // this;
@@ -8,8 +9,8 @@ function ctrl($rootScope, $log, $state, UIState, service, Status) {
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CONTACT_INFO);
   };
-  // $rootScope.activeLink = 'User';
-  $rootScope.activeLink = ['Contact', 'User'];
+  $rootScope.activeLink = 'User Info';
+  // $rootScope.activeLink = ['Contact', 'User'];
   lm.saveStep2 = function () {
     var formData = new FormData();
     var sigupData = {
@@ -25,13 +26,15 @@ function ctrl($rootScope, $log, $state, UIState, service, Status) {
     for (var key in sigupData) {
       formData.append('user[' + key + ']', sigupData[key]);
     }
-    $log.info('signup: ' + sigupData.last_name);
     $rootScope.formdata = formData;
-
-    service.addTreatmentCenterSignUp(formData).then(function () {
+    service.addTreatmentCenterSignUp(formData).then(function (result) {
+      localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
-      $state.go(UIState.ADD_LISTING.CENTER_INFO);
-      //  $window.location.href = '/#/login';
+      $rootScope.addListingStepDone = 2;
+      $rootScope.disableUserinfo = 1;
+      $rootScope.hideSteps = ['contactInfo', 'userInfo'];
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['userInfo']);
+      $state.go(UIState.ADD_LISTING.PAID_MEMBER);
     }).catch(function (err) {
       if (err.data.user) {
         if (angular.isDefined(err.data.user.email)) {

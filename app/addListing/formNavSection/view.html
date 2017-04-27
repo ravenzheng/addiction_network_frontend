@@ -3,17 +3,12 @@
   <ul class="profile-nav-list">
     <!-- Navigation-->
     <li ng-repeat="link in $ctrl.links">
-
-      <a ui-sref="{{ link.uiSref }}" class="disabled1  profile-nav-link" ng-click="false">{{ link.name }} </a>
-      <!-- <a ui-sref="{{ link.uiSref }}" ng-disabled="0" ng-if="link.name===$root.activeLink" class="disabled1 disable-me1 btn1 profile-nav-link" ng-click="false">{{ link.name }} </a> -->
-
-      <!-- <a ui-sref="{{ link.uiSref }}" ng-disabled="1" ng-if="link.name!==$root.activeLink" class="disabled1 disable-me1 btn1 profile-nav-link" ng-click="false">{{ link.name }} </a> -->
-      <!-- <input type="button" ng-if="link.name==='Step2'" ng-click="$ctrl.test()" ng-disabled="$root.addlistForm.user_last_name.$error.required || $root.addlistForm.user_first_name.$error.required || $root.addlistForm.user_company.$error.required || $root.addlistForm.user_phone.$error.required" value="{{ link.name }}" />
-      <input type="button" ng-if="(link.name==='Step3')" ng-disabled="$root.addlistForm.user_last_name.$error.required || $root.addlistForm.user_first_name.$error.required || $root.addlistForm.user_company.$error.required || $root.addlistForm.user_phone.$error.required ||$root.addlistForm.email.$invalid || $root.addlistForm.username.$error.required || $root.addlistForm.password.$invalid" value="{{ link.name }}" />
-      <input type="button" ng-if="(link.name==='Step4')" ng-disabled="$root.addlistForm.pincode.$dirty && $root.addlistForm.pincode.$invalid || $root.addlistForm.intakephone.$dirty && $root.addlistForm.intakephone.$error.required || $root.addlistForm.description.$error.required ||  $root.addlistForm.city.$error.required || $root.addlistForm.state.$error.required || $root.addlistForm.center_name.$error.required" value="{{ link.name }}" /> -->
-
+      <!-- <a ui-sref="{{ link.uiSref }}" class="disabled1 current_active  profile-nav-link" ng-click="false" ng-if="(link.name===$root.activeLink && $root.hideSteps.indexOf(link.stateName) === -1)">{{ link.name }} </a>
+      <a ui-sref="{{ link.uiSref }}" ng-if="(link.name!==$root.activeLink && $root.hideSteps.indexOf(link.stateName) === -1 )" class="disabled  profile-nav-link" ng-click="false">{{ link.name }} </a> -->
+      <a ui-sref="{{ link.uiSref }}" class="disabled1 current_active  profile-nav-link" ng-click="false" ng-if="(link.name===$root.activeLink && $root.doneSteps.indexOf($root.activeLink) === -1 && $root.showSteps.indexOf(link.stateName) >= 0)">{{ link.name }} </a>
+      <a ui-sref="{{ link.uiSref }}" ng-if="(link.name!==$root.activeLink && $root.doneSteps.indexOf(link.stateName) === -1 && $root.showSteps.indexOf(link.stateName) >= 0)" class="disabled  profile-nav-link" ng-click="false">{{ link.name }} </a>
+      <a ui-sref="{{ link.uiSref }}" ng-if="($root.doneSteps.indexOf(link.stateName) >=0 && link.name !==$root.activeLink && $root.showSteps.indexOf(link.stateName) >= 0)" class="current_active profile-nav-link" ng-click="false">{{ link.name }} </a>
     </li>
-
   </ul>
 
 </div>
