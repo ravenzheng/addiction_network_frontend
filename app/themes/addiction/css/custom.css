@@ -1980,13 +1980,13 @@ border-color: #73ac4b !important;
   border-color: transparent transparent transparent #58aa22;
 }
 .pricing-header{
-  height: 132px;
+  height: 80px;
   padding-top: 17px;
   text-align: center;
   text-transform: uppercase;
 }
 .package-billing{
-  margin-top:20px;
+  margin-top:10px;
 }
 .tr-background{
 background-color: #eee;
