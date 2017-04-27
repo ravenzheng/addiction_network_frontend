@@ -40,7 +40,7 @@ var internalLinksNoAuth = [{
   name: 'Contact Us'
 }, {
   uiSref: UIState.ADD_LISTING.CONTACT_INFO,
-  name: 'Add Listing'
+  name: 'Signup'
 }, {
   uiSref: UIState.LOGIN,
   name: 'Login'

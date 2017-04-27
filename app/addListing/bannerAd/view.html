@@ -45,7 +45,7 @@
         <label for="cpwd">Center Web Link</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+([a-z]{2,10})?(?:[\.])+[a-z]{2,10}$/" />
+        <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z]{2,10})?(?:[\.])+([a-z/.]{2,10})$/" />
         <span ng-show="$root.addlistForm.center_web_link.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
         <span ng-show="$root.addlistForm.center_web_link.$error.required" class="help-block">Weburl can't be blank.</span>
       </div>
