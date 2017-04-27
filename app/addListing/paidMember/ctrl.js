@@ -22,7 +22,7 @@ function ctrl($rootScope, $log, $state, UIState) {
     $rootScope.addListingStepDone = 3;
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
     $rootScope.centerReset = 0;
-    $rootScope.showSteps = ['centerInfo', 'centerDetails'];
+    $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails'];
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
 }
