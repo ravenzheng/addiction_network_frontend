@@ -14,6 +14,7 @@ function ctrl($rootScope, $log, $state, UIState) {
   $rootScope.activeLink = 'Membership';
   lm.submit = function () {
     $rootScope.addListingStepDone = 3;
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
     $rootScope.centerReset = 0;
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };

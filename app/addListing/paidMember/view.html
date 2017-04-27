@@ -7,11 +7,17 @@
       <table class="table table-bordered membership-table">
         <thead>
           <tr>
-            <th></th>
             <th>
               <div class="pricing-header ">
                 <h4 class="package-title">
-                  FREE
+                  Feature
+                </h4>
+              </div>
+            </th>
+            <th class="topLine-free">
+              <div class="pricing-header ">
+                <h4 class="package-title">
+                  Free
                 </h4>
                 <h4 class="package-pricing">
                   <p class="package-billing">
@@ -20,17 +26,17 @@
                 </h4>
               </div>
             </th>
-            <th>
+            <th class="highlight-plan topLine-sponsored">
               <div class="pricing-header ">
                 <h4 class="package-title">
-                  Payed
+                  Sponsored
                 </h4>
                 <p class="package-billing">
                   <button type="button" ng-click="$ctrl.submit()" class="btn btn-success">Sign Up</button>
                 </p>
               </div>
             </th>
-            <th>
+            <th class="topLine-featured">
               <div class="pricing-header ">
                 <h4 class="package-title">
                   Featured
@@ -44,22 +50,22 @@
         </thead>
         <tbody>
           <tr class="tr-background">
-            <td>Survey</td>
+            <td class="feature-label">Survey</td>
             <td></td>
+            <td class=""></td>
             <td></td>
-            <td></td>
           </tr>
           <tr>
             <td>Type</td>
             <td>Free</td>
-            <td>Payed</td>
+            <td class="highlight-plan">Payed</td>
             <td>Featured</td>
           </tr>
           <tr>
             <td>Type</td>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
-            <td>Payed</td>
+            <td class="highlight-plan">Payed</td>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
           </tr>
@@ -67,43 +73,43 @@
             <td>Type</td>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
-            <td>Payed</td>
+            <td class="highlight-plan">Payed</td>
             <td>Featured</td>
           </tr>
           <tr>
             <td>Type</td>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
-            <td>Payed</td>
+            <td class="highlight-plan">Payed</td>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
           </tr>
           <tr>
             <td>Type</td>
             <td>Free</td>
-            <td><i class="fa fa-check-circle" aria-hidden="true"></i>
-            </td>
-            <td>Featured</td>
-          </tr>
-          <tr>
-            <td>Type</td>
-            <td>Free</td>
-            <td>Payed</td>
-            <td><i class="fa fa-check-circle" aria-hidden="true"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>Type</td>
-            <td>Free</td>
-            <td><i class="fa fa-check-circle" aria-hidden="true"></i>
+            <td class="highlight-plan"><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
             <td>Featured</td>
           </tr>
           <tr>
             <td>Type</td>
             <td>Free</td>
-            <td>Payed</td>
+            <td class="highlight-plan">Payed</td>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i>
+            </td>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td>Free</td>
+            <td class="highlight-plan"> <i class="fa fa-check-circle" aria-hidden="true"></i>
+            </td>
+            <td>Featured</td>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td class="bottomLine-free">Free</td>
+            <td class="highlight-plan bottomLine-sponsored">Payed</td>
+            <td class="bottomLine-featured"><i class="fa fa-check-circle" aria-hidden="true"></i>
             </td>
           </tr>
 
@@ -111,8 +117,8 @@
       </table>
     </div>
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
+      <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
       <input class="btn modal_btn btn_size pull-left" value="Next" id="submit" type="button" ng-click="$ctrl.submit()">
-      <input class="btn modal_btn btn_size pull-left" value="Finish" id="finish" type="button" ng-click="$ctrl.finish()">
     </div>
   </div>
 </div>

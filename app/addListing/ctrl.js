@@ -2,15 +2,18 @@ module.exports = ['$log', '$scope', '$rootScope', ctrl];
 
 function ctrl($log, $scope, $rootScope) {
   // initialize
+  var vm = this;
   $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
+  $rootScope.doneSteps = [];
+  $rootScope.disableUserinfo = 0;
   // addlisting navigation control
   $scope.$on('$stateChangeStart',
     function (event, toState) {
       var tostate = toState.name.split('.');
       var step0 = ['contactInfo'];
       var step1 = step0.concat(['userInfo']);
-      var step2 = ['paidMember']; // step1.concat(['paidMember']);
+      var step2 = step1.concat(['paidMember']);
       var step3 = step2.concat(['centerInfo']);
       var step4 = step3.concat(['centerDetails']);
       var step5 = step4.concat(['paymentDetails']);
@@ -36,10 +39,37 @@ function ctrl($log, $scope, $rootScope) {
         } else if (stepDone === 7 && (step7.indexOf(tostate[1]) === -1)) {
           event.preventDefault();
         }
-      }
-      // trigger savestep for done steps, work like next button
-      if (stepDone === 4 && tostate[1] === 'centerDetails') {
-        $rootScope.saveStep4(); // only save the step
+
+        // trigger savestep for done steps, work like next button
+        if (stepDone === 4 && tostate[1] === 'centerDetails') {
+          $rootScope.saveStep4(); // only save the step
+        }
       }
     });
+
+  $scope.$on('$stateChangeSuccess',
+    function (event, toState) {
+      var tostate = toState.name.split('.');
+      // default
+      vm.membershipNoadvertisement = 0;
+      vm.membershipColMd = 'col-md-8';
+
+      // removing advertisemet sidebar for memebership section
+      if (tostate[0] === 'addListing' && tostate[1] === 'paidMember') {
+        vm.membershipNoadvertisement = 1;
+        vm.membershipColMd = 'col-md-12';
+      }
+    });
+
+  // // Require `PhoneNumberFormat`.
+  // var PNF = require('google-libphonenumber').PhoneNumberFormat;
+  //
+  // // Get an instance of `PhoneNumberUtil`.
+  // var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+  //
+  // // Parse number with country code.
+  // var phoneNumber = phoneUtil.parse('5645655511', 'US');
+  //
+  // // Print number in the international format.
+  // console.log(phoneUtil.format(phoneNumber, PNF.INTERNATIONAL));
 }

@@ -47,9 +47,9 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <!-- <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" ng-minlength="10" ng-maxlength="10" maxlength="10" ng-pattern="/^-?[0-9+]*$/" type="text" ng-model="$root.intakephone" required="true"> -->
-        <input placeholder="Intake Phone" id="intakephone" name="intakephone" class="form-control required" ng-minlength="10" ng-maxlength="12" maxlength="12" ng-pattern="/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/" type="text" ng-model="$root.intakephone" required="true">
-        <p ng-show="$root.addlistForm.intakephone.$invalid" class="help-block">Required and correct US number format: 303-557-5899, should be 10 digits</p>
-
+        <input placeholder="eg. 601-521-1542" id="intakephone" name="intakephone" class="form-control required" ng-change="$ctrl.testNum()" ng-minlength="10" ng-maxlength="12" maxlength="12" ng-pattern="/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/" type="text" ng-model="$root.intakephone" required="true">
+        <p ng-show="$root.addlistForm.intakephone.$error.pattern" class="help-block">Invalid US number.</p>
+        <p ng-show="$root.addlistForm.intakephone.$error.required" class="help-block">Required</p>
       </div>
     </div>
     <div class="adn-row">
@@ -107,7 +107,7 @@
         <label>Country</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="Country" id="country" name="country" class="form-control" type="text" ng-model="$root.country">
+        <input placeholder="Country" id="country" name="country" class="form-control" type="text" ng-init="$root.country='USA'" ng-model="$root.country">
       </div>
     </div>
     <div class="adn-row">

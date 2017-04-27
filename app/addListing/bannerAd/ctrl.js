@@ -41,6 +41,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     var token = localStorageService.get('signupToken');
     AdvertisementService.advertisementAddSignUp(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
       $rootScope.addListingStepDone = 8;
       // $state.go(UIState.ADD_LISTING.FEATURED_CENTER);
     }).catch(function (err) {

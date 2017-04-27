@@ -6,7 +6,8 @@ function service($log, $http, endPoint, UserService) {
     paymentList: list,
     paymentDetailsAdd: add,
     paymentDetailsEdit: edit,
-    removePaymentDetails: remove
+    removePaymentDetails: remove,
+    paymentDetailsAddSignup: paymentDetailsAddSignup
   };
 
   // header, footer, side
@@ -39,6 +40,19 @@ function service($log, $http, endPoint, UserService) {
           'Content-Type': undefined
         }
       });
+    });
+  }
+
+  function paymentDetailsAddSignup(formdata, token) {
+    return $http({
+      url: endPoint + '/listing_user/payments',
+      method: 'POST',
+      data: formdata,
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
     });
   }
 

@@ -50,6 +50,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     service.paymentDetailsAddSignup(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
       $rootScope.addListingStepDone = 6;
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
       $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
     }).catch(function (err) {
       $log.error(err);

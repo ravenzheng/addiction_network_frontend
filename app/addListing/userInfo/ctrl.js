@@ -31,7 +31,9 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
       localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
       $rootScope.addListingStepDone = 2;
+      $rootScope.disableUserinfo = 1;
       $rootScope.hideSteps = ['contactInfo', 'userInfo'];
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['userInfo']);
       $state.go(UIState.ADD_LISTING.PAID_MEMBER);
     }).catch(function (err) {
       if (err.data.user) {

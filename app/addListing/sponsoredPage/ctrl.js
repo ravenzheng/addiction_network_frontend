@@ -72,6 +72,7 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
       $rootScope.addListingStepDone = 7;
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
       $state.go(UIState.ADD_LISTING.BANNER_AD);
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);

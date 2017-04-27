@@ -93,6 +93,7 @@ function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
         $rootScope.cancel = function () {
           modalInstance.dismiss('cancel');
           $rootScope.addListingStepDone = 5;
+          $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
           $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
         };
       },
