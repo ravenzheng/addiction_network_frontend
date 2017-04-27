@@ -18,4 +18,11 @@ function ctrl($rootScope, $log, $state, UIState) {
     $rootScope.centerReset = 0;
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
+  lm.freeSignup = function () {
+    $rootScope.addListingStepDone = 3;
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
+    $rootScope.centerReset = 0;
+    $rootScope.showSteps = ['centerInfo', 'centerDetails'];
+    $state.go(UIState.ADD_LISTING.CENTER_INFO);
+  };
 }

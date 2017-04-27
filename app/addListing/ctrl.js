@@ -3,8 +3,9 @@ module.exports = ['$log', '$scope', '$rootScope', ctrl];
 function ctrl($log, $scope, $rootScope) {
   // initialize
   var vm = this;
-  $rootScope.addListingStepDone = 0;
+  $rootScope.addListingStepDone = 7;
   $rootScope.hideSteps = [];
+  $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd'];
   $rootScope.doneSteps = [];
   $rootScope.disableUserinfo = 0;
   // addlisting navigation control
@@ -43,6 +44,10 @@ function ctrl($log, $scope, $rootScope) {
         // trigger savestep for done steps, work like next button
         if (stepDone === 4 && tostate[1] === 'centerDetails') {
           $rootScope.saveStep4(); // only save the step
+        }
+        // prevent to display steps other than treatment center and center detail
+        if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
+          event.preventDefault();
         }
       }
     });
