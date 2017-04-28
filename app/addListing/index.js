@@ -6,7 +6,7 @@ angular.module(moduleName, [
   require('../components'),
   require('../services')
 ])
-  .directive('phoneInput', function ($filter, $browser) {
+  .directive('phoneInput', ['$filter', '$browser', function ($filter, $browser) {
     return {
       require: 'ngModel',
       link: function ($scope, $element, $attrs, ngModelCtrl) {
@@ -41,7 +41,7 @@ angular.module(moduleName, [
         });
       }
     };
-  })
+  }])
   .filter('tel', function () {
     return function (tel) {
       if (!tel) {
