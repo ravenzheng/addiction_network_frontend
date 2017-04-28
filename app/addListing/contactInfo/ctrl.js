@@ -25,9 +25,18 @@ function ctrl($rootScope, $log, $state, UIState) {
   // check if phone number is a valid us number
   lm.testNum = function () {
     if (angular.isDefined(vm.phone)) {
-      var num = vm.phone.split('-');
-      if ((usCodes.indexOf(parseInt(num[0], 10)) === -1) && vm.phone.length >= 4) {
-        $rootScope.addlistForm.user_phone.$error.pattern = true;
+      var len = vm.phone.length;
+      if (len > 3) {
+        var code = vm.phone.substring(0, 3);
+        if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
+          $rootScope.addlistForm.user_phone.$error.pattern = true;
+          $rootScope.addlistForm.user_phone.$valid = false;
+          $rootScope.addlistForm.user_phone.$invalid = true;
+        } else {
+          $rootScope.addlistForm.user_phone.$error.pattern = false;
+          $rootScope.addlistForm.user_phone.$valid = true;
+          $rootScope.addlistForm.user_phone.$invalid = false;
+        }
       }
     }
   };

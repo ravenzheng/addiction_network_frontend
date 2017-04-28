@@ -34,9 +34,10 @@
         <label>Phone</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input placeholder="eg. 601-521-1542" name="user_phone" ng-change="$ctrl.testNum()" class="form-control required" type="text" required="true" ng-minlength="10" ng-maxlength="12" ng-pattern="/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/" restrict="reject" maxlength="12" ng-model="$root.phone">
-        <p ng-show="$root.addlistForm.user_phone.$error.pattern" class="help-block">Invalid US number.</p>
+        <input placeholder="eg. (601) 521-1542" name="user_phone" ng-change="$ctrl.testNum()" class="form-control required" type="text" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14" ng-model="$root.phone">
+        <p ng-show="$root.addlistForm.user_phone.$error.pattern || $root.addlistForm.user_phone.$error.minlength || $root.addlistForm.user_phone.$error.maxlength" class="help-block">Invalid US number.</p>
         <p ng-show="$root.addlistForm.user_phone.$error.required" class="help-block">Required</p>
+
       </div>
     </div>
 
