@@ -96,9 +96,18 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
   // check if phone number is a valid us number
   lm.testNum = function () {
     if (angular.isDefined(vm.intakephone)) {
-      var num = vm.intakephone.split('-');
-      if ((usCodes.indexOf(parseInt(num[0], 10)) === -1) && vm.intakephone.length >= 4) {
-        $rootScope.addlistForm.intakephone.$error.pattern = true;
+      var len = vm.intakephone.length;
+      if (len > 3) {
+        var code = vm.intakephone.substring(0, 3);
+        if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
+          $rootScope.addlistForm.intakephone.$error.pattern = true;
+          $rootScope.addlistForm.intakephone.$valid = false;
+          $rootScope.addlistForm.intakephone.$invalid = true;
+        } else {
+          $rootScope.addlistForm.intakephone.$error.pattern = false;
+          $rootScope.addlistForm.intakephone.$valid = true;
+          $rootScope.addlistForm.intakephone.$invalid = false;
+        }
       }
     }
   };

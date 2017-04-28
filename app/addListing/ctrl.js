@@ -5,7 +5,7 @@ function ctrl($log, $scope, $rootScope) {
   var vm = this;
   $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
-  $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd'];
+  $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
   $rootScope.disableUserinfo = 0;
   // addlisting navigation control
@@ -20,6 +20,7 @@ function ctrl($log, $scope, $rootScope) {
       var step5 = step4.concat(['paymentDetails']);
       var step6 = step5.concat(['sponsoredPage']);
       var step7 = step6.concat(['bannerAd']);
+      //  var step8 = step7.concat(['featuredListing']);
 
       var stepDone = $rootScope.addListingStepDone;
       if (tostate[0] === 'addListing') {
@@ -65,16 +66,4 @@ function ctrl($log, $scope, $rootScope) {
         vm.membershipColMd = 'col-md-12';
       }
     });
-
-  // // Require `PhoneNumberFormat`.
-  // var PNF = require('google-libphonenumber').PhoneNumberFormat;
-  //
-  // // Get an instance of `PhoneNumberUtil`.
-  // var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
-  //
-  // // Parse number with country code.
-  // var phoneNumber = phoneUtil.parse('5645655511', 'US');
-  //
-  // // Print number in the international format.
-  // console.log(phoneUtil.format(phoneNumber, PNF.INTERNATIONAL));
 }
