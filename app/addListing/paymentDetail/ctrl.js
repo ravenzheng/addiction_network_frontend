@@ -5,7 +5,8 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   $rootScope.activeLink = 'Payment';
   var creditCardType = require('credit-card-type');
   lm.cardType = 'credit';
-  vm.detectCardType = function (card) {
+
+  vm.detectCardType = function (card, event) {
     if (angular.isDefined(card)) {
       var cardVal = card.replace(/ /g, '');
       vm.cardType = creditCardType(cardVal);
@@ -22,12 +23,14 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       }
 
       lm.totalDigits = card.length;
-      if (lm.totalDigits === 4) {
-        vm.card = vm.card + ' ';
-      } else if (lm.totalDigits === 9) {
-        vm.card = vm.card + ' ';
-      } else if (lm.totalDigits === 14) {
-        vm.card = vm.card + ' ';
+      if (event.keyCode !== 8) {
+        if (lm.totalDigits === 4) {
+          vm.card = vm.card + ' ';
+        } else if (lm.totalDigits === 9) {
+          vm.card = vm.card + ' ';
+        } else if (lm.totalDigits === 14) {
+          vm.card = vm.card + ' ';
+        }
       }
     } else {
       vm.cardType = null;
