@@ -9,14 +9,18 @@
       <div class="col-md-3 col-sm-3 col-xs-12">
         <label for="name">Card Number: </label>
       </div>
-      <div class="col-md-9 col-sm-9 col-xs-12">
-        <input placeholder="Card Number" class="form-control" type="text" ng-change="$root.detectCardType($root.card)" ng-minlength="15" ng-maxlength="16" ng-model="$root.card" ng-pattern="/^[0-9]+$/" required="" name="card" maxlength="16">
-        <p ng-show="$root.addlistForm.card.$invalid" class="help-block">Invalid Card number</p>
-        <p ng-if="($root.addlistForm.card.totalDigits<15 || $root.addlistForm.card.totalDigits>18) && $root.addlistForm.card.$valid" class="help-block">Card number must be 15~18 digits.</p>
-        <p ng-show="$root.cardType" class="help-block">{{$root.cardType[0].niceType}}</p>
-        <p ng-if="!$root.cardType[0] && $root.$valid" class="help-block">Invalid card type</p>
+      <div class="col-md-8 col-sm-9 col-xs-12 ">
+        <div class="">
 
+          <input placeholder="Card Number" style="float: left;" class="form-control" type="text" ng-change="$root.detectCardType($root.card)" ng-maxlength="19" ng-model="$root.card" ng-pattern="/^[0-9' ']+$/" required="" name="card" maxlength="19">
+          <i style="font-size: 40px; margin-top: -10px; color: #58aa22; position: absolute; margin-left: -43px;" class="icon large icon-{{$ctrl.cardType}}-card"></i>
+        </div>
+        <p ng-show="$root.addlistForm.card.$invalid" class="help-block">Invalid Card number</p>
+        <p ng-if="($ctrl.totalDigits<15 || $ctrl.totalDigits>19) && $root.addlistForm.card.$valid" class="help-block">Card must be have 16 digits.</p>
+        <!-- <p ng-show="$root.cardType" class="help-block">{{$root.cardType[0].niceType}}</p> -->
+        <p ng-if="!$root.cardType[0] && $root.$valid" class="help-block">Invalid card type</p>
       </div>
+
     </div>
 
     <div class="adn-row">
@@ -106,7 +110,7 @@
     <div class="adn-row">
       <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
         <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
-        <button type="button" ng-click="$root.submit()" class="btn modal_btn btn_size pull-left" value="Next" id="submit" ng-disabled="$root.addlistForm.card.$invalid || $root.addlistForm.year.$invalid || paymentDetailsForm.month.$invalid || $root.addlistForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || $root.addlistForm.middleName.$invalid || $root.addlistForm.lastName.$invalid">Next</button>
+        <button type="button" ng-click="$root.submit()" class="btn modal_btn btn_size pull-left" value="Next" id="submit" ng-disabled="$root.addlistForm.card.$invalid || ($ctrl.totalDigits<19) ||  $root.addlistForm.year.$invalid || paymentDetailsForm.month.$invalid || $root.addlistForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || $root.addlistForm.middleName.$invalid || $root.addlistForm.lastName.$invalid">Next</button>
       </div>
     </div>
     <!--</form>-->

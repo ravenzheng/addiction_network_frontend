@@ -4,13 +4,35 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   var lm = this;
   $rootScope.activeLink = 'Payment';
   var creditCardType = require('credit-card-type');
+  lm.cardType = 'credit';
   vm.detectCardType = function (card) {
     if (angular.isDefined(card)) {
-      vm.cardType = creditCardType(card);
-      vm.totalDigits = card.length;
+      var cardVal = card.replace(/ /g, '');
+      vm.cardType = creditCardType(cardVal);
+      if (angular.isDefined(vm.cardType[0])) {
+        if (vm.cardType[0].type === 'master-card') {
+          lm.cardType = 'master';
+        } else if (vm.cardType[0].type === 'visa') {
+          lm.cardType = 'visa';
+        } else if (vm.cardType[0].type === 'american-express') {
+          lm.cardType = 'amex';
+        } else {
+          lm.cardType = 'credit';
+        }
+      }
+
+      lm.totalDigits = card.length;
+      if (lm.totalDigits === 4) {
+        vm.card = vm.card + ' ';
+      } else if (lm.totalDigits === 9) {
+        vm.card = vm.card + ' ';
+      } else if (lm.totalDigits === 14) {
+        vm.card = vm.card + ' ';
+      }
     } else {
       vm.cardType = null;
-      vm.totalDigits = 0;
+      lm.totalDigits = 0;
+      lm.cardType = 'credit';
     }
   };
   lm.previous = function () {
@@ -23,6 +45,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   vm.middleName = '';
   vm.submit = function () {
     // validating file type
+    var card = vm.card.replace(/ /g, '');
     vm.err_type = 0;
     if (angular.isUndefined(vm.year)) {
       vm.yearError = 'Please select year';
@@ -34,7 +57,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     }
     var formData = new FormData();
     var paymentData = {
-      'card_no': vm.card,
+      'card_no': card,
       'first_name': vm.firstName,
       'middle_name': vm.middleName,
       'last_name': vm.lastName,
