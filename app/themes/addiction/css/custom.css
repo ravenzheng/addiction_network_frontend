@@ -2083,3 +2083,10 @@ p .btn-success {
   font-size: 1.2em !important;
   color: #f00;
 }
+
+.sticky-phone{
+    /*position: -webkit-sticky; */
+    position:fixed;
+   bottom:45%;
+   left:90%;
+}

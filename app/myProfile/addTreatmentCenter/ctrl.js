@@ -65,7 +65,6 @@ function ctrl($log, $rootScope, $state, Status, UIState, service) {
       'email': vm.email,
       'featured': false
     };
-
     var formData = new FormData();
     for (key in data) {
       formData.append('treatment_center[' + key + ']', data[key]);

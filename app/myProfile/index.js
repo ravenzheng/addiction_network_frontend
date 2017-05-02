@@ -21,7 +21,7 @@ angular.module(moduleName, [
   .component('bannerAdsEdit', require('./bannerAds/edit'))
   .component('bannerAdsView', require('./bannerAds/view'))
   .component('sponsorAds', require('./sponsorAds'))
-  .component('sponsorAdsAdd', require('./sponsorAds/add'))
+  // .component('sponsorAdsAdd', require('./sponsorAds/add'))
   .component('sponsorAdsEdit', require('./sponsorAds/edit'))
   .component('sponsorAdsView', require('./sponsorAds/view'))
   .component('paymentDetails', require('./paymentDetails'))
@@ -94,11 +94,11 @@ angular.module(moduleName, [
       url: '/sponsor-ads',
       template: '<sponsor-ads></sponsor-ads>'
     });
-    $stateProvider.state({
-      name: UIState.MY_PROFILE.SPONSOR_ADS_ADD,
-      url: '/sponsor-ads/add-sponsor',
-      template: '<sponsor-ads-add></sponsor-ads-add>'
-    });
+    // $stateProvider.state({
+    //   name: UIState.MY_PROFILE.SPONSOR_ADS_ADD,
+    //   url: '/sponsor-ads/add-sponsor',
+    //   template: '<sponsor-ads-add></sponsor-ads-add>'
+    // });
     $stateProvider.state({
       name: UIState.MY_PROFILE.SPONSOR_ADS_EDIT,
       url: '/sponsor-ads/edit-sponsor/:id',
