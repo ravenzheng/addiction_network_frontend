@@ -1,8 +1,8 @@
-function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorService) {
+function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorService, TreatmentService) {
   var vm = this;
   vm.multiselectModelLayoutIds = [];
   vm.multiselectModelSettings = {
-    scrollableHeight: '200px',
+    scrollableHeight: '250px',
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
@@ -10,40 +10,40 @@ function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorServic
     checkBoxes: true
   };
   var sponsorID = $stateParams.id;
+  vm.sponsoredAdNormalModel = [];
+  vm.sponsoredAdStateModel = [];
+  vm.sponsoredAdCountyModel = [];
+  vm.sponsoredAdCityModel = [];
 
-  vm.image = '';
   vm.submit = function () {
     var sponsoredListingIds = [];
     var id = '';
-    for (var key in vm.multiselectModelLayoutIds) {
-      id = String(vm.multiselectModelLayoutIds[key].id);
-      sponsoredListingIds[key] = id;
+    var i = 0;
+    for (var key in vm.sponsoredAdNormalModel) {
+      id = String(vm.sponsoredAdNormalModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
     }
 
-    // validating file type
-    vm.err_type = 0;
-    if (vm.image) {
-      if (angular.isObject(vm.image)) {
-        var imageType = String(vm.image.type);
-        if (imageType.includes('image/') === false) {
-          vm.err_type = 1;
-          return;
-        }
-      }
+    for (key in vm.sponsoredAdStateModel) {
+      id = String(vm.sponsoredAdStateModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
     }
 
+    for (key in vm.sponsoredAdCountyModel) {
+      id = String(vm.sponsoredAdCountyModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+
+    for (key in vm.sponsoredAdCityModel) {
+      id = String(vm.sponsoredAdCityModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
     var formData = new FormData();
-    if (angular.isDefined(vm.website)) {
-      var website = vm.website;
-    } else {
-      website = '';
-    }
     var sponsorData = {
-      'title': vm.title,
-      'name': vm.name,
-      'image': vm.image,
-      'description': vm.description,
-      'website': website,
       'sponsored_listing_layout_ids': sponsoredListingIds
     };
     for (key in sponsorData) {
@@ -57,11 +57,11 @@ function ctrl($scope, $stateParams, $rootScope, $document, Status, SponsorServic
     });
   };
   // getting data
-  editSponsor(vm, sponsorID, SponsorService);
+  editSponsor(vm, sponsorID, SponsorService, TreatmentService);
 }
-module.exports = ['$scope', '$stateParams', '$rootScope', '$document', 'Status', 'SponsorService', ctrl];
+module.exports = ['$scope', '$stateParams', '$rootScope', '$document', 'Status', 'SponsorService', 'TreatmentCenterService', ctrl];
 
-function editSponsor(vm, sponsorID, SponsorService) {
+function editSponsor(vm, sponsorID, SponsorService, TreatmentService) {
   var formData = new FormData();
   var sponsorData = {
     'id': sponsorID
@@ -69,17 +69,9 @@ function editSponsor(vm, sponsorID, SponsorService) {
   for (var key in sponsorData) {
     formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
   }
+
   SponsorService.editSponsor(formData, sponsorID).then(function (response) {
-    vm.content = response.banner_ads.content;
-    if (vm.content !== vm.oldcontent) {
-      vm.oldcontent = response.banner_ads.content;
-    }
-    vm.title = response.banner_ads.title;
-    vm.name = response.banner_ads.name;
-    vm.website = response.banner_ads.website;
-    vm.image = response.banner_ads.image;
-    vm.description = response.banner_ads.description;
-    vm.payment_amount = response.banner_ads.payment_amount;
+    // console.log(response.sponsored_ad);
     var ids = [];
     var i = 0;
     // var count = response.banner_ads.sponsored_pages.length;
@@ -91,33 +83,64 @@ function editSponsor(vm, sponsorID, SponsorService) {
     }
     vm.sponsored_listing_layout_ids = ids;
     vm.multiselectModelLayoutIds = ids;
+  }).catch(function (err) {
+    vm.error_message = err;
+  });
+
+  TreatmentService.queryDetail(sponsorID).then(function (result) {
+    for (key in result) {
+      vm[key] = result[key];
+    }
+
+    // vm.multiselectModelLayoutIds = ids;
 
     SponsorService.getSponsoredSelect().then(function (responseSponsor) {
-      vm.sponsored_ad_select_normal = responseSponsor.normal;
-      vm.sponsored_ad_select_state = responseSponsor.state;
-
       // generating data for multiselect
-      var modifiedAdSelectData = [];
-      i = 0;
+      var modifiedAdSelectDataNormal = [];
+      var modifiedAdSelectDataState = [];
+      var modifiedAdSelectDataCounty = [];
+      var modifiedAdSelectDataCity = [];
+      var i = 0;
       for (key in responseSponsor.normal) {
         // console.log(responseSponsor.normal[key].name);
-        modifiedAdSelectData[i] = {
+        modifiedAdSelectDataNormal[i] = {
           id: responseSponsor.normal[key].id,
-          label: responseSponsor.normal[key].name,
-          type: 'normal'
+          label: responseSponsor.normal[key].name
         };
         i++;
       }
 
+      i = 0;
       for (key in responseSponsor.state) {
-        modifiedAdSelectData[i] = {
+        modifiedAdSelectDataState[i] = {
           id: responseSponsor.state[key].id,
-          label: responseSponsor.state[key].name,
-          type: 'state'
+          label: responseSponsor.state[key].name
         };
         i++;
       }
-      vm.sponsored_ad_select = modifiedAdSelectData;
+
+      i = 0;
+      for (key in responseSponsor.county) {
+        modifiedAdSelectDataCounty[i] = {
+          id: responseSponsor.county[key].id,
+          label: responseSponsor.county[key].name
+        };
+        i++;
+      }
+
+      i = 0;
+      for (key in responseSponsor.city) {
+        modifiedAdSelectDataCity[i] = {
+          id: responseSponsor.city[key].id,
+          label: responseSponsor.city[key].name
+        };
+        i++;
+      }
+
+      vm.sponsoredAdNormal = modifiedAdSelectDataNormal;
+      vm.sponsoredAdState = modifiedAdSelectDataState;
+      vm.sponsoredAdCounty = modifiedAdSelectDataCounty;
+      vm.sponsoredAdCity = modifiedAdSelectDataCity;
     }).catch(function (err) {
       vm.error_message = err;
     });
