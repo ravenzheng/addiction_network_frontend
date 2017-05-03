@@ -2090,3 +2090,12 @@ p .btn-success {
    bottom:45%;
    left:90%;
 }
+.call_now_text{
+  text-align: left;font-size: 21px;margin-left: 10px;
+}
+.call_now_phone{
+  text-align: left;font-size: 16px;
+}
+.wp_but{
+  display:inline-block;float:left;cursor:pointer; margin-left:10px;
+}
