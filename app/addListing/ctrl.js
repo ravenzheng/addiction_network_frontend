@@ -3,7 +3,7 @@ module.exports = ['$log', '$scope', '$rootScope', ctrl];
 function ctrl($log, $scope, $rootScope) {
   // initialize
   var vm = this;
-  $rootScope.addListingStepDone = 0;
+  $rootScope.addListingStepDone = 7;
   $rootScope.hideSteps = [];
   $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
@@ -57,13 +57,17 @@ function ctrl($log, $scope, $rootScope) {
     function (event, toState) {
       var tostate = toState.name.split('.');
       // default
-      vm.membershipNoadvertisement = 0;
-      vm.membershipColMd = 'col-md-8';
+      vm.sideAdvertisement = 0;
+      vm.colMd = 'col-md-8';
 
       // removing advertisemet sidebar for memebership section
-      if (tostate[0] === 'addListing' && tostate[1] === 'paidMember') {
-        vm.membershipNoadvertisement = 1;
-        vm.membershipColMd = 'col-md-12';
+      if ((tostate[0] === 'addListing' && tostate[1] === 'paidMember')) {
+        vm.sideAdvertisement = 1;
+        vm.colMd = 'col-md-12';
       }
+      // if ((tostate[0] === 'addListing' && tostate[1] === 'paidMember') || (tostate[0] === 'addListing' && tostate[1] === 'sponsoredPage')) {
+      //   vm.sideAdvertisement = 1;
+      //   vm.colMd = 'col-md-12';
+      // }
     });
 }

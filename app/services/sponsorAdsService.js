@@ -10,7 +10,8 @@ function service($log, $http, endPoint, UserService) {
     getSponsoredSelect: getSponsoredSelect,
     getSponsoredSelectAddlist: getSponsoredSelectAddlist,
     sponsorListSignup: sponsorListSignup,
-    editSponsorSignup: editSponsorSignup
+    editSponsorSignup: editSponsorSignup,
+    getCityCountyByState: getCityCountyByState
   };
 
   function sponsorList(page) {
@@ -110,6 +111,18 @@ function service($log, $http, endPoint, UserService) {
   function getSponsoredSelectAddlist(token) {
     return $http({
       url: endPoint + '/listing_user/sponsored_ad_select/',
+      method: 'GET',
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
+  }
+
+  function getCityCountyByState(token, state) {
+    return $http({
+      url: endPoint + '/v1/listing_user/sponsored_ad_select/' + state,
       method: 'GET',
       transformRequest: angular.identity,
       headers: {
