@@ -12,7 +12,14 @@ function ctrl($rootScope, $log, $state, UIState) {
   };
   // $rootScope.activeLink = ['Contact'];
   $rootScope.activeLink = 'Membership';
-  lm.submit = function () {
+  lm.sponsored = function () {
+    $rootScope.addListingStepDone = 3;
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
+    $rootScope.centerReset = 0;
+    $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd'];
+    $state.go(UIState.ADD_LISTING.CENTER_INFO);
+  };
+  lm.featured = function () {
     $rootScope.addListingStepDone = 3;
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
     $rootScope.centerReset = 0;

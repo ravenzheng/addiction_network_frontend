@@ -85,6 +85,7 @@ angular.module(moduleName, [
   .component('paymentDetail', require('./paymentDetail'))
   .component('sponsoredPage', require('./sponsoredPage'))
   .component('bannerAd', require('./bannerAd'))
+  .component('sponsoredStateSelect', require('./sponsoredStateSelect'))
   .component('addListing', {
     template: require('./view.html'),
     controller: require('./ctrl')

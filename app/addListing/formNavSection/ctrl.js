@@ -39,4 +39,5 @@ function ctrl(UIState) {
     name: 'Featured Listing',
     stateName: 'featuredListing'
   }];
+  vm.srl = 1;
 }

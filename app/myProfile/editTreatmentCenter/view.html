@@ -10,7 +10,7 @@
       </a>
     </div>
     <div class="profile-row">
-      <form ng-submit="$ctrl.submit()" class="form-horizontal" novalidate="novalidate" __bizdiag="1043787928" __biza="WJ__">
+      <form ng-submit="$ctrl.submit()" name="addCenter" class="form-horizontal" novalidate="novalidate" __bizdiag="1043787928" __biza="WJ__">
 
         <!-- Category -->
         <div class="adn-row">
@@ -26,81 +26,90 @@
         <!-- Center Name -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="tname">Center Name:</label>
+            <label>Center Name:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.center_name" type="text" class="form-control required" placeholder="Treatment Center Name" />
+            <input ng-model="$ctrl.center_name" name="center_name" type="text" class="form-control required" required="true" placeholder="Treatment Center Name" />
+            <p ng-show="addCenter.center_name.$invalid" class="help-block">Required</p>
           </div>
         </div>
 
         <!-- Center Website Link -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="web_link">Website Link:</label>
+            <label>Website Link:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.center_web_link" type="text" class="form-control required url" placeholder="http://www.google.com" value="" />
+            <input ng-model="$ctrl.center_web_link" name="center_web_link" type="text" class="form-control required url" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z]{2,20})?(?:[\.])+([a-z/.]{2,10})$/" placeholder="http://www.google.com" />
+            <p ng-show="addCenter.center_web_link.$invalid" class="help-block ng-hide">Invalid Format(Correct format: www.google.com)</p>
           </div>
         </div>
 
         <!-- Street Address -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="addr">Street Address:</label>
+            <label>Street Address:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.address_line_1" type="text" class="form-control required" placeholder="" />
+            <input ng-model="$ctrl.address_line_1" name="address_line_1" type="text" class="form-control required" required="true" placeholder="" />
             <input type="hidden" name="centerapprove" value="0" />
+            <p ng-show="addCenter.address_line_1.$invalid">Required</p>
           </div>
         </div>
 
         <!-- City -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="city">City:</label>
+            <label>City:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.city" type="text" class="form-control required" placeholder="center city" value="" />
+            <input ng-model="$ctrl.city" name="city" type="text" required="true" class="form-control required" placeholder="center city" />
+            <p ng-show="addCenter.city.$invalid">Required</p>
           </div>
         </div>
 
         <!-- Select State -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="state">Select State:</label>
+            <label>Select State:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
             <state-select selected="$ctrl.state" on-update="$ctrl.onStateUpdate(selected)"></state-select>
+            <p ng-show="addCenter.state.$invalid">Required</p>
           </div>
         </div>
 
         <!-- Zipcode -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="zip">Zipcode:</label>
+            <label>Zipcode:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.pincode" type="text" name="center_zip" class="form-control required" number="true" maxlength="5" minlength="5" id="zip" placeholder="14100" value="" />
+            <input ng-model="$ctrl.pincode" type="text" name="center_zip" class="form-control required" number="true" minlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="true" placeholder="14100" />
+            <p ng-show="addCenter.center_zip.$invalid" class="help-block">Required and Zip code must be 5 digits</p>
           </div>
         </div>
 
         <!-- Phone -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="phone">Phone:</label>
+            <label>Phone:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.phone" type="text" name="center_phone" class="form-control required" id="phone" number="true" maxlength="10" minlength="10" placeholder="09855438504" value="" />
+            <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="eg. (601) 521-1542" number="true" ng-change="$ctrl.testNum()" class="form-control required" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14">
+            <p ng-show="addCenter.center_phone.$error.pattern || addCenter.center_phone.$error.minlength || addCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p>
+            <p ng-show="addCenter.center_phone.$error.required" class="help-block">Required</p>
           </div>
         </div>
 
         <!-- Email -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="phone">Email:</label>
+            <label>Email:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.email" type="email" name="center_email" class="form-control required" email="placeholder=&quot;abc@gmail.com&quot;" value="">
+            <input ng-model="$ctrl.email" type="email" name="center_email" class="form-control required" email="true" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i" placeholder="Intake Email">
+            <p ng-show="addCenter.center_email.$invalid" class="help-block">Required and please enter valid email</p>
           </div>
         </div>
 
@@ -133,40 +142,44 @@
         <!-- Description content_1 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="description">Description:</label>
+            <label>Description:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_1" name="center_description" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
+            <textarea ng-model="$ctrl.content_1" name="center_description" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
+            <p ng-show="addCenter.center_description.$error.required">Required</p>
           </div>
         </div>
 
         <!-- About  Facility content_2 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="about">About Facility:</label>
+            <label>About Facility:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_2" name="center_facility" rows="3" cols="100%" class="form-control required" id="description2" placeholder=""></textarea>
+            <textarea ng-model="$ctrl.content_2" name="center_facility" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
+            <p ng-show="addCenter.center_facility.$error.required">Required</p>
           </div>
         </div>
 
         <!-- Treatment Approach content_3 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="center_approach">Treatment Approach:</label>
+            <label>Treatment Approach:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_3" name="center_approach" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
+            <textarea ng-model="$ctrl.content_3" name="center_approach" rows="3" cols="100%" class="form-control required" required="true" placeholder=""></textarea>
+            <p ng-show="addCenter.center_approach.$error.required">Required</p>
           </div>
         </div>
 
         <!-- Unique Selling Points content_4 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="center_philosophy">Unique Selling Points:</label>
+            <label>Unique Selling Points:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_4" name="center_philosophy" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
+            <textarea ng-model="$ctrl.content_4" name="center_philosophy" required="true" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
+            <p ng-show="addCenter.center_philosophy.$error.required">Required</p>
           </div>
         </div>
 
@@ -197,7 +210,8 @@
         <!-- Submit -->
         <div class="adn-row">
           <div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-md-offset-4 col-sm-12 col-xs-12">
-            <button type="submit" class="btn adn-btn right">Submit</button>
+            <button type="submit" class="btn adn-btn right" ng-disabled="addCenter.center_name.$invalid ||  addCenter.center_web_link.$invalid || addCenter.center_zip.$invalid ||  addCenter.center_phone.$invalid ||
+            addCenter.description.$error.required || addCenter.city.$error.required || addCenter.state.$error.required || addCenter.center_facility.$invalid || addCenter.center_approach.$invalid || addCenter.center_philosophy.$invalid ">Submit</button>
           </div>
         </div>
       </form>

@@ -83,7 +83,7 @@ function ctrl($log, $rootScope, $state, $stateParams, Status, UIState, service) 
       }
     }
     service.edit(id, formData).then(function ( /* result */ ) {
-      $state.go(UIState.FEATURED_CENTER);
+      $state.go(UIState.MY_PROFILE.MY_CENTERS);
       $rootScope.$emit(Status.SUCCEEDED, Status.CENTER_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {
       $log.error(err);
