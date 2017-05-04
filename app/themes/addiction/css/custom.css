@@ -2099,3 +2099,17 @@ p .btn-success {
 .wp_but{
   display:inline-block;float:left;cursor:pointer; margin-left:10px;
 }
+.modal-footer{
+  clear:both;
+}
+.absolute-city{
+    position: absolute;
+    width:50%;
+    margin-top: -30%;
+    text-align: right;
+    margin-left: 20%;
+}
+.absolute-county{
+  position: absolute;
+  margin-top: -30%; 
+}

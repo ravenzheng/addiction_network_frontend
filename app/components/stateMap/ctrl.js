@@ -40,7 +40,9 @@ function ctrl($element, config) {
           d: stateData.d,
           upcolor: vm.config.upcolor,
           statestroke: vm.config.statestroke,
-          namefill: vm.config.namefill
+          namefill: vm.config.namefill,
+          latlong: stateData.latlong,
+          zoomlevel: stateData.zoomlevel
         }
       });
     });
