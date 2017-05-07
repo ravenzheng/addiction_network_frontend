@@ -35,7 +35,7 @@ function ctrl(UIState) {
     name: 'Banner Ads',
     stateName: 'bannerAd'
   }, {
-    uiSref: UIState.ADD_LISTING.CENTER_DETAILS,
+    uiSref: UIState.ADD_LISTING.FEATURED_LISTING_PAGE1,
     name: 'Featured Listing',
     stateName: 'featuredListing'
   }];
