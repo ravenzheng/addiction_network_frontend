@@ -2102,7 +2102,7 @@ p .btn-success {
 .modal-footer{
   clear:both;
 }
-.absolute-city{
+/*.absolute-city{
     position: absolute;
     width:50%;
     margin-top: -30%;
@@ -2111,5 +2111,52 @@ p .btn-success {
 }
 .absolute-county{
   position: absolute;
-  margin-top: -30%; 
+  margin-top: -30%;
+}*/
+.option > .checkbox {
+    margin: 0px !important;
+}
+input.btn{
+  padding:4px 12px !important;
+  color:white !important;
+}
+/*.modal-dialog.modal-lg .modal-title {
+    text-align: center;
+}*/
+
+.modal-dialog{
+  margin-top:10px;
+}
+
+.modal-dialog.modal-lg{
+  width: 77%;
+}
+
+.modal-dialog .btn{
+  font-size: 12px;
+}
+
+.header_state_map{
+  border-bottom: 0px solid #e5e5e5 !important;
+  padding-bottom: 5%;
+}
+.dropdown-header{
+  padding:4px 10px !important;
+}
+.dropdown-menu > li > a{
+  padding : 3px 10px !important;
+}
+.modal-footer.map_popup_footer.ng-scope {
+    border-top: 0px !important;
+}
+.modal-body.map_body_state.ng-scope {
+    padding: 0px !important;
+}
+.add_to_cart{
+text-align: center;
+font-size: 21px;
+margin-left: 40%;
+}
+.margin-left{
+  margin-left:-10px;
 }

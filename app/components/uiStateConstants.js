@@ -30,7 +30,8 @@ module.exports = {
     'BANNER_AD': 'addListing.bannerAd',
     'FEATURED_LISTING': 'addListing.featuredListing',
     'PAYMENT_DETAILS': 'addListing.paymentDetails',
-    'SPONSORED_PAGES': 'addListing.sponsoredPage'
+    'SPONSORED_PAGES': 'addListing.sponsoredPage',
+    'CART_DETAILS': 'addListing.cartDetail'
 
   },
   'LOGIN': 'login',
