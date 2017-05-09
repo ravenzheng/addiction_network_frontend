@@ -2136,6 +2136,89 @@ input.btn{
   font-size: 12px;
 }
 
+.modal-dialog .three_columns ul > li:first-child,.modal-dialog .three_columns ul{
+  width: 500px;
+}
+
+.modal-dialog .two_columns ul > li:first-child,.modal-dialog .two_columns ul{
+  width: 400px;
+}
+
+.modal-dialog .four_columns ul > li:first-child,.modal-dialog .four_columns ul{
+  width: 650px;
+}
+
+.modal-dialog .five_columns ul > li:first-child,.modal-dialog .five_columns ul{
+  width:800px;
+}
+
+.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
+.modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2){
+  width: 100%;;
+}
+
+.modal-dialog .three_columns ul > li, .modal-dialog .two_columns ul > li,
+.modal-dialog .four_columns ul > li, .modal-dialog .five_columns ul > li{
+  width:150px;
+}
+.modal-dialog .three_columns ul{
+  -moz-column-count: 3;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 20px;
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.modal-dialog .two_columns ul{
+  -moz-column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 20px;
+  column-count: 2;
+  column-gap: 20px;
+}
+
+.modal-dialog .four_columns ul{
+  -moz-column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 20px;
+  column-count: 4;
+  column-gap: 20px;
+}
+
+.modal-dialog .five_columns ul{
+  -moz-column-count: 5;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 20px;
+  column-count: 5;
+  column-gap: 20px;
+}
+
+.modal-dialog .five_columns.negative_margin ul{
+  margin-left: -460%;
+}
+
+.modal-dialog .four_columns.negative_margin ul{
+  margin-left: -300%;
+}
+
+.modal-dialog .three_columns.negative_margin ul{
+  margin-left: -100%;
+}
+
+.modal-dialog .modal-body img{
+  max-height:83vh !important;
+  width:auto !important;
+  max-width: 100% !important;
+}
+
+.modal-dialog .modal-body{
+  text-align: center;
+}
+
 .header_state_map{
   border-bottom: 0px solid #e5e5e5 !important;
   padding-bottom: 5%;

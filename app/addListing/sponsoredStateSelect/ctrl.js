@@ -42,7 +42,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       var cityLength = response.city.length;
       i++;
     }
-    var totalCityHeight = 20 * cityLength + 125;
+    var totalCityHeight = 20 * cityLength + 110;
     if (totalCityHeight > 700) {
       totalCityHeight = 550;
     }
@@ -52,7 +52,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       checkBoxes: true,
       showCheckAll: false,
       showUncheckAll: false,
-      enableSearch: true,
+      // enableSearch: true,
       required: true
     };
     for (key in response.county) {
@@ -63,7 +63,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       var countyLength = response.county.length;
       i++;
     }
-    var totalCountyHeight = 20 * countyLength + 125;
+    var totalCountyHeight = 20 * countyLength + 110;
     if (totalCountyHeight > 700) {
       totalCountyHeight = 550;
     }
@@ -73,13 +73,39 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       checkBoxes: true,
       showCheckAll: false,
       showUncheckAll: false,
-      enableSearch: true,
+      // enableSearch: true,
       required: true
     };
+    if (countyLength > 14) {
+      var widthCounty = 'two_columns';
+    }
+    if (countyLength > 42) {
+      widthCounty = 'three_columns';
+    }
+    if (countyLength > 56) {
+      widthCounty = 'four_columns';
+    }
+    if (countyLength > 70) {
+      widthCounty = 'five_columns';
+    }
+
+    if (cityLength > 14) {
+      var widthCity = 'two_columns negative_margin';
+    }
+    if (cityLength > 42) {
+      widthCity = 'three_columns negative_margin';
+    }
+    if (cityLength > 56) {
+      widthCity = 'four_columns negative_margin';
+    }
+    if (cityLength > 70) {
+      widthCity = 'five_columns negative_margin';
+    }
+    $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
-    var citySelect = '<div ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText"></div>';
-    var countySelect = '<div ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText"></div>';
+    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText"></div>';
+    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText"></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
