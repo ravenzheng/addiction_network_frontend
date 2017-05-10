@@ -1,5 +1,7 @@
 var moduleName = 'app.addTreatmentCenterSignUp';
 
+require('./style.css');
+
 angular.module(moduleName, [
   'ui.router',
   'angularjs-dropdown-multiselect',
@@ -87,6 +89,8 @@ angular.module(moduleName, [
   .component('bannerAd', require('./bannerAd'))
   .component('sponsoredStateSelect', require('./sponsoredStateSelect'))
   .component('cartDetail', require('./cartDetail'))
+  .component('featuredListing', require('./featuredListing'))
+  .component('featuredLastStep', require('./featuredLastStep'))
   .component('addListing', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -141,6 +145,92 @@ angular.module(moduleName, [
       name: UIState.ADD_LISTING.CART_DETAILS,
       url: '/cart',
       template: '<cart-detail></cart-detail>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING,
+      url: '/step9',
+      template: '<div class="scroll soft"><featured-listing></featured-listing></div>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE1,
+      url: '/step9_1',
+      parent: UIState.ADD_LISTING.FEATURED_LISTING,
+      template: '<div id="page1">' +
+                  '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">Still Confused Why choose featured listing?</h2></div>' +
+                  '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE2 + '" class="btn btn-default button-next">' +
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
+                  '</button>' +
+                '</div>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE2,
+      url: '/step9_2',
+      parent: UIState.ADD_LISTING.FEATURED_LISTING,
+      template: '<div id="page2">' +
+                  '<div class="cloud-blue zoomIn"><span class="shadow"></span><h2 class="text-center" style="top: 10px;">We advertise Your Treatment Center on our home page</h2></div>' +
+                  '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE1 + '" class="btn btn-default button-previous">' +
+                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
+                  '</button>' +
+                  '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE3 + '" class="btn btn-default button-next">' +
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
+                  '</button>' +
+                  '</div>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE3,
+      url: '/step9_3',
+      parent: UIState.ADD_LISTING.FEATURED_LISTING,
+      template: '<div id="page3">' +
+                  '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">But how does it benefit?</h2></div>' +
+                  '<a ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE2 + '" class="btn btn-default button-previous">' +
+                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
+                  '</a>' +
+                  '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE4 + '" class="btn btn-default button-next">' +
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
+                  '</button>' +
+                '</div>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE4,
+      url: '/step9_4',
+      parent: UIState.ADD_LISTING.FEATURED_LISTING,
+      template: '<div id="page3">' +
+                  '<div class="cloud-blue zoomIn">' +
+                    '<span class="shadow"></span>' +
+                    '<div class="b">' +
+                      '<div>1) Your treatment center will be on top views list.</div>' +
+                      '<div>2) More customers get to see your treatment center advertisement.</div>' +
+                      '<div>3) This will keep you ahead in competetion getting more customer in your website.</div>' +
+                    '</div>' +
+                  '</div>' +
+                  '<a ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE3 + '" class="btn btn-default button-previous">' +
+                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
+                  '</a>' +
+                  '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE5 + '" class="btn btn-default button-next">' +
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
+                  '</button>' +
+                '</div>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE5,
+      url: '/step9_5',
+      parent: UIState.ADD_LISTING.FEATURED_LISTING,
+      template: '<div id="page3">' +
+                  '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">Still Not Satisfied</h2><a class="btn btn-default btn-not-satisfied" ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '">Click Here</a></div>' +
+                  '<a ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE4 + '" class="btn btn-default button-previous">' +
+                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
+                  '</a>' +
+                  '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '" class="btn btn-default button-next">' +
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
+                  '</button>' +
+                '</div>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE6,
+      url: '/step9_6',
+      parent: UIState.ADD_LISTING.FEATURED_LISTING,
+      template: '<featured-last-step></featured-last-step>'
+
     });
   }]);
 

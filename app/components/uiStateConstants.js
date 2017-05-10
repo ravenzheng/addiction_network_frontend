@@ -29,6 +29,12 @@ module.exports = {
     'SPONSORED_PAGE': 'addListing.sponsoredPage',
     'BANNER_AD': 'addListing.bannerAd',
     'FEATURED_LISTING': 'addListing.featuredListing',
+    'FEATURED_LISTING_PAGE1': 'addListing.featuredListing.page1',
+    'FEATURED_LISTING_PAGE2': 'addListing.featuredListing.page2',
+    'FEATURED_LISTING_PAGE3': 'addListing.featuredListing.page3',
+    'FEATURED_LISTING_PAGE4': 'addListing.featuredListing.page4',
+    'FEATURED_LISTING_PAGE5': 'addListing.featuredListing.page5',
+    'FEATURED_LISTING_PAGE6': 'addListing.featuredListing.page6',
     'PAYMENT_DETAILS': 'addListing.paymentDetails',
     'SPONSORED_PAGES': 'addListing.sponsoredPage',
     'CART_DETAILS': 'addListing.cartDetail'

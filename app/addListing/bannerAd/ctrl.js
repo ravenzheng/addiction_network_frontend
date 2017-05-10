@@ -43,7 +43,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
       $rootScope.addListingStepDone = 8;
-      // $state.go(UIState.ADD_LISTING.FEATURED_CENTER);
+      $state.go(UIState.ADD_LISTING.FEATURED_LISTING_PAGE1);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
