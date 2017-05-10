@@ -2102,17 +2102,6 @@ p .btn-success {
 .modal-footer{
   clear:both;
 }
-/*.absolute-city{
-    position: absolute;
-    width:50%;
-    margin-top: -30%;
-    text-align: right;
-    margin-left: 20%;
-}
-.absolute-county{
-  position: absolute;
-  margin-top: -30%;
-}*/
 .option > .checkbox {
     margin: 0px !important;
 }
@@ -2120,10 +2109,6 @@ input.btn{
   padding:4px 12px !important;
   color:white !important;
 }
-/*.modal-dialog.modal-lg .modal-title {
-    text-align: center;
-}*/
-
 .modal-dialog{
   margin-top:10px;
 }
@@ -2141,7 +2126,7 @@ input.btn{
 }
 
 .modal-dialog .two_columns ul{
-  width: 400px;
+  width: 350px;
 }
 
 .modal-dialog .four_columns ul{
@@ -2149,13 +2134,13 @@ input.btn{
 }
 
 .modal-dialog .five_columns ul{
-  width:800px;
+  width:750px;
 }
 .modal-dialog .six_columns ul{
-  width:1000px;
+  width:800px;
 }
 .modal-dialog .seven_columns ul{
-  width:1000px;
+  width:800px;
 }
 /*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
 .modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
@@ -2243,23 +2228,23 @@ input.btn{
   margin-left: -800%;
 }
 .modal-dialog .seven_columns.negative_margin ul{
-  margin-left: -660%;
+  margin-left: -550%;
 }
 .modal-dialog .six_and_last_columns.negative_margin ul{
-  margin-left: -600%;
+  margin-left: -500%;
 }
 .modal-dialog .four_columns.negative_margin ul{
   margin-left: -370%;
 }
 
 .modal-dialog .three_columns.negative_margin ul{
-  margin-left: -200%;
+  margin-left: -220%;
 }
 .modal-dialog .five_columns.county_negative ul{
-  margin-left: -100%;
+  margin-left: -200%;
 }
 .modal-dialog .modal-body img{
-  max-height:81vh !important;
+  max-height:83vh !important;
   width:auto !important;
   max-width: 100% !important;
 }
@@ -2300,4 +2285,16 @@ margin-left: 40%;
 }
 .dropdown-toggle.ng-binding.btn.btn-default {
     min-width: 102px;
+}
+.four_columns.county_negative_four ul{
+  margin-left:-100%;
+}
+.six_columns.county_negative_six ul{
+  margin-left: -200%;
+}
+.modal-dialog ul{
+  max-height: 70vh;
+}
+.two_columns.county_negative_two ul{
+  width:400px;
 }

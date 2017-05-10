@@ -24,7 +24,7 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   vm.open = function (state) {
     // var stateMap = '<svg version="1.1" id="state_map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="' + state.viewbox + '" xml:space="preserve">  <g id="state">   <g> <path ng-attr-id="' + state.id + '" ng-attr-fill="' + state.upcolor + '" ng-attr-stroke="' + state.statestroke + '" ng-attr-d="' + state.d + '" stroke-width="1" cursor="pointer"></path></g></g><g id="abb"><text ng-attr-id="' + state.shortname + '" ng-attr-transform="' + state.transform + '" pointer-events="none"><tspan x="0" y="0" font-family="Arial" font-size="11" ng-attr-fill="' + state.namefill + '">' + state.shortname + '</tspan></text></g></svg>';
     // var stateMap = '<div id="googleMap" style="width:100%;height:400px;"></div><script>function myMap() {  var mapProp = {center: new google.maps.LatLng(' + state.latlong + '),zoom:' + state.zoomlevel + '};var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);}</script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzZiyHarHVkYQCBywa0HYl0MD77BRiL64&callback=myMap"></script>';
-    var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.4">';
+    var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.2">';
     getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope);
   };
 }
@@ -42,7 +42,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       var cityLength = response.city.length;
       i++;
     }
-    var totalCityHeight = 20 * cityLength + 110;
+    var totalCityHeight = 20 * cityLength + 100;
     if (totalCityHeight > 700) {
       totalCityHeight = 550;
     }
@@ -59,7 +59,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       totalCountyHeight = 550;
     }
     if (countyLength > 14) {
-      var widthCounty = 'two_columns';
+      var widthCounty = 'two_columns county_negative_two';
       var scrollableHeightCounty = 'auto';
     }
     if (countyLength > 42) {
@@ -67,7 +67,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 56) {
-      widthCounty = 'four_columns';
+      widthCounty = 'four_columns county_negative_four';
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 70) {
@@ -75,7 +75,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 84) {
-      widthCounty = 'six_columns';
+      widthCounty = 'six_columns county_negative_six';
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 100) {
@@ -110,11 +110,6 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       widthCity = 'seven_columns negative_margin';
       scrollableHeightCity = totalCityHeight + 'px';
     }
-    // console.log('cityLength ' + cityLength);
-    // if (countyLength > 100) {
-    //   widthCity = 'seven_columns negative_margin';
-    //   scrollableHeightCity = totalCityHeight + 'px';
-    // }
     $rootScope.multiselectModelSettingsCounty = {
       scrollableHeight: scrollableHeightCounty,
       // scrollableHeight: 'auto',
