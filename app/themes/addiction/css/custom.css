@@ -2102,17 +2102,6 @@ p .btn-success {
 .modal-footer{
   clear:both;
 }
-/*.absolute-city{
-    position: absolute;
-    width:50%;
-    margin-top: -30%;
-    text-align: right;
-    margin-left: 20%;
-}
-.absolute-county{
-  position: absolute;
-  margin-top: -30%;
-}*/
 .option > .checkbox {
     margin: 0px !important;
 }
@@ -2120,10 +2109,6 @@ input.btn{
   padding:4px 12px !important;
   color:white !important;
 }
-/*.modal-dialog.modal-lg .modal-title {
-    text-align: center;
-}*/
-
 .modal-dialog{
   margin-top:10px;
 }

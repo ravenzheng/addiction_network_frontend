@@ -110,11 +110,6 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       widthCity = 'seven_columns negative_margin';
       scrollableHeightCity = totalCityHeight + 'px';
     }
-    // console.log('cityLength ' + cityLength);
-    // if (countyLength > 100) {
-    //   widthCity = 'seven_columns negative_margin';
-    //   scrollableHeightCity = totalCityHeight + 'px';
-    // }
     $rootScope.multiselectModelSettingsCounty = {
       scrollableHeight: scrollableHeightCounty,
       // scrollableHeight: 'auto',
