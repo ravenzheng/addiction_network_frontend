@@ -2212,13 +2212,15 @@ input.btn{
   margin-left: -800%;
 }
 .modal-dialog .four_columns.negative_margin ul{
-  margin-left: -350%;
+  margin-left: -370%;
 }
 
 .modal-dialog .three_columns.negative_margin ul{
   margin-left: -200%;
 }
-
+.modal-dialog .five_columns.county_negative ul{
+  margin-left: -100%;
+}
 .modal-dialog .modal-body img{
   max-height:83vh !important;
   width:auto !important;
