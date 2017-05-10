@@ -87,6 +87,8 @@ angular.module(moduleName, [
   .component('paymentDetail', require('./paymentDetail'))
   .component('sponsoredPage', require('./sponsoredPage'))
   .component('bannerAd', require('./bannerAd'))
+  .component('sponsoredStateSelect', require('./sponsoredStateSelect'))
+  .component('cartDetail', require('./cartDetail'))
   .component('featuredListing', require('./featuredListing'))
   .component('featuredLastStep', require('./featuredLastStep'))
   .component('addListing', {
@@ -138,6 +140,11 @@ angular.module(moduleName, [
       name: UIState.ADD_LISTING.BANNER_AD,
       url: '/step8',
       template: '<banner-ad></banner-ad>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.CART_DETAILS,
+      url: '/cart',
+      template: '<cart-detail></cart-detail>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING,
@@ -223,6 +230,7 @@ angular.module(moduleName, [
       url: '/step9_6',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<featured-last-step></featured-last-step>'
+
     });
   }]);
 

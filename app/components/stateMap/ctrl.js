@@ -34,7 +34,16 @@ function ctrl($element, config) {
       vm.onSelect({
         state: {
           shortname: stateData.shortname,
-          fullname: stateData.fullname
+          fullname: stateData.fullname,
+          id: stateData.id,
+          transform: stateData.transform,
+          d: stateData.d,
+          upcolor: vm.config.upcolor,
+          statestroke: vm.config.statestroke,
+          namefill: vm.config.namefill,
+          latlong: stateData.latlong,
+          zoomlevel: stateData.zoomlevel,
+          image: stateData.image
         }
       });
     });

@@ -39,5 +39,10 @@ function ctrl(UIState) {
     name: 'Featured Listing',
     stateName: 'featuredListing'
   }];
+  vm.cartLink = [{
+    uiSref: UIState.ADD_LISTING.CART_DETAILS,
+    name: 'Cart Details',
+    stateName: 'cart'
+  }];
   vm.srl = 1;
 }

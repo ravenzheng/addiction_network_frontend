@@ -2099,3 +2099,168 @@ p .btn-success {
 .wp_but{
   display:inline-block;float:left;cursor:pointer; margin-left:10px;
 }
+.modal-footer{
+  clear:both;
+}
+/*.absolute-city{
+    position: absolute;
+    width:50%;
+    margin-top: -30%;
+    text-align: right;
+    margin-left: 20%;
+}
+.absolute-county{
+  position: absolute;
+  margin-top: -30%;
+}*/
+.option > .checkbox {
+    margin: 0px !important;
+}
+input.btn{
+  padding:4px 12px !important;
+  color:white !important;
+}
+/*.modal-dialog.modal-lg .modal-title {
+    text-align: center;
+}*/
+
+.modal-dialog{
+  margin-top:10px;
+}
+
+.modal-dialog.modal-lg{
+  width: 82%;
+}
+
+.modal-dialog .btn{
+  font-size: 12px;
+}
+
+.modal-dialog .three_columns ul{
+  width: 500px;
+}
+
+.modal-dialog .two_columns ul{
+  width: 400px;
+}
+
+.modal-dialog .four_columns ul{
+  width: 650px;
+}
+
+.modal-dialog .five_columns ul{
+  width:800px;
+}
+.modal-dialog .six_columns ul{
+  width:1000px;
+}
+/*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
+.modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
+  width: 100%;
+}*/
+
+.modal-dialog .three_columns ul > li, .modal-dialog .two_columns ul > li,
+.modal-dialog .four_columns ul > li, .modal-dialog .five_columns ul > li,.modal-dialog .six_columns ul > li{
+  word-wrap: break-word !important;
+}
+.modal-dialog .three_columns ul{
+  -moz-column-count: 3;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 20px;
+  column-count: 3;
+  column-gap: 10px;
+}
+
+.modal-dialog .two_columns ul{
+  -moz-column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 20px;
+  column-count: 2;
+  column-gap: 10px;
+  column-width: 150px;
+  margin-left : -100%;
+}
+
+.modal-dialog .four_columns ul{
+  -moz-column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 20px;
+  column-count: 4;
+  column-gap: 10px;
+  column-width: 150px;
+}
+
+.modal-dialog .five_columns ul{
+  -moz-column-count: 5;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 20px;
+  column-count: 5;
+  column-gap: 10px;
+  column-width: 150px;
+}
+.modal-dialog .six_columns ul{
+  column-width: 114px;
+}
+.modal-dialog .five_columns.negative_margin ul{
+  margin-left: -460%;
+}
+.modal-dialog .six_columns.negative_margin ul{
+  margin-left: -800%;
+}
+.modal-dialog .four_columns.negative_margin ul{
+  margin-left: -370%;
+}
+
+.modal-dialog .three_columns.negative_margin ul{
+  margin-left: -200%;
+}
+.modal-dialog .five_columns.county_negative ul{
+  margin-left: -100%;
+}
+.modal-dialog .modal-body img{
+  max-height:83vh !important;
+  width:auto !important;
+  max-width: 100% !important;
+}
+
+.modal-dialog .modal-body{
+  text-align: center;
+}
+
+.header_state_map{
+  border-bottom: 0px solid #e5e5e5 !important;
+  padding-bottom: 5%;
+}
+.dropdown-header{
+  padding:4px 10px !important;
+}
+.dropdown-menu > li > a{
+  padding : 3px 10px !important;
+}
+.modal-footer.map_popup_footer.ng-scope {
+    border-top: 0px !important;
+}
+.modal-body.map_body_state.ng-scope {
+    padding: 0px !important;
+}
+.add_to_cart{
+text-align: center;
+font-size: 21px;
+margin-left: 40%;
+}
+.margin-left{
+  margin-left:-10px;
+}
+.modal-dialog ul{
+  background: transparent;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+  background-color: transparent !important;
+}
+.dropdown-toggle.ng-binding.btn.btn-default {
+    min-width: 102px;
+}
