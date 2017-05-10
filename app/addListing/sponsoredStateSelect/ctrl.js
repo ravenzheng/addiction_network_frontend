@@ -71,7 +71,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 70) {
-      widthCounty = 'five_columns';
+      widthCounty = 'five_columns county_negative';
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 84) {
