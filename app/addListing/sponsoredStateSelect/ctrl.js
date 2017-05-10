@@ -102,6 +102,15 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       widthCity = 'six_columns negative_margin';
       scrollableHeightCity = totalCityHeight + 'px';
     }
+    if (cityLength > 88) {
+      widthCity = 'six_and_last_columns negative_margin';
+      scrollableHeightCity = totalCityHeight + 'px';
+    }
+    if (cityLength > 100) {
+      widthCity = 'seven_columns negative_margin';
+      scrollableHeightCity = totalCityHeight + 'px';
+    }
+    // console.log('cityLength ' + cityLength);
     // if (countyLength > 100) {
     //   widthCity = 'seven_columns negative_margin';
     //   scrollableHeightCity = totalCityHeight + 'px';
