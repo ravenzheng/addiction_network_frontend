@@ -2129,37 +2129,39 @@ input.btn{
 }
 
 .modal-dialog.modal-lg{
-  width: 77%;
+  width: 86%;
 }
 
 .modal-dialog .btn{
   font-size: 12px;
 }
 
-.modal-dialog .three_columns ul > li:first-child,.modal-dialog .three_columns ul{
+.modal-dialog .three_columns ul{
   width: 500px;
 }
 
-.modal-dialog .two_columns ul > li:first-child,.modal-dialog .two_columns ul{
+.modal-dialog .two_columns ul{
   width: 400px;
 }
 
-.modal-dialog .four_columns ul > li:first-child,.modal-dialog .four_columns ul{
+.modal-dialog .four_columns ul{
   width: 650px;
 }
 
-.modal-dialog .five_columns ul > li:first-child,.modal-dialog .five_columns ul{
+.modal-dialog .five_columns ul{
   width:800px;
 }
-
-.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
-.modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2){
-  width: 100%;;
+.modal-dialog .six_columns ul{
+  width:1000px;
 }
+/*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
+.modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
+  width: 100%;
+}*/
 
 .modal-dialog .three_columns ul > li, .modal-dialog .two_columns ul > li,
-.modal-dialog .four_columns ul > li, .modal-dialog .five_columns ul > li{
-  width:150px;
+.modal-dialog .four_columns ul > li, .modal-dialog .five_columns ul > li,.modal-dialog .six_columns ul > li{
+  word-wrap: break-word !important;
 }
 .modal-dialog .three_columns ul{
   -moz-column-count: 3;
@@ -2167,7 +2169,7 @@ input.btn{
   -webkit-column-count: 3;
   -webkit-column-gap: 20px;
   column-count: 3;
-  column-gap: 20px;
+  column-gap: 10px;
 }
 
 .modal-dialog .two_columns ul{
@@ -2176,7 +2178,9 @@ input.btn{
   -webkit-column-count: 2;
   -webkit-column-gap: 20px;
   column-count: 2;
-  column-gap: 20px;
+  column-gap: 10px;
+  column-width: 150px;
+  margin-left : -100%;
 }
 
 .modal-dialog .four_columns ul{
@@ -2185,7 +2189,8 @@ input.btn{
   -webkit-column-count: 4;
   -webkit-column-gap: 20px;
   column-count: 4;
-  column-gap: 20px;
+  column-gap: 10px;
+  column-width: 150px;
 }
 
 .modal-dialog .five_columns ul{
@@ -2194,19 +2199,24 @@ input.btn{
   -webkit-column-count: 5;
   -webkit-column-gap: 20px;
   column-count: 5;
-  column-gap: 20px;
+  column-gap: 10px;
+  column-width: 150px;
 }
-
+.modal-dialog .six_columns ul{
+  column-width: 114px;
+}
 .modal-dialog .five_columns.negative_margin ul{
   margin-left: -460%;
 }
-
+.modal-dialog .six_columns.negative_margin ul{
+  margin-left: -800%;
+}
 .modal-dialog .four_columns.negative_margin ul{
-  margin-left: -300%;
+  margin-left: -350%;
 }
 
 .modal-dialog .three_columns.negative_margin ul{
-  margin-left: -100%;
+  margin-left: -200%;
 }
 
 .modal-dialog .modal-body img{
@@ -2242,4 +2252,10 @@ margin-left: 40%;
 }
 .margin-left{
   margin-left:-10px;
+}
+.modal-dialog ul{
+  background: transparent;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+  background-color: transparent !important;
 }
