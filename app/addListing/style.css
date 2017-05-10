@@ -11,9 +11,13 @@
   .scroll.soft .scrolled {
     transition: left 0.75s ease;
     left: 0; }
-  .scroll.hard .scrolled {
-    transition: transform 0.75s ease;
-    transform: translate3d(0, 0, 0); }
+  .scroll.soft .zoomIn {
+    transition: 2s linear all;
+    -webkit-transition: 2s linear all; }
+  .scroll.soft .zoomIn.ng-enter {
+    opacity: 0; }
+  .scroll.soft .zoomIn.ng-leave {
+    opacity: 1; }
 
 .scroll.soft .scrolled.ng-enter {
   left: 100%; }

@@ -17,11 +17,15 @@
       transition: left $duration ease;
       left: 0;
     }
-  }
-  &.hard {
-    .scrolled {
-      transition: transform $duration ease;
-      transform: translate3d(0, 0, 0);
+    .zoomIn{
+      transition: 2s linear all;
+      -webkit-transition: 2s linear all;
+    }
+    .zoomIn.ng-enter {
+      opacity: 0;
+    }
+    .zoomIn.ng-leave {
+      opacity: 1;
     }
   }
 }

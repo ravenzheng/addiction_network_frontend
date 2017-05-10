@@ -20,7 +20,7 @@ function ctrl($log, $scope, $rootScope) {
       var step5 = step4.concat(['paymentDetails']);
       var step6 = step5.concat(['sponsoredPage']);
       var step7 = step6.concat(['bannerAd']);
-      //  var step8 = step7.concat(['featuredListing']);
+      var step8 = step7.concat(['featuredListing']);
 
       var stepDone = $rootScope.addListingStepDone;
       if (tostate[0] === 'addListing') {
@@ -39,6 +39,8 @@ function ctrl($log, $scope, $rootScope) {
         } else if (stepDone === 6 && (step6.indexOf(tostate[1]) === -1)) {
           event.preventDefault();
         } else if (stepDone === 7 && (step7.indexOf(tostate[1]) === -1)) {
+          event.preventDefault();
+        } else if (stepDone === 8 && (step8.indexOf(tostate[1]) === -1)) {
           event.preventDefault();
         }
 

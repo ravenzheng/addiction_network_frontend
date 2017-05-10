@@ -8,6 +8,7 @@ angular.module(moduleName, [])
   .factory('TreatmentCenterService', require('./treatmentCenterService'))
   .factory('SponsorService', require('./sponsorAdsService'))
   .factory('SliderService', require('./sliderService'))
+  .factory('FeaturedService', require('./featuredListingService'))
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(require('./dataInterceptor'));
   }]);

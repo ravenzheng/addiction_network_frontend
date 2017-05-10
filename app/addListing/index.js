@@ -88,6 +88,7 @@ angular.module(moduleName, [
   .component('sponsoredPage', require('./sponsoredPage'))
   .component('bannerAd', require('./bannerAd'))
   .component('featuredListing', require('./featuredListing'))
+  .component('featuredLastStep', require('./featuredLastStep'))
   .component('addListing', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -148,7 +149,7 @@ angular.module(moduleName, [
       url: '/step9_1',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page1">' +
-                  '<div class="cloud-green"><span class="shadow"></span><h2 class="text-center">Still Confused Why choose featured listing?</h2></div>' +
+                  '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">Still Confused Why choose featured listing?</h2></div>' +
                   '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE2 + '" class="btn btn-default button-next">' +
                     '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
                   '</button>' +
@@ -159,7 +160,7 @@ angular.module(moduleName, [
       url: '/step9_2',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page2">' +
-                  '<div class="cloud-blue"><span class="shadow"></span><h2 class="text-center" style="top: 10px;">We advertise Your Treatment Center on our home page</h2></div>' +
+                  '<div class="cloud-blue zoomIn"><span class="shadow"></span><h2 class="text-center" style="top: 10px;">We advertise Your Treatment Center on our home page</h2></div>' +
                   '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE1 + '" class="btn btn-default button-previous">' +
                     '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
                   '</button>' +
@@ -173,7 +174,7 @@ angular.module(moduleName, [
       url: '/step9_3',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page3">' +
-                  '<div class="cloud-green"><span class="shadow"></span><h2 class="text-center">But how does it benefit?</h2></div>' +
+                  '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">But how does it benefit?</h2></div>' +
                   '<a ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE2 + '" class="btn btn-default button-previous">' +
                     '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
                   '</a>' +
@@ -187,7 +188,7 @@ angular.module(moduleName, [
       url: '/step9_4',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page3">' +
-                  '<div class="cloud-blue">' +
+                  '<div class="cloud-blue zoomIn">' +
                     '<span class="shadow"></span>' +
                     '<div class="b">' +
                       '<div>1) Your treatment center will be on top views list.</div>' +
@@ -208,7 +209,7 @@ angular.module(moduleName, [
       url: '/step9_5',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page3">' +
-                  '<div class="cloud-green"><span class="shadow"></span><h2 class="text-center">Still Not Satisfied</h2><a class="btn btn-default btn-not-satisfied" ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '">Click Here</a></div>' +
+                  '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">Still Not Satisfied</h2><a class="btn btn-default btn-not-satisfied" ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '">Click Here</a></div>' +
                   '<a ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE4 + '" class="btn btn-default button-previous">' +
                     '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
                   '</a>' +
@@ -221,16 +222,7 @@ angular.module(moduleName, [
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE6,
       url: '/step9_6',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
-      template: '<div id="page3">' +
-                  '<div class="rect-blue text-center">' +
-                    '<h2 class="text-center" style="top: 5px;">We give you free subscription for one week with absolute no charges.</h2>' +
-                    '<h3>It will be charged only once after trial period you can cancel anytime before that if you don\'t see the difference.</h3>' +
-                    '<a class="btn btn-default" ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '">Subscribe</a>' +
-                  '</div>' +
-                  '<a ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE5 + '" class="btn btn-default button-previous">' +
-                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>' +
-                  '</a>' +
-                '</div>'
+      template: '<featured-last-step></featured-last-step>'
     });
   }]);
 
