@@ -2261,3 +2261,6 @@ margin-left: 40%;
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
   background-color: transparent !important;
 }
+.dropdown-toggle.ng-binding.btn.btn-default {
+    min-width: 102px;
+}
