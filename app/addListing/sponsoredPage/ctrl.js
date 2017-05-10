@@ -22,7 +22,6 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
   var token = localStorageService.get('signupToken');
-
   vm.submit = function () {
     var centerIds = '';
     var id = '';

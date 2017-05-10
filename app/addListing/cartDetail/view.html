@@ -1,0 +1,94 @@
+<!-- {{$root.cityModel}} {{$root.countyModel}} -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 margin-left">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="row">
+              <div class="col-xs-6">
+                <h5>
+                  <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+              </div>
+              <div class="col-xs-6">
+                <button type="button" class="btn btn-primary btn-sm btn-block">
+                  <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row" ng-repeat="counties in $root.counties">
+            <div class="col-xs-2">
+              <img class="img-responsive" src="themes/addiction/images/{{counties.state_name}}.png">
+            </div>
+            <div class="col-xs-4">
+              <h4 class="product-name">
+                <strong>{{counties.name}}</strong>
+              </h4>
+              <!-- <h4>
+                <small>Product description</small>
+              </h4> -->
+            </div>
+            <div class="col-xs-6">
+              <div class="col-xs-4">
+                <h6>
+                  <strong>{{counties.price}}
+                  </strong>
+                </h6>
+              </div>
+              <div class="col-xs-4 text-right">
+                <button type="button" class="btn btn-link btn-xs">
+                  <span class="glyphicon glyphicon-trash"> </span>
+                </button>
+              </div>
+            </div>
+            <hr style="margin-top:8%;">
+          </div>
+          <div class="row" ng-repeat="cities in $root.cities">
+            <div class="col-xs-2">
+              <img class="img-responsive" src="themes/addiction/images/{{cities.state_name}}.png">
+            </div>
+            <div class="col-xs-4">
+              <h4 class="product-name">
+                <strong>{{cities.name}}</strong>
+              </h4>
+              <!-- <h4>
+                <small>Product description</small>
+              </h4> -->
+            </div>
+            <div class="col-xs-6">
+              <div class="col-xs-4">
+                <h6>
+                  <strong>{{cities.price}}
+                  </strong>
+                </h6>
+              </div>
+              <div class="col-xs-4 text-right">
+                <button type="button" class="btn btn-link btn-xs">
+                  <span class="glyphicon glyphicon-trash"> </span>
+                </button>
+              </div>
+            </div>
+            <hr style="margin-top:8%;">
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row text-center">
+            <div class="col-xs-9">
+              <h4 class="text-right">Total
+                <strong>${{$root.total}}.00</strong>
+              </h4>
+            </div>
+            <div class="col-xs-3">
+              <button type="button" class="btn btn-success btn-block">
+                Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
