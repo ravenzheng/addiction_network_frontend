@@ -2154,6 +2154,9 @@ input.btn{
 .modal-dialog .six_columns ul{
   width:1000px;
 }
+.modal-dialog .seven_columns ul{
+  width:1000px;
+}
 /*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
 .modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
   width: 100%;
@@ -2202,6 +2205,34 @@ input.btn{
   column-gap: 10px;
   column-width: 150px;
 }
+
+.modal-dialog .six_columns ul{
+  -moz-column-count: 5;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 20px;
+  column-count: 5;
+  column-gap: 10px;
+  column-width: 150px;
+}
+.modal-dialog .seven_columns ul{
+  -moz-column-count: 5;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 20px;
+  column-count: 5;
+  column-gap: 10px;
+  column-width: 150px;
+}
+.modal-dialog .six_and_last_columns ul{
+  -moz-column-count: 5;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 20px;
+  column-count: 5;
+  column-gap: 10px;
+  column-width: 150px;
+}
 .modal-dialog .six_columns ul{
   column-width: 114px;
 }
@@ -2210,6 +2241,12 @@ input.btn{
 }
 .modal-dialog .six_columns.negative_margin ul{
   margin-left: -800%;
+}
+.modal-dialog .seven_columns.negative_margin ul{
+  margin-left: -660%;
+}
+.modal-dialog .six_and_last_columns.negative_margin ul{
+  margin-left: -600%;
 }
 .modal-dialog .four_columns.negative_margin ul{
   margin-left: -370%;
@@ -2222,7 +2259,7 @@ input.btn{
   margin-left: -100%;
 }
 .modal-dialog .modal-body img{
-  max-height:83vh !important;
+  max-height:81vh !important;
   width:auto !important;
   max-width: 100% !important;
 }
