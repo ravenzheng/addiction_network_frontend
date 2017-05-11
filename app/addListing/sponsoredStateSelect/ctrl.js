@@ -1,4 +1,4 @@
-module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', ctrl];
+module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', '$document', ctrl];
 
 function ctrl($rootScope, $injector, $state, UIState, service, localStorageService) {
   var vm = this;
@@ -29,7 +29,7 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   };
 }
 
-function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope) {
+function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, $document) {
   service.getCityCountyByState(token, state.shortname).then(function (response) {
     var i = 0;
     var modifiedCitySelect = [];
@@ -115,26 +115,28 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       // scrollableHeight: 'auto',
       scrollable: true,
       checkBoxes: true,
-      showCheckAll: false,
-      showUncheckAll: false,
+      showCheckAll: true,
+      showUncheckAll: true,
       // enableSearch: true,
-      required: true
+      required: true,
+      keyboardControls: true
     };
     $rootScope.multiselectModelSettingsCity = {
       scrollableHeight: scrollableHeightCity,
       // scrollableHeight: 'auto',
       scrollable: true,
       checkBoxes: true,
-      showCheckAll: false,
-      showUncheckAll: false,
+      showCheckAll: true,
+      showUncheckAll: true,
       // enableSearch: true,
-      required: true
+      required: true,
+      keyboardControls: true
     };
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
-    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText"></div>';
-    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText"></div>';
+    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity }"></div>';
+    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty }"></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
@@ -152,6 +154,13 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         };
         $rootScope.cancel = function () {
           modalInstance.dismiss('cancel');
+        };
+        $rootScope.onSelectAllCity = function () {
+          var hideselect = angular.element($document[0].querySelector('#deselectAll'));
+          hideselect.attr('src', 'testing');
+        };
+        $rootScope.onSelectAllCounty = function () {
+
         };
       },
       bindToController: true
