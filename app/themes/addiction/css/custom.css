@@ -2305,3 +2305,6 @@ html {
 .wp-flybox_tab.call_us { background: #2172a7; }
 
 .wp-flybox_tab.call_us p { color: white; }
+.btn.modal_btn {
+    color: white;
+}

@@ -13,7 +13,7 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
     vm.multiselectModelCategories = [];
   }
   lm.multiselectModelSettings = {
-    scrollableHeight: '200px',
+    scrollableHeight: '160px',
     scrollable: true,
     checkBoxes: true,
     showCheckAll: false,
@@ -114,8 +114,8 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
 
   vm.saveStep4 = function () {
     var categoryName = [];
-    for (var key in lm.multiselectModelCategories) {
-      var categories = String(lm.multiselectModelCategories[key].id);
+    for (var key in vm.multiselectModelCategories) {
+      var categories = String(vm.multiselectModelCategories[key].id);
       categoryName[key] = categories;
     }
     $rootScope.centerInfo = {
