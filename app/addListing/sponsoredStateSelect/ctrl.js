@@ -1,4 +1,4 @@
-module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', '$document', ctrl];
+module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', ctrl];
 
 function ctrl($rootScope, $injector, $state, UIState, service, localStorageService) {
   var vm = this;
@@ -29,7 +29,7 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   };
 }
 
-function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, $document) {
+function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope) {
   service.getCityCountyByState(token, state.shortname).then(function (response) {
     var i = 0;
     var modifiedCitySelect = [];
@@ -156,8 +156,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           modalInstance.dismiss('cancel');
         };
         $rootScope.onSelectAllCity = function () {
-          var hideselect = angular.element($document[0].querySelector('#deselectAll'));
-          hideselect.attr('src', 'testing');
+
         };
         $rootScope.onSelectAllCounty = function () {
 
