@@ -24,7 +24,7 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   vm.open = function (state) {
     // var stateMap = '<svg version="1.1" id="state_map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="' + state.viewbox + '" xml:space="preserve">  <g id="state">   <g> <path ng-attr-id="' + state.id + '" ng-attr-fill="' + state.upcolor + '" ng-attr-stroke="' + state.statestroke + '" ng-attr-d="' + state.d + '" stroke-width="1" cursor="pointer"></path></g></g><g id="abb"><text ng-attr-id="' + state.shortname + '" ng-attr-transform="' + state.transform + '" pointer-events="none"><tspan x="0" y="0" font-family="Arial" font-size="11" ng-attr-fill="' + state.namefill + '">' + state.shortname + '</tspan></text></g></svg>';
     // var stateMap = '<div id="googleMap" style="width:100%;height:400px;"></div><script>function myMap() {  var mapProp = {center: new google.maps.LatLng(' + state.latlong + '),zoom:' + state.zoomlevel + '};var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);}</script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzZiyHarHVkYQCBywa0HYl0MD77BRiL64&callback=myMap"></script>';
-    var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.7">';
+    var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.2">';
     getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope);
   };
 }
@@ -42,7 +42,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       var cityLength = response.city.length;
       i++;
     }
-    var totalCityHeight = 20 * cityLength + 110;
+    var totalCityHeight = 20 * cityLength + 100;
     if (totalCityHeight > 700) {
       totalCityHeight = 550;
     }
@@ -59,7 +59,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       totalCountyHeight = 550;
     }
     if (countyLength > 14) {
-      var widthCounty = 'two_columns';
+      var widthCounty = 'two_columns county_negative_two';
       var scrollableHeightCounty = 'auto';
     }
     if (countyLength > 42) {
@@ -67,7 +67,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 56) {
-      widthCounty = 'four_columns';
+      widthCounty = 'four_columns county_negative_four';
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 70) {
@@ -75,7 +75,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 84) {
-      widthCounty = 'six_columns';
+      widthCounty = 'six_columns county_negative_six';
       scrollableHeightCounty = 'auto';
     }
     if (countyLength > 100) {
@@ -102,35 +102,41 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       widthCity = 'six_columns negative_margin';
       scrollableHeightCity = totalCityHeight + 'px';
     }
-    // if (countyLength > 100) {
-    //   widthCity = 'seven_columns negative_margin';
-    //   scrollableHeightCity = totalCityHeight + 'px';
-    // }
+    if (cityLength > 88) {
+      widthCity = 'six_and_last_columns negative_margin';
+      scrollableHeightCity = totalCityHeight + 'px';
+    }
+    if (cityLength > 100) {
+      widthCity = 'seven_columns negative_margin';
+      scrollableHeightCity = totalCityHeight + 'px';
+    }
     $rootScope.multiselectModelSettingsCounty = {
       scrollableHeight: scrollableHeightCounty,
       // scrollableHeight: 'auto',
       scrollable: true,
       checkBoxes: true,
-      showCheckAll: false,
-      showUncheckAll: false,
+      showCheckAll: true,
+      showUncheckAll: true,
       // enableSearch: true,
-      required: true
+      required: true,
+      keyboardControls: true
     };
     $rootScope.multiselectModelSettingsCity = {
       scrollableHeight: scrollableHeightCity,
       // scrollableHeight: 'auto',
       scrollable: true,
       checkBoxes: true,
-      showCheckAll: false,
-      showUncheckAll: false,
+      showCheckAll: true,
+      showUncheckAll: true,
       // enableSearch: true,
-      required: true
+      required: true,
+      keyboardControls: true
     };
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
-    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText"></div>';
-    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText"></div>';
+    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity }"></div>';
+    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty }"></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
@@ -148,6 +154,12 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         };
         $rootScope.cancel = function () {
           modalInstance.dismiss('cancel');
+        };
+        $rootScope.onSelectAllCity = function () {
+
+        };
+        $rootScope.onSelectAllCounty = function () {
+
         };
       },
       bindToController: true
