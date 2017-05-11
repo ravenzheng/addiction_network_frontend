@@ -8,17 +8,119 @@
     width: 100%; }
     .scroll .scrolled > div {
       padding: 1em; }
-  .scroll.soft .scrolled {
-    transition: left 0.75s ease;
-    left: 0; }
-  .scroll.soft .zoomIn {
-    transition: 2s linear all;
-    -webkit-transition: 2s linear all; }
-  .scroll.soft .zoomIn.ng-enter {
-    opacity: 0; }
-  .scroll.soft .zoomIn.ng-leave {
-    opacity: 1; }
-
+  .scroll.soft {
+    /* Firefox < 16 */
+    /* Safari, Chrome and Opera > 12.1 */
+    /* Internet Explorer */
+    /* Opera < 12.1 */ }
+    .scroll.soft .scrolled {
+      transition: left 0.75s ease;
+      left: 0; }
+    .scroll.soft .zoomIn {
+      -webkit-animation: fadein 20s;
+      /* Safari, Chrome and Opera > 12.1 */
+      -moz-animation: fadein 20s;
+      /* Firefox < 16 */
+      -ms-animation: fadein 20s;
+      /* Internet Explorer */
+      -o-animation: fadein 20s;
+      /* Opera < 12.1 */
+      animation: fadein 20s; }
+@keyframes fadein {
+  from {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.5);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.5);
+    transition: all 200ms ease-in;
+    transform: scale(0.5); }
+  to {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1); } }
+@-moz-keyframes fadein {
+  from {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.5);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.5);
+    transition: all 200ms ease-in;
+    transform: scale(0.5); }
+  to {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1); } }
+@-webkit-keyframes fadein {
+  from {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.5);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.5);
+    transition: all 200ms ease-in;
+    transform: scale(0.5); }
+  to {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1); } }
+@-ms-keyframes fadein {
+  from {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.5);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.5);
+    transition: all 200ms ease-in;
+    transform: scale(0.5); }
+  to {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1); } }
+@-o-keyframes fadein {
+  from {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(0.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(0.5);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(0.5);
+    transition: all 200ms ease-in;
+    transform: scale(0.5); }
+  to {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1); } }
 .scroll.soft .scrolled.ng-enter {
   left: 100%; }
 .scroll.soft .scrolled.ng-enter-active {
