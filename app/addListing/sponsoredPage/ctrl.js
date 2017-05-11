@@ -3,7 +3,7 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
   $rootScope.activeLink = 'Sponsored Pages';
   vm.multiselectModelLayoutIds = [];
   vm.multiselectModelSettings = {
-    scrollableHeight: '250px',
+    scrollableHeight: '200px',
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
