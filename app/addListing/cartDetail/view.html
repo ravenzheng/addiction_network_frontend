@@ -22,7 +22,7 @@
 
           <div class="row" ng-repeat="(key,state) in $root.statesSel">
             <div class="col-xs-2">
-              <img class="img-responsive" src="themes/addiction/images/{{state}}.png">
+              <img class="img-responsive" ng-src="themes/addiction/images/{{state}}.png">
             </div>
             <div class="col-xs-4">
               <h4 class="product-name">
@@ -47,7 +47,7 @@
           <div class="row" ng-repeat="(key,counties) in $root.counties">
 
             <div class="col-xs-2">
-              <img class="img-responsive" src="themes/addiction/images/{{counties.state_name}}.png">
+              <img class="img-responsive" ng-src="themes/addiction/images/{{counties.state_name}}.png">
             </div>
             <div class="col-xs-4">
               <h4 class="product-name">
@@ -76,7 +76,7 @@
 
           <div class="row" ng-repeat="(key,cities) in $root.cities">
             <div class="col-xs-2">
-              <img class="img-responsive" src="themes/addiction/images/{{cities.state_name}}.png">
+              <img class="img-responsive" ng-src="themes/addiction/images/{{cities.state_name}}.png">
             </div>
             <div class="col-xs-4">
               <h4 class="product-name">
