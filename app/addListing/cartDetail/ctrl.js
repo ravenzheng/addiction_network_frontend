@@ -1,6 +1,9 @@
 function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UIState, CartDetailService) {
   var vm = this;
   vm.$onInit = onInit;
+  if (angular.isUndefined($rootScope.deletedStates)) {
+    $rootScope.deletedStates = [];
+  }
 
   function onInit() {
     $rootScope.getCartDetails = function (countyIds, cityIds) {
@@ -8,7 +11,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       var countyIdApi = [];
       var id = '';
       var i = 0;
-      i = 0;
       for (var key in countyIds) {
         id = String(countyIds[key].id);
         countyIdApi[i] = id;
@@ -21,18 +23,42 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       CartDetailService.getCartInfo(countyIdApi, cityIdsApi).then(function (result) {
         var totalCounty = 0;
-        for (var j = 0; j < result.counties.length; j++) {
-          var totalCounties = result.counties[j].price;
+        var totalStates = 0;
+        var states = [];
+        var m = 0;
+
+        for (var keyCon in result.counties) {
+          var totalCounties = result.counties[keyCon].price;
           totalCounty += totalCounties;
+          if (states.indexOf(result.counties[keyCon].state_name) === -1) {
+            if ($rootScope.deletedStates.indexOf(result.counties[keyCon].state_name) === -1) {
+              states[m] = result.counties[keyCon].state_name;
+              totalStates += 15;
+              m++;
+            }
+          }
         }
+
         var totalCity = 0;
         for (var k = 0; k < result.cities.length; k++) {
+          if (angular.isUndefined(result.cities[k])) {
+            // console.log('undefined: ' + k);
+            continue;
+          }
           var totalCities = result.cities[k].price;
           totalCity += totalCities;
+          if (states.indexOf(result.cities[k].state_name) === -1) {
+            if ($rootScope.deletedStates.indexOf(result.cities[k].state_name) === -1) {
+              states[m] = result.cities[k].state_name;
+              totalStates += 15;
+              m++;
+            }
+          }
         }
-        $log.info('cities' + totalCounty);
-        $log.info('counties' + totalCity);
-        var total = totalCounty + totalCity;
+
+        $rootScope.statesSel = states; // states
+
+        var total = totalCounty + totalCity + totalStates;
         $rootScope.counties = result.counties;
         $rootScope.cities = result.cities;
         $rootScope.total = total;
@@ -41,5 +67,35 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       });
     };
   }
+
+  vm.deleteCartItem = function (key, item) {
+    //  $rootScope.counties = [];
+    // console.log('delete' + key);
+    if (item === 'state') {
+      $rootScope.total -= 15; // $rootScope.counties[key].price;
+      $rootScope.deletedStates.push($rootScope.statesSel[key]);
+      $rootScope.statesSel.splice(key, 1);
+    } else if (item === 'county') {
+      $rootScope.total -= $rootScope.counties[key].price;
+      var id = $rootScope.counties[key].id;
+      for (var index in $rootScope.countyModel) {
+        if ($rootScope.countyModel[index].id === id) {
+          $rootScope.countyModel.splice(index, 1);
+          break;
+        }
+      }
+      $rootScope.counties.splice(key, 1);
+    } else if (item === 'city') {
+      $rootScope.total -= $rootScope.cities[key].price;
+      id = $rootScope.cities[key].id;
+      for (index in $rootScope.cityModel) {
+        if ($rootScope.cityModel[index].id === id) {
+          $rootScope.cityModel.splice(index, 1);
+          break;
+        }
+      }
+      $rootScope.cities.splice(key, 1);
+    }
+  };
 }
 module.exports = ['$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'CartDetailService', ctrl];

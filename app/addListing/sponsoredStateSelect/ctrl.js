@@ -16,16 +16,52 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   $rootScope.cityText = {
     buttonDefaultText: 'Select City'
   };
-  $rootScope.cityModel = [];
-  $rootScope.countyModel = [];
 
+  if (angular.isUndefined($rootScope.cityModel)) {
+    $rootScope.cityModel = [];
+  }
+  if (angular.isUndefined($rootScope.countyModel)) {
+    $rootScope.countyModel = [];
+  }
+  if (angular.isUndefined($rootScope.statesSel)) {
+    $rootScope.statesSel = [];
+  }
+  if (angular.isUndefined($rootScope.deletedStates)) {
+    $rootScope.deletedStates = [];
+  }
   var token = localStorageService.get('signupToken');
 
   vm.open = function (state) {
+    vm.activeState = {
+      id: state.id,
+      name: state.fullname
+    };
+
     // var stateMap = '<svg version="1.1" id="state_map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="' + state.viewbox + '" xml:space="preserve">  <g id="state">   <g> <path ng-attr-id="' + state.id + '" ng-attr-fill="' + state.upcolor + '" ng-attr-stroke="' + state.statestroke + '" ng-attr-d="' + state.d + '" stroke-width="1" cursor="pointer"></path></g></g><g id="abb"><text ng-attr-id="' + state.shortname + '" ng-attr-transform="' + state.transform + '" pointer-events="none"><tspan x="0" y="0" font-family="Arial" font-size="11" ng-attr-fill="' + state.namefill + '">' + state.shortname + '</tspan></text></g></svg>';
     // var stateMap = '<div id="googleMap" style="width:100%;height:400px;"></div><script>function myMap() {  var mapProp = {center: new google.maps.LatLng(' + state.latlong + '),zoom:' + state.zoomlevel + '};var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);}</script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzZiyHarHVkYQCBywa0HYl0MD77BRiL64&callback=myMap"></script>';
     var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.2">';
     getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope);
+  };
+
+  vm.citySelCount = 0;
+  $rootScope.citySelectFun = function () {
+    vm.citySelCount++;
+    // console.log('city select count: ' + vm.citySelCount + item.id);
+  };
+
+  $rootScope.deSelectCityFun = function () {
+    vm.citySelCount--;
+    //  console.log('city select count from desel fun: ' + vm.citySelCount);
+    //  console.log('state delect:' + vm.activeState.name);
+    //  vm.activeState = '';
+  };
+  vm.countySelCount = 0;
+  $rootScope.countySelectFun = function () {
+    vm.countySelCount++;
+  };
+
+  $rootScope.deSelectCountyFun = function () {
+    vm.countySelCount--;
   };
 }
 
@@ -135,8 +171,8 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
-    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity }"></div>';
-    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty }"></div>';
+    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity, onItemSelect: citySelectFun, onItemDeselect: deSelectCityFun}" ></div>';
+    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeSelect: deSelectCountyFun }"></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
@@ -153,7 +189,31 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           modalInstance.close();
         };
         $rootScope.cancel = function () {
+          if (vm.activeState !== '') {
+            // $rootScope.stateSelected.push(vm.activeState);
+          }
+          if (vm.citySelCount > 0) {
+            if (angular.isUndefined($rootScope.deletedStates[0])) {
+              modalInstance.dismiss('cancel');
+              return true;
+            }
+            // console.log(vm.activeState.name + '--> ' + $rootScope.deletedStates[0].toUpperCase());
+            if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
+              $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
+            }
+          }
+          if (vm.countySelCount > 0) {
+            if (angular.isUndefined($rootScope.deletedStates[0])) {
+              modalInstance.dismiss('cancel');
+              return true;
+            }
+            // console.log(vm.activeState.name + '--> ' + $rootScope.deletedStates[0].toUpperCase());
+            if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
+              $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
+            }
+          }
           modalInstance.dismiss('cancel');
+          return true;
         };
         $rootScope.onSelectAllCity = function () {
 
