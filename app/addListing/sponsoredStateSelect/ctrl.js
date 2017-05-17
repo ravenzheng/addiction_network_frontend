@@ -46,7 +46,7 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   vm.citySelCount = 0;
   $rootScope.citySelectFun = function () {
     vm.citySelCount++;
-    // console.log('city select count: ' + vm.citySelCount + item.id);
+    //  console.log('on item select on city count: ' + vm.citySelCount);
   };
 
   $rootScope.deSelectCityFun = function () {
@@ -199,8 +199,8 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
             }
             // console.log('delted statesiiiii[0]: ' + $rootScope.deletedStates[0]);
             // console.log(vm.activeState.name + '--> ' + $rootScope.deletedStates[0].toUpperCase());
-            if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
-              $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
+            if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
+              $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()), 1);
             }
           }
           if (vm.countySelCount > 0) {

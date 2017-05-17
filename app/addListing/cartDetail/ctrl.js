@@ -25,14 +25,19 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         var totalCounty = 0;
         var totalStates = 0;
         var states = [];
+        var statesDetail = [];
         var m = 0;
 
         for (var keyCon in result.counties) {
           var totalCounties = result.counties[keyCon].price;
           totalCounty += totalCounties;
-          if (states.indexOf(result.counties[keyCon].state_name) === -1) {
-            if ($rootScope.deletedStates.indexOf(result.counties[keyCon].state_name) === -1) {
-              states[m] = result.counties[keyCon].state_name;
+          if (states.indexOf(result.counties[keyCon].state) === -1) {
+            if ($rootScope.deletedStates.indexOf(result.counties[keyCon].state.toUpperCase()) === -1) {
+              states[m] = result.counties[keyCon].state;
+              statesDetail[m] = {
+                state: result.counties[keyCon].state,
+                state_name: result.counties[keyCon].state_name
+              };
               totalStates += 15;
               m++;
             }
@@ -47,9 +52,13 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
           var totalCities = result.cities[k].price;
           totalCity += totalCities;
-          if (states.indexOf(result.cities[k].state_name) === -1) {
-            if ($rootScope.deletedStates.indexOf(result.cities[k].state_name) === -1) {
-              states[m] = result.cities[k].state_name;
+          if (states.indexOf(result.cities[k].state) === -1) {
+            if ($rootScope.deletedStates.indexOf(result.cities[k].state.toUpperCase()) === -1) {
+              states[m] = result.cities[k].state;
+              statesDetail[m] = {
+                state: result.cities[k].state,
+                state_name: result.cities[k].state_name
+              };
               totalStates += 15;
               m++;
             }
@@ -57,6 +66,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         }
 
         $rootScope.statesSel = states; // states
+        $rootScope.statesDetail = statesDetail;
 
         var total = totalCounty + totalCity + totalStates;
         $rootScope.counties = result.counties;
@@ -73,8 +83,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     // console.log('delete' + key);
     if (item === 'state') {
       $rootScope.total -= 15; // $rootScope.counties[key].price;
-      $rootScope.deletedStates.push($rootScope.statesSel[key]);
+      $rootScope.deletedStates.push($rootScope.statesDetail[key].state.toUpperCase());
       $rootScope.statesSel.splice(key, 1);
+      $rootScope.statesDetail.splice(key, 1);
     } else if (item === 'county') {
       $rootScope.total -= $rootScope.counties[key].price;
       var id = $rootScope.counties[key].id;
