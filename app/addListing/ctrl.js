@@ -25,34 +25,34 @@ function ctrl($log, $scope, $rootScope) {
 
         var stepDone = $rootScope.addListingStepDone;
         if (tostate[0] === 'addListing') {
-          if (stepDone === 0 && step0.indexOf(tostate[1]) === -1) {
-            event.preventDefault();
-          } else if (stepDone === 1 && step1.indexOf(tostate[1]) === -1) {
-            event.preventDefault();
-          } else if (stepDone === 2 && (step2.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          } else if (stepDone === 3 && (step3.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          } else if (stepDone === 4 && (step4.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          } else if (stepDone === 5 && (step5.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          } else if (stepDone === 6 && (step6.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          } else if (stepDone === 7 && (step7.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          } else if (stepDone === 8 && (step8.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          }
-
-          // trigger savestep for done steps, work like next button
-          if (stepDone === 4 && tostate[1] === 'centerDetails') {
-            $rootScope.saveStep4(); // only save the step
-          }
-          // prevent to display steps other than treatment center and center detail
-          if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
-            event.preventDefault();
-          }
+          // if (stepDone === 0 && step0.indexOf(tostate[1]) === -1) {
+          //   event.preventDefault();
+          // } else if (stepDone === 1 && step1.indexOf(tostate[1]) === -1) {
+          //   event.preventDefault();
+          // } else if (stepDone === 2 && (step2.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // } else if (stepDone === 3 && (step3.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // } else if (stepDone === 4 && (step4.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // } else if (stepDone === 5 && (step5.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // } else if (stepDone === 6 && (step6.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // } else if (stepDone === 7 && (step7.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // } else if (stepDone === 8 && (step8.indexOf(tostate[1]) === -1)) {
+          //   event.preventDefault();
+          // }
+          //
+          // // trigger savestep for done steps, work like next button
+          // if (stepDone === 4 && tostate[1] === 'centerDetails') {
+          //   $rootScope.saveStep4(); // only save the step
+          // }
+          // // prevent to display steps other than treatment center and center detail
+          // if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
+          //   event.preventDefault();
+          // }
         }
       }
     });

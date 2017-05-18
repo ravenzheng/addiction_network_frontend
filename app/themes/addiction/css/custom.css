@@ -2311,3 +2311,6 @@ html {
 .wp-flybox_tab.call_us {
     display: none !important;
 }
+a:focus {
+    outline: none;
+}
