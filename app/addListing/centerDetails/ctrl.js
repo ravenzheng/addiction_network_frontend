@@ -12,7 +12,9 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
   lm.finish = function () {
     $state.go(UIState.LOGIN);
   };
-
+  // vm.popup = function () {
+  //   addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
+  // };
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
     var formData = new FormData();
@@ -38,7 +40,6 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
         formData.append('treatment_center[image_data][]', imageData.item(i));
       }
     }
-
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
@@ -76,19 +77,21 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
 }
 
 function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
-  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Treatment Center Added</h3></div><div class="modal-body" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Treatment Center Added</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
   vm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
       template: deletePrompt,
+      windowClass: 'treatment_center_class',
       controller: function () {
         $rootScope.ok = function () {
           modalInstance.close();
           $state.go(UIState.ADD_LISTING.CENTER_INFO);
         };
         $rootScope.cancel = function () {
+          modalInstance.close();
           modalInstance.dismiss('cancel');
           $rootScope.addListingStepDone = 5;
           $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
