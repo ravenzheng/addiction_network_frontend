@@ -2308,3 +2308,6 @@ html {
 .btn.modal_btn {
     color: white;
 }
+.wp-flybox_tab.call_us {
+    display: none !important;
+}
