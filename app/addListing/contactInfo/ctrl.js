@@ -2,7 +2,6 @@ module.exports = ['$rootScope', '$log', '$state', 'UIState', ctrl];
 
 function ctrl($rootScope, $log, $state, UIState) {
   // todo
-  // console.log('contact info');
   var vm = $rootScope;
   $rootScope.activeLink = 'Contact';
   var lm = this;

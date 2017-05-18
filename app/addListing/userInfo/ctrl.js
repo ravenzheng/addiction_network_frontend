@@ -3,14 +3,12 @@ module.exports = ['$rootScope', '$log', '$state', 'UIState', 'TreatmentCenterSer
 
 function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageService) {
   // todo
-
   var vm = $rootScope; // this;
   var lm = this;
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CONTACT_INFO);
   };
   $rootScope.activeLink = 'User Info';
-  // $rootScope.activeLink = ['Contact', 'User'];
   lm.saveStep2 = function () {
     var formData = new FormData();
     var sigupData = {

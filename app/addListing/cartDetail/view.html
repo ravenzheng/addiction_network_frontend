@@ -11,7 +11,7 @@
                   <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
               </div>
               <div class="col-xs-6">
-                <button type="button" class="btn btn-primary btn-sm btn-block">
+                <button type="button" ng-click="$ctrl.continueShop()" class="btn btn-primary btn-sm btn-block">
                   <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
                 </button>
               </div>
@@ -19,9 +19,35 @@
           </div>
         </div>
         <div class="panel-body">
-          <div class="row" ng-repeat="counties in $root.counties">
+
+          <div class="row" ng-repeat="(key,state) in $root.statesSel">
             <div class="col-xs-2">
-              <img class="img-responsive" src="themes/addiction/images/{{counties.state_name}}.png">
+              <img class="img-responsive" ng-src="themes/addiction/images/{{$root.statesDetail[key].state_name}}.png">
+            </div>
+            <div class="col-xs-4">
+              <h4 class="product-name">
+                <strong>{{state}}</strong>
+              </h4>
+            </div>
+            <div class="col-xs-6">
+              <div class="col-xs-4">
+                <h6>
+                  <strong>15</strong>
+                </h6>
+              </div>
+              <div class="col-xs-2 text-right">
+                <button type="button" ng-click="$ctrl.deleteCartItem(key,'state')" class="btn btn-link btn-xs">
+                  <span class="glyphicon glyphicon-trash"> </span>
+                </button>
+              </div>
+            </div>
+            <hr style="margin-top:8%;">
+          </div>
+
+          <div class="row" ng-repeat="(key,counties) in $root.counties">
+
+            <div class="col-xs-2">
+              <img class="img-responsive" ng-src="themes/addiction/images/{{counties.state_name}}.png">
             </div>
             <div class="col-xs-4">
               <h4 class="product-name">
@@ -39,16 +65,18 @@
                 </h6>
               </div>
               <div class="col-xs-4 text-right">
-                <button type="button" class="btn btn-link btn-xs">
+                <button type="button" ng-click="$ctrl.deleteCartItem(key,'county')" class="btn btn-link btn-xs">
                   <span class="glyphicon glyphicon-trash"> </span>
                 </button>
               </div>
             </div>
             <hr style="margin-top:8%;">
+
           </div>
-          <div class="row" ng-repeat="cities in $root.cities">
+
+          <div class="row" ng-repeat="(key,cities) in $root.cities">
             <div class="col-xs-2">
-              <img class="img-responsive" src="themes/addiction/images/{{cities.state_name}}.png">
+              <img class="img-responsive" ng-src="themes/addiction/images/{{cities.state_name}}.png">
             </div>
             <div class="col-xs-4">
               <h4 class="product-name">
@@ -66,13 +94,14 @@
                 </h6>
               </div>
               <div class="col-xs-4 text-right">
-                <button type="button" class="btn btn-link btn-xs">
+                <button type="button" ng-click="$ctrl.deleteCartItem(key,'city')" class="btn btn-link btn-xs">
                   <span class="glyphicon glyphicon-trash"> </span>
                 </button>
               </div>
             </div>
             <hr style="margin-top:8%;">
           </div>
+
         </div>
         <div class="panel-footer">
           <div class="row text-center">

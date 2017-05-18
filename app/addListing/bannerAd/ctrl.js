@@ -3,7 +3,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   $rootScope.activeLink = 'Banner Ads';
   // initializing form data
   vm.name = '';
-  //  vm.content = '';
   vm.err_type = 1;
   var lm = this;
   lm.previous = function () {
