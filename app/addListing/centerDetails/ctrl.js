@@ -16,8 +16,6 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
     var formData = new FormData();
-    //  formData = $rootScope.formdata;
-    // if (vm.center_name !== '') {
     var treatmentcenterData = {
       'heading_1': 'Overview of Program',
       'heading_2': 'Treatment Approach',
@@ -32,7 +30,7 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     for (key in treatmentcenterData) {
       formData.append('treatment_center[' + key + ']', treatmentcenterData[key]);
     }
-    //  }
+
     var imageData = vm.image_data;
     if (imageData) {
       var len = imageData.length;

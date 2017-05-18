@@ -10,7 +10,7 @@ function ctrl($rootScope, $log, $state, UIState) {
     $rootScope.addListingStepDone = 0;
     $state.go(UIState.LOGIN);
   };
-  // $rootScope.activeLink = ['Contact'];
+
   $rootScope.activeLink = 'Membership';
   lm.sponsored = function () {
     $rootScope.addListingStepDone = 3;

@@ -46,14 +46,10 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   vm.citySelCount = 0;
   $rootScope.citySelectFun = function () {
     vm.citySelCount++;
-    //  console.log('on item select on city count: ' + vm.citySelCount);
   };
 
   $rootScope.deSelectCityFun = function () {
     vm.citySelCount--;
-    //  console.log('city select count from desel fun: ' + vm.citySelCount);
-    //  console.log('state delect:' + vm.activeState.name);
-    //  vm.activeState = '';
   };
   vm.countySelCount = 0;
   $rootScope.countySelectFun = function () {
@@ -189,16 +185,11 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           modalInstance.close();
         };
         $rootScope.cancel = function () {
-          if (vm.activeState !== '') {
-            // $rootScope.stateSelected.push(vm.activeState);
-          }
           if (vm.citySelCount > 0) {
             if (angular.isUndefined($rootScope.deletedStates[0])) {
               modalInstance.dismiss('cancel');
               return true;
             }
-            // console.log('delted statesiiiii[0]: ' + $rootScope.deletedStates[0]);
-            // console.log(vm.activeState.name + '--> ' + $rootScope.deletedStates[0].toUpperCase());
             if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
               $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()), 1);
             }
@@ -208,13 +199,10 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
               modalInstance.dismiss('cancel');
               return true;
             }
-            // console.log('delted states[0]: ' + $rootScope.deletedStates[0]);
-            // console.log(vm.activeState.name + '--> ' + $rootScope.deletedStates[0].toUpperCase());
             if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
               $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
             }
           }
-          // console.log('delted states: ' + $rootScope.deletedStates);
           modalInstance.dismiss('cancel');
           return true;
         };

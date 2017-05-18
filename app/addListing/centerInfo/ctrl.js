@@ -2,7 +2,6 @@ module.exports = ['$rootScope', '$log', '$state', 'UIState', 'MapService', ctrl]
 
 function ctrl($rootScope, $log, $state, UIState, mapService) {
   // todo
-  // var vm = this;
   var vm = $rootScope; // this;
   var lm = this;
   $rootScope.activeLink = 'Treatment Center';

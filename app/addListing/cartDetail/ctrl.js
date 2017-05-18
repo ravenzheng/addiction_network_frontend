@@ -79,8 +79,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   }
 
   vm.deleteCartItem = function (key, item) {
-    //  $rootScope.counties = [];
-    // console.log('delete' + key);
     if (item === 'state') {
       $rootScope.total -= 15; // $rootScope.counties[key].price;
       $rootScope.deletedStates.push($rootScope.statesDetail[key].state.toUpperCase());
@@ -107,6 +105,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       $rootScope.cities.splice(key, 1);
     }
+  };
+
+  vm.continueShop = function () {
+    $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
 }
 module.exports = ['$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'CartDetailService', ctrl];

@@ -11,7 +11,6 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     checkBoxes: true
   };
 
-  // var sponsorID = $stateParams.id;
   vm.treatmentCentersModel = [];
   vm.sponsoredAdNormalModel = [];
   vm.sponsoredAdStateModel = [];
@@ -36,29 +35,6 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     }
     var sponsoredListingIds = [];
     i = 0;
-    // for (key in vm.sponsoredAdNormalModel) {
-    //   id = String(vm.sponsoredAdNormalModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    //
-    // for (key in vm.sponsoredAdStateModel) {
-    //   id = String(vm.sponsoredAdStateModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-
-    // for (key in vm.sponsoredAdCountyModel) {
-    //   id = String(vm.sponsoredAdCountyModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    //
-    // for (key in vm.sponsoredAdCityModel) {
-    //   id = String(vm.sponsoredAdCityModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
     for (key in $rootScope.countyModel) {
       id = String($rootScope.countyModel[key].id);
       sponsoredListingIds[i] = id;
