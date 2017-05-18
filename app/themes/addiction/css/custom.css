@@ -2319,4 +2319,8 @@ a:focus {
 }
 .modal.treatment_center_class.ng-scope.ng-isolate-scope.in .modal-dialog {
     margin-top: 15%;
+    width:450px;
+}
+.small_button{
+  min-width:50px !important;
 }
