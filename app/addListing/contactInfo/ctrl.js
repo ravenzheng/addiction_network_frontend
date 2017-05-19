@@ -28,15 +28,24 @@ function ctrl($rootScope, $log, $state, UIState) {
       if (len > 3) {
         var code = vm.phone.substring(0, 3);
         if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
+          $rootScope.user_phone = 0;
           $rootScope.addlistForm.user_phone.$error.pattern = true;
           $rootScope.addlistForm.user_phone.$valid = false;
           $rootScope.addlistForm.user_phone.$invalid = true;
         } else {
+          $rootScope.user_phone = 1;
           $rootScope.addlistForm.user_phone.$error.pattern = false;
           $rootScope.addlistForm.user_phone.$valid = true;
           $rootScope.addlistForm.user_phone.$invalid = false;
         }
       }
+    }
+    // handles phone num validate issue when user go back
+    if ($rootScope.user_phone) {
+      $rootScope.addlistForm.user_phone.$valid = true;
+      $rootScope.addlistForm.user_phone.$error.pattern = false;
+      $rootScope.addlistForm.user_phone.$error.minlength = false;
+      $rootScope.addlistForm.user_phone.$error.maxlength = false;
     }
   };
 
