@@ -3,7 +3,7 @@ module.exports = ['$log', '$scope', '$rootScope', ctrl];
 function ctrl($log, $scope, $rootScope) {
   // initialize
   var vm = this;
-  $rootScope.addListingStepDone = 6;
+  $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
   $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
