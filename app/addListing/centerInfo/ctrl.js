@@ -99,15 +99,24 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
       if (len > 3) {
         var code = vm.intakephone.substring(0, 3);
         if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
+          $rootScope.intakephoneValidate = 0;
           $rootScope.addlistForm.intakephone.$error.pattern = true;
           $rootScope.addlistForm.intakephone.$valid = false;
           $rootScope.addlistForm.intakephone.$invalid = true;
         } else {
+          $rootScope.intakephoneValidate = 1;
           $rootScope.addlistForm.intakephone.$error.pattern = false;
           $rootScope.addlistForm.intakephone.$valid = true;
           $rootScope.addlistForm.intakephone.$invalid = false;
         }
       }
+    }
+    // handles phone num validate issue when user go back
+    if ($rootScope.intakephoneValidate) {
+      $rootScope.addlistForm.intakephone.$valid = true;
+      $rootScope.addlistForm.intakephone.$error.pattern = false;
+      $rootScope.addlistForm.intakephone.$error.minlength = false;
+      $rootScope.addlistForm.intakephone.$error.maxlength = false;
     }
   };
 
