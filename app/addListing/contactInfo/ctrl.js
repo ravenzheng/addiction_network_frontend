@@ -43,6 +43,7 @@ function ctrl($rootScope, $log, $state, UIState) {
     // handles phone num validate issue when user go back
     if ($rootScope.user_phone) {
       $rootScope.addlistForm.user_phone.$valid = true;
+      $rootScope.addlistForm.user_phone.$invalid = false;
       $rootScope.addlistForm.user_phone.$error.pattern = false;
       $rootScope.addlistForm.user_phone.$error.minlength = false;
       $rootScope.addlistForm.user_phone.$error.maxlength = false;
