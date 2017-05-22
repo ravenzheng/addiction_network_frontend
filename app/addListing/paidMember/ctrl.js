@@ -16,7 +16,7 @@ function ctrl($rootScope, $log, $state, UIState) {
     $rootScope.addListingStepDone = 3;
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
     $rootScope.centerReset = 0;
-    $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd'];
+    $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
   lm.featured = function () {
