@@ -1,9 +1,10 @@
-module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', 'UIState', 'MapService', 'localStorageService', ctrl];
+module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', 'UIState', 'MapService', 'TreatmentCenterService', 'localStorageService', ctrl];
 
-function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, localStorageService) {
+function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, TreatmentCenterService, localStorageService) {
   // todo
   var vm = $rootScope; // this;
   var lm = this;
+
   $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAID_MEMBER);
@@ -59,7 +60,10 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     // saving process is done by saveStep4 rootscope function which is handled in addListing main controller from stateChangeStart
     // this method use to prevent recursing, and add next button feature to top navigation links
     $rootScope.addListingStepDone = 4;
-    $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    lm.testZip();
+    if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
+      $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    }
   };
 
   if ($rootScope.centerReset === 1) {
@@ -120,6 +124,20 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       $rootScope.addlistForm.intakephone.$error.maxlength = false;
     }
   };
+  // test zip code
+  lm.zipFound = 0;
+  lm.testZip = function () {
+    if (vm.pincode.length === 5) {
+      var token = localStorageService.get('signupToken');
+      TreatmentCenterService.getZipValidation(vm.state, vm.pincode, token).then(function (response) {
+        if (response.zip_present) {
+          lm.zipFound = 1;
+        } else {
+          lm.zipFound = 0;
+        }
+      });
+    }
+  };
 
   // Uploaded image preview
   $scope.uploadImage = function (element) {
@@ -152,6 +170,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       vm.intakephone = info.phone;
       vm.intakeemail = info.email;
       vm.getCities();
+      lm.testZip();
       // handles phone num validate issue when user go back
       if (info.phone_validated) {
         $rootScope.intakephoneValidate = 1;

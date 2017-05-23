@@ -46,7 +46,6 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
-
     // saving to localStorageService
     if (localStorageService.isSupported) {
       localStorageService.set('addListingCenterInfo', $rootScope.centerInfo, 'sessionStorage');
@@ -54,28 +53,45 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     }
 
     var token = localStorageService.get('signupToken');
-    service.addTreatmentCenter(formData, token).then(function () {
-      $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
-      $rootScope.centerReset = 0; // reset off
-      // resetForm(); //reset off
-      addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
-      // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
-      //  $window.location.href = '/#/login';
-    }).catch(function (err) {
-      if (err.data.user) {
-        if (angular.isDefined(err.data.user.email)) {
-          var emailError = err.data.user.email.errors[0];
-          $rootScope.$emit(Status.FAILED, emailError);
-        }
-        if (angular.isDefined(err.data.user.password)) {
-          var passError = err.data.user.password.errors[0];
-          $rootScope.$emit(Status.FAILED, passError);
-        }
-        if (angular.isDefined(err.data.user.username)) {
-          var userError = err.data.user.username.errors[0];
-          $rootScope.$emit(Status.FAILED, userError);
+    // test for center exist or not
+    // var result = testCenterExist(service, token, $rootScope.centerInfo.center_name);
+
+    service.queryListAll(token).then(function (response) {
+      var centerName = $rootScope.centerInfo.center_name;
+      var centerExist = 0;
+      for (key in response.treatment_centers) {
+        if (centerName === response.treatment_centers[key].center_name) {
+          centerExist = 1;
+          break;
         }
       }
+      if (centerExist === 1) {
+        $rootScope.$emit(Status.FAILED, 'Treatment center already exist.');
+        return;
+      }
+      service.addTreatmentCenter(formData, token).then(function () {
+        $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
+        $rootScope.centerReset = 0; // reset off
+        // resetForm(); //reset off
+        addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
+        // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+        //  $window.location.href = '/#/login';
+      }).catch(function (err) {
+        if (err.data.user) {
+          if (angular.isDefined(err.data.user.email)) {
+            var emailError = err.data.user.email.errors[0];
+            $rootScope.$emit(Status.FAILED, emailError);
+          }
+          if (angular.isDefined(err.data.user.password)) {
+            var passError = err.data.user.password.errors[0];
+            $rootScope.$emit(Status.FAILED, passError);
+          }
+          if (angular.isDefined(err.data.user.username)) {
+            var userError = err.data.user.username.errors[0];
+            $rootScope.$emit(Status.FAILED, userError);
+          }
+        }
+      });
     });
   };
 
