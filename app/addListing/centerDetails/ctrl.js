@@ -27,6 +27,9 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
       'content_3': vm.content_3
     };
     for (var key in $rootScope.centerInfo) {
+      if (key === 'phone_validated') {
+        continue;
+      }
       formData.append('treatment_center[' + key + ']', $rootScope.centerInfo[key]);
     }
     for (key in treatmentcenterData) {
@@ -43,11 +46,18 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
+
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingCenterInfo', $rootScope.centerInfo, 'sessionStorage');
+      localStorageService.set('addListingCenterDetails', treatmentcenterData, 'sessionStorage');
+    }
+
     var token = localStorageService.get('signupToken');
     service.addTreatmentCenter(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
-      $rootScope.centerReset = 1;
-      resetForm();
+      $rootScope.centerReset = 0; // reset off
+      // resetForm(); //reset off
       addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
       // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
       //  $window.location.href = '/#/login';
@@ -69,15 +79,26 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
     });
   };
 
-  function resetForm() {
-    vm.content_1 = null;
-    vm.content_2 = null;
-    vm.content_3 = null;
+  // function resetForm() {
+  //   vm.content_1 = null;
+  //   vm.content_2 = null;
+  //   vm.content_3 = null;
+  // }
+
+  // render form with values if stored in sessionStorage/localstorage
+  if (angular.isDefined(localStorageService.get('addListingCenterDetails', 'sessionStorage'))) {
+    var info = localStorageService.get('addListingCenterDetails', 'sessionStorage');
+    if (info !== null) {
+      vm.content_1 = info.content_1;
+      vm.content_2 = info.content_2;
+      vm.content_3 = info.content_3;
+    }
+    // var storageType = localStorageService.getStorageType();
   }
 }
 
 function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
-  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Treatment Center Added</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
   vm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,

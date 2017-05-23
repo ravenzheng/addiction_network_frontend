@@ -17,6 +17,14 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
   vm.sponsoredAdCountyModel = [];
   vm.sponsoredAdCityModel = [];
 
+  // getting values from localstorage if already set
+  if (angular.isDefined(localStorageService.get('sponsoredPage', 'sessionStorage'))) {
+    var sponsoredInfo = localStorageService.get('sponsoredPage', 'sessionStorage');
+    if (sponsoredInfo !== null && angular.isDefined(sponsoredInfo.treatmentCenter)) {
+      vm.treatmentCentersModel = sponsoredInfo.treatmentCenter;
+    }
+  }
+
   vm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
@@ -33,6 +41,18 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
       }
       i++;
     }
+    // saving to localStorageService
+    if (angular.isDefined(localStorageService.get('sponsoredPage', 'sessionStorage'))) {
+      sponsoredInfo = localStorageService.get('sponsoredPage', 'sessionStorage');
+      if (sponsoredInfo !== null) {
+        var treatmentCenter = {
+          'treatmentCenter': vm.treatmentCentersModel
+        };
+        sponsoredInfo.push(treatmentCenter);
+      }
+      localStorageService.set('sponsoredPage', sponsoredInfo, 'sessionStorage');
+    }
+
     var sponsoredListingIds = [];
     i = 0;
     for (key in $rootScope.countyModel) {
