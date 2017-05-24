@@ -1,9 +1,10 @@
-module.exports = ['$rootScope', '$log', '$state', 'UIState', 'MapService', ctrl];
+module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', 'UIState', 'MapService', 'TreatmentCenterService', 'localStorageService', ctrl];
 
-function ctrl($rootScope, $log, $state, UIState, mapService) {
+function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, TreatmentCenterService, localStorageService) {
   // todo
   var vm = $rootScope; // this;
   var lm = this;
+
   $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAID_MEMBER);
@@ -59,7 +60,10 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
     // saving process is done by saveStep4 rootscope function which is handled in addListing main controller from stateChangeStart
     // this method use to prevent recursing, and add next button feature to top navigation links
     $rootScope.addListingStepDone = 4;
-    $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    lm.testZip();
+    if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
+      $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    }
   };
 
   if ($rootScope.centerReset === 1) {
@@ -114,15 +118,70 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
     // handles phone num validate issue when user go back
     if ($rootScope.intakephoneValidate) {
       $rootScope.addlistForm.intakephone.$valid = true;
+      $rootScope.addlistForm.intakephone.$invalid = false;
       $rootScope.addlistForm.intakephone.$error.pattern = false;
       $rootScope.addlistForm.intakephone.$error.minlength = false;
       $rootScope.addlistForm.intakephone.$error.maxlength = false;
     }
   };
+  // test zip code
+  lm.zipFound = 0;
+  lm.testZip = function () {
+    if (vm.pincode.length === 5) {
+      var token = localStorageService.get('signupToken');
+      TreatmentCenterService.getZipValidation(vm.state, vm.pincode, token).then(function (response) {
+        if (response.zip_present) {
+          lm.zipFound = 1;
+        } else {
+          lm.zipFound = 0;
+        }
+      });
+    }
+  };
+
+  // Uploaded image preview
+  $scope.uploadImage = function (element) {
+    var reader = new FileReader();
+    reader.readAsDataURL(element.files[0]);
+    reader.onload = function (e) {
+      lm.preview_img = e.target.result;
+      $document[0].getElementById('logo_preview').src = lm.preview_img;
+    };
+  };
+
+  // get values if stored in sessionStorage/localstorage
+  if (angular.isDefined(localStorageService.get('addListingCenterInfo', 'sessionStorage'))) {
+    var info = localStorageService.get('addListingCenterInfo', 'sessionStorage');
+    if (info !== null) {
+      for (var key in info.category_id) {
+        vm.multiselectModelCategories[key] = {
+          id: info.category_id[key]
+        };
+      }
+      vm.center_name = info.center_name;
+      vm.description = info.description;
+      vm.center_web_link = info.center_web_link;
+      vm.listing_image = info.listing_image;
+      vm.address_line_1 = info.address_line_1;
+      vm.city = info.city;
+      vm.country = info.country;
+      vm.pincode = info.pincode;
+      vm.state = info.state;
+      vm.intakephone = info.phone;
+      vm.intakeemail = info.email;
+      vm.getCities();
+      lm.testZip();
+      // handles phone num validate issue when user go back
+      if (info.phone_validated) {
+        $rootScope.intakephoneValidate = 1;
+      }
+    }
+    // var storageType = localStorageService.getStorageType();
+  }
 
   vm.saveStep4 = function () {
     var categoryName = [];
-    for (var key in vm.multiselectModelCategories) {
+    for (key in vm.multiselectModelCategories) {
       var categories = String(vm.multiselectModelCategories[key].id);
       categoryName[key] = categories;
     }
@@ -140,9 +199,9 @@ function ctrl($rootScope, $log, $state, UIState, mapService) {
       'phone': vm.intakephone,
       'email': vm.intakeemail,
       'featured': false,
-      'listing_type': 'free'
+      'listing_type': 'free',
+      'phone_validated': $rootScope.intakephoneValidate
     };
-    // $log.info('data:' + $rootScope.centerInfo);
     $rootScope.addListingStepDone = 4;
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerInfo']);
   };

@@ -9,6 +9,19 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     $state.go(UIState.ADD_LISTING.CONTACT_INFO);
   };
   $rootScope.activeLink = 'User Info';
+
+  // get values if stored in sessionStorage/localstorage
+  if (angular.isDefined(localStorageService.get('addListingUserInfo', 'sessionStorage'))) {
+    var info = localStorageService.get('addListingUserInfo', 'sessionStorage');
+    if (info !== null) {
+      vm.email = info.email;
+      // vm.password = info.password;
+      vm.company = info.company;
+      vm.phone = info.phone;
+      vm.username = info.username;
+    }
+  }
+
   lm.saveStep2 = function () {
     var formData = new FormData();
     var sigupData = {
@@ -19,12 +32,22 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
       'last_name': $rootScope.contactInfo.last_name,
       'company': $rootScope.contactInfo.company,
       'phone': $rootScope.contactInfo.phone,
-      'username': vm.username
+      'username': vm.username,
+      'phone_validated': $rootScope.contactInfo.phone_validated
     };
+
     for (var key in sigupData) {
+      if (key === 'phone_validated') {
+        continue;
+      }
       formData.append('user[' + key + ']', sigupData[key]);
     }
     $rootScope.formdata = formData;
+
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingUserInfo', sigupData, 'sessionStorage');
+    }
     service.addTreatmentCenterSignUp(formData).then(function (result) {
       localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);

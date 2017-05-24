@@ -1,6 +1,6 @@
-module.exports = ['$rootScope', '$log', '$state', 'UIState', ctrl];
+module.exports = ['$rootScope', '$log', '$state', 'UIState', 'localStorageService', ctrl];
 
-function ctrl($rootScope, $log, $state, UIState) {
+function ctrl($rootScope, $log, $state, UIState, localStorageService) {
   // todo
   var vm = $rootScope;
   $rootScope.activeLink = 'Contact';
@@ -49,14 +49,28 @@ function ctrl($rootScope, $log, $state, UIState) {
       $rootScope.addlistForm.user_phone.$error.maxlength = false;
     }
   };
+  // get values if stored in sessionStorage/localstorage
+  if (angular.isDefined(localStorageService.get('addListingUserInfo', 'sessionStorage'))) {
+    var info = localStorageService.get('addListingUserInfo', 'sessionStorage');
+    if (info !== null) {
+      vm.first_name = info.first_name;
+      vm.last_name = info.last_name;
+      vm.company = info.company;
+      vm.phone = info.phone;
+      // handles phone num validate issue when user go back
+      $rootScope.user_phone = info.phone_validated;
+    }
+  }
 
   lm.saveStep1 = function () {
     $rootScope.contactInfo = {
       'first_name': vm.first_name,
       'last_name': vm.last_name,
       'company': vm.company,
-      'phone': vm.phone
+      'phone': vm.phone,
+      'phone_validated': $rootScope.user_phone
     };
+
     if ($rootScope.addListingStepDone < 2) {
       $rootScope.addListingStepDone = 1;
     }

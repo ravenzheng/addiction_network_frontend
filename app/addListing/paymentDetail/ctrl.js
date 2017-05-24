@@ -6,6 +6,20 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   var creditCardType = require('credit-card-type');
   lm.cardType = 'credit';
 
+  // get values if stored in sessionStorage/localstorage
+  if (angular.isDefined(localStorageService.get('addListingPaymentDetail', 'sessionStorage'))) {
+    var info = localStorageService.get('addListingPaymentDetail', 'sessionStorage');
+    if (info !== null) {
+      vm.card = info.card_no;
+      vm.firstName = info.first_name;
+      vm.middleName = info.middle_name;
+      vm.lastName = info.last_name;
+      vm.year = info.expiry_year;
+      vm.month = info.expiry_month;
+      vm.cvv = info.card_code;
+    }
+  }
+
   vm.detectCardType = function (card, event) {
     if (angular.isDefined(card)) {
       var cardVal = card.replace(/ /g, '');
@@ -69,6 +83,10 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       'card_code': vm.cvv
       //  'default': vm.default
     };
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingPaymentDetail', paymentData, 'sessionStorage');
+    }
     for (var key in paymentData) {
       formData.append('payment[' + key + ']', paymentData[key]);
     }

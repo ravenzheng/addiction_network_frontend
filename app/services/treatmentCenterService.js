@@ -14,7 +14,9 @@ function service($http, endPoint, UserService) {
     remove: remove,
     inquiry: inquiry,
     submitRating: submitRating,
-    search: search
+    search: search,
+    getZipValidation: getZipValidation,
+    queryListAll: queryListAll
   };
 
   // home page, addListing
@@ -64,6 +66,15 @@ function service($http, endPoint, UserService) {
           'Authorization': token
         }
       });
+    });
+  }
+
+  // my treatment centers all
+  function queryListAll(token) {
+    return $http.get(endPoint + '/listing_user/treatment_centers', {
+      headers: {
+        'Authorization': token
+      }
     });
   }
 
@@ -129,5 +140,14 @@ function service($http, endPoint, UserService) {
       finalData.state = state;
     }
     return $http.post(endPoint + '/search_treatment_centers', finalData);
+  }
+  // get zip validation
+  function getZipValidation(state, zip, token) {
+    return $http.get(endPoint + '/check_zip?state=' + state + '&zip=' + zip, {
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
   }
 }

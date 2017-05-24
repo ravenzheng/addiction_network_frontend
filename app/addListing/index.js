@@ -8,6 +8,12 @@ angular.module(moduleName, [
   require('../components'),
   require('../services')
 ])
+  // .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+  //   localStorageServiceProvider
+  //     .setPrefix('addListing')
+  //     .setStorageType('sessionStorage')
+  //     .setNotify(true, true);
+  // }])
   .directive('phoneInput', ['$filter', '$browser', function ($filter, $browser) {
     return {
       require: 'ngModel',
