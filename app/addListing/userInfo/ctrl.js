@@ -19,6 +19,11 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
       vm.company = info.company;
       vm.phone = info.phone;
       vm.username = info.username;
+      // $rootScope.contactInfo.first_name = info.first_name;
+      // $rootScope.contactInfo.last_name = info.last_name;
+      // $rootScope.contactInfo.company = info.company;
+      // $rootScope.contactInfo.phone = info.phone;
+      // $rootScope.contactInfo.phone_validated = info.phone_validated;
     }
   }
 

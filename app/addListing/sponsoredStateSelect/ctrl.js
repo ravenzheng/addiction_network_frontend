@@ -16,14 +16,15 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   $rootScope.cityText = {
     buttonDefaultText: 'Select City'
   };
-
-  if (angular.isDefined(localStorageService.get('sponsoredPage', 'sessionStorage'))) {
-    var sponsoredInfo = localStorageService.get('sponsoredPage', 'sessionStorage');
-
+  // get values from localStorageService
+  if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
+    var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
     if (sponsoredInfo !== null) {
       $rootScope.cityModel = sponsoredInfo.cityModel;
       $rootScope.countyModel = sponsoredInfo.countyModel;
       $rootScope.deletedStates = sponsoredInfo.deletedStates;
+      $rootScope.statesSel = sponsoredInfo.statesSel;
+      $rootScope.statesDetail = sponsoredInfo.statesDetail;
     }
   }
 
@@ -35,6 +36,9 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   }
   if (angular.isUndefined($rootScope.statesSel)) {
     $rootScope.statesSel = [];
+  }
+  if (angular.isUndefined($rootScope.statesDetail)) {
+    $rootScope.statesDetail = [];
   }
   if (angular.isUndefined($rootScope.deletedStates)) {
     $rootScope.deletedStates = [];
@@ -56,30 +60,35 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   vm.citySelCount = 0;
   $rootScope.citySelectFun = function () {
     // saving to localStorageService
-    var spnonsoredPage = {
-      'cityModel': $rootScope.cityModel,
-      'countyModel': $rootScope.countyModel,
-      'deletedStates': $rootScope.deletedStates
-    };
-    if (localStorageService.isSupported) {
-      localStorageService.set('sponsoredPage', spnonsoredPage, 'sessionStorage');
-    }
+    // var spnonsoredPage = {
+    //   'cityModel': $rootScope.cityModel,
+    //   'countyModel': $rootScope.countyModel,
+    //   'deletedStates': $rootScope.deletedStates,
+    //   'stateSel': $rootScope.statesSel,
+    //   'statesDetail': $rootScope.statesDetail
+    // };
+    // if (localStorageService.isSupported) {
+    //   localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
+    // }
     vm.citySelCount++;
   };
 
   $rootScope.deSelectCityFun = function () {
     vm.citySelCount--;
   };
+
   vm.countySelCount = 0;
   $rootScope.countySelectFun = function () {
-    var spnonsoredPage = {
-      'cityModel': $rootScope.cityModel,
-      'countyModel': $rootScope.countyModel,
-      'deletedStates': $rootScope.deletedStates
-    };
-    if (localStorageService.isSupported) {
-      localStorageService.set('sponsoredPage', spnonsoredPage, 'sessionStorage');
-    }
+    // var spnonsoredPage = {
+    //   'cityModel': $rootScope.cityModel,
+    //   'countyModel': $rootScope.countyModel,
+    //   'deletedStates': $rootScope.deletedStates,
+    //   'stateSel': $rootScope.statesSel,
+    //   'statesDetail': $rootScope.statesDetail
+    // };
+    // if (localStorageService.isSupported) {
+    //   localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
+    // }
     vm.countySelCount++;
   };
 
@@ -215,6 +224,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           if (vm.citySelCount > 0) {
             if (angular.isUndefined($rootScope.deletedStates[0])) {
               modalInstance.dismiss('cancel');
+              saveToLocalStorage($rootScope, localStorageService);
               return true;
             }
             if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
@@ -224,21 +234,15 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           if (vm.countySelCount > 0) {
             if (angular.isUndefined($rootScope.deletedStates[0])) {
               modalInstance.dismiss('cancel');
+              saveToLocalStorage($rootScope, localStorageService);
               return true;
             }
             if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
               $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
             }
           }
-          // saving to localStorageService
-          var spnonsoredPage = {
-            'cityModel': $rootScope.cityModel,
-            'countyModel': $rootScope.countyModel,
-            'deletedStates': $rootScope.deletedStates
-          };
-          if (localStorageService.isSupported) {
-            localStorageService.set('sponsoredPage', spnonsoredPage, 'sessionStorage');
-          }
+          // save to localStorageService
+          saveToLocalStorage($rootScope, localStorageService);
 
           modalInstance.dismiss('cancel');
           return true;
@@ -253,4 +257,18 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       bindToController: true
     });
   });
+}
+
+// saving to localStorageService
+function saveToLocalStorage($rootScope, localStorageService) {
+  var spnonsoredPage = {
+    'cityModel': $rootScope.cityModel,
+    'countyModel': $rootScope.countyModel,
+    'deletedStates': $rootScope.deletedStates,
+    'stateSel': $rootScope.statesSel,
+    'statesDetail': $rootScope.statesDetail
+  };
+  if (localStorageService.isSupported) {
+    localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
+  }
 }
