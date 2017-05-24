@@ -127,6 +127,9 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   // test zip code
   lm.zipFound = 0;
   lm.testZip = function () {
+    if (angular.isUndefined(vm.pincode)) {
+      return;
+    }
     if (vm.pincode.length === 5) {
       var token = localStorageService.get('signupToken');
       TreatmentCenterService.getZipValidation(vm.state, vm.pincode, token).then(function (response) {

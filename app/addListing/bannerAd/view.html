@@ -45,7 +45,7 @@
         <label for="cpwd">Center Web Link</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z]{2,10})?(?:[\.])+([a-z/.]{2,10})$/" />
+        <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z 0-9]{2,20})?(?:[\.])+([a-z/.]{2,10})$/" />
         <span ng-show="$root.addlistForm.center_web_link.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
         <span ng-show="$root.addlistForm.center_web_link.$error.required" class="help-block">Weburl can't be blank.</span>
       </div>
@@ -53,6 +53,7 @@
     <!-- Submit -->
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
+      <input class="btn modal_btn btn_size pull-right" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
       <input class="btn modal_btn btn_size pull-right" value="Next" id="submit" type="button" ng-click="$ctrl.submit()" ng-disabled="$root.addlistForm.position.$invalid  || $root.addlistForm.center_web_link.$invalid ||  $root.addlistForm.name.$invalid">
     </div>
   </div>

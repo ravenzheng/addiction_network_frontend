@@ -9,6 +9,17 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
 
+  // get values from localStorageService
+  if (angular.isDefined(localStorageService.get('addListingBannerAds', 'sessionStorage'))) {
+    var bannerInfo = localStorageService.get('addListingBannerAds', 'sessionStorage');
+    if (bannerInfo !== null) {
+      vm.position = bannerInfo.position;
+      vm.name = bannerInfo.name;
+      vm.content = bannerInfo.content;
+      vm.center_web_link = bannerInfo.center_web_link;
+    }
+  }
+
   vm.submit = function () {
     // validating file type
     if (vm.content) {
@@ -37,6 +48,12 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     for (var key in bannerData) {
       formData.append('banner_ads[' + key + ']', bannerData[key]);
     }
+
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingBannerAds', bannerData, 'sessionStorage');
+    }
+
     var token = localStorageService.get('signupToken');
     AdvertisementService.advertisementAddSignUp(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
@@ -47,6 +64,12 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       $log.error(err);
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
+  };
+
+  vm.skipStep = function () {
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
+    $rootScope.addListingStepDone = 8;
+    $state.go(UIState.ADD_LISTING.FEATURED_LISTING_PAGE1);
   };
 }
 

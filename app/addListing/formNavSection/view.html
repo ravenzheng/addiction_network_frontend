@@ -5,7 +5,8 @@
       <p class="add_to_cart">Cart</p>
       <div class="wp_but">
         <div ng-repeat="cart in $ctrl.cartLink">
-          <a ui-sref="{{ cart.uiSref }}" ng-click="$root.getCartDetails($root.countyModel,$root.cityModel)">
+          <!-- <a ui-sref="{{ cart.uiSref }}" ng-click="$root.getCartDetails($root.countyModel,$root.cityModel)"> -->
+          <a ui-sref="{{ cart.uiSref }}">
             <img src="themes/addiction/images/cart.png" style="height:65px; border-radius:100%;margin-left:20px;" alt="Cart">
           </a>
         </div>

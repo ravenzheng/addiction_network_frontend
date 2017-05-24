@@ -1,13 +1,25 @@
-module.exports = ['$log', '$scope', '$rootScope', ctrl];
+module.exports = ['$log', '$scope', '$rootScope', 'localStorageService', ctrl];
 
-function ctrl($log, $scope, $rootScope) {
+function ctrl($log, $scope, $rootScope, localStorageService) {
   // initialize
   var vm = this;
-  $rootScope.addListingStepDone = 7;
+  $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
   $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
   $rootScope.disableUserinfo = 0;
+
+  // get values from localStorageService
+  if (angular.isDefined(localStorageService.get('addListingNavigation', 'sessionStorage'))) {
+    var addListingNavigation = localStorageService.get('addListingNavigation', 'sessionStorage');
+    if (addListingNavigation !== null) {
+      $rootScope.addListingStepDone = addListingNavigation.stepNum;
+      $rootScope.doneSteps = addListingNavigation.doneSteps;
+      $rootScope.activeLink = addListingNavigation.activeLink;
+      $rootScope.showSteps = addListingNavigation.showSteps;
+    }
+  }
+
   // addlisting navigation control
   $scope.$on('$stateChangeStart',
     function (event, toState) {
@@ -49,10 +61,19 @@ function ctrl($log, $scope, $rootScope) {
           if (stepDone === 4 && tostate[1] === 'centerDetails') {
             $rootScope.saveStep4(); // only save the step
           }
+          // trigger savestep for done steps, work like next button
+          if (tostate[1] === 'userInfo') {
+            $rootScope.saveStep1Nav(); // only save the step
+          }
           // prevent to display steps other than treatment center and center detail
           if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
             event.preventDefault();
           }
+          // save navigation data to localStorageService
+          saveSteps($rootScope.addListingStepDone, $rootScope.doneSteps, $rootScope.activeLink, $rootScope.showSteps);
+        } else {
+          // removing localstorage for tabs
+          localStorageService.remove('addListingSponsoredPage', 'addListingPaymentDetail', 'addListingUserInfo', 'addListingCenterDetails', 'addListingBannerAds', 'addListingNavigation');
         }
       }
     });
@@ -63,8 +84,8 @@ function ctrl($log, $scope, $rootScope) {
       // default
       vm.sideAdvertisement = 0;
       vm.colMd = 'col-md-8';
-      // removing advertisemet sidebar for memebership section
-      if ((tostate[0] === 'addListing' && tostate[1] === 'paidMember')) {
+      // removing advertisemet sidebar for memebership, sponsoredPage section
+      if ((tostate[0] === 'addListing' && (tostate[1] === 'paidMember' || tostate[1] === 'sponsoredPage'))) {
         vm.sideAdvertisement = 1;
         vm.colMd = 'col-md-12';
       }
@@ -77,4 +98,23 @@ function ctrl($log, $scope, $rootScope) {
       //   vm.colMd = 'col-md-12';
       // }
     });
+
+  function saveSteps(stepNum, doneSteps, activeLink, showSteps) {
+    // if (angular.isDefined(localStorageService.get('addListingNavigation', 'sessionStorage'))) {
+    //   var navigationInfo = localStorageService.get('addListingNavigation', 'sessionStorage');
+    //   if (navigationInfo === null) {
+    //     console.log('nul');
+    //     return;
+    //   }
+    // }
+    addListingNavigation = {
+      'stepNum': stepNum,
+      'doneSteps': doneSteps,
+      'activeLink': activeLink,
+      'showSteps': showSteps
+    };
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingNavigation', addListingNavigation, 'sessionStorage');
+    }
+  }
 }

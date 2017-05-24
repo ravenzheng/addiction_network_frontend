@@ -62,7 +62,7 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
     }
   }
 
-  lm.saveStep1 = function () {
+  vm.saveStep1 = function () {
     $rootScope.contactInfo = {
       'first_name': vm.first_name,
       'last_name': vm.last_name,
@@ -76,5 +76,16 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
     }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['contactInfo']);
     $state.go(UIState.ADD_LISTING.USER_INFO);
+  };
+
+  // to prevent recrusion from next button and navigation button
+  $rootScope.saveStep1Nav = function () {
+    $rootScope.contactInfo = {
+      'first_name': vm.first_name,
+      'last_name': vm.last_name,
+      'company': vm.company,
+      'phone': vm.phone,
+      'phone_validated': $rootScope.user_phone
+    };
   };
 }
