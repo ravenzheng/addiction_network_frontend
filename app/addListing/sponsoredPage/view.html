@@ -11,6 +11,7 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
         <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenters" ng-click="$event.stopPropagation()" selected-model="$ctrl.treatmentCentersModel" extra-settings="$ctrl.multiselectModelSettings" events="{onItemSelect: $root.centerSelect, onItemDeselect: $root.centerDeSelect}" checkboxes="true"></div>
+        <p ng-show="$root.centerSelected.length===0 ">Select any treatment center.</p>
       </div>
     </div>
     <!-- Search By State Section -->

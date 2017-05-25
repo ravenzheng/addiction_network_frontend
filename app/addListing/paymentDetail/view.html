@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-8 col-sm-9 col-xs-12 ">
         <div class="">
-          <input placeholder="Card Number" style="float: left;" class="form-control" type="text" ng-keydown="$root.detectCardType($root.card, $event)" ng-change="" ng-maxlength="19" ng-model="$root.card" ng-pattern="/^[0-9' ']+$/" required="" name="card" maxlength="19" autocomplete="off">
+          <input placeholder="Card Number" style="float: left;" class="form-control" type="text" ng-keyup="$root.detectCardType($root.card, $event)" ng-change="" ng-maxlength="19" ng-model="$root.card" ng-pattern="/^[0-9' ']+$/" required="" name="card" maxlength="19" autocomplete="off">
           <i style="font-size: 40px; margin-top: -10px; color: #58aa22; position: absolute; margin-left: -43px;" class="icon large icon-{{$ctrl.cardType}}-card"></i>
         </div>
         <p ng-show="$root.addlistForm.card.$invalid" class="help-block">Invalid Card number</p>
