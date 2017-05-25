@@ -1,18 +1,12 @@
-module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', '$injector', 'UIState', 'MapService', 'TreatmentCenterService', 'Status', 'localStorageService', ctrl];
+module.exports = ['$rootScope', '$log', '$state', '$injector', 'UIState', 'MapService', 'TreatmentCenterService', 'Status', 'localStorageService', ctrl];
 
-function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, mapService, service, Status, localStorageService) {
+function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service, Status, localStorageService) {
   // todo
   // var vm = this;
   var vm = $rootScope; // this;
   var lm = this;
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
-  };
-
-  lm.skipStep = function () {
-    $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
-    $rootScope.addListingStepDone = 5;
-    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
 
   lm.finish = function () {
@@ -54,6 +48,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     vm.intakeemail_err = '';
     // saving to localStorageService
     if (localStorageService.isSupported) {
+      localStorageService.set('addListingCenterInfo', $rootScope.centerInfo, 'sessionStorage');
       localStorageService.set('addListingCenterDetails', treatmentcenterData, 'sessionStorage');
     }
 
@@ -76,9 +71,9 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       }
       service.addTreatmentCenter(formData, token).then(function () {
         $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
-        // $rootScope.centerReset = 1; // reset on
-        // vm.resetForm(); // reset on
-        addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localStorageService);
+        $rootScope.centerReset = 0; // reset off
+        // resetForm(); //reset off
+        addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
         // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
         //  $window.location.href = '/#/login';
       }).catch(function (err) {
@@ -100,11 +95,11 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     });
   };
 
-  lm.resetForm = function () {
-    vm.content_1 = null;
-    vm.content_2 = null;
-    vm.content_3 = null;
-  };
+  // function resetForm() {
+  //   vm.content_1 = null;
+  //   vm.content_2 = null;
+  //   vm.content_3 = null;
+  // }
 
   // render form with values if stored in sessionStorage/localstorage
   if (angular.isDefined(localStorageService.get('addListingCenterDetails', 'sessionStorage'))) {
@@ -116,20 +111,11 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     }
     // var storageType = localStorageService.getStorageType();
   }
-  // Uploaded image preview
-  $scope.uploadImagePreview = function (element) {
-    var reader = new FileReader();
-    reader.readAsDataURL(element.files[0]);
-    reader.onload = function (e) {
-      vm.preview_img = e.target.result;
-      $document[0].getElementById('logo_preview').src = vm.preview_img;
-    };
-  };
 }
 
-function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localStorageService) {
-  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
-  lm.open = function () {
+function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-footer"><div class="col-sm-6 margin-top-less text-left" id="modal-body">Add more treatment center?</div><button class="btn adn-btn small_button" type="button" ng-click="ok()"> Yes </button><button class="btn adn-btn small_button" type="button" ng-click="cancel()"> No, to continue </button></div>';
+  vm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
       ariaLabelledBy: 'modal-title',
@@ -138,12 +124,6 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localSto
       windowClass: 'treatment_center_class',
       controller: function () {
         $rootScope.ok = function () {
-          // form will be reset
-          $rootScope.centerReset = 1; // reset on
-          lm.resetForm(); // reset on
-          if (localStorageService.isSupported) {
-            localStorageService.remove('addListingCenterInfo', 'addListingCenterDetails');
-          }
           modalInstance.close();
           $state.go(UIState.ADD_LISTING.CENTER_INFO);
         };
@@ -158,5 +138,5 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localSto
       bindToController: true
     });
   };
-  lm.open();
+  vm.open();
 }
