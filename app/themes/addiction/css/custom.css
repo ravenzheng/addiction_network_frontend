@@ -2147,7 +2147,7 @@ input.btn{
 /*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
 .modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
   width: 100%;
-}*/ 
+}*/
 
 .modal-dialog .three_columns ul > li, .modal-dialog .two_columns ul > li,
 .modal-dialog .four_columns ul > li, .modal-dialog .five_columns ul > li,.modal-dialog .six_columns ul > li{
@@ -2327,4 +2327,13 @@ a:focus {
 }
 #category_step4 ul{
   min-width: 120px !important;
+}
+a.thumbnail img {
+    max-height: 88px;
+}
+.state-full-name{
+  font-size:24px;
+}
+.profile-nav-list li img{
+  max-width:200px;
 }
