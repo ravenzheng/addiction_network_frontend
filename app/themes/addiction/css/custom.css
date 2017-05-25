@@ -2353,3 +2353,6 @@ a.thumbnail img {
 .margin-top-less{
   margin-top:5px;
 }
+.center-detail-contact-info-row img {
+    max-width: 200px;
+}
