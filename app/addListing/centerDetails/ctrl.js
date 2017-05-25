@@ -114,7 +114,7 @@ function ctrl($rootScope, $log, $state, $injector, UIState, mapService, service,
 }
 
 function addAgainPrompt(vm, $injector, $rootScope, $state, UIState) {
-  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 6px;right: 10px; font-size: 24px;border-radius: 100%;cursor: pointer;"></i></div></div>';
+  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-footer"><div class="col-sm-6 margin-top-less text-left" id="modal-body">Add more treatment center?</div><button class="btn adn-btn small_button" type="button" ng-click="ok()"> Yes </button><button class="btn adn-btn small_button" type="button" ng-click="cancel()"> No, to continue </button></div>';
   vm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
