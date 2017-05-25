@@ -69,7 +69,7 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, serv
       var tostate = toState.name.split('.');
 
       if (tostate[0] === 'blog') {
-        $window.location = 'http://www.addictionnetwork.com/blog/?angular_ads=advertisement';
+        $window.location = 'http://www.addictionnetwork.com/blog/';
       }
       if (token) {
         $rootScope.login = 1;
