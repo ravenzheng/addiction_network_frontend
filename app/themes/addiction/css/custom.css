@@ -801,8 +801,9 @@ p {
 
 .left_content .sub_heading_under_sign_up {
   color: #2172a7;
-  font-size: 18px;
+  font-size: 25px;
   margin-bottom: 21px;
+  margin: 30px !important;
 }
 
 h3.sub_heading_under_sign_up {
