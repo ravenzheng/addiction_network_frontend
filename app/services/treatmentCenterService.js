@@ -16,7 +16,8 @@ function service($http, endPoint, UserService) {
     submitRating: submitRating,
     search: search,
     getZipValidation: getZipValidation,
-    queryListAll: queryListAll
+    queryListAll: queryListAll,
+    queryStateName: queryStateName
   };
 
   // home page, addListing
@@ -149,5 +150,9 @@ function service($http, endPoint, UserService) {
         'Content-Type': undefined
       }
     });
+  }
+
+  function queryStateName(shortName) {
+    return $http.get(endPoint + '/get_state_full_name?state_code=' + shortName);
   }
 }

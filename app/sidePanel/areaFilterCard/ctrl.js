@@ -1,6 +1,6 @@
-module.exports = ['$log', '$scope', '$state', 'UIState', ctrl];
+module.exports = ['$log', '$scope', '$state', 'UIState', 'TreatmentCenterService', ctrl];
 
-function ctrl($log, $scope, $state, UIState) {
+function ctrl($log, $scope, $state, UIState, service) {
   var vm = this;
   vm.$onInit = onInit;
   vm.goToState = goToState;
@@ -15,6 +15,12 @@ function ctrl($log, $scope, $state, UIState) {
     UIState.SPONSOR_HOME.CITIES_OF_STATE,
     UIState.SPONSOR_HOME.CITIES_OF_COUNTY
   ];
+
+  service.queryStateName($state.params.stateName).then(function (result) {
+    vm.fullName = result.state;
+  }).catch(function (err) {
+    $log.error(err);
+  });
 
   $scope.$on('$stateChangeStart', function (event, toState, toParams) {
     _update(toState.name, toParams);
