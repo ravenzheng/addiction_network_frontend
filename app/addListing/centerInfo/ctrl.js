@@ -59,27 +59,40 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   lm.GoStep5 = function () {
     // saving process is done by saveStep4 rootscope function which is handled in addListing main controller from stateChangeStart
     // this method use to prevent recursing, and add next button feature to top navigation links
+
+    var categoryName = [];
+    for (var key in vm.multiselectModelCategories) {
+      var categories = String(vm.multiselectModelCategories[key].id);
+      categoryName[key] = categories;
+    }
+    var centerInfo = {
+      'category_id': categoryName,
+      'center_name': vm.center_name,
+      'description': vm.description,
+      'center_web_link': vm.center_web_link,
+      'listing_image': vm.listing_image,
+      'address_line_1': vm.address_line_1,
+      'city': vm.city,
+      'country': vm.country,
+      'pincode': vm.pincode,
+      'state': vm.state,
+      'phone': vm.intakephone,
+      'email': vm.intakeemail,
+      'featured': false,
+      'listing_type': 'free',
+      'phone_validated': $rootScope.intakephoneValidate
+    };
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingCenterInfo', centerInfo, 'sessionStorage');
+    }
+
     $rootScope.addListingStepDone = 4;
     lm.testZip();
     if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
       $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
     }
   };
-
-  if ($rootScope.centerReset === 1) {
-    vm.center_name = null;
-    vm.description = null;
-    vm.center_web_link = null;
-    vm.listing_image = null;
-    vm.address_line_1 = null;
-    vm.city = null;
-    vm.pincode = null;
-    vm.state = null;
-    vm.intakephone = null;
-    vm.intakeemail = null;
-    vm.country = null;
-    vm.multiselectModelCategories = [];
-  }
 
   var usCodes = [205, 251, 659, 256, 334, 907, 403, 780, 264, 268, 520, 928, 480, 602, 623, 501, 479, 870, 242, 246, 441,
     250, 604, 778, 284, 341, 442, 628, 657, 669, 747, 752, 764, 951, 209, 559, 408, 831, 510, 213, 310, 424, 323, 562, 707, 369, 627,
@@ -133,13 +146,18 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     if (vm.pincode.length === 5) {
       TreatmentCenterService.getZipValidation(vm.state, vm.pincode).then(function (response) {
         if (response.zip_present) {
+          $rootScope.zipcodeValidated = 1;
           lm.zipFound = 1;
         } else {
+          $rootScope.zipcodeValidated = 0;
           lm.zipFound = 0;
         }
       });
     }
   };
+  if ($rootScope.zipcodeValidated) {
+    lm.zipFound = 1;
+  }
 
   // Uploaded image preview
   $scope.uploadImage = function (element) {
@@ -179,6 +197,23 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       }
     }
     // var storageType = localStorageService.getStorageType();
+  }
+
+  // after clicking ok form will be reset
+  if ($rootScope.centerReset === 1) {
+    vm.center_name = null;
+    vm.description = null;
+    vm.center_web_link = null;
+    vm.listing_image = null;
+    vm.address_line_1 = null;
+    vm.city = null;
+    vm.pincode = null;
+    vm.state = null;
+    vm.intakephone = null;
+    vm.intakeemail = null;
+    vm.country = null;
+    vm.multiselectModelCategories = [];
+    $rootScope.centerReset = 0;
   }
 
   vm.saveStep4 = function () {

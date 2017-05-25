@@ -2,7 +2,8 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   // var vm = this;
   var vm = $rootScope;
   var lm = this;
-  $rootScope.activeLink = 'Payment';
+  vm.activeLink = 'Payment';
+  vm.cardPaymentAdded = 0;
   var creditCardType = require('credit-card-type');
   lm.cardType = 'credit';
 
@@ -19,7 +20,6 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       vm.cvv = info.card_code;
     }
   }
-
   vm.detectCardType = function (card, event) {
     if (angular.isDefined(card)) {
       var cardVal = card.replace(/ /g, '');
@@ -55,6 +55,16 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
   };
+  lm.resetForm = function () {
+    vm.card = null;
+    vm.firstName = null;
+    vm.middleName = null;
+    vm.lastName = null;
+    vm.year = null;
+    vm.month = null;
+    vm.cvv = null;
+  };
+
   var curYear = new Date().getFullYear();
   vm.testYear = function () {
     vm.curYear = curYear;
@@ -95,6 +105,9 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
       $rootScope.addListingStepDone = 6;
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
+      // remove from storage
+      localStorageService.remove('addListingPaymentDetail');
+      lm.resetForm();
       $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
     }).catch(function (err) {
       $log.error(err);

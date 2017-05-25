@@ -9,7 +9,9 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
     // });
     // console.log('state: ' + state.fullname);
 
-    vm.open(state);
+    if ($rootScope.centerSelected.length > 0) {
+      vm.open(state);
+    }
   };
   $rootScope.countyText = {
     buttonDefaultText: 'Select County'
@@ -26,6 +28,10 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
       $rootScope.deletedStates = sponsoredInfo.deletedStates;
       $rootScope.statesSel = sponsoredInfo.statesSel;
       $rootScope.statesDetail = sponsoredInfo.statesDetail;
+      if (sponsoredInfo.treatmentCenter) {
+        $rootScope.centerSelected = sponsoredInfo.treatmentCenter;
+        $rootScope.treatmentCentersModel = sponsoredInfo.treatmentCenter;
+      }
     }
   }
 
@@ -267,7 +273,8 @@ function saveToLocalStorage($rootScope, localStorageService) {
     'countyModel': $rootScope.countyModel,
     'deletedStates': $rootScope.deletedStates,
     'stateSel': $rootScope.statesSel,
-    'statesDetail': $rootScope.statesDetail
+    'statesDetail': $rootScope.statesDetail,
+    'treatmentCenter': $rootScope.treatmentCentersModel
   };
   if (localStorageService.isSupported) {
     localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
