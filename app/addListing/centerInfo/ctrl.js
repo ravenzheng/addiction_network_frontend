@@ -131,8 +131,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       return;
     }
     if (vm.pincode.length === 5) {
-      var token = localStorageService.get('signupToken');
-      TreatmentCenterService.getZipValidation(vm.state, vm.pincode, token).then(function (response) {
+      TreatmentCenterService.getZipValidation(vm.state, vm.pincode).then(function (response) {
         if (response.zip_present) {
           lm.zipFound = 1;
         } else {
