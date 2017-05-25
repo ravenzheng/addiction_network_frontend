@@ -64,12 +64,16 @@ function ctrl($log, $state, UIState, TreatmentCenterService) {
 
   function validationCheck(stateParams) {
     vm.zipErr = 0;
+    vm.stateErr = 0;
     if (vm.zipcode.length > 5) {
       vm.zipErr = 'Zipcode must be 5 digits or empty';
       return false;
     }
 
-    if ((angular.isUndefined(vm.state) || vm.state === '') && vm.zipcode.length === 5) {
+    if ((angular.isUndefined(vm.state) || vm.state === '' || vm.state === null) && vm.zipcode.length === 0) {
+      vm.stateErr = 'Select any state or enter zipcode';
+      return false;
+    } else if ((angular.isUndefined(vm.state) || vm.state === '') && vm.zipcode.length === 5) {
       return true;
     } else if ((angular.isUndefined(vm.state) || vm.state === '') && vm.zipcode.length < 5) {
       vm.zipErr = 'Zipcode must be 5 digits or empty';
