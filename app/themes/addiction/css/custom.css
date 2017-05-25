@@ -2337,3 +2337,16 @@ a.thumbnail img {
 .profile-nav-list li img{
   max-width:200px;
 }
+.center-logo-in-tb{
+  max-width:120px;
+  max-height:70px;
+}
+.hide_blank{
+  display:none !important;
+}
+.remove_margin{
+  margin:0px !important;
+}
+#no-more-tables ul li a {
+  margin:0px !important;
+}
