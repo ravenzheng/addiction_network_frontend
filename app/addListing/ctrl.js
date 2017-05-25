@@ -7,7 +7,7 @@ function ctrl($log, $scope, $rootScope, localStorageService) {
   $rootScope.hideSteps = [];
   $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
-  $rootScope.disableUserinfo = 7;
+  $rootScope.disableUserinfo = 0;
 
   // get values from localStorageService
   if (angular.isDefined(localStorageService.get('addListingNavigation', 'sessionStorage'))) {
