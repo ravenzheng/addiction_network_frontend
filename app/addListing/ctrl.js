@@ -1,6 +1,6 @@
-module.exports = ['$log', '$scope', '$rootScope', 'localStorageService', ctrl];
+module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService', ctrl];
 
-function ctrl($log, $scope, $rootScope, localStorageService) {
+function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
   // initialize
   var vm = this;
   $rootScope.addListingStepDone = 8;
@@ -67,6 +67,11 @@ function ctrl($log, $scope, $rootScope, localStorageService) {
           }
           // prevent to display steps other than treatment center and center detail
           if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
+            event.preventDefault();
+          }
+          // prevent to add treatment center if already done payment
+          if (stepDone >= 6 && (tostate[1] === 'centerDetails' || tostate[1] === 'centerInfo')) {
+            $rootScope.$emit(Status.FAILED, 'Payment already done.');
             event.preventDefault();
           }
           // save navigation data to localStorageService

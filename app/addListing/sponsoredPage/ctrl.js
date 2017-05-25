@@ -11,11 +11,14 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     checkBoxes: true
   };
 
-  vm.treatmentCentersModel = [];
+  if (angular.isUndefined(vm.treatmentCentersModel)) {
+    vm.treatmentCentersModel = [];
+  }
   vm.sponsoredAdNormalModel = [];
   vm.sponsoredAdStateModel = [];
   vm.sponsoredAdCountyModel = [];
   vm.sponsoredAdCityModel = [];
+  $rootScope.centerSelected = [];
 
   // getting values from localstorage if already set
   if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
@@ -86,14 +89,19 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     });
   }
   sponsorList('');
-
   $rootScope.centerSelect = function () {
     // saving to localStorageService
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
+      } else {
+        sponsoredInfo = {
+          'treatmentCenter': vm.treatmentCentersModel
+        };
       }
+      $rootScope.centerSelected = vm.treatmentCentersModel;
       localStorageService.set('addListingSponsoredPage', sponsoredInfo, 'sessionStorage');
     }
   };
@@ -102,7 +110,12 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
       sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
+      } else {
+        sponsoredInfo = {
+          'treatmentCenter': vm.treatmentCentersModel
+        };
       }
+      $rootScope.centerSelected = vm.treatmentCentersModel;
       localStorageService.set('addListingSponsoredPage', sponsoredInfo, 'sessionStorage');
     }
   };

@@ -143,10 +143,9 @@ function service($http, endPoint, UserService) {
     return $http.post(endPoint + '/search_treatment_centers', finalData);
   }
   // get zip validation
-  function getZipValidation(state, zip, token) {
+  function getZipValidation(state, zip) {
     return $http.get(endPoint + '/check_zip?state=' + state + '&zip=' + zip, {
       headers: {
-        'Authorization': token,
         'Content-Type': undefined
       }
     });
