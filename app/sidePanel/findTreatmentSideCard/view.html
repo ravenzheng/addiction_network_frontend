@@ -5,6 +5,7 @@
     <div class="form-group">
       <label for="State">Select State</label>
       <state-select on-update="$ctrl.onStateUpdate(selected)"></state-select>
+      <p ng-show="$ctrl.stateErr">{{$ctrl.stateErr}}</p>
     </div>
     <p class="font-bold text-center">OR</p>
     <div class="form-group">
