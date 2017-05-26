@@ -2359,3 +2359,10 @@ a.thumbnail img {
 .state_size{
   font-size:20px;
 }
+.adn-row p.help-block {
+    padding: 0px 0 0 0;
+    font-size: 13px;
+}
+.adn-row p.help-block::before {
+    content:'*';
+}
