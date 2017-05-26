@@ -35,8 +35,9 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
-        <input file-model="$ctrl.content" type="file" name="content" id="content" class="center_image" accept="image/*" />
-        <span ng-show="$ctrl.err_type">Please upload an image only. </span>
+        <input file-model="$ctrl.content" type="file" name="content" id="content" onchange="angular.element(this).scope().uploadImagePreview(this)" class="center_image" accept="image/*" />
+        <span ng-show="$ctrl.err_type===1">Please upload an image only. </span>
+        <img id="logo_preview" ng-src="{{$ctrl.preview_img}}" width="100" name="logo_preview" />
       </div>
     </div>
     <!-- Website link -->

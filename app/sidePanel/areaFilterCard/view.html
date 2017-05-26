@@ -1,5 +1,5 @@
 <div ng-show="$ctrl.display" class="side-card">
-  <card-heading>Filter</card-heading>
+  <card-heading>{{ $ctrl.stateName }}</card-heading>
   <ul class="list-unstyled">
     <li>
       <label><a href class="area-filter-link state-full-name" ng-class="$ctrl.stateLinkClass" ng-click="$ctrl.goToState()">{{ $ctrl.fullName }}</a></label>

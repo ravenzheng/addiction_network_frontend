@@ -20,6 +20,14 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       vm.cvv = info.card_code;
     }
   }
+  // get payment skip detail
+  if (angular.isDefined(localStorageService.get('addListingCanSkip', 'sessionStorage'))) {
+    var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+    if (canSkip !== null) {
+      vm.paymentSkip = canSkip.paymentSkip;
+    }
+  }
+
   vm.detectCardType = function (card, event) {
     if (angular.isDefined(card)) {
       var cardVal = card.replace(/ /g, '');
@@ -52,9 +60,16 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       lm.cardType = 'credit';
     }
   };
+
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
   };
+  lm.skipStep = function () {
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
+    $rootScope.addListingStepDone = 6;
+    $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+  };
+
   lm.resetForm = function () {
     vm.card = null;
     vm.firstName = null;
@@ -108,6 +123,14 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       // remove from storage
       localStorageService.remove('addListingPaymentDetail');
       lm.resetForm();
+
+      // payment can be skips now
+      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+      if (canSkip !== null) {
+        canSkip.paymentSkip = 1;
+      }
+      $rootScope.paymentSkip = 1;
+      localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
       $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
     }).catch(function (err) {
       $log.error(err);

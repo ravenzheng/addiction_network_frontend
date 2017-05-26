@@ -69,16 +69,12 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
           if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
             event.preventDefault();
           }
-          // prevent to add treatment center if already done payment
-          if (stepDone >= 6 && (tostate[1] === 'centerDetails' || tostate[1] === 'centerInfo')) {
-            $rootScope.$emit(Status.FAILED, 'Payment already done.');
-            event.preventDefault();
-          }
+
           // save navigation data to localStorageService
           saveSteps($rootScope.addListingStepDone, $rootScope.doneSteps, $rootScope.activeLink, $rootScope.showSteps);
         } else {
           // removing localstorage for tabs
-          localStorageService.remove('addListingSponsoredPage', 'addListingPaymentDetail', 'addListingUserInfo', 'addListingCenterDetails', 'addListingBannerAds', 'addListingNavigation');
+          localStorageService.remove('addListingSponsoredPage', 'addListingPaymentDetail', 'addListingUserInfo', 'addListingCenterDetails', 'addListingBannerAds', 'addListingNavigation', 'addListingCanSkip');
         }
       }
     });

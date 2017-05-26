@@ -6,10 +6,20 @@ function service($http, endPoint, mapConfig) {
     getCitiesByState: getCitiesByState,
     getCitiesWithCountyByState: getCitiesWithCountyByState,
     getCountiesByState: getCountiesByState,
-    getCitiesByCounty: getCitiesByCounty
+    getCitiesByCounty: getCitiesByCounty,
+    getStateFullname: stateFullName
   };
 
   function getFullname(shortname) {
+    if (shortname.length > 2) {
+      // it is a full name
+      return shortname;
+    }
+    var stateObj = mapConfig.states.find(compare(shortname));
+    return stateObj ? stateObj.fullname : null;
+  }
+
+  function stateFullName(shortname) {
     if (shortname.length > 2) {
       // it is a full name
       return shortname;

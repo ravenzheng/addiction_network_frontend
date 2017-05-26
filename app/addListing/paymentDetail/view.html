@@ -110,6 +110,7 @@
       <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
         <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
         <button type="button" ng-click="$root.submit()" class="btn modal_btn btn_size pull-right" value="Next" id="submit" ng-disabled="$root.addlistForm.card.$invalid || ($ctrl.totalDigits<19) ||  $root.addlistForm.year.$invalid || paymentDetailsForm.month.$invalid || $root.addlistForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || $root.addlistForm.middleName.$invalid || $root.addlistForm.lastName.$invalid">Next</button>
+        <input class="btn modal_btn btn_size pull-right" ng-show="$root.paymentSkip" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
       </div>
     </div>
     <!--</form>-->
