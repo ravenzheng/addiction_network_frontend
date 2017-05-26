@@ -1,14 +1,20 @@
 <div ng-show="$ctrl.display" class="side-card">
-  <card-heading>{{ $ctrl.stateName }}</card-heading>
+  <card-heading>
+    <label class="state_size">{{ $ctrl.fullName }}</label>
+  </card-heading>
   <ul class="list-unstyled">
-    <li>
+    <!-- <li>
       <label><a href class="area-filter-link state-full-name" ng-class="$ctrl.stateLinkClass" ng-click="$ctrl.goToState()">{{ $ctrl.fullName }}</a></label>
+    </li> -->
+    <li>
+      <label>
+        <button type="button" class="btn btn-default"><a href class="area-filter-link" ng-click="$ctrl.goToCities()">View All Cities</a></button>
+      </label>
     </li>
     <li>
-      <label><a href class="area-filter-link" ng-click="$ctrl.goToCities()">View All Cities</a></label>
-    </li>
-    <li>
-      <label><a href class="area-filter-link" ng-click="$ctrl.goToCounties()">View All Counties</a></label>
+      <label>
+        <button type="button" class="btn btn-default"><a href class="area-filter-link" ng-click="$ctrl.goToCounties()">View All Counties</a></button>
+      </label>
     </li>
   </ul>
 </div>
