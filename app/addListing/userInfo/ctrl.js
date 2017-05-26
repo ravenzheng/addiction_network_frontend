@@ -15,15 +15,9 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     var info = localStorageService.get('addListingUserInfo', 'sessionStorage');
     if (info !== null) {
       vm.email = info.email;
-      // vm.password = info.password;
       vm.company = info.company;
       vm.phone = info.phone;
       vm.username = info.username;
-      // $rootScope.contactInfo.first_name = info.first_name;
-      // $rootScope.contactInfo.last_name = info.last_name;
-      // $rootScope.contactInfo.company = info.company;
-      // $rootScope.contactInfo.phone = info.phone;
-      // $rootScope.contactInfo.phone_validated = info.phone_validated;
     }
   }
 
@@ -33,13 +27,18 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
       'email': vm.email,
       'password': vm.password,
       'password_confirmation': vm.confirm_password,
-      'first_name': $rootScope.contactInfo.first_name,
-      'last_name': $rootScope.contactInfo.last_name,
-      'company': $rootScope.contactInfo.company,
-      'phone': $rootScope.contactInfo.phone,
+      'first_name': vm.first_name,
+      'last_name': vm.last_name,
+      'company': vm.company,
+      'phone': vm.phone,
       'username': vm.username,
-      'phone_validated': $rootScope.contactInfo.phone_validated
+      'phone_validated': $rootScope.user_phone
     };
+
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingUserInfo', sigupData, 'sessionStorage');
+    }
 
     for (var key in sigupData) {
       if (key === 'phone_validated') {
@@ -49,10 +48,6 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     }
     $rootScope.formdata = formData;
 
-    // saving to localStorageService
-    if (localStorageService.isSupported) {
-      localStorageService.set('addListingUserInfo', sigupData, 'sessionStorage');
-    }
     service.addTreatmentCenterSignUp(formData).then(function (result) {
       localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
