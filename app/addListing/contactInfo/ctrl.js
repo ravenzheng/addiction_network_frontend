@@ -67,8 +67,7 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
       'first_name': vm.first_name,
       'last_name': vm.last_name,
       'company': vm.company,
-      'phone': vm.phone,
-      'phone_validated': $rootScope.user_phone
+      'phone': vm.phone
     };
 
     if ($rootScope.addListingStepDone < 2) {
