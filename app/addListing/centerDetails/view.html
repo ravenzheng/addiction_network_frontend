@@ -44,7 +44,7 @@
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
       <input class="btn modal_btn btn_size pull-right" value="Next" id="submit" type="button" ng-click="$root.submit()" ng-disabled="$root.addlistForm.content_1.$error.required || $root.addlistForm.content_2.$error.required || $root.addlistForm.content_3.$error.required">
       <!--<input type="button" value="Popup" ng-click="$root.popup()">-->
-      <input class="btn modal_btn btn_size pull-right" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
+      <input class="btn modal_btn btn_size pull-right" ng-show="$root.centerSkip" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub">
       <footer-ad></footer-ad>

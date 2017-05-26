@@ -58,10 +58,9 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     }
 
     var token = localStorageService.get('signupToken');
-    // test for center exist or not
-    // var result = testCenterExist(service, token, $rootScope.centerInfo.center_name);
 
     service.queryListAll(token).then(function (response) {
+      // test for center exist or not
       var centerName = $rootScope.centerInfo.center_name;
       var centerExist = 0;
       for (key in response.treatment_centers) {
@@ -74,12 +73,24 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         $rootScope.$emit(Status.FAILED, 'Treatment center already exist.');
         return;
       }
+      var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
       service.addTreatmentCenter(formData, token).then(function () {
         $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
-        // $rootScope.centerReset = 1; // reset on
-        // vm.resetForm(); // reset on
+        // form will be reset
+        $rootScope.centerReset = 1; // reset on
+        lm.resetForm(); // reset on
+        localStorageService.remove('addListingCenterInfo', 'addListingCenterDetails');
+        if (canSkip !== null) {
+          canSkip.centerSkip = 1;
+        } else {
+          canSkip = {
+            'centerSkip': 1
+          };
+        }
+        $rootScope.centerSkip = 1;
+        localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
+
         addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localStorageService);
-        // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
         //  $window.location.href = '/#/login';
       }).catch(function (err) {
         if (err.data.user) {
@@ -114,8 +125,15 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       vm.content_2 = info.content_2;
       vm.content_3 = info.content_3;
     }
-    // var storageType = localStorageService.getStorageType();
   }
+  // get payment skip detail
+  if (angular.isDefined(localStorageService.get('addListingCanSkip', 'sessionStorage'))) {
+    var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+    if (canSkip !== null) {
+      vm.centerSkip = canSkip.centerSkip;
+    }
+  }
+
   // Uploaded image preview
   $scope.uploadImagePreview = function (element) {
     var reader = new FileReader();
@@ -127,7 +145,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   };
 }
 
-function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localStorageService) {
+function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState) {
   var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
   lm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
@@ -138,12 +156,6 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localSto
       windowClass: 'treatment_center_class',
       controller: function () {
         $rootScope.ok = function () {
-          // form will be reset
-          $rootScope.centerReset = 1; // reset on
-          lm.resetForm(); // reset on
-          if (localStorageService.isSupported) {
-            localStorageService.remove('addListingCenterInfo', 'addListingCenterDetails');
-          }
           modalInstance.close();
           $state.go(UIState.ADD_LISTING.CENTER_INFO);
         };

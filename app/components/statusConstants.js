@@ -1,7 +1,7 @@
 module.exports = {
   SUCCEEDED: 'succeeded',
   FAILED: 'failed',
-  DURATION: 2500,
+  DURATION: 5000,
   CHANGE_PASSWORD_SUCCEESS_MSG: 'Your password is updated successfully.',
   PROFILE_EDIT_SUCCEESS_MSG: 'Your profile is updated successfully.',
   CENTER_ADD_SUCCEESS_MSG: 'Your treatmnet center is added successfully.',

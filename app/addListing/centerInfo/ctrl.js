@@ -94,6 +94,12 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     }
   };
 
+  lm.skipStep = function () {
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
+    $rootScope.addListingStepDone = 5;
+    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+  };
+
   var usCodes = [205, 251, 659, 256, 334, 907, 403, 780, 264, 268, 520, 928, 480, 602, 623, 501, 479, 870, 242, 246, 441,
     250, 604, 778, 284, 341, 442, 628, 657, 669, 747, 752, 764, 951, 209, 559, 408, 831, 510, 213, 310, 424, 323, 562, 707, 369, 627,
     530, 714, 949, 626, 909, 916, 760, 619, 858, 935, 818, 415, 925, 661, 805, 650, 600, 809, 345, 670, 211, 720, 970, 303, 719, 203,
@@ -198,6 +204,13 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     }
     // var storageType = localStorageService.getStorageType();
   }
+  // get payment skip detail
+  if (angular.isDefined(localStorageService.get('addListingCanSkip', 'sessionStorage'))) {
+    var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+    if (canSkip !== null) {
+      vm.centerSkip = canSkip.centerSkip;
+    }
+  }
 
   // after clicking ok form will be reset
   if ($rootScope.centerReset === 1) {
@@ -213,7 +226,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     vm.intakeemail = null;
     vm.country = null;
     vm.multiselectModelCategories = [];
-    $rootScope.centerReset = 0;
+    $rootScope.centerReset = 0; // reset off
   }
 
   vm.saveStep4 = function () {

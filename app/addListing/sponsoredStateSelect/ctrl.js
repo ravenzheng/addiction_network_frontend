@@ -1,15 +1,16 @@
-module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', ctrl];
+module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', 'Status', ctrl];
 
-function ctrl($rootScope, $injector, $state, UIState, service, localStorageService) {
+function ctrl($rootScope, $injector, $state, UIState, service, localStorageService, Status) {
   var vm = this;
   vm.onStateSelect = function (state) {
     // $state.go(UIState.SPONSOR_HOME.STATE, {
     //   stateName: state.shortname
     // });
     // console.log('state: ' + state.fullname);
-
     if ($rootScope.centerSelected.length > 0) {
       vm.open(state);
+    } else {
+      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
     }
   };
   $rootScope.countyText = {
@@ -65,17 +66,6 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
 
   vm.citySelCount = 0;
   $rootScope.citySelectFun = function () {
-    // saving to localStorageService
-    // var spnonsoredPage = {
-    //   'cityModel': $rootScope.cityModel,
-    //   'countyModel': $rootScope.countyModel,
-    //   'deletedStates': $rootScope.deletedStates,
-    //   'stateSel': $rootScope.statesSel,
-    //   'statesDetail': $rootScope.statesDetail
-    // };
-    // if (localStorageService.isSupported) {
-    //   localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
-    // }
     vm.citySelCount++;
   };
 
@@ -85,16 +75,6 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
 
   vm.countySelCount = 0;
   $rootScope.countySelectFun = function () {
-    // var spnonsoredPage = {
-    //   'cityModel': $rootScope.cityModel,
-    //   'countyModel': $rootScope.countyModel,
-    //   'deletedStates': $rootScope.deletedStates,
-    //   'stateSel': $rootScope.statesSel,
-    //   'statesDetail': $rootScope.statesDetail
-    // };
-    // if (localStorageService.isSupported) {
-    //   localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
-    // }
     vm.countySelCount++;
   };
 
