@@ -52,6 +52,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     vm.email_err = '';
     vm.pass_err = '';
     vm.intakeemail_err = '';
+
     // saving to localStorageService
     if (localStorageService.isSupported) {
       localStorageService.set('addListingCenterDetails', treatmentcenterData, 'sessionStorage');
@@ -90,7 +91,13 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         $rootScope.centerSkip = 1;
         localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
 
-        addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState, localStorageService);
+        if (angular.isDefined($rootScope.centerAdded)) {
+          len = $rootScope.centerAdded.length;
+          $rootScope.centerAdded[len] = centerName;
+        } else {
+          $rootScope.centerAdded = [centerName];
+        }
+        addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState);
         //  $window.location.href = '/#/login';
       }).catch(function (err) {
         if (err.data.user) {
@@ -146,7 +153,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
 }
 
 function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState) {
-  var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">{{$root.center_name}}</h3></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
+  var deletePrompt = '<div class="modal-header"><h7 class="modal-title" id="modal-title"><table><tbody><tr> <td ng-repeat="center in $root.centerAdded">{{center}}, </td></tr></tbody></table></h7></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> OK </button><div style="position: absolute;top: -10px;text-align: right;width: 100%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div></div>';
   lm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,

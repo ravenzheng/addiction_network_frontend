@@ -1,4 +1,4 @@
-function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UIState, AdvertisementService) {
+function ctrl($scope, $document, $log, $rootScope, Status, $window, localStorageService, $state, UIState, AdvertisementService) {
   var vm = this;
   $rootScope.activeLink = 'Banner Ads';
   // initializing form data
@@ -19,6 +19,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.center_web_link = bannerInfo.center_web_link;
     }
   }
+  // Uploaded image preview
+  $scope.uploadImagePreview = function (element) {
+    vm.err_type = 0;
+    var reader = new FileReader();
+    reader.readAsDataURL(element.files[0]);
+    reader.onload = function (e) {
+      vm.preview_img = e.target.result;
+      $document[0].getElementById('logo_preview').src = vm.preview_img;
+    };
+  };
 
   vm.submit = function () {
     // validating file type
@@ -73,4 +83,4 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   };
 }
 
-module.exports = ['$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'AdvertisementService', ctrl];
+module.exports = ['$scope', '$document', '$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'AdvertisementService', ctrl];
