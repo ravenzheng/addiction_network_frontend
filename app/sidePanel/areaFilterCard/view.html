@@ -2,7 +2,7 @@
   <card-heading>{{ $ctrl.stateName }}</card-heading>
   <ul class="list-unstyled">
     <li>
-      <a href class="area-filter-link" ng-class="$ctrl.stateLinkClass" ng-click="$ctrl.goToState()">{{ $ctrl.fullName }}</a>
+      <label><a href class="area-filter-link state-full-name" ng-class="$ctrl.stateLinkClass" ng-click="$ctrl.goToState()">{{ $ctrl.fullName }}</a></label>
     </li>
     <li>
       <label><a href class="area-filter-link" ng-click="$ctrl.goToCities()">View All Cities</a></label>
