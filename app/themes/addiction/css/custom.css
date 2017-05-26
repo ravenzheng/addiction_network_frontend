@@ -801,8 +801,9 @@ p {
 
 .left_content .sub_heading_under_sign_up {
   color: #2172a7;
-  font-size: 18px;
+  font-size: 25px;
   margin-bottom: 21px;
+  margin: 30px !important;
 }
 
 h3.sub_heading_under_sign_up {
@@ -2115,7 +2116,7 @@ input.btn{
 
 .modal-dialog.modal-lg{
   /*display:flex;*/
-  width : 72%;
+  width : 68%;
 }
 
 .modal-dialog .btn{
@@ -2146,7 +2147,7 @@ input.btn{
 /*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
 .modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
   width: 100%;
-}*/
+}*/ 
 
 .modal-dialog .three_columns ul > li, .modal-dialog .two_columns ul > li,
 .modal-dialog .four_columns ul > li, .modal-dialog .five_columns ul > li,.modal-dialog .six_columns ul > li{
@@ -2323,4 +2324,7 @@ a:focus {
 }
 .small_button{
   min-width:50px !important;
+}
+#category_step4 ul{
+  min-width: 120px !important;
 }
