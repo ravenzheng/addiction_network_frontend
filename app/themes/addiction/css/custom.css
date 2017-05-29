@@ -984,8 +984,9 @@ h3.sub_heading_under_sign_up {
 
 .img_under_block_outer img {
   float: left;
-  width: 100%;
+  max-width: 100%;
   border-bottom: 2px solid #b1b1b1;
+  max-height:180px;
 }
 
 .head_under_block {
@@ -2338,8 +2339,8 @@ a.thumbnail img {
   max-width:200px;
 }
 .center-logo-in-tb{
-  max-width:120px;
-  max-height:70px;
+  max-width:120px !important;
+  max-height:70px !important;
 }
 .hide_blank{
   display:none !important;
@@ -2372,4 +2373,10 @@ a.thumbnail img {
 }
 .nopadding{
   padding:0px;
+}
+.hide_emit_message{
+  display:block !important;
+}
+.show_emit_message{
+  display:none !important;
 }

@@ -6,7 +6,7 @@ function ctrl($log, $window, UserService) {
     vm.profile = result.user;
   }).catch(function (error) {
     // todo, display in message in the frontend page
-    $window.location.href = '/#logout';
+    // $window.location.href = '/#logout';
     $log.error(error);
   });
 }
