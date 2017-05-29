@@ -59,7 +59,7 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <textarea name="description" ng-model="$root.description" class="form-control required" rows="2" cols="50" placeholder="Brief Overview" required="true"></textarea>
-        <p ng-show="$root.addlistForm.description.$error.required">Required</p>
+        <p ng-show="$root.addlistForm.description.$error.required" class="help-block">Required</p>
       </div>
     </div>
     <div class="adn-row">
@@ -77,7 +77,7 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <input name="address_line_1" class="form-control required" type="text" ng-model="$root.address_line_1" placeholder="Street Address" required="true">
-        <p ng-show="$root.addlistForm.address_line_1.$invalid">Required</p>
+        <p ng-show="$root.addlistForm.address_line_1.$invalid" class="help-block">Required</p>
       </div>
     </div>
     <div class="adn-row">
@@ -89,7 +89,7 @@
           <option value="">Select State</option>
           <option ng-repeat="states in $root.states track by $index" value="{{states}}">{{states}}</option>
         </select>
-        <p ng-show="$root.addlistForm.state.$invalid">Required</p>
+        <p ng-show="$root.addlistForm.state.$invalid" class="help-block">Required</p>
       </div>
     </div>
     <div class="adn-row">
@@ -101,7 +101,7 @@
           <option value="">Select City</option>
           <option ng-repeat="cities in $root.cities track by $index" value="{{cities}}">{{cities}}</option>
         </select>
-        <p ng-show="$root.addlistForm.city.$invalid">Required</p>
+        <p ng-show="$root.addlistForm.city.$invalid" class="help-block">Required</p>
       </div>
     </div>
     <div class="adn-row">

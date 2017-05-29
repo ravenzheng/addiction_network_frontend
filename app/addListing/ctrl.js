@@ -1,6 +1,6 @@
-module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService', ctrl];
+module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService', '$window', ctrl];
 
-function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
+function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
   // initialize
   var vm = this;
   $rootScope.addListingStepDone = 0;
@@ -85,6 +85,18 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
       // default
       vm.sideAdvertisement = 0;
       vm.colMd = 'col-md-8';
+      if (tostate[0] === 'addListing') {
+        $window.onbeforeunload = function () {
+          var message = 'Sure you want to leave?';
+          if (angular.isUndefined(event) === 'undefined') {
+            //  event = $window.event;
+          }
+          if (event) {
+            event.returnValue = message;
+          }
+          return message;
+        };
+      }
       // removing advertisemet sidebar for memebership, sponsoredPage section
       if ((tostate[0] === 'addListing' && (tostate[1] === 'paidMember' || tostate[1] === 'sponsoredPage'))) {
         vm.sideAdvertisement = 1;
