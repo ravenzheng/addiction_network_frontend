@@ -13,7 +13,12 @@
           <label>First Name:</label>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-6">
-          <p>{{ $ctrl.profile.first_name }}</p>
+          <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+            <p>{{ $ctrl.profile.first_name }}</p>
+          </div>
+          <div class="membership_profile text-right col-md-10 col-sm-8 col-xs-8">
+            <img src="/themes/addiction/images/{{ $ctrl.profile.type_of_user }}.png" width="80">
+          </div>
         </div>
       </div>
       <!-- Last Name -->
@@ -21,7 +26,7 @@
         <div class="col-md-4 col-sm-4 col-xs-6">
           <label>Last Name:</label>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-6">
+        <div class="col-md-8 col-sm-4 col-xs-6">
           <p>{{ $ctrl.profile.last_name }}</p>
         </div>
       </div>

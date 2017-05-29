@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <input placeholder="Name" name="name" id="name" class="form-control" type="text" required="true" ng-model="$ctrl.name">
-        <span ng-show="$root.addlistForm.name.$error.required" class="help-block">Name can't be blank.</span>
+        <p ng-show="$root.addlistForm.name.$error.required" class="help-block">Name can't be blank.</p>
       </div>
     </div>
     <!-- Position -->
@@ -25,7 +25,7 @@
           <option value="header">header</option>
           <option value="sidebar">sidebar</option>
         </select>
-        <span ng-show="$root.addlistForm.position.$invalid">Select position</span>
+        <p ng-show="$root.addlistForm.position.$invalid" class="help-block">Select position</p>
       </div>
     </div>
     <!-- Content -->
@@ -36,7 +36,7 @@
       <div class="col-md-8 col-sm-8 col-xs-12">
         <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
         <input file-model="$ctrl.content" type="file" name="content" id="content" onchange="angular.element(this).scope().uploadImagePreview(this)" class="center_image" accept="image/*" />
-        <span ng-show="$ctrl.err_type===1">Please upload an image only. </span>
+        <p ng-show="$ctrl.err_type===1" class="help-block">Please upload an image only. </p>
         <img id="logo_preview" ng-src="{{$ctrl.preview_img}}" width="100" name="logo_preview" />
       </div>
     </div>
@@ -47,8 +47,8 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z 0-9]{2,20})?(?:[\.])+([a-z/.]{2,10})$/" />
-        <span ng-show="$root.addlistForm.center_web_link.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
-        <span ng-show="$root.addlistForm.center_web_link.$error.required" class="help-block">Weburl can't be blank.</span>
+        <p ng-show="$root.addlistForm.center_web_link.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</p>
+        <p ng-show="$root.addlistForm.center_web_link.$error.required" class="help-block">Weburl can't be blank.</p>
       </div>
     </div>
     <!-- Submit -->
