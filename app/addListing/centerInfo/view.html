@@ -97,7 +97,7 @@
         <label>City</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <select ng-model="$root.city" name="city" required="true">
+        <select ng-model="$root.city" ng-change="$ctrl.testZip()" name="city" required="true">
           <option value="">Select City</option>
           <option ng-repeat="cities in $root.cities track by $index" value="{{cities}}">{{cities}}</option>
         </select>
