@@ -3,7 +3,7 @@ module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService
 function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
   // initialize
   var vm = this;
-  $rootScope.addListingStepDone = 7;
+  $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
   $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
