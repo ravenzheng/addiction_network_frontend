@@ -52,7 +52,7 @@
           <div class="col-md-8 col-sm-8 col-xs-12">
             <input ng-model="$ctrl.address_line_1" name="address_line_1" type="text" class="form-control required" required="true" placeholder="" />
             <input type="hidden" name="centerapprove" value="0" />
-            <p ng-show="addCenter.address_line_1.$invalid">Required</p>
+            <p ng-show="addCenter.address_line_1.$invalid" class="help-block">Required</p>
           </div>
         </div>
 
@@ -63,7 +63,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <input ng-model="$ctrl.city" name="city" type="text" required="true" class="form-control required" placeholder="center city" />
-            <p ng-show="addCenter.city.$invalid">Required</p>
+            <p ng-show="addCenter.city.$invalid" class="help-block">Required</p>
           </div>
         </div>
 
@@ -74,7 +74,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
             <state-select on-update="$ctrl.onStateUpdate(selected)"></state-select>
-            <p ng-show="addCenter.state.$invalid">Required</p>
+            <p ng-show="addCenter.state.$invalid" class="help-block">Required</p>
           </div>
         </div>
 
@@ -122,8 +122,8 @@
               <a href="javascript:void(0)">
                 <input file-model="$ctrl.listing_image" type="file" name="center_image" class="center_image" />
               </a>
-              <span style="float:left;">Please upload an image with exact size of 308*180 KB.
-              </span>
+              <p class="text-left help-block">Please upload an image with exact size of 308*180 KB.
+              </p>
             </div>
           </div>
         </div>
@@ -135,7 +135,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <textarea ng-model="$ctrl.content_1" name="center_description" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
-            <p ng-show="addCenter.center_description.$error.required">Required</p>
+            <p ng-show="addCenter.center_description.$error.required" class="help-block">Required</p>
           </div>
         </div>
 
@@ -146,7 +146,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <textarea ng-model="$ctrl.content_2" name="center_facility" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
-            <p ng-show="addCenter.center_facility.$error.required">Required</p>
+            <p ng-show="addCenter.center_facility.$error.required" class="help-block">Required</p>
           </div>
         </div>
 
@@ -157,7 +157,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <textarea ng-model="$ctrl.content_3" name="center_approach" rows="3" cols="100%" class="form-control required" required="true" placeholder=""></textarea>
-            <p ng-show="addCenter.center_approach.$error.required">Required</p>
+            <p ng-show="addCenter.center_approach.$error.required" class="help-block">Required</p>
           </div>
         </div>
 
@@ -168,7 +168,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <textarea ng-model="$ctrl.content_4" name="center_philosophy" required="true" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
-            <p ng-show="addCenter.center_philosophy.$error.required">Required</p>
+            <p ng-show="addCenter.center_philosophy.$error.required" class="help-block">Required</p>
           </div>
         </div>
 

@@ -1906,7 +1906,7 @@ label.error {
 }
 
 .ng-valid-pattern+.help-block {
-  color: #d50000 !important;
+  /*color: #d50000 !important;*/
 }
 
 .ng-valid-required+.help-block::before {
@@ -2362,7 +2362,14 @@ a.thumbnail img {
 .adn-row p.help-block {
     padding: 0px 0 0 0;
     font-size: 13px;
+    color: #d50000 !important;
 }
 .adn-row p.help-block::before {
     content:'*';
+}
+.membership_profile{
+  height:0px;margin-top:-1px;
+}
+.nopadding{
+  padding:0px;
 }
