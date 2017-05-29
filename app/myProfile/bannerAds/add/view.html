@@ -38,11 +38,12 @@
         <!-- Content -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label for="upload_img">Image</label>
+            <label for="upload_img">Content</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <!--  <input name="image" id="image" class="span2 text_file center_image" ng-model="$ctrl.image" type="file"> -->
-            <input file-model="$ctrl.content" type="file" name="content" id="content" class="center_image" accept="image/*" />
+            <input file-model="$ctrl.content" type="file" name="content" id="content" onchange="angular.element(this).scope().imagePreview(this)" class="center_image" accept="image/*" />
+            <img id="logo_preview" ng-src="{{$ctrl.preview_img}}" width="100" name="logo_preview" />
             <p ng-show="$ctrl.err_type" class="help-block">Please upload an image only. </p>
           </div>
         </div>
@@ -52,8 +53,8 @@
             <label for="cpwd">Center Web Link</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+([a-z]{2,10})?(?:[\.])+[a-z]{2,10}$/" />
-            <span ng-show="advertisementForm.center_web_link.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</span>
+            <input name="center_web_link" ng-model="$ctrl.center_web_link" class="form-control" type="text" required="true" placeholder="Center Web Link" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+([a-z 0-9]{2,20})?(?:[\.])+[a-z]{2,10}$/" />
+            <p ng-show="advertisementForm.center_web_link.$error.pattern" class="help-block">Invalid Format(Correct format: www.google.com)</p>
             <p ng-show="advertisementForm.center_web_link.$error.required" class="help-block">Weburl can't be blank.</p>
           </div>
         </div>
