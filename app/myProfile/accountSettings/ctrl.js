@@ -54,6 +54,22 @@ function ctrl($log, $rootScope, Status, service, mapService, centerService) {
           vm.accountSetting.phone.$invalid = false;
         }
       }
+    } else if (angular.isDefined(vm.profile.phone)) {
+      len = vm.profile.phone;
+      if (len > 3) {
+        code = vm.profile.phone.substring(0, 3);
+        if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
+          vm.accountSetting.phone.$error.pattern = true;
+          vm.accountSetting.phone.$valid = false;
+          vm.accountSetting.phone.$invalid = true;
+        } else {
+          vm.accountSetting.phone.$error.pattern = false;
+          vm.accountSetting.phone.$valid = true;
+          vm.accountSetting.phone.$invalid = false;
+          vm.accountSetting.phone.$error.minlength = false;
+          vm.accountSetting.phone.$error.maxlength = false;
+        }
+      }
     }
   };
 
