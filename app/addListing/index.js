@@ -134,7 +134,15 @@ angular.module(moduleName, [
     $stateProvider.state({
       name: UIState.ADD_LISTING.SPONSORED_PAGES,
       url: '/step7',
-      template: '<sponsored-page></sponsored-page>'
+      views: {
+        '': {
+          template: '<sponsored-page></sponsored-page>'
+        },
+        'cartDetails': {
+          template: '<cart-detail></cart-detail>'
+          // controller: require('./cartDetail/ctrl')
+        }
+      }
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.BANNER_AD,

@@ -1,27 +1,101 @@
-module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', 'Status', ctrl];
+module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', 'Status', ctrl];
+var slugs = require('./slug.json');
 
-function ctrl($rootScope, $injector, $state, UIState, service, localStorageService, Status) {
+function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status) {
   var vm = this;
-  vm.example9model = [];
-  vm.example9data = [{
-    id: 1,
-    label: 'testing'
-  }, {
-    id: 2,
-    label: 'testing'
-  }, {
-    id: 3,
-    label: 'testing'
-  }];
-  vm.example9settings = {
-    enableSearch: true
+  // initializing side cards values
+  vm.multiselectModelSettings = {
+    scrollableHeight: '200px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: true,
+    checkBoxes: true
   };
+
+  vm.demographicModel = [];
+  vm.demographic = [];
+  vm.treatmentApproach = [];
+  vm.treatmentApproachModel = [];
+  vm.setting = [];
+  vm.settingModel = [];
+  vm.additionalServices = [];
+  vm.additionalServicesModel = [];
+  vm.payment = [];
+  vm.paymentModel = [];
+  vm.byDrug = [];
+  vm.byDrugModel = [];
+
+  vm.buttonTxtDemographic = {
+    buttonDefaultText: 'Demographic'
+  };
+  vm.buttonTxtTreatmentApproach = {
+    buttonDefaultText: 'Treatment Approach'
+  };
+  vm.buttonTxtSetting = {
+    buttonDefaultText: 'Setting'
+  };
+  vm.buttonTxtAdditionalServices = {
+    buttonDefaultText: 'Additional Services'
+  };
+  vm.buttonTxtPayment = {
+    buttonDefaultText: 'Payment'
+  };
+  vm.buttonTxtByDrug = {
+    buttonDefaultText: 'By Drug'
+  };
+
+  for (var slug in slugs.Demographic) {
+    // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
+    vm.demographic[slug] = {
+      id: slug,
+      label: slugs.Demographic[slug]
+    };
+  }
+
+  for (slug in slugs.TreatmentApproach) {
+    // console.log('slug: ' + slug + ' value: ' + slugs.TreatmentApproach[slug]);
+    vm.treatmentApproach[slug] = {
+      id: slug,
+      label: slugs.TreatmentApproach[slug]
+    };
+  }
+
+  for (slug in slugs.Setting) {
+    vm.setting[slug] = {
+      id: slug,
+      label: slugs.Setting[slug]
+    };
+  }
+
+  for (slug in slugs.AdditionalServices) {
+    vm.additionalServices[slug] = {
+      id: slug,
+      label: slugs.AdditionalServices[slug]
+    };
+  }
+
+  for (slug in slugs.Payment) {
+    vm.payment[slug] = {
+      id: slug,
+      label: slugs.Payment[slug]
+    };
+  }
+
+  for (slug in slugs.ByDrug) {
+    vm.byDrug[slug] = {
+      id: slug,
+      label: slugs.ByDrug[slug]
+    };
+  }
+
   vm.onStateSelect = function (state) {
-    vm.open(state);
+    vm.open(state); // testing purpose
     if ($rootScope.centerSelected.length > 0) {
       vm.open(state);
     } else {
       $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      return;
     }
   };
   $rootScope.countyText = {
@@ -92,6 +166,38 @@ function ctrl($rootScope, $injector, $state, UIState, service, localStorageServi
   $rootScope.deSelectCountyFun = function () {
     vm.countySelCount--;
   };
+
+  angular.element(function () {
+    // Your document is ready, place your code here
+    var demographic = angular.element($document[0].querySelector('#demographic .dropdown-toggle'));
+    var treatment = angular.element($document[0].querySelector('#treatmentApproach .dropdown-toggle'));
+    var setting = angular.element($document[0].querySelector('#setting .dropdown-toggle'));
+    var additionalServices = angular.element($document[0].querySelector('#additionalServices .dropdown-toggle'));
+    var payment = angular.element($document[0].querySelector('#payment .dropdown-toggle'));
+    var byDrug = angular.element($document[0].querySelector('#byDrug .dropdown-toggle'));
+    // var elem = angular.element($document[0].querySelector('#previous'));
+    // console.log(elem);
+    if (angular.isDefined(demographic[0])) {
+      // elem[0].disabled = true;
+      // elem[0].clicked = true;
+      demographic[0].click();
+    }
+    if (angular.isDefined(treatment[0])) {
+      treatment[0].click();
+    }
+    if (angular.isDefined(setting[0])) {
+      setting[0].click();
+    }
+    if (angular.isDefined(additionalServices[0])) {
+      additionalServices[0].click();
+    }
+    if (angular.isDefined(payment[0])) {
+      payment[0].click();
+    }
+    if (angular.isDefined(byDrug[0])) {
+      byDrug[0].click();
+    }
+  });
 }
 
 function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {
@@ -200,8 +306,8 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
-    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect="" options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity, onItemSelect: citySelectFun, onItemDeselect: deSelectCityFun}" ></div>';
-    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect="" options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeSelect: deSelectCountyFun }"></div>';
+    var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect=""  options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity, onItemSelect: citySelectFun, onItemDeselect: deSelectCityFun}" ></div>';
+    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect=""  options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeSelect: deSelectCountyFun }"></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
@@ -222,6 +328,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
             if (angular.isUndefined($rootScope.deletedStates[0])) {
               modalInstance.dismiss('cancel');
               saveToLocalStorage($rootScope, localStorageService);
+              $rootScope.onInit();
               return true;
             }
             if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
@@ -232,6 +339,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
             if (angular.isUndefined($rootScope.deletedStates[0])) {
               modalInstance.dismiss('cancel');
               saveToLocalStorage($rootScope, localStorageService);
+              $rootScope.onInit();
               return true;
             }
             if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
@@ -240,7 +348,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           }
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
-
+          $rootScope.onInit();
           modalInstance.dismiss('cancel');
           return true;
         };
