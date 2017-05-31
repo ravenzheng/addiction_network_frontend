@@ -139,7 +139,7 @@ angular.module(moduleName, [
           template: '<sponsored-page></sponsored-page>'
         },
         'cartDetails': {
-          template: '<cart-detail></cart-detail>'
+          // template: '<cart-detail></cart-detail>'
           // controller: require('./cartDetail/ctrl')
         }
       }

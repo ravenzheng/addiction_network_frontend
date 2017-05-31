@@ -13,7 +13,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     checkBoxes: true
   };
   vm.settings = {
-    scrollableHeight: '216px',
+    scrollableHeight: '200px',
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
@@ -21,7 +21,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     checkBoxes: true
   };
   vm.treatment = {
-    scrollableHeight: '190px',
+    scrollableHeight: '200px',
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
@@ -29,7 +29,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     checkBoxes: true
   };
   vm.additional_services = {
-    scrollableHeight: '190px',
+    scrollableHeight: '200px',
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
