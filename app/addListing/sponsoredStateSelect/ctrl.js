@@ -12,7 +12,30 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     enableSearch: true,
     checkBoxes: true
   };
-
+  vm.settings = {
+    scrollableHeight: '216px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: true,
+    checkBoxes: true
+  };
+  vm.treatment = {
+    scrollableHeight: '190px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: true,
+    checkBoxes: true
+  };
+  vm.additional_services = {
+    scrollableHeight: '190px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: true,
+    checkBoxes: true
+  };
   vm.demographicModel = [];
   vm.demographic = [];
   vm.treatmentApproach = [];

@@ -2380,3 +2380,11 @@ a.thumbnail img {
 .show_emit_message{
   display:none !important;
 }
+.additional_filters li span{
+  width: 200px;
+  word-break: break-all;
+  white-space: normal;
+}
+.additional_filters li.ng-scope {
+    width: 204px;
+}
