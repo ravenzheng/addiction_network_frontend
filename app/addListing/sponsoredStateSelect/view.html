@@ -1,11 +1,14 @@
 <div>
   <!-- <section-heading>Select State</section-heading> -->
   <!--- Map content  Start   -->
-  <div onselectstart="return false;" class="unselectable">
-    <div id="mapwrapper">
+  <div onselectstart="return false;" class="unselectable col-sm-12">
+    <div id="mapwrapper" class="col-sm-6">
       <div id="map_base">
-        <state-map on-select="$ctrl.onStateSelect(state)"></state-map>
+        <state-map ng-click="$ctrl.onStateSelect(state)" on-select="$ctrl.onStateSelect(state)"></state-map>
       </div>
+    </div>
+    <div class="col-sm-6">
+      <div ng-dropdown-multiselect="" options="$ctrl.example9data" selected-model="$ctrl.example9model" extra-settings="$ctrl.example9settings"></div>
     </div>
   </div>
 </div>

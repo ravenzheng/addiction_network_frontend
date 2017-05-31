@@ -2,12 +2,22 @@ module.exports = ['$rootScope', '$injector', '$state', 'UIState', 'SponsorServic
 
 function ctrl($rootScope, $injector, $state, UIState, service, localStorageService, Status) {
   var vm = this;
+  vm.example9model = [];
+  vm.example9data = [{
+    id: 1,
+    label: 'testing'
+  }, {
+    id: 2,
+    label: 'testing'
+  }, {
+    id: 3,
+    label: 'testing'
+  }];
+  vm.example9settings = {
+    enableSearch: true
+  };
   vm.onStateSelect = function (state) {
-    // alert(vm.treatmentCentersModel.length);
-    // $state.go(UIState.SPONSOR_HOME.STATE, {
-    //   stateName: state.shortname
-    // });
-    // console.log('state: ' + state.fullname);
+    vm.open(state);
     if ($rootScope.centerSelected.length > 0) {
       vm.open(state);
     } else {
