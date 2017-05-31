@@ -2381,10 +2381,10 @@ a.thumbnail img {
   display:none !important;
 }
 #payment{
-  margin-left: 10%;
+  margin-left: 6%;
 }
 #treatmentApproach{
-  margin-left: 6.5%;
+  margin-left: 5%;
 }
 #additionalServices{
   margin-left:-5%;
@@ -2474,7 +2474,6 @@ body {
   color: #024457;
   background: #f2f2f2;
 }
-
 h1 {
   font-family: Verdana;
   font-weight: normal;
@@ -2492,4 +2491,13 @@ body{
 }
 div#byDrug {
     margin-left: 4%;
+}
+#demographic ul{
+  min-width:230px;
+}
+#setting ul{
+  margin-left:5%;
+}
+#setting button{
+  margin-left:5%;
 }
