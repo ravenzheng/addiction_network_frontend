@@ -19,7 +19,7 @@
 
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
       <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
-        <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
+        <input id="previous" class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
         <input type="button" ng-click="$ctrl.submit()" class="btn modal_btn btn_size pull-right" value="Next" id="submit" ng-disabled="$ctrl.treatmentCentersModel.length===0 || $root.centerSelected.length===0">
       </div>
     </div>

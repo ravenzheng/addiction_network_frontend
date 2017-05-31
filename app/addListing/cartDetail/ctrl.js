@@ -1,6 +1,10 @@
 function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UIState, CartDetailService) {
   var vm = this;
   vm.$onInit = onInit;
+  $rootScope.onInit = function () {
+    onInit();
+  };
+  // onInit();
   if (angular.isUndefined($rootScope.deletedStates)) {
     $rootScope.deletedStates = [];
   }
