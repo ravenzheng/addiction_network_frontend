@@ -86,6 +86,7 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
         };
       }
       vm.treatmentCenters = centers;
+      $rootScope.treatmentCentersValue = centers;
     });
   }
   sponsorList('');

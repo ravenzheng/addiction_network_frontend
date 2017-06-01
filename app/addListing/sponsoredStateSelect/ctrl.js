@@ -1,7 +1,7 @@
-module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', 'Status', ctrl];
+module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', 'Status', '$timeout', ctrl];
 var slugs = require('./slug.json');
 
-function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status) {
+function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status, $timeout) {
   var vm = this;
   // initializing side cards values
   vm.multiselectModelSettings = {
@@ -36,18 +36,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     enableSearch: true,
     checkBoxes: true
   };
-  vm.demographicModel = [];
-  vm.demographic = [];
-  vm.treatmentApproach = [];
-  vm.treatmentApproachModel = [];
-  vm.setting = [];
-  vm.settingModel = [];
-  vm.additionalServices = [];
-  vm.additionalServicesModel = [];
-  vm.payment = [];
-  vm.paymentModel = [];
-  vm.byDrug = [];
-  vm.byDrugModel = [];
 
   vm.buttonTxtDemographic = {
     buttonDefaultText: 'Demographic'
@@ -68,46 +56,53 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     buttonDefaultText: 'By Drug'
   };
 
+  $rootScope.demographic = [];
+  $rootScope.treatmentApproach = [];
+  $rootScope.setting = [];
+  $rootScope.additionalServices = [];
+  $rootScope.payment = [];
+  $rootScope.byDrug = [];
+
   for (var slug in slugs.Demographic) {
     // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
-    vm.demographic[slug] = {
-      id: slug,
+    $rootScope.demographic[slug] = {
+      id: slugs.Demographic[slug],
       label: slugs.Demographic[slug]
     };
   }
 
   for (slug in slugs.TreatmentApproach) {
     // console.log('slug: ' + slug + ' value: ' + slugs.TreatmentApproach[slug]);
-    vm.treatmentApproach[slug] = {
-      id: slug,
+    $rootScope.treatmentApproach[slug] = {
+      id: slugs.TreatmentApproach[slug],
       label: slugs.TreatmentApproach[slug]
     };
   }
 
   for (slug in slugs.Setting) {
-    vm.setting[slug] = {
-      id: slug,
+    $rootScope.setting[slug] = {
+      id: slugs.Setting[slug],
       label: slugs.Setting[slug]
     };
   }
 
   for (slug in slugs.AdditionalServices) {
-    vm.additionalServices[slug] = {
-      id: slug,
+    $rootScope.additionalServices[slug] = {
+      id: slugs.AdditionalServices[slug],
       label: slugs.AdditionalServices[slug]
     };
   }
 
   for (slug in slugs.Payment) {
-    vm.payment[slug] = {
-      id: slug,
+    $rootScope.payment[slug] = {
+      id: slugs.Payment[slug],
       label: slugs.Payment[slug]
     };
   }
 
   for (slug in slugs.ByDrug) {
-    vm.byDrug[slug] = {
-      id: slug,
+    $rootScope.byDrug[slug] = {
+      id: slugs.ByDrug[slug],
       label: slugs.ByDrug[slug]
     };
   }
@@ -127,15 +122,24 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   $rootScope.cityText = {
     buttonDefaultText: 'Select City'
   };
+  // localStorageService.remove('addListingSponsoredPage');
   // get values from localStorageService
   if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
     var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+
     if (sponsoredInfo !== null) {
       $rootScope.cityModel = sponsoredInfo.cityModel;
       $rootScope.countyModel = sponsoredInfo.countyModel;
       $rootScope.deletedStates = sponsoredInfo.deletedStates;
       $rootScope.statesSel = sponsoredInfo.statesSel;
       $rootScope.statesDetail = sponsoredInfo.statesDetail;
+
+      $rootScope.demographicModel = sponsoredInfo.demographic;
+      $rootScope.treatmentApproachModel = sponsoredInfo.treatmentApproach;
+      $rootScope.settingModel = sponsoredInfo.setting;
+      $rootScope.additionalServicesModel = sponsoredInfo.additionalServices;
+      $rootScope.paymentModel = sponsoredInfo.payment;
+      $rootScope.byDrugModel = sponsoredInfo.byDrug;
       if (sponsoredInfo.treatmentCenter) {
         $rootScope.centerSelected = sponsoredInfo.treatmentCenter;
         $rootScope.treatmentCentersModel = sponsoredInfo.treatmentCenter;
@@ -158,6 +162,25 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   if (angular.isUndefined($rootScope.deletedStates)) {
     $rootScope.deletedStates = [];
   }
+  if (angular.isUndefined($rootScope.demographicModel)) {
+    $rootScope.demographicModel = [];
+  }
+  if (angular.isUndefined($rootScope.treatmentApproachModel)) {
+    $rootScope.treatmentApproachModel = [];
+  }
+  if (angular.isUndefined($rootScope.settingModel)) {
+    $rootScope.settingModel = [];
+  }
+  if (angular.isUndefined($rootScope.additionalServicesModel)) {
+    $rootScope.additionalServicesModel = [];
+  }
+  if (angular.isUndefined($rootScope.paymentModel)) {
+    $rootScope.paymentModel = [];
+  }
+  if (angular.isUndefined($rootScope.byDrugModel)) {
+    $rootScope.byDrugModel = [];
+  }
+
   var token = localStorageService.get('signupToken');
 
   vm.open = function (state) {
@@ -190,37 +213,14 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     vm.countySelCount--;
   };
 
-  angular.element(function () {
-    // Your document is ready, place your code here
-    var demographic = angular.element($document[0].querySelector('#demographic .dropdown-toggle'));
-    var treatment = angular.element($document[0].querySelector('#treatmentApproach .dropdown-toggle'));
-    var setting = angular.element($document[0].querySelector('#setting .dropdown-toggle'));
-    var additionalServices = angular.element($document[0].querySelector('#additionalServices .dropdown-toggle'));
-    var payment = angular.element($document[0].querySelector('#payment .dropdown-toggle'));
-    var byDrug = angular.element($document[0].querySelector('#byDrug .dropdown-toggle'));
-    // var elem = angular.element($document[0].querySelector('#previous'));
-    // console.log(elem);
-    if (angular.isDefined(demographic[0])) {
-      // elem[0].disabled = true;
-      // elem[0].clicked = true;
-      demographic[0].click();
-    }
-    if (angular.isDefined(treatment[0])) {
-      treatment[0].click();
-    }
-    if (angular.isDefined(setting[0])) {
-      setting[0].click();
-    }
-    if (angular.isDefined(additionalServices[0])) {
-      additionalServices[0].click();
-    }
-    if (angular.isDefined(payment[0])) {
-      payment[0].click();
-    }
-    if (angular.isDefined(byDrug[0])) {
-      byDrug[0].click();
-    }
-  });
+  vm.updateCart = function () {
+    saveToLocalStorage($rootScope, localStorageService);
+    $rootScope.onInit();
+  };
+
+  $timeout(function () {
+    dropDownClickOnload($document);
+  }, 500);
 }
 
 function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {
@@ -378,12 +378,42 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         $rootScope.onSelectAllCity = function () {
 
         };
-        $rootScope.onSelectAllCounty = function () {
-
-        };
+        $rootScope.onSelectAllCounty = function () {};
       },
       bindToController: true
     });
+  });
+}
+
+function dropDownClickOnload($document) {
+  angular.element(function () {
+    var demographic = angular.element($document[0].querySelector('#demographic .dropdown-toggle'));
+    var treatment = angular.element($document[0].querySelector('#treatmentApproach .dropdown-toggle'));
+    var setting = angular.element($document[0].querySelector('#setting .dropdown-toggle'));
+    var additionalServices = angular.element($document[0].querySelector('#additionalServices .dropdown-toggle'));
+    var payment = angular.element($document[0].querySelector('#payment .dropdown-toggle'));
+    var byDrug = angular.element($document[0].querySelector('#byDrug .dropdown-toggle'));
+
+    if (angular.isDefined(demographic[0])) {
+      // elem[0].disabled = true;
+      // elem[0].clicked = true;
+      demographic[0].click();
+    }
+    if (angular.isDefined(treatment[0])) {
+      treatment[0].click();
+    }
+    if (angular.isDefined(setting[0])) {
+      setting[0].click();
+    }
+    if (angular.isDefined(additionalServices[0])) {
+      additionalServices[0].click();
+    }
+    if (angular.isDefined(payment[0])) {
+      payment[0].click();
+    }
+    if (angular.isDefined(byDrug[0])) {
+      byDrug[0].click();
+    }
   });
 }
 
@@ -395,7 +425,13 @@ function saveToLocalStorage($rootScope, localStorageService) {
     'deletedStates': $rootScope.deletedStates,
     'stateSel': $rootScope.statesSel,
     'statesDetail': $rootScope.statesDetail,
-    'treatmentCenter': $rootScope.treatmentCentersModel
+    'treatmentCenter': $rootScope.treatmentCentersModel,
+    'demographic': $rootScope.demographicModel,
+    'treatmentApproach': $rootScope.treatmentApproachModel,
+    'setting': $rootScope.settingModel,
+    'additionalServices': $rootScope.additionalServicesModel,
+    'payment': $rootScope.paymentModel,
+    'byDrug': $rootScope.byDrugModel
   };
   if (localStorageService.isSupported) {
     localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');

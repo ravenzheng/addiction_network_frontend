@@ -2501,3 +2501,13 @@ div#byDrug {
 #setting button{
   margin-left:5%;
 }
+
+.wrap_cart_item span {  
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+.wrap_cart_item .fa.fa-times{
+    cursor: pointer; padding-left: 3px;
+}
