@@ -2539,3 +2539,6 @@ div#byDrug button {
   margin-bottom: 20px;
   margin-left: -2%;
 }
+.text-center.col-md-12.col-sm-12.col-xs-12.col-lg-12.main_wrap_form_inner_sub.sub {
+  font-size:11px;
+}

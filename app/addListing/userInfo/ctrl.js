@@ -9,11 +9,18 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     $state.go(UIState.ADD_LISTING.CONTACT_INFO);
   };
   $rootScope.activeLink = 'User Info';
-
+  lm.userCreated = function () {
+    $rootScope.addListingStepDone = 2;
+    $rootScope.disableUserinfo = 1;
+    $rootScope.hideSteps = ['contactInfo', 'userInfo'];
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['userInfo']);
+    $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+  };
   // get values if stored in sessionStorage/localstorage
   if (angular.isDefined(localStorageService.get('addListingUserInfo', 'sessionStorage'))) {
     var info = localStorageService.get('addListingUserInfo', 'sessionStorage');
     if (info !== null) {
+      lm.showSkip = '1';
       vm.email = info.email;
       vm.company = info.company;
       vm.phone = info.phone;
