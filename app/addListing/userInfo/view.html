@@ -46,7 +46,9 @@
     </div>
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
+      <input class="btn modal_btn btn_size pull-right" value="Skip" id="skip" type="button" ng-click="$ctrl.userCreated()" ng-if="$ctrl.showSkip==1">
       <input class="btn modal_btn btn_size pull-right" value="Next" id="submit" type="button" ng-click="$ctrl.saveStep2()" ng-disabled="$root.addlistForm.email.$invalid || $root.addlistForm.username.$error.required || $root.addlistForm.password.$invalid || $root.addlistForm.confirm_password.$error.noMatch">
     </div>
+    <div class="text-center col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">By clicking "Next", I acknowledge that I have read and agree with the addictioinnetwork.com Terms & Conditions and Privacy Poilcy</div>
   </div>
 </div>

@@ -14,7 +14,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       vm.card = info.card_no;
       vm.firstName = info.first_name;
       //  vm.middleName = info.middle_name;
-      //  vm.lastName = info.last_name;
+      vm.lastName = info.last_name;
       vm.year = info.expiry_year;
       vm.month = info.expiry_month;
       vm.cvv = info.card_code;
@@ -90,7 +90,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     vm.card = null;
     vm.firstName = null;
     //  vm.middleName = null;
-    //  vm.lastName = null;
+    vm.lastName = null;
     vm.year = null;
     vm.month = null;
     vm.cvv = null;
@@ -118,7 +118,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       'card_no': card,
       'first_name': vm.firstName,
       // 'middle_name': vm.middleName,
-      // 'last_name': vm.lastName,
+      'last_name': vm.lastName,
       'expiry_year': vm.year,
       'expiry_month': vm.month,
       'card_code': vm.cvv
