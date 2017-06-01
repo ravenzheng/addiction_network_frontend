@@ -22,94 +22,116 @@
     </div>
   </div>
 </div>
+gdgdfg{{$root.treatmentCentersModel}}
 <table class="responstable">
   <tbody>
     <tr>
-      <th>Treatment Center</th>
-      <th>State</th>
-      <th>City</th>
-      <th>County</th>
-      <th>Demographic</th>
-      <th>Treatment Approach</th>
-      <th>Payment</th>
-      <th>Additional Services</th>
-      <th>Setting</th>
-      <th>By Drug</th>
-      <th>Total</th>
-      <th>Delete</th>
-    </tr>
-    <!--state-->
-    <tr ng-repeat="(key,state) in $root.statesSel">
       <td>
-        Treatment Center
+        <span class="pull-left">Treatment Centers</span>
       </td>
-      <td>{{state}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>15</td>
-      <td>
-        <button type="button" ng-click="$ctrl.deleteCartItem(key,'state')" class="btn btn-link btn-xs">
-          <span class="glyphicon glyphicon-trash"> </span>
-        </button>
+      <td colspan="2">
+        <span ng-repeat="center in $root.treatmentCentersModel">{{center.label}}</span>
       </td>
     </tr>
-    <!--city -->
-    <tr ng-repeat="(key,cities) in $root.cities">
-      <td>
-        Treatment Center
+    <tr>
+      <td width="25%">
+        <span class="pull-left">STATE</span>
       </td>
-      <td></td>
-      <td>{{cities.name}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>{{cities.price}}</td>
-      <td>
-        <button type="button" ng-click="$ctrl.deleteCartItem(key,'city')" class="btn btn-link btn-xs">
-          <span class="glyphicon glyphicon-trash"> </span>
-        </button>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key,state) in $root.statesSel">{{state}}<i ng-click="$ctrl.deleteCartItem(key,'state')" class="fa fa-times"> </i></span>
       </td>
+      <td width="10%">${{$ctrl.stateTotalCost}}</td>
     </tr>
-    <!--county -->
-    <tr ng-repeat="(key,counties) in $root.counties">
+    <tr>
       <td>
-        Treatment Center
+        <span class="pull-left">CITY</span>
       </td>
-      <td></td>
-      <td></td>
-      <td>{{counties.name}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>{{counties.price}}</td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key,cities) in $root.cities">{{cities.name}}<i ng-click="$ctrl.deleteCartItem(key,'city')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.cityTotalCost}}</td>
+    </tr>
+    <tr>
       <td>
-        <button type="button" ng-click="$ctrl.deleteCartItem(key,'county')" class="btn btn-link btn-xs">
-          <span class="glyphicon glyphicon-trash"> </span>
-        </button>
+        <span class="pull-left">COUNTY</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key,counties) in $root.counties">{{counties.name}}<i ng-click="$ctrl.deleteCartItem(key,'county')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.countyTotalCost}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-left">DEMOGRAPHICS</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key, demography) in $ctrl.demographic">{{demography.label}}<i ng-click="$ctrl.deleteCartItem(key,'demographic')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.demographicTotal}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-left">TREATMENT APPROACHES</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key, treatment) in $ctrl.treatmentApproach">{{treatment.label}}<i ng-click="$ctrl.deleteCartItem(key,'treatmentApproach')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.treatmentApproachTotal}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-left">PAYMENT</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key, payment) in $ctrl.payment">{{payment.label}}<i ng-click="$ctrl.deleteCartItem(key,'payment')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.paymentTotal}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-left">ADDITIONAL SERVICES</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key, additionalServices) in $ctrl.additionalServices">{{additionalServices.label}}<i ng-click="$ctrl.deleteCartItem(key,'additionalServices')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.additionalServicesTotal}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-left">SETTING</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key, setting) in $ctrl.setting">{{setting.label}}<i ng-click="$ctrl.deleteCartItem(key,'setting')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.settingTotal}}</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-left">BY DRUG</span>
+      </td>
+      <td class="wrap_cart_item">
+        <span class="label label-primary" ng-repeat="(key, drug) in $ctrl.byDrug">{{drug.label}} <i ng-click="$ctrl.deleteCartItem(key,'byDrug')" class="fa fa-times"> </i></span>
+      </td>
+      <td>${{$ctrl.byDrugTotal}}</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <span class="pull-right">
+          <h4>
+            <strong>${{$ctrl.totalCost}}</strong>
+          </h4>
+        </span>
+        <span class="pull-right">
+          <h4 class="text-right">Total Cost: </h4>
+        </span>
       </td>
     </tr>
   </tbody>
 </table>
+
 <div class="panel-footer">
   <div class="row text-center">
-    <div class="col-xs-12">
-      <h4 class="text-right">Total
-        <strong>${{$root.total}}.00</strong>
-      </h4>
-    </div>
+
     <!-- <div class="col-xs-3">
       <button type="button" class="btn btn-success btn-block">
         Checkout

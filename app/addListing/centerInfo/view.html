@@ -13,7 +13,6 @@
 
       </div>
     </div>
-
     <div class="adn-row">
       <div class="col-md-4 col-sm-4 col-xs-12">
         <label>Treatment Center Name</label>
@@ -85,7 +84,7 @@
         <label>State</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <select required="true" ng-change="$root.getCities()" name="state" ng-model="$root.state">
+        <select required="true" ng-change="$root.getCities(); $ctrl.testZip()" name="state" ng-model="$root.state">
           <option value="">Select State</option>
           <option ng-repeat="states in $root.states track by $index" value="{{states}}">{{states}}</option>
         </select>
@@ -97,11 +96,10 @@
         <label>City</label>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <select ng-model="$root.city" ng-change="$ctrl.testZip()" name="city" required="true">
+        <select ng-model="$root.city" ng-change="$ctrl.testZip()" name="city">
           <option value="">Select City</option>
           <option ng-repeat="cities in $root.cities track by $index" value="{{cities}}">{{cities}}</option>
         </select>
-        <p ng-show="$root.addlistForm.city.$invalid" class="help-block">Required</p>
       </div>
     </div>
     <div class="adn-row">
@@ -126,7 +124,7 @@
       <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
       <input class="btn modal_btn btn_size pull-right" value="Next" id="submit" type="button" ng-click="$ctrl.GoStep5()" ng-disabled="$root.addlistForm.center_name.$invalid ||  $root.addlistForm.center_web_link.$invalid ||  $root.addlistForm.pincode.$error.required ||
       $root.addlistForm.pincode.$invalid || $root.addlistForm.intakephone.$error.required || $root.addlistForm.intakephone.$invalid ||
-      $root.addlistForm.description.$error.required || $root.addlistForm.city.$error.required || $root.addlistForm.state.$error.required || $root.addlistForm.center_name.$error.required || $root.addlistForm.user_last_name.$error.required || $root.addlistForm.user_first_name.$error.required || $root.addlistForm.user_company.$error.required || $root.addlistForm.user_phone.$error.required || $root.addlistForm.intakeemail.$error.required || $root.addlistForm.username.$error.required || $root.addlistForm.address_line_1.$error.required || ($ctrl.zipFound===0)">
+      $root.addlistForm.description.$error.required || $root.addlistForm.state.$error.required || $root.addlistForm.center_name.$error.required || $root.addlistForm.user_last_name.$error.required || $root.addlistForm.user_first_name.$error.required || $root.addlistForm.user_company.$error.required || $root.addlistForm.user_phone.$error.required || $root.addlistForm.intakeemail.$error.required || $root.addlistForm.username.$error.required || $root.addlistForm.address_line_1.$error.required || ($ctrl.zipFound===0)">
       <input class="btn modal_btn btn_size pull-right" ng-show="$root.centerSkip" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
     </div>
   </div>

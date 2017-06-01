@@ -61,6 +61,22 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     }
   };
 
+  lm.validateMonth = function () {
+    lm.validMonth = 0;
+    var date = new Date();
+    var curYear = date.getFullYear();
+    var curMonth = date.getMonth();
+    if (angular.isDefined($rootScope.year)) {
+      if ($rootScope.year > curYear) {
+        lm.validMonth = 1;
+      } else if (parseInt($rootScope.year, 10) === curYear) {
+        if (parseInt($rootScope.month, 10) > (curMonth + 1)) {
+          lm.validMonth = 1;
+        }
+      }
+    }
+  };
+
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
   };
