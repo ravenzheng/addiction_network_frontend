@@ -24,20 +24,20 @@
 
     <div class="adn-row">
       <div class="col-md-3 col-sm-3 col-xs-12">
-        <label for="name">Name: </label>
+        <label for="name">First Name: </label>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
+      <div class="col-md-4 col-sm-4 col-xs-12">
         <input placeholder="Name" name="firstName" class="form-control" type="text" ng-model="$root.firstName" ng-minlength="2" ng-maxlength="25" required="" autocomplete="off">
-        <p ng-show="$root.addlistForm.firstName.$invalid" class="help-block"> Name</p>
+        <p ng-show="$root.addlistForm.firstName.$invalid" class="help-block"> First Name</p>
       </div>
       <!-- <div class="col-md-3 col-sm-3 col-xs-12">
         <input placeholder="Middle Name" name="middleName" class="form-control" type="text" ng-model="$root.middleName" ng-maxlength="20" autocomplete="off">
         <span ng-show="$root.addlistForm.middleName.$invalid" class="help-block">Max-length(20) reached</span>
       </div> -->
-      <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="col-md-4 col-sm-4 col-xs-12">
         <input placeholder="Last Name" name="lastName" class="form-control" type="text" ng-model="$root.lastName" ng-minlength="2" ng-maxlength="25" required="" autocomplete="off">
         <p ng-show="$root.addlistForm.lastName.$invalid" class="help-block"> Last Name</p>
-      </div> -->
+      </div>
     </div>
 
     <!-- Expiry Year -->
