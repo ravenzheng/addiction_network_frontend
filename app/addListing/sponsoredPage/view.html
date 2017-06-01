@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-      <p> You are free to add your own image and text and place them on any sponsored page on Addiction Network. This allows you to choose pages that related highly to the services you provide, as well as zero in on specific locations in the United States.</p>
+      <p class="heading_treatment_center">Choose your options below to advertise treatment center</p>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <label for="tname">Treatment Centers: </label>
-      </div>
-      <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
-        <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenters" ng-click="$event.stopPropagation()" selected-model="$ctrl.treatmentCentersModel" extra-settings="$ctrl.multiselectModelSettings" events="{onItemSelect: $root.centerSelect, onItemDeselect: $root.centerDeSelect}" checkboxes="true"></div>
-        <span ng-show="$root.centerSelected.length===0 " style="color:red;">Select any treatment center.</span>
+      <!-- <div class="col-md-2 col-sm-2 col-xs-12">
+        <!-- <label for="tname">Treatment Center: </label>
+    </div> -->
+      <div class="col-sm-12">
+        <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenters" ng-click="$event.stopPropagation()" selected-model="$ctrl.treatmentCentersModel" extra-settings="$ctrl.multiselectModelSettings" events="{onItemSelect: $root.centerSelect, onItemDeselect: $root.centerDeSelect}" checkboxes="true" translation-texts="$ctrl.treatmentCenter"></div>
+        <!-- <span ng-show="$root.centerSelected.length===0 " style="color:red;">Select any treatment center.</span> -->
       </div>
     </div>
     <!-- Search By State Section -->
