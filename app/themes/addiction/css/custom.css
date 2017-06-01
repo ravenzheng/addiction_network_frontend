@@ -2467,24 +2467,6 @@ If you like this solution, you might also want to check out the 1.0 version:
     padding: 1em;
   }
 }
-
-body {
-  padding: 0 2em;
-  font-family: Arial, sans-serif;
-  color: #024457;
-  background: #f2f2f2;
-}
-h1 {
-  font-family: Verdana;
-  font-weight: normal;
-  color: #024457;
-}
-h1 span {
-  color: #167F92;
-}
-body{
-  background: white;
-}
 .panel-footer{
   margin-top:10px;
   margin-bottom:10px;
@@ -2501,8 +2483,7 @@ div#byDrug {
 #setting button{
   margin-left:5%;
 }
-
-.wrap_cart_item span {  
+.wrap_cart_item span {
     display: inline-block;
     margin-left: 4px;
     font-size: 13px;
@@ -2510,4 +2491,51 @@ div#byDrug {
 }
 .wrap_cart_item .fa.fa-times{
     cursor: pointer; padding-left: 3px;
+}
+.additional_filters .col-sm-3 {
+    margin-right: 8%;
+}
+div#demographic button {
+    min-width: 230px;
+}
+div#treatmentApproach button {
+    min-width: 222px;
+}
+div#payment button {
+    min-width: 186px;
+}
+div#additionalServices button {
+    min-width: 235px;
+}
+div#setting button {
+    min-width: 225px;
+}
+div#byDrug button {
+    min-width: 192px;
+}
+.col-md-8.col-sm-8.col-xs-12.class_for_select button {
+    min-width: 160px;
+}
+.checkbox_checked{
+  cursor:pointer;
+}
+.col-md-12.col-sm-12.col-lg-12.col-xs-12.padding_0.listing_wrapper_inner {
+    padding-left: 10px;
+}
+.heading_treatment_center{
+  font-size: 22px;
+}
+.steps_sponsored{
+  color: #31708f;
+  font-size: 18px;
+}
+.steps_sponsored.step2{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 12px;
+}
+.steps_sponsored.step3{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: -2%;
 }

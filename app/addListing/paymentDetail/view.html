@@ -26,18 +26,18 @@
       <div class="col-md-3 col-sm-3 col-xs-12">
         <label for="name">Name: </label>
       </div>
-      <div class="col-md-3 col-sm-3 col-xs-12">
-        <input placeholder="First Name" name="firstName" class="form-control" type="text" ng-model="$root.firstName" ng-minlength="2" ng-maxlength="25" required="" autocomplete="off">
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <input placeholder="Name" name="firstName" class="form-control" type="text" ng-model="$root.firstName" ng-minlength="2" ng-maxlength="25" required="" autocomplete="off">
         <p ng-show="$root.addlistForm.firstName.$invalid" class="help-block"> First Name</p>
       </div>
-      <div class="col-md-3 col-sm-3 col-xs-12">
+      <!-- <div class="col-md-3 col-sm-3 col-xs-12">
         <input placeholder="Middle Name" name="middleName" class="form-control" type="text" ng-model="$root.middleName" ng-maxlength="20" autocomplete="off">
         <span ng-show="$root.addlistForm.middleName.$invalid" class="help-block">Max-length(20) reached</span>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-3 col-xs-12">
         <input placeholder="Last Name" name="lastName" class="form-control" type="text" ng-model="$root.lastName" ng-minlength="2" ng-maxlength="25" required="" autocomplete="off">
         <p ng-show="$root.addlistForm.lastName.$invalid" class="help-block"> Last Name</p>
-      </div>
+      </div> -->
     </div>
 
     <!-- Expiry Year -->
@@ -89,7 +89,7 @@
       <div class="col-md-3 col-sm-3 col-xs-12">
         <label for="cpwd">CVV Code</label>
       </div>
-      <div class="col-md-9 col-sm-9 col-xs-12">
+      <div class="col-md-3 col-sm-3 col-xs-12">
         <input name="cvv" ng-model="$root.cvv" class="form-control" type="password" placeholder="CVV Code" ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="3" required="" maxlength="3" />
         <p ng-show="$root.addlistForm.cvv.$invalid" class="help-block">Invalid CVV Code</p>
       </div>

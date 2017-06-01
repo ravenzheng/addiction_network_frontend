@@ -9,7 +9,15 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
-    enableSearch: true,
+    enableSearch: false,
+    checkBoxes: true
+  };
+  vm.demographic = {
+    scrollableHeight: '195px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: false,
     checkBoxes: true
   };
   vm.settings = {
@@ -17,7 +25,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
-    enableSearch: true,
+    enableSearch: false,
     checkBoxes: true
   };
   vm.treatment = {
@@ -25,7 +33,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
-    enableSearch: true,
+    enableSearch: false,
     checkBoxes: true
   };
   vm.additional_services = {
@@ -33,7 +41,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
-    enableSearch: true,
+    enableSearch: false,
     checkBoxes: true
   };
 
@@ -334,7 +342,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
-    var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-5 text-right">' + countySelect + '</div><div class="col-sm-3 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-left">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-5 text-right">' + countySelect + '</div><div class="col-sm-3 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-left">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-7 checkbox_checked">Select State &nbsp;<input type ="checkbox"></div><div class="col-sm-5"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
@@ -344,7 +352,33 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       template: displayStateMap,
       controller: function () {
         $rootScope.ok = function () {
-          modalInstance.close();
+          if (vm.citySelCount > 0) {
+            if (angular.isUndefined($rootScope.deletedStates[0])) {
+              modalInstance.dismiss('cancel');
+              saveToLocalStorage($rootScope, localStorageService);
+              $rootScope.onInit();
+              return true;
+            }
+            if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
+              $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()), 1);
+            }
+          }
+          if (vm.countySelCount > 0) {
+            if (angular.isUndefined($rootScope.deletedStates[0])) {
+              modalInstance.dismiss('cancel');
+              saveToLocalStorage($rootScope, localStorageService);
+              $rootScope.onInit();
+              return true;
+            }
+            if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
+              $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
+            }
+          }
+          // save to localStorageService
+          saveToLocalStorage($rootScope, localStorageService);
+          $rootScope.onInit();
+          modalInstance.dismiss('cancel');
+          return true;
         };
         $rootScope.cancel = function () {
           if (vm.citySelCount > 0) {

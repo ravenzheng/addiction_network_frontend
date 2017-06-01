@@ -7,10 +7,12 @@ function ctrl($log, $scope, $state, UIState, $stateParams, $rootScope, $document
     showCheckAll: false,
     showUncheckAll: false,
     scrollable: true,
-    enableSearch: true,
+    enableSearch: false,
     checkBoxes: true
   };
-
+  vm.treatmentCenter = {
+    buttonDefaultText: 'Select Treatment Center'
+  };
   if (angular.isUndefined(vm.treatmentCentersModel)) {
     vm.treatmentCentersModel = [];
   }
