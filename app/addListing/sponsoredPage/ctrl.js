@@ -75,7 +75,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
       // clear sponsoredpage data
       localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
-      clearRootscopeData();
+      vm.clearRootscopeData();
       $state.go(UIState.ADD_LISTING.BANNER_AD);
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
@@ -110,20 +110,20 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     });
   }
 
-  function clearRootscopeData() {
+  vm.clearRootscopeData = function () {
     $rootScope.cityModel = [];
     $rootScope.countyModel = [];
-    $rootScope.deletedStates = null;
-    $rootScope.statesSel = null;
-    $rootScope.statesDetail = null;
-    $rootScope.treatmentCentersModel = null;
-    $rootScope.demographicModel = null;
-    $rootScope.treatmentApproachModel = null;
-    $rootScope.settingModel = null;
-    $rootScope.additionalServicesModel = null;
-    $rootScope.paymentModel = null;
-    $rootScope.byDrugModel = null;
-  }
+    $rootScope.deletedStates = [];
+    $rootScope.statesSel = [];
+    $rootScope.statesDetail = [];
+    $rootScope.treatmentCentersModel = [];
+    $rootScope.demographicModel = [];
+    $rootScope.treatmentApproachModel = [];
+    $rootScope.settingModel = [];
+    $rootScope.additionalServicesModel = [];
+    $rootScope.paymentModel = [];
+    $rootScope.byDrugModel = [];
+  };
 
   // getting data
   function sponsorList(page) {
