@@ -84,7 +84,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   };
 
   function openPrompt() {
-    var popup = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Your Total ${{$root.total}} and will deduct amount</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 "></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-8">Press okay to confirm. <button type="button" class="btn btn-primary" ng-click="ok()">Okay</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    var popup = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Your total billing amount for sponsored ads is ${{$root.total}}</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 "></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-8">Press okay to confirm. <button type="button" class="btn btn-primary" ng-click="ok()">Okay</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
