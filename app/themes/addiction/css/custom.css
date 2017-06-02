@@ -1911,7 +1911,7 @@ label.error {
 }
 
 .ng-valid-required+.help-block::before {
-  display: inline-block;
+  /*display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
@@ -1919,7 +1919,7 @@ label.error {
   -moz-osx-font-smoothing: grayscale;
   content: "\f05a";
   color: #d50000;
-  padding: 5px;
+  padding: 5px;*/
 }
 
 .adn-row input.default-payment{
@@ -2541,4 +2541,14 @@ div#byDrug button {
 }
 .text-center.col-md-12.col-sm-12.col-xs-12.col-lg-12.main_wrap_form_inner_sub.sub {
   font-size:11px;
+}
+span.help-block {
+    padding: 0px 0 0 0;
+    font-size: 13px;
+    color: #d50000 !important;
+    font-family: arial;
+    float:left;
+}
+span.help-block::before {
+    content: '*';
 }

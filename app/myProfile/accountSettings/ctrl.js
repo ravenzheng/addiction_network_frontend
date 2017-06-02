@@ -13,6 +13,7 @@ function ctrl($log, $rootScope, Status, service, mapService, centerService) {
     }
     getCities(vm.state);
   };
+  vm.country = 'USA';
 
   function getCities(state) {
     mapService.getCitiesByState(state).then(function (response) {
