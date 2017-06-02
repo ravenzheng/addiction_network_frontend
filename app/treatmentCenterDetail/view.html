@@ -5,7 +5,6 @@
       <div class="left_content">
         <!-- slider -->
         <center-detail-carousel images="$ctrl.entry.center_images"></center-detail-carousel>
-
         <!-- Detail -->
         <div class="row">
           <section-heading>{{ $ctrl.entry.center_name }} Details</section-heading>
@@ -25,7 +24,7 @@
               <p>{{ $ctrl.entry.description }} </p>
             </div>
           </div>
-          <div class="adn-row">
+          <div class="adn-row" ng-if="$ctrl.entry.listing_type!='free'">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="website">Website Link:</label>
             </div>
@@ -33,7 +32,7 @@
               <a class="center-detail-link" ng-href="{{ $ctrl.entry.center_web_link | urlFilter }}" target="_blank">{{ $ctrl.entry.center_web_link }}</a>
             </div>
           </div>
-          <div class="adn-row">
+          <div class="adn-row" ng-if="$ctrl.entry.listing_type!='free'">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="phone">Phone Number:</label>
             </div>
@@ -41,7 +40,7 @@
               <p>{{ $ctrl.entry.phone }}</p>
             </div>
           </div>
-          <div class="adn-row">
+          <div class="adn-row" ng-if="$ctrl.entry.listing_type!='free'">
             <div class="col-md-4 col-sm-4 col-xs-12">
               <label for="address">Address:</label>
             </div>
@@ -89,7 +88,7 @@
       </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div class="center-detail-contact-info">
+      <div class="center-detail-contact-info" ng-if="$ctrl.entry.listing_type!='free'">
         <div class="center-detail-contact-info-row">
           <img ng-src="{{ $ctrl.entry.listing_image }}" alt="{{ $ctrl.entry.center_name }}" />
         </div>
@@ -113,7 +112,7 @@
         </div>
       </div>
       <!-- Google Map Card -->
-      <div class="center-detail-card">
+      <div class="center-detail-card" ng-if="$ctrl.entry.listing_type!='free'">
         <p class="center-detail-map-address">{{ $ctrl.entry.address }}</p>
         <card-heading>Map</card-heading>
         <div>
