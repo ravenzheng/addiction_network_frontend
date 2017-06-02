@@ -19,8 +19,8 @@
       <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
         <!-- <input ng-model="$ctrl.email" type="text" class="form-control required" placeholder="Email" email="true" name="email" /> -->
         <input placeholder="Email" id="email" name="email" class="form-control required ng-pristine ng-empty ng-valid-email ng-invalid ng-invalid-required ng-valid-pattern ng-touched" type="email" ng-model="$ctrl.email" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
-        <p ng-show="$ctrl.inquiryForm.email.$error.pattern" class="help-block">Invalid Email</span>
-          <span ng-show="$ctrl.inquiryForm.email.$error.required" class="help-block">Required</p>
+        <p ng-show="$ctrl.inquiryForm.email.$error.pattern" class="help-block">Invalid Email</p>
+        <p ng-show="$ctrl.inquiryForm.email.$error.required" class="help-block">Required</p>
       </div>
     </div>
     <!--　Phone -->

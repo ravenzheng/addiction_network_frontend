@@ -2552,3 +2552,6 @@ span.help-block {
 span.help-block::before {
     content: '*';
 }
+i.fa.fa-times.fa-1 {
+    cursor: pointer;
+}
