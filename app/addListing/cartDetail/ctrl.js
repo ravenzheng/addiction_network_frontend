@@ -4,10 +4,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   $rootScope.onInit = function () {
     onInit();
   };
-  // onInit();
-  if (angular.isUndefined($rootScope.deletedStates)) {
-    $rootScope.deletedStates = [];
-  }
 
   function onInit() {
     // get values from localStorageService
@@ -19,7 +15,11 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         $rootScope.deletedStates = sponsoredInfo.deletedStates;
         $rootScope.statesSel = sponsoredInfo.statesSel;
         $rootScope.statesDetail = sponsoredInfo.statesDetail;
+        $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
       }
+    }
+    if (angular.isUndefined($rootScope.deletedStates)) {
+      $rootScope.deletedStates = [];
     }
     var countyIds = $rootScope.countyModel;
     var cityIds = $rootScope.cityModel;
@@ -168,18 +168,17 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.byDrugTotal += 5;
       }
-
       // treatment centers
-      for (key in $rootScope.treatmentCentersModel) {
+      for (key in $rootScope.centerSelected) {
         for (var val in $rootScope.treatmentCentersValue) {
-          if ($rootScope.treatmentCentersModel[key].id === $rootScope.treatmentCentersValue[val].id) {
+          if ($rootScope.centerSelected[key].id === $rootScope.treatmentCentersValue[val].id) {
             vm.treatmentCenters[key] = {
-              id: $rootScope.treatmentCentersModel[key].id,
+              id: $rootScope.centerSelected[key].id,
               label: $rootScope.treatmentCentersValue[val].label
             };
           }
         }
-      } // continue from here
+      }
 
       vm.stateTotalCost = totalStates;
       vm.cityTotalCost = totalCity;
