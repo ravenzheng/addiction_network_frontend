@@ -67,18 +67,18 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, serv
     function (event, toState) {
       var token = localStorageService.get('token');
       var tostate = toState.name.split('.');
-      if (tostate[0] === 'add-listing') {
-        $window.onbeforeunload = function () {
-          var message = 'Sure you want to leave?';
-          if (angular.isUndefined(event) === 'undefined') {
-            //  event = $window.event;
-          }
-          if (event) {
-            event.returnValue = message;
-          }
-          return message;
-        };
-      }
+      // if (tostate[0] === 'add-listing') {
+      //   $window.onbeforeunload = function () {
+      //     var message = 'Sure you want to leave?';
+      //     if (angular.isUndefined(event) === 'undefined') {
+      //       //  event = $window.event;
+      //     }
+      //     if (event) {
+      //       event.returnValue = message;
+      //     }
+      //     return message;
+      //   };
+      // }
       if (tostate[0] === 'blog') {
         $window.location = 'http://www.addictionnetwork.com/blog/';
       }
