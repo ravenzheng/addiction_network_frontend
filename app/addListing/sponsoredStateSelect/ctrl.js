@@ -156,9 +156,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   }
 
   vm.onStateSelect = function (state) {
-    // vm.open(state); // testing purpose
+    vm.open(state); // testing purpose
     if ($rootScope.centerSelected.length > 0) {
-      vm.open(state);
+      // vm.open(state);
     } else {
       $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
       return;

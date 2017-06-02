@@ -2555,3 +2555,9 @@ span.help-block::before {
 i.fa.fa-times.fa-1 {
     cursor: pointer;
 }
+.modal-header.total_popup_modal {
+    border-bottom: 0px solid #e5e5e5 !important;
+}
+.modal-footer.map_popup_footer.ng-scope button {
+    min-width: 100px !important;
+}
