@@ -1,4 +1,4 @@
-function ctrl($scope, $document, $log, $rootScope, Status, $window, localStorageService, $state, UIState, AdvertisementService) {
+function ctrl($injector, $scope, $document, $log, $rootScope, Status, $window, localStorageService, $state, UIState, AdvertisementService) {
   var vm = this;
   $rootScope.activeLink = 'Banner Ads';
   // initializing form data
@@ -64,18 +64,48 @@ function ctrl($scope, $document, $log, $rootScope, Status, $window, localStorage
       localStorageService.set('addListingBannerAds', bannerData, 'sessionStorage');
     }
 
-    var token = localStorageService.get('signupToken');
-    AdvertisementService.advertisementAddSignUp(formData, token).then(function () {
-      $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
-      $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
-      $rootScope.addListingStepDone = 8;
-      $state.go(UIState.ADD_LISTING.FEATURED_LISTING_PAGE1);
-    }).catch(function (err) {
-      $log.error(err);
-      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
-    });
-  };
+    function openPrompt() {
+      if (vm.position === 'header') {
+        $rootScope.totalCost = '4000';
+      } else if (vm.position === 'sidebar') {
+        $rootScope.totalCost = '3000';
+      } else if (vm.position === 'footer') {
+        $rootScope.totalCost = '2500';
+      }
+      var popup = '<div class="col-sm-12"><div class="modal-header total_popup_modal"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Your total billing amount for banner ads is ${{$root.totalCost}}</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12"><div class="col-sm-7">Press okay to confirm.</div><div class="col-sm-5"><button type="button" class="btn btn-primary" ng-click="ok()">&nbsp;Okay&nbsp;</button></div></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
+      var modalInstance = $injector.get('$uibModal').open({
+        animation: vm.animationsEnabled,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        size: 'md',
+        template: popup,
+        controller: function () {
+          vm.confirm = 0;
+          $rootScope.ok = function () {
+            var token = localStorageService.get('signupToken');
+            AdvertisementService.advertisementAddSignUp(formData, token).then(function () {
+              $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
+              $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
+              $rootScope.addListingStepDone = 8;
+              $state.go(UIState.ADD_LISTING.FEATURED_LISTING_PAGE1);
+            }).catch(function (err) {
+              $log.error(err);
+              $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+            });
+            modalInstance.dismiss('cancel');
+          };
+          $rootScope.cancel = function () {
+            modalInstance.dismiss('cancel');
+            vm.confirm = 0;
+            return true;
+          };
+        },
+        bindToController: true
+      });
+    }
+    openPrompt();
+  };
   vm.skipStep = function () {
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
     $rootScope.addListingStepDone = 8;
@@ -83,4 +113,4 @@ function ctrl($scope, $document, $log, $rootScope, Status, $window, localStorage
   };
 }
 
-module.exports = ['$scope', '$document', '$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'AdvertisementService', ctrl];
+module.exports = ['$injector', '$scope', '$document', '$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'AdvertisementService', ctrl];
