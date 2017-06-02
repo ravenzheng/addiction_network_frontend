@@ -135,8 +135,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   // get values from localStorageService
   if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
     var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
-
-    //  return;
     if (sponsoredInfo !== null) {
       $rootScope.cityModel = sponsoredInfo.cityModel;
       $rootScope.countyModel = sponsoredInfo.countyModel;
@@ -185,7 +183,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   if (angular.isUndefined($rootScope.demographicModel) || $rootScope.demographicModel === null) {
     $rootScope.demographicModel = [];
   }
-  if (angular.isUndefined($rootScope.treatmentApproachModel) || $rootScope.treatmentApproachModel) {
+  if (angular.isUndefined($rootScope.treatmentApproachModel)) {
     $rootScope.treatmentApproachModel = [];
   }
   if (angular.isUndefined($rootScope.settingModel) || $rootScope.settingModel === null) {
@@ -495,7 +493,8 @@ function saveToLocalStorage($rootScope, localStorageService) {
     'setting': $rootScope.settingModel,
     'additionalServices': $rootScope.additionalServicesModel,
     'payment': $rootScope.paymentModel,
-    'byDrug': $rootScope.byDrugModel
+    'byDrug': $rootScope.byDrugModel,
+    'centersValue': $rootScope.treatmentCentersValue
   };
   if (localStorageService.isSupported) {
     localStorageService.set('addListingSponsoredPage', sponsor, 'sessionStorage');

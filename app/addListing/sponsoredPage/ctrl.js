@@ -75,7 +75,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
       // clear sponsoredpage data
       localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
-      clearRootscopeData();
+      vm.clearRootscopeData();
       $state.go(UIState.ADD_LISTING.BANNER_AD);
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
@@ -84,7 +84,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   };
 
   function openPrompt() {
-    var popup = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Your Total ${{$root.total}} and will deduct amount</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 "></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-8">Press okay to confirm. <button type="button" class="btn btn-primary" ng-click="ok()">Okay</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    var popup = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Your total billing amount for sponsored ads is ${{$root.total}}</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 "></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-8">Press okay to confirm. <button type="button" class="btn btn-primary" ng-click="ok()">Okay</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
@@ -110,20 +110,20 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     });
   }
 
-  function clearRootscopeData() {
+  vm.clearRootscopeData = function () {
     $rootScope.cityModel = [];
     $rootScope.countyModel = [];
-    $rootScope.deletedStates = null;
-    $rootScope.statesSel = null;
-    $rootScope.statesDetail = null;
-    $rootScope.treatmentCentersModel = null;
-    $rootScope.demographicModel = null;
-    $rootScope.treatmentApproachModel = null;
-    $rootScope.settingModel = null;
-    $rootScope.additionalServicesModel = null;
-    $rootScope.paymentModel = null;
-    $rootScope.byDrugModel = null;
-  }
+    $rootScope.deletedStates = [];
+    $rootScope.statesSel = [];
+    $rootScope.statesDetail = [];
+    $rootScope.treatmentCentersModel = [];
+    $rootScope.demographicModel = [];
+    $rootScope.treatmentApproachModel = [];
+    $rootScope.settingModel = [];
+    $rootScope.additionalServicesModel = [];
+    $rootScope.paymentModel = [];
+    $rootScope.byDrugModel = [];
+  };
 
   // getting data
   function sponsorList(page) {
