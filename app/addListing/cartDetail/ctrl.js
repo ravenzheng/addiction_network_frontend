@@ -69,7 +69,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       for (var keyCon in result.counties) {
-        var totalCounties = result.counties[keyCon].price;
+        // var totalCounties = result.counties[keyCon].price;
+        var totalCounties = 10;
         totalCounty += totalCounties;
         if (states.indexOf(result.counties[keyCon].state) === -1) {
           if ($rootScope.deletedStates.indexOf(result.counties[keyCon].state.toUpperCase()) === -1) {
@@ -88,10 +89,11 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       var totalCity = 0;
       for (var k = 0; k < result.cities.length; k++) {
         if (angular.isUndefined(result.cities[k])) {
-          // console.log('undefined: ' + k);
+          //  console.log('undefined: ' + k);
           continue;
         }
-        var totalCities = result.cities[k].price;
+        // var totalCities = result.cities[k].price;
+        var totalCities = 10;
         totalCity += totalCities;
         if (states.indexOf(result.cities[k].state) === -1) {
           if ($rootScope.deletedStates.indexOf(result.cities[k].state.toUpperCase()) === -1) {
@@ -128,23 +130,23 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           'label': $rootScope.demographicModel[key].id,
           'price': 5
         };
-        vm.demographicTotal += 5;
+        vm.demographicTotal += 300;
       }
       // Treatment Approach
       for (key in $rootScope.treatmentApproachModel) {
         vm.treatmentApproach[key] = {
           'label': $rootScope.treatmentApproachModel[key].id,
-          'price': 5
+          'price': 300
         };
-        vm.treatmentApproachTotal += 5;
+        vm.treatmentApproachTotal += 300;
       }
       // setting
       for (key in $rootScope.settingModel) {
         vm.setting[key] = {
           'label': $rootScope.settingModel[key].id,
-          'price': 5
+          'price': 300
         };
-        vm.settingTotal += 5;
+        vm.settingTotal += 300;
       }
       // Additional services
       for (key in $rootScope.additionalServicesModel) {
@@ -152,23 +154,23 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           'label': $rootScope.additionalServicesModel[key].id,
           'price': 5
         };
-        vm.additionalServicesTotal += 5;
+        vm.additionalServicesTotal += 300;
       }
       // Payment
       for (key in $rootScope.paymentModel) {
         vm.payment[key] = {
           'label': $rootScope.paymentModel[key].id,
-          'price': 5
+          'price': 300
         };
-        vm.paymentTotal += 5;
+        vm.paymentTotal += 300;
       }
       // Bydrug
       for (key in $rootScope.byDrugModel) {
         vm.byDrug[key] = {
           'label': $rootScope.byDrugModel[key].id,
-          'price': 5
+          'price': 300
         };
-        vm.byDrugTotal += 5;
+        vm.byDrugTotal += 300;
       }
       // treatment centers
       for (key in $rootScope.centerSelected) {
@@ -224,8 +226,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       $rootScope.cities.splice(key, 1);
     } else if (item === 'demographic') {
-      vm.totalCost -= 5;
-      vm.demographicTotal -= 5;
+      vm.totalCost -= 300;
+      vm.demographicTotal -= 300;
       id = vm.demographic[key].id;
       for (index in $rootScope.demographicModel) {
         if ($rootScope.demographicModel[index].id === id) {
@@ -235,8 +237,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.demographic.splice(key, 1);
     } else if (item === 'treatmentApproach') {
-      vm.totalCost -= 5;
-      vm.treatmentApproachTotal -= 5;
+      vm.totalCost -= 300;
+      vm.treatmentApproachTotal -= 300;
       id = vm.treatmentApproach[key].label;
       for (index in $rootScope.treatmentApproachModel) {
         if ($rootScope.treatmentApproachModel[index].id === id) {
@@ -246,8 +248,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.treatmentApproach.splice(key, 1);
     } else if (item === 'setting') {
-      vm.totalCost -= 5;
-      vm.settingTotal -= 5;
+      vm.totalCost -= 300;
+      vm.settingTotal -= 300;
       id = vm.setting[key].label;
       for (index in $rootScope.settingModel) {
         if ($rootScope.settingModel[index].id === id) {
@@ -257,8 +259,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.setting.splice(key, 1);
     } else if (item === 'additionalServices') {
-      vm.totalCost -= 5;
-      vm.additionalServicesTotal -= 5;
+      vm.totalCost -= 300;
+      vm.additionalServicesTotal -= 300;
       id = vm.additionalServices[key].label;
       for (index in $rootScope.additionalServicesModel) {
         if ($rootScope.additionalServicesModel[index].id === id) {
@@ -268,8 +270,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.additionalServices.splice(key, 1);
     } else if (item === 'payment') {
-      vm.totalCost -= 5;
-      vm.paymentTotal -= 5;
+      vm.totalCost -= 300;
+      vm.paymentTotal -= 300;
       id = vm.payment[key].label;
       for (index in $rootScope.paymentModel) {
         if ($rootScope.paymentModel[index].id === id) {
@@ -279,8 +281,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.payment.splice(key, 1);
     } else if (item === 'byDrug') {
-      vm.totalCost -= 5;
-      vm.byDrugTotal -= 5;
+      vm.totalCost -= 300;
+      vm.byDrugTotal -= 300;
       id = vm.byDrug[key].label;
       for (index in $rootScope.byDrugModel) {
         if ($rootScope.byDrugModel[index].id === id) {
