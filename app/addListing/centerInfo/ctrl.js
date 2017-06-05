@@ -1,10 +1,11 @@
-module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', 'UIState', 'MapService', 'TreatmentCenterService', 'localStorageService', ctrl];
+module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', 'UIState', 'MapService', 'TreatmentCenterService', 'localStorageService', '$window', ctrl];
 
-function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, TreatmentCenterService, localStorageService) {
+function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, TreatmentCenterService, localStorageService, $window) {
   // todo
   var vm = $rootScope; // this;
   var lm = this;
-
+  // vm.membership = vm.membershipType;
+  vm.membership = localStorageService.get('membershipType');
   $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAID_MEMBER);
@@ -95,6 +96,10 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   };
 
   lm.skipStep = function () {
+    var membership = localStorageService.get('membershipType');
+    if (membership === 'free') {
+      $window.location.href = '/#/login';
+    }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
     $rootScope.addListingStepDone = 5;
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
