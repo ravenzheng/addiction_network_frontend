@@ -2,6 +2,7 @@ module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService
 
 function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
   // initialize
+  localStorageService.remove('userInfo');
   var vm = this;
   $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];

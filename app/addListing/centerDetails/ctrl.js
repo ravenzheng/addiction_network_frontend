@@ -1,6 +1,6 @@
-module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', '$injector', 'UIState', 'MapService', 'TreatmentCenterService', 'Status', 'localStorageService', ctrl];
+module.exports = ['$scope', '$document', '$rootScope', '$log', '$state', '$injector', 'UIState', 'MapService', 'TreatmentCenterService', 'Status', 'localStorageService', '$window', ctrl];
 
-function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, mapService, service, Status, localStorageService) {
+function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, mapService, service, Status, localStorageService, $window) {
   // todo
   // var vm = this;
   var vm = $rootScope; // this;
@@ -8,8 +8,11 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
-
+  var membership = localStorageService.get('membershipType');
   lm.skipStep = function () {
+    if (membership === 'free') {
+      $window.location.href = '/#/login';
+    }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
     $rootScope.addListingStepDone = 5;
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
@@ -23,6 +26,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   // };
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
+    $rootScope.$emit(Status.SUCCEEDED, 'Please wait while we add your Treatment center');
     var formData = new FormData();
     var treatmentcenterData = {
       'heading_1': 'Overview of Program',
@@ -97,7 +101,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         } else {
           $rootScope.centerAdded = [centerName];
         }
-        addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState);
+        addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localStorageService, UIState);
         //  $window.location.href = '/#/login';
       }).catch(function (err) {
         if (err.data.user) {
@@ -152,7 +156,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   };
 }
 
-function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState) {
+function addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localStorageService, UIState) {
   var deletePrompt = '<div class="modal-header"><h7 class="modal-title" id="modal-title"><table><tbody><tr> <td ng-repeat="center in $root.centerAdded">{{center}}, </td></tr></tbody></table></h7></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> YES </button><div><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 8px;right:18px; font-size: 24px;border-radius: 100%;" ng-click="cancel()"></i></div></div>';
   lm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
@@ -167,6 +171,10 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, UIState) {
           $state.go(UIState.ADD_LISTING.CENTER_INFO);
         };
         $rootScope.cancel = function () {
+          var membership = localStorageService.get('membershipType');
+          if (membership === 'free') {
+            $window.location.href = '/#/login';
+          }
           modalInstance.close();
           modalInstance.dismiss('cancel');
           $rootScope.addListingStepDone = 5;

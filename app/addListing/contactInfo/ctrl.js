@@ -2,6 +2,8 @@ module.exports = ['$rootScope', '$log', '$state', 'UIState', 'localStorageServic
 
 function ctrl($rootScope, $log, $state, UIState, localStorageService) {
   // todo
+  localStorageService.remove('userInfo');
+  localStorageService.remove('token');
   var vm = $rootScope;
   $rootScope.activeLink = 'Contact';
   var lm = this;
