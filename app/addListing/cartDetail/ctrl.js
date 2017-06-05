@@ -64,7 +64,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       for (key in states) {
-        totalStates += 15;
+        // totalStates += 15;
+        totalStates += 200;
       }
 
       for (var keyCon in result.counties) {
@@ -77,7 +78,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
               state: result.counties[keyCon].state,
               state_name: result.counties[keyCon].state_name
             };
-            totalStates += 15;
+            //  totalStates += 15;
+            totalStates += 200;
             m++;
           }
         }
@@ -98,7 +100,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
               state: result.cities[k].state,
               state_name: result.cities[k].state_name
             };
-            totalStates += 15;
+            totalStates += 200;
             m++;
           }
         }
@@ -194,8 +196,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
 
   vm.deleteCartItem = function (key, item) {
     if (item === 'state') {
-      vm.totalCost -= 15; // $rootScope.counties[key].price;
-      vm.stateTotalCost -= 15;
+      vm.totalCost -= 200; // $rootScope.counties[key].price;
+      vm.stateTotalCost -= 200;
       $rootScope.deletedStates.push($rootScope.statesDetail[key].state.toUpperCase());
       $rootScope.statesSel.splice(key, 1);
       $rootScope.statesDetail.splice(key, 1);
