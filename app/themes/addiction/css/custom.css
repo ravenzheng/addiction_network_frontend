@@ -2561,3 +2561,10 @@ i.fa.fa-times.fa-1 {
 .modal-footer.map_popup_footer.ng-scope button {
     min-width: 100px !important;
 }
+.pading_0{
+  padding:0px;
+}
+.contact_us_otr .company_adds{
+  padding-right:2%;
+  padding-left:2%;
+}

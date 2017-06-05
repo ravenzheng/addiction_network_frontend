@@ -14,6 +14,7 @@ angular.module(appName, [
   require('./featuredTreatmentCenter'),
   require('./addListing'),
   require('./aboutUs'),
+  require('./contactUs'),
   require('./login'),
   require('./logout'),
   require('./blog')
