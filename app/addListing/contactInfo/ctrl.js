@@ -7,6 +7,10 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
   var vm = $rootScope;
   $rootScope.activeLink = 'Contact';
   var lm = this;
+  vm.first_name = '';
+  vm.last_name = '';
+  vm.company = '';
+  vm.phone = '';
 
   var usCodes = [205, 251, 659, 256, 334, 907, 403, 780, 264, 268, 520, 928, 480, 602, 623, 501, 479, 870, 242, 246, 441,
     250, 604, 778, 284, 341, 442, 628, 657, 669, 747, 752, 764, 951, 209, 559, 408, 831, 510, 213, 310, 424, 323, 562, 707, 369, 627,

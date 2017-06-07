@@ -20,7 +20,6 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
       $rootScope.showSteps = addListingNavigation.showSteps;
     }
   }
-
   // addlisting navigation control
   $scope.$on('$stateChangeStart',
     function (event, toState) {
@@ -73,9 +72,12 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
 
           // save navigation data to localStorageService
           saveSteps($rootScope.addListingStepDone, $rootScope.doneSteps, $rootScope.activeLink, $rootScope.showSteps);
+          $rootScope.addListingReset = 0;
         } else {
           // removing localstorage for tabs
           localStorageService.remove('addListingSponsoredPage', 'addListingPaymentDetail', 'addListingUserInfo', 'addListingCenterDetails', 'addListingBannerAds', 'addListingNavigation', 'addListingCanSkip');
+          $rootScope.addListingReset = 1;
+          $rootScope.addlistForm.$setPristine();
         }
       }
     });

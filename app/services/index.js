@@ -10,6 +10,7 @@ angular.module(moduleName, [])
   .factory('SponsorService', require('./sponsorAdsService'))
   .factory('SliderService', require('./sliderService'))
   .factory('FeaturedService', require('./featuredListingService'))
+  .factory('ContactUsService', require('./contactUsService'))
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(require('./dataInterceptor'));
   }]);

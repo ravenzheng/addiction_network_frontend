@@ -18,6 +18,7 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
       $log.error(errors);
     });
   }
+
   vm.submit = function () {
     email = vm.email;
     password = vm.password;

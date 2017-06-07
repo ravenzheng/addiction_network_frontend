@@ -5,6 +5,12 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
   // todo
   var vm = $rootScope; // this;
   var lm = this;
+  // initialize
+  vm.email = '';
+  vm.username = '';
+  vm.password = '';
+  vm.password_confirmation = '';
+
   lm.previous = function () {
     $state.go(UIState.ADD_LISTING.CONTACT_INFO);
   };
