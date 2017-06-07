@@ -1,6 +1,7 @@
 function ctrl($window, $log, UserService, $rootScope, localStorageService) {
   $rootScope.login = 0;
   localStorageService.remove('token');
+  localStorageService.remove('loginToken');
   localStorageService.remove('addListingBannerAds');
   localStorageService.remove('addListingSponsoredPage');
   localStorageService.remove('addListingCenterDetails');

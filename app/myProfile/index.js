@@ -28,6 +28,7 @@ angular.module(moduleName, [
   .component('paymentDetailsAdd', require('./paymentDetails/add'))
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
+  .component('comingSoon', require('./comingSoon'))
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -129,6 +130,11 @@ angular.module(moduleName, [
       name: UIState.MY_PROFILE.PAYMENT_DETAILS_VIEW,
       url: '/payment-details/view-payment/:id',
       template: '<payment-details-view></payment-details-view>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.COMING_SOON,
+      url: '/coming-soon',
+      template: '<coming-soon></coming-soon>'
     });
   }]);
 

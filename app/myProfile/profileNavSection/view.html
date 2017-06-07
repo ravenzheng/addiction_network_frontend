@@ -4,8 +4,13 @@
     <li>
       <img ng-src="{{ $ctrl.profilePic }}" class="img-circle" />
     </li>
+
     <!-- Navigation-->
-    <li ng-repeat="link in $ctrl.links">
+    <li ng-if="$root.profileData.userType==='free'" ng-repeat="link in $ctrl.linksFree">
+      <a ui-sref="{{ link.uiSref }}" class="profile-nav-link">{{ link.name }}  </a>
+    </li>
+
+    <li ng-if="$root.profileData.userType!=='free'" ng-repeat="link in $ctrl.linksPaid">
       <a ui-sref="{{ link.uiSref }}" class="profile-nav-link">{{ link.name }}  </a>
     </li>
   </ul>

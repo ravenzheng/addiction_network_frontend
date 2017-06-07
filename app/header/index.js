@@ -59,13 +59,25 @@ var socialLinks = [{
 
 function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, service, $sce) {
   /* todo */
+  localStorageService.remove('loginToken');
+  localStorageService.remove('token');
   var vm = this;
   this.socialLinks = socialLinks;
   this.internalLinks = internalLinks;
   this.internalLinksNoAuth = internalLinksNoAuth;
+  var token = localStorageService.get('token');
+  var loginToken = localStorageService.get('loginToken', 'sessionStorage');
+  if (token || loginToken) {
+    $rootScope.login = 1;
+  } else {
+    $rootScope.login = 0;
+  }
+
   $scope.$on('$stateChangeStart',
     function (event, toState) {
-      var token = localStorageService.get('token');
+      token = localStorageService.get('token');
+      loginToken = localStorageService.get('loginToken', 'sessionStorage');
+      //  console.log('----token from index: ' + token + '   logintoken: ' + loginToken);
       var tostate = toState.name.split('.');
       // if (tostate[0] === 'add-listing') {
       //   $window.onbeforeunload = function () {
@@ -82,15 +94,20 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, serv
       if (tostate[0] === 'blog') {
         $window.location = 'http://www.addictionnetwork.com/blog/';
       }
-      if (token) {
+
+      if (token || loginToken) {
         $rootScope.login = 1;
         if (tostate[0] === 'addListing') {
           event.preventDefault();
         }
+        //  $window.location.href = '/#my-profile/profile';
       } else if (tostate[0] === 'myProfile') {
+        $rootScope.login = 0;
         $window.location.href = '/#/login';
         // $log.error('tostate: ' + tostate[0] + ' -->' + fromState.name);
-        event.preventDefault();
+        // event.preventDefault();
+      } else {
+        $rootScope.login = 0;
       }
       // for slider
       if (toState.name !== 'home') {
