@@ -69,7 +69,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       for (var keyCon in result.counties) {
-        var totalCounties = result.counties[keyCon].price;
+        // var totalCounties = result.counties[keyCon].price;
+        var totalCounties = 10;
         totalCounty += totalCounties;
         if (states.indexOf(result.counties[keyCon].state) === -1) {
           if ($rootScope.deletedStates.indexOf(result.counties[keyCon].state.toUpperCase()) === -1) {
@@ -91,7 +92,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           //  console.log('undefined: ' + k);
           continue;
         }
-        var totalCities = result.cities[k].price;
+        // var totalCities = result.cities[k].price;
+        var totalCities = 10;
         totalCity += totalCities;
         if (states.indexOf(result.cities[k].state) === -1) {
           if ($rootScope.deletedStates.indexOf(result.cities[k].state.toUpperCase()) === -1) {
