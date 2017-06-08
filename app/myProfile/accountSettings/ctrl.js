@@ -1,6 +1,6 @@
-module.exports = ['$log', '$rootScope', 'Status', 'UserService', 'MapService', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$rootScope', 'Status', 'UserService', 'MapService', 'TreatmentCenterService', 'localStorageService', ctrl];
 
-function ctrl($log, $rootScope, Status, service, mapService, centerService) {
+function ctrl($log, $rootScope, Status, service, mapService, centerService, localStorageService) {
   var vm = this;
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
@@ -109,7 +109,10 @@ function ctrl($log, $rootScope, Status, service, mapService, centerService) {
     for (var key in data) {
       formData.append('user[' + key + ']', data[key]);
     }
-    service.editProfile(formData).then(function ( /* result */ ) {
+    service.editProfile(formData).then(function (result) {
+      vm.profile = result.user;
+      $rootScope.profileData = result.user;
+      localStorageService.set('profileData', result.user, 'sessionStorage');
       $rootScope.$emit(Status.SUCCEEDED, Status.PROFILE_EDIT_SUCCEESS_MSG);
     }).catch(function (err) {
       $log.error(err);
