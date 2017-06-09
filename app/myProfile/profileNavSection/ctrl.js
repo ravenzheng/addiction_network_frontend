@@ -37,7 +37,7 @@ function ctrl($rootScope, UIState) {
     uiSref: UIState.MY_PROFILE.MY_CENTERS,
     name: 'My Treatment Centers'
   }, {
-    uiSref: UIState.MY_PROFILE.COMING_SOON,
+    uiSref: UIState.MY_PROFILE.UPGRADE_ACCOUNT,
     name: 'Upgrade Account'
   }];
 }

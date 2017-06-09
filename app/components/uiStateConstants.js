@@ -62,7 +62,7 @@ module.exports = {
     'PAYMENT_DETAILS_ADD': 'myProfile.paymentDetailsAdd',
     'PAYMENT_DETAILS_EDIT': 'myProfile.paymentDetailsEdit',
     'PAYMENT_DETAILS_VIEW': 'myProfile.paymentDetailsView',
-    'COMING_SOON': 'myProfile.comingSoon'
+    'UPGRADE_ACCOUNT': 'myProfile.upgradeAccount'
   },
   'CENTER_DETAIL': 'treatmentCenterDetail',
   'FEATURED_CENTER': 'featuredTreatmentCenterPage'

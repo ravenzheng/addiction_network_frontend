@@ -28,7 +28,7 @@ angular.module(moduleName, [
   .component('paymentDetailsAdd', require('./paymentDetails/add'))
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
-  .component('comingSoon', require('./comingSoon'))
+  .component('upgradeAccount', require('./upgradeAccount'))
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -132,9 +132,9 @@ angular.module(moduleName, [
       template: '<payment-details-view></payment-details-view>'
     });
     $stateProvider.state({
-      name: UIState.MY_PROFILE.COMING_SOON,
-      url: '/coming-soon',
-      template: '<coming-soon></coming-soon>'
+      name: UIState.MY_PROFILE.UPGRADE_ACCOUNT,
+      url: '/upgrade-account',
+      template: '<upgrade-account></upgrade-account>'
     });
   }]);
 
