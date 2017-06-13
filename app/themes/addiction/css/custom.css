@@ -2144,6 +2144,7 @@ input.btn{
 }
 .modal-dialog .seven_columns ul{
   width:800px;
+  margin-left:-210%;
 }
 /*.modal-dialog .three_columns ul > li:nth-child(2), .modal-dialog .two_columns ul > li:nth-child(2),
 .modal-dialog .four_columns ul > li:nth-child(2), .modal-dialog .five_columns ul > li:nth-child(2),.modal-dialog .six_columns ul > li:nth-child(2){
@@ -2530,7 +2531,7 @@ div#byDrug button {
   font-size: 18px;
 }
 .steps_sponsored.step2{
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
   margin-left: 12px;
 }
@@ -2570,4 +2571,7 @@ i.fa.fa-times.fa-1 {
 }
 .highlight-plan-green{
   background-color: #F1F9AF;
+}
+.margin_bottom_state {
+  margin-bottom: 25%;
 }
