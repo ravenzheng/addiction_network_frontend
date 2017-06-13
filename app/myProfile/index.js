@@ -29,6 +29,9 @@ angular.module(moduleName, [
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
   .component('upgradeAccount', require('./upgradeAccount'))
+  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
+  .component('sponsorAdsSponsoredCart', require('./sponsorAds/sponsoredCart'))
+
   .component('myProfile', {
     template: require('./view.html'),
     controller: require('./ctrl')

@@ -159,10 +159,10 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     });
   }
 
-  // localStorageService.remove('addListingSponsoredPage');
+  // localStorageService.remove('myprofileSponsoredPage');
   // get values from localStorageService
-  if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
-    var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+  if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
+    var sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');
     if (sponsoredInfo !== null) {
       $rootScope.cityModel = sponsoredInfo.cityModel;
       $rootScope.countyModel = sponsoredInfo.countyModel;
@@ -229,7 +229,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.byDrugModel = [];
   }
 
-  var token = localStorageService.get('signupToken');
   vm.open = function (state) {
     vm.activeState = {
       id: state.id,
@@ -238,7 +237,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     // var stateMap = '<svg version="1.1" id="state_map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="' + state.viewbox + '" xml:space="preserve">  <g id="state">   <g> <path ng-attr-id="' + state.id + '" ng-attr-fill="' + state.upcolor + '" ng-attr-stroke="' + state.statestroke + '" ng-attr-d="' + state.d + '" stroke-width="1" cursor="pointer"></path></g></g><g id="abb"><text ng-attr-id="' + state.shortname + '" ng-attr-transform="' + state.transform + '" pointer-events="none"><tspan x="0" y="0" font-family="Arial" font-size="11" ng-attr-fill="' + state.namefill + '">' + state.shortname + '</tspan></text></g></svg>';
     // var stateMap = '<div id="googleMap" style="width:100%;height:400px;"></div><script>function myMap() {  var mapProp = {center: new google.maps.LatLng(' + state.latlong + '),zoom:' + state.zoomlevel + '};var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);}</script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzZiyHarHVkYQCBywa0HYl0MD77BRiL64&callback=myMap"></script>';
     var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.2">';
-    getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService);
+    getCountyCity(vm, state, stateMap, service, $injector, $rootScope, localStorageService);
   };
 
   vm.citySelCount = 0;
@@ -269,7 +268,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   }, 500);
 }
 
-function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {
+function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, localStorageService) {
   if (angular.isUndefined($rootScope.cityModel) || $rootScope.cityModel === null) {
     $rootScope.cityModel = [];
   }
@@ -285,7 +284,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
   if (angular.isUndefined($rootScope.deletedStates) || $rootScope.deletedStates === null) {
     $rootScope.deletedStates = [];
   }
-  service.getCityCountyByState(token, state.shortname).then(function (response) {
+  service.getCityCountyByStateV2(state.shortname).then(function (response) {
     var i = 0;
     var modifiedCitySelect = [];
     var modifiedCountySelect = [];
@@ -528,6 +527,6 @@ function saveToLocalStorage($rootScope, localStorageService) {
     'stateSelectModel': $rootScope.stateSelectModel
   };
   if (localStorageService.isSupported) {
-    localStorageService.set('addListingSponsoredPage', sponsor, 'sessionStorage');
+    localStorageService.set('myprofileSponsoredPage', sponsor, 'sessionStorage');
   }
 }

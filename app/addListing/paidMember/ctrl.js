@@ -19,6 +19,7 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
     $rootScope.centerReset = 0;
     $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
+    setMembershipType('sponsored');
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
   lm.featured = function () {
@@ -28,6 +29,7 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paidMember']);
     $rootScope.centerReset = 0;
     $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
+    setMembershipType('featured');
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
   lm.freeSignup = function () {
@@ -39,4 +41,8 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
     $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails'];
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
+
+  function setMembershipType(type) {
+    localStorageService.set('membershipType', type, 'sessionStorage');
+  }
 }
