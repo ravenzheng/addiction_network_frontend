@@ -45,7 +45,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     checkBoxes: true
   };
   vm.stateSelectSetting = {
-    scrollableHeight: '200px',
+    scrollableHeight: '235px',
     showCheckAll: true,
     showUncheckAll: true,
     scrollable: true,
@@ -485,6 +485,7 @@ function dropDownClickOnload($document) {
     var additionalServices = angular.element($document[0].querySelector('#additionalServices .dropdown-toggle'));
     var payment = angular.element($document[0].querySelector('#payment .dropdown-toggle'));
     var byDrug = angular.element($document[0].querySelector('#byDrug .dropdown-toggle'));
+    var statesSelect = angular.element($document[0].querySelector('#statesSelect .dropdown-toggle'));
 
     if (angular.isDefined(demographic[0])) {
       // elem[0].disabled = true;
@@ -505,6 +506,9 @@ function dropDownClickOnload($document) {
     }
     if (angular.isDefined(byDrug[0])) {
       byDrug[0].click();
+    }
+    if (angular.isDefined(byDrug[0])) {
+      statesSelect[0].click();
     }
   });
 }
