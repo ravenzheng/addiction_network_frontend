@@ -1,4 +1,4 @@
-function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageService, service) {
+function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageService, service, userService) {
   // var vm = this;
   var vm = $rootScope;
   var lm = this;
@@ -147,12 +147,26 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       }
       $rootScope.paymentSkip = 1;
       localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
+      upgradeMembership(token);
       $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
     });
   };
+
+  function upgradeMembership(token) {
+    var type = localStorageService.get('membershipType', 'sessionStorage');
+    var formData = new FormData();
+    formData.append('package', type);
+    // upgrade user
+    userService.upgradeUserSignup(formData, token).then(function ( /* response */ ) {
+      $rootScope.$emit(Status.SUCCESS, 'UPGRADE SUCCESSFUL');
+    }).catch(function (err) {
+      $rootScope.$emit(Status.FAILED, err.data.error);
+      throw err;
+    });
+  }
 }
 
-module.exports = ['$log', '$rootScope', 'Status', '$window', '$state', 'UIState', 'localStorageService', 'PaymentService', ctrl];
+module.exports = ['$log', '$rootScope', 'Status', '$window', '$state', 'UIState', 'localStorageService', 'PaymentService', 'UserService', ctrl];

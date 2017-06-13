@@ -64,7 +64,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
     var formData = new FormData();
     var sponsorData = {
-      'sponsored_listing_layout_ids': sponsoredListingIds
+      'sponsored_listing_layout_ids': sponsoredListingIds,
+      'active': true
     };
     for (key in sponsorData) {
       formData.append('sponsored_ad[' + key + ']', sponsorData[key]);

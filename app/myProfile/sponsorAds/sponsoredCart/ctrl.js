@@ -7,8 +7,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
 
   function onInit() {
     // get values from localStorageService
-    if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
-      var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+    if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
+      var sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');
       if (sponsoredInfo !== null) {
         $rootScope.cityModel = sponsoredInfo.cityModel;
         $rootScope.countyModel = sponsoredInfo.countyModel;
@@ -342,7 +342,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       'byDrug': $rootScope.byDrugModel
     };
     if (localStorageService.isSupported) {
-      localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
+      localStorageService.set('myprofileSponsoredPage', spnonsoredPage, 'sessionStorage');
     }
   };
   vm.continueShop = function () {

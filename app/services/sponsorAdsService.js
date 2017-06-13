@@ -11,7 +11,8 @@ function service($log, $http, endPoint, UserService) {
     getSponsoredSelectAddlist: getSponsoredSelectAddlist,
     sponsorListSignup: sponsorListSignup,
     editSponsorSignup: editSponsorSignup,
-    getCityCountyByState: getCityCountyByState
+    getCityCountyByState: getCityCountyByState,
+    getCityCountyByStateV2: getCityCountyByStateV2
   };
 
   function sponsorList(page) {
@@ -129,6 +130,20 @@ function service($log, $http, endPoint, UserService) {
         'Authorization': token,
         'Content-Type': undefined
       }
+    });
+  }
+
+  function getCityCountyByStateV2(state) {
+    return UserService.getToken().then(function (token) {
+      return $http({
+        url: endPoint + '/v1/listing_user/sponsored_ad_select/' + state,
+        method: 'GET',
+        transformRequest: angular.identity,
+        headers: {
+          'Authorization': token,
+          'Content-Type': undefined
+        }
+      });
     });
   }
 

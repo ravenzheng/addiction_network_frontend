@@ -1,4 +1,4 @@
-function ctrl($log, $rootScope, Status, $state, UIState, service) {
+function ctrl($log, $rootScope, Status, $state, UIState, service, userService, localStorageService) {
   var vm = this;
   var creditCardType = require('credit-card-type');
   vm.cardType = 'credit';
@@ -96,12 +96,29 @@ function ctrl($log, $rootScope, Status, $state, UIState, service) {
     }
     service.paymentDetailsAdd(formData).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
+      upgradeMembership();
       vm.resetForm();
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
     });
   };
+
+  function upgradeMembership() {
+    var type = $rootScope.membershipType;
+    if (angular.isUndefined($rootScope.membershipType)) {
+      type = localStorageService.get('membershipType', 'sessionStorage');
+    }
+    var formData = new FormData();
+    formData.append('package', type);
+    // upgrade user
+    userService.upgradeUser(formData).then(function ( /* response */ ) {
+      $rootScope.$emit(Status.SUCCESS, 'UPGRADE SUCCESSFUL');
+    }).catch(function (err) {
+      $rootScope.$emit(Status.FAILED, err.data.error);
+      throw err;
+    });
+  }
 }
 
-module.exports = ['$log', '$rootScope', 'Status', '$state', 'UIState', 'PaymentService', ctrl];
+module.exports = ['$log', '$rootScope', 'Status', '$state', 'UIState', 'PaymentService', 'UserService', 'localStorageService', ctrl];

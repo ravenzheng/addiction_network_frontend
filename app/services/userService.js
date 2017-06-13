@@ -8,6 +8,8 @@ function service($http, $q, $window, endPoint, localStorageService) {
   _service.queryProfile = queryProfile;
   _service.editProfile = editProfile;
   _service.changePassword = changePassword;
+  _service.upgradeUserSignup = upgradeUserSignup;
+  _service.upgradeUser = upgradeUser;
 
   // sign in with email and password
   function signIn(email, password) {
@@ -68,6 +70,27 @@ function service($http, $q, $window, endPoint, localStorageService) {
       return $http.post(endPoint + '/password', formData, {
         headers: {
           'Authorization': token
+        }
+      });
+    });
+  }
+
+  // Upgrade user
+  function upgradeUserSignup(formData, token) {
+    return $http.post(endPoint + 'upgrade', formData, {
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
+  }
+  // Upgrade user
+  function upgradeUser(formData) {
+    return _service.getToken().then(function (token) {
+      return $http.post(endPoint + 'upgrade', formData, {
+        headers: {
+          'Authorization': token,
+          'Content-Type': undefined
         }
       });
     });
