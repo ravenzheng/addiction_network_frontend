@@ -87,9 +87,9 @@
             <label>Zipcode:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.pincode" type="text" name="center_zip" class="form-control required" ng-change="$ctrl.testZip()" number="true" minlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="true" placeholder="14100" />
-            <p ng-show="$ctrl.editCenter.center_zip.$invalid" class="help-block">Required and Zip code must be 5 digits</p>
-            <span ng-if="($ctrl.zipFound===0 && $ctrl.editCenter.center_zip.$valid)" class="help-block">Invalid zip, doesn't match with selected state.</span>
+            <input ng-model="$ctrl.pincode" type="text" name="pincode" class="form-control required" ng-change="$ctrl.testZip()" number="true" minlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="true" placeholder="14100" />
+            <p ng-show="$ctrl.editCenter.pincode.$invalid" class="help-block">Required and Zip code must be 5 digits</p>
+            <span ng-if="($ctrl.zipFound===0 && $ctrl.editCenter.pincode.$valid)" class="help-block">Invalid zip, doesn't match with selected state.</span>
           </div>
         </div>
 
@@ -100,7 +100,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="eg. (601) 521-1542" number="true" ng-change="$ctrl.testPhone()" class="form-control required" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14">
-            <p ng-show="$ctrl.editCenter.center_phone.$error.pattern || $ctrl.editCenter.center_phone.$error.minlength || $ctrl.editCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p>
+            <!-- <p ng-show="$ctrl.editCenter.center_phone.$error.pattern || $ctrl.editCenter.center_phone.$error.minlength || $ctrl.editCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p> -->
             <p ng-show="$ctrl.editCenter.center_phone.$error.required" class="help-block">Required</p>
           </div>
         </div>

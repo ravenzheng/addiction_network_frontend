@@ -17,7 +17,8 @@ function service($http, endPoint, UserService) {
     search: search,
     getZipValidation: getZipValidation,
     queryListAll: queryListAll,
-    queryStateName: queryStateName
+    queryStateName: queryStateName,
+    queryDetailFront: queryDetailFront
   };
 
   // home page, addListing
@@ -55,7 +56,15 @@ function service($http, endPoint, UserService) {
     });
   }
 
-  function queryDetail(id) {
+  function queryDetail(id, token) {
+    return $http.get(endPoint + '/listing_user/treatment_centers/' + id, {
+      headers: {
+        'Authorization': token
+      }
+    });
+  }
+
+  function queryDetailFront(id) {
     return $http.get(endPoint + '/treatment_center/' + id + '/detail');
   }
 

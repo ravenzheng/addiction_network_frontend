@@ -1,12 +1,26 @@
-module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', '$stateParams', 'Status', 'UIState', 'TreatmentCenterService', 'MapService', ctrl];
+module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', '$stateParams', 'Status', 'UIState', 'TreatmentCenterService', 'MapService', 'localStorageService', ctrl];
 
-function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status, UIState, service, mapService) {
+function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status, UIState, service, mapService, localStorageService) {
   var vm = this;
   var id = $stateParams.id;
-  service.queryDetail(id).then(function (result) {
-    for (var key in result) {
-      vm[key] = result[key];
+  var token = localStorageService.get('signupToken');
+  service.queryDetail(id, token).then(function (result) {
+    var state = result.treatment_center.state;
+    var pincode = result.treatment_center.pincode;
+    // var phone = result.treatment_center.phone;
+    // if (phone !== '') {
+    //   vm.editCenter.center_phone = 1;
+    // }
+    for (var key in result.treatment_center) {
+      // vm[key] = result[key];
+      vm[key] = result.treatment_center[key];
     }
+    service.getZipValidation(state, pincode).then(function (res) {
+      var validZip = res.zip_present;
+      if (validZip === true) {
+        vm.zipFound = 1;
+      }
+    });
   });
 
   vm.onStateUpdate = function (selected) {
