@@ -118,7 +118,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       };
     }
 
-    var additionalServices = $rootScope.otherIds['additional services'];
+    var additionalServices = $rootScope.otherIds['Additional Services'];
     for (key in additionalServices) {
       $rootScope.additionalServices[key] = {
         id: additionalServices[key].id,
