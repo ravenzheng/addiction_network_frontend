@@ -49,19 +49,64 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
       i++;
     }
-
     var sponsoredListingIds = [];
     i = 0;
-    for (key in $rootScope.countyModel) {
+    for (key in $rootScope.countyModel) { // county ids
       id = String($rootScope.countyModel[key].id);
       sponsoredListingIds[i] = id;
       i++;
     }
-    for (key in $rootScope.cityModel) {
+    for (key in $rootScope.cityModel) { // city ids
       id = String($rootScope.cityModel[key].id);
       sponsoredListingIds[i] = id;
       i++;
     }
+
+    if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === true) {
+      for (key in $rootScope.statesSel) { // state ids
+        id = String($rootScope.statesSel[key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+    } else {
+      for (key in $rootScope.checkedStateDetail) { // state ids
+        id = String($rootScope.checkedStateDetail[key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+    }
+
+    for (key in $rootScope.demographicModel) { // demographic ids
+      id = String($rootScope.demographicModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+    for (key in $rootScope.treatmentApproachModel) { // treatment approach ids
+      id = String($rootScope.treatmentApproachModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+    for (key in $rootScope.settingModel) { // setting ids
+      id = String($rootScope.settingModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+    for (key in $rootScope.additionalServicesModel) { // additional service
+      id = String($rootScope.additionalServicesModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+    for (key in $rootScope.paymentModel) { // payemnt
+      id = String($rootScope.paymentModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+    for (key in $rootScope.byDrugModel) { // by drug model
+      id = String($rootScope.byDrugModel[key].id);
+      sponsoredListingIds[i] = id;
+      i++;
+    }
+
     var formData = new FormData();
     var sponsorData = {
       'sponsored_listing_layout_ids': sponsoredListingIds,
@@ -116,7 +161,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     $rootScope.countyModel = [];
     $rootScope.deletedStates = [];
     $rootScope.statesSel = [];
-    $rootScope.statesDetail = [];
+    $rootScope.checkedStateModel = [];
+    $rootScope.checkedStateDetail = [];
     $rootScope.treatmentCentersModel = [];
     $rootScope.demographicModel = [];
     $rootScope.treatmentApproachModel = [];
@@ -124,6 +170,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     $rootScope.additionalServicesModel = [];
     $rootScope.paymentModel = [];
     $rootScope.byDrugModel = [];
+    $rootScope.checkedAllStates = null;
   };
 
   // getting data

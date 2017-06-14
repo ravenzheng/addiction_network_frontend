@@ -12,8 +12,30 @@ function service($log, $http, endPoint, UserService) {
     sponsorListSignup: sponsorListSignup,
     editSponsorSignup: editSponsorSignup,
     getCityCountyByState: getCityCountyByState,
-    getCityCountyByStateV2: getCityCountyByStateV2
+    getCityCountyByStateV2: getCityCountyByStateV2,
+    getSponsoredStatesSignup: getSponsoredStatesSignup,
+    getSponsoredDemographic: getSponsoredDemographic
   };
+
+  function getSponsoredStatesSignup() {
+    return $http({
+      url: endPoint + '/sponsored_states',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
+  function getSponsoredDemographic() {
+    return $http({
+      url: endPoint + '/sponsored_categories',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
 
   function sponsorList(page) {
     return UserService.getToken().then(function (token) {
