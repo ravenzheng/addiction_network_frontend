@@ -58,6 +58,7 @@ module.exports = {
     'SPONSOR_ADS_ADD': 'myProfile.sponsorAdsAdd',
     'SPONSOR_ADS_EDIT': 'myProfile.sponsorAdsEdit',
     'SPONSOR_ADS_VIEW': 'myProfile.sponsorAdsView',
+    'SPONSOR_ADS_ADVERTISE': 'myProfile.sponsorAdsAdvertise',
     'PAYMENT_DETAILS': 'myProfile.paymentDetails',
     'PAYMENT_DETAILS_ADD': 'myProfile.paymentDetailsAdd',
     'PAYMENT_DETAILS_EDIT': 'myProfile.paymentDetailsEdit',

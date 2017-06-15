@@ -1,6 +1,5 @@
 function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $document, Status, SponsorService, localStorageService) {
   var vm = this;
-  $rootScope.activeLink = 'Sponsored Pages';
   vm.multiselectModelLayoutIds = [];
   vm.multiselectModelSettings = {
     scrollableHeight: '200px',
@@ -23,17 +22,13 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   $rootScope.centerSelected = [];
 
   // getting values from localstorage if already set
-  if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
-    var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+  if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
+    var sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');
     if (sponsoredInfo !== null && angular.isDefined(sponsoredInfo.treatmentCenter)) {
       vm.treatmentCentersModel = sponsoredInfo.treatmentCenter;
     }
   }
 
-  vm.previous = function () {
-    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
-  };
-  var token = localStorageService.get('signupToken');
   vm.submit = function () {
     openPrompt();
   };
@@ -49,19 +44,19 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
       i++;
     }
+
     var sponsoredListingIds = [];
     i = 0;
-    for (key in $rootScope.countyModel) { // county ids
+    for (key in $rootScope.countyModel) {
       id = String($rootScope.countyModel[key].id);
       sponsoredListingIds[i] = id;
       i++;
     }
-    for (key in $rootScope.cityModel) { // city ids
+    for (key in $rootScope.cityModel) {
       id = String($rootScope.cityModel[key].id);
       sponsoredListingIds[i] = id;
       i++;
     }
-
     if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === true) {
       for (key in $rootScope.statesSel) { // state ids
         id = String($rootScope.statesSel[key].id);
@@ -115,14 +110,11 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     for (key in sponsorData) {
       formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
     }
-    SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
+    SponsorService.editSponsor(formData, centerIds).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
-      $rootScope.addListingStepDone = 7;
-      $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
       // clear sponsoredpage data
-      localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
+      localStorageService.remove('myprofileSponsoredPage', 'sessionStorage');
       vm.clearRootscopeData();
-      $state.go(UIState.ADD_LISTING.BANNER_AD);
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
       throw err;
@@ -177,7 +169,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
   // getting data
   function sponsorList(page) {
-    SponsorService.sponsorListSignup(page, token).then(function (response) {
+    SponsorService.sponsorList(page).then(function (response) {
       var sponsoredAds = response.sponsored_ads;
       var centers = [];
       for (var key in sponsoredAds) {
@@ -193,8 +185,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   sponsorList('');
   $rootScope.centerSelect = function () {
     // saving to localStorageService
-    if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
-      sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+    if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
+      sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
         sponsoredInfo.centersValue = $rootScope.treatmentCentersValue;
@@ -205,13 +197,13 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         };
       }
       $rootScope.centerSelected = vm.treatmentCentersModel;
-      localStorageService.set('addListingSponsoredPage', sponsoredInfo, 'sessionStorage');
+      localStorageService.set('myprofileSponsoredPage', sponsoredInfo, 'sessionStorage');
     }
     $rootScope.onInit();
   };
   $rootScope.centerDeSelect = function () {
-    if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
-      sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+    if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
+      sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');
       // console.log(sponsoredInfo);
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
@@ -223,7 +215,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         };
       }
       $rootScope.centerSelected = vm.treatmentCentersModel;
-      localStorageService.set('addListingSponsoredPage', sponsoredInfo, 'sessionStorage');
+      localStorageService.set('myprofileSponsoredPage', sponsoredInfo, 'sessionStorage');
     }
     $rootScope.onInit();
   };

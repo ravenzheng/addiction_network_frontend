@@ -77,7 +77,7 @@ function service($http, $q, $window, endPoint, localStorageService) {
 
   // Upgrade user
   function upgradeUserSignup(formData, token) {
-    return $http.post(endPoint + 'upgrade', formData, {
+    return $http.post(endPoint + '/upgrade', formData, {
       headers: {
         'Authorization': token,
         'Content-Type': undefined
@@ -87,7 +87,7 @@ function service($http, $q, $window, endPoint, localStorageService) {
   // Upgrade user
   function upgradeUser(formData) {
     return _service.getToken().then(function (token) {
-      return $http.post(endPoint + 'upgrade', formData, {
+      return $http.post(endPoint + '/upgrade', formData, {
         headers: {
           'Authorization': token,
           'Content-Type': undefined

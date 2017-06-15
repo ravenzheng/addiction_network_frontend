@@ -55,17 +55,17 @@
         <!--   About us    -->
         <div class="margin-bottom-10">
           <section-heading>{{ $ctrl.entry.heading_1 }}</section-heading>
-          <p class="center-detail-content">{{ $ctrl.entry.content_1 }}</p>
+          <p class="center-detail-content">{{ $ctrl.entry.content_1 | removeHTMLTags}}</p>
         </div>
         <!--   Treatment Approach    -->
         <div class="margin-bottom-10">
           <section-heading>{{ $ctrl.entry.heading_2 }}</section-heading>
-          <p class="center-detail-content">{{ $ctrl.entry.content_2 }}</p>
+          <p class="center-detail-content">{{ $ctrl.entry.content_2 | removeHTMLTags }}</p>
         </div>
         <!--   Unique Points   -->
         <div class="margin-bottom-10">
           <section-heading>{{ $ctrl.entry.heading_3 }}</section-heading>
-          <p class="center-detail-content">{{ $ctrl.entry.content_3 }}</p>
+          <p class="center-detail-content">{{ $ctrl.entry.content_3 | removeHTMLTags }}</p>
         </div>
         <!--   Reviews    -->
         <div class="row">

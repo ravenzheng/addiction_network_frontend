@@ -5,7 +5,13 @@ var moduleName = 'app.treatmentCenterDetail';
 angular.module(moduleName, [
   'ui.router',
   require('../services')
-]).component('inquiryFormCard', require('./inquiryFormCard'))
+])
+  .filter('removeHTMLTags', function () {
+    return function (text) {
+      return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    };
+  })
+  .component('inquiryFormCard', require('./inquiryFormCard'))
   .component('centerDetailCarousel', require('./carousel'))
   .component('reviewRating', require('./reviewRating'))
   .component('reviewListBox', require('./reviewListBox'))

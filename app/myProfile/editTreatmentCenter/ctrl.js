@@ -21,13 +21,17 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
         vm.zipFound = 1;
       }
     });
+    getCities(state);
+    vm.testPhone();
   });
 
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
     getCities(vm.state);
   };
-  vm.multiselectModelCategories = [];
+  vm.multiselectModelCategories = [{
+    'id': '3'
+  }];
   vm.multiselectModelSettings = {
     scrollableHeight: '200px',
     scrollable: true,
@@ -107,11 +111,18 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
           vm.editCenter.center_phone.$error.pattern = true;
           vm.editCenter.center_phone.$valid = false;
           vm.editCenter.center_phone.$invalid = true;
+          $rootScope.center_phone = 0;
         } else {
           vm.editCenter.center_phone.$error.pattern = false;
           vm.editCenter.center_phone.$valid = true;
           vm.editCenter.center_phone.$invalid = false;
+          $rootScope.center_phone = 1;
         }
+        if (len < 10) {
+          $rootScope.center_phone = 0;
+        }
+      } else {
+        $rootScope.center_phone = 0;
       }
     }
   };

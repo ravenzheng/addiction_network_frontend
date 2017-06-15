@@ -98,6 +98,7 @@ function ctrl($log, $rootScope, Status, $state, UIState, service, userService, l
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
       upgradeMembership();
       vm.resetForm();
+      $state.reload();
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);

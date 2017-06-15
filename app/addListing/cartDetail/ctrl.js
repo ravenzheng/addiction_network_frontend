@@ -12,16 +12,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       if (sponsoredInfo !== null) {
         $rootScope.cityModel = sponsoredInfo.cityModel;
         $rootScope.countyModel = sponsoredInfo.countyModel;
-        // $rootScope.deletedStates = sponsoredInfo.deletedStates;
         $rootScope.statesSel = sponsoredInfo.statesSel;
         $rootScope.statesDetail = sponsoredInfo.statesDetail;
         $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
         $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
+        if (sponsoredInfo.checkedStateModel) {
+          $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
+        }
       }
     }
-    if (angular.isUndefined($rootScope.deletedStates)) {
-      $rootScope.deletedStates = [];
-    }
+
     var countyIds = $rootScope.countyModel;
     var cityIds = $rootScope.cityModel;
 
@@ -73,27 +73,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       var totalCounty = 0;
       var totalStates = 0;
       var states = [];
-      // var statesDetail = [];
-      // var m = 0;
 
-      // if (angular.isDefined($rootScope.statesSel) && $rootScope.statesSel !== null) {
-      //   states = $rootScope.statesSel;
-      //   statesDetail = $rootScope.statesDetail;
-      //   m = states.length;
-      // }
       if (angular.isDefined($rootScope.checkedStateModel) && angular.isDefined($rootScope.checkedStateDetail) && $rootScope.checkedStateModel !== null) {
         states = $rootScope.checkedStateDetail;
-        // statesDetail = $rootScope.checkedStateModel;
-        //  m = states.length;
       }
       for (key in states) {
-        // totalStates += 15;
         totalStates += vm.priceState;
       }
 
       for (var k = 0; k < result.counties.length; k++) {
         if (angular.isUndefined(result.counties[k])) {
-          //  console.log('undefined: ' + k);
           continue;
         }
         totalCounty += vm.priceCounty;
@@ -118,15 +107,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         var statesData = $rootScope.stateIds;
         for (key in statesData) {
           states[key] = statesData[key];
-          //  statesDetail[key] = {
-          //  state: statesData[key],
-          //  state_name: statesData[key]
-          //  };
           totalStates += vm.priceState;
         }
       } else if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === false) {
         states = [];
-        //  statesDetail = [];
         totalStates = 0;
         $rootScope.statesSel = [];
         $rootScope.checkedStateModel = [];
@@ -136,7 +120,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       $rootScope.statesSel = states; // states
-      // $rootScope.statesDetail = statesDetail;
 
       vm.treatmentCenters = [];
       vm.demographic = [];
@@ -266,7 +249,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     if (item === 'state') {
       vm.totalCost -= vm.priceState;
       vm.stateTotalCost -= vm.priceState;
-      // $rootScope.deletedStates.push($rootScope.statesDetail[key].state.toUpperCase());
+
       $rootScope.statesSel.splice(key, 1);
       // $rootScope.statesDetail.splice(key, 1);
       $rootScope.checkedStateModel.splice(key, 1);
@@ -367,7 +350,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     var spnonsoredPage = {
       'cityModel': $rootScope.cityModel,
       'countyModel': $rootScope.countyModel,
-      // 'deletedStates': $rootScope.deletedStates,
+      'treatmentCenter': $rootScope.treatmentCentersModel,
       'statesSel': $rootScope.statesSel,
       // 'statesDetail': $rootScope.statesDetail,
       'demographic': $rootScope.demographicModel,
