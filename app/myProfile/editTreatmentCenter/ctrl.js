@@ -3,7 +3,7 @@ module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', '$state
 function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status, UIState, service, mapService, localStorageService) {
   var vm = this;
   var id = $stateParams.id;
-  var token = localStorageService.get('signupToken');
+  var token = localStorageService.get('token');
   service.queryDetail(id, token).then(function (result) {
     var state = result.treatment_center.state;
     var pincode = result.treatment_center.pincode;
