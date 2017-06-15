@@ -78,7 +78,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   $rootScope.payment = [];
   $rootScope.byDrug = [];
 
-  // console.log('fds' + $rootScope.otherIds.Demographic);
   // get other sponsored ids
   if (angular.isUndefined($rootScope.otherIds) || $rootScope.otherIds === null) {
     service.getSponsoredDemographic().then(function (response) {
@@ -202,7 +201,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.countyModel = sponsoredInfo.countyModel;
       $rootScope.deletedStates = sponsoredInfo.deletedStates;
       $rootScope.statesSel = sponsoredInfo.statesSel;
-      // $rootScope.statesDetail = sponsoredInfo.statesDetail;
       $rootScope.demographicModel = sponsoredInfo.demographic;
       $rootScope.treatmentApproachModel = sponsoredInfo.treatmentApproach;
       $rootScope.settingModel = sponsoredInfo.setting;
@@ -219,7 +217,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       // $rootScope.stateSelectModel = sponsoredInfo.stateSelectModel;
     }
   }
-
   if (angular.isUndefined($rootScope.checkedStateModel) || $rootScope.checkedStateModel === null) {
     $rootScope.checkedStateModel = [];
   }
@@ -301,7 +298,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     saveToLocalStorage($rootScope, localStorageService);
     $rootScope.onInit();
   };
-
   vm.updateStateSelect = function (state, stateCheck) {
     for (var key in $rootScope.stateIds) {
       if ($rootScope.stateIds[key].name === state.shortname) {
@@ -478,29 +474,6 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         }
         $rootScope.ok = function () {
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
-
-          if (vm.citySelCount > 0) {
-            // if (angular.isUndefined($rootScope.deletedStates[0])) {
-            //   modalInstance.dismiss('cancel');
-            //   saveToLocalStorage($rootScope, localStorageService);
-            //   $rootScope.onInit();
-            //   return true;
-            // }
-            // if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
-            //   $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()), 1);
-            // }
-          }
-          if (vm.countySelCount > 0) {
-            // if (angular.isUndefined($rootScope.deletedStates[0])) {
-            //   modalInstance.dismiss('cancel');
-            //   saveToLocalStorage($rootScope, localStorageService);
-            //   $rootScope.onInit();
-            //   return true;
-            // }
-            // if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
-            //   $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
-            // }
-          }
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
           $rootScope.onInit();
@@ -509,33 +482,6 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         };
         $rootScope.cancel = function () {
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
-          if (vm.citySelCount > 0) {
-            // if (angular.isDefined($rootScope.deletedStates)) {
-            //   if (angular.isUndefined($rootScope.deletedStates[0])) {
-            //     saveToLocalStorage($rootScope, localStorageService);
-            //     $rootScope.onInit();
-            //     modalInstance.dismiss('cancel');
-            //     return true;
-            //   }
-            //
-            //   if ($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()) >= 0) {
-            //     $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toUpperCase()), 1);
-            //   }
-            // }
-          }
-          if (vm.countySelCount > 0) {
-            // if (angular.isDefined($rootScope.deletedStates)) {
-            //   if (angular.isUndefined($rootScope.deletedStates[0])) {
-            //     saveToLocalStorage($rootScope, localStorageService);
-            //     $rootScope.onInit();
-            //     modalInstance.dismiss('cancel');
-            //     return true;
-            //   }
-            //   if ($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()) >= 0) {
-            //     $rootScope.deletedStates.splice($rootScope.deletedStates.indexOf(vm.activeState.name.toLowerCase()), 1);
-            //   }
-            // }
-          }
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
           $rootScope.onInit();
@@ -581,9 +527,6 @@ function dropDownClickOnload($document) {
     }
     if (angular.isDefined(byDrug[0])) {
       byDrug[0].click();
-    }
-    if (angular.isDefined(byDrug[0])) {
-      // statesSelect[0].click();
     }
   });
 }
