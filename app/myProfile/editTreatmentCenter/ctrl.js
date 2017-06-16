@@ -23,15 +23,16 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
     });
     getCities(state);
     vm.testPhone();
+    // select categories
+    selectCategory();
   });
 
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
     getCities(vm.state);
   };
-  vm.multiselectModelCategories = [{
-    'id': '3'
-  }];
+  vm.multiselectModelCategories = [];
+
   vm.multiselectModelSettings = {
     scrollableHeight: '200px',
     scrollable: true,
@@ -43,21 +44,29 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
   vm.treatmentCenterCategories = [
     {
       'label': 'Inpatient',
-      'id': '1'
+      'id': 1
     },
     {
       'label': 'Outpatient',
-      'id': '2'
+      'id': 2
     },
     {
       'label': 'Sober Living',
-      'id': '3'
+      'id': 3
     },
     {
       'label': 'Adolescent',
-      'id': '4'
+      'id': 4
     }
   ];
+
+  function selectCategory() {
+    for (var key in vm.categories) {
+      vm.multiselectModelCategories.push({
+        'id': vm.categories[key].id
+      });
+    }
+  }
 
   function getCities(state) {
     mapService.getCitiesByState(state).then(function (response) {
