@@ -15,6 +15,11 @@ angular.module(moduleName, [
   .component('sponsorHome', {
     template: require('./view.html')
   })
+  .filter('removeHTMLTags', function () {
+    return function (text) {
+      return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    };
+  })
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.INDEX,
