@@ -2575,3 +2575,6 @@ i.fa.fa-times.fa-1 {
 .margin_bottom_state {
   margin-bottom: 25%;
 }
+.carousel .carousel-inner img{
+	width: 100%;
+}
