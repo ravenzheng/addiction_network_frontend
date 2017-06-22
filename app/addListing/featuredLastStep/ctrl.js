@@ -1,6 +1,6 @@
-module.exports = ['FeaturedService', '$rootScope', 'UIState', '$state', 'Status', ctrl];
+module.exports = ['$window', 'FeaturedService', '$rootScope', 'UIState', '$state', 'Status', ctrl];
 
-function ctrl(FeaturedService, $rootScope, UIState, $state, Status) {
+function ctrl($window, FeaturedService, $rootScope, UIState, $state, Status) {
   var vm = this;
   vm.subscribeFeatured = function () {
     FeaturedService.subscribeFeatured().then(function () {
@@ -11,6 +11,9 @@ function ctrl(FeaturedService, $rootScope, UIState, $state, Status) {
     });
   };
 
-  vm.cancelState = UIState.MY_PROFILE.PROFILE;
+  vm.cancelState = function () {
+    $window.location.href = '/#/login';
+  };
+  // vm.cancelState = UIState.MY_PROFILE.PROFILE;
   vm.backState = UIState.ADD_LISTING.FEATURED_LISTING_PAGE5;
 }

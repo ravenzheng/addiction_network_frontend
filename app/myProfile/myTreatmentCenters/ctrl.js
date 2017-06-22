@@ -9,6 +9,9 @@ function ctrl($log, $injector, $rootScope, Status, $uibModal, service) {
   vm.onPageUpdate = onPageUpdate;
   vm.onActivate = onActivate;
   vm.onDelete = onDelete;
+  $rootScope.featureSelect = featureSelect;
+  $rootScope.featured = '';
+
   var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Delete Treatment Center!</h3></div><div class="modal-body" id="modal-body">Are you sure you want to delete?</div><div class="modal-footer"><button class="btn adn-btn" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
   vm.open = function (id) {
     var modalInstance = $injector.get('$uibModal').open({
@@ -91,5 +94,27 @@ function ctrl($log, $injector, $rootScope, Status, $uibModal, service) {
     return function (center) {
       return center.id === id;
     };
+  }
+
+  // select as featured
+  function featureSelect(id) {
+    var feature = false;
+    if ($rootScope.featured) {
+      feature = true;
+    }
+    var data = {
+      'featured': feature
+    };
+    var formData = new FormData();
+    for (var key in data) {
+      formData.append('treatment_center[' + key + ']', data[key]);
+    }
+
+    service.edit(id, formData).then(function ( /* result */ ) {
+      $rootScope.$emit(Status.SUCCEEDED, 'Treatment Center updated to featured.');
+    }).catch(function (err) {
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+    });
   }
 }

@@ -26,6 +26,10 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   // };
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
+    var featured = false;
+    if (membership === 'featured') {
+      featured = true;
+    }
     $rootScope.$emit(Status.SUCCEEDED, 'Please wait while we add your Treatment center');
     var formData = new FormData();
     var treatmentcenterData = {
@@ -34,7 +38,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       'heading_3': 'Unique Selling Points',
       'content_1': vm.content_1,
       'content_2': vm.content_2,
-      'content_3': vm.content_3
+      'content_3': vm.content_3,
+      'featured': featured
     };
     for (var key in $rootScope.centerInfo) {
       if (key === 'phone_validated') {

@@ -55,6 +55,7 @@ function ctrl($rootScope, $log, $state, UIState, service, Status, localStorageSe
     // saving to localStorageService
     if (localStorageService.isSupported) {
       localStorageService.set('userInfo', sigupData, 'sessionStorage');
+      localStorageService.set('userLoginInfo', sigupData, 'sessionStorage');
     }
     for (var key in sigupData) {
       if (key === 'phone_validated') {
