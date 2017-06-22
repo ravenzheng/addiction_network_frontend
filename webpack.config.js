@@ -115,15 +115,15 @@ var cssAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
 
 var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
   assets: [
-    'themes/addiction/js/css3-mediaqueries.js',
-    'themes/addiction/css/jQuery-Multiselect/js/bootstrap-multiselect.js',
-    'themes/addiction/js/common.js',
+    // 'themes/addiction/js/css3-mediaqueries.js',
+    // 'themes/addiction/css/jQuery-Multiselect/js/bootstrap-multiselect.js',
+    // 'themes/addiction/js/common.js',
     // 'themes/addiction/js/multiple.js',
-    'themes/addiction/js/maskinput.js',
+    // 'themes/addiction/js/maskinput.js',
     // 'themes/addiction/js/functions.js',
-    'js/masonry.min.js',
-    'js/jquery/jquery.masonry.min.js',
-    'js/wp-embed.min.js',
+    // 'js/masonry.min.js',
+    // 'js/jquery/jquery.masonry.min.js',
+   // 'js/wp-embed.min.js',
     'angular.js',
     'angular-animate.min.js',
     'angular-ui-router.min.js',
