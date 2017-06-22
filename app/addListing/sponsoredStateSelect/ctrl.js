@@ -17,7 +17,15 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      // if (itemText === 'Jhon') {
+      //   return 'Jhonny!';
+      // }
+      // return itemText;
+      return 'Demographic';
+    }
   };
   vm.settings = {
     scrollableHeight: '200px',
@@ -25,7 +33,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Setting';
+    }
   };
   vm.treatment = {
     scrollableHeight: '200px',
@@ -33,7 +45,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Treatment Approach';
+    }
   };
   vm.additional_services = {
     scrollableHeight: '200px',
@@ -41,8 +57,37 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Additional Services';
+    }
   };
+  vm.payment = {
+    scrollableHeight: '200px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: false,
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Payment';
+    }
+  };
+  vm.byDrug = {
+    scrollableHeight: '200px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: false,
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'By Drug';
+    }
+  };
+
   vm.stateSelectSetting = {
     scrollableHeight: '235px',
     showCheckAll: true,
@@ -89,13 +134,20 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   }
 
   function setOtherDemography() {
+    // var disable = true;
+    // if ($rootScope.centerSelected.length > 0) {
+    //   disable = false;
+    // }
+    // console.log('load: ' + disable + ' len' + $rootScope.centerSelected.length);
     var demographic = $rootScope.otherIds.Demographic;
     for (var key in demographic) {
+      // console.log('run');
       // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
       $rootScope.demographic[key] = {
         id: demographic[key].id,
         label: demographic[key].name,
-        price: demographic[key].price
+        price: demographic[key].price,
+        disabled: true
       };
     }
     var treatmentApproach = $rootScope.otherIds['Treatment Approach'];
@@ -104,7 +156,8 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.treatmentApproach[key] = {
         id: treatmentApproach[key].id,
         label: treatmentApproach[key].name,
-        price: treatmentApproach[key].price
+        price: treatmentApproach[key].price,
+        disabled: true
       };
     }
 
@@ -264,6 +317,10 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     }
   };
 
+  $rootScope.centerOnchange = function () {
+    setOtherDemography();
+  };
+
   var token = localStorageService.get('signupToken');
   vm.open = function (state) {
     vm.activeState = {
@@ -295,6 +352,26 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   };
 
   vm.updateCart = function () {
+    if ($rootScope.centerSelected.length === 0) {
+      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      //  var len = $rootScope.demographicModel.length;
+      //  console.log(len);
+      //  $rootScope.demographicModel.splice((len - 1), 1);
+      // $rootScope.demographicModel.pop(len - 1);
+      //  len = $rootScope.demographicModel.length;
+      //  $rootScope.demographicModel = [];
+      // console.log(len);
+      // var demographic = angular.element($document[0].querySelector('#demographic .dropdown-toggle'));
+      // console.log(demographic);
+      // $rootScope.demographicModel = false;
+      // $scope.select = false;
+      // angular.forEach($rootScope.demographicModel, function (obj) {
+      //   console.log(obj);
+      //   //obj.selected = false;
+      //   // obj = null;
+      // });
+      //  return;
+    }
     saveToLocalStorage($rootScope, localStorageService);
     $rootScope.onInit();
   };
@@ -437,7 +514,11 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       showUncheckAll: true,
       // enableSearch: true,
       required: true,
-      keyboardControls: true
+      keyboardControls: true,
+      smartButtonMaxItems: 1,
+      smartButtonTextConverter: function () {
+        return 'County';
+      }
     };
     $rootScope.multiselectModelSettingsCity = {
       scrollableHeight: scrollableHeightCity,
@@ -448,7 +529,11 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       showUncheckAll: true,
       // enableSearch: true,
       required: true,
-      keyboardControls: true
+      keyboardControls: true,
+      smartButtonMaxItems: 1,
+      smartButtonTextConverter: function () {
+        return 'City';
+      }
     };
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
@@ -458,7 +543,8 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
-    var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-5 text-right">' + countySelect + '</div><div class="col-sm-3 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-left">' + citySelect + '</div></div></div></div></div><div class="col-sm-12 ng-scope text-center"><div class="checkbox_checked">Select State &nbsp;<input type ="checkbox" ng-model="vmModalCtrl.stateSelectCheck" ></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-5"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-3 text-right"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-3 text-center"><div class="checkbox_checked">Select State &nbsp;<input type ="checkbox" ng-model="vmModalCtrl.stateSelectCheck" ></div></div><div class="col-sm-3 text-left">' + countySelect + '</div><div class="col-sm-3 text-left">' + citySelect + '</div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-5 text-right">' + countySelect + '</div><div class="col-sm-3 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-left">' + citySelect + '</div></div></div></div></div><div class="col-sm-12 ng-scope text-center"><div class="checkbox_checked">Select State &nbsp;<input type ="checkbox" ng-model="vmModalCtrl.stateSelectCheck" ></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-5 text-right"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
