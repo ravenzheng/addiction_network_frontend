@@ -23,7 +23,7 @@ function ctrl($log, $stateParams, UIState, service) {
     service.search(data).then(function (result) {
       var listings = result.listings;
       vm.listings = listings.map(function (listing) {
-        listing.uiSref = UIState.CENTER_DETAIL + '({id:"' + listing.id + '"})';
+        listing.uiSref = UIState.CENTER_DETAIL + '({id:"' + listing.slug + '"})';
         return listing;
       });
       vm.totalPages = result.total_pages;

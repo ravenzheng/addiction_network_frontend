@@ -12,7 +12,7 @@ function ctrl($log, UIState, service) {
         return;
       }
       vm.listings = listings.map(function (listing) {
-        listing.uiSref = UIState.CENTER_DETAIL + '({id: "' + listing.id + '"})';
+        listing.uiSref = UIState.CENTER_DETAIL + '({id: "' + listing.slug + '"})';
         return listing;
       });
     }).catch(function (err) {
