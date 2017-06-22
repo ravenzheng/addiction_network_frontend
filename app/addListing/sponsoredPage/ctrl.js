@@ -8,12 +8,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true,
-    smartButtonMaxItems: 1,
-    smartButtonTextConverter: function () {
-      return 'Treatment Center';
-    },
-    selectionLimit: 1
+    checkBoxes: true
   };
   vm.treatmentCenter = {
     buttonDefaultText: 'Select Treatment Center'
@@ -197,8 +192,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   }
   sponsorList('');
   $rootScope.centerSelect = function () {
-    // use to prevent selection of demographic boxes without center select
-    // $rootScope.centerOnchange();
     // saving to localStorageService
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
@@ -217,8 +210,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     $rootScope.onInit();
   };
   $rootScope.centerDeSelect = function () {
-    // use to prevent selection of demographic boxes without center select
-    // $rootScope.centerOnchange();
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
       // console.log(sponsoredInfo);
