@@ -23,7 +23,8 @@ angular.module(moduleName, [
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.CENTER_DETAIL,
-      url: '/treatment-center-detail/:id',
+      // url: '/treatment-center-detail/:id',
+      url: '/treatment-center/:id',
       template: '<treatment-center-detail></treatment-center-detail>'
     });
   }]);
