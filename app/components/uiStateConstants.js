@@ -18,6 +18,7 @@ module.exports = {
   'ABOUT_US': 'aboutUs',
   'CONTACT_US': 'contactUs',
   'BLOG': 'blog',
+  'BLOGSINGLE': 'blogsingle',
   'ADD_LISTING': {
     'INDEX': 'addListing',
     'CONTACT_INFO': 'addListing.contactInfo',
