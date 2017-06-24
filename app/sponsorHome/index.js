@@ -28,7 +28,8 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.FILTER,
-      url: '/sponsorhome/filter/:filterName',
+      // url: '/sponsorhome/filter/:filterName',
+      url: '/info/:filterName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({

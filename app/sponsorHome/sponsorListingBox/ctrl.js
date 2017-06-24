@@ -19,10 +19,10 @@ function ctrl($log, $state, UIState, service) {
     if ($state.is(UIState.SPONSOR_HOME.CITY)) {
       keyword = $stateParams.cityName;
     }
-    if (!keyword) {
-      $state.go(UIState.HOME);
-      return;
-    }
+    // if (!keyword) {
+    //   $state.go(UIState.HOME);
+    //   return;
+    // }
     service.querySponsoredListings(keyword).then(function (result) {
       vm.entry = result;
       vm.displayError = false;
