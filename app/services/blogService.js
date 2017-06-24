@@ -3,12 +3,17 @@ module.exports = ['$http', service];
 function service($http) {
   return {
     getBlog: getBlog,
-    getBlogSingle: getBlogSingle
+    getBlogSingle: getBlogSingle,
+    getBlogPaged: getBlogPaged
   };
 
   // homepage slider
   function getBlog() {
     return $http.get('http://www.addictionnetwork.com/blog/access_blog.php?blogs=all');
+  }
+
+  function getBlogPaged(paged) {
+    return $http.get('http://www.addictionnetwork.com/blog/access_blog.php?blogs=all&paged=' + paged);
   }
 
   function getBlogSingle(singleBlog) {
