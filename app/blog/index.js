@@ -9,11 +9,16 @@ angular.module(moduleName, ['ui.router'])
     });
     $stateProvider.state({
       name: UIState.BLOGSINGLE,
-      //  url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}/{countyName}',
       url: '/blog/{single}',
       template: require('./single.html')
     });
+    $stateProvider.state({
+      name: UIState.BLOGMORE,
+      url: '/blog/page/{next}',
+      template: require('./more.html')
+    });
   }]).controller('blogCtrl', require('./ctrl'))
-  .controller('blogSingleCtrl', require('./single'));
+  .controller('blogSingleCtrl', require('./single'))
+  .controller('nextCtrl', require('./more'));
 
 module.exports = moduleName;
