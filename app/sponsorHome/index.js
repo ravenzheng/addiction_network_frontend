@@ -34,7 +34,8 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.STATE,
-      url: '/sponsorhome/state/{stateName:[a-zA-Z]{2}}',
+      // url: '/sponsorhome/state/{stateName:[a-zA-Z]{2}}',
+      url: '/state/{slug}-rehab-centers',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({

@@ -11,7 +11,8 @@ function ctrl($log, $state, UIState, service) {
       keyword = $stateParams.filterName;
     }
     if ($state.is(UIState.SPONSOR_HOME.STATE)) {
-      keyword = $stateParams.stateName;
+      // keyword = $stateParams.stateName;
+      keyword = $stateParams.slug;
     }
     if ($state.is(UIState.SPONSOR_HOME.COUNTY)) {
       keyword = $stateParams.countyName;
