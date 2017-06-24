@@ -18,10 +18,17 @@ function ctrl($log, $state, UIState, service) {
     });
   }
 
+  function convertToSlug(Text) {
+    return Text
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  }
+
   function goToCounty(county) {
     $state.go(UIState.SPONSOR_HOME.COUNTY, {
-      stateName: vm.stateName,
-      countyName: county
+      stateName: convertToSlug(vm.stateName),
+      countyName: convertToSlug(county)
     });
   }
 }

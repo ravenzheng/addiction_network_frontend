@@ -55,6 +55,13 @@ function ctrl($log, $state, UIState, service) {
     return entry ? entry.county : null;
   }
 
+  function convertToSlug(Text) {
+    return Text
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  }
+
   function goToCity(city) {
     // go to city from state page
     var countyName = findCountyName(city);
@@ -63,9 +70,9 @@ function ctrl($log, $state, UIState, service) {
       return;
     }
     $state.go(UIState.SPONSOR_HOME.CITY, {
-      stateName: vm.stateName,
-      countyName: countyName,
-      cityName: city
+      stateName: convertToSlug(vm.stateName),
+      countyName: convertToSlug(countyName),
+      cityName: convertToSlug(city)
     });
   }
 }

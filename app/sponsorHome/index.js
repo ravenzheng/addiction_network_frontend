@@ -40,27 +40,32 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.COUNTIES,
-      url: '/sponsorhome/counties/{stateName:[a-zA-Z]{2}}',
+      //  url: '/sponsorhome/counties/{stateName:[a-zA-Z]{2}}',
+      url: '/counties/{stateName}',
       template: '<county-list-box></county-list-box>'
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.COUNTY,
-      url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:countyName',
+      // url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/:countyName',
+      url: '/{stateName}-rehab-centers/:countyName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.CITY,
-      url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/{countyName}/:cityName',
+      // url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/{countyName}/:cityName',
+      url: '/{stateName}-rehab-centers/{countyName}/:cityName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.CITIES_OF_STATE,
-      url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}',
+      //  url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}',
+      url: '/cities/{stateName}',
       template: '<city-list-box-of-state></city-list-box-of-state>'
     });
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.CITIES_OF_COUNTY,
-      url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}/{countyName}',
+      //  url: '/sponsorhome/cities/{stateName:[a-zA-Z]{2}}/{countyName}',
+      url: '/cities/{stateName}/{countyName}',
       template: '<city-list-box-of-county></city-list-box-county>'
     });
   }]);
