@@ -13,18 +13,19 @@ function ctrl($scope, service, $log, $state) {
       arr = [1];
     }
     //  vm.more = [1, 2, 3, 4, 5];
-    if (vm.paged >= vm.result[0].published_post) {
-      vm.paged = vm.result[0].published_post;
-      for (var i = vm.paged; i <= vm.paged; i++) {
+    // if (vm.paged >= vm.result[0].published_post) {
+    //   vm.paged = vm.result[0].published_post - 3;
+    // }
+    if (+vm.paged + 3 >= vm.result[0].published_post) {
+      for (var i = vm.paged; i <= vm.result[0].published_post; i++) {
         arr.push(i);
-        vm.next = vm.paged;
       }
     } else {
-      for (i = vm.paged; i <= vm.result[0].published_post; i++) {
+      for (i = vm.paged; i <= +vm.paged + 2; i++) {
         arr.push(i);
       }
-      vm.next = +vm.paged + 1;
     }
+    vm.next = +vm.paged + 1;
     vm.more = arr;
   }).catch(function (err) {
     $log.info(err);
