@@ -12,9 +12,10 @@ function ctrl($attrs, UIState) {
     vm.filter = type;
     var arr = originalDateset[type];
     vm.listings = arr.map(function (value) {
+      var name = value.split('|');
       return {
-        name: value,
-        uiSref: UIState.SPONSOR_HOME.FILTER + '({filterName:"' + value + '"})'
+        name: name[0],
+        uiSref: UIState.SPONSOR_HOME.FILTER + '({filterName:"' + name[1] + '"})'
       };
     });
   }
