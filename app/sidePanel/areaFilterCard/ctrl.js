@@ -1,6 +1,6 @@
-module.exports = ['$log', '$scope', '$state', 'UIState', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$scope', '$state', 'UIState', ctrl];
 
-function ctrl($log, $scope, $state, UIState, service) {
+function ctrl($log, $scope, $state, UIState) {
   var vm = this;
   vm.$onInit = onInit;
   vm.goToState = goToState;
@@ -15,12 +15,12 @@ function ctrl($log, $scope, $state, UIState, service) {
     UIState.SPONSOR_HOME.CITIES_OF_STATE,
     UIState.SPONSOR_HOME.CITIES_OF_COUNTY
   ];
-
-  service.queryStateName($state.params.stateName).then(function (result) {
-    vm.fullName = result.state;
-  }).catch(function (err) {
-    $log.error(err);
-  });
+  vm.fullName = $state.params.slug;
+  // service.queryStateName($state.params.stateName).then(function (result) {
+  //   vm.fullName = result.state;
+  // }).catch(function (err) {
+  //   $log.error(err);
+  // });
 
   $scope.$on('$stateChangeStart', function (event, toState, toParams) {
     _update(toState.name, toParams);
@@ -36,7 +36,16 @@ function ctrl($log, $scope, $state, UIState, service) {
       return;
     }
     vm.display = true;
-    vm.stateName = params.stateName;
+    if (angular.isUndefined(params.slug)) {
+      vm.stateName = params.stateName;
+    } else {
+      vm.stateName = params.slug;
+    }
+    // vm.stateName = params.slug;
+    // if (angular.isUndefined(vm.stateName)) {
+    //   var href = location.href;
+    // //  vm.stateName = href.match(/([^\/]*)\/*$/)[1];
+    // }
     vm.countyName = params.countyName;
     if (uiState === UIState.SPONSOR_HOME.STATE) {
       vm.stateLinkClass = 'area-filter-link-disabled';
@@ -74,6 +83,7 @@ function ctrl($log, $scope, $state, UIState, service) {
 
   function goToCounties() {
     $state.go(UIState.SPONSOR_HOME.COUNTIES, {
+      // stateName: vm.stateName
       stateName: vm.stateName
     });
   }
