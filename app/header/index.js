@@ -92,7 +92,7 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, serv
       //   };
       // }
       if (tostate[0] === 'blog') {
-        $window.location = 'http://www.addictionnetwork.com/blog/';
+        //  $window.location = 'http://www.addictionnetwork.com/blog/';
       }
 
       if (token || loginToken) {
