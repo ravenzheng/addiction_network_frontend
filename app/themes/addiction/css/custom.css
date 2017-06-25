@@ -2578,3 +2578,17 @@ i.fa.fa-times.fa-1 {
 .carousel .carousel-inner img{
 	width: 100%;
 }
+.desc_div_inner h2 {
+    font-size: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+.desc_div_inner{
+  margin-bottom: 10%;
+}
+.wrap_blog_inner {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
