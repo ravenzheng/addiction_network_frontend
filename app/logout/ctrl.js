@@ -16,7 +16,7 @@ function ctrl($window, $log, UserService, $rootScope, localStorageService) {
   localStorageService.remove('profileData');
   localStorageService.remove('userLoginInfo');
 
-  $window.location.href = '/#/login';
+  $window.location.href = '/login';
 }
 
 module.exports = ['$window', '$log', 'UserService', '$rootScope', 'localStorageService', ctrl];

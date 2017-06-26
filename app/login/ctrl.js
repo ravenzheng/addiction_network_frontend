@@ -10,7 +10,7 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
     UserService.signIn(email, password).then(function () {
       $rootScope.login = 1;
       $rootScope.$emit(Status.SUCCEEDED, 'You are logged in');
-      $window.location.href = '/#my-profile/profile';
+      $window.location.href = '/my-profile/profile';
     }).catch(function (errors) {
       // todo, display the error message in the page.
       // var error = angular.element($document[0].querySelector('#error_if'));
@@ -25,7 +25,7 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
     password = vm.password;
     UserService.signIn(email, password).then(function () {
       $rootScope.login = 1;
-      $window.location.href = '/#my-profile/profile';
+      $window.location.href = '/my-profile/profile';
       $rootScope.$emit(Status.SUCCEEDED, 'You are logged in');
     }).catch(function (errors) {
       // todo, display the error message in the page.

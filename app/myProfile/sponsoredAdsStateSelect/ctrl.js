@@ -303,8 +303,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   };
 
   vm.updateStateSelect = function (state, stateCheck) {
+    var stateShortName = state.shortname;
+    var stateLower = stateShortName.toLowerCase();
     for (var key in $rootScope.stateIds) {
-      if ($rootScope.stateIds[key].name === state.shortname) {
+      //  if ($rootScope.stateIds[key].name === state.shortname) {
+      if ($rootScope.stateIds[key].slug === stateLower) {
         var stateSelectedData = {
           'id': $rootScope.stateIds[key].id,
           'shortname': $rootScope.stateIds[key].name,
@@ -471,6 +474,9 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
           vmModal.stateSelectCheck = true;
         }
         $rootScope.ok = function () {
+          if (angular.isDefined($rootScope.stateSelectCheck)) {
+            vmModal.stateSelectCheck = true;
+          }
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
@@ -479,6 +485,9 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
           return true;
         };
         $rootScope.cancel = function () {
+          if (angular.isDefined($rootScope.stateSelectCheck)) {
+            vmModal.stateSelectCheck = true;
+          }
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
