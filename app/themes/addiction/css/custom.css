@@ -2598,3 +2598,6 @@ i.fa.fa-times.fa-1 {
     font-family: arial;
     font-size: 13px;
 }
+.dropdown-menu{
+  z-index:10!important;
+}
