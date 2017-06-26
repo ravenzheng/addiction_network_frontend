@@ -2,6 +2,16 @@ module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', '
 
 function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status, $timeout, mapService) {
   var vm = this;
+  var value = 0;
+  vm.checkFirst = function () {
+    value++;
+    if (value > 6) {
+      if ($rootScope.centerSelected.length === 0) {
+        $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      }
+    }
+  };
+
   // initializing side cards values
   vm.multiselectModelSettings = {
     scrollableHeight: '200px',
@@ -134,13 +144,19 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   }
 
   function setOtherDemography() {
+    if ($rootScope.centerSelected.length === 0) {
+      var disabledValue = true;
+    } else {
+      disabledValue = false;
+    }
     var demographic = $rootScope.otherIds.Demographic;
     for (var key in demographic) {
       // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
       $rootScope.demographic[key] = {
         id: demographic[key].id,
         label: demographic[key].name,
-        price: demographic[key].price
+        price: demographic[key].price,
+        disabled: disabledValue
       };
     }
     var treatmentApproach = $rootScope.otherIds['Treatment Approach'];
@@ -149,7 +165,8 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.treatmentApproach[key] = {
         id: treatmentApproach[key].id,
         label: treatmentApproach[key].name,
-        price: treatmentApproach[key].price
+        price: treatmentApproach[key].price,
+        disabled: disabledValue
       };
     }
 
@@ -158,7 +175,8 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.setting[key] = {
         id: setting[key].id,
         label: setting[key].name,
-        price: setting[key].price
+        price: setting[key].price,
+        disabled: disabledValue
       };
     }
 
@@ -167,7 +185,8 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.additionalServices[key] = {
         id: additionalServices[key].id,
         label: additionalServices[key].name,
-        price: additionalServices[key].price
+        price: additionalServices[key].price,
+        disabled: disabledValue
       };
     }
 
@@ -176,16 +195,17 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.payment[key] = {
         id: payment[key].id,
         label: payment[key].name,
-        price: payment[key].price
+        price: payment[key].price,
+        disabled: disabledValue
       };
     }
-
     var byDrug = $rootScope.otherIds['By Drug'];
     for (key in byDrug) {
       $rootScope.byDrug[key] = {
         id: byDrug[key].id,
         label: byDrug[key].name,
-        price: byDrug[key].price
+        price: byDrug[key].price,
+        disabled: disabledValue
       };
     }
   }
@@ -224,7 +244,14 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.stateIds = response.states;
     });
   }
-
+  vm.checkboxCheck = function () {
+    if ($rootScope.centerSelected.length === 0) {
+      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      vm.checkAllText = ' Select all states';
+      event.preventDefault();
+      return;
+    }
+  };
   vm.selectStateAll = function () {
     if ($rootScope.checkedAllStates) {
       vm.checkAllText = ' Unselect all states';
@@ -342,6 +369,8 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   vm.updateCart = function () {
     if ($rootScope.centerSelected.length === 0) {
       $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      event.preventDefault();
+      return;
       //  var len = $rootScope.demographicModel.length;
       //  console.log(len);
       //  $rootScope.demographicModel.splice((len - 1), 1);

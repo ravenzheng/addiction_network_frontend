@@ -1,7 +1,7 @@
 <!-- <section-heading>Select State</section-heading> -->
 <!--- Map content  Start   -->
 <div class="col-sm-12 steps_sponsored">Step1: Click on the map to select state, county and city or <b>{{$ctrl.checkAllText}}</b>
-  <input type="checkbox" name="" ng-model="$root.checkedAllStates" ng-change="$ctrl.selectStateAll()" ng-init="$ctrl.checkAllText=' Select all states'" /> </div>
+  <input type="checkbox" name="" ng-model="$root.checkedAllStates" ng-change="$ctrl.selectStateAll()" ng-init="$ctrl.checkAllText=' Select all states'" ng-click="$ctrl.checkboxCheck()" /> </div>
 <div onselectstart="return false;" class="unselectable col-sm-12">
   <div id="mapwrapper" class="col-sm-12">
     <div id="map_base">
@@ -19,26 +19,26 @@
   <div class="additional_filters">
     <div class="col-sm-12">
       <div class="col-sm-3">
-        <div ng-dropdown-multiselect="" id="demographic" options="$root.demographic" selected-model="$root.demographicModel" extra-settings="$ctrl.demographic" translation-texts="$ctrl.buttonTxtDemographic" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true">
+        <div ng-dropdown-multiselect="" ng-click="$ctrl.checkFirst()" id="demographic" options="$root.demographic" selected-model="$root.demographicModel" extra-settings="$ctrl.demographic" translation-texts="$ctrl.buttonTxtDemographic" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true">
         </div>
       </div>
       <div class="col-sm-3">
-        <div ng-dropdown-multiselect="" id="treatmentApproach" options="$root.treatmentApproach" translation-texts="$ctrl.buttonTxtTreatmentApproach" selected-model="$root.treatmentApproachModel" extra-settings="$ctrl.treatment" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
+        <div ng-dropdown-multiselect="" ng-click="$ctrl.checkFirst()" id="treatmentApproach" options="$root.treatmentApproach" translation-texts="$ctrl.buttonTxtTreatmentApproach" selected-model="$root.treatmentApproachModel" extra-settings="$ctrl.treatment" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
       </div>
       <div class="col-sm-3">
-        <div ng-dropdown-multiselect="" id="payment" options="$root.payment" selected-model="$root.paymentModel" translation-texts="$ctrl.buttonTxtPayment" extra-settings="$ctrl.payment" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
+        <div ng-dropdown-multiselect="" ng-click="$ctrl.checkFirst()" id="payment" options="$root.payment" selected-model="$root.paymentModel" translation-texts="$ctrl.buttonTxtPayment" extra-settings="$ctrl.payment" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
       </div>
       <div style="margin-bottom:30%;"></div>
     </div>
     <div class="col-md-12 pull-right">
       <div class="col-sm-3">
-        <div ng-dropdown-multiselect="" id="additionalServices" options="$root.additionalServices" translation-texts="$ctrl.buttonTxtAdditionalServices" selected-model="$root.additionalServicesModel" extra-settings="$ctrl.additional_services" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
+        <div ng-dropdown-multiselect="" ng-click="$ctrl.checkFirst()" id="additionalServices" options="$root.additionalServices" translation-texts="$ctrl.buttonTxtAdditionalServices" selected-model="$root.additionalServicesModel" extra-settings="$ctrl.additional_services" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
       </div>
       <div class="col-sm-3">
-        <div ng-dropdown-multiselect="" id="setting" options="$root.setting" translation-texts="$ctrl.buttonTxtSetting" selected-model="$root.settingModel" extra-settings="$ctrl.settings" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
+        <div ng-dropdown-multiselect="" id="setting" ng-click="$ctrl.checkFirst()" options="$root.setting" translation-texts="$ctrl.buttonTxtSetting" selected-model="$root.settingModel" extra-settings="$ctrl.settings" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
       </div>
       <div class="col-sm-4">
-        <div ng-dropdown-multiselect="" id="byDrug" options="$root.byDrug" selected-model="$root.byDrugModel" translation-texts="$ctrl.buttonTxtByDrug" extra-settings="$ctrl.byDrug" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
+        <div ng-dropdown-multiselect="" id="byDrug" ng-click="$ctrl.checkFirst()" options="$root.byDrug" selected-model="$root.byDrugModel" translation-texts="$ctrl.buttonTxtByDrug" extra-settings="$ctrl.byDrug" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true"></div>
       </div>
     </div>
   </div>
