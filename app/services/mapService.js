@@ -42,7 +42,7 @@ function service($http, endPoint, mapConfig) {
 
   function compareShort(source) {
     return function (target) {
-      return source === target.fullname;
+      return source === target.image;
     };
   }
 

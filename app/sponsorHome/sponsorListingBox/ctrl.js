@@ -1,13 +1,12 @@
-module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', 'MapService', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', 'MapService', '$sce', ctrl];
 
-function ctrl($log, $state, UIState, service, mapService) {
+function ctrl($log, $state, UIState, service, mapService, $sce) {
   var vm = this;
   vm.$onInit = onInit;
   vm.getShortNameMap = getShortNameMap;
 
   function getShortNameMap(str) {
-    var res = str.toUpperCase();
-    var short = mapService.getShortName(res);
+    var short = mapService.getShortName(str);
     return short.toLowerCase(short);
   }
 
@@ -36,6 +35,8 @@ function ctrl($log, $state, UIState, service, mapService) {
     }
     service.querySponsoredListings(keyword).then(function (result) {
       vm.entry = result;
+      vm.content1 = $sce.trustAsHtml(result.content_1);
+      vm.content2 = $sce.trustAsHtml(result.content_2);
       vm.displayError = false;
     }).catch(function (err) {
       vm.displayError = true;

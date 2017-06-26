@@ -4,8 +4,9 @@
 
   <!-- Actual sponsor listing data -->
   <div ng-hide="$ctrl.displayError" class="sponsor-listing">
-    <section-heading>{{ $ctrl.entry.heading_1 | removeHTMLTags }}</section-heading>
-    <p>{{ $ctrl.entry.content_1 | removeHTMLTags }}</p>
+    <section-heading>{{ $ctrl.entry.heading_1}}</section-heading>
+    <div class="rehab_content" ng-bind-html="$ctrl.content1">
+    </div>
 
     <div class="row">
       <!-- First section of the listing -->
@@ -21,10 +22,10 @@
               <div class="sponsor_img" style="width:65%;">
                 <h3>
                   <a ng-href="{{ listing.website | urlFilter }}" target="_blank">
-                    {{ listing.name | removeHTMLTags }}
+                    {{ listing.name }}
                   </a>
                 </h3>
-                <p>{{ listing.description | removeHTMLTags }}</p>
+                <p>{{ listing.description }}</p>
               </div>
             </div>
           </li>
@@ -34,7 +35,9 @@
       <!-- Second section of the listing-->
       <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <section-heading>{{ $ctrl.entry.heading_2 }}</section-heading>
-        <p>{{ $ctrl.entry.content_2 | removeHTMLTags }}</p>
+        <!-- <p>{{ $ctrl.entry.content_2 }}</p> -->
+        <div class="rehab_content" ng-bind-html="$ctrl.content2">
+        </div>
       </div>
 
     </div>
