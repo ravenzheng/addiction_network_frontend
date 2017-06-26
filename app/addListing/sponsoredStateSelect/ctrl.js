@@ -364,8 +364,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.onInit();
   };
   vm.updateStateSelect = function (state, stateCheck) {
+    var stateShortName = state.shortname;
+    var stateLower = stateShortName.toLowerCase();
     for (var key in $rootScope.stateIds) {
-      if ($rootScope.stateIds[key].name === state.shortname) {
+      //  if ($rootScope.stateIds[key].name === state.shortname) {
+      if ($rootScope.stateIds[key].slug === stateLower) {
         var stateSelectedData = {
           'id': $rootScope.stateIds[key].id,
           'shortname': $rootScope.stateIds[key].name,
@@ -532,7 +535,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-3 text-right"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-3 text-center"><div class="checkbox_checked">Select State &nbsp;<input type ="checkbox" ng-model="vmModalCtrl.stateSelectCheck" ></div></div><div class="col-sm-3 text-left">' + countySelect + '</div><div class="col-sm-3 text-left">' + citySelect + '</div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
-    var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-5 text-right"><div class=" text-center"><div class="checkbox_checked col-sm-6">Select State &nbsp;<input type ="checkbox" ng-model="$root.stateSelectCheck" ></div></div>' + countySelect + '</div><div class="col-sm-3 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-left">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-5 text-right"><div class=" text-center"><div class="checkbox_checked col-sm-6">Select this State &nbsp;<input type ="checkbox" ng-model="$root.stateSelectCheck" ></div></div>' + countySelect + '</div><div class="col-sm-3 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-left">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok()">Done</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
@@ -543,10 +546,16 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
       controllerAs: 'vmModalCtrl',
       controller: function () {
         var vmModal = this;
+        // if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
+        //   vmModal.stateSelectCheck = true;
+        // }
         if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
           vmModal.stateSelectCheck = true;
         }
         $rootScope.ok = function () {
+          if (angular.isDefined($rootScope.stateSelectCheck)) {
+            vmModal.stateSelectCheck = true;
+          }
           //  vm.updateStateSelect(state, vmModal.stateSelectCheck);
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
@@ -556,6 +565,9 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           return true;
         };
         $rootScope.cancel = function () {
+          if (angular.isDefined($rootScope.stateSelectCheck)) {
+            vmModal.stateSelectCheck = true;
+          }
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
