@@ -7,7 +7,8 @@ function service($http, endPoint, mapConfig) {
     getCitiesWithCountyByState: getCitiesWithCountyByState,
     getCountiesByState: getCountiesByState,
     getCitiesByCounty: getCitiesByCounty,
-    getStateFullname: stateFullName
+    getStateFullname: stateFullName,
+    getShortName: getShortName
   };
 
   function getFullname(shortname) {
@@ -17,6 +18,11 @@ function service($http, endPoint, mapConfig) {
     }
     var stateObj = mapConfig.states.find(compare(shortname));
     return stateObj ? stateObj.fullname : null;
+  }
+
+  function getShortName(fullname) {
+    var stateObj = mapConfig.states.find(compareShort(fullname));
+    return stateObj ? stateObj.shortname : null;
   }
 
   function stateFullName(shortname) {
@@ -31,6 +37,12 @@ function service($http, endPoint, mapConfig) {
   function compare(source) {
     return function (target) {
       return source === target.shortname;
+    };
+  }
+
+  function compareShort(source) {
+    return function (target) {
+      return source === target.fullname;
     };
   }
 

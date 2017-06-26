@@ -1,8 +1,15 @@
-module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', 'MapService', ctrl];
 
-function ctrl($log, $state, UIState, service) {
+function ctrl($log, $state, UIState, service, mapService) {
   var vm = this;
   vm.$onInit = onInit;
+  vm.getShortNameMap = getShortNameMap;
+
+  function getShortNameMap(str) {
+    var res = str.toUpperCase();
+    var short = mapService.getShortName(res);
+    return short.toLowerCase(short);
+  }
 
   function onInit() {
     var keyword = '';
@@ -12,7 +19,10 @@ function ctrl($log, $state, UIState, service) {
     }
     if ($state.is(UIState.SPONSOR_HOME.STATE)) {
       // keyword = $stateParams.stateName;
-      keyword = $stateParams.slug;
+      keyword = getShortNameMap($stateParams.slug);
+      //  keyword = $stateParams.slug;
+      // console.log(keyword);
+      // alert(keyword);
     }
     if ($state.is(UIState.SPONSOR_HOME.COUNTY)) {
       keyword = $stateParams.countyName;
