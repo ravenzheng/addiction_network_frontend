@@ -151,14 +151,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         for (var val in $rootScope.demographic) {
           if ($rootScope.demographic[val].id === $rootScope.demographicModel[key].id) {
             var label = $rootScope.demographic[val].label;
-            var price = $rootScope.demographic[val].price;
+            // var price = $rootScope.demographic[val].price;
+            var price = vm.priceSponsored;
             break;
           }
         }
         vm.demographic[key] = {
           'id': $rootScope.demographicModel[key].id,
           'label': label,
-          'price': price
+          'price': vm.priceSponsored
+          // 'price': price
         };
         vm.demographicTotal += price;
       }
@@ -167,14 +169,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         for (val in $rootScope.treatmentApproach) {
           if ($rootScope.treatmentApproach[val].id === $rootScope.treatmentApproachModel[key].id) {
             label = $rootScope.treatmentApproach[val].label;
-            price = $rootScope.treatmentApproach[val].price;
+            // price = $rootScope.treatmentApproach[val].price;
+            price = vm.priceSponsored;
             break;
           }
         }
         vm.treatmentApproach[key] = {
           'id': $rootScope.treatmentApproachModel[key].id,
           'label': label,
-          'price': price
+          'price': vm.priceSponsored
+          // 'price': price
         };
         vm.treatmentApproachTotal += price;
       }
@@ -183,14 +187,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         for (val in $rootScope.setting) {
           if ($rootScope.setting[val].id === $rootScope.settingModel[key].id) {
             label = $rootScope.setting[val].label;
-            price = $rootScope.setting[val].price;
+            // price = $rootScope.setting[val].price;
+            price = vm.priceSponsored;
             break;
           }
         }
         vm.setting[key] = {
           'id': $rootScope.settingModel[key].id,
           'label': label,
-          'price': price
+          'price': vm.priceSponsored
+          // 'price': price
         };
         vm.settingTotal += price;
       }
@@ -199,14 +205,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         for (val in $rootScope.additionalServices) {
           if ($rootScope.additionalServices[val].id === $rootScope.additionalServicesModel[key].id) {
             label = $rootScope.additionalServices[val].label;
-            price = $rootScope.additionalServices[val].price;
+            // price = $rootScope.additionalServices[val].price;
+            price = vm.priceSponsored;
             break;
           }
         }
         vm.additionalServices[key] = {
           'id': $rootScope.additionalServicesModel[key].id,
           'label': label,
-          'price': price
+          'price': vm.priceSponsored
+          // 'price': price
         };
         vm.additionalServicesTotal += price;
       }
@@ -215,14 +223,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         for (val in $rootScope.payment) {
           if ($rootScope.payment[val].id === $rootScope.paymentModel[key].id) {
             label = $rootScope.payment[val].label;
-            price = $rootScope.payment[val].price;
+            // price = $rootScope.payment[val].price;
+            price = vm.priceSponsored;
             break;
           }
         }
         vm.payment[key] = {
           'id': $rootScope.paymentModel[key].id,
           'label': label,
-          'price': price
+          price: vm.priceSponsored
+          // 'price': price
         };
         vm.paymentTotal += price;
       }
@@ -231,14 +241,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         for (val in $rootScope.byDrug) {
           if ($rootScope.byDrug[val].id === $rootScope.byDrugModel[key].id) {
             label = $rootScope.byDrug[val].label;
-            price = $rootScope.byDrug[val].price;
+            // price = $rootScope.byDrug[val].price;
+            price = vm.priceSponsored;
             break;
           }
         }
         vm.byDrug[key] = {
           'id': $rootScope.byDrugModel[key].id,
           'label': label,
-          'price': price
+          'price': vm.priceSponsored
+          // 'price': price
         };
         vm.byDrugTotal += price;
       }
@@ -298,8 +310,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       $rootScope.cities.splice(key, 1);
     } else if (item === 'demographic') {
-      vm.totalCost -= $rootScope.demographic[key].price;
-      vm.demographicTotal -= $rootScope.demographic[key].price;
+      // vm.totalCost -= $rootScope.demographic[key].price;
+      // vm.demographicTotal -= $rootScope.demographic[key].price;
+      vm.totalCost -= vm.priceSponsored;
+      vm.demographicTotal -= vm.priceSponsored;
       id = vm.demographic[key].id;
       for (index in $rootScope.demographicModel) {
         if ($rootScope.demographicModel[index].id === id) {
@@ -309,8 +323,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.demographic.splice(key, 1);
     } else if (item === 'treatmentApproach') {
-      vm.totalCost -= $rootScope.treatmentApproach[key].price;
-      vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
+      // vm.totalCost -= $rootScope.treatmentApproach[key].price;
+      // vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
+      vm.totalCost -= vm.priceSponsored;
+      vm.treatmentApproachTotal -= vm.priceSponsored;
       id = vm.treatmentApproach[key].id;
       for (index in $rootScope.treatmentApproachModel) {
         if ($rootScope.treatmentApproachModel[index].id === id) {
@@ -320,8 +336,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.treatmentApproach.splice(key, 1);
     } else if (item === 'setting') {
-      vm.totalCost -= $rootScope.setting[key].price;
-      vm.settingTotal -= $rootScope.setting[key].price;
+      // vm.totalCost -= $rootScope.setting[key].price;
+      // vm.settingTotal -= $rootScope.setting[key].price;
+      vm.totalCost -= vm.priceSponsored;
+      vm.settingTotal -= vm.priceSponsored;
       id = vm.setting[key].id;
       for (index in $rootScope.settingModel) {
         if ($rootScope.settingModel[index].id === id) {
@@ -331,8 +349,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.setting.splice(key, 1);
     } else if (item === 'additionalServices') {
-      vm.totalCost -= $rootScope.additionalServices[key].price;
-      vm.additionalServicesTotal -= $rootScope.additionalServices[key].price;
+      // vm.totalCost -= $rootScope.additionalServices[key].price;
+      // vm.additionalServicesTotal -= $rootScope.additionalServices[key].price;
+      vm.totalCost -= vm.priceSponsored;
+      vm.additionalServicesTotal -= vm.priceSponsored;
       id = vm.additionalServices[key].id;
       for (index in $rootScope.additionalServicesModel) {
         if ($rootScope.additionalServicesModel[index].id === id) {
@@ -342,8 +362,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.additionalServices.splice(key, 1);
     } else if (item === 'payment') {
-      vm.totalCost -= $rootScope.payment[key].price;
-      vm.paymentTotal -= $rootScope.payment[key].price;
+      // vm.totalCost -= $rootScope.payment[key].price;
+      // vm.paymentTotal -= $rootScope.payment[key].price;
+      vm.totalCost -= vm.priceSponsored;
+      vm.paymentTotal -= vm.priceSponsored;
       id = vm.payment[key].id;
       for (index in $rootScope.paymentModel) {
         if ($rootScope.paymentModel[index].id === id) {
@@ -353,8 +375,10 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       vm.payment.splice(key, 1);
     } else if (item === 'byDrug') {
-      vm.totalCost -= $rootScope.byDrug[key].price;
-      vm.byDrugTotal -= $rootScope.byDrug[key].price;
+      // vm.totalCost -= $rootScope.byDrug[key].price;
+      // vm.byDrugTotal -= $rootScope.byDrug[key].price;
+      vm.totalCost -= vm.priceSponsored;
+      vm.byDrugTotal -= vm.priceSponsored;
       id = vm.byDrug[key].id;
       for (index in $rootScope.byDrugModel) {
         if ($rootScope.byDrugModel[index].id === id) {
