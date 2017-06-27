@@ -44,13 +44,28 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     vm.priceState = 0;
     vm.priceCounty = 0;
     vm.priceCity = 0;
-
+    vm.priceFeatured = 0;
+    vm.priceSponsored = 0;
+    vm.totalExtra = 0;
     // get price info
     CartDetailService.getPriceInfo().then(function (response) {
       vm.priceState = response.price_state;
       vm.priceCounty = response.price_county;
       vm.priceCity = response.price_city;
-
+      vm.priceFeatured = response.price_featured;
+      vm.priceSponsored = response.price_sponsored;
+      var membershipType = localStorageService.get('membershipType', 'sessionStorage');
+      if (membershipType === 'featured') {
+        vm.totalExtra = vm.priceFeatured;
+        vm.membershipTypeText = 'FEATURED';
+      }
+      if (membershipType === 'sponsored') {
+        vm.totalExtra = vm.priceSponsored;
+        vm.membershipTypeText = 'SPONSORED';
+      }
+      if (angular.isUndefined(vm.totalExtra)) {
+        vm.totalExtra = 0;
+      }
       CartDetailService.getCartInfo(countyIdApi, cityIdsApi).then(function (result) {
         cartInfo(result);
       }).catch(function (err) {
@@ -226,6 +241,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         vm.byDrugTotal += price;
       }
       // treatment centers
+      var totalCenters = 0;
       for (key in $rootScope.centerSelected) {
         for (val in $rootScope.treatmentCentersValue) {
           if ($rootScope.centerSelected[key].id === $rootScope.treatmentCentersValue[val].id) {
@@ -235,13 +251,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
             };
           }
         }
+        totalCenters++;
       }
+      var totalExtra = vm.totalExtra * totalCenters;
+      vm.totalExtra = totalExtra;
       vm.stateTotalCost = totalStates;
       vm.cityTotalCost = totalCity;
       vm.countyTotalCost = totalCounty;
-      var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
-      vm.totalCost = total;
-      $rootScope.total = total;
+      var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal + totalExtra;
+      vm.totalCost = total * totalCenters;
+      $rootScope.total = total * totalCenters;
     }
   }
 
