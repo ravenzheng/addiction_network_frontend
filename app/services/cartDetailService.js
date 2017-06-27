@@ -1,6 +1,6 @@
-module.exports = ['$log', '$http', 'endPoint', service];
+module.exports = ['$log', '$http', 'endPoint', 'localStorageService', service];
 
-function service($log, $http, endPoint) {
+function service($log, $http, endPoint, localStorageService) {
   return {
     getCartInfo: getCartInfo,
     getPriceInfo: getSignupPriceInfo
@@ -14,6 +14,17 @@ function service($log, $http, endPoint) {
   // get price info for state, city, county, sponsored
 
   function getSignupPriceInfo() {
-    return $http.get(endPoint + '/pricing');
+    var userToken = localStorageService.get('signupToken');
+    if (!userToken) {
+      userToken = localStorageService.get('token');
+    }
+    return $http({
+      url: endPoint + '/pricing',
+      method: 'GET',
+      headers: {
+        'Authorization': userToken,
+        'Content-Type': undefined
+      }
+    });
   }
 }
