@@ -313,7 +313,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       if ($rootScope.stateIds[key].slug === stateLower) {
         var stateSelectedData = {
           'id': $rootScope.stateIds[key].id,
-          'shortname': $rootScope.stateIds[key].name,
+          'shortname': $rootScope.stateIds[key].slug,
           'state': ($rootScope.stateIds[key].state === '') ? $rootScope.stateIds[key].name : $rootScope.stateIds[key].state
         };
         break;
