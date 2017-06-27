@@ -2,6 +2,15 @@ module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', '
 
 function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status, $timeout, mapService) {
   var vm = this;
+  var value = 0;
+  vm.checkFirst = function () {
+    value++;
+    if (value > 6) {
+      if ($rootScope.centerSelected.length === 0) {
+        $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      }
+    }
+  };
   // initializing side cards values
   vm.multiselectModelSettings = {
     scrollableHeight: '200px',
@@ -17,7 +26,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Demographic';
+    }
   };
   vm.settings = {
     scrollableHeight: '200px',
@@ -25,7 +38,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Setting';
+    }
   };
   vm.treatment = {
     scrollableHeight: '200px',
@@ -33,7 +50,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Treatment Approach';
+    }
   };
   vm.additional_services = {
     scrollableHeight: '200px',
@@ -41,8 +62,37 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     showUncheckAll: false,
     scrollable: true,
     enableSearch: false,
-    checkBoxes: true
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Additional Services';
+    }
   };
+  vm.payment = {
+    scrollableHeight: '200px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: false,
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'Payment';
+    }
+  };
+  vm.byDrug = {
+    scrollableHeight: '200px',
+    showCheckAll: false,
+    showUncheckAll: false,
+    scrollable: true,
+    enableSearch: false,
+    checkBoxes: true,
+    smartButtonMaxItems: 1,
+    smartButtonTextConverter: function () {
+      return 'By Drug';
+    }
+  };
+
   vm.stateSelectSetting = {
     scrollableHeight: '210px',
     showCheckAll: true,
@@ -301,6 +351,11 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   };
 
   vm.updateCart = function () {
+    if ($rootScope.centerSelected.length === 0) {
+      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      event.preventDefault();
+      return;
+    }
     saveToLocalStorage($rootScope, localStorageService);
     $rootScope.onInit();
   };
@@ -505,7 +560,11 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
       showUncheckAll: true,
       // enableSearch: true,
       required: true,
-      keyboardControls: true
+      keyboardControls: true,
+      smartButtonMaxItems: 1,
+      smartButtonTextConverter: function () {
+        return 'County';
+      }
     };
     $rootScope.multiselectModelSettingsCity = {
       scrollableHeight: scrollableHeightCity,
@@ -516,7 +575,11 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
       showUncheckAll: true,
       // enableSearch: true,
       required: true,
-      keyboardControls: true
+      keyboardControls: true,
+      smartButtonMaxItems: 1,
+      smartButtonTextConverter: function () {
+        return 'City';
+      }
     };
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
