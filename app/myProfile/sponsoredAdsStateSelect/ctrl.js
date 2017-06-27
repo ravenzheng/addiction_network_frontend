@@ -92,6 +92,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     var demographic = $rootScope.otherIds.Demographic;
     for (var key in demographic) {
       // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
+
       $rootScope.demographic[key] = {
         id: demographic[key].id,
         label: demographic[key].name,
@@ -194,6 +195,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
 
   // localStorageService.remove('myprofileSponsoredPage');
   // get values from localStorageService
+  // localStorageService.remove('myprofileSponsoredPage');
   if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
     var sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');
     if (sponsoredInfo !== null) {
@@ -273,6 +275,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       id: state.id,
       name: state.fullname
     };
+    // console.log(state);
     // var stateMap = '<svg version="1.1" id="state_map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="' + state.viewbox + '" xml:space="preserve">  <g id="state">   <g> <path ng-attr-id="' + state.id + '" ng-attr-fill="' + state.upcolor + '" ng-attr-stroke="' + state.statestroke + '" ng-attr-d="' + state.d + '" stroke-width="1" cursor="pointer"></path></g></g><g id="abb"><text ng-attr-id="' + state.shortname + '" ng-attr-transform="' + state.transform + '" pointer-events="none"><tspan x="0" y="0" font-family="Arial" font-size="11" ng-attr-fill="' + state.namefill + '">' + state.shortname + '</tspan></text></g></svg>';
     // var stateMap = '<div id="googleMap" style="width:100%;height:400px;"></div><script>function myMap() {  var mapProp = {center: new google.maps.LatLng(' + state.latlong + '),zoom:' + state.zoomlevel + '};var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);}</script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzZiyHarHVkYQCBywa0HYl0MD77BRiL64&callback=myMap"></script>';
     var stateMap = '<img src="themes/addiction/images/' + state.image + '.png" style = "width:100%;opacity:0.2">';
@@ -331,6 +334,70 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   $timeout(function () {
     dropDownClickOnload($document);
   }, 500);
+
+  // Preselect bought item city county and state
+  vm.preSelectBoughtItem = function () {
+    if (angular.isDefined($rootScope.sponsoredPagesBuyIds)) {
+      var buyIds = $rootScope.sponsoredPagesBuyIds;
+      // city
+      for (var key in $rootScope.city) {
+        if (buyIds.indexOf($rootScope.city[key].id) >= 0) {
+          var idAlreadyExist = 0;
+          for (var mod in $rootScope.cityModel) {
+            if (buyIds.indexOf($rootScope.cityModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            var modelData = {
+              id: $rootScope.city[key].id
+            };
+            $rootScope.cityModel.push(modelData);
+          }
+        }
+      }
+      // county
+      for (key in $rootScope.county) {
+        if (buyIds.indexOf($rootScope.county[key].id) >= 0) {
+          idAlreadyExist = 0;
+          for (mod in $rootScope.countyModel) {
+            if (buyIds.indexOf($rootScope.countyModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            modelData = {
+              id: $rootScope.county[key].id
+            };
+            $rootScope.countyModel.push(modelData);
+          }
+        }
+      }
+
+      // State
+      for (key in $rootScope.stateIds) {
+        // console.log($rootScope.stateIds[key]+' name: '+$rootScope.stateIds[key].name+ ' short: '+$rootScope.stateIds[key].state);
+        if (buyIds.indexOf($rootScope.stateIds[key].id) >= 0) {
+          //  console.log('id: '+$rootScope.stateIds[key].id);
+          // console.log('buy id matched' + ' slu: '+$rootScope.stateIds[key].slug);
+          var stateSelectedData = {
+            id: $rootScope.stateIds[key].id,
+            shortname: $rootScope.stateIds[key].slug, // $rootScope.stateIds[key].name,
+            state: ($rootScope.stateIds[key].state === '') ? $rootScope.stateIds[key].name : $rootScope.stateIds[key].state
+          };
+          var index = $rootScope.checkedStateModel.indexOf(stateSelectedData.shortname);
+          //  console.log('state mode: ' + $rootScope.checkedStateModel + ' shortname: ' + stateSelectedData.shortname + ' index: ' + index);
+          if (index === -1) {
+            $rootScope.checkedStateModel.push(stateSelectedData.shortname);
+            $rootScope.checkedStateDetail.push(stateSelectedData);
+            //  console.log('pushed: ' + stateSelectedData.id + ' sh: ' + stateSelectedData.shortname + '  ' + stateSelectedData.state);
+          }
+        }
+      }
+    }
+  };
 }
 
 function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, localStorageService) {
@@ -454,6 +521,10 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
+
+    // init preselectbought item
+    vm.preSelectBoughtItem();
+
     var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect=""  options="$root.city" checkboxes="true" selected-model="$root.cityModel" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity, onItemSelect: citySelectFun, onItemDeselect: deSelectCityFun}" ></div>';
     var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect=""  options="$root.county" checkboxes="true" selected-model="$root.countyModel" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeSelect: deSelectCountyFun }"></div>';
 
@@ -470,7 +541,11 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
       controllerAs: 'vmModalCtrl',
       controller: function () {
         var vmModal = this;
-        if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
+        // console.log('state: ' + state.name);
+        vmModal.stateSelectCheck = false;
+        //  var full = state.fullname.toLowerCase();
+        //  console.log('shor: '+state.shortname+ ' '+$rootScope.checkedStateModel+ ' full nam: '+full);
+        if (angular.isDefined($rootScope.checkedStateModel) && ($rootScope.checkedStateModel.indexOf(state.shortname) >= 0 || $rootScope.checkedStateModel.indexOf(state.shortname.toLowerCase()) >= 0 || $rootScope.checkedStateModel.indexOf(state.fullname.toLowerCase()) >= 0)) {
           vmModal.stateSelectCheck = true;
         }
         $rootScope.ok = function () {

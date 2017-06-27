@@ -1,9 +1,10 @@
-module.exports = ['$log', '$http', 'endPoint', service];
+module.exports = ['$log', '$http', 'endPoint', 'UserService', service];
 
-function service($log, $http, endPoint) {
+function service($log, $http, endPoint, UserService) {
   return {
     getCartInfo: getCartInfo,
-    getPriceInfo: getSignupPriceInfo
+    getSignupPriceInfo: getSignupPriceInfo,
+    getPriceInfo: getPriceInfo
   };
 
   // getCartInfo
@@ -13,7 +14,21 @@ function service($log, $http, endPoint) {
 
   // get price info for state, city, county, sponsored
 
-  function getSignupPriceInfo() {
-    return $http.get(endPoint + '/pricing');
+  function getPriceInfo() {
+    return UserService.getToken().then(function (token) {
+      return $http.get(endPoint + '/pricing', {
+        headers: {
+          'Authorization': token
+        }
+      });
+    });
+  }
+
+  function getSignupPriceInfo(token) {
+    return $http.get(endPoint + '/pricing', {
+      headers: {
+        'Authorization': token
+      }
+    });
   }
 }

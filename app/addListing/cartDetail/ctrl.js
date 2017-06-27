@@ -40,6 +40,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       cityIdsApi[i] = id;
       i++;
     }
+    // get signup token
+    var token = localStorageService.get('signupToken');
 
     vm.priceState = 0;
     vm.priceCounty = 0;
@@ -48,7 +50,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     vm.priceSponsored = 0;
     vm.totalExtra = 0;
     // get price info
-    CartDetailService.getPriceInfo().then(function (response) {
+    CartDetailService.getSignupPriceInfo(token).then(function (response) {
       vm.priceState = response.price_state;
       vm.priceCounty = response.price_county;
       vm.priceCity = response.price_city;
