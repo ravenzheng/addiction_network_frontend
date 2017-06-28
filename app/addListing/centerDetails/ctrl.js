@@ -126,7 +126,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         $rootScope.centerSkip = 1;
         localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
 
-        var centerAdded = localStorageService.get('addListingCenteradded', 'sessionStorage');
+        centerAdded = localStorageService.get('addListingCenteradded', 'sessionStorage');
         if (centerAdded === null) {
           $rootScope.centerAdded = [centerName];
         } else {
