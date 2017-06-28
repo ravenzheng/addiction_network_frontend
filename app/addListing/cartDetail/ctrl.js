@@ -272,7 +272,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.stateTotalCost = totalStates;
       vm.cityTotalCost = totalCity;
       vm.countyTotalCost = totalCounty;
-      var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal + totalExtra;
+      // var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal + totalExtra;
+      var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
       vm.totalCost = total * totalCenters;
       $rootScope.total = total * totalCenters;
     }
