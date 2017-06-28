@@ -20,11 +20,14 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       vm.cvv = info.card_code;
     }
   }
+
   // get payment skip detail
   if (angular.isDefined(localStorageService.get('addListingCanSkip', 'sessionStorage'))) {
     var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+    console.log('canhhh:'+canSkip);
     if (canSkip !== null) {
       vm.paymentSkip = canSkip.paymentSkip;
+      //vm.paymentSkip = 1;
     }
   }
 
@@ -78,12 +81,15 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   };
 
   lm.previous = function () {
-    $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    // $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    $state.go(UIState.ADD_LISTING.PAID_MEMBER);
   };
   lm.skipStep = function () {
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
-    $rootScope.addListingStepDone = 6;
-    $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+    // $rootScope.addListingStepDone = 6;
+    $rootScope.addListingStepDone = 4;
+    // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+    $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
 
   lm.resetForm = function () {
@@ -134,24 +140,27 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     var token = localStorageService.get('signupToken');
     service.paymentDetailsAddSignup(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
-      $rootScope.addListingStepDone = 6;
+      // $rootScope.addListingStepDone = 6;
+       $rootScope.addListingStepDone = 4;
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
       // remove from storage
       localStorageService.remove('addListingPaymentDetail');
       lm.resetForm();
 
       // payment can be skips now
-      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');    
       if (canSkip !== null) {
         canSkip.paymentSkip = 1;
       }
       $rootScope.paymentSkip = 1;
       localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
       upgradeMembership(token);
-      $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+      // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+      $state.go(UIState.ADD_LISTING.CENTER_INFO);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
+
     });
   };
 
