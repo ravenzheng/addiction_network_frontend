@@ -24,7 +24,7 @@
               <label for="details">Details:</label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <p>{{ $ctrl.entry.description }} </p>
+              <p>{{ $ctrl.entry.description|removeHTMLTags }} </p>
             </div>
           </div>
           <div class="adn-row" ng-if="$ctrl.entry.listing_type!='free'">
