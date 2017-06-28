@@ -117,19 +117,19 @@ angular.module(moduleName, [
       template: '<paid-member></paid-member>'
     });
     $stateProvider.state({
-      name: UIState.ADD_LISTING.CENTER_INFO,
+      name: UIState.ADD_LISTING.PAYMENT_DETAILS,
       url: '/step4',
+      template: '<payment-detail></payment-detail>'
+    });
+    $stateProvider.state({
+      name: UIState.ADD_LISTING.CENTER_INFO,
+      url: '/step5',
       template: '<center-info></center-info>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.CENTER_DETAILS,
-      url: '/step5',
-      template: '<center-details></center-details>'
-    });
-    $stateProvider.state({
-      name: UIState.ADD_LISTING.PAYMENT_DETAILS,
       url: '/step6',
-      template: '<payment-detail></payment-detail>'
+      template: '<center-details></center-details>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.SPONSORED_PAGES,
