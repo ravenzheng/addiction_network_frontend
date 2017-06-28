@@ -18,7 +18,8 @@ function service($http, endPoint, UserService) {
     getZipValidation: getZipValidation,
     queryListAll: queryListAll,
     queryStateName: queryStateName,
-    queryDetailFront: queryDetailFront
+    queryDetailFront: queryDetailFront,
+    getSignupPriceInfo: getSignupPriceInfo
   };
 
   // home page, addListing
@@ -163,4 +164,14 @@ function service($http, endPoint, UserService) {
   function queryStateName(shortName) {
     return $http.get(endPoint + '/get_state_full_name?state_code=' + shortName);
   }
+
+  // get pricing info
+  function getSignupPriceInfo(token) {
+    return $http.get(endPoint + '/pricing', {
+      headers: {
+        'Authorization': token
+      }
+    });
+  }
+
 }

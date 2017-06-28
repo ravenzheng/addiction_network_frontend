@@ -8,7 +8,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   vm.membership = localStorageService.get('membershipType');
   $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
-    $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+    // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
   if (angular.isUndefined(vm.multiselectModelCategories)) {
     vm.multiselectModelCategories = [];
@@ -57,7 +58,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     });
   };
 
-  lm.GoStep5 = function () {
+  lm.GoStep6 = function () {
     // saving process is done by saveStep4 rootscope function which is handled in addListing main controller from stateChangeStart
     // this method use to prevent recursing, and add next button feature to top navigation links
 
@@ -88,7 +89,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       localStorageService.set('addListingCenterInfo', centerInfo, 'sessionStorage');
     }
 
-    $rootScope.addListingStepDone = 4;
+    // $rootScope.addListingStepDone = 4;
+    $rootScope.addListingStepDone = 5;
     lm.testZip();
     if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
       $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
@@ -101,8 +103,9 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       $window.location.href = '/#/login';
     }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
-    $rootScope.addListingStepDone = 5;
-    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+    $rootScope.addListingStepDone = 6;
+    // $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+    $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
 
   var usCodes = [205, 251, 659, 256, 334, 907, 403, 780, 264, 268, 520, 928, 480, 602, 623, 501, 479, 870, 242, 246, 441,
@@ -212,6 +215,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   // get payment skip detail
   if (angular.isDefined(localStorageService.get('addListingCanSkip', 'sessionStorage'))) {
     var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+
     if (canSkip !== null) {
       vm.centerSkip = canSkip.centerSkip;
     }
@@ -234,7 +238,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     $rootScope.centerReset = 0; // reset off
   }
 
-  vm.saveStep4 = function () {
+  vm.saveStep5 = function () {
     var categoryName = [];
     for (key in vm.multiselectModelCategories) {
       var categories = String(vm.multiselectModelCategories[key].id);
@@ -257,7 +261,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       'listing_type': 'free',
       'phone_validated': $rootScope.intakephoneValidate
     };
-    $rootScope.addListingStepDone = 4;
+    // $rootScope.addListingStepDone = 4;
+    $rootScope.addListingStepDone = 5;
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerInfo']);
   };
 }

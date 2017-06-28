@@ -169,6 +169,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
   // getting data
   function sponsorList(page) {
+    var sponsoredPagesBuyIds = [];
+    $rootScope.sponsoredPagesBuyIds = [];
     SponsorService.sponsorList(page).then(function (response) {
       var sponsoredAds = response.sponsored_ads;
       var centers = [];
@@ -177,12 +179,161 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           id: sponsoredAds[key].id,
           label: sponsoredAds[key].title
         };
+
+        // if already bought preselect treatment center
+        var sponsoredPages = sponsoredAds[key].sponsored_pages;
+        if (sponsoredPages.length > 0) {
+          // storing other buy ids
+          for (var k in sponsoredPages) {
+            var buyId = sponsoredPages[k].id;
+            if (sponsoredPagesBuyIds.indexOf(buyId) === -1) {
+              sponsoredPagesBuyIds.push(buyId);
+            }
+          }
+
+          var idAlreadyExist = 0;
+          for (var mod in $rootScope.treatmentCentersModel) {
+            if (sponsoredPagesBuyIds.indexOf($rootScope.treatmentCentersModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            var modelData = {
+              id: sponsoredAds[key].id
+            };
+            vm.treatmentCentersModel.push(modelData);
+          }
+        }
       }
+
       vm.treatmentCenters = centers;
       $rootScope.treatmentCentersValue = centers;
+      $rootScope.centerSelected = vm.treatmentCentersModel;
+      $rootScope.sponsoredPagesBuyIds = sponsoredPagesBuyIds;
+
+      vm.preSelectBoughtItem();
     });
   }
-  sponsorList('');
+  sponsorList(''); // init sponsolist
+
+  // preselect bought items only
+  vm.preSelectBoughtItem = function () {
+    if (angular.isDefined($rootScope.sponsoredPagesBuyIds)) {
+      var buyIds = $rootScope.sponsoredPagesBuyIds;
+      // Demographic
+      for (var key in $rootScope.demographic) {
+        if (buyIds.indexOf($rootScope.demographic[key].id) >= 0) {
+          var idAlreadyExist = 0;
+          for (var mod in $rootScope.demographicModel) {
+            if (buyIds.indexOf($rootScope.demographicModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            var model = {
+              id: $rootScope.demographic[key].id
+            };
+            $rootScope.demographicModel.push(model);
+          }
+        }
+      }
+      // treatmentApproach
+      for (key in $rootScope.treatmentApproach) {
+        if (buyIds.indexOf($rootScope.treatmentApproach[key].id) >= 0) {
+          idAlreadyExist = 0;
+          for (mod in $rootScope.treatmentApproachModel) {
+            if (buyIds.indexOf($rootScope.treatmentApproachModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            model = {
+              id: $rootScope.treatmentApproach[key].id
+            };
+            $rootScope.treatmentApproachModel.push(model);
+          }
+        }
+      }
+      // setting
+      for (key in $rootScope.setting) {
+        if (buyIds.indexOf($rootScope.setting[key].id) >= 0) {
+          idAlreadyExist = 0;
+          for (mod in $rootScope.settingModel) {
+            if (buyIds.indexOf($rootScope.settingModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            model = {
+              id: $rootScope.setting[key].id
+            };
+            $rootScope.settingModel.push(model);
+          }
+        }
+      }
+      // additionalServices
+      for (key in $rootScope.additionalServices) {
+        if (buyIds.indexOf($rootScope.additionalServices[key].id) >= 0) {
+          idAlreadyExist = 0;
+          for (mod in $rootScope.additionalServicesModel) {
+            if (buyIds.indexOf($rootScope.additionalServicesModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            model = {
+              id: $rootScope.additionalServices[key].id
+            };
+            $rootScope.additionalServicesModel.push(model);
+          }
+        }
+      }
+      // Payment
+      for (key in $rootScope.payment) {
+        if (buyIds.indexOf($rootScope.payment[key].id) >= 0) {
+          idAlreadyExist = 0;
+          for (mod in $rootScope.paymentModel) {
+            if (buyIds.indexOf($rootScope.paymentModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            model = {
+              id: $rootScope.payment[key].id
+            };
+            $rootScope.paymentModel.push(model);
+          }
+        }
+      }
+      // byDrug
+      for (key in $rootScope.byDrug) {
+        if (buyIds.indexOf($rootScope.byDrug[key].id) >= 0) {
+          idAlreadyExist = 0;
+          for (mod in $rootScope.byDrugModel) {
+            if (buyIds.indexOf($rootScope.byDrugModel[mod].id) >= 0) {
+              idAlreadyExist = 1;
+              break;
+            }
+          }
+          if (idAlreadyExist === 0) {
+            model = {
+              id: $rootScope.byDrug[key].id
+            };
+            $rootScope.byDrugModel.push(model);
+          }
+        }
+      }
+
+      $rootScope.onInit(); // init cart
+    }
+  };
+
   $rootScope.centerSelect = function () {
     // saving to localStorageService
     if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {

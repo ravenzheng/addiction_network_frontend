@@ -21,14 +21,38 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   lm.finish = function () {
     $state.go(UIState.LOGIN);
   };
+
+  var token = localStorageService.get('signupToken');
+
+  var centerAdded = localStorageService.get('addListingCenteradded', 'sessionStorage');
+  if (centerAdded !== null) {
+    $rootScope.centerAdded = centerAdded;
+    service.getSignupPriceInfo(token).then(function (response) {
+      vm.priceFeatured = response.price_featured;
+      vm.priceSponsored = response.price_sponsored;
+      var membershipType = localStorageService.get('membershipType', 'sessionStorage');
+      if (membershipType === 'featured') {
+        vm.centerPrice = vm.priceFeatured;
+      } else if (membershipType === 'sponsored') {
+        vm.centerPrice = vm.priceSponsored;
+      } else {
+        vm.centerPrice = 0;
+      }
+    });
+  }
+
   // vm.popup = function () {
   //   addAgainPrompt(lm, $injector, $rootScope, $state, UIState);
   // };
   $rootScope.activeLink = 'Treatment Center Details';
   vm.submit = function () {
     var featured = false;
+    var paid = false;
     if (membership === 'featured') {
       featured = true;
+      paid = true;
+    } else if (membership === 'sponsored') {
+      paid = true;
     }
     $rootScope.$emit(Status.SUCCEEDED, 'Please wait while we add your Treatment center');
     var formData = new FormData();
@@ -51,6 +75,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       formData.append('treatment_center[' + key + ']', treatmentcenterData[key]);
     }
 
+    formData.append('treatment_center[paid]', paid);
+
     var imageData = vm.image_data;
     if (imageData) {
       var len = imageData.length;
@@ -67,8 +93,6 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       localStorageService.set('addListingCenterDetails', treatmentcenterData, 'sessionStorage');
     }
 
-    var token = localStorageService.get('signupToken');
-
     service.queryListAll(token).then(function (response) {
       // test for center exist or not
       var centerName = $rootScope.centerInfo.center_name;
@@ -83,6 +107,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         $rootScope.$emit(Status.FAILED, 'Treatment center already exist.');
         return;
       }
+
       var canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
       service.addTreatmentCenter(formData, token).then(function () {
         $rootScope.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
@@ -90,6 +115,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         $rootScope.centerReset = 1; // reset on
         lm.resetForm(); // reset on
         localStorageService.remove('addListingCenterInfo', 'addListingCenterDetails');
+
         if (canSkip !== null) {
           canSkip.centerSkip = 1;
         } else {
@@ -100,12 +126,16 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
         $rootScope.centerSkip = 1;
         localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
 
-        if (angular.isDefined($rootScope.centerAdded)) {
-          len = $rootScope.centerAdded.length;
-          $rootScope.centerAdded[len] = centerName;
-        } else {
+        var centerAdded = localStorageService.get('addListingCenteradded', 'sessionStorage');
+        if (centerAdded === null) {
           $rootScope.centerAdded = [centerName];
+        } else {
+          len = centerAdded.length;
+          $rootScope.centerAdded = centerAdded;
+          $rootScope.centerAdded[len] = centerName;
         }
+
+        localStorageService.set('addListingCenteradded', $rootScope.centerAdded, 'sessionStorage');
         addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localStorageService, UIState);
         //  $window.location.href = '/#/login';
       }).catch(function (err) {
@@ -182,9 +212,10 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localSto
           }
           modalInstance.close();
           modalInstance.dismiss('cancel');
-          $rootScope.addListingStepDone = 5;
+          $rootScope.addListingStepDone = 6;
           $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
-          $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+          // $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+          $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
         };
       },
       bindToController: true

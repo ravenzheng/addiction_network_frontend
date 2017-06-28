@@ -28,9 +28,9 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
         var step0 = ['contactInfo'];
         var step1 = step0.concat(['userInfo']);
         var step2 = step1.concat(['paidMember']);
-        var step3 = step2.concat(['centerInfo']);
-        var step4 = step3.concat(['centerDetails']);
-        var step5 = step4.concat(['paymentDetails']);
+        var step3 = step2.concat(['paymentDetails']);
+        var step4 = step3.concat(['centerInfo']);
+        var step5 = step4.concat(['centerDetails']);
         var step6 = step5.concat(['sponsoredPage']);
         var step7 = step6.concat(['bannerAd']);
         var step8 = step7.concat(['featuredListing']);
@@ -58,8 +58,8 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
           }
 
           // trigger savestep for done steps, work like next button
-          if (stepDone === 4 && tostate[1] === 'centerDetails') {
-            $rootScope.saveStep4(); // only save the step
+          if (stepDone === 5 && tostate[1] === 'centerDetails') {
+            $rootScope.saveStep5(); // only save the step
           }
           // trigger savestep for done steps, work like next button
           if (tostate[1] === 'userInfo') {

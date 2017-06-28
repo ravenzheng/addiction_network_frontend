@@ -25,7 +25,7 @@
                     {{ listing.name }}
                   </a>
                 </h3>
-                <p>{{ listing.description }}</p>
+                <p>{{ listing.description|removeHTMLTags }}</p>
               </div>
             </div>
           </li>

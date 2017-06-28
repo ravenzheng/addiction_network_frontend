@@ -15,6 +15,10 @@ function ctrl(UIState) {
     name: 'Membership',
     stateName: 'paidMember'
   }, {
+    uiSref: UIState.ADD_LISTING.PAYMENT_DETAILS,
+    name: 'Payment',
+    stateName: 'paymentDetails'
+  }, {
     uiSref: UIState.ADD_LISTING.CENTER_INFO,
     name: 'Treatment Center',
     stateName: 'centerInfo'
@@ -22,10 +26,6 @@ function ctrl(UIState) {
     uiSref: UIState.ADD_LISTING.CENTER_DETAILS,
     name: 'Treatment Center Details',
     stateName: 'centerDetails'
-  }, {
-    uiSref: UIState.ADD_LISTING.PAYMENT_DETAILS,
-    name: 'Payment',
-    stateName: 'paymentDetails'
   }, {
     uiSref: UIState.ADD_LISTING.SPONSORED_PAGES,
     name: 'Sponsored Pages',
