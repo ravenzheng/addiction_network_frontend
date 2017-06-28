@@ -148,9 +148,11 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       lm.resetForm();
 
       // payment can be skips now
-      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');    
+      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
       if (canSkip !== null) {
         canSkip.paymentSkip = 1;
+      }else{
+        canSkip={paymentSkip:1};
       }
       $rootScope.paymentSkip = 1;
       localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
