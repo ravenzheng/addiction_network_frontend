@@ -1,9 +1,14 @@
-module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService', ctrl];
+module.exports = ['Status', '$log', '$scope', '$rootScope', 'localStorageService', '$window', ctrl];
 
-function ctrl(Status, $log, $scope, $rootScope, localStorageService) {
+function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
+  var lm = $rootScope;
+  var vm = this;
+  lm.cancelState = function () {
+    $window.location.href = '/#/login';
+  };
+
   // initialize
   localStorageService.remove('userInfo');
-  var vm = this;
   $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
   $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];

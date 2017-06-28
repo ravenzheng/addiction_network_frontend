@@ -168,7 +168,7 @@ angular.module(moduleName, [
         '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE2 + '" class="btn btn-default button-next">' +
         '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
         '</button>' +
-        '</div>'
+        '</div><div class="col-sm-12 text-center"><a ng-click="$root.cancelState()" class="btn btn-danger">Finish</a></div>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE2,
@@ -182,7 +182,7 @@ angular.module(moduleName, [
         '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE3 + '" class="btn btn-default button-next">' +
         '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
         '</button>' +
-        '</div>'
+        '</div><div class="col-sm-12 text-center"><a ng-click="$root.cancelState()" class="btn btn-danger">Finish</a></div>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE3,
@@ -196,7 +196,7 @@ angular.module(moduleName, [
         '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE4 + '" class="btn btn-default button-next">' +
         '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
         '</button>' +
-        '</div>'
+        '</div><div class="col-sm-12 text-center"><a ng-click="$root.cancelState()" class="btn btn-danger">Finish</a></div>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE4,
@@ -217,7 +217,7 @@ angular.module(moduleName, [
         '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE5 + '" class="btn btn-default button-next">' +
         '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
         '</button>' +
-        '</div>'
+        '</div><div class="col-sm-12 text-center"><a ng-click="$root.cancelState()" class="btn btn-danger">Finish</a></div>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE5,
@@ -231,7 +231,7 @@ angular.module(moduleName, [
         '<button ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '" class="btn btn-default button-next">' +
         '<i class="fa fa-arrow-right" aria-hidden="true"></i>' +
         '</button>' +
-        '</div>'
+        '</div><div class="col-sm-12 text-center"><a ng-click="$root.cancelState()" class="btn btn-danger">Finish</a></div>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE6,

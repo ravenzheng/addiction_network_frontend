@@ -173,5 +173,4 @@ function service($http, endPoint, UserService) {
       }
     });
   }
-
 }
