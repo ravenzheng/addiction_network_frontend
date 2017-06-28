@@ -47,7 +47,7 @@
       <div class="col-md-8 col-sm-8 col-xs-12">
         <span ng-repeat="center in $root.centerAdded track by $index" ng-init="$ctrl.total=0">{{center}}, </span>
 
-        <span> {{$root.centerPrice}} * {{$root.centerAdded.length}} = ${{$root.centerAdded.length * $root.centerPrice}}</span>
+        <span ng-if="$root.centerAdded.length>0"> {{$root.centerPrice}} * {{$root.centerAdded.length}} = ${{$root.centerAdded.length * $root.centerPrice}}</span>
       </div>
     </div>
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">

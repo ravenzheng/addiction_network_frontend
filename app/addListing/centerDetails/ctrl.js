@@ -14,8 +14,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       $window.location.href = '/#/login';
     }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
-    $rootScope.addListingStepDone = 5;
-    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+    $rootScope.addListingStepDone = 6;
+    $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
 
   lm.finish = function () {
