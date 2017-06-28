@@ -172,7 +172,7 @@ function service($log, $http, endPoint, UserService) {
   function updateStatus(id) {
     return UserService.getToken().then(function (token) {
       return $http({
-        url: endPoint + '/listing_user/sponsored_ad/' + id + '/activate_deactivate',
+        url: endPoint + '/v1/listing_user/sponsored_ad/' + id + '/activate_deactivate',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
