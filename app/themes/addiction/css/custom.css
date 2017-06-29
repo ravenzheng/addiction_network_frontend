@@ -2601,3 +2601,15 @@ i.fa.fa-times.fa-1 {
 .dropdown-menu{
   z-index:10!important;
 }
+.treatment_center_added{
+  width:auto !important;
+  font-weight:bold;
+}
+.custom_treatment_center{
+    border: 1px solid #ccc;
+    width: 62%;
+    margin-left: 14px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
