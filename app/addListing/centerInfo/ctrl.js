@@ -9,7 +9,12 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   $rootScope.activeLink = 'Treatment Center';
   lm.previous = function () {
     // $state.go(UIState.ADD_LISTING.PAID_MEMBER);
-    $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+    var membership = localStorageService.get('membershipType');
+    if (membership === 'free') {
+      $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+    } else {
+      $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
+    }
   };
   if (angular.isUndefined(vm.multiselectModelCategories)) {
     vm.multiselectModelCategories = [];

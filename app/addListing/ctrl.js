@@ -49,7 +49,7 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
           } else if (stepDone === 2 && (step2.indexOf(tostate[1]) === -1)) {
             event.preventDefault();
           } else if (stepDone === 3 && (step3.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
+            // event.preventDefault();
           } else if (stepDone === 4 && (step4.indexOf(tostate[1]) === -1)) {
             event.preventDefault();
           } else if (stepDone === 5 && (step5.indexOf(tostate[1]) === -1)) {
