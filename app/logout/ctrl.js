@@ -15,6 +15,7 @@ function ctrl($window, $log, UserService, $rootScope, localStorageService) {
   localStorageService.remove('signupToken');
   localStorageService.remove('profileData');
   localStorageService.remove('userLoginInfo');
+  localStorageService.remove('addListingCenteradded');
 
   $window.location.href = '/login';
 }

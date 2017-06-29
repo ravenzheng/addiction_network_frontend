@@ -151,8 +151,10 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
       if (canSkip !== null) {
         canSkip.paymentSkip = 1;
-      }else{
-        canSkip={paymentSkip:1};
+      } else {
+        canSkip = {
+          paymentSkip: 1
+        };
       }
       $rootScope.paymentSkip = 1;
       localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');

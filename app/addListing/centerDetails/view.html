@@ -44,10 +44,10 @@
       <div class="col-md-4 col-sm-4 col-xs-12">
         <label for="web_link">Treatment center added:</label>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-12">
-        <span ng-repeat="center in $root.centerAdded track by $index" ng-init="$ctrl.total=0">{{center}}, </span>
+      <div class="col-md-8 col-sm-8 col-xs-12 custom_treatment_center">
+        <p ng-repeat="center in $root.centerAdded track by $index" ng-init="$ctrl.total=0" class="treatment_center_added">{{center}}, </p>
 
-        <span ng-if="$root.centerAdded.length>0"> {{$root.centerPrice}} * {{$root.centerAdded.length}} = ${{$root.centerAdded.length * $root.centerPrice}}</span>
+        <p ng-if="$root.centerPrice>0" class="treatment_center_added"> {{$root.centerPrice}} * {{$root.centerAdded.length}} = ${{$root.centerAdded.length * $root.centerPrice}}</p>
       </div>
     </div>
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">

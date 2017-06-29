@@ -1,4 +1,4 @@
-function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $document, Status, SponsorService, localStorageService) {
+function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, localStorageService) {
   var vm = this;
   $rootScope.activeLink = 'Sponsored Pages';
   vm.multiselectModelLayoutIds = [];
@@ -34,7 +34,9 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       vm.treatmentCentersModel = sponsoredInfo.treatmentCenter;
     }
   }
-
+  vm.skipTo = function () {
+    $window.location.href = '/login';
+  };
   vm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
@@ -237,4 +239,4 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     $rootScope.onInit();
   };
 }
-module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$document', 'Status', 'SponsorService', 'localStorageService', '$timeout', ctrl];
+module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'localStorageService', '$timeout', ctrl];
