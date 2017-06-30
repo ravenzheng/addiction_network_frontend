@@ -138,68 +138,69 @@
           <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="">
               <a href="javascript:void(0)">
-                <input file-model="$ctrl.listing_image" type="file" name="center_image" id="img_upload" onchange="angular.element(this).scope().imagePreview(this)" class="center_image" />
-                <img id="logo_preview" ng-src="{{$ctrl.preview_img}}" width="100" name="logo_preview" />
+                <input ng-model="$ctrl.listing_image" file-model="$ctrl.listing_image" type="file" name="center_image" id="img_upload" onchange="angular.element(this).scope().imagePreview(this)" class="center_image form-control required" />
+                <img id="logo_preview" ng-src="{{$ctrl.preview_img}}" width="100" name="logo_preview" required="" />
               </a>
-              <span ng-show="$ctrl.err_type===1" style="float:left;">Please upload an image with exact size of 308*180 KB.
-              </span>
+              <p ng-show="$ctrl.editCenter.listing_image.$invalid" class="help-block">Please upload image</p>
+              <p class="help-block" ng-show="$ctrl.err_type===1" style="float:left;">Please upload an image with exact size of 308*180 KB.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Description content_1 -->
+        <!-- Description -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
             <label>Description:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_1" name="center_description" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
-            <p ng-show="$ctrl.editCenter.center_description.$error.required">Required</p>
+            <textarea ng-model="$ctrl.description" maxlength="50" name="description" rows="3" cols="100%" class="form-control required" required="" placeholder="Brief Description (Upto 50 words max)"></textarea>
+            <p class="help-block" ng-show="$ctrl.editCenter.description.$error.required">Required</p>
           </div>
         </div>
 
-        <!-- About  Facility content_2 -->
+        <!-- About  Facility content_1 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <label>About Facility:</label>
+            <label>Overview of Program:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_2" name="center_facility" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
-            <p ng-show="$ctrl.editCenter.center_facility.$error.required">Required</p>
+            <textarea ng-model="$ctrl.content_1" name="content_1" rows="3" cols="100%" class="form-control required" required="" placeholder=""></textarea>
+            <p class="help-block" ng-show="$ctrl.editCenter.content_1.$error.required">Required</p>
           </div>
         </div>
 
-        <!-- Treatment Approach content_3 -->
+        <!-- Treatment Approach content_2 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
             <label>Treatment Approach:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_3" name="center_approach" rows="3" cols="100%" class="form-control required" required="true" placeholder=""></textarea>
-            <p ng-show="$ctrl.editCenter.center_approach.$error.required">Required</p>
+            <textarea ng-model="$ctrl.content_2" name="content_2" rows="3" cols="100%" class="form-control required" required="true" placeholder=""></textarea>
+            <p class="help-block" ng-show="$ctrl.editCenter.content_2.$error.required">Required</p>
           </div>
         </div>
 
-        <!-- Unique Selling Points content_4 -->
+        <!-- Unique Selling Points content_3 -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
             <label>Unique Selling Points:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <textarea ng-model="$ctrl.content_4" name="center_philosophy" required="true" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
-            <p ng-show="$ctrl.editCenter.center_philosophy.$error.required">Required</p>
+            <textarea ng-model="$ctrl.content_3" name="content_3" required="true" rows="3" cols="100%" class="form-control required" placeholder=""></textarea>
+            <p class="help-block" ng-show="$ctrl.editCenter.content_3.$error.required">Required</p>
           </div>
         </div>
 
         <!-- Gallery Images -->
-        <div class="adn-row">
+        <!-- <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">
             <label for="gallery"></label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <thumbnail-delete ng-repeat="imgUrl in $ctrl.center_images track by $index" imgurl="imgUrl" on-delete="$ctrl.deleteImage(imgUrl)"></thumbnail-delete>
           </div>
-        </div>
+        </div> -->
 
         <!-- Upload Gallery Images image_data -->
         <div class="adn-row">
@@ -220,7 +221,8 @@
         <div class="adn-row">
           <div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-md-offset-4 col-sm-12 col-xs-12">
             <button type="submit" class="btn adn-btn right" ng-disabled="$ctrl.editCenter.center_name.$invalid ||  $ctrl.editCenter.center_web_link.$invalid || $ctrl.editCenter.center_zip.$invalid || $root.center_phone===0 ||
-            $ctrl.editCenter.description.$error.required || $ctrl.editCenter.city.$error.required || $ctrl.editCenter.state.$error.required || $ctrl.editCenter.center_facility.$invalid || $ctrl.editCenter.center_approach.$invalid || $ctrl.editCenter.center_philosophy.$invalid || $ctrl.multiselectModelCategories.length === 0 || ($ctrl.zipFound === 0)">Submit</button>
+            $ctrl.editCenter.description.$error.required || $ctrl.editCenter.city.$error.required || $ctrl.editCenter.state.$error.required || $ctrl.editCenter.content_1.$invalid || $ctrl.editCenter.content_2.$invalid || $ctrl.editCenter.content_3.$invalid ||
+            $ctrl.multiselectModelCategories.length === 0 || ($ctrl.zipFound === 0)">Submit</button>
           </div>
         </div>
       </form>

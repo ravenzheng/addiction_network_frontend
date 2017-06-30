@@ -11,7 +11,7 @@
             Listing Type
           </th>
           <th>Category</th>
-          <th>Featured</th>
+          <!-- <th>Featured</th> -->
           <th class="head-action">Action</th>
         </tr>
       </thead>
@@ -37,11 +37,11 @@
           <td data-title="Category">{{ center.categories_name }}</td>
           <!-- Featured -->
 
-          <td data-title="featured">
+          <!-- <td data-title="featured">
             <span ng-if="center.listing_type==='free'">{{$ctrl.checkedFeature=false;}}</span>
             <span ng-if="center.listing_type==='featured'">{{$ctrl.checkedFeature=true;}}</span>
             <input type="checkbox" name="featured" ng-model="$root.featured" ng-checked="$ctrl.checkedFeature" ng-click="$root.featureSelect(center.id)" />
-          </td>
+          </td> -->
           <!-- Action view, edit, delete, activate/deactivate -->
           <td data-title="Action">
             <a ui-sref="{{ center.viewLink }}" data-toggle="tooltip" data-placement="bottom" title="View">

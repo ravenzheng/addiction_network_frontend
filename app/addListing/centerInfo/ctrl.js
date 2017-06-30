@@ -85,7 +85,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       'state': vm.state,
       'phone': vm.intakephone,
       'email': vm.intakeemail,
-      'featured': false,
+      // 'featured': false,
       'listing_type': 'free',
       'phone_validated': $rootScope.intakephoneValidate
     };
