@@ -60,6 +60,11 @@ function ctrl($log, $rootScope, Status, $state, UIState, service, userService, l
     vm.year = null;
     vm.month = null;
     vm.cvv = null;
+    vm.address = null;
+    vm.city = null;
+    vm.state = null;
+    vm.zip = null;
+    vm.country = null;
   };
 
   var curYear = new Date().getFullYear();
@@ -87,7 +92,12 @@ function ctrl($log, $rootScope, Status, $state, UIState, service, userService, l
       'last_name': vm.lastName,
       'expiry_year': vm.year,
       'expiry_month': vm.month,
-      'card_code': vm.cvv
+      'card_code': vm.cvv,
+      'address': vm.address,
+      'state': vm.state,
+      'city': vm.city,
+      'country': vm.country,
+      'zip': vm.zip
       //  'default': vm.default
     };
 
@@ -115,6 +125,8 @@ function ctrl($log, $rootScope, Status, $state, UIState, service, userService, l
     // upgrade user
     userService.upgradeUser(formData).then(function ( /* response */ ) {
       $rootScope.$emit(Status.SUCCESS, 'UPGRADE SUCCESSFUL');
+      localStorageService.set('membershipType', type, 'sessionStorage');
+      $rootScope.profileData.type_of_user = type;
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, err.data.error);
       throw err;

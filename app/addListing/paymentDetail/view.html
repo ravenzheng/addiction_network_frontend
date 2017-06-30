@@ -24,7 +24,7 @@
 
     <div class="adn-row">
       <div class="col-md-3 col-sm-3 col-xs-12">
-        <label for="name">First Name: </label>
+        <label for="name">Name: </label>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-12">
         <input placeholder="Name" name="firstName" class="form-control" type="text" ng-model="$root.firstName" ng-minlength="2" ng-maxlength="25" required="" autocomplete="off">
@@ -94,14 +94,51 @@
         <p ng-show="$root.addlistForm.cvv.$invalid" class="help-block">Invalid CVV Code</p>
       </div>
     </div>
+    <!-- Address -->
+    <div class="adn-row">
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <label for="cpwd">Address</label>
+      </div>
+      <div class="col-md-8 col-sm-9 col-xs-12">
+        <input placeholder="Address" name="address" class="form-control" type="text" ng-model="$root.address" ng-minlength="2" required="" autocomplete="off">
+        <p ng-show="$root.addlistForm.address.$invalid" class="help-block">Address</p>
+      </div>
+    </div>
+    <div class="adn-row">
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <label for="cpwd">State, City</label>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <input placeholder="State" name="state" class="form-control" type="text" ng-model="$root.state" ng-minlength="2" required="" autocomplete="off">
+        <p ng-show="$root.addlistForm.state.$invalid" class="help-block">State</p>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <input placeholder="City" name="city" class="form-control" type="text" ng-model="$root.city" ng-minlength="2" required="" autocomplete="off">
+        <p ng-show="$root.addlistForm.city.$invalid" class="help-block">City</p>
+      </div>
+    </div>
+    <!-- Country -->
+    <div class="adn-row">
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <label for="cpwd">Country, Zip</label>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12 ">
+        <input placeholder="Country" name="country" class="form-control" type="text" ng-model="$root.country" ng-minlength="2" required="" autocomplete="off">
+        <p ng-show="$root.addlistForm.country.$invalid" class="help-block">Country</p>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <input placeholder="Zip" name="zip" class="form-control" type="text" ng-model="$root.zip" ng-minlength="5" ng-maxlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="" autocomplete="off">
+        <p ng-show="$root.addlistForm.zip.$invalid" class="help-block">Invalid Zip</p>
+      </div>
+    </div>
     <!-- make default -->
     <div class="adn-row">
       <div class="col-md-3 col-sm-3 col-xs-12">
         <label for="cpwd">Default</label>
       </div>
       <div class="col-md-9 col-sm-9 col-xs-12">
-        <input name="default" ng-model="$root.default" class="form-control default-payment" type="checkbox" />
-        <span>Use these credentials as your default payment method.</span>
+        <input name="default" ng-model="$root.default" class="default-payment" type="checkbox" />
+        <span>Set these credentials as your default payment method.</span>
       </div>
 
     </div>
@@ -109,7 +146,7 @@
     <div class="adn-row">
       <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
         <input class="btn modal_btn btn_size pull-left" value="Previous" type="button" ng-click="$ctrl.previous()">
-        <button type="button" ng-click="$root.submit()" class="btn modal_btn btn_size pull-right" value="Next" id="submit" ng-disabled="$root.addlistForm.card.$invalid || ($ctrl.totalDigits<19) ||  $root.addlistForm.year.$invalid || paymentDetailsForm.month.$invalid || $ctrl.validMonth===0 || $root.addlistForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || $root.addlistForm.middleName.$invalid || $root.addlistForm.lastName.$invalid">Next</button>
+        <button type="button" ng-click="$root.submit()" class="btn modal_btn btn_size pull-right" value="Next" id="submit" ng-disabled="$root.addlistForm.card.$invalid || ($ctrl.totalDigits<19) ||  $root.addlistForm.year.$invalid || paymentDetailsForm.month.$invalid || $ctrl.validMonth===0 || $root.addlistForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || $root.addlistForm.middleName.$invalid || $root.addlistForm.lastName.$invalid || $root.addlistForm.address.$invalid || $root.addlistForm.state.$invalid || $root.addlistForm.city.$invalid ||$root.addlistForm.zip.$invalid || $root.addlistForm.country.$invalid">Next</button>
         <input class="btn modal_btn btn_size pull-right" ng-show="$root.paymentSkip" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
       </div>
     </div>
