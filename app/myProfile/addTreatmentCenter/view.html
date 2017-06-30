@@ -44,7 +44,21 @@
             <p ng-show="$ctrl.addCenter.center_web_link.$invalid" class="help-block">Invalid Format(Correct format: www.google.com)</p>
           </div>
         </div>
-
+        <!-- listing type -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Listing Type:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <select ng-model="$ctrl.listing_type" name="listing_type" required="true">
+              <option value="">Select City</option>
+              <option value="free">Free</option>
+              <option value="paid">Paid</option>
+              <option value="featured">Featured</option>
+            </select>
+            <p ng-show="$ctrl.editCenter.listing_type.$invalid">Required</p>
+          </div>
+        </div>
         <!-- Select State -->
         <div class="adn-row">
           <div class="col-md-4 col-sm-4 col-xs-12">

@@ -159,23 +159,25 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
       var categories = String(vm.multiselectModelCategories[key].id);
       categoryName[key] = categories;
     }
-
+    vm.paid = false;
+    vm.featured = false;
+    if (vm.listing_type === 'paid') {
+      vm.paid = true;
+    } else if (vm.listing_type === 'featured') {
+      vm.featured = true;
+    }
     var data = {
       'center_name': vm.center_name,
       'description': vm.description,
       'center_web_link': vm.center_web_link,
       'listing_image': vm.listing_image,
       'category_id': categoryName,
-      // 'heading_1': vm.heading_1,
-      // 'heading_2': vm.heading_2,
-      // 'heading_3': vm.heading_3,
-      // 'heading_4': vm.heading_4,
       'content_1': vm.content_1,
       'content_2': vm.content_2,
       'content_3': vm.content_3,
       'content_4': vm.content_4,
       'address_line_1': vm.address_line_1,
-      'address_line_2': vm.address_line_2,
+      'address_line_2': '',
       'city': vm.city,
       'heading_1': 'Overview of Program',
       'heading_2': 'Treatment Approach',
@@ -184,9 +186,9 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
       'state': vm.state,
       'phone': vm.phone,
       'email': vm.email,
-      'featured': false
+      'featured': vm.featured,
+      'paid': vm.paid
     };
-
     var formData = new FormData();
     for (key in data) {
       formData.append('treatment_center[' + key + ']', data[key]);

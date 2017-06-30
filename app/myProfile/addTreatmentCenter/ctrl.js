@@ -1,5 +1,6 @@
 module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', 'Status', 'UIState',
-  'TreatmentCenterService', 'MapService', ctrl];
+  'TreatmentCenterService', 'MapService',
+  ctrl];
 
 function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, service, mapService) {
   var vm = this;
@@ -115,13 +116,45 @@ function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, serv
     }
   };
 
+  // function addAgainPrompt() {
+  //   var deletePrompt = '<div class="modal-header"><h7 class="modal-title" id="modal-title"></h7></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> YES </button><button class="btn adn-btn small_button" type="button" ng-click="cancel()"> No </button><div><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 8px;right:18px; font-size: 24px;border-radius: 100%;" ng-click="cancel()"></i></div></div>';
+  //   vm.open = function () {
+  //     var modalInstance = $injector.get('$uibModal').open({
+  //       animation: vm.animationsEnabled,
+  //       ariaLabelledBy: 'modal-title',
+  //       ariaDescribedBy: 'modal-body',
+  //       template: deletePrompt,
+  //       windowClass: 'treatment_center_class',
+  //       controller: function () {
+  //         $rootScope.ok = function () {
+  //           modalInstance.close();
+  //         };
+  //         $rootScope.cancel = function () {
+  //           modalInstance.close();
+  //           modalInstance.dismiss('cancel');
+  //           //  $state.go(UIState.MY_PROFILE.MY_CENTERS);
+  //         };
+  //       },
+  //       bindToController: true
+  //     });
+  //   };
+  //   vm.open();
+  // }
+
   vm.submit = function () {
     var categoryName = [];
     for (var key in vm.multiselectModelCategories) {
       var categories = String(vm.multiselectModelCategories[key].id);
       categoryName[key] = categories;
     }
-
+    //  addAgainPrompt();
+    vm.paid = false;
+    vm.featured = false;
+    if (vm.listing_type === 'paid') {
+      vm.paid = true;
+    } else if (vm.listing_type === 'featured') {
+      vm.featured = true;
+    }
     var data = {
       'center_name': vm.center_name,
       'description': vm.description,
@@ -137,7 +170,7 @@ function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, serv
       'content_3': vm.content_3,
       // 'content_4': vm.content_4,
       'address_line_1': vm.address_line_1,
-      'address_line_2': vm.address_line_2,
+      'address_line_2': '',
       'heading_1': 'Overview of Program',
       'heading_2': 'Treatment Approach',
       'heading_3': 'Unique Selling Points',
@@ -146,7 +179,8 @@ function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, serv
       'state': vm.state,
       'phone': vm.phone,
       'email': vm.email,
-      'featured': false
+      'featured': vm.featured,
+      'paid': vm.paid
     };
     var formData = new FormData();
     for (key in data) {

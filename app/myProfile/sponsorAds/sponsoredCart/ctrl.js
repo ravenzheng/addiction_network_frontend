@@ -207,6 +207,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           if ($rootScope.payment[val].id === $rootScope.paymentModel[key].id) {
             label = $rootScope.payment[val].label;
             // price = $rootScope.payment[val].price;
+            price = vm.priceSponsored;
             break;
           }
         }
