@@ -99,13 +99,50 @@
             <p ng-show="paymentDetailsForm.cvv.$invalid" class="help-block">Invalid CVV Code</p>
           </div>
         </div>
+        <!-- Address -->
+        <div class="adn-row">
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <label for="cpwd">Address</label>
+          </div>
+          <div class="col-md-8 col-sm-9 col-xs-12">
+            <input placeholder="Address" name="address" class="form-control" type="text" ng-model="$ctrl.address" ng-minlength="2" required="" autocomplete="off">
+            <p ng-show="paymentDetailsForm.address.$invalid" class="help-block">Address</p>
+          </div>
+        </div>
+        <div class="adn-row">
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <label for="cpwd">State, City</label>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <input placeholder="State" name="state" class="form-control" type="text" ng-model="$ctrl.state" ng-minlength="2" required="" autocomplete="off">
+            <p ng-show="paymentDetailsForm.state.$invalid" class="help-block">State</p>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <input placeholder="City" name="city" class="form-control" type="text" ng-model="$ctrl.city" ng-minlength="2" required="" autocomplete="off">
+            <p ng-show="paymentDetailsForm.city.$invalid" class="help-block">City</p>
+          </div>
+        </div>
+        <!-- Country -->
+        <div class="adn-row">
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <label for="cpwd">Country, Zip</label>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 ">
+            <input placeholder="Country" name="country" class="form-control" type="text" ng-model="$ctrl.country" ng-minlength="2" required="" autocomplete="off">
+            <p ng-show="paymentDetailsForm.country.$invalid" class="help-block">Country</p>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <input placeholder="Zip" name="zip" class="form-control" type="text" ng-model="$ctrl.zip" ng-minlength="5" ng-maxlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="" autocomplete="off">
+            <p ng-show="paymentDetailsForm.zip.$invalid" class="help-block">Invalid Zip</p>
+          </div>
+        </div>
         <!-- make default -->
         <div class="adn-row">
           <div class="col-md-3 col-sm-3 col-xs-12">
             <label for="cpwd">Default</label>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-12">
-            <input name="default" ng-model="$ctrl.default" class="form-control default-payment" type="checkbox" />
+            <input name="default" ng-model="$ctrl.default" class="default-payment" type="checkbox" />
             <span>Use these credentials as your default payment method.</span>
           </div>
 
@@ -113,7 +150,7 @@
         <!-- Submit -->
         <div class="adn-row">
           <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
-            <button type="button" ng-click="$ctrl.submit()" class="btn modal_btn btn_size pull-right" value="Next" id="submit" ng-disabled="paymentDetailsForm.card.$invalid || ($ctrl.totalDigits<19) ||  paymentDetailsForm.year.$invalid || paymentDetailsForm.month.$invalid || $ctrl.validMonth===0 || paymentDetailsForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || paymentDetailsForm.middleName.$invalid || paymentDetailsForm.lastName.$invalid">Submit</button>
+            <button type="button" ng-click="$ctrl.submit()" class="btn modal_btn btn_size pull-right" value="Next" id="submit" ng-disabled="paymentDetailsForm.card.$invalid || ($ctrl.totalDigits<19) ||  paymentDetailsForm.year.$invalid || paymentDetailsForm.month.$invalid || $ctrl.validMonth===0 || paymentDetailsForm.cvv.$invalid || paymentDetailsForm.firstName.$invalid || paymentDetailsForm.middleName.$invalid || paymentDetailsForm.lastName.$invalid || paymentDetailsForm.state.$invalid || paymentDetailsForm.city.$invalid || paymentDetailsForm.country.$invalid|| paymentDetailsForm.zip.$invalid || paymentDetailsForm.address.$invalid">Submit</button>
           </div>
         </div>
       </form>

@@ -18,6 +18,11 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       vm.year = info.expiry_year;
       vm.month = info.expiry_month;
       vm.cvv = info.card_code;
+      vm.address = info.address;
+      vm.city = info.city;
+      vm.state = info.state;
+      vm.zip = info.zip;
+      vm.country = info.country;
     }
   }
 
@@ -100,6 +105,11 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     vm.year = null;
     vm.month = null;
     vm.cvv = null;
+    vm.address = null;
+    vm.state = null;
+    vm.city = null;
+    vm.country = null;
+    vm.zip = null;
   };
 
   var curYear = new Date().getFullYear();
@@ -127,7 +137,12 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       'last_name': vm.lastName,
       'expiry_year': vm.year,
       'expiry_month': vm.month,
-      'card_code': vm.cvv
+      'card_code': vm.cvv,
+      'address': vm.address,
+      'city': vm.city,
+      'country': vm.country,
+      'zip': vm.zip,
+      'state': vm.state
       //  'default': vm.default
     };
     // saving to localStorageService
