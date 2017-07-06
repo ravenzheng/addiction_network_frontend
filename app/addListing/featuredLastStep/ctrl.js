@@ -6,7 +6,7 @@ function ctrl($window, FeaturedService, $rootScope, UIState, $state, Status) {
     FeaturedService.subscribeFeatured().then(function () {
       $rootScope.$emit(Status.SUCCEEDED, 'Successfully subscribed to featured Listing.');
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['FeaturedListing']);
-      $rootScope.addListingStepDone = 9;
+      $rootScope.addListingStepDone = 8;
       $state.go(UIState.MY_PROFILE.PROFILE);
     });
   };

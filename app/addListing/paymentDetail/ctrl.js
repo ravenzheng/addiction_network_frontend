@@ -92,7 +92,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   lm.skipStep = function () {
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
     // $rootScope.addListingStepDone = 6;
-    $rootScope.addListingStepDone = 4;
+    $rootScope.addListingStepDone = 3;
     // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
@@ -156,7 +156,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     service.paymentDetailsAddSignup(formData, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
       // $rootScope.addListingStepDone = 6;
-      $rootScope.addListingStepDone = 4;
+      $rootScope.addListingStepDone = 3;
       $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
       // remove from storage
       localStorageService.remove('addListingPaymentDetail');
@@ -179,6 +179,28 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
+      $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
+      // $rootScope.addListingStepDone = 6;
+      $rootScope.addListingStepDone = 3;
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
+      // remove from storage
+      localStorageService.remove('addListingPaymentDetail');
+      lm.resetForm();
+
+      // payment can be skips now
+      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+      if (canSkip !== null) {
+        canSkip.paymentSkip = 1;
+      } else {
+        canSkip = {
+          paymentSkip: 1
+        };
+      }
+      $rootScope.paymentSkip = 1;
+      localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
+      upgradeMembership(token);
+      // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+      $state.go(UIState.ADD_LISTING.CENTER_INFO);
     });
   };
 

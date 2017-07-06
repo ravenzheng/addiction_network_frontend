@@ -63,7 +63,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     });
   };
 
-  lm.GoStep6 = function () {
+  lm.GoStep5 = function () {
     // saving process is done by saveStep4 rootscope function which is handled in addListing main controller from stateChangeStart
     // this method use to prevent recursing, and add next button feature to top navigation links
 
@@ -93,9 +93,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     if (localStorageService.isSupported) {
       localStorageService.set('addListingCenterInfo', centerInfo, 'sessionStorage');
     }
-
     // $rootScope.addListingStepDone = 4;
-    $rootScope.addListingStepDone = 5;
+    $rootScope.addListingStepDone = 4;
     lm.testZip();
     if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
       $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
@@ -108,7 +107,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       $window.location.href = '/#/login';
     }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
-    $rootScope.addListingStepDone = 6;
+    $rootScope.addListingStepDone = 5;
     // $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
     $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
@@ -243,7 +242,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     $rootScope.centerReset = 0; // reset off
   }
 
-  vm.saveStep5 = function () {
+  vm.saveStep4 = function () {
     var categoryName = [];
     for (key in vm.multiselectModelCategories) {
       var categories = String(vm.multiselectModelCategories[key].id);
@@ -267,7 +266,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       'phone_validated': $rootScope.intakephoneValidate
     };
     // $rootScope.addListingStepDone = 4;
-    $rootScope.addListingStepDone = 5;
+    $rootScope.addListingStepDone = 4;
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerInfo']);
   };
 }

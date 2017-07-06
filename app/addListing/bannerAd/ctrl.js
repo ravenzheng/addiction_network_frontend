@@ -87,7 +87,7 @@ function ctrl($injector, $scope, $document, $log, $rootScope, Status, $window, l
             AdvertisementService.advertisementAddSignUp(formData, token).then(function () {
               $rootScope.$emit(Status.SUCCEEDED, Status.BANNER_ADD_SUCCEESS_MSG);
               $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
-              $rootScope.addListingStepDone = 8;
+              $rootScope.addListingStepDone = 7;
               $state.go(UIState.ADD_LISTING.FEATURED_LISTING_PAGE1);
             }).catch(function (err) {
               $log.error(err);
@@ -108,9 +108,8 @@ function ctrl($injector, $scope, $document, $log, $rootScope, Status, $window, l
   };
   vm.skipStep = function () {
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['bannerAd']);
-    $rootScope.addListingStepDone = 8;
+    $rootScope.addListingStepDone = 7;
     $state.go(UIState.ADD_LISTING.FEATURED_LISTING_PAGE1);
   };
 }
-
 module.exports = ['$injector', '$scope', '$document', '$log', '$rootScope', 'Status', '$window', 'localStorageService', '$state', 'UIState', 'AdvertisementService', ctrl];
