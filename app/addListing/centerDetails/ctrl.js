@@ -14,7 +14,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
       $window.location.href = '/#/login';
     }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
-    $rootScope.addListingStepDone = 6;
+    $rootScope.addListingStepDone = 5;
     $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
   };
 
@@ -230,7 +230,7 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localSto
           }
           modalInstance.close();
           modalInstance.dismiss('cancel');
-          $rootScope.addListingStepDone = 6;
+          $rootScope.addListingStepDone = 5;
           $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
           // $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
           $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);

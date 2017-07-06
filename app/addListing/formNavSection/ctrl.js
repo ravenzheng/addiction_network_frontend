@@ -6,11 +6,7 @@ function ctrl(UIState) {
     uiSref: UIState.ADD_LISTING.CONTACT_INFO,
     name: 'Contact',
     stateName: 'contactInfo'
-  }, {
-    uiSref: UIState.ADD_LISTING.USER_INFO,
-    name: 'User Info',
-    stateName: 'userInfo'
-  }, {
+  },  {
     uiSref: UIState.ADD_LISTING.PAID_MEMBER,
     name: 'Membership',
     stateName: 'paidMember'

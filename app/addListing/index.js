@@ -37,7 +37,6 @@ angular.module(moduleName, [
           }
           $browser.defer(listener); // Have to do this or changes don't get picked up properly
         });
-
         $element.bind('paste cut', function () {
           $browser.defer(listener);
         });
@@ -79,7 +78,7 @@ angular.module(moduleName, [
     };
   })
   .component('contactInfo', require('./contactInfo'))
-  .component('userInfo', require('./userInfo'))
+  // .component('userInfo', require('./userInfo'))
   .component('centerInfo', require('./centerInfo'))
   .component('centerDetails', require('./centerDetails'))
   .component('formNavSection', require('./formNavSection'))
@@ -107,33 +106,28 @@ angular.module(moduleName, [
       template: '<contact-info></contact-info>'
     });
     $stateProvider.state({
-      name: UIState.ADD_LISTING.USER_INFO,
-      url: '/step2',
-      template: '<user-info></user-info>'
-    });
-    $stateProvider.state({
       name: UIState.ADD_LISTING.PAID_MEMBER,
-      url: '/step3',
+      url: '/step2',
       template: '<paid-member></paid-member>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.PAYMENT_DETAILS,
-      url: '/step4',
+      url: '/step3',
       template: '<payment-detail></payment-detail>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.CENTER_INFO,
-      url: '/step5',
+      url: '/step4',
       template: '<center-info></center-info>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.CENTER_DETAILS,
-      url: '/step6',
+      url: '/step5',
       template: '<center-details></center-details>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.SPONSORED_PAGES,
-      url: '/step7',
+      url: '/step6',
       views: {
         '': {
           template: '<sponsored-page></sponsored-page>'
@@ -146,7 +140,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.BANNER_AD,
-      url: '/step8',
+      url: '/step7',
       template: '<banner-ad></banner-ad>'
     });
     $stateProvider.state({
@@ -156,12 +150,12 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING,
-      url: '/step9',
+      url: '/step8',
       template: '<div class="scroll soft"><featured-listing></featured-listing></div>'
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE1,
-      url: '/step9_1',
+      url: '/step8_1',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page1">' +
         '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">Still Confused Why choose featured listing?</h2></div>' +
@@ -172,7 +166,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE2,
-      url: '/step9_2',
+      url: '/step8_2',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page2">' +
         '<div class="cloud-blue zoomIn"><span class="shadow"></span><h2 class="text-center" style="top: 10px;">We advertise Your Treatment Center on our home page</h2></div>' +
@@ -186,7 +180,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE3,
-      url: '/step9_3',
+      url: '/step8_3',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page3">' +
         '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">But how does it benefit?</h2></div>' +
@@ -200,7 +194,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE4,
-      url: '/step9_4',
+      url: '/step8_4',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page3">' +
         '<div class="cloud-blue zoomIn">' +
@@ -221,7 +215,7 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE5,
-      url: '/step9_5',
+      url: '/step8_5',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<div id="page3">' +
         '<div class="cloud-green zoomIn"><span class="shadow"></span><h2 class="text-center">Still Not Satisfied</h2><a class="btn btn-default btn-not-satisfied" ui-sref="' + UIState.ADD_LISTING.FEATURED_LISTING_PAGE6 + '">Click Here</a></div>' +
@@ -235,10 +229,9 @@ angular.module(moduleName, [
     });
     $stateProvider.state({
       name: UIState.ADD_LISTING.FEATURED_LISTING_PAGE6,
-      url: '/step9_6',
+      url: '/step8_6',
       parent: UIState.ADD_LISTING.FEATURED_LISTING,
       template: '<featured-last-step></featured-last-step>'
-
     });
   }]);
 

@@ -1,6 +1,6 @@
-module.exports = ['$rootScope', '$log', '$state', 'UIState', 'localStorageService', ctrl];
+module.exports = ['$rootScope', '$log', '$state', 'UIState', 'localStorageService', 'TreatmentCenterService', 'Status', ctrl];
 
-function ctrl($rootScope, $log, $state, UIState, localStorageService) {
+function ctrl($rootScope, $log, $state, UIState, localStorageService, service, Status) {
   // todo
   localStorageService.remove('userInfo');
   localStorageService.remove('token');
@@ -11,6 +11,10 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
   vm.last_name = '';
   vm.company = '';
   vm.phone = '';
+  vm.email = '';
+  vm.username = '';
+  vm.password = '';
+  vm.password_confirmation = '';
 
   var usCodes = [205, 251, 659, 256, 334, 907, 403, 780, 264, 268, 520, 928, 480, 602, 623, 501, 479, 870, 242, 246, 441,
     250, 604, 778, 284, 341, 442, 628, 657, 669, 747, 752, 764, 951, 209, 559, 408, 831, 510, 213, 310, 424, 323, 562, 707, 369, 627,
@@ -65,22 +69,92 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService) {
       vm.phone = info.phone;
       // handles phone num validate issue when user go back
       $rootScope.user_phone = info.phone_validated;
+      lm.showSkip = '1';
+      vm.email = info.email;
+      vm.company = info.company;
+      vm.phone = info.phone;
+      vm.username = info.username;
     }
   }
 
-  vm.saveStep1 = function () {
-    $rootScope.contactInfo = {
+  lm.userCreated = function () {
+    $rootScope.addListingStepDone = 1;
+    $rootScope.disableUserinfo = 1;
+    $rootScope.hideSteps = ['contactInfo'];
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['contactInfo']);
+    $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+  };
+
+  // vm.saveStep1 = function () {
+  //   $rootScope.contactInfo = {
+  //     'first_name': vm.first_name,
+  //     'last_name': vm.last_name,
+  //     'company': vm.company,
+  //     'phone': vm.phone
+  //   };
+  //
+  //   if ($rootScope.addListingStepDone < 2) {
+  //     $rootScope.addListingStepDone = 1;
+  //   }
+  //   $rootScope.doneSteps = $rootScope.doneSteps.concat(['contactInfo']);
+  //   $state.go(UIState.ADD_LISTING.USER_INFO);
+  // };
+
+  lm.saveStep = function () {
+    var formData = new FormData();
+    var sigupData = {
+      'email': vm.email,
+      'password': vm.password,
+      'password_confirmation': vm.confirm_password,
       'first_name': vm.first_name,
       'last_name': vm.last_name,
       'company': vm.company,
-      'phone': vm.phone
+      'phone': vm.phone,
+      'username': vm.username,
+      'phone_validated': $rootScope.user_phone
     };
 
-    if ($rootScope.addListingStepDone < 2) {
-      $rootScope.addListingStepDone = 1;
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('addListingUserInfo', sigupData, 'sessionStorage');
     }
-    $rootScope.doneSteps = $rootScope.doneSteps.concat(['contactInfo']);
-    $state.go(UIState.ADD_LISTING.USER_INFO);
+    // saving to localStorageService
+    if (localStorageService.isSupported) {
+      localStorageService.set('userInfo', sigupData, 'sessionStorage');
+      localStorageService.set('userLoginInfo', sigupData, 'sessionStorage');
+    }
+    for (var key in sigupData) {
+      if (key === 'phone_validated') {
+        continue;
+      }
+      formData.append('user[' + key + ']', sigupData[key]);
+    }
+    $rootScope.formdata = formData;
+
+    service.addTreatmentCenterSignUp(formData).then(function (result) {
+      localStorageService.set('signupToken', result.user.auth_token);
+      $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
+      $rootScope.addListingStepDone = 1;
+      $rootScope.disableUserinfo = 1;
+      $rootScope.hideSteps = ['contactInfo'];
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['contactInfo']);
+      $state.go(UIState.ADD_LISTING.PAID_MEMBER);
+    }).catch(function (err) {
+      if (err.data.user) {
+        if (angular.isDefined(err.data.user.email)) {
+          var emailError = err.data.user.email.errors[0];
+          $rootScope.$emit(Status.FAILED, emailError);
+        }
+        if (angular.isDefined(err.data.user.password)) {
+          var passError = err.data.user.password.errors[0];
+          $rootScope.$emit(Status.FAILED, passError);
+        }
+        if (angular.isDefined(err.data.user.username)) {
+          var userError = err.data.user.username.errors[0];
+          $rootScope.$emit(Status.FAILED, userError);
+        }
+      }
+    });
   };
 
   // to prevent recrusion from next button and navigation button

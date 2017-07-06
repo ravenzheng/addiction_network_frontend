@@ -11,7 +11,7 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
   localStorageService.remove('userInfo');
   $rootScope.addListingStepDone = 0;
   $rootScope.hideSteps = [];
-  $rootScope.showSteps = ['contactInfo', 'userInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
+  $rootScope.showSteps = ['contactInfo', 'paidMember', 'centerInfo', 'centerDetails', 'paymentDetails', 'sponsoredPage', 'bannerAd', 'featuredListing'];
   $rootScope.doneSteps = [];
   $rootScope.disableUserinfo = 0;
 
@@ -31,15 +31,14 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
       var tostate = toState.name.split('.');
       if (toState.name !== 'addListing.cartDetail') {
         var step0 = ['contactInfo'];
-        var step1 = step0.concat(['userInfo']);
-        var step2 = step1.concat(['paidMember']);
-        var step3 = step2.concat(['paymentDetails']);
-        var step4 = step3.concat(['centerInfo']);
-        var step5 = step4.concat(['centerDetails']);
-        var step6 = step5.concat(['sponsoredPage']);
-        var step7 = step6.concat(['bannerAd']);
-        var step8 = step7.concat(['featuredListing']);
-
+        var step1 = step0.concat(['paidMember']);
+        var step2 = step1.concat(['paymentDetails']);
+        var step3 = step2.concat(['centerInfo']);
+        var step4 = step3.concat(['centerDetails']);
+        var step5 = step4.concat(['sponsoredPage']);
+        var step6 = step5.concat(['bannerAd']);
+        var step7 = step6.concat(['featuredListing']);
+        // var step8 = step7.concat(['featuredListing']);
         var stepDone = $rootScope.addListingStepDone;
         if (tostate[0] === 'addListing') {
           if (stepDone === 0 && step0.indexOf(tostate[1]) === -1) {
@@ -49,7 +48,7 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
           } else if (stepDone === 2 && (step2.indexOf(tostate[1]) === -1)) {
             event.preventDefault();
           } else if (stepDone === 3 && (step3.indexOf(tostate[1]) === -1)) {
-            // event.preventDefault();
+            event.preventDefault();
           } else if (stepDone === 4 && (step4.indexOf(tostate[1]) === -1)) {
             event.preventDefault();
           } else if (stepDone === 5 && (step5.indexOf(tostate[1]) === -1)) {
@@ -58,18 +57,15 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
             event.preventDefault();
           } else if (stepDone === 7 && (step7.indexOf(tostate[1]) === -1)) {
             event.preventDefault();
-          } else if (stepDone === 8 && (step8.indexOf(tostate[1]) === -1)) {
-            event.preventDefault();
-          }
-
-          // trigger savestep for done steps, work like next button
-          if (stepDone === 5 && tostate[1] === 'centerDetails') {
-            $rootScope.saveStep5(); // only save the step
           }
           // trigger savestep for done steps, work like next button
-          if (tostate[1] === 'userInfo') {
-            $rootScope.saveStep1Nav(); // only save the step
+          if (stepDone === 4 && tostate[1] === 'centerDetails') {
+            $rootScope.saveStep4(); // only save the step
           }
+          // trigger savestep for done steps, work like next button
+          // if (tostate[1] === 'userInfo') {
+          //   $rootScope.saveStep1Nav(); // only save the step
+          // }
           // prevent to display steps other than treatment center and center detail
           if ($rootScope.showSteps.indexOf(tostate[1]) === -1) {
             event.preventDefault();
