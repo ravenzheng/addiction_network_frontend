@@ -51,8 +51,8 @@
       <div class="col-md-6 col-sm-6 col-xs-12">
         <label>Password Confirmation</label>
         <input placeholder="Password Confirmation" id="confirm_password" name="confirm_password" class="form-control required" type="password" ng-model="$root.confirm_password" ng-required="required" valid-password-c="$root.password">
-        <span ng-show="$root.addlistForm.confirm_password.$error.noMatch">Password does not match!
-        </span>
+        <p class="help-block" ng-show="$root.addlistForm.confirm_password.$error.noMatch">Password does not match!
+        </p>
       </div>
     </div>
     <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
