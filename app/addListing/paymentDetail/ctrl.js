@@ -178,8 +178,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       $state.go(UIState.ADD_LISTING.CENTER_INFO);
     }).catch(function (err) {
       $log.error(err);
-      $rootScope.$emit(Status.FAILED, err.data.error);
-      $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
+      $rootScope.$emit(Status.FAILED, err.data.error);      
     });
   };
 
