@@ -386,25 +386,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     }
 
     $rootScope.total = vm.totalCost;
-    // saving to localStorageService
-    var spnonsoredPage = {
-      'cityModel': $rootScope.cityModel,
-      'countyModel': $rootScope.countyModel,
-      'treatmentCenter': $rootScope.treatmentCentersModel,
-      'statesSel': $rootScope.statesSel,
-      'demographic': $rootScope.demographicModel,
-      'treatmentApproach': $rootScope.treatmentApproachModel,
-      'setting': $rootScope.settingModel,
-      'additionalServices': $rootScope.additionalServicesModel,
-      'payment': $rootScope.paymentModel,
-      'byDrug': $rootScope.byDrugModel,
-      'checkedAllStates': $rootScope.checkedAllStates,
-      'checkedStateModel': $rootScope.checkedStateModel,
-      'checkedStateDetail': $rootScope.checkedStateDetail
-    };
-    if (localStorageService.isSupported) {
-      localStorageService.set('myprofileSponsoredPage', spnonsoredPage, 'sessionStorage');
-    }
   };
   vm.continueShop = function () {
     $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);

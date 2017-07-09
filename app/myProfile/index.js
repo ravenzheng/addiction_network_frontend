@@ -25,13 +25,17 @@ angular.module(moduleName, [
   .component('sponsorAdsEdit', require('./sponsorAds/edit'))
   .component('sponsorAdsView', require('./sponsorAds/view'))
   .component('sponsorAdsAdvertise', require('./sponsorAds/advertise'))
+  .component('sponsorStateSelectView', require('./sponsorAds/view/sponsoredAdsStateSelect'))
+  .component('sponsorCartView', require('./sponsorAds/view/sponsoredCart'))
+  .component('sponsorStateSelectEdit', require('./sponsorAds/edit/sponsoredAdsStateSelect'))
+  .component('sponsorCartEdit', require('./sponsorAds/edit/sponsoredCart'))
   .component('paymentDetails', require('./paymentDetails'))
   .component('paymentDetailsAdd', require('./paymentDetails/add'))
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
   .component('upgradeAccount', require('./upgradeAccount'))
-  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
-  .component('sponsorAdsSponsoredCart', require('./sponsorAds/sponsoredCart'))
+  //  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
+  //  .component('sponsorAdsSponsoredCart', require('./sponsorAds/sponsoredCart'))
 
   .component('myProfile', {
     template: require('./view.html'),
