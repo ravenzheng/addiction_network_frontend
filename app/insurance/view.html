@@ -1,0 +1,163 @@
+<div class="container">
+  <div class="row contact_us_otr">
+    <div class="col-lg-7 col-sm-7 col-md-7 col-xs-12">
+      <div class="col-md-12 col-sm-12 pading_0">
+        <div id="success" style="color: green; display: none;" ;=""></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h2 class="contct_heding">Insurance</h2>
+        </div>
+        <!-- BEGIN FORM-->
+        <form id="contactUs" name="$ctrl.contactUs" class="horizontal-form margin-bottom-40" ng-submit="$ctrl.submit()">
+          <div class="col-md-12 col-sm-12 col-xs-12 pading_0">
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Contact First Name
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control" name="fname" ng-model="$ctrl.first_name" required="" autofocus="" id="name">
+              <span class="help-block" ng-show="$ctrl.contactUs.fname.$error.required">Required</span>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Contact Last Name
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="" id="lname">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Email
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="email" ng-model="$ctrl.email" email="true" required="" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i" autofocus="">
+              <span ng-show="$ctrl.contactUs.email.$invalid" class="help-block">Required and please enter valid email</span>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Phone
+                <em class="em_star">*</em>
+              </label>
+              <input ng-model="$ctrl.phone" type="text" name="phone" placeholder="eg. (601) 521-1542" number="true" ng-change="$ctrl.testPhone()" class="form-control required" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14">
+              <span ng-show="$ctrl.contactUs.phone.$error.pattern || $ctrl.contactUs.phone.$error.minlength || $ctrl.contactUs.phone.$error.maxlength" class="help-block">Invalid US number.</span>
+              <span ng-show="$ctrl.contactUs.phone.$error.required" class="help-block">Required</span>
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <h3>Paitient Info
+              </h3>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>First Name
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control" name="fname" ng-model="$ctrl.first_name" required="" autofocus="">
+              <span class="help-block" ng-show="$ctrl.contactUs.fname.$error.required">Required</span>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Last Name
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Client DOB
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <h3>Insurance Info
+              </h3>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Subscriber First Name
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control" name="fname" ng-model="$ctrl.first_name" required="" autofocus="">
+              <span class="help-block" ng-show="$ctrl.contactUs.fname.$error.required">Required</span>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Subscriber Last Name
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Subscriber DOB
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>SSN (Last 4)
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Insurance Providers
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Insurance Policy #
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Group Number
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Insurance Provider Phone Number
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
+              <label>Additional Notes
+                <em class="em_star">*</em>
+              </label>
+              <input type="text" class="form-control required" name="lname" ng-model="$ctrl.last_name" autofocus="" required="">
+              <span class="help-block" ng-show="$ctrl.contactUs.lname.$error.required">Required</span>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="log_btn_div btms_spaces col-md-12 col-sm-12 col-xs-12">
+              <input type="submit" id="submit_profile" class="btn btn-primary modal_btn pull-right" ng-disabled="$ctrl.contactUs.fname.$error.required || $ctrl.contactUs.lname.$error.required|| $ctrl.contactUs.email.$invalid || $ctrl.contactUs.phone.$invalid || $ctrl.contactUs.email.$invalid || $ctrl.contactUs.message.$invalid" value="Submit">
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <footer-ad></footer-ad>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 col-sm-5">
+      <h2 class="contct_heding">Will My Insurance Pay for Alcohol Rehab Treatment?</h2>
+      <p>It’s difficult to make a blanket statement whether any one insurance plan will pay for alcohol rehab or not. The reality is that some insurance plans are more widely accepted than other and some treatment centers only take specific insurance plans. That’s why we collect the information.</p>
+      <p>&nbsp;</p>
+      <p>It allows us to verify exactly what type of coverage you have and then match you to a treatment center that will accept that plan. It also allows us to give you a realistic expectation of what your out of pocket expanses may be, if any.</p>
+      <h2 class="contct_heding">What to Expect</h2>
+      <p>
+        After filling out the attached insurance form, our team will verify the benefits. They call the verification in to the insurance company like any other medical provider would, so your insurance carrier will no know that you’re seeking substance abuse treatment. It will not affect your insurance rates, or your privacy in any way.
+      </p>
+      <p>&nbsp;</p>
+      <p>Once we have verified the benefits on your policy, one of our counselors will call you to discuss. At that point they will find out exactly what you’re looking for, what you need, and a little more about your situation. Then you can decide if any of the available options are a good fit, and we can work on getting you into treatment.</p>
+    </div>
+    <!-- <side-panel></side-panel> -->
+  </div>
+</div>

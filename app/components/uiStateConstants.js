@@ -20,6 +20,7 @@ module.exports = {
   'BLOG': 'blog',
   'BLOGSINGLE': 'blogsingle',
   'BLOGMORE': 'BLOGMORE',
+  'INSURANCE': 'insurance',
   'ADD_LISTING': {
     'INDEX': 'addListing',
     'CONTACT_INFO': 'addListing.contactInfo',
