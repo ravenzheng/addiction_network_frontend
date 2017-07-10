@@ -21,7 +21,6 @@ function ctrl($attrs, UIState, service) {
     // });
 
     getDemographies();
-
   }
 
   function getDemographies() {
