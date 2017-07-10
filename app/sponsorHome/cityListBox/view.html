@@ -5,13 +5,12 @@
 
   <!-- empty listings error-->
   <empty-list-error display="$ctrl.displayError"></empty-list-error>
-
   <!-- city list -->
   <section ng-hide="$ctrl.displayError">
     <ul class="list-locations list-columns">
       <li ng-repeat="city in $ctrl.cities track by $index">
-        <a href ng-click="$ctrl.goToCity({cityName: city})">
-          <i class="glyphicon glyphicon-map-marker"></i>{{ city }}
+        <a href ng-click="$ctrl.goToCity({cityName: city.name})">
+          <i class="glyphicon glyphicon-map-marker"></i>{{ city.name }}
         </a>
       </li>
     </ul>

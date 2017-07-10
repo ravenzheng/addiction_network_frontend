@@ -53,7 +53,7 @@ angular.module(moduleName, [
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.CITY,
       // url: '/sponsorhome/{stateName:[a-zA-Z]{2}}/{countyName}/:cityName',
-      url: '/{stateName}-rehab-centers/{countyName}/:cityName',
+      url: '/{stateName}-rehab-centers/:cityName',
       template: '<sponsor-listing-box></sponsor-listing-box>'
     });
     $stateProvider.state({

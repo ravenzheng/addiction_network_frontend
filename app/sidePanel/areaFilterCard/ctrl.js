@@ -67,13 +67,13 @@ function ctrl($log, $scope, $state, UIState) {
 
   // click to view All Cities of a county
   function goToCities() {
-    if (vm.countyName && vm.stateName) {
-      $state.go(UIState.SPONSOR_HOME.CITIES_OF_COUNTY, {
-        stateName: vm.stateName,
-        countyName: vm.countyName
-      });
-      return;
-    }
+    // if (vm.countyName && vm.stateName) {
+    //   $state.go(UIState.SPONSOR_HOME.CITIES_OF_COUNTY, {
+    //     stateName: vm.stateName,
+    //     countyName: vm.countyName
+    //   });
+    //   return;
+    // }
     if (vm.stateName) {
       $state.go(UIState.SPONSOR_HOME.CITIES_OF_STATE, {
         stateName: vm.stateName

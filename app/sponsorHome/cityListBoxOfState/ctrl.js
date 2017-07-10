@@ -9,11 +9,14 @@ function ctrl($log, $state, UIState, service) {
     // request cities of state. #/sponsorhome/cities/IL
     vm.stateName = $state.params.stateName;
     vm.area = vm.stateName;
-    service.getCitiesWithCountyByState(vm.stateName).then(function (result) {
-      var cities = flatten(result);
+    service.getCitiesByState(vm.stateName).then(function (result) {
+      //  var cities = flatten(result);
+      var cities = result;
+      //  console.log('cites: '+ cities);
       cities.sort();
       vm.citiesWithCounty = result;
       vm.cities = cities;
+      //   console.log('cites: '+ cities);
       vm.displayError = (vm.cities.length === 0);
     }).catch(function (err) {
       $log.error(err);
@@ -64,14 +67,14 @@ function ctrl($log, $state, UIState, service) {
 
   function goToCity(city) {
     // go to city from state page
-    var countyName = findCountyName(city);
-    if (!countyName) {
-      // throw error
-      return;
-    }
+    //  var countyName = findCountyName(city);
+    //  if (!countyName) {
+    // throw error
+    //  return;
+    //  }
     $state.go(UIState.SPONSOR_HOME.CITY, {
       stateName: convertToSlug(vm.stateName),
-      countyName: convertToSlug(countyName),
+      // countyName: '', // convertToSlug(countyName),
       cityName: convertToSlug(city)
     });
   }
