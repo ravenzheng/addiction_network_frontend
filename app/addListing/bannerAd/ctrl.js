@@ -29,6 +29,11 @@ function ctrl($injector, $scope, $document, $log, $rootScope, Status, $window, l
       $document[0].getElementById('logo_preview').src = vm.preview_img;
     };
   };
+  
+   // set price
+  vm.headerCost = '4000';
+  vm.footerCost = '2500';
+  vm.sidebarCost = '3000';
 
   vm.submit = function () {
     // validating file type
