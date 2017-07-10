@@ -50,15 +50,19 @@ function service($http, endPoint, mapConfig) {
     return $http.get(endPoint + '/states');
   }
 
+  // function getCitiesByState(state) {
+  //   var fullname = getFullname(state);
+  //   return $http.get(endPoint + '/cities_states/' + fullname).then(function (result) {
+  //     var flattened = result.reduce(function (accumulator, current) {
+  //       return accumulator.concat(current.cities);
+  //     }, []);
+  //     flattened.sort();
+  //     return flattened;
+  //   });
+  // }
   function getCitiesByState(state) {
     var fullname = getFullname(state);
-    return $http.get(endPoint + '/cities_states/' + fullname).then(function (result) {
-      var flattened = result.reduce(function (accumulator, current) {
-        return accumulator.concat(current.cities);
-      }, []);
-      flattened.sort();
-      return flattened;
-    });
+    return $http.get(endPoint + '/cities_states_slugs/' + fullname);
   }
 
   function getCitiesWithCountyByState(state) {
@@ -68,7 +72,7 @@ function service($http, endPoint, mapConfig) {
 
   function getCountiesByState(state) {
     var fullname = getFullname(state);
-    return $http.get(endPoint + '/counties/' + fullname);
+    return $http.get(endPoint + '/counties_slugs/' + fullname);
   }
 
   function getCitiesByCounty(county) {
