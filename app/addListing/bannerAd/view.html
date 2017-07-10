@@ -21,9 +21,9 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
         <select name="position" ng-model="$ctrl.position" required="true" class="selectpicker1">
-          <option value="footer">footer</option>
-          <option value="header">header</option>
-          <option value="sidebar">sidebar</option>
+          <option value="footer">footer ($ {{$ctrl.footerCost}})</option>
+          <option value="header">header ($ {{$ctrl.headerCost}})</option>
+          <option value="sidebar">sidebar ($ {{$ctrl.sidebarCost}})</option>
         </select>
         <p ng-show="$root.addlistForm.position.$invalid" class="help-block">Select position</p>
       </div>
