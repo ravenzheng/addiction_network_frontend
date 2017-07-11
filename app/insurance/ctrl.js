@@ -1,6 +1,6 @@
-module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$filter', '$window', ctrl];
+module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$filter', '$window', '$state', 'UIState', ctrl];
 
-function ctrl(Status, $log, $rootScope, service, $filter, $window) {
+function ctrl(Status, $log, $rootScope, service, $filter, $window, $state, UIState) {
   // initialize
   var vm = this;
 
@@ -121,7 +121,8 @@ function ctrl(Status, $log, $rootScope, service, $filter, $window) {
     }).catch(function (err) {
       $log.error(err.data);
       vm.clearForm();
-      $window.location.href = '/insurance-prequalification-thank';
+      $state.go(UIState.INSURANCETHANK);
+      // $window.location.href = '/insurance-prequalification-thank';
       // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
