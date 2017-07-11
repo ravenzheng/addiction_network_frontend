@@ -50,6 +50,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
   vm.analyze = function () {};
   mapService.getStates().then(function (response) {
     vm.states = response;
+    // console.log('testing' + response.toUpperCase());
   }).catch(function (err) {
     vm.error_message = err;
   });

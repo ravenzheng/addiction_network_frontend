@@ -120,6 +120,7 @@ function ctrl(Status, $log, $rootScope, service, $filter, $window) {
       $rootScope.$emit(Status.SUCCEEDED, Status.CONTACTUS_SUCCESS_MSG);
     }).catch(function (err) {
       $log.error(err.data);
+      vm.clearForm();
       $window.location.href = '/insurance-prequalification-thank';
       // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });

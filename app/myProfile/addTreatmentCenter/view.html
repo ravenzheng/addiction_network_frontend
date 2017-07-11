@@ -51,7 +51,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <select ng-model="$ctrl.listing_type" name="listing_type" required="true">
-              <option value="">Select City</option>
+              <option value="">Select Listing</option>
               <option value="free">Free</option>
               <option value="paid">Paid</option>
               <option value="featured">Featured</option>
@@ -77,7 +77,7 @@
           <div class="col-md-8 col-sm-8 col-xs-12">
             <select ng-model="$ctrl.city" name="city" ng-change="$ctrl.testZip()" required="true">
               <option value="">Select City</option>
-              <option ng-repeat="cities in $ctrl.cities track by $index" value="{{cities}}">{{cities}}</option>
+              <option ng-repeat="cities in $ctrl.cities track by $index" value="{{cities.name}}">{{cities.name}}</option>
             </select>
             <p class="help-block" ng-show="$ctrl.addCenter.city.$invalid">Required</p>
           </div>

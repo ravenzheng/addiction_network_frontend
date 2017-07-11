@@ -86,7 +86,7 @@
       <div class="col-md-8 col-sm-8 col-xs-12">
         <select required="true" ng-change="$root.getCities(); $ctrl.testZip()" name="state" ng-model="$root.state">
           <option value="">Select State</option>
-          <option ng-repeat="states in $root.states track by $index" value="{{states}}">{{states}}</option>
+          <option ng-repeat="states in $root.states track by $index" value="{{states | uppercase}}">{{states | uppercase}}</option>
         </select>
         <p ng-show="$root.addlistForm.state.$invalid" class="help-block">Required</p>
       </div>
@@ -98,7 +98,7 @@
       <div class="col-md-8 col-sm-8 col-xs-12">
         <select ng-model="$root.city" ng-change="$ctrl.testZip()" name="city">
           <option value="">Select City</option>
-           <option ng-repeat="cities in $root.cities track by $index" value="{{cities.name}}">{{cities.name}}</option>
+          <option ng-repeat="cities in $root.cities track by $index" value="{{cities.name}}">{{cities.name}}</option>
         </select>
       </div>
     </div>
