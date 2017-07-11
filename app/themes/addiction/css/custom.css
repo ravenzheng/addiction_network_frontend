@@ -2623,3 +2623,10 @@ i.fa.fa-times.fa-1 {
 .navbar-header.padding_left_new {
   margin-left:-30px;
 }
+.contact-left {
+  border-right: 1px solid #333;
+  height: 300px;
+}
+h2.contct_heding.text-right {
+    text-align: right !important;
+}
