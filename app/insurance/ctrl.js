@@ -1,6 +1,6 @@
-module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$filter', ctrl];
+module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$filter', '$window', ctrl];
 
-function ctrl(Status, $log, $rootScope, service, $filter) {
+function ctrl(Status, $log, $rootScope, service, $filter, $window) {
   // initialize
   var vm = this;
 
@@ -61,7 +61,7 @@ function ctrl(Status, $log, $rootScope, service, $filter) {
     dateDisabled: false,
     formatYear: 'yyyy',
     maxDate: new Date(2020, 5, 22),
-    minDate: new Date(1950, 1, 01),
+    minDate: new Date(1940, 1, 11),
     startingDay: 1
   };
 
@@ -83,9 +83,8 @@ function ctrl(Status, $log, $rootScope, service, $filter) {
   vm.altInputFormats = ['M!/d!/yyyy'];
 
   vm.submit = function () {
-
-    var dob_client = $filter('date')(vm.dob_client, "MM/dd/yyyy");
-    var dob_sub = $filter('date')(vm.dob_sub, "MM/dd/yyyy");
+    var dobClient = $filter('date')(vm.dob_client, 'MM/dd/yyyy');
+    var dobSub = $filter('date')(vm.dob_sub, 'MM/dd/yyyy');
 
     var data = {
       'Contact_First_Name': vm.first_name,
@@ -94,10 +93,10 @@ function ctrl(Status, $log, $rootScope, service, $filter) {
       'Contact_Phone': vm.phone,
       'Patient_First_Name': vm.first_name_patient,
       'Patient_Last_Name': vm.last_name_patient,
-      'Patient_DOB': dob_client, //This has to be in format mm/dd/yyyy
+      'Patient_DOB': dobClient, // This has to be in format mm/dd/yyyy
       'Subscriber_First_Name': vm.first_name_sub,
       'Subscriber_Last_Name': vm.last_name_sub,
-      'Subscriber_DOB':dob_sub, //This has to be in format mm/dd/yyyy
+      'Subscriber_DOB': dobSub, // This has to be in format mm/dd/yyyy
       'Subscriber_SSN': vm.ssn_sub,
       'Subscriber_Insurance_Provider': vm.insurance_provider,
       'Subscriber_Insurance_Id': vm.insurance_policy,
@@ -107,21 +106,22 @@ function ctrl(Status, $log, $rootScope, service, $filter) {
     };
 
     for (var key in data) {
-      console.log('key: ' + key + ' data: ' + data[key]);
+      // console.log('key: ' + key + ' data: ' + data[key]);
     }
 
     var formData = new FormData();
-    for (var key in data) {
+    for (key in data) {
       formData.append(key, data[key]);
     }
-    service.sendInsuranceForm(data).then(function (response) {
+    service.sendInsuranceForm(data).then(function () {
       //  $state.go(UIState.MY_PROFILE.MY_CENTERS);
-      console.log('resp: ' + response);
+      // console.log('resp: ' + response);
       vm.clearForm();
       $rootScope.$emit(Status.SUCCEEDED, Status.CONTACTUS_SUCCESS_MSG);
     }).catch(function (err) {
-      $log.error(err);
-      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+      $log.error(err.data);
+      $window.location.href = '/insurance-prequalification-thank';
+      // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
 

@@ -15,6 +15,8 @@ angular.module(appName, [
   require('./addListing'),
   require('./aboutUs'),
   require('./contactUs'),
+  require('./contactThank'),
+  require('./insuranceThank'),
   require('./login'),
   require('./logout'),
   require('./blog'),
