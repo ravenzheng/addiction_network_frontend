@@ -108,9 +108,7 @@ var cssAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'themes/addiction/css/map-style.css',
     'ui-bootstrap-csp.css',
     'themes/addiction/css/font-awesome.min.css',
-    'themes/addiction/css/credit_card/style.css',
-    'themes/addiction/css/credit_card/angular-date-picker.css'
-
+    'themes/addiction/css/credit_card/style.css'
   ],
   append: false
 });
@@ -131,8 +129,7 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'angular-ui-router.min.js',
     'ui-bootstrap-tpls.js',
     'angularjs-dropdown-multiselect.min.js',
-    'angular-local-storage.min.js',
-    'theme/addiction/js/angular-date-picker.js'
+    'angular-local-storage.min.js'
   ],
   append: false
 });
