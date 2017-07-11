@@ -20,6 +20,10 @@ angular.module(appName, [
   require('./login'),
   require('./logout'),
   require('./blog'),
+  require('./contactCustomer'),
+  require('./contactCustomerThank'),
+  require('./contactTreatmentCenter'),
+  require('./contactTreatmentThank'),
   require('./insurance')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))

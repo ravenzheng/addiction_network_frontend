@@ -12,8 +12,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     smartButtonMaxItems: 1,
     smartButtonTextConverter: function () {
       return 'Treatment Center';
-    }
-    //  selectionLimit: 1
+    },
+    selectionLimit: 1
   };
   vm.treatmentCenter = {
     buttonDefaultText: 'Select Treatment Center'

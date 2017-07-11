@@ -66,7 +66,7 @@ function ctrl(Status, $log, $rootScope, service, $window) {
     }).catch(function (err) {
       $log.error(err);
       vm.clearForm();
-      $window.location.href = '/contactus-thank';
+      $window.location.href = '/contact-treatment-center-thank';
       // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
