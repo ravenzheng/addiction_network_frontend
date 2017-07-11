@@ -1,6 +1,6 @@
-module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', ctrl];
+module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$filter', ctrl];
 
-function ctrl(Status, $log, $rootScope, service) {
+function ctrl(Status, $log, $rootScope, service, $filter) {
   // initialize
   var vm = this;
 
@@ -26,33 +26,97 @@ function ctrl(Status, $log, $rootScope, service) {
       if (len > 3) {
         var code = vm.phone.substring(0, 3);
         if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
-          vm.contactUs.phone.$error.pattern = true;
-          vm.contactUs.phone.$valid = false;
-          vm.contactUs.phone.$invalid = true;
+          vm.insuranceForm.phone.$error.pattern = true;
+          vm.insuranceForm.phone.$valid = false;
+          vm.insuranceForm.phone.$invalid = true;
         } else {
-          vm.contactUs.phone.$error.pattern = false;
-          vm.contactUs.phone.$valid = true;
-          vm.contactUs.phone.$invalid = false;
+          vm.insuranceForm.phone.$error.pattern = false;
+          vm.insuranceForm.phone.$valid = true;
+          vm.insuranceForm.phone.$invalid = false;
         }
       }
     }
   };
 
+  vm.testPhoneIns = function () {
+    if (angular.isDefined(vm.phone_ins_provider)) {
+      var len = vm.phone_ins_provider.length;
+      if (len > 3) {
+        var code = vm.phone_ins_provider.substring(0, 3);
+        if ((usCodes.indexOf(parseInt(code, 10)) === -1)) {
+          vm.insuranceForm.phone_num_ins.$error.pattern = true;
+          vm.insuranceForm.phone_num_ins.$valid = false;
+          vm.insuranceForm.phone_num_ins.$invalid = true;
+        } else {
+          vm.insuranceForm.phone_num_ins.$error.pattern = false;
+          vm.insuranceForm.phone_num_ins.$valid = true;
+          vm.insuranceForm.phone_num_ins.$invalid = false;
+        }
+      }
+    }
+  };
+
+  // Datepicker
+  vm.dateOptions = {
+    dateDisabled: false,
+    formatYear: 'yyyy',
+    maxDate: new Date(2020, 5, 22),
+    minDate: new Date(1950, 1, 01),
+    startingDay: 1
+  };
+
+  vm.openDobSub = function () {
+    vm.popupSub.opened = true;
+  };
+  vm.popupSub = {
+    opened: false
+  };
+
+  vm.openDobClient = function () {
+    vm.popupClient.opened = true;
+  };
+  vm.popupClient = {
+    opened: false
+  };
+  vm.formats = ['MM/dd/yyyy', 'dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  vm.format = vm.formats[0];
+  vm.altInputFormats = ['M!/d!/yyyy'];
+
   vm.submit = function () {
+
+    var dob_client = $filter('date')(vm.dob_client, "MM/dd/yyyy");
+    var dob_sub = $filter('date')(vm.dob_sub, "MM/dd/yyyy");
+
     var data = {
-      'first_name': vm.first_name,
-      'last_name': vm.last_name,
-      'email': vm.email,
-      'phone': vm.phone,
-      'message': vm.message
+      'Contact_First_Name': vm.first_name,
+      'Contact_Last_Name': vm.last_name,
+      'Contact_Email': vm.email,
+      'Contact_Phone': vm.phone,
+      'Patient_First_Name': vm.first_name_patient,
+      'Patient_Last_Name': vm.last_name_patient,
+      'Patient_DOB': dob_client, //This has to be in format mm/dd/yyyy
+      'Subscriber_First_Name': vm.first_name_sub,
+      'Subscriber_Last_Name': vm.last_name_sub,
+      'Subscriber_DOB':dob_sub, //This has to be in format mm/dd/yyyy
+      'Subscriber_SSN': vm.ssn_sub,
+      'Subscriber_Insurance_Provider': vm.insurance_provider,
+      'Subscriber_Insurance_Id': vm.insurance_policy,
+      'Subscriber_Group_Id': vm.group_number,
+      'Subscriber_Insurance_Phone': vm.phone_ins_provider,
+      'Other_Comments': vm.additional_notes
     };
+
+    for (var key in data) {
+      console.log('key: ' + key + ' data: ' + data[key]);
+    }
 
     var formData = new FormData();
     for (var key in data) {
       formData.append(key, data[key]);
     }
-    service.sendMessage(formData).then(function () {
+    service.sendInsuranceForm(data).then(function (response) {
       //  $state.go(UIState.MY_PROFILE.MY_CENTERS);
+      console.log('resp: ' + response);
       vm.clearForm();
       $rootScope.$emit(Status.SUCCEEDED, Status.CONTACTUS_SUCCESS_MSG);
     }).catch(function (err) {
