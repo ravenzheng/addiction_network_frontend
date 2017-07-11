@@ -40,23 +40,24 @@ function ctrl(Status, $log, $rootScope, service) {
 
   vm.submit = function () {
     var data = {
-      'first_name': vm.first_name,
-      'last_name': vm.last_name,
-      'email': vm.email,
-      'phone': vm.phone,
-      'message': vm.message
+      'First_Name': vm.first_name,
+      'Last_Name': vm.last_name,
+      'Contact_Email': vm.email,
+      'Contact_Phone': vm.phone,
+      'Other_Comments': vm.message
     };
 
     var formData = new FormData();
     for (var key in data) {
       formData.append(key, data[key]);
     }
-    service.sendMessage(formData).then(function () {
+    service.sendMessage(data).then(function (response) {
+      console.log('test: ' + response);
       //  $state.go(UIState.MY_PROFILE.MY_CENTERS);
       vm.clearForm();
       $rootScope.$emit(Status.SUCCEEDED, Status.CONTACTUS_SUCCESS_MSG);
     }).catch(function (err) {
-      $log.error(err);
+      $log.error(err);    
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
