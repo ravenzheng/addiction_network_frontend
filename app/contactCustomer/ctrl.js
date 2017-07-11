@@ -1,6 +1,6 @@
-module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$window', ctrl];
+module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$window', '$state', 'UIState', ctrl];
 
-function ctrl(Status, $log, $rootScope, service, $window) {
+function ctrl(Status, $log, $rootScope, service, $window, $state, UIState) {
   // initialize
   var vm = this;
 
@@ -66,7 +66,8 @@ function ctrl(Status, $log, $rootScope, service, $window) {
     }).catch(function (err) {
       $log.error(err);
       vm.clearForm();
-      $window.location.href = '/contact-customer-thank';
+      $state.go(UIState.CONTACTCUSTOMERTHANK);
+      // $window.location.href = '/contact-customer-thank';
       // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
