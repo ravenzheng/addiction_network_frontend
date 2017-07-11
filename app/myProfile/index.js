@@ -24,7 +24,6 @@ angular.module(moduleName, [
   // .component('sponsorAdsAdd', require('./sponsorAds/add'))
   .component('sponsorAdsEdit', require('./sponsorAds/edit'))
   .component('sponsorAdsView', require('./sponsorAds/view'))
-  .component('sponsorAdsAdvertise', require('./sponsorAds/advertise'))
   .component('sponsorStateSelectView', require('./sponsorAds/view/sponsoredAdsStateSelect'))
   .component('sponsorCartView', require('./sponsorAds/view/sponsoredCart'))
   .component('sponsorStateSelectEdit', require('./sponsorAds/edit/sponsoredAdsStateSelect'))
