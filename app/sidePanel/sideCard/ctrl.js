@@ -1,6 +1,6 @@
 module.exports = ['$attrs', 'UIState', 'SponsorService', ctrl];
 
-var originalDateset = require('./slug.json');
+// var originalDateset = require('./slug.json');
 
 function ctrl($attrs, UIState, service) {
   var vm = this;

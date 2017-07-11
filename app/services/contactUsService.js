@@ -1,6 +1,6 @@
-module.exports = ['$q', '$log', '$http', 'endPoint', service];
+module.exports = ['$q', '$log', '$http', service];
 
-function service($q, $log, $http, endPoint) {
+function service($q, $log, $http) {
   return {
     sendMessage: sendMessage,
     sendInsuranceForm: sendInsuranceForm
@@ -25,7 +25,8 @@ function service($q, $log, $http, endPoint) {
       data: formdata,
       //  transformRequest: angular.identity,
       headers: {
-         'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
         // 'Content-Type': undefined
         // 'Authorization': token
       }

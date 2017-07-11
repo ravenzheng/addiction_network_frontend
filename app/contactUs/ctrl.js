@@ -1,6 +1,6 @@
-module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', ctrl];
+module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$window', ctrl];
 
-function ctrl(Status, $log, $rootScope, service) {
+function ctrl(Status, $log, $rootScope, service, $window) {
   // initialize
   var vm = this;
 
@@ -52,13 +52,15 @@ function ctrl(Status, $log, $rootScope, service) {
       formData.append(key, data[key]);
     }
     service.sendMessage(data).then(function (response) {
-      console.log('test: ' + response);
+      // console.log('test: ' + response);
       //  $state.go(UIState.MY_PROFILE.MY_CENTERS);
+      $log.error(response);
       vm.clearForm();
       $rootScope.$emit(Status.SUCCEEDED, Status.CONTACTUS_SUCCESS_MSG);
     }).catch(function (err) {
-      $log.error(err);    
-      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+      $log.error(err);
+      $window.location.href = '/contactus-thank';
+      // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });
   };
 

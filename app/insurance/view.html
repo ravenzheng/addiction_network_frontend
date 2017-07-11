@@ -59,13 +59,13 @@
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
               <label>Client DOB
-                <em class="em_star">*</em>
+                <em class="em_star">* &nbsp;</em>
               </label>
               <!-- <input type="text" class="form-control" uib-datepicker-popup="{{dd/mm/yyyy}}" ng-model="$ctrldt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" /> -->
               <p class="input-group">
                 <input type="text" class="form-control" name="client_dob" ng-click="$ctrl.openDobClient()" uib-datepicker-popup="{{$ctrl.format}}" ng-model="$ctrl.dob_client" is-open="$ctrl.popupClient.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="$ctrl.altInputFormats" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default"  ng-click="$ctrl.openDobClient()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click="$ctrl.openDobClient()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </p>
               <!-- <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div> -->
@@ -94,7 +94,7 @@
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 main_wrap_form_inner_sub">
               <label>Subscriber DOB
-                <em class="em_star">*</em>
+                <em class="em_star">* &nbsp;</em>
               </label>
               <p class="input-group">
                 <input type="text" class="form-control" uib-datepicker-popup="{{$ctrl.format}}" ng-click="$ctrl.openDobSub()" name="sub_dob" ng-model="$ctrl.dob_sub" is-open="$ctrl.popupSub.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="$ctrl.altInputFormats" />
