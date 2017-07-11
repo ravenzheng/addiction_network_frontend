@@ -59,6 +59,7 @@ function ctrl(Status, $log, $rootScope, service, $window) {
       $rootScope.$emit(Status.SUCCEEDED, Status.CONTACTUS_SUCCESS_MSG);
     }).catch(function (err) {
       $log.error(err);
+      vm.clearForm();
       $window.location.href = '/contactus-thank';
       // $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
     });

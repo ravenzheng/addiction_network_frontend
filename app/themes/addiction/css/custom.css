@@ -304,6 +304,7 @@ p {
 .collapse .navbar-nav {
   margin-top: 26px;
   margin-bottom: 26px;
+  width: 660px;
 }
 
 .navbar-collapse .nav .dropdown .dropdown-toggle:hover {
@@ -1589,6 +1590,7 @@ address {
   width: auto;
   padding: 0;
   margin: 29px 0 0;
+  margin-right: -40px;
 }
 
 .social_ul li {
@@ -2617,4 +2619,7 @@ i.fa.fa-times.fa-1 {
     font-size: 20px;
     margin-left: 18px;
     margin-bottom: 20px;
+}
+.navbar-header.padding_left_new {
+  margin-left:-30px;
 }

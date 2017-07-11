@@ -7,6 +7,9 @@ var internalLinks = [{
   uiSref: UIState.CENTER_MAP.MAP,
   name: 'Treatment Centers'
 }, {
+  uiSref: UIState.INSURANCE,
+  name: 'Insurance'
+}, {
   uiSref: UIState.ABOUT_US,
   name: 'About Us'
 }, {
