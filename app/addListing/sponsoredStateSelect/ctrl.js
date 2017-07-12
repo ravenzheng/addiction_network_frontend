@@ -396,7 +396,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     var stateShortName = state.shortname;
     var stateLower = stateShortName.toLowerCase();
     for (var key in $rootScope.stateIds) {
-      //  if ($rootScope.stateIds[key].name === state.shortname) {
+      //  if ($rootScope.stateIds[key].name === state.shortname) {    
       if ($rootScope.stateIds[key].slug === stateLower) {
         var stateSelectedData = {
           'id': $rootScope.stateIds[key].id,
