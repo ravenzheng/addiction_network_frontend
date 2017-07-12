@@ -280,17 +280,30 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   }
 
   vm.deleteCartItem = function (key, item) {
+    // treatment centers
+    var totalCenters = 0;
+    for (var value in $rootScope.centerSelected) {
+      for (var val in $rootScope.treatmentCentersValue) {
+        if ($rootScope.centerSelected[value].id === $rootScope.treatmentCentersValue[val].id) {
+          vm.treatmentCenters[value] = {
+            id: $rootScope.centerSelected[value].id,
+            label: $rootScope.treatmentCentersValue[value].label
+          };
+        }
+      }
+      totalCenters++;
+    }
     if (item === 'state') {
-      vm.totalCost -= vm.priceState;
-      vm.stateTotalCost -= vm.priceState;
+      vm.totalCost -= vm.priceState * totalCenters;
+      vm.stateTotalCost -= vm.priceState * totalCenters;
 
       $rootScope.statesSel.splice(key, 1);
       // $rootScope.statesDetail.splice(key, 1);
       $rootScope.checkedStateModel.splice(key, 1);
       $rootScope.checkedStateDetail.splice(key, 1);
     } else if (item === 'county') {
-      vm.totalCost -= vm.priceCounty;
-      vm.countyTotalCost -= vm.priceCounty;
+      vm.totalCost -= vm.priceCounty * totalCenters;
+      vm.countyTotalCost -= vm.priceCounty * totalCenters;
       var id = $rootScope.counties[key].id;
       for (var index in $rootScope.countyModel) {
         if ($rootScope.countyModel[index].id === id) {
@@ -300,8 +313,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       $rootScope.counties.splice(key, 1);
     } else if (item === 'city') {
-      vm.totalCost -= vm.priceCity;
-      vm.cityTotalCost -= vm.priceCity;
+      vm.totalCost -= vm.priceCity * totalCenters;
+      vm.cityTotalCost -= vm.priceCity * totalCenters;
       id = $rootScope.cities[key].id;
       for (index in $rootScope.cityModel) {
         if ($rootScope.cityModel[index].id === id) {
@@ -313,8 +326,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     } else if (item === 'demographic') {
       // vm.totalCost -= $rootScope.demographic[key].price;
       // vm.demographicTotal -= $rootScope.demographic[key].price;
-      vm.totalCost -= vm.priceSponsored;
-      vm.demographicTotal -= vm.priceSponsored;
+      vm.totalCost -= vm.priceSponsored * totalCenters;
+      vm.demographicTotal -= vm.priceSponsored * totalCenters;
       id = vm.demographic[key].id;
       for (index in $rootScope.demographicModel) {
         if ($rootScope.demographicModel[index].id === id) {
@@ -326,8 +339,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     } else if (item === 'treatmentApproach') {
       // vm.totalCost -= $rootScope.treatmentApproach[key].price;
       // vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
-      vm.totalCost -= vm.priceSponsored;
-      vm.treatmentApproachTotal -= vm.priceSponsored;
+      vm.totalCost -= vm.priceSponsored * totalCenters;
+      vm.treatmentApproachTotal -= vm.priceSponsored * totalCenters;
       id = vm.treatmentApproach[key].id;
       for (index in $rootScope.treatmentApproachModel) {
         if ($rootScope.treatmentApproachModel[index].id === id) {
@@ -339,8 +352,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     } else if (item === 'setting') {
       // vm.totalCost -= $rootScope.setting[key].price;
       // vm.settingTotal -= $rootScope.setting[key].price;
-      vm.totalCost -= vm.priceSponsored;
-      vm.settingTotal -= vm.priceSponsored;
+      vm.totalCost -= vm.priceSponsored * totalCenters;
+      vm.settingTotal -= vm.priceSponsored * totalCenters;
       id = vm.setting[key].id;
       for (index in $rootScope.settingModel) {
         if ($rootScope.settingModel[index].id === id) {
@@ -352,8 +365,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     } else if (item === 'additionalServices') {
       // vm.totalCost -= $rootScope.additionalServices[key].price;
       // vm.additionalServicesTotal -= $rootScope.additionalServices[key].price;
-      vm.totalCost -= vm.priceSponsored;
-      vm.additionalServicesTotal -= vm.priceSponsored;
+      vm.totalCost -= vm.priceSponsored * totalCenters;
+      vm.additionalServicesTotal -= vm.priceSponsored * totalCenters;
       id = vm.additionalServices[key].id;
       for (index in $rootScope.additionalServicesModel) {
         if ($rootScope.additionalServicesModel[index].id === id) {
@@ -365,8 +378,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     } else if (item === 'payment') {
       // vm.totalCost -= $rootScope.payment[key].price;
       // vm.paymentTotal -= $rootScope.payment[key].price;
-      vm.totalCost -= vm.priceSponsored;
-      vm.paymentTotal -= vm.priceSponsored;
+      vm.totalCost -= vm.priceSponsored * totalCenters;
+      vm.paymentTotal -= vm.priceSponsored * totalCenters;
       id = vm.payment[key].id;
       for (index in $rootScope.paymentModel) {
         if ($rootScope.paymentModel[index].id === id) {
@@ -378,8 +391,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     } else if (item === 'byDrug') {
       // vm.totalCost -= $rootScope.byDrug[key].price;
       // vm.byDrugTotal -= $rootScope.byDrug[key].price;
-      vm.totalCost -= vm.priceSponsored;
-      vm.byDrugTotal -= vm.priceSponsored;
+      vm.totalCost -= vm.priceSponsored * totalCenters;
+      vm.byDrugTotal -= vm.priceSponsored * totalCenters;
       id = vm.byDrug[key].id;
       for (index in $rootScope.byDrugModel) {
         if ($rootScope.byDrugModel[index].id === id) {
