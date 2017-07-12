@@ -6,6 +6,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   };
 
   function onInit() {
+    //localStorageService.remove('addListingSponsoredPage');
     // get values from localStorageService
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
@@ -267,15 +268,23 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         }
         totalCenters++;
       }
+      vm.demographicTotal *= totalCenters;
+      vm.treatmentApproachTotal *= totalCenters;
+      vm.settingTotal *= totalCenters;
+      vm.additionalServicesTotal *= totalCenters;
+      vm.paymentTotal = vm.paymentTotal * totalCenters;
+      vm.byDrugTotal = vm.byDrugTotal * totalCenters;
+
       var totalExtra = vm.totalExtra * totalCenters;
       vm.totalExtra = totalExtra;
-      vm.stateTotalCost = totalStates;
-      vm.cityTotalCost = totalCity;
-      vm.countyTotalCost = totalCounty;
+      vm.stateTotalCost = totalStates * totalCenters;
+      vm.cityTotalCost = totalCity * totalCenters;
+      vm.countyTotalCost = totalCounty * totalCenters;
       // var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal + totalExtra;
-      var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
-      vm.totalCost = total * totalCenters;
-      $rootScope.total = total * totalCenters;
+      var total = vm.countyTotalCost + vm.cityTotalCost + vm.stateTotalCost + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
+
+      vm.totalCost = total; //* totalCenters;
+      $rootScope.total = total; //* totalCenters;
     }
   }
 
