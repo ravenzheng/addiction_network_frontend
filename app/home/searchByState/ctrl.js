@@ -5,7 +5,7 @@ function ctrl($state, UIState) {
   vm.onStateSelect = function (state) {
     $state.go(UIState.SPONSOR_HOME.STATE, {
       stateName: state.shortname,
-      slug: state.image
+      slug: state.slugState
     });
   };
 }
