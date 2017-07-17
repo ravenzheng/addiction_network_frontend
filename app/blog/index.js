@@ -19,11 +19,6 @@ angular.module(moduleName, ['ui.router'])
     });
   }]).controller('blogCtrl', require('./ctrl'))
   .controller('blogSingleCtrl', require('./single'))
-  .filter('replaceurl', function () {
-    return function (input) {
-      return input.replace('http://www.addictionnetwork.com/', '//192.185.67.241/');
-    };
-  })
   .controller('nextCtrl', require('./more'));
 
 module.exports = moduleName;
