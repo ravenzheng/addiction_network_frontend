@@ -20,6 +20,18 @@ angular.module(moduleName, [
       return text ? String(text).replace(/<[^>]+>/gm, '') : '';
     };
   })
+  .filter('firstlettercaps', function () {
+    return function (input, all) {
+      var textValue = input.replace('-', ' ');
+      if (input === '') {
+        return '';
+      }
+      var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/;
+      return (!!textValue) ? textValue.replace(reg, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }) : '';
+    };
+  })
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.INDEX,

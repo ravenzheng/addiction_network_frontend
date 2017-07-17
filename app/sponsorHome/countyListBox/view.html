@@ -1,6 +1,6 @@
 <div class="left_content">
   <section-heading>
-    Browse the Best Rehabs in {{ $ctrl.stateName }}
+    Browse the Best Rehabs in {{ $ctrl.stateName | firstlettercaps:true }}
   </section-heading>
   <!-- empty listings error-->
   <empty-list-error display="$ctrl.displayError"></empty-list-error>
