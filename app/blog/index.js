@@ -4,7 +4,7 @@ angular.module(moduleName, ['ui.router'])
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.BLOG,
-      url: '/blog',
+      url: '/blog/',
       template: require('./view.html')
     });
     $stateProvider.state({
