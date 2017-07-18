@@ -9,12 +9,12 @@ angular.module(moduleName, ['ui.router'])
     });
     $stateProvider.state({
       name: UIState.BLOGSINGLE,
-      url: '/blog/{single}',
+      url: '/blog/{single}/',
       template: require('./single.html')
     });
     $stateProvider.state({
       name: UIState.BLOGMORE,
-      url: '/blog/page/{next}',
+      url: '/blog/page/{next}/',
       template: require('./more.html')
     });
   }]).controller('blogCtrl', require('./ctrl'))
