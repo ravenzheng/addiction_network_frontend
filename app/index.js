@@ -41,7 +41,7 @@ angular.module(appName, [
         angular.element.get('http://192.185.67.241/blog/post_exist.php?slug=' + slug, function (data, status) {
           if (status === 'success') {
             if (data > 0) {
-              window.location.href = '/blog' + path;
+              window.location.href = '/blog' + slug;
             } else {
               // $urlRouterProvider.otherwise('/');
               window.location.href = '/';
