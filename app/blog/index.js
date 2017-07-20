@@ -21,7 +21,7 @@ angular.module(moduleName, ['ui.router'])
   .controller('blogSingleCtrl', require('./single'))
   .filter('replaceurl', function () {
     return function (input) {
-      return input.replace('http://www.addictionnetwork.com/blog/', 'http://192.185.67.241/blog/');
+      return input.replace('http://www.addictionnetwork.com/blog/', '//blog.addictionnetwork.com/blog/');
     };
   })
   .controller('nextCtrl', require('./more'));

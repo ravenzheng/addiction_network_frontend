@@ -6,7 +6,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   };
 
   function onInit() {
-    //localStorageService.remove('addListingSponsoredPage');
+    // localStorageService.remove('addListingSponsoredPage');
     // get values from localStorageService
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
@@ -21,26 +21,24 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         if (sponsoredInfo.checkedStateModel) {
           $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
         }
-        if (angular.isDefined(sponsoredInfo.centerWise))
+        if (angular.isDefined(sponsoredInfo.centerWise)) {
           vm.centerWise = sponsoredInfo.centerWise;
-
+        }
       }
     }
 
     if (angular.isDefined(vm.centerWise)) {
-
       // vm.centerWise[$rootScope.activeCenter]={};
-      //vm.centerWise
-      //vm.centerWise[$rootScope.activeCenter] = {};
+      // vm.centerWise
+      // vm.centerWise[$rootScope.activeCenter] = {};
       if (angular.isUndefined(vm.centerWise[$rootScope.activeCenter])) {
         // vm.centerWise.push($rootScope.activeCenter);
         // console.log('pushed');
 
       }
     } else {
-
       vm.centerWise = {};
-      //console.log(vm.centerWise['805']);
+      // console.log(vm.centerWise['805']);
     }
 
     var countyIds = $rootScope.countyModel;
@@ -338,11 +336,11 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       };
 
       if ($rootScope.activeCenter !== false && $rootScope.activeCenter !== '') {
-        console.log(vm.centerWise);
+        // console.log(vm.centerWise);
         vm.centerWise[$rootScope.activeCenter] = centerwise;
       }
       var grandTotal = 0;
-      for (var key in vm.centerWise) {
+      for (key in vm.centerWise) {
         grandTotal += vm.centerWise[key].totalCost;
       }
       $rootScope.total = grandTotal;
@@ -351,7 +349,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
 
   vm.deleteCartItem = function (key, centerId, item) {
 
-    console.log('key:' + key + ' cen:' + centerId);
+    // console.log('key:' + key + ' cen:' + centerId);
     // treatment centers
     var totalCenters = 0;
     for (var value in $rootScope.centerSelected) {
@@ -402,7 +400,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      //$rootScope.cities.splice(key, 1);
+      // $rootScope.cities.splice(key, 1);
       vm.centerWise[centerId].cities.splice(key, 1);
     } else if (item === 'demographic') {
       // vm.totalCost -= $rootScope.demographic[key].price;
@@ -420,7 +418,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       //  vm.demographic.splice(key, 1);
       vm.centerWise[centerId].demographic.splice(key, 1);
-      console.log('center id: ' + centerId + '  ' + vm.centerWise[centerId]);
+      //  console.log('center id: ' + centerId + '  ' + vm.centerWise[centerId]);
     } else if (item === 'treatmentApproach') {
       // vm.totalCost -= $rootScope.treatmentApproach[key].price;
       // vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
@@ -435,7 +433,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      //vm.treatmentApproach.splice(key, 1);
+      // vm.treatmentApproach.splice(key, 1);
       vm.centerWise[centerId].treatmentApproach.splice(key, 1);
     } else if (item === 'setting') {
       // vm.totalCost -= $rootScope.setting[key].price;
@@ -452,7 +450,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      //vm.setting.splice(key, 1);
+      // vm.setting.splice(key, 1);
       vm.centerWise[centerId].setting.splice(key, 1);
     } else if (item === 'additionalServices') {
       // vm.totalCost -= $rootScope.additionalServices[key].price;
@@ -504,7 +502,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     }
 
     var grandTotal = 0;
-    for (var key in vm.centerWise) {
+    for (key in vm.centerWise) {
       grandTotal += vm.centerWise[key].totalCost;
     }
     $rootScope.total = grandTotal;

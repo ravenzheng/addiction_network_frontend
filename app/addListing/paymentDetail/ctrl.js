@@ -202,8 +202,6 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       upgradeMembership(token);
       // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
       $state.go(UIState.ADD_LISTING.CENTER_INFO);
-
-
     });
   };
 
