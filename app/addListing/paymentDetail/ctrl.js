@@ -142,8 +142,8 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       'city': vm.city,
       'country': vm.country,
       'zip': vm.zip,
-      'state': vm.state
-      //  'default': vm.default
+      'state': vm.state,
+      'default': 'true'
     };
     // saving to localStorageService
     if (localStorageService.isSupported) {
