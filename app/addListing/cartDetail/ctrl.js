@@ -6,21 +6,41 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   };
 
   function onInit() {
-    // localStorageService.remove('addListingSponsoredPage');
+    //localStorageService.remove('addListingSponsoredPage');
     // get values from localStorageService
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+      //    console.log('trea: ' + sponsoredInfo.centersValue);
       if (sponsoredInfo !== null) {
         $rootScope.cityModel = sponsoredInfo.cityModel;
         $rootScope.countyModel = sponsoredInfo.countyModel;
         $rootScope.statesSel = sponsoredInfo.statesSel;
         $rootScope.statesDetail = sponsoredInfo.statesDetail;
-        $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
+        //  $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
         $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
         if (sponsoredInfo.checkedStateModel) {
           $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
         }
+        if (angular.isDefined(sponsoredInfo.centerWise))
+          vm.centerWise = sponsoredInfo.centerWise;
+
       }
+    }
+
+    if (angular.isDefined(vm.centerWise)) {
+
+      // vm.centerWise[$rootScope.activeCenter]={};
+      //vm.centerWise
+      //vm.centerWise[$rootScope.activeCenter] = {};
+      if (angular.isUndefined(vm.centerWise[$rootScope.activeCenter])) {
+        // vm.centerWise.push($rootScope.activeCenter);
+        // console.log('pushed');
+
+      }
+    } else {
+
+      vm.centerWise = {};
+      //console.log(vm.centerWise['805']);
     }
 
     var countyIds = $rootScope.countyModel;
@@ -136,7 +156,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         // reset checkall state
         $rootScope.checkedAllStates = null;
       }
-
       $rootScope.statesSel = states; // states
 
       vm.treatmentCenters = [];
@@ -146,6 +165,20 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.additionalServices = [];
       vm.payment = [];
       vm.byDrug = [];
+
+      // treatment centers
+      var totalCenters = 0;
+      for (key in $rootScope.centerSelected) {
+        for (val in $rootScope.treatmentCentersValue) {
+          if ($rootScope.centerSelected[key].id === $rootScope.treatmentCentersValue[val].id) {
+            vm.treatmentCenters[key] = {
+              id: $rootScope.centerSelected[key].id,
+              label: $rootScope.treatmentCentersValue[val].label
+            };
+          }
+        }
+        totalCenters++;
+      }
 
       // Demographic
       for (key in $rootScope.demographicModel) {
@@ -165,6 +198,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.demographicTotal += price;
       }
+
       // Treatment Approach
       for (key in $rootScope.treatmentApproachModel) {
         for (val in $rootScope.treatmentApproach) {
@@ -183,6 +217,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.treatmentApproachTotal += price;
       }
+
       // setting
       for (key in $rootScope.settingModel) {
         for (val in $rootScope.setting) {
@@ -201,6 +236,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.settingTotal += price;
       }
+
       // Additional services
       for (key in $rootScope.additionalServicesModel) {
         for (val in $rootScope.additionalServices) {
@@ -219,6 +255,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.additionalServicesTotal += price;
       }
+
       // Payment
       for (key in $rootScope.paymentModel) {
         for (val in $rootScope.payment) {
@@ -237,6 +274,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.paymentTotal += price;
       }
+
       // Bydrug
       for (key in $rootScope.byDrugModel) {
         for (val in $rootScope.byDrug) {
@@ -255,40 +293,65 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.byDrugTotal += price;
       }
-      // treatment centers
-      var totalCenters = 0;
-      for (key in $rootScope.centerSelected) {
-        for (val in $rootScope.treatmentCentersValue) {
-          if ($rootScope.centerSelected[key].id === $rootScope.treatmentCentersValue[val].id) {
-            vm.treatmentCenters[key] = {
-              id: $rootScope.centerSelected[key].id,
-              label: $rootScope.treatmentCentersValue[val].label
-            };
-          }
-        }
-        totalCenters++;
-      }
-      vm.demographicTotal *= totalCenters;
-      vm.treatmentApproachTotal *= totalCenters;
-      vm.settingTotal *= totalCenters;
-      vm.additionalServicesTotal *= totalCenters;
-      vm.paymentTotal = vm.paymentTotal * totalCenters;
-      vm.byDrugTotal = vm.byDrugTotal * totalCenters;
+
+      //  vm.demographicTotal *= totalCenters;
+      //  vm.treatmentApproachTotal *= totalCenters;
+      //  vm.settingTotal *= totalCenters;
+      //  vm.additionalServicesTotal *= totalCenters;
+      //  vm.paymentTotal = vm.paymentTotal * totalCenters;
+      //  vm.byDrugTotal = vm.byDrugTotal * totalCenters;
 
       var totalExtra = vm.totalExtra * totalCenters;
       vm.totalExtra = totalExtra;
-      vm.stateTotalCost = totalStates * totalCenters;
-      vm.cityTotalCost = totalCity * totalCenters;
-      vm.countyTotalCost = totalCounty * totalCenters;
+      vm.stateTotalCost = totalStates; //* totalCenters;
+      vm.cityTotalCost = totalCity; //* totalCenters;
+      vm.countyTotalCost = totalCounty; //* totalCenters;
       // var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal + totalExtra;
+      // var total = vm.countyTotalCost + vm.cityTotalCost + vm.stateTotalCost + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
+
       var total = vm.countyTotalCost + vm.cityTotalCost + vm.stateTotalCost + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
 
       vm.totalCost = total; //* totalCenters;
-      $rootScope.total = total; //* totalCenters;
+      // $rootScope.total = total; //* totalCenters;
+
+      // saving to centerwise
+      var centerwise = {
+        'demographic': vm.demographic,
+        'demographicTotal': vm.demographicTotal,
+        'treatmentApproach': vm.treatmentApproach,
+        'treatmentApproachTotal': vm.treatmentApproachTotal,
+        'setting': vm.setting,
+        'settingTotal': vm.settingTotal,
+        'additionalServices': vm.additionalServices,
+        'additionalServicesTotal': vm.additionalServicesTotal,
+        'payment': vm.payment,
+        'paymentTotal': vm.paymentTotal,
+        'byDrug': vm.byDrug,
+        'byDrugTotal': vm.byDrugTotal,
+        'statesSel': $rootScope.statesSel,
+        'stateTotalCost': vm.stateTotalCost,
+        'cities': $rootScope.cities,
+        'cityTotalCost': vm.cityTotalCost,
+        'counties': $rootScope.counties,
+        'countyTotalCost': vm.countyTotalCost,
+        'totalCost': total
+      };
+
+      if ($rootScope.activeCenter !== false && $rootScope.activeCenter !== '') {
+        console.log(vm.centerWise);
+        vm.centerWise[$rootScope.activeCenter] = centerwise;
+      }
+      var grandTotal = 0;
+      for (var key in vm.centerWise) {
+        grandTotal += vm.centerWise[key].totalCost;
+      }
+      $rootScope.total = grandTotal;
     }
   }
 
-  vm.deleteCartItem = function (key, item) {
+  vm.deleteCartItem = function (key, centerId, item) {
+
+    console.log('key:' + key + ' cen:' + centerId);
     // treatment centers
     var totalCenters = 0;
     for (var value in $rootScope.centerSelected) {
@@ -303,16 +366,21 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       totalCenters++;
     }
     if (item === 'state') {
-      vm.totalCost -= vm.priceState * totalCenters;
-      vm.stateTotalCost -= vm.priceState * totalCenters;
+      // vm.totalCost -= vm.priceState * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceState;
+      vm.centerWise[centerId].stateTotalCost -= vm.priceState;
+      // vm.stateTotalCost -= vm.priceState * totalCenters;
 
-      $rootScope.statesSel.splice(key, 1);
+      //  $rootScope.statesSel.splice(key, 1);
+      vm.centerWise[centerId].statesSel.splice(key, 1);
       // $rootScope.statesDetail.splice(key, 1);
       $rootScope.checkedStateModel.splice(key, 1);
       $rootScope.checkedStateDetail.splice(key, 1);
     } else if (item === 'county') {
-      vm.totalCost -= vm.priceCounty * totalCenters;
-      vm.countyTotalCost -= vm.priceCounty * totalCenters;
+      // vm.totalCost -= vm.priceCounty * totalCenters;
+      //   vm.countyTotalCost -= vm.priceCounty * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceCounty;
+      vm.centerWise[centerId].countyTotalCost -= vm.priceCounty;
       var id = $rootScope.counties[key].id;
       for (var index in $rootScope.countyModel) {
         if ($rootScope.countyModel[index].id === id) {
@@ -320,10 +388,13 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      $rootScope.counties.splice(key, 1);
+      // $rootScope.counties.splice(key, 1);
+      vm.centerWise[centerId].counties.splice(key, 1);
     } else if (item === 'city') {
-      vm.totalCost -= vm.priceCity * totalCenters;
-      vm.cityTotalCost -= vm.priceCity * totalCenters;
+      // vm.totalCost -= vm.priceCity * totalCenters;
+      // vm.cityTotalCost -= vm.priceCity * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceCity;
+      vm.centerWise[centerId].cityTotalCost -= vm.priceCity;
       id = $rootScope.cities[key].id;
       for (index in $rootScope.cityModel) {
         if ($rootScope.cityModel[index].id === id) {
@@ -331,12 +402,15 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      $rootScope.cities.splice(key, 1);
+      //$rootScope.cities.splice(key, 1);
+      vm.centerWise[centerId].cities.splice(key, 1);
     } else if (item === 'demographic') {
       // vm.totalCost -= $rootScope.demographic[key].price;
       // vm.demographicTotal -= $rootScope.demographic[key].price;
-      vm.totalCost -= vm.priceSponsored * totalCenters;
-      vm.demographicTotal -= vm.priceSponsored * totalCenters;
+      // vm.totalCost -= vm.priceSponsored * totalCenters;
+      // vm.demographicTotal -= vm.priceSponsored * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceSponsored;
+      vm.centerWise[centerId].demographicTotal -= vm.priceSponsored;
       id = vm.demographic[key].id;
       for (index in $rootScope.demographicModel) {
         if ($rootScope.demographicModel[index].id === id) {
@@ -344,12 +418,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      vm.demographic.splice(key, 1);
+      //  vm.demographic.splice(key, 1);
+      vm.centerWise[centerId].demographic.splice(key, 1);
+      console.log('center id: ' + centerId + '  ' + vm.centerWise[centerId]);
     } else if (item === 'treatmentApproach') {
       // vm.totalCost -= $rootScope.treatmentApproach[key].price;
       // vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
-      vm.totalCost -= vm.priceSponsored * totalCenters;
-      vm.treatmentApproachTotal -= vm.priceSponsored * totalCenters;
+      // vm.totalCost -= vm.priceSponsored * totalCenters;
+      // vm.treatmentApproachTotal -= vm.priceSponsored * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceSponsored;
+      vm.centerWise[centerId].treatmentApproachTotal -= vm.priceSponsored;
       id = vm.treatmentApproach[key].id;
       for (index in $rootScope.treatmentApproachModel) {
         if ($rootScope.treatmentApproachModel[index].id === id) {
@@ -357,12 +435,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      vm.treatmentApproach.splice(key, 1);
+      //vm.treatmentApproach.splice(key, 1);
+      vm.centerWise[centerId].treatmentApproach.splice(key, 1);
     } else if (item === 'setting') {
       // vm.totalCost -= $rootScope.setting[key].price;
       // vm.settingTotal -= $rootScope.setting[key].price;
-      vm.totalCost -= vm.priceSponsored * totalCenters;
-      vm.settingTotal -= vm.priceSponsored * totalCenters;
+      // vm.totalCost -= vm.priceSponsored * totalCenters;
+      // vm.settingTotal -= vm.priceSponsored * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceSponsored;
+      vm.centerWise[centerId].settingTotal -= vm.priceSponsored;
+
       id = vm.setting[key].id;
       for (index in $rootScope.settingModel) {
         if ($rootScope.settingModel[index].id === id) {
@@ -370,12 +452,15 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      vm.setting.splice(key, 1);
+      //vm.setting.splice(key, 1);
+      vm.centerWise[centerId].setting.splice(key, 1);
     } else if (item === 'additionalServices') {
       // vm.totalCost -= $rootScope.additionalServices[key].price;
       // vm.additionalServicesTotal -= $rootScope.additionalServices[key].price;
-      vm.totalCost -= vm.priceSponsored * totalCenters;
-      vm.additionalServicesTotal -= vm.priceSponsored * totalCenters;
+      // vm.totalCost -= vm.priceSponsored * totalCenters;
+      // vm.additionalServicesTotal -= vm.priceSponsored * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceSponsored;
+      vm.centerWise[centerId].additionalServicesTotal -= vm.priceSponsored;
       id = vm.additionalServices[key].id;
       for (index in $rootScope.additionalServicesModel) {
         if ($rootScope.additionalServicesModel[index].id === id) {
@@ -383,12 +468,15 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      vm.additionalServices.splice(key, 1);
+      //  vm.additionalServices.splice(key, 1);
+      vm.centerWise[centerId].additionalServices.splice(key, 1);
     } else if (item === 'payment') {
       // vm.totalCost -= $rootScope.payment[key].price;
       // vm.paymentTotal -= $rootScope.payment[key].price;
-      vm.totalCost -= vm.priceSponsored * totalCenters;
-      vm.paymentTotal -= vm.priceSponsored * totalCenters;
+      // vm.totalCost -= vm.priceSponsored * totalCenters;
+      // vm.paymentTotal -= vm.priceSponsored * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceSponsored;
+      vm.centerWise[centerId].paymentTotal -= vm.priceSponsored;
       id = vm.payment[key].id;
       for (index in $rootScope.paymentModel) {
         if ($rootScope.paymentModel[index].id === id) {
@@ -396,12 +484,15 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      vm.payment.splice(key, 1);
+      // vm.payment.splice(key, 1);
+      vm.centerWise[centerId].payment.splice(key, 1);
     } else if (item === 'byDrug') {
       // vm.totalCost -= $rootScope.byDrug[key].price;
       // vm.byDrugTotal -= $rootScope.byDrug[key].price;
-      vm.totalCost -= vm.priceSponsored * totalCenters;
-      vm.byDrugTotal -= vm.priceSponsored * totalCenters;
+      // vm.totalCost -= vm.priceSponsored * totalCenters;
+      // vm.byDrugTotal -= vm.priceSponsored * totalCenters;
+      vm.centerWise[centerId].totalCost -= vm.priceSponsored;
+      vm.centerWise[centerId].byDrugTotal -= vm.priceSponsored;
       id = vm.byDrug[key].id;
       for (index in $rootScope.byDrugModel) {
         if ($rootScope.byDrugModel[index].id === id) {
@@ -409,13 +500,17 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      vm.byDrug.splice(key, 1);
+      vm.centerWise[centerId].byDrug.splice(key, 1);
     }
 
-    $rootScope.total = vm.totalCost;
+    var grandTotal = 0;
+    for (var key in vm.centerWise) {
+      grandTotal += vm.centerWise[key].totalCost;
+    }
+    $rootScope.total = grandTotal;
 
     // saving to localStorageService
-    var spnonsoredPage = {
+    var sponsoredPage = {
       'cityModel': $rootScope.cityModel,
       'countyModel': $rootScope.countyModel,
       'treatmentCenter': $rootScope.treatmentCentersModel,
@@ -429,10 +524,11 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       'byDrug': $rootScope.byDrugModel,
       'checkedAllStates': $rootScope.checkedAllStates,
       'checkedStateModel': $rootScope.checkedStateModel,
-      'checkedStateDetail': $rootScope.checkedStateDetail
+      'checkedStateDetail': $rootScope.checkedStateDetail,
+      'centerWise': vm.centerWise
     };
     if (localStorageService.isSupported) {
-      localStorageService.set('addListingSponsoredPage', spnonsoredPage, 'sessionStorage');
+      localStorageService.set('addListingSponsoredPage', sponsoredPage, 'sessionStorage');
     }
   };
   vm.continueShop = function () {
