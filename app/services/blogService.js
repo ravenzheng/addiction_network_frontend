@@ -9,14 +9,14 @@ function service($http) {
 
   // homepage slider
   function getBlog() {
-    return $http.get('//192.185.67.241/blog/access_blog.php?blogs=all');
+    return $http.get('http://192.185.67.241/blog/access_blog.php?blogs=all');
   }
 
   function getBlogPaged(paged) {
-    return $http.get('//192.185.67.241/blog/access_blog.php?blogs=all&paged=' + paged);
+    return $http.get('http://192.185.67.241/blog/access_blog.php?blogs=all&paged=' + paged);
   }
 
   function getBlogSingle(singleBlog) {
-    return $http.get('//192.185.67.241/blog/access_blog.php?blogs=single&title=' + singleBlog);
+    return $http.get('http://192.185.67.241/blog/access_blog.php?blogs=single&title=' + singleBlog);
   }
 }
