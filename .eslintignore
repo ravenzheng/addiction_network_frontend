@@ -3,3 +3,4 @@ app/js/*
 app/plugins/*
 app/myProfile/sponsorAds/*
 index.js
+app/addListing/cartDetail
