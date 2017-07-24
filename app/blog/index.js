@@ -4,17 +4,17 @@ angular.module(moduleName, ['ui.router'])
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.BLOG,
-      url: '/blog',
+      url: '/blog/',
       template: require('./view.html')
     });
     $stateProvider.state({
       name: UIState.BLOGSINGLE,
-      url: '/blog/{single}',
+      url: '/blog/{single}/',
       template: require('./single.html')
     });
     $stateProvider.state({
       name: UIState.BLOGMORE,
-      url: '/blog/page/{next}',
+      url: '/blog/page/{next}/',
       template: require('./more.html')
     });
   }]).controller('blogCtrl', require('./ctrl'))
