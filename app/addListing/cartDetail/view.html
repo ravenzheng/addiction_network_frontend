@@ -13,10 +13,6 @@
         <div class="col-xs-6">
           <h5>
             <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-            Choose Active Cart:
-            <span ng-repeat="center in $ctrl.treatmentCenters">
-            <input  type="checkbox" ng-true-value="{{center.id}}" ng-change="$root.onInit()" ng-model="$root.activeCenter" value="{{center.id}}" /> {{center.label}}
-          </span>
         </div>
         <!-- <div class="col-xs-6">
         <button type="button" ng-click="$ctrl.continueShop()" class="btn btn-primary btn-sm btn-block">

@@ -76,7 +76,7 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
           $rootScope.addListingReset = 0;
         } else {
           // removing localstorage for tabs
-          localStorageService.remove('addListingSponsoredPage', 'addListingPaymentDetail', 'addListingUserInfo', 'addListingCenterDetails', 'addListingBannerAds', 'addListingNavigation', 'addListingCanSkip');
+          localStorageService.remove('addListingSponsoredPage', 'addListingPaymentDetail', 'addListingUserInfo', 'addListingCenterDetails', 'addListingBannerAds', 'addListingNavigation', 'addListingCanSkip', 'addListingCenteradded');
           $rootScope.addListingReset = 1;
           $rootScope.addlistForm.$setPristine();
         }

@@ -48,71 +48,140 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     var centerIds = '';
     var id = '';
     var i = 0;
-    for (var key in vm.treatmentCentersModel) {
-      id = String(vm.treatmentCentersModel[key].id);
+    // for (var key in vm.treatmentCentersModel) {
+    //   id = String(vm.treatmentCentersModel[key].id);
+    //   centerIds = centerIds + id;
+    //   if (i < vm.treatmentCentersModel.length - 1) {
+    //     centerIds += ',';
+    //   }
+    //   i++;
+    // }
+    for (var key in $rootScope.centerSelected) {
+      id = String($rootScope.centerSelected[key].id);
       centerIds = centerIds + id;
-      if (i < vm.treatmentCentersModel.length - 1) {
+      if (i < $rootScope.centerSelected.length - 1) {
         centerIds += ',';
       }
       i++;
     }
     var sponsoredListingIds = [];
     i = 0;
-    for (key in $rootScope.countyModel) { // county ids
-      id = String($rootScope.countyModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-    for (key in $rootScope.cityModel) { // city ids
-      id = String($rootScope.cityModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-
-    if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === true) {
-      for (key in $rootScope.statesSel) { // state ids
-        id = String($rootScope.statesSel[key].id);
+    for (var cen in $rootScope.centerSelected) {
+      var centerId = $rootScope.centerSelected[cen].id;
+      console.log('cen: ' + centerId);
+      for (key in $rootScope.countyModel[centerId]) { // county ids
+        id = String($rootScope.countyModel[centerId][key].id);
         sponsoredListingIds[i] = id;
         i++;
       }
-    } else {
-      for (key in $rootScope.checkedStateDetail) { // state ids
-        id = String($rootScope.checkedStateDetail[key].id);
+      for (key in $rootScope.cityModel[centerId]) { // city ids
+        id = String($rootScope.cityModel[centerId][key].id);
         sponsoredListingIds[i] = id;
         i++;
       }
+
+      if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[cen] === true) {
+        for (key in $rootScope.statesSel[centerId]) { // state ids
+          id = String($rootScope.statesSel[centerId][key].id);
+          sponsoredListingIds[i] = id;
+          i++;
+        }
+      } else {
+        for (key in $rootScope.checkedStateDetail[centerId]) { // state ids
+          id = String($rootScope.checkedStateDetail[centerId][key].id);
+          sponsoredListingIds[i] = id;
+          i++;
+        }
+      }
+
+      for (key in $rootScope.demographicModel[centerId]) { // demographic ids
+        id = String($rootScope.demographicModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.treatmentApproachModel[centerId]) { // treatment approach ids
+        id = String($rootScope.treatmentApproachModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.settingModel[centerId]) { // setting ids
+        id = String($rootScope.settingModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.additionalServicesModel[centerId]) { // additional service
+        id = String($rootScope.additionalServicesModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.paymentModel[centerId]) { // payemnt
+        id = String($rootScope.paymentModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.byDrugModel[centerId]) { // by drug model
+        id = String($rootScope.byDrugModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+
     }
 
-    for (key in $rootScope.demographicModel) { // demographic ids
-      id = String($rootScope.demographicModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-    for (key in $rootScope.treatmentApproachModel) { // treatment approach ids
-      id = String($rootScope.treatmentApproachModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-    for (key in $rootScope.settingModel) { // setting ids
-      id = String($rootScope.settingModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-    for (key in $rootScope.additionalServicesModel) { // additional service
-      id = String($rootScope.additionalServicesModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-    for (key in $rootScope.paymentModel) { // payemnt
-      id = String($rootScope.paymentModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
-    for (key in $rootScope.byDrugModel) { // by drug model
-      id = String($rootScope.byDrugModel[key].id);
-      sponsoredListingIds[i] = id;
-      i++;
-    }
+    // for (key in $rootScope.countyModel) { // county ids
+    //   id = String($rootScope.countyModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    // for (key in $rootScope.cityModel) { // city ids
+    //   id = String($rootScope.cityModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    //
+    // if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === true) {
+    //   for (key in $rootScope.statesSel) { // state ids
+    //     id = String($rootScope.statesSel[key].id);
+    //     sponsoredListingIds[i] = id;
+    //     i++;
+    //   }
+    // } else {
+    //   for (key in $rootScope.checkedStateDetail) { // state ids
+    //     id = String($rootScope.checkedStateDetail[key].id);
+    //     sponsoredListingIds[i] = id;
+    //     i++;
+    //   }
+    // }
+    //
+    // for (key in $rootScope.demographicModel) { // demographic ids
+    //   id = String($rootScope.demographicModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    // for (key in $rootScope.treatmentApproachModel) { // treatment approach ids
+    //   id = String($rootScope.treatmentApproachModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    // for (key in $rootScope.settingModel) { // setting ids
+    //   id = String($rootScope.settingModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    // for (key in $rootScope.additionalServicesModel) { // additional service
+    //   id = String($rootScope.additionalServicesModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    // for (key in $rootScope.paymentModel) { // payemnt
+    //   id = String($rootScope.paymentModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
+    // for (key in $rootScope.byDrugModel) { // by drug model
+    //   id = String($rootScope.byDrugModel[key].id);
+    //   sponsoredListingIds[i] = id;
+    //   i++;
+    // }
 
     var formData = new FormData();
     var sponsorData = {
@@ -164,21 +233,21 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   }
 
   vm.clearRootscopeData = function () {
-    $rootScope.cityModel = [];
-    $rootScope.countyModel = [];
-    $rootScope.statesSel = [];
-    $rootScope.checkedStateModel = [];
-    $rootScope.checkedStateDetail = [];
-    $rootScope.treatmentCentersModel = [];
-    $rootScope.demographicModel = [];
-    $rootScope.treatmentApproachModel = [];
-    $rootScope.settingModel = [];
-    $rootScope.additionalServicesModel = [];
-    $rootScope.paymentModel = [];
-    $rootScope.byDrugModel = [];
-    $rootScope.checkedAllStates = null;
-    $rootScope.centerSelected = [];
-    vm.treatmentCentersModel = [];
+    $rootScope.cityModel = {};
+    $rootScope.countyModel = {};
+    $rootScope.statesSel = {};
+    $rootScope.checkedStateModel = {};
+    $rootScope.checkedStateDetail = {};
+    $rootScope.treatmentCentersModel = {};
+    $rootScope.demographicModel = {};
+    $rootScope.treatmentApproachModel = {};
+    $rootScope.settingModel = {};
+    $rootScope.additionalServicesModel = {};
+    $rootScope.paymentModel = {};
+    $rootScope.byDrugModel = {};
+    $rootScope.checkedAllStates = {};
+    $rootScope.centerSelected = {};
+    vm.treatmentCentersModel = {};
     $rootScope.onInit();
   };
 
@@ -195,6 +264,13 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
       vm.treatmentCenters = centers;
       $rootScope.treatmentCentersValue = centers;
+      $rootScope.loadModelsCenterwise();
+      if (angular.isDefined($rootScope.centerSelected) && $rootScope.centerSelected.length > 0) {
+        $rootScope.activeCenter = $rootScope.centerSelected[0].id;
+      } else {
+        $rootScope.activeCenter = centers[0].id;
+      }
+      $rootScope.onInit();
     });
   }
   sponsorList('');
