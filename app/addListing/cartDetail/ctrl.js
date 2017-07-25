@@ -132,6 +132,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       // collecting items data
       $rootScope.counties = result.counties;
       $rootScope.cities = result.cities;
+
       // getting all states checked
       if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[$rootScope.activeCenter] === true) {
         states = [];
