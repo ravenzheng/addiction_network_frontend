@@ -6,45 +6,40 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   };
 
   function onInit() {
-    //localStorageService.remove('addListingSponsoredPage');
+    //  localStorageService.remove('addListingSponsoredPage');
     // get values from localStorageService
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
-      //    console.log('trea: ' + sponsoredInfo.centersValue);
       if (sponsoredInfo !== null) {
-        $rootScope.cityModel = sponsoredInfo.cityModel;
-        $rootScope.countyModel = sponsoredInfo.countyModel;
-        $rootScope.statesSel = sponsoredInfo.statesSel;
-        $rootScope.statesDetail = sponsoredInfo.statesDetail;
-        //  $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
-        $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
+        if (angular.isDefined(sponsoredInfo.cityModel) && angular.isDefined(sponsoredInfo.countyModel)) {
+          $rootScope.cityModel = sponsoredInfo.cityModel;
+          $rootScope.countyModel = sponsoredInfo.countyModel;
+          $rootScope.statesSel = sponsoredInfo.statesSel;
+          $rootScope.statesDetail = sponsoredInfo.statesDetail;
+          //  $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
+          $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
+        }
         if (sponsoredInfo.checkedStateModel) {
           $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
         }
         if (angular.isDefined(sponsoredInfo.centerWise))
           vm.centerWise = sponsoredInfo.centerWise;
-
       }
     }
 
     if (angular.isDefined(vm.centerWise)) {
 
-      // vm.centerWise[$rootScope.activeCenter]={};
-      //vm.centerWise
-      //vm.centerWise[$rootScope.activeCenter] = {};
-      if (angular.isUndefined(vm.centerWise[$rootScope.activeCenter])) {
-        // vm.centerWise.push($rootScope.activeCenter);
-        // console.log('pushed');
-
-      }
     } else {
-
       vm.centerWise = {};
-      //console.log(vm.centerWise['805']);
     }
 
-    var countyIds = $rootScope.countyModel;
-    var cityIds = $rootScope.cityModel;
+    if (angular.isUndefined($rootScope.countyModel) || $rootScope.countyModel === null) {
+      console.log('county, city not def');
+      return;
+    }
+
+    var countyIds = $rootScope.countyModel[$rootScope.activeCenter];
+    var cityIds = $rootScope.cityModel[$rootScope.activeCenter];
 
     // $rootScope.getCartDetails = function (countyIds, cityIds) {
     var cityIdsApi = [];
@@ -113,7 +108,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       var states = [];
 
       if (angular.isDefined($rootScope.checkedStateModel) && angular.isDefined($rootScope.checkedStateDetail) && $rootScope.checkedStateModel !== null) {
-        states = $rootScope.checkedStateDetail;
+        states = $rootScope.checkedStateDetail[$rootScope.activeCenter];
       }
       for (key in states) {
         totalStates += vm.priceState;
@@ -138,7 +133,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       $rootScope.counties = result.counties;
       $rootScope.cities = result.cities;
       // getting all states checked
-      if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === true) {
+      if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[$rootScope.activeCenter] === true) {
         states = [];
         // statesDetail = [];
         totalStates = 0;
@@ -147,14 +142,14 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           states[key] = statesData[key];
           totalStates += vm.priceState;
         }
-      } else if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === false) {
+      } else if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[$rootScope.activeCenter] === false) {
         states = [];
         totalStates = 0;
         $rootScope.statesSel = [];
-        $rootScope.checkedStateModel = [];
-        $rootScope.checkedStateDetail = [];
+        $rootScope.checkedStateModel[$rootScope.activeCenter] = [];
+        $rootScope.checkedStateDetail[$rootScope.activeCenter] = [];
         // reset checkall state
-        $rootScope.checkedAllStates = null;
+        $rootScope.checkedAllStates[$rootScope.activeCenter] = null;
       }
       $rootScope.statesSel = states; // states
 
@@ -181,9 +176,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       // Demographic
-      for (key in $rootScope.demographicModel) {
+      for (key in $rootScope.demographicModel[$rootScope.activeCenter]) {
         for (var val in $rootScope.demographic) {
-          if ($rootScope.demographic[val].id === $rootScope.demographicModel[key].id) {
+          if ($rootScope.demographic[val].id === $rootScope.demographicModel[$rootScope.activeCenter][key].id) {
             var label = $rootScope.demographic[val].label;
             // var price = $rootScope.demographic[val].price;
             var price = vm.priceSponsored;
@@ -191,7 +186,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
         }
         vm.demographic[key] = {
-          'id': $rootScope.demographicModel[key].id,
+          'id': $rootScope.demographicModel[$rootScope.activeCenter][key].id,
           'label': label,
           'price': vm.priceSponsored
           // 'price': price
@@ -200,9 +195,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       // Treatment Approach
-      for (key in $rootScope.treatmentApproachModel) {
+      for (key in $rootScope.treatmentApproachModel[$rootScope.activeCenter]) {
         for (val in $rootScope.treatmentApproach) {
-          if ($rootScope.treatmentApproach[val].id === $rootScope.treatmentApproachModel[key].id) {
+          if ($rootScope.treatmentApproach[val].id === $rootScope.treatmentApproachModel[$rootScope.activeCenter][key].id) {
             label = $rootScope.treatmentApproach[val].label;
             // price = $rootScope.treatmentApproach[val].price;
             price = vm.priceSponsored;
@@ -210,7 +205,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
         }
         vm.treatmentApproach[key] = {
-          'id': $rootScope.treatmentApproachModel[key].id,
+          'id': $rootScope.treatmentApproachModel[$rootScope.activeCenter][key].id,
           'label': label,
           'price': vm.priceSponsored
           // 'price': price
@@ -219,9 +214,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       // setting
-      for (key in $rootScope.settingModel) {
+      for (key in $rootScope.settingModel[$rootScope.activeCenter]) {
         for (val in $rootScope.setting) {
-          if ($rootScope.setting[val].id === $rootScope.settingModel[key].id) {
+          if ($rootScope.setting[val].id === $rootScope.settingModel[$rootScope.activeCenter][key].id) {
             label = $rootScope.setting[val].label;
             // price = $rootScope.setting[val].price;
             price = vm.priceSponsored;
@@ -229,7 +224,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
         }
         vm.setting[key] = {
-          'id': $rootScope.settingModel[key].id,
+          'id': $rootScope.settingModel[$rootScope.activeCenter][key].id,
           'label': label,
           'price': vm.priceSponsored
           // 'price': price
@@ -238,9 +233,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       // Additional services
-      for (key in $rootScope.additionalServicesModel) {
+      for (key in $rootScope.additionalServicesModel[$rootScope.activeCenter]) {
         for (val in $rootScope.additionalServices) {
-          if ($rootScope.additionalServices[val].id === $rootScope.additionalServicesModel[key].id) {
+          if ($rootScope.additionalServices[val].id === $rootScope.additionalServicesModel[$rootScope.activeCenter][key].id) {
             label = $rootScope.additionalServices[val].label;
             // price = $rootScope.additionalServices[val].price;
             price = vm.priceSponsored;
@@ -248,7 +243,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
         }
         vm.additionalServices[key] = {
-          'id': $rootScope.additionalServicesModel[key].id,
+          'id': $rootScope.additionalServicesModel[$rootScope.activeCenter][key].id,
           'label': label,
           'price': vm.priceSponsored
           // 'price': price
@@ -257,9 +252,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       // Payment
-      for (key in $rootScope.paymentModel) {
+      for (key in $rootScope.paymentModel[$rootScope.activeCenter]) {
         for (val in $rootScope.payment) {
-          if ($rootScope.payment[val].id === $rootScope.paymentModel[key].id) {
+          if ($rootScope.payment[val].id === $rootScope.paymentModel[$rootScope.activeCenter][key].id) {
             label = $rootScope.payment[val].label;
             // price = $rootScope.payment[val].price;
             price = vm.priceSponsored;
@@ -267,7 +262,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
         }
         vm.payment[key] = {
-          'id': $rootScope.paymentModel[key].id,
+          'id': $rootScope.paymentModel[$rootScope.activeCenter][key].id,
           'label': label,
           price: vm.priceSponsored
           // 'price': price
@@ -276,9 +271,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
 
       // Bydrug
-      for (key in $rootScope.byDrugModel) {
+      for (key in $rootScope.byDrugModel[$rootScope.activeCenter]) {
         for (val in $rootScope.byDrug) {
-          if ($rootScope.byDrug[val].id === $rootScope.byDrugModel[key].id) {
+          if ($rootScope.byDrug[val].id === $rootScope.byDrugModel[$rootScope.activeCenter][key].id) {
             label = $rootScope.byDrug[val].label;
             // price = $rootScope.byDrug[val].price;
             price = vm.priceSponsored;
@@ -286,7 +281,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           }
         }
         vm.byDrug[key] = {
-          'id': $rootScope.byDrugModel[key].id,
+          'id': $rootScope.byDrugModel[$rootScope.activeCenter][key].id,
           'label': label,
           'price': vm.priceSponsored
           // 'price': price
@@ -338,12 +333,16 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       };
 
       if ($rootScope.activeCenter !== false && $rootScope.activeCenter !== '') {
-        console.log(vm.centerWise);
         vm.centerWise[$rootScope.activeCenter] = centerwise;
       }
       var grandTotal = 0;
+
       for (var key in vm.centerWise) {
-        grandTotal += vm.centerWise[key].totalCost;
+        for (var cen in $rootScope.centerSelected) {
+          if ($rootScope.centerSelected[cen].id.toString() === key) {
+            grandTotal += vm.centerWise[key].totalCost;
+          }
+        }
       }
       $rootScope.total = grandTotal;
     }
@@ -351,7 +350,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
 
   vm.deleteCartItem = function (key, centerId, item) {
 
-    console.log('key:' + key + ' cen:' + centerId);
+    if ($rootScope.activeCenter !== centerId) {
+      return;
+    }
     // treatment centers
     var totalCenters = 0;
     for (var value in $rootScope.centerSelected) {
@@ -370,21 +371,20 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceState;
       vm.centerWise[centerId].stateTotalCost -= vm.priceState;
       // vm.stateTotalCost -= vm.priceState * totalCenters;
-
       //  $rootScope.statesSel.splice(key, 1);
       vm.centerWise[centerId].statesSel.splice(key, 1);
       // $rootScope.statesDetail.splice(key, 1);
-      $rootScope.checkedStateModel.splice(key, 1);
-      $rootScope.checkedStateDetail.splice(key, 1);
+      $rootScope.checkedStateModel[centerId].splice(key, 1);
+      $rootScope.checkedStateDetail[centerId].splice(key, 1);
     } else if (item === 'county') {
       // vm.totalCost -= vm.priceCounty * totalCenters;
       //   vm.countyTotalCost -= vm.priceCounty * totalCenters;
       vm.centerWise[centerId].totalCost -= vm.priceCounty;
       vm.centerWise[centerId].countyTotalCost -= vm.priceCounty;
       var id = $rootScope.counties[key].id;
-      for (var index in $rootScope.countyModel) {
-        if ($rootScope.countyModel[index].id === id) {
-          $rootScope.countyModel.splice(index, 1);
+      for (var index in $rootScope.countyModel[$rootScope.activeCenter]) {
+        if ($rootScope.countyModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.countyModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -396,9 +396,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceCity;
       vm.centerWise[centerId].cityTotalCost -= vm.priceCity;
       id = $rootScope.cities[key].id;
-      for (index in $rootScope.cityModel) {
-        if ($rootScope.cityModel[index].id === id) {
-          $rootScope.cityModel.splice(index, 1);
+      for (index in $rootScope.cityModel[$rootScope.activeCenter]) {
+        if ($rootScope.cityModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.cityModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -412,15 +412,15 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceSponsored;
       vm.centerWise[centerId].demographicTotal -= vm.priceSponsored;
       id = vm.demographic[key].id;
-      for (index in $rootScope.demographicModel) {
-        if ($rootScope.demographicModel[index].id === id) {
-          $rootScope.demographicModel.splice(index, 1);
+      for (index in $rootScope.demographicModel[$rootScope.activeCenter]) {
+        if ($rootScope.demographicModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.demographicModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
       //  vm.demographic.splice(key, 1);
       vm.centerWise[centerId].demographic.splice(key, 1);
-      console.log('center id: ' + centerId + '  ' + vm.centerWise[centerId]);
+
     } else if (item === 'treatmentApproach') {
       // vm.totalCost -= $rootScope.treatmentApproach[key].price;
       // vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
@@ -429,9 +429,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceSponsored;
       vm.centerWise[centerId].treatmentApproachTotal -= vm.priceSponsored;
       id = vm.treatmentApproach[key].id;
-      for (index in $rootScope.treatmentApproachModel) {
-        if ($rootScope.treatmentApproachModel[index].id === id) {
-          $rootScope.treatmentApproachModel.splice(index, 1);
+      for (index in $rootScope.treatmentApproachModel[$rootScope.activeCenter]) {
+        if ($rootScope.treatmentApproachModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.treatmentApproachModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -446,9 +446,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].settingTotal -= vm.priceSponsored;
 
       id = vm.setting[key].id;
-      for (index in $rootScope.settingModel) {
-        if ($rootScope.settingModel[index].id === id) {
-          $rootScope.settingModel.splice(index, 1);
+      for (index in $rootScope.settingModel[$rootScope.activeCenter]) {
+        if ($rootScope.settingModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.settingModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -462,9 +462,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceSponsored;
       vm.centerWise[centerId].additionalServicesTotal -= vm.priceSponsored;
       id = vm.additionalServices[key].id;
-      for (index in $rootScope.additionalServicesModel) {
-        if ($rootScope.additionalServicesModel[index].id === id) {
-          $rootScope.additionalServicesModel.splice(index, 1);
+      for (index in $rootScope.additionalServicesModel[$rootScope.activeCenter]) {
+        if ($rootScope.additionalServicesModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.additionalServicesModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -478,9 +478,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceSponsored;
       vm.centerWise[centerId].paymentTotal -= vm.priceSponsored;
       id = vm.payment[key].id;
-      for (index in $rootScope.paymentModel) {
-        if ($rootScope.paymentModel[index].id === id) {
-          $rootScope.paymentModel.splice(index, 1);
+      for (index in $rootScope.paymentModel[$rootScope.activeCenter]) {
+        if ($rootScope.paymentModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.paymentModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -494,9 +494,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       vm.centerWise[centerId].totalCost -= vm.priceSponsored;
       vm.centerWise[centerId].byDrugTotal -= vm.priceSponsored;
       id = vm.byDrug[key].id;
-      for (index in $rootScope.byDrugModel) {
-        if ($rootScope.byDrugModel[index].id === id) {
-          $rootScope.byDrugModel.splice(index, 1);
+      for (index in $rootScope.byDrugModel[$rootScope.activeCenter]) {
+        if ($rootScope.byDrugModel[$rootScope.activeCenter][index].id === id) {
+          $rootScope.byDrugModel[$rootScope.activeCenter].splice(index, 1);
           break;
         }
       }
@@ -505,7 +505,11 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
 
     var grandTotal = 0;
     for (var key in vm.centerWise) {
-      grandTotal += vm.centerWise[key].totalCost;
+      for (var cen in $rootScope.centerSelected) {
+        if ($rootScope.centerSelected[cen].id.toString() === key) {
+          grandTotal += vm.centerWise[key].totalCost;
+        }
+      }
     }
     $rootScope.total = grandTotal;
 
