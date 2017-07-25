@@ -80,9 +80,9 @@
             </select>
             <p ng-show="paymentDetailsForm.month.$invalid || $ctrl.validMonth===0" class="help-block">Invalid Month</p>
           </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-4 col-sm-4 col-xs-124>
             <label for="cpwd">CVV Code</label>
-            <input name="cvv" ng-model="$ctrl.cvv" class="form-control" type="password" placeholder="CVV Code" ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="3" required="" maxlength="3" />
+            <input name="cvv" ng-model="$ctrl.cvv" class="form-control" type="password" placeholder="CVV Code" ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="4" required="" maxlength="4" />
             <p ng-show="paymentDetailsForm.cvv.$invalid" class="help-block">Invalid CVV Code</p>
           </div>
         </div>

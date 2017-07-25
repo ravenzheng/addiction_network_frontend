@@ -74,7 +74,7 @@
           </div>
           <div class="col-md-4 col-sm-4 col-xs-12">
             <label for="cpwd">CVV Code</label>
-            <input name="cvv" ng-model="$ctrl.cvv" class="form-control" type="text" placeholder="CVV Code" ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="3" required="" />
+            <input name="cvv" ng-model="$ctrl.cvv" class="form-control" type="text" placeholder="CVV Code" ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="4" required="" />
             <span ng-show="paymentDetailsForm.cvv.$invalid" class="help-block">Invalid CVV Code</span>
           </div>
         </div>
