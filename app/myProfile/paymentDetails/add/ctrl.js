@@ -19,7 +19,7 @@ function ctrl($log, $rootScope, Status, $state, UIState, service, userService, l
         }
       }
 
-      vm.totalDigits = card.length;
+      vm.totalDigits = card.replace(/ /g, '').length;
       if (event.keyCode !== 8) {
         if (vm.totalDigits === 4) {
           vm.card = vm.card + ' ';

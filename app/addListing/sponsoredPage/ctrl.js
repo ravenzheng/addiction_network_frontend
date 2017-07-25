@@ -68,7 +68,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     i = 0;
     for (var cen in $rootScope.centerSelected) {
       var centerId = $rootScope.centerSelected[cen].id;
-      console.log('cen: ' + centerId);
       for (key in $rootScope.countyModel[centerId]) { // county ids
         id = String($rootScope.countyModel[centerId][key].id);
         sponsoredListingIds[i] = id;
@@ -124,7 +123,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         sponsoredListingIds[i] = id;
         i++;
       }
-
     }
 
     // for (key in $rootScope.countyModel) { // county ids
@@ -299,7 +297,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     // $rootScope.centerOnchange();
     if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
       sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
-      // console.log(sponsoredInfo);
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
         sponsoredInfo.centersValue = $rootScope.treatmentCentersValue;

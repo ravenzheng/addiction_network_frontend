@@ -20,7 +20,8 @@
               <i style="font-size: 40px; margin-top: -10px; color: #58aa22; position: absolute; margin-left: -43px;" class="icon large icon-{{$ctrl.cardType}}-card"></i>
             </div>
             <p ng-show="paymentDetailsForm.card.$invalid" class="help-block">Invalid Card number</p>
-            <p ng-if="($ctrl.totalDigits<19 || $ctrl.totalDigits>19) && paymentDetailsForm.card.$valid" class="help-block">Card must be have 16 digits.</p>
+            <p ng-if="$ctrl.totalDigits != 16 && $ctrl.cardType != 'amex' && paymentDetailsForm.card.$valid" class="help-block">Card must be have 16 digits.</p>
+            <p ng-if="$ctrl.totalDigits != 15 && $ctrl.cardType == 'amex' && paymentDetailsForm.card.$valid" class="help-block">Card must be have 15 digits.</p>
             <!-- <p ng-show="$ctrl.cardType" class="help-block">{{$ctrl.cardType[0].niceType}}</p> -->
             <p ng-if="!$ctrl.cardType[0] && $ctrl.$valid" class="help-block">Invalid card type</p>
           </div>
@@ -80,7 +81,7 @@
             </select>
             <p ng-show="paymentDetailsForm.month.$invalid || $ctrl.validMonth===0" class="help-block">Invalid Month</p>
           </div>
-          <div class="col-md-4 col-sm-4 col-xs-124>
+          <div class="col-md-4 col-sm-4 col-xs-12">
             <label for="cpwd">CVV Code</label>
             <input name="cvv" ng-model="$ctrl.cvv" class="form-control" type="password" placeholder="CVV Code" ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="4" required="" maxlength="4" />
             <p ng-show="paymentDetailsForm.cvv.$invalid" class="help-block">Invalid CVV Code</p>

@@ -52,7 +52,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
         }
       }
 
-      lm.totalDigits = card.length;
+      lm.totalDigits = card.replace(/ /g, '').length;
       if (event.keyCode !== 8) {
         if (lm.totalDigits === 4) {
           vm.card = vm.card + ' ';

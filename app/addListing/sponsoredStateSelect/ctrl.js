@@ -271,7 +271,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     vm.updateCart();
   };
 
-  //localStorageService.remove('addListingSponsoredPage');
+  // localStorageService.remove('addListingSponsoredPage');
   // get values from localStorageService
   if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
     var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
