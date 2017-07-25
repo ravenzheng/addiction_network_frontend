@@ -1,7 +1,7 @@
-module.exports = ['$scope', 'BlogService', '$log', '$state',
+module.exports = ['$scope', 'BlogService', '$log', '$state', '$window',
   ctrl];
 
-function ctrl($scope, service, $log, $state) {
+function ctrl($scope, service, $log, $state, $window) {
   var vm = this;
   var $stateParams = $state.params;
   vm.paged = $stateParams.next;
@@ -27,6 +27,7 @@ function ctrl($scope, service, $log, $state) {
     }
     vm.next = +vm.paged + 1;
     vm.more = arr;
+    $window.scrollTo(0, 0);
   }).catch(function (err) {
     $log.info(err);
   });

@@ -142,8 +142,8 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       'city': vm.city,
       'country': vm.country,
       'zip': vm.zip,
-      'state': vm.state
-      //  'default': vm.default
+      'state': vm.state,
+      'default': 'true'
     };
     // saving to localStorageService
     if (localStorageService.isSupported) {
@@ -179,6 +179,29 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
+
+      $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
+      // $rootScope.addListingStepDone = 6;
+      $rootScope.addListingStepDone = 3;
+      $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
+      // remove from storage
+      localStorageService.remove('addListingPaymentDetail');
+      lm.resetForm();
+
+      // payment can be skips now
+      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
+      if (canSkip !== null) {
+        canSkip.paymentSkip = 1;
+      } else {
+        canSkip = {
+          paymentSkip: 1
+        };
+      }
+      $rootScope.paymentSkip = 1;
+      localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
+      upgradeMembership(token);
+      // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
+      $state.go(UIState.ADD_LISTING.CENTER_INFO);
     });
   };
 

@@ -43,7 +43,8 @@ function ctrl($element, config) {
           namefill: vm.config.namefill,
           latlong: stateData.latlong,
           zoomlevel: stateData.zoomlevel,
-          image: stateData.image
+          image: stateData.image,
+          slugState: stateData.slugState
         }
       });
     });

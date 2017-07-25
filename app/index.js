@@ -33,7 +33,24 @@ angular.module(appName, [
     $locationProvider.html5Mode(true);
   }])
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+    // $urlRouterProvider.otherwise('');
+    $urlRouterProvider.otherwise(function () {
+      angular.element(document).ready(function () {
+        var path = angular.element(location).attr('pathname');
+        var slug = path.replace('/', '');
+        // var removeSlash = slug.replace('/', '');
+        angular.element.get('//blog.addictionnetwork.com/blog/post_exist.php?slug=' + slug, function (data, status) {
+          if (status === 'success') {
+            if (data > 0) {
+              window.location.href = '/blog/' + slug;
+            } else {
+              // $urlRouterProvider.otherwise('/');
+              window.location.href = '/';
+            }
+          }
+        });
+      });
+    });
   }]);
 
 // eslint-disable-next-line angular/document-service
