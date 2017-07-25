@@ -9,6 +9,7 @@ function ctrl($scope, $window, service, $log, $state, $sce) {
     vm.result = result.data;
     vm.content = $sce.trustAsHtml(result.data[0].post_content);
     //  vm.html = $sce.trustAsHtml('<script>alert(testing)</script>');
+    $window.scrollTo(0, 0);
   }).catch(function (err) {
     $log.info(err);
   });
