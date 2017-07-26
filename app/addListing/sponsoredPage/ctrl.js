@@ -35,7 +35,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
   }
   vm.skipTo = function () {
-    $window.location.href = '/login';
+    // $window.location.href = '/login';
+    $rootScope.addListingStepDone = 6;
+    $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
+    $state.go(UIState.ADD_LISTING.BANNER_AD);
   };
   vm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);

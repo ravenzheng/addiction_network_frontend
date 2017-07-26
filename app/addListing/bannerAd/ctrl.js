@@ -29,11 +29,18 @@ function ctrl($injector, $scope, $document, $log, $rootScope, Status, $window, l
       $document[0].getElementById('logo_preview').src = vm.preview_img;
     };
   };
-  // set price
-  vm.headerCost = '4000';
-  vm.footerCost = '2500';
-  vm.sidebarCost = '3000';
 
+  // set price
+
+  var token = localStorageService.get('signupToken');
+  AdvertisementService.getPriceBanner(token).then(function (response) {
+    vm.headerCost = response.banner_ads_header;
+    vm.footerCost = response.banner_ads_footer;
+    vm.sidebarCost = response.banner_ads_sidebar;
+  }).catch(function (err) {
+    $log.error(err);
+    $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+  });
   vm.submit = function () {
     // validating file type
     if (vm.content) {
@@ -70,11 +77,11 @@ function ctrl($injector, $scope, $document, $log, $rootScope, Status, $window, l
 
     function openPrompt() {
       if (vm.position === 'header') {
-        $rootScope.totalCost = '4000';
+        $rootScope.totalCost = vm.headerCost;
       } else if (vm.position === 'sidebar') {
-        $rootScope.totalCost = '3000';
+        $rootScope.totalCost = vm.sidebarCost;
       } else if (vm.position === 'footer') {
-        $rootScope.totalCost = '2500';
+        $rootScope.totalCost = vm.footerCost;
       }
       var popup = '<div class="col-sm-12"><div class="modal-header total_popup_modal"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Your total billing amount for banner ads is ${{$root.totalCost}}</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12"><div class="col-sm-7">Press okay to confirm.</div><div class="col-sm-5"><button type="button" class="btn btn-primary" ng-click="ok()">&nbsp;Okay&nbsp;</button></div></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
