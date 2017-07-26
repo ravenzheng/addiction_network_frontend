@@ -1,4 +1,8 @@
-<div class="add-advertisement">
+<div class="add-advertisement col-md-8">
+  <div style="transform: rotate(-90deg);transform-origin: 50px 40px;">93 PX</div>
+  <div style="border:1px solid gray;width:544px;height:93px;text-align:center; padding-top:5%;margin-left:5%;background-color: #f1f1f1;">HEADER AD BLOCK
+    <br>$ {{$ctrl.headerCost}}</div>
+  <div style="text-align: center;margin-top: 5px;">544 PX</div>
   <div class="adn-row">
     <h3 class="sub_heading_under_sign_up">Banner Ads :</h3>
   </div>
@@ -19,6 +23,9 @@
       <div class="col-md-4 col-sm-4 col-xs-12">
         <label for="position">Position: </label>
       </div>
+      <!-- <input type="checkbox" name="header"> Header
+      <input type="checkbox" name="header"> Sidebar
+      <input type="checkbox" name="header"> Footer -->
       <div class="col-md-8 col-sm-8 col-xs-12">
         <select name="position" ng-model="$ctrl.position" required="true" class="selectpicker1">
           <option value="footer">footer ($ {{$ctrl.footerCost}})</option>
@@ -57,5 +64,15 @@
       <input class="btn modal_btn btn_size pull-right" value="Next" id="submit" type="button" ng-click="$ctrl.submit()" ng-disabled="$root.addlistForm.position.$invalid  || $root.addlistForm.center_web_link.$invalid ||  $root.addlistForm.name.$invalid">
       <input class="btn modal_btn btn_size pull-right" value="Skip" id="skip" type="button" ng-click="$ctrl.skipStep()">
     </div>
+    <div style="transform: rotate(-90deg);transform-origin: 33px 95px;">111 PX </div>
+    <div style="border:1px solid gray;width:646px;height:111px;text-align:center;padding-top:8%;background-color: #f1f1f1;">FOOTER AD BLOCK
+      <br>$ {{$ctrl.footerCost}}</div>
+    <div style="text-align: center;margin-top: 5px;">646 PX</div>
   </div>
+</div>
+<div class="col-md-4">
+  <div style="transform: rotate(-90deg);transform-origin: 45px 65px;">145 PX </div>
+  <div style="border:1px solid gray;width:248px;height:145px;text-align:center;padding-top:20%;background-color: #f1f1f1;">SIDEBAR AD BLOCK
+    <br>$ {{$ctrl.sidebarCost}}</div>
+  <div style="text-align: center;margin-top: 5px;">248 PX</div>
 </div>
