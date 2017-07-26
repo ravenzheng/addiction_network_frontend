@@ -26,9 +26,11 @@
       </div>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <label>Phone</label>
-        <input placeholder="eg. (601) 521-1542" name="user_phone" ng-change="$ctrl.testNum()" class="form-control required" type="text" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14" ng-model="$root.phone">
-        <p ng-show="$root.addlistForm.user_phone.$error.pattern || $root.addlistForm.user_phone.$error.minlength || $root.addlistForm.user_phone.$error.maxlength" class="help-block">Invalid US number.</p>
-        <p ng-show="$root.addlistForm.user_phone.$error.required" class="help-block">Required</p>
+        <!-- <input placeholder="eg. (601) 521-1542" name="user_phone" ng-change="$ctrl.testNum()" class="form-control required" type="text" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14" ng-model="$root.phone"> -->
+        <!-- <input placeholder="Phone number" name="user_phone" class="form-control required" type="text" required="true" phone-input ng-model="$root.phone"> -->
+        <input placeholder="Intake Phone" id="phone" name="user_phone" class="form-control required" ng-pattern="/^-?[0-9+]*$/" type="text" ng-model="$root.phone" required="true">
+        <!-- <p ng-show="$root.addlistForm.user_phone.$error.pattern || $root.addlistForm.user_phone.$error.minlength || $root.addlistForm.user_phone.$error.maxlength" class="help-block">Invalid US number.</p> -->
+        <p ng-show="$root.addlistForm.user_phone.$invalid" class="help-block">Invalid phone number</p>
       </div>
     </div>
     <div class="adn-row">
