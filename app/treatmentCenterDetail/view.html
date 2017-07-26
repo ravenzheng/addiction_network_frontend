@@ -48,7 +48,7 @@
               <label for="address">Address:</label>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-              <p>{{ $ctrl.entry.address }}</p>
+              <p>{{ $ctrl.entry.address }}, {{$ctrl.entry.city}}, {{$ctrl.entry.state}} {{$ctrl.entry.pincode}}</p>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
         <div class="center-detail-contact-info-row">
           <span>Location:</span>
           <p>
-            <i class="glyphicon glyphicon-map-marker"></i>{{ $ctrl.entry.address }}
+            <i class="glyphicon glyphicon-map-marker"></i>{{ $ctrl.entry.address }}, {{$ctrl.entry.city}}, {{$ctrl.entry.state}} {{$ctrl.entry.pincode}}
           </p>
         </div>
         <div class="center-detail-contact-info-row">
@@ -116,7 +116,7 @@
       </div>
       <!-- Google Map Card -->
       <div class="center-detail-card" ng-if="$ctrl.entry.listing_type!='free'">
-        <p class="center-detail-map-address">{{ $ctrl.entry.address }}</p>
+        <p class="center-detail-map-address">{{ $ctrl.entry.address }}, {{$ctrl.entry.city}}, {{$ctrl.entry.state}} {{$ctrl.entry.pincode}}</p>
         <card-heading>Map</card-heading>
         <div>
           <iframe width="100%" height="250px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="{{ $ctrl.entry.mapLink }}"></iframe>
