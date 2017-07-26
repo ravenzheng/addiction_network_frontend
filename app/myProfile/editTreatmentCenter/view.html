@@ -103,8 +103,8 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <input ng-model="$ctrl.pincode" type="text" name="pincode" class="form-control required" ng-change="$ctrl.testZip()" number="true" minlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="true" placeholder="14100" />
-            <p ng-show="$ctrl.editCenter.pincode.$invalid" class="help-block">Required and Zip code must be 5 digits</p>
-            <span ng-if="($ctrl.zipFound===0 && $ctrl.editCenter.pincode.$valid)" class="help-block">Invalid zip, doesn't match with selected state.</span>
+            <span ng-show="$ctrl.editCenter.pincode.$invalid" class="help-block">Required and Zip code must be 5 digits</span>
+            <!-- <span ng-if="($ctrl.zipFound===0 && $ctrl.editCenter.pincode.$valid)" class="help-block">Invalid zip, doesn't match with selected state.</span> -->
           </div>
         </div>
 
@@ -238,7 +238,7 @@
             <button type="submit" class="btn adn-btn right" ng-disabled="$ctrl.editCenter.center_name.$invalid ||  $ctrl.editCenter.center_web_link.$invalid || $ctrl.editCenter.center_zip.$invalid || $root.center_phone===0 ||
             $ctrl.editCenter.description.$error.required || $ctrl.editCenter.city.$error.required || $ctrl.editCenter.state.$error.required || $ctrl.editCenter.content_1.$invalid || $ctrl.editCenter.content_2.$invalid || $ctrl.editCenter.content_3.$invalid ||
             $ctrl.editCenter.listing_type.$invalid ||
-            $ctrl.multiselectModelCategories.length === 0 || ($ctrl.zipFound === 0)">Submit</button>
+            $ctrl.multiselectModelCategories.length === 0">Submit</button>
           </div>
         </div>
       </form>
