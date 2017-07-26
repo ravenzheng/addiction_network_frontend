@@ -29,7 +29,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     $rootScope.centerAdded = centerAdded;
     service.getSignupPriceInfo(token).then(function (response) {
       vm.priceFeatured = response.price_featured;
-      vm.priceSponsored = response.price_sponsored;
+      // vm.priceSponsored = response.price_sponsored;
+      vm.priceSponsored = response.price_paid;
       var membershipType = localStorageService.get('membershipType', 'sessionStorage');
       if (membershipType === 'featured') {
         vm.centerPrice = vm.priceFeatured;
