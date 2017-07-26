@@ -16,7 +16,8 @@ function ctrl($anchorScroll, $log, $httpParamSerializer, $sce, $scope, $statePar
     // service.queryDetail(id).then(function (result) {
     service.queryDetailFront(id).then(function (result) {
       result.address = result.address_line_1 + result.address_line_2;
-      result.center_images = [];
+      // result.center_images = [];
+      result.center_images = result.center_images;
       // result.center_images = ['http://www.addictionnetwork.com/wp-content/uploads/gallery_images/slider_images/1428557245-iStock_000009792758_Full.jpg',  'http://www.addictionnetwork.com/wp-content/uploads/gallery_images/slider_images/1425072178-ERP.jpg'];
       //
       var qs = $httpParamSerializer({
