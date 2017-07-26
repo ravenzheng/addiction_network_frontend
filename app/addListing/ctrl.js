@@ -90,7 +90,7 @@ function ctrl(Status, $log, $scope, $rootScope, localStorageService, $window) {
       vm.sideAdvertisement = 0;
       vm.colMd = 'col-md-8';
       // removing advertisemet sidebar for memebership, sponsoredPage section
-      if ((tostate[0] === 'addListing' && (tostate[1] === 'paidMember' || tostate[1] === 'sponsoredPage'))) {
+      if ((tostate[0] === 'addListing' && (tostate[1] === 'paidMember' || tostate[1] === 'sponsoredPage' || tostate[1] === 'bannerAd'))) {
         vm.sideAdvertisement = 1;
         vm.colMd = 'col-md-12';
       }
