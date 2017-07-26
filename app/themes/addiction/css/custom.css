@@ -2630,3 +2630,6 @@ i.fa.fa-times.fa-1 {
 h2.contct_heding.text-right {
     text-align: right !important;
 }
+.hide_it{
+  display:none !important;
+}
