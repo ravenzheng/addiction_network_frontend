@@ -209,7 +209,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
       vm.intakephone = info.phone;
       vm.intakeemail = info.email;
       vm.getCities();
-      lm.testZip();
+      // lm.testZip();
       // handles phone num validate issue when user go back
       if (info.phone_validated) {
         $rootScope.intakephoneValidate = 1;
