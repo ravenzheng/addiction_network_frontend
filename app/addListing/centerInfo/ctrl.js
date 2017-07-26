@@ -96,10 +96,10 @@ function ctrl($scope, $document, $rootScope, $log, $state, UIState, mapService, 
     }
     // $rootScope.addListingStepDone = 4;
     $rootScope.addListingStepDone = 4;
-    lm.testZip();
-    if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
-      $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
-    }
+    // lm.testZip();
+    //if (angular.isDefined(lm.zipFound) && lm.zipFound === 1) {
+    $state.go(UIState.ADD_LISTING.CENTER_DETAILS);
+    // }
   };
 
   lm.skipStep = function () {
