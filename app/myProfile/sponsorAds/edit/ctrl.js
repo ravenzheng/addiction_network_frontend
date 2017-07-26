@@ -107,6 +107,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
       // clear sponsoredpage data
       localStorageService.remove('myprofileSponsoredPage', 'sessionStorage');
+      $state.go(UIState.MY_PROFILE.SPONSOR_ADS);
       //  vm.clearRootscopeData();
     }).catch(function (err) {
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);

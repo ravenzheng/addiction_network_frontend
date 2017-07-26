@@ -2633,3 +2633,7 @@ h2.contct_heding.text-right {
 .hide_it{
   display:none !important;
 }
+.text-center img.image {
+    max-width: 308px !important;
+    max-height: 180px !important;
+}
