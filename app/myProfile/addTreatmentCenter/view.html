@@ -103,7 +103,7 @@
           <div class="col-md-8 col-sm-8 col-xs-12">
             <input ng-model="$ctrl.pincode" type="text" name="center_zip" ng-change="$ctrl.testZip()" class="form-control required" number="true" minlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="true" placeholder="14100" />
             <p ng-show="$ctrl.addCenter.center_zip.$invalid" class="help-block">Required and Zip code must be 5 digits</p>
-            <p class="help-block" ng-if="($ctrl.zipFound===0 && $ctrl.addCenter.center_zip.$valid)">Invalid zip, doesn't match with selected state.</p>
+            <!-- <p class="help-block" ng-if="($ctrl.zipFound===0 && $ctrl.addCenter.center_zip.$valid)">Invalid zip, doesn't match with selected state.</p> -->
           </div>
         </div>
 
@@ -209,7 +209,7 @@
         <div class="adn-row">
           <div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-md-offset-4 col-sm-12 col-xs-12">
             <button type="submit" ng-click="$ctrl.submit()" class="btn adn-btn right" ng-disabled="$ctrl.addCenter.center_name.$invalid ||  $ctrl.addCenter.center_web_link.$invalid || $ctrl.addCenter.center_zip.$invalid ||  $ctrl.addCenter.center_phone.$invalid ||
-            $ctrl.addCenter.description.$error.required || $ctrl.addCenter.city.$error.required || $ctrl.addCenter.state.$error.required || $ctrl.addCenter.content_1.$invalid || $ctrl.addCenter.content_2.$invalid || $ctrl.addCenter.content_3.$invalid || $ctrl.addCenter.address_line_1.$invalid || $ctrl.addCenter.center_email.$invalid || ($ctrl.multiselectModelCategories.length === 0) || ($ctrl.zipFound === 0)">Submit</button>
+            $ctrl.addCenter.description.$error.required || $ctrl.addCenter.city.$error.required || $ctrl.addCenter.state.$error.required || $ctrl.addCenter.content_1.$invalid || $ctrl.addCenter.content_2.$invalid || $ctrl.addCenter.content_3.$invalid || $ctrl.addCenter.address_line_1.$invalid || $ctrl.addCenter.center_email.$invalid || ($ctrl.multiselectModelCategories.length === 0)">Submit</button>
           </div>
         </div>
       </form>

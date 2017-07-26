@@ -1,6 +1,6 @@
-module.exports = ['$log', '$rootScope', 'Status', 'UserService', 'MapService', 'TreatmentCenterService', 'localStorageService', '$state', ctrl];
+module.exports = ['$log', '$rootScope', 'Status', 'UserService', 'MapService', 'TreatmentCenterService', 'localStorageService', '$state', 'UIState', ctrl];
 
-function ctrl($log, $rootScope, Status, service, mapService, centerService, localStorageService, $state) {
+function ctrl($log, $rootScope, Status, service, mapService, centerService, localStorageService, $state, UIState) {
   var vm = this;
   vm.onStateUpdate = function (selected) {
     vm.state = selected;
@@ -92,6 +92,7 @@ function ctrl($log, $rootScope, Status, service, mapService, centerService, loca
   };
 
   function submit() {
+    vm.country = 'USA';
     var data = {
       'first_name': vm.first_name,
       'last_name': vm.last_name,
@@ -114,7 +115,8 @@ function ctrl($log, $rootScope, Status, service, mapService, centerService, loca
       $rootScope.profileData = result.user;
       localStorageService.set('profileData', result.user, 'sessionStorage');
       $rootScope.$emit(Status.SUCCEEDED, Status.PROFILE_EDIT_SUCCEESS_MSG);
-      $state.reload();
+      $state.go(UIState.MY_PROFILE.PROFILE);
+      // $state.reload();
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
