@@ -113,9 +113,10 @@
             <label>Phone:</label>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="eg. (601) 521-1542" number="true" ng-change="$ctrl.testPhone()" class="form-control required" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14">
-            <p ng-show="$ctrl.addCenter.center_phone.$error.pattern || $ctrl.addCenter.center_phone.$error.minlength || $ctrl.addCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p>
-            <p ng-show="$ctrl.addCenter.center_phone.$error.required" class="help-block">Required</p>
+            <!-- <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="Intake phone number" number="true" ng-change="$ctrl.testPhone()" class="form-control required" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14"> -->
+            <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="Intake phone number" ng-pattern="/^-?[0-9+]*$/" number="true" class="form-control required" required="true">
+            <!-- <p ng-show="$ctrl.addCenter.center_phone.$error.pattern || $ctrl.addCenter.center_phone.$error.minlength || $ctrl.addCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p> -->
+            <p ng-show="$ctrl.addCenter.center_phone.$invalid" class="help-block">Invalid Phone number</p>
           </div>
         </div>
 

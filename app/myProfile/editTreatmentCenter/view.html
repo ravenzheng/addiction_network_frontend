@@ -118,9 +118,10 @@
             <!-- <p ng-show="$ctrl.editCenter.center_phone.$error.pattern || $ctrl.editCenter.center_phone.$error.minlength || $ctrl.editCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p> -->
             <!-- <p ng-show="$ctrl.editCenter.center_phone.$error.required" class="help-block">Required</p> -->
 
-            <input placeholder="eg. (601) 521-1542" name="center_phone" ng-change="$ctrl.testPhone()" class="form-control required" number="true" type="text" required="true" phone-input restrict="reject" maxlength="14" ng-model="$ctrl.phone">
-            <p ng-show="$ctrl.editCenter.center_phone.$error.pattern || $ctrl.editCenter.center_phone.$error.maxlength || ($ctrl.phone.length<10 && $ctrl.phone.length>0) " class="help-block">Invalid US number.</p>
-            <p ng-show="$ctrl.editCenter.center_phone.$error.required" class="help-block">Required</p>
+            <!-- <input placeholder="eg. (601) 521-1542" name="center_phone" ng-change="$ctrl.testPhone()" class="form-control required" number="true" type="text" required="true" phone-input restrict="reject" maxlength="14" ng-model="$ctrl.phone"> -->
+            <input placeholder="Intake phone number" name="center_phone" class="form-control required" number="true" type="text" required="true" ng-pattern="/^-?[0-9+]*$/" ng-model="$ctrl.phone">
+            <!-- <p ng-show="$ctrl.editCenter.center_phone.$error.pattern || $ctrl.editCenter.center_phone.$error.maxlength || ($ctrl.phone.length<10 && $ctrl.phone.length>0) " class="help-block">Invalid US number.</p> -->
+            <p ng-show="$ctrl.editCenter.center_phone.$invalid" class="help-block">Invalid Phone number</p>
           </div>
         </div>
 
@@ -235,8 +236,7 @@
         <!-- Submit -->
         <div class="adn-row">
           <div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-md-offset-4 col-sm-12 col-xs-12">
-            <button type="submit" class="btn adn-btn right" ng-disabled="$ctrl.editCenter.center_name.$invalid ||  $ctrl.editCenter.center_web_link.$invalid || $ctrl.editCenter.center_zip.$invalid || $root.center_phone===0 ||
-            $ctrl.editCenter.description.$error.required || $ctrl.editCenter.city.$error.required || $ctrl.editCenter.state.$error.required || $ctrl.editCenter.content_1.$invalid || $ctrl.editCenter.content_2.$invalid || $ctrl.editCenter.content_3.$invalid ||
+            <button type="submit" class="btn adn-btn right" ng-disabled="$ctrl.editCenter.center_name.$invalid ||  $ctrl.editCenter.center_web_link.$invalid || $ctrl.editCenter.center_zip.$invalid || $ctrl.editCenter.center_phone.$invalid  ||         $ctrl.editCenter.description.$error.required || $ctrl.editCenter.city.$error.required || $ctrl.editCenter.state.$error.required || $ctrl.editCenter.content_1.$invalid || $ctrl.editCenter.content_2.$invalid || $ctrl.editCenter.content_3.$invalid ||
             $ctrl.editCenter.listing_type.$invalid ||
             $ctrl.multiselectModelCategories.length === 0">Submit</button>
           </div>
