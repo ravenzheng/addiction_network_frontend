@@ -8,7 +8,7 @@
         <!-- Detail -->
         <div class="row">
           <div class="text-center">
-            <img class="image" src="{{$ctrl.entry.listing_image}}">
+            <img ng-show="$ctrl.entry.center_images.length===0" class="image" src="{{$ctrl.entry.listing_image}}">
           </div>
           <section-heading>{{ $ctrl.entry.center_name }} Details</section-heading>
           <div class="adn-row">
