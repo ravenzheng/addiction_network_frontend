@@ -2637,3 +2637,11 @@ h2.contct_heding.text-right {
     max-width: 308px !important;
     max-height: 180px !important;
 }
+.header_ad_url {
+    max-width: 544px !important;
+    max-height:93px !important;
+}
+img#sidebar_ad {
+    max-width: 298px !important;
+    max-height: 174px !important;
+}
