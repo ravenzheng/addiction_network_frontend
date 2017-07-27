@@ -44,7 +44,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
   } else {
     service.getSignupPriceInfo(token).then(function (response) {
       vm.priceFeatured = response.price_featured;
-      vm.priceSponsored = response.price_sponsored;
+      vm.priceSponsored = response.price_paid;
       var membershipType = localStorageService.get('membershipType', 'sessionStorage');
       if (membershipType === 'featured') {
         vm.centerPrice = vm.priceFeatured;
@@ -211,7 +211,7 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
 function addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localStorageService, UIState) {
   var priceValue = localStorageService.get('centerPriceValue', 'sessionStorage');
   $rootScope.centerPrice = priceValue;
-  var deletePrompt = '<div class="modal-header">{{$root.testing}}<h7 class="modal-title" id="modal-title"><table><tbody><tr><td ng-repeat="center in $root.centerAdded track by $index" class="treatment_center_added">{{center}},  </td> Treatment center added</tr><tr><td>You will be charged </td><td>&nbsp;</td><td> ${{$root.centerAdded.length*$root.centerPrice}}</td></tr></tbody></table></h7></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> YES </button><button class="btn adn-btn small_button" type="button" ng-click="cancel()"> No </button><div><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 8px;right:18px; font-size: 24px;border-radius: 100%;" ng-click="cancel()"></i></div></div>';
+  var deletePrompt = '<div class="modal-header">{{$root.testing}}<h7 class="modal-title" id="modal-title"><table><tbody><tr><td ng-repeat="center in $root.centerAdded track by $index" class="treatment_center_added">{{center}},  </td> Treatment center added</tr><tr><td>You will be charged </td><td>&nbsp;</td><td> ${{$root.centerAdded.length*$root.centerPrice}}</td></tr></tbody></table></h7></div><div class="modal-body text-left" id="modal-body">Add more treatment center?</div><div class="modal-footer"><button class="btn adn-btn small_button" type="button" ng-click="ok()"> YES </button><button class="btn adn-btn small_button" type="button" ng-click="cancel()"> No </button><div><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 8px;right:18px; font-size: 24px;border-radius: 100%;" ng-click="close()"></i></div></div>';
   lm.open = function () {
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
@@ -224,10 +224,15 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localSto
           modalInstance.close();
           $state.go(UIState.ADD_LISTING.CENTER_INFO);
         };
+        $rootScope.close = function () {
+          modalInstance.close();
+          return false;
+        };
         $rootScope.cancel = function () {
           var membership = localStorageService.get('membershipType');
           if (membership === 'free') {
-            $window.location.href = '/#/login';
+            // $window.location.href = '/#/login';
+            $window.location.href = '/login';
           }
           modalInstance.close();
           modalInstance.dismiss('cancel');
