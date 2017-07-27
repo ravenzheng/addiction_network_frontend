@@ -2648,3 +2648,8 @@ img#sidebar_ad {
 .treatmentcenter_image{
   margin-bottom: 10px !important;
 }
+.small_checkbox{
+  width:25% !important;
+  height:14px !important;
+  margin-top: 16px !important;
+}
