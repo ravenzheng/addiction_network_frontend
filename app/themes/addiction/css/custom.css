@@ -2641,10 +2641,10 @@ h2.contct_heding.text-right {
     max-width: 544px !important;
     max-height:93px !important;
 }
-img#sidebar_ad {
+/*img#sidebar_ad {
     max-width: 248px !important;
     max-height: 145px !important;
-}
+}*/
 .treatmentcenter_image{
   margin-bottom: 20px !important;
 }
@@ -2653,7 +2653,7 @@ img#sidebar_ad {
   height:14px !important;
   margin-top: 16px !important;
 }
-.side-card.add_listing_side_card {
+/*.side-card.add_listing_side_card {
     max-width: 248px !important;
     max-height: 145px !important;
-}
+}*/
