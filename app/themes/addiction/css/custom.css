@@ -2653,3 +2653,7 @@ img#sidebar_ad {
   height:14px !important;
   margin-top: 16px !important;
 }
+.side-card.add_listing_side_card {
+    max-width: 248px !important;
+    max-height: 145px !important;
+}
