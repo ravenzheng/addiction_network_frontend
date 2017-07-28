@@ -8,11 +8,12 @@
         <span class="btn adn-btn right">Add More Treatment Center</span>
       </a>
     </div>
-    <div class="profile-row">
+    <div class="profile-row" ng-if="$ctrl.centers.length>0">
       <!-- Center listings in a table -->
       <center-table centers="$ctrl.centers" on-activate="$ctrl.onActivate(id)" on-delete="$ctrl.open(id)"></center-table>
       <!-- Pagination -->
       <pagination total-pages="$ctrl.totalPages" current-page="$ctrl.currentPage" on-update="$ctrl.onPageUpdate(page)"></pagination>
     </div>
+    <div class="no_treatment_center ng-hide" ng-if="$ctrl.centers.length===0">Sorry, you have not added any treatment center</div>
   </div>
 </div>

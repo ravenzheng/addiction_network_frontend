@@ -1,4 +1,4 @@
-function ctrl($window, $log, UserService, $rootScope, localStorageService) {
+function ctrl($window, $log, UserService, $rootScope, localStorageService, $state, UIState) {
   $rootScope.login = 0;
   localStorageService.remove('token');
   localStorageService.remove('loginToken');
@@ -17,7 +17,8 @@ function ctrl($window, $log, UserService, $rootScope, localStorageService) {
   localStorageService.remove('userLoginInfo');
   localStorageService.remove('addListingCenteradded');
   localStorageService.remove('centerPriceValue');
-  $window.location.href = '/login';
+  // $window.location.href = '/login';
+  $state.go(UIState.LOGIN);
 }
 
-module.exports = ['$window', '$log', 'UserService', '$rootScope', 'localStorageService', ctrl];
+module.exports = ['$window', '$log', 'UserService', '$rootScope', 'localStorageService', '$state', 'UIState', ctrl];

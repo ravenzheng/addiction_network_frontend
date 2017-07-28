@@ -1,6 +1,7 @@
-module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', '$stateParams', 'Status', 'UIState', 'TreatmentCenterService', 'MapService', 'localStorageService', ctrl];
+module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', '$stateParams', 'Status', 'UIState', 'TreatmentCenterService', 'MapService', 'localStorageService', 'UserService', 'CartDetailService',
+  ctrl];
 
-function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status, UIState, service, mapService, localStorageService) {
+function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status, UIState, service, mapService, localStorageService, UserService, CartDetailService) {
   var vm = this;
   var id = $stateParams.id;
   var token = localStorageService.get('token');
@@ -67,6 +68,27 @@ function ctrl($scope, $document, $log, $rootScope, $state, $stateParams, Status,
       });
     }
   }
+
+  // queryProfile
+
+  UserService.queryProfile().then(function (result) {
+    vm.profile = result.user;
+    // console.log('profile data from api: ' + vm.profile);
+    vm.userType = result.user.type_of_user;
+    // localStorageService.set('profileData', result.user, 'sessionStorage');
+  }).catch(function (error) {
+    // todo, display in message in the frontend page
+    // $window.location.href = '/#logout';
+    $log.error(error);
+  });
+
+  // pricing
+  CartDetailService.getPriceInfo().then(function (result) {
+    vm.sponsoredPrice = result.price_paid;
+    vm.featuredPrice = result.price_featured;
+  }).catch(function (error) {
+    $log.error(error);
+  });
 
   function getCities(state) {
     mapService.getCitiesByState(state).then(function (response) {

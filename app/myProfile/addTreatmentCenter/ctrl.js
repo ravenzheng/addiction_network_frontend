@@ -1,8 +1,8 @@
 module.exports = ['$scope', '$document', '$log', '$rootScope', '$state', 'Status', 'UIState',
-  'TreatmentCenterService', 'MapService',
+  'TreatmentCenterService', 'MapService', 'UserService', 'CartDetailService',
   ctrl];
 
-function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, service, mapService) {
+function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, service, mapService, UserService, CartDetailService) {
   var vm = this;
   vm.state = '';
   vm.err_type = 1;
@@ -37,6 +37,26 @@ function ctrl($scope, $document, $log, $rootScope, $state, Status, UIState, serv
       'id': '4'
     }
   ];
+
+  // queryProfile
+
+  UserService.queryProfile().then(function (result) {
+    vm.profile = result.user;
+    // console.log('profile data from api: ' + vm.profile);
+    vm.userType = result.user.type_of_user;
+    // localStorageService.set('profileData', result.user, 'sessionStorage');
+  }).catch(function (error) {
+    // todo, display in message in the frontend page
+    // $window.location.href = '/#logout';
+    $log.error(error);
+  });
+
+  CartDetailService.getPriceInfo().then(function (result) {
+    vm.sponsoredPrice = result.price_paid;
+    vm.featuredPrice = result.price_featured;
+  }).catch(function (error) {
+    $log.error(error);
+  });
 
   function getCities(state) {
     mapService.getCitiesByState(state).then(function (response) {

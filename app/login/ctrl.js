@@ -1,4 +1,4 @@
-function ctrl($log, UserService, $rootScope, $window, $document, localStorageService, Status) {
+function ctrl($log, UserService, $rootScope, $window, $document, localStorageService, Status, $state, UIState) {
   var vm = this;
   var getUserInfo = (localStorageService.get('userInfo', 'sessionStorage') !== null) ? localStorageService.get('userInfo', 'sessionStorage') : localStorageService.get('userLoginInfo', 'sessionStorage');
 
@@ -10,7 +10,8 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
     UserService.signIn(email, password).then(function () {
       $rootScope.login = 1;
       $rootScope.$emit(Status.SUCCEEDED, 'You are logged in');
-      $window.location.href = '/my-profile/profile';
+      // $window.location.href = '/my-profile/profile';
+      $state.go(UIState.MY_PROFILE.PROFILE);
     }).catch(function (errors) {
       // todo, display the error message in the page.
       // var error = angular.element($document[0].querySelector('#error_if'));
@@ -25,7 +26,8 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
     password = vm.password;
     UserService.signIn(email, password).then(function () {
       $rootScope.login = 1;
-      $window.location.href = '/my-profile/profile';
+      // $window.location.href = '/my-profile/profile';
+      $state.go(UIState.MY_PROFILE.PROFILE);
       $rootScope.$emit(Status.SUCCEEDED, 'You are logged in');
     }).catch(function (errors) {
       // todo, display the error message in the page.
@@ -38,4 +40,4 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
   };
 }
 
-module.exports = ['$log', 'UserService', '$rootScope', '$window', '$document', 'localStorageService', 'Status', ctrl];
+module.exports = ['$log', 'UserService', '$rootScope', '$window', '$document', 'localStorageService', 'Status', '$state', 'UIState', ctrl];

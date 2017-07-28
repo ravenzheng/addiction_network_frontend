@@ -1,6 +1,6 @@
-module.exports = ['$log', '$injector', '$rootScope', 'Status', '$uibModal', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$injector', '$rootScope', 'Status', '$uibModal', 'TreatmentCenterService', '$document', '$timeout', ctrl];
 
-function ctrl($log, $injector, $rootScope, Status, $uibModal, service) {
+function ctrl($log, $injector, $rootScope, Status, $uibModal, service, $document, $timeout) {
   var vm = this;
   vm.centers = [];
   vm.totalPages = 0;
@@ -11,7 +11,6 @@ function ctrl($log, $injector, $rootScope, Status, $uibModal, service) {
   vm.onDelete = onDelete;
   $rootScope.featureSelect = featureSelect;
   $rootScope.featured = '';
-
   var deletePrompt = '<div class="modal-header"><h3 class="modal-title" id="modal-title">Delete Treatment Center!</h3></div><div class="modal-body" id="modal-body">Are you sure you want to delete?</div><div class="modal-footer"><button class="btn adn-btn" type="button" ng-click="ok()"> OK </button><button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button ></div>';
   vm.open = function (id) {
     var modalInstance = $injector.get('$uibModal').open({
@@ -45,6 +44,13 @@ function ctrl($log, $injector, $rootScope, Status, $uibModal, service) {
       vm.currentPage = result.current_page;
     });
   }
+
+  angular.element(document).ready(function () {
+    var fadeElement = angular.element($document[0].querySelector('.no_treatment_center'));
+    $timeout(function () {
+      fadeElement.removeClass('ng-hide');
+    }, 3000);
+  });
 
   // get center list from server
   function onInit() {
