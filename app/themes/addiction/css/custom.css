@@ -2333,7 +2333,7 @@ a:focus {
   min-width: 120px !important;
 }
 a.thumbnail img {
-    max-height: 88px;
+  max-height: 88px;
 }
 .state-full-name{
   font-size:24px;
@@ -2358,7 +2358,7 @@ a.thumbnail img {
   margin-top:5px;
 }
 .center-detail-contact-info-row img {
-    max-width: 200px;
+    max-width: 100%;
 }
 .state_size{
   font-size:20px;
