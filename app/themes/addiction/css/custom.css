@@ -2661,3 +2661,11 @@ h2.contct_heding.text-right {
   font-size: 27px;
   margin-left: 10px;
 }
+.small_monthly small{
+  font-size:8px !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.col-md-12.col-sm-12.col-xs-12.col-lg-12.small_monthly {
+    margin-top: -33px !important;
+    margin-left: -10px !important;
+}
