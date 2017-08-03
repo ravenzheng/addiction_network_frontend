@@ -16,7 +16,7 @@ angular.module(moduleName, [
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.HOME,
-      url: '/',
+      url: '/?auth_token',
       template: '<home></home>'
     });
   }]);
