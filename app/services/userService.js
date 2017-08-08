@@ -10,6 +10,10 @@ function service($http, $q, $window, endPoint, localStorageService) {
   _service.changePassword = changePassword;
   _service.upgradeUserSignup = upgradeUserSignup;
   _service.upgradeUser = upgradeUser;
+  _service.emailOtp = emailOtp;
+  _service.phoneOtp = phoneOtp;
+  _service.emailOtpApi = emailOtpApi;
+  _service.phoneOtpApi = phoneOtpApi;
 
   // sign in with email and password
   function signIn(email, password) {
@@ -84,6 +88,43 @@ function service($http, $q, $window, endPoint, localStorageService) {
       }
     });
   }
+
+  // Email OTP
+  function emailOtp(formData) {
+    return $http.post(endPoint + '/v1/forget_password/email', formData, {
+      // headers: {
+      //   'Content-Type': undefined
+      // }
+    });
+  }
+
+  // Phone OTP
+  function phoneOtp(formData) {
+    return $http.post(endPoint + '/v1/forget_password/phone', formData, {
+      // headers: {
+      //   'Content-Type': undefined
+      // }
+    });
+  }
+
+  // Email Reset OTP
+  function emailOtpApi(formData) {
+    return $http.post(endPoint + '/v1/forget_password/reset', formData, {
+      // headers: {
+      //   'Content-Type': undefined
+      // }
+    });
+  }
+
+  // Phone Reset OTP
+  function phoneOtpApi(formData) {
+    return $http.post(endPoint + '/v1/forget_password/reset', formData, {
+      // headers: {
+      //   'Content-Type': undefined
+      // }
+    });
+  }
+
   // Upgrade user
   function upgradeUser(formData) {
     return _service.getToken().then(function (token) {

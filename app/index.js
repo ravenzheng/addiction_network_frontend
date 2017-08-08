@@ -24,6 +24,7 @@ angular.module(appName, [
   require('./contactCustomerThank'),
   require('./contactTreatmentCenter'),
   require('./contactTreatmentThank'),
+  require('./loginHelp'),
   require('./insurance')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))

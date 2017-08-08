@@ -20,6 +20,22 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
       $log.error(errors);
     });
   }
+  // show password
+
+  vm.show_password = function () {
+    var showPass = vm.show_pass;
+    var passwordShow = angular.element($document[0].querySelector('#password'));
+    if (showPass === true) {
+      passwordShow.attr('type', 'text');
+    } else {
+      passwordShow.attr('type', 'password');
+    }
+  };
+  // forgot password
+
+  vm.forgot = function () {
+    $state.go(UIState.LOGINHELP);
+  };
 
   vm.submit = function () {
     email = vm.email;
