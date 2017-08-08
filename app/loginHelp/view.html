@@ -35,9 +35,9 @@
               </div>
             </p>
           </div>
-          <!-- <div class="col-md-12 col-sm-12 col-xs-12 margin-top-15">
-            <a href="javascript:void(0)">Click here if you don't know Email or Username</a>
-          </div> -->
+          <div class="col-md-12 col-sm-12 col-xs-12 margin-top-15">
+            <a href="javascript:void(0)" ng-click="$ctrl.forgot_username()">Click here if you don't know Email or Username</a>
+          </div>
         </div>
       </form>
       <div id="match_otp_email" class="ng-hide margin-top-15">
@@ -91,6 +91,23 @@
           </p>
         </div>
       </div>
+
+      <div id="forgot_username_phone" class="ng-hide margin-top-15">
+        <h4>Please enter the Phone number to get Email and Username</h4>
+        <div class="col-md-12 col-sm-12 col-xs-12 margin-top-15">
+          <p class="margin-top-15 clearfix-button">
+            <div class="colsm1">Phone</div>
+            <input type="text" class="col-sm-4" placeholder="Phone" ng-model="$ctrl.forgot_username_phone">
+          </p>
+          <br>
+          <br>
+          <p class="margin-top-15 clearfix-button">
+            <input class="btn adn-btn" value="Submit" type="button" ng-click="$ctrl.get_email_username()">
+          </p>
+        </div>
+      </div>
+
+
       <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <footer-ad></footer-ad>
       </div>
