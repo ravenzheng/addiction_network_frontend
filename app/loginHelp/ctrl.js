@@ -36,6 +36,35 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
     }
   };
 
+  // forgot Username
+
+  vm.forgot_username = function () {
+    hideFirst.addClass('ng-hide');
+    var forgotUsername = angular.element($document[0].querySelector('#forgot_username_phone'));
+    forgotUsername.removeClass('ng-hide');
+  };
+
+  // get Email and Username
+  vm.get_email_username = function () {
+    var phone = vm.forgot_username_phone;
+    if (angular.isUndefined(phone)) {
+      $rootScope.$emit(Status.SUCCEEDED, 'Please enter the phone number');
+      return;
+    }
+    var formData = {
+      'phone': phone
+    };
+
+    UserService.forgotUsername(formData).then(function (result) {
+      $state.go(UIState.LOGIN);
+      $rootScope.$emit(Status.SUCCEEDED, result.message);
+    }).catch(function (errors) {
+      // todo, display the error message in the page.
+      $rootScope.$emit(Status.FAILED, errors.data.error);
+      $log.error(errors);
+    });
+  };
+
   // getEmail
   vm.getEmail = function () {
     var getEmailvalue = vm.get_email;

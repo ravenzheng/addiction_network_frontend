@@ -14,6 +14,7 @@ function service($http, $q, $window, endPoint, localStorageService) {
   _service.phoneOtp = phoneOtp;
   _service.emailOtpApi = emailOtpApi;
   _service.phoneOtpApi = phoneOtpApi;
+  _service.forgotUsername = forgotUsername;
 
   // sign in with email and password
   function signIn(email, password) {
@@ -125,6 +126,14 @@ function service($http, $q, $window, endPoint, localStorageService) {
     });
   }
 
+  // Forgot Username
+  function forgotUsername(formData) {
+    return $http.post(endPoint + '/v1/forgot_username', formData, {
+      // headers: {
+      //   'Content-Type': undefined
+      // }
+    });
+  }
   // Upgrade user
   function upgradeUser(formData) {
     return _service.getToken().then(function (token) {
