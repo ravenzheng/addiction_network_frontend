@@ -2333,7 +2333,7 @@ a:focus {
   min-width: 120px !important;
 }
 a.thumbnail img {
-    max-height: 88px;
+  max-height: 88px;
 }
 .state-full-name{
   font-size:24px;
@@ -2358,7 +2358,7 @@ a.thumbnail img {
   margin-top:5px;
 }
 .center-detail-contact-info-row img {
-    max-width: 200px;
+    max-width: 100%;
 }
 .state_size{
   font-size:20px;
@@ -2641,10 +2641,7 @@ h2.contct_heding.text-right {
     max-width: 544px !important;
     max-height:93px !important;
 }
-/*img#sidebar_ad {
-    max-width: 248px !important;
-    max-height: 145px !important;
-}*/
+
 .treatmentcenter_image{
   margin-bottom: 20px !important;
 }
@@ -2653,10 +2650,7 @@ h2.contct_heding.text-right {
   height:14px !important;
   margin-top: 16px !important;
 }
-/*.side-card.add_listing_side_card {
-    max-width: 248px !important;
-    max-height: 145px !important;
-}*/
+
 .no_treatment_center{
   font-size: 27px;
   margin-left: 10px;
@@ -2682,4 +2676,12 @@ h2.contct_heding.text-right {
 .colsm1{
   width: 14% !important;
   float: left;
+}
+.small_monthly small{
+  font-size:8px !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.col-md-12.col-sm-12.col-xs-12.col-lg-12.small_monthly {
+    margin-top: -33px !important;
+    margin-left: -10px !important;
 }

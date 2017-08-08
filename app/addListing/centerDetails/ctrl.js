@@ -9,9 +9,15 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     $state.go(UIState.ADD_LISTING.CENTER_INFO);
   };
   var membership = localStorageService.get('membershipType');
+  if (membership === 'free') {
+    lm.nextText = 'Finish';
+  } else {
+    lm.nextText = 'Next';
+  }
   lm.skipStep = function () {
     if (membership === 'free') {
-      $window.location.href = '/#/login';
+      // $window.location.href = '/#/login';
+      $state.go(UIState.LOGIN);
     }
     $rootScope.doneSteps = $rootScope.doneSteps.concat(['centerDetails']);
     $rootScope.addListingStepDone = 5;
@@ -232,7 +238,7 @@ function addAgainPrompt(lm, vm, $injector, $rootScope, $state, $window, localSto
           var membership = localStorageService.get('membershipType');
           if (membership === 'free') {
             // $window.location.href = '/#/login';
-            $window.location.href = '/login';
+            $state.go(UIState.LOGIN);
           }
           modalInstance.close();
           modalInstance.dismiss('cancel');
