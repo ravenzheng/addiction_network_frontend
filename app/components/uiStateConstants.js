@@ -50,6 +50,7 @@ module.exports = {
 
   },
   'LOGIN': 'login',
+  'LOGINHELP': 'loginHelp',
   'LOGOUT': 'logout',
   'MY_PROFILE': {
     'INDEX': 'myProfile', // abstract

@@ -2661,3 +2661,25 @@ h2.contct_heding.text-right {
   font-size: 27px;
   margin-left: 10px;
 }
+.margin-top-5{
+  margin-top:7px;
+  margin-left:-5%;
+}
+.login-changes{
+  margin-left:5px;
+}
+.login-help{
+  font-size:16px;
+  margin-left:10px;
+}
+.clearfix-button{
+  clear:both !important;
+}
+.margin-top-10{
+  margin-top:10px;
+  margin-bottom:5px;
+}
+.colsm1{
+  width: 14% !important;
+  float: left;
+}
