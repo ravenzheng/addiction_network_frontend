@@ -94,3 +94,29 @@
 .ui.form .input.amex i.icon:before {
   content: "a";
 }
+
+i.icon.large.icon-jcb-card {
+    margin-top: -20px !important;
+}
+
+.icon-jcb-card:before {
+    content: "JCB";
+    font-size: 18px;
+}
+
+i.icon.large.icon-discover-card {
+    margin-top: -20px !important;
+}
+
+.icon-discover-card:before {
+    content: "DS";
+    font-size: 14px;
+}
+i.icon.large.icon-diners-club-card {
+    margin-top: -20px !important;
+}
+
+.icon-diners-club-card:before {
+    content: "DC";
+    font-size: 14px;
+}

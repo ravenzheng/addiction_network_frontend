@@ -47,6 +47,12 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
           lm.cardType = 'visa';
         } else if (vm.cardType[0].type === 'american-express') {
           lm.cardType = 'amex';
+        } else if (vm.cardType[0].type === 'jcb') {
+          lm.cardType = 'jcb';
+        } else if (vm.cardType[0].type === 'discover') {
+          lm.cardType = 'discover';
+        } else if (vm.cardType[0].type === 'diners-club') {
+          lm.cardType = 'diners-club';
         } else {
           lm.cardType = 'credit';
         }
