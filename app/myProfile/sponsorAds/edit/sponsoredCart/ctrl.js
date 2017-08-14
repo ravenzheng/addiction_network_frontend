@@ -64,18 +64,32 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     vm.priceCity = 0;
 
     // get price info
-    CartDetailService.getPriceInfo().then(function (response) {
+    if ($rootScope.sponsorPricingInfo === '') {
+      CartDetailService.getPriceInfo().then(function (response) {
+        $rootScope.sponsorPricingInfo = response;
+        vm.priceState = response.price_state;
+        vm.priceCounty = response.price_county;
+        vm.priceCity = response.price_city;
+        vm.priceSponsored = response.price_sponsored;
+
+        CartDetailService.getCartInfo(countyIdApi, cityIdsApi).then(function (result) {
+          cartInfo(result);
+        }).catch(function (err) {
+          $log.error(err);
+        });
+      });
+    } else {
+      var response = $rootScope.sponsorPricingInfo;
       vm.priceState = response.price_state;
       vm.priceCounty = response.price_county;
       vm.priceCity = response.price_city;
       vm.priceSponsored = response.price_sponsored;
-
       CartDetailService.getCartInfo(countyIdApi, cityIdsApi).then(function (result) {
         cartInfo(result);
       }).catch(function (err) {
         $log.error(err);
       });
-    });
+    }
 
     function cartInfo(result) {
       vm.stateTotalCost = 0;

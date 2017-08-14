@@ -15,6 +15,9 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   $rootScope.centerSelected = [];
   vm.treatmentCentersModel = [];
 
+  // load pricing info from api
+  $rootScope.sponsorPricingInfo = '';
+
   // getting values from localstorage if already set
   // if (angular.isDefined(localStorageService.get('myprofileSponsoredPage', 'sessionStorage'))) {
   //   var sponsoredInfo = localStorageService.get('myprofileSponsoredPage', 'sessionStorage');

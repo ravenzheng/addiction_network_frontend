@@ -27,9 +27,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
     }
 
-    if (angular.isDefined(vm.centerWise)) {
-
-    } else {
+    if (angular.isUndefined(vm.centerWise)) {
       vm.centerWise = {};
     }
 
@@ -66,7 +64,34 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     vm.priceSponsored = 0;
     vm.totalExtra = 0;
     // get price info
-    CartDetailService.getSignupPriceInfo(token).then(function (response) {
+    if ($rootScope.sponsorPricingInfo === '') {
+      CartDetailService.getSignupPriceInfo(token).then(function (response) {
+        $rootScope.sponsorPricingInfo = response;
+        vm.priceState = response.price_state;
+        vm.priceCounty = response.price_county;
+        vm.priceCity = response.price_city;
+        vm.priceFeatured = response.price_featured;
+        vm.priceSponsored = response.price_sponsored;
+        var membershipType = localStorageService.get('membershipType', 'sessionStorage');
+        if (membershipType === 'featured') {
+          vm.totalExtra = vm.priceFeatured;
+          vm.membershipTypeText = 'FEATURED';
+        }
+        if (membershipType === 'sponsored') {
+          vm.totalExtra = vm.priceSponsored;
+          vm.membershipTypeText = 'SPONSORED';
+        }
+        if (angular.isUndefined(vm.totalExtra)) {
+          vm.totalExtra = 0;
+        }
+        CartDetailService.getCartInfo(countyIdApi, cityIdsApi).then(function (result) {
+          cartInfo(result);
+        }).catch(function (err) {
+          $log.error(err);
+        });
+      });
+    } else {
+      var response = $rootScope.sponsorPricingInfo;
       vm.priceState = response.price_state;
       vm.priceCounty = response.price_county;
       vm.priceCity = response.price_city;
@@ -89,7 +114,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }).catch(function (err) {
         $log.error(err);
       });
-    });
+    }
 
     function cartInfo(result) {
       vm.stateTotalCost = 0;
@@ -289,27 +314,15 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         };
         vm.byDrugTotal += price;
       }
-
-      //  vm.demographicTotal *= totalCenters;
-      //  vm.treatmentApproachTotal *= totalCenters;
-      //  vm.settingTotal *= totalCenters;
-      //  vm.additionalServicesTotal *= totalCenters;
-      //  vm.paymentTotal = vm.paymentTotal * totalCenters;
-      //  vm.byDrugTotal = vm.byDrugTotal * totalCenters;
-
       var totalExtra = vm.totalExtra * totalCenters;
       vm.totalExtra = totalExtra;
-      vm.stateTotalCost = totalStates; //* totalCenters;
-      vm.cityTotalCost = totalCity; //* totalCenters;
-      vm.countyTotalCost = totalCounty; //* totalCenters;
-      // var total = totalCounty + totalCity + totalStates + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal + totalExtra;
-      // var total = vm.countyTotalCost + vm.cityTotalCost + vm.stateTotalCost + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
+      vm.stateTotalCost = totalStates;
+      vm.cityTotalCost = totalCity;
+      vm.countyTotalCost = totalCounty;
 
       var total = vm.countyTotalCost + vm.cityTotalCost + vm.stateTotalCost + vm.demographicTotal + vm.treatmentApproachTotal + vm.settingTotal + vm.additionalServicesTotal + vm.paymentTotal + vm.byDrugTotal;
 
-      vm.totalCost = total; //* totalCenters;
-      // $rootScope.total = total; //* totalCenters;
-
+      vm.totalCost = total;
       // saving to centerwise
       var centerwise = {
         'demographic': vm.demographic,

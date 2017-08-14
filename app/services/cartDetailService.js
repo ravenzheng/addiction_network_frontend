@@ -13,7 +13,6 @@ function service($log, $http, endPoint, UserService) {
   }
 
   // get price info for state, city, county, sponsored
-
   function getPriceInfo() {
     return UserService.getToken().then(function (token) {
       return $http.get(endPoint + '/pricing', {
