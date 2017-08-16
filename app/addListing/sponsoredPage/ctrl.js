@@ -136,6 +136,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     for (key in sponsorData) {
       formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
     }
+    $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
       $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
       $rootScope.addListingStepDone = 6;

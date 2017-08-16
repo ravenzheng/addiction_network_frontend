@@ -131,6 +131,7 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService, service, S
     }
     $rootScope.formdata = formData;
 
+    $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     service.addTreatmentCenterSignUp(formData).then(function (result) {
       localStorageService.set('signupToken', result.user.auth_token);
       $rootScope.$emit(Status.SUCCEEDED, Status.USER_ADD_SUCCESS_MSG);
@@ -151,6 +152,10 @@ function ctrl($rootScope, $log, $state, UIState, localStorageService, service, S
         }
         if (angular.isDefined(err.data.user.username)) {
           var userError = err.data.user.username.errors[0];
+          $rootScope.$emit(Status.FAILED, userError);
+        }
+        if (angular.isDefined(err.data.user.phone)) {
+          var userError = err.data.user.phone.errors[0];
           $rootScope.$emit(Status.FAILED, userError);
         }
       }

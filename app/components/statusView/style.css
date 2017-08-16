@@ -13,6 +13,9 @@
 .status-succeeded {
   color: white;
 }
+.status-processing {
+  color: orange;
+}
 
 .status-failed {
   color: white;

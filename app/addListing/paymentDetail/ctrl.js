@@ -124,6 +124,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   };
   vm.middleName = '';
   vm.submit = function () {
+    $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     // validating file type
     var card = vm.card.replace(/ /g, '');
     vm.err_type = 0;

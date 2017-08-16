@@ -76,7 +76,8 @@ function ctrl($scope, $document, $rootScope, $log, $state, $injector, UIState, m
     } else if (membership === 'sponsored') {
       paid = true;
     }
-    $rootScope.$emit(Status.SUCCEEDED, 'Please wait while we add your Treatment center');
+    // $rootScope.$emit(Status.SUCCEEDED, 'Please wait while we add your Treatment center');
+    $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var formData = new FormData();
     var treatmentcenterData = {
       'heading_1': 'Overview of Program',
