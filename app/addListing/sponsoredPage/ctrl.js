@@ -56,22 +56,28 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     openPrompt();
   };
   vm.submitComplete = function () {
-    var centerIds = '';
+    //var centerIds = '';
+    var centerIds = [];
     var id = '';
     var i = 0;
+    var listingIds = {};
 
-    for (var key in $rootScope.centerSelected) {
-      id = String($rootScope.centerSelected[key].id);
-      centerIds = centerIds + id;
-      if (i < $rootScope.centerSelected.length - 1) {
-        centerIds += ',';
-      }
-      i++;
-    }
-    var sponsoredListingIds = [];
-    i = 0;
+    // for (var key in $rootScope.centerSelected) {
+    //   id = String($rootScope.centerSelected[key].id);
+    //   centerIds = centerIds + id;
+    //   if (i < $rootScope.centerSelected.length - 1) {
+    //     centerIds += ',';
+    //   }
+    //   i++;
+    // }
+    //  console.log(centerIds);
+
     for (var cen in $rootScope.centerSelected) {
-      var centerId = $rootScope.centerSelected[cen].id;
+      var sponsoredListingIds = [];
+      i = 0;
+      var centerId = String($rootScope.centerSelected[cen].id);
+      var totalItems = 0;
+
       for (key in $rootScope.countyModel[centerId]) { // county ids
         id = String($rootScope.countyModel[centerId][key].id);
         sponsoredListingIds[i] = id;
@@ -127,28 +133,58 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         sponsoredListingIds[i] = id;
         i++;
       }
+
+      if (angular.isDefined($rootScope.centerWise[centerId])) {
+        totalItems = $rootScope.centerWise[centerId].totalItems;
+      } else {
+        totalItems = 0;
+      }
+      if (totalItems > 0) {
+        centerIds.push(centerId);
+        listingIds[centerId] = sponsoredListingIds;
+      }
     }
-    var formData = new FormData();
-    var sponsorData = {
-      'sponsored_listing_layout_ids': sponsoredListingIds,
-      'active': true
-    };
-    for (key in sponsorData) {
-      formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
+
+    vm.submitSingle = function (ci) {
+      var cenId = String(centerIds[ci]);
+
+      var formData = new FormData();
+      var sponsorData = {
+        // 'sponsored_listing_layout_ids': sponsoredListingIds,
+        'sponsored_listing_layout_ids': listingIds[cenId],
+        'active': true
+      };
+      for (key in sponsorData) {
+        formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
+      }
+      $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
+      //SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
+      SponsorService.editSponsorSignup(formData, cenId, token).then(function () {
+        ci++;
+        if (ci > (centerIds.length - 1)) {
+          $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
+          $rootScope.addListingStepDone = 6;
+          $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
+          // clear sponsoredpage data
+          localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
+          vm.clearRootscopeData();
+          $state.go(UIState.ADD_LISTING.BANNER_AD);
+        } else {
+          vm.submitSingle(ci);
+        }
+
+      }).catch(function (err) {
+        $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+        throw err;
+      });
     }
-    $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
-    SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
-      $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
-      $rootScope.addListingStepDone = 6;
-      $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
-      // clear sponsoredpage data
-      localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
-      vm.clearRootscopeData();
-      $state.go(UIState.ADD_LISTING.BANNER_AD);
-    }).catch(function (err) {
-      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
-      throw err;
-    });
+    var ci = 0;
+    if (centerIds.length > 0) {
+      vm.submitSingle(ci);
+    } else {
+      $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+    }
+
   };
 
   function openPrompt() {
@@ -210,6 +246,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
       vm.treatmentCenters = centers;
       $rootScope.treatmentCentersValue = centers;
+      // preselect all treatmentcenter saving values in treatmentCentersModel //
+      vm.treatmentCentersModel = centers;
+      $rootScope.centerSelect();
+      // ------------ //
       $rootScope.loadModelsCenterwise();
       if (angular.isDefined($rootScope.centerSelected) && $rootScope.centerSelected.length > 0) {
         $rootScope.activeCenter = $rootScope.centerSelected[0].id;
