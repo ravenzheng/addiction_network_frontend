@@ -34,6 +34,14 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       vm.treatmentCentersModel = sponsoredInfo.treatmentCenter;
     }
   }
+  var token = localStorageService.get('signupToken');
+  // load pricing info from api
+  $rootScope.sponsorPricingInfo = '';
+  // SponsorService.getSignupPriceInfo(token).then(function (response) {
+  //   $rootScope.sponsorPricingInfo = response;
+  //   $log.info('pricing info got from api');
+  // });
+
   vm.skipTo = function () {
     // $window.location.href = '/login';
     $rootScope.addListingStepDone = 6;
@@ -43,34 +51,33 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   vm.previous = function () {
     $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
-  var token = localStorageService.get('signupToken');
+
   vm.submit = function () {
     openPrompt();
   };
   vm.submitComplete = function () {
-    var centerIds = '';
+    //var centerIds = '';
+    var centerIds = [];
     var id = '';
     var i = 0;
-    // for (var key in vm.treatmentCentersModel) {
-    //   id = String(vm.treatmentCentersModel[key].id);
+    var listingIds = {};
+
+    // for (var key in $rootScope.centerSelected) {
+    //   id = String($rootScope.centerSelected[key].id);
     //   centerIds = centerIds + id;
-    //   if (i < vm.treatmentCentersModel.length - 1) {
+    //   if (i < $rootScope.centerSelected.length - 1) {
     //     centerIds += ',';
     //   }
     //   i++;
     // }
-    for (var key in $rootScope.centerSelected) {
-      id = String($rootScope.centerSelected[key].id);
-      centerIds = centerIds + id;
-      if (i < $rootScope.centerSelected.length - 1) {
-        centerIds += ',';
-      }
-      i++;
-    }
-    var sponsoredListingIds = [];
-    i = 0;
+    //  console.log(centerIds);
+
     for (var cen in $rootScope.centerSelected) {
-      var centerId = $rootScope.centerSelected[cen].id;
+      var sponsoredListingIds = [];
+      i = 0;
+      var centerId = String($rootScope.centerSelected[cen].id);
+      var totalItems = 0;
+
       for (key in $rootScope.countyModel[centerId]) { // county ids
         id = String($rootScope.countyModel[centerId][key].id);
         sponsoredListingIds[i] = id;
@@ -126,84 +133,58 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         sponsoredListingIds[i] = id;
         i++;
       }
+
+      if (angular.isDefined($rootScope.centerWise[centerId])) {
+        totalItems = $rootScope.centerWise[centerId].totalItems;
+      } else {
+        totalItems = 0;
+      }
+      if (totalItems > 0) {
+        centerIds.push(centerId);
+        listingIds[centerId] = sponsoredListingIds;
+      }
     }
 
-    // for (key in $rootScope.countyModel) { // county ids
-    //   id = String($rootScope.countyModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    // for (key in $rootScope.cityModel) { // city ids
-    //   id = String($rootScope.cityModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    //
-    // if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates === true) {
-    //   for (key in $rootScope.statesSel) { // state ids
-    //     id = String($rootScope.statesSel[key].id);
-    //     sponsoredListingIds[i] = id;
-    //     i++;
-    //   }
-    // } else {
-    //   for (key in $rootScope.checkedStateDetail) { // state ids
-    //     id = String($rootScope.checkedStateDetail[key].id);
-    //     sponsoredListingIds[i] = id;
-    //     i++;
-    //   }
-    // }
-    //
-    // for (key in $rootScope.demographicModel) { // demographic ids
-    //   id = String($rootScope.demographicModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    // for (key in $rootScope.treatmentApproachModel) { // treatment approach ids
-    //   id = String($rootScope.treatmentApproachModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    // for (key in $rootScope.settingModel) { // setting ids
-    //   id = String($rootScope.settingModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    // for (key in $rootScope.additionalServicesModel) { // additional service
-    //   id = String($rootScope.additionalServicesModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    // for (key in $rootScope.paymentModel) { // payemnt
-    //   id = String($rootScope.paymentModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
-    // for (key in $rootScope.byDrugModel) { // by drug model
-    //   id = String($rootScope.byDrugModel[key].id);
-    //   sponsoredListingIds[i] = id;
-    //   i++;
-    // }
+    vm.submitSingle = function (ci) {
+      var cenId = String(centerIds[ci]);
 
-    var formData = new FormData();
-    var sponsorData = {
-      'sponsored_listing_layout_ids': sponsoredListingIds,
-      'active': true
-    };
-    for (key in sponsorData) {
-      formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
+      var formData = new FormData();
+      var sponsorData = {
+        // 'sponsored_listing_layout_ids': sponsoredListingIds,
+        'sponsored_listing_layout_ids': listingIds[cenId],
+        'active': true
+      };
+      for (key in sponsorData) {
+        formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
+      }
+      $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
+      //SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
+      SponsorService.editSponsorSignup(formData, cenId, token).then(function () {
+        ci++;
+        if (ci > (centerIds.length - 1)) {
+          $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
+          $rootScope.addListingStepDone = 6;
+          $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
+          // clear sponsoredpage data
+          localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
+          vm.clearRootscopeData();
+          $state.go(UIState.ADD_LISTING.BANNER_AD);
+        } else {
+          vm.submitSingle(ci);
+        }
+
+      }).catch(function (err) {
+        $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+        throw err;
+      });
     }
-    SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
-      $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
-      $rootScope.addListingStepDone = 6;
-      $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
-      // clear sponsoredpage data
-      localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
-      vm.clearRootscopeData();
-      $state.go(UIState.ADD_LISTING.BANNER_AD);
-    }).catch(function (err) {
-      $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
-      throw err;
-    });
+    var ci = 0;
+    if (centerIds.length > 0) {
+      vm.submitSingle(ci);
+    } else {
+      $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+    }
+
   };
 
   function openPrompt() {
@@ -265,6 +246,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
       vm.treatmentCenters = centers;
       $rootScope.treatmentCentersValue = centers;
+      // preselect all treatmentcenter saving values in treatmentCentersModel //
+      vm.treatmentCentersModel = centers;
+      $rootScope.centerSelect();
+      // ------------ //
       $rootScope.loadModelsCenterwise();
       if (angular.isDefined($rootScope.centerSelected) && $rootScope.centerSelected.length > 0) {
         $rootScope.activeCenter = $rootScope.centerSelected[0].id;

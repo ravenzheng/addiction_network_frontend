@@ -14,8 +14,30 @@ function service($log, $http, endPoint, UserService) {
     getCityCountyByState: getCityCountyByState,
     getCityCountyByStateV2: getCityCountyByStateV2,
     getSponsoredStatesSignup: getSponsoredStatesSignup,
-    getSponsoredDemographic: getSponsoredDemographic
+    getSponsoredDemographic: getSponsoredDemographic,
+    getSignupPriceInfo: getSignupPriceInfo,
+    getPriceInfo: getPriceInfo
   };
+
+  // get price info for state, city, county, sponsored
+  function getSignupPriceInfo(token) {
+    return $http.get(endPoint + '/pricing', {
+      headers: {
+        'Authorization': token
+      }
+    });
+  }
+
+  // get price info for state, city, county, sponsored
+  function getPriceInfo() {
+    return UserService.getToken().then(function (token) {
+      return $http.get(endPoint + '/pricing', {
+        headers: {
+          'Authorization': token
+        }
+      });
+    });
+  }
 
   function getSponsoredStatesSignup() {
     return $http({

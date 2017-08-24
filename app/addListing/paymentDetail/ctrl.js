@@ -47,6 +47,12 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
           lm.cardType = 'visa';
         } else if (vm.cardType[0].type === 'american-express') {
           lm.cardType = 'amex';
+        } else if (vm.cardType[0].type === 'jcb') {
+          lm.cardType = 'jcb';
+        } else if (vm.cardType[0].type === 'discover') {
+          lm.cardType = 'discover';
+        } else if (vm.cardType[0].type === 'diners-club') {
+          lm.cardType = 'diners-club';
         } else {
           lm.cardType = 'credit';
         }
@@ -118,6 +124,7 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
   };
   vm.middleName = '';
   vm.submit = function () {
+    $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     // validating file type
     var card = vm.card.replace(/ /g, '');
     vm.err_type = 0;
@@ -176,32 +183,11 @@ function ctrl($log, $rootScope, Status, $window, $state, UIState, localStorageSe
       upgradeMembership(token);
       // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
       $state.go(UIState.ADD_LISTING.CENTER_INFO);
-      canSkip = localStorageService.get('addListingCanSkip', 'sessionStorage');
-      if (canSkip !== null) {
-        canSkip.paymentSkip = 1;
-      } else {
-        canSkip = {
-          paymentSkip: 1
-        };
-      }
-      $rootScope.paymentSkip = 1;
-      localStorageService.set('addListingCanSkip', canSkip, 'sessionStorage');
-      upgradeMembership(token);
-      // $state.go(UIState.ADD_LISTING.SPONSORED_PAGES);
-      $state.go(UIState.ADD_LISTING.CENTER_INFO);
+
     }).catch(function (err) {
       $log.error(err);
       console.log('payment declined' + err.data.error);
       $rootScope.$emit(Status.FAILED, err.data.error);
-      // $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
-      // $rootScope.addListingStepDone = 6;
-      // $rootScope.addListingStepDone = 3;
-      // $rootScope.doneSteps = $rootScope.doneSteps.concat(['paymentDetails']);
-      // remove from storage
-      // localStorageService.remove('addListingPaymentDetail');
-      // lm.resetForm();
-
-      // payment can be skips now
     });
   };
 
