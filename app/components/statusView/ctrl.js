@@ -1,6 +1,7 @@
 function ctrl($rootScope, $timeout, Status) {
   var unbindFn1;
   var unbindFn2;
+  var unbindFn3;
   var vm = this;
   vm.$onInit = onInit;
   vm.$onDestroy = onDestroy;
