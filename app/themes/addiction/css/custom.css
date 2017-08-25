@@ -302,8 +302,8 @@ p {
 }
 
 .collapse .navbar-nav {
-  margin-top: 26px;
-  margin-bottom: 26px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 660px;
 }
 
@@ -1589,8 +1589,8 @@ address {
   float: right;
   width: auto;
   padding: 0;
-  margin: 29px 0 0;
-  margin-right: -40px;
+  margin: 10px 0 0;
+  margin-right: -27px;
 }
 
 .social_ul li {

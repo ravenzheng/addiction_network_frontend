@@ -19,8 +19,21 @@ function service($http, endPoint, UserService) {
     queryListAll: queryListAll,
     queryStateName: queryStateName,
     queryDetailFront: queryDetailFront,
-    getSignupPriceInfo: getSignupPriceInfo
+    getSignupPriceInfo: getSignupPriceInfo,
+    searchCenter: searchCenter
   };
+
+  // Header search
+  function searchCenter(searchText) {
+    return $http({
+      url: endPoint + '/v1/search?q=' + searchText,
+      method: 'GET',
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined
+      }
+    });
+  }
 
   // home page, addListing
   function addTreatmentCenterSignUp(formData) {

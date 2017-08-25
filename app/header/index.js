@@ -63,7 +63,7 @@ var socialLinks = [{
   img: 'themes/addiction/images/gglplus.png'
 }];
 
-function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, service, $sce) {
+function HeaderCtrl($log, $timeout, $scope, $rootScope, $window, localStorageService, service, centerService, $sce) {
   /* todo */
   localStorageService.remove('loginToken');
   localStorageService.remove('token');
@@ -71,6 +71,7 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, serv
   this.socialLinks = socialLinks;
   this.internalLinks = internalLinks;
   this.internalLinksNoAuth = internalLinksNoAuth;
+
   var token = localStorageService.get('token');
   var loginToken = localStorageService.get('loginToken', 'sessionStorage');
   if (token || loginToken) {
@@ -134,7 +135,38 @@ function HeaderCtrl($log, $scope, $rootScope, $window, localStorageService, serv
       //  $log.info('slider html:  ' + vm.html);
     });
   vm.sliderLoaded = slider;
-  //  $log.info(stateStart);
+  vm.results = '';
+
+  vm.search = function (srch) {
+    if (srch === 1) {
+      centerService.searchCenter(vm.searchTxt).then(function (result) {
+        vm.results = result.results;
+        if (result.results.length === 0) {
+          vm.results = {
+            0: {
+              center_name: 'No result found',
+              slug: ''
+            }
+          };
+        }
+      }).catch(function (err) {
+        $log.error(err);
+      });
+    } else {
+      vm.results = '';
+    }
+  };
+
+  function callSearchApi() {
+    centerService.searchCenter(vm.searchTxt).then(function (result) {
+      $log.info('search result: ');
+      //  $log.info(result);
+      return result;
+
+    }).catch(function (err) {
+      $log.error(err);
+    });
+  }
 }
 
 module.exports = {
@@ -142,7 +174,7 @@ module.exports = {
   controller: HeaderCtrl
 };
 
-HeaderCtrl.$inject = ['$log', '$scope', '$rootScope', '$window', 'localStorageService', 'SliderService', '$sce'];
+HeaderCtrl.$inject = ['$log', '$timeout', '$scope', '$rootScope', '$window', 'localStorageService', 'SliderService', 'TreatmentCenterService', '$sce'];
 
 function loadSlider(vm, service, $rootScope, $log, $sce) {
   service.getSlider().then(function (result) {
