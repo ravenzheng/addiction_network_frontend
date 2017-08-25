@@ -141,6 +141,14 @@ function HeaderCtrl($log, $timeout, $scope, $rootScope, $window, localStorageSer
     if (vm.searchTxt.length >= 3) {
       centerService.searchCenter(vm.searchTxt).then(function (result) {
         vm.results = result.results;
+        if (result.results.length === 0) {
+          vm.results = {
+            0: {
+              center_name: 'No result found',
+              slug: ''
+            }
+          };
+        }
       }).catch(function (err) {
         $log.error(err);
       });
