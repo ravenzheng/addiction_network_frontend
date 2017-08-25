@@ -137,8 +137,8 @@ function HeaderCtrl($log, $timeout, $scope, $rootScope, $window, localStorageSer
   vm.sliderLoaded = slider;
   vm.results = '';
 
-  vm.search = function () {
-    if (vm.searchTxt.length >= 3) {
+  vm.search = function (srch) {
+    if (srch === 1) {
       centerService.searchCenter(vm.searchTxt).then(function (result) {
         vm.results = result.results;
         if (result.results.length === 0) {
