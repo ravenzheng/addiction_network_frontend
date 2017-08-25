@@ -43,7 +43,7 @@
     <div class="navbar-collapse to_be_pull_left new_class_for_collaspe" ng-class="{collapse: isCollapsed}">
 
       <!-- <input type="text" name="" ng-model="$ctrl.searchTxt" ng-change="$ctrl.search()" /> {{$ctrl.searchTxt}} {{$ctrl.results}} -->
-      <input type="text" class="form-control" ng-model="$ctrl.searchTxt" ng-change="$ctrl.search()" placeholder="touch me!">
+      <input type="text" class="form-control" ng-model="$ctrl.searchTxt" ng-change="$ctrl.search()" placeholder="Search centers...">
       <ul class="list-group" ng-if="$ctrl.results">
         <li class="list-group-item" ng-repeat="result in $ctrl.results"> <a class="comm" ng-click="$ctrl.results=''" ui-sref="treatmentCenterDetail({id: result.slug })">{{result.center_name}}</a></li>
       </ul>
