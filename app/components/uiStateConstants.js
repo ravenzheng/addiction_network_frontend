@@ -16,6 +16,7 @@ module.exports = {
     'LIST': 'treatmentCenterMap.list'
   },
   'ABOUT_US': 'aboutUs',
+  'SEARCH_STATE': 'searchState',
   'CONTACT_US': 'contactUs',
   'CONTACT_CUSTOMER': 'contactCustomer',
   'CONTACTCUSTOMERTHANK': 'contactCustomerThank',
