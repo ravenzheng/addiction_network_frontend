@@ -2685,3 +2685,28 @@ h2.contct_heding.text-right {
     margin-top: -33px !important;
     margin-left: -10px !important;
 }
+.padding-right{
+  padding-right: 10px;
+}
+.custom-sponsored{
+  border: 1px solid black;
+  min-height: 32px;
+  margin: 10px;
+  margin-top: 50px;
+  cursor: pointer;
+  max-width: 120px;
+  padding-top: 7px;
+  font-size: 12px;
+}
+.col-sm-2.pull-left.custom-sponsored.ng-binding.ng-scope.cities-sponsored-bgcolor {
+    color: white;
+}
+.cities-sponsored{
+    margin-left:10%;
+}
+.cities-sponsored-bgcolor{
+  background-color: #73ac4b;
+}
+.col-sm-2.pull-left.custom-sponsored.ng-binding.ng-scope.cities-sponsored-bgcolor {
+    border: 1px solid white;
+}
