@@ -2710,3 +2710,11 @@ h2.contct_heding.text-right {
 .col-sm-2.pull-left.custom-sponsored.ng-binding.ng-scope.cities-sponsored-bgcolor {
     border: 1px solid white;
 }
+.search-results{
+  overflow-y: scroll;
+  width:76%;
+  clear:both;
+  max-height: 207px;
+  position: absolute;
+  z-index: 99999;
+}
