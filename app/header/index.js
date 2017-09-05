@@ -156,17 +156,6 @@ function HeaderCtrl($log, $timeout, $scope, $rootScope, $window, localStorageSer
       vm.results = '';
     }
   };
-
-  function callSearchApi() {
-    centerService.searchCenter(vm.searchTxt).then(function (result) {
-      $log.info('search result: ');
-      //  $log.info(result);
-      return result;
-
-    }).catch(function (err) {
-      $log.error(err);
-    });
-  }
 }
 
 module.exports = {
