@@ -25,6 +25,9 @@ function service($http, endPoint, UserService) {
 
   // Header search
   function searchCenter(searchText) {
+    if (angular.isUndefined(searchText) || (searchText === '')) {
+      return false;
+    }
     return $http({
       url: endPoint + '/v1/search?q=' + searchText,
       method: 'GET',

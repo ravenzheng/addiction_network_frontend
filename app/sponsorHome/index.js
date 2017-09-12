@@ -32,6 +32,14 @@ angular.module(moduleName, [
       }) : '';
     };
   })
+  .filter('createSlug', function () {
+    return function (slug) {
+      return slug
+        .toLowerCase()
+        .replace(/ /g, '-')
+        .replace(/[^\w-]+/g, '');
+    };
+  })
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.SPONSOR_HOME.INDEX,
