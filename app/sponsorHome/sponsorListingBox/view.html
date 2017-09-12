@@ -41,7 +41,7 @@
       </div>
       <!-- Layout links -->
       <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" ng-if="$ctrl.entry.layout_links.length>0">
-        <section-heading>Layout Links</section-heading>
+        <section-heading>Additional Links</section-heading>
         <!-- <p>{{ $ctrl.entry.content_2 }}</p> -->
         <div>
           <ul>
@@ -50,11 +50,11 @@
                 <span class="glyphicon"></span>
                 {{lists.name}}
               </a>
-              <a href="/counties/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='county'">
+              <a href="/#/counties/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='county'">
                 <span class="glyphicon"></span>
                 {{lists.name}}
               </a>
-              <a href="/cities/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='city'">
+              <a href="/#/cities/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='city'">
                 <span class="glyphicon"></span>
                 {{lists.name}}
               </a>
