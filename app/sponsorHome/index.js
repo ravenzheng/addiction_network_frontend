@@ -34,7 +34,11 @@ angular.module(moduleName, [
   })
   .filter('createSlug', function () {
     return function (slug) {
-      return slug
+      if (slug === "UT") {
+        return "utah";
+      }
+      var value = slug.replace(/(^[\s]+|[\s]+$)/g, '');
+      return value
         .toLowerCase()
         .replace(/ /g, '-')
         .replace(/[^\w-]+/g, '');
