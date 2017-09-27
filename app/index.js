@@ -26,7 +26,8 @@ angular.module(appName, [
   require('./contactTreatmentThank'),
   require('./loginHelp'),
   require('./insurance'),
-  require('./searchState')
+  require('./searchState'),
+  require('./signUp')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
