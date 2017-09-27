@@ -1,5 +1,4 @@
 var appName = 'AddictionNetworkApp';
-
 angular.module(appName, [
   'ngAnimate',
   'ui.router',
