@@ -26,13 +26,14 @@ angular.module(appName, [
   require('./contactTreatmentThank'),
   require('./loginHelp'),
   require('./insurance'),
-  require('./searchState')
+  require('./searchState'),
+  require('./signUp')
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
   }])
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
     // $urlRouterProvider.otherwise('');

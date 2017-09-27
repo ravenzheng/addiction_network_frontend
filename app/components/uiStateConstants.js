@@ -47,8 +47,12 @@ module.exports = {
     'FEATURED_LISTING_PAGE6': 'addListing.featuredListing.page6',
     'PAYMENT_DETAILS': 'addListing.paymentDetails',
     'SPONSORED_PAGES': 'addListing.sponsoredPage',
-    'CART_DETAILS': 'addListing.cartDetail'
-
+    'CART_DETAILS': 'addListing.cartDetail',
+    'WELCOME':'addListing.welcome'
+  },
+  'SIGN_UP':{
+    'INDEX':'signUp',
+    'WELCOME':'signUp.Welcome'
   },
   'LOGIN': 'login',
   'LOGINHELP': 'loginHelp',
