@@ -2719,10 +2719,15 @@ h2.contct_heding.text-right {
   z-index: 99999;
 }
 /*progress bar*/
+.progress-content-one a, .progress-content-one p, .progress-content-one input, .progress-content-one span{
+  font-family: 'Open Sans', sans-serif;
+}
 .progress-content-one {
-  display: block;
+  position: relative;
+  display: table;
   margin: 0 auto;
-  width: 85%;
+  width: 90%;
+  font-family: 'open sans', sans-serif;
 }
 .progress-img{
   position: relative;
@@ -2772,10 +2777,12 @@ margin-top: 23%;
   clear: both;
   width: 70%;
   margin: 0 auto;
+  margin-top: 30px;
+
 }
 .progressbar .progress-bar-success{
   /*position: relative;*/
-  background-image: linear-gradient(170deg,#83BF00 ,#00A7BF );
+  background-image: linear-gradient(to right,#83BF00 ,#00A7BF );
   line-height: 22px;
 }
 span.stick-me{
@@ -2799,4 +2806,284 @@ span.stick-me{
   background-image: -o-linear-gradient(left, #83BF00 0%, #00A7BF 100%), -o-linear-gradient(left, #83BF00 0%, #00A7BF 100%);
   background-image: linear-gradient(to right, #83BF00 0%, #00A7BF 100%), linear-gradient(to right, #83BF00 0%, #00A7BF 100%);
   height: 22px;
+}
+.p-form-title {
+    z-index: 9999;
+    position: absolute;
+    top: 27%;
+    left: 52%;
+    font-size: 13px;
+    font-family: 'open sans', sans-serif;
+    font-weight: 600;
+}
+.lpad0{
+  padding-left: 0;
+}
+.rpad0{
+  padding-right: 0;
+}
+.p-form-desc {
+  z-index: 9999;
+  position: absolute;
+  top: 58%;
+  left: 38%;
+  font-size: 12px;
+  font-size: 11.4px;
+  font-family: 'open sans', sans-serif;
+  font-weight: 600;
+  width: 110px;
+}
+.p-tc-title{
+  z-index: 9999;
+  position: absolute;
+  top: 30%;
+  left: 53%;
+  font-size: 12px;
+  font-family: 'open sans', sans-serif;
+  font-weight: 600;
+}
+.p-tc-desc{
+  z-index: 9999;
+  position: absolute;
+  top: 60%;
+  left: 43%;
+  font-size: 12px;
+  font-family: 'open sans', sans-serif;
+  font-weight: 600;
+  width: 110px;
+}
+.psignup-form input {
+    border: 0;
+    border-bottom: 1px solid #83BF00;
+    border-radius: 0;
+    color: #83BF00;
+}
+.psignup-form input:focus {
+      box-shadow: none;
+      border-color: #00A7BF;
+}
+/*Plcaholder color*/
+.psignup-form .form-control::-moz-placeholder {
+  color: #83BF00;
+  opacity: 1;
+  font-family: 'Open sans', sans-serif;
+}
+.psignup-form .form-control:-ms-input-placeholder {
+  color: #83BF00;
+  font-family: 'Open sans', sans-serif;
+}
+.psignup-form .form-control::-webkit-input-placeholder {
+  color: #83BF00;
+  font-family: 'Open sans', sans-serif;
+}
+.psignup-form{
+    /*position: relative;*/
+}
+
+p.stick-next, .stick-next-right{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 16px;
+}
+p.stick-next-tc{
+  position: absolute;
+  right: 20px;
+  bottom: 0px;
+  font-size: 16px;
+}
+@media(min-width: 992px){
+  p.stick-next{
+    bottom: 70px;
+  }
+}
+p.stick-next-left{
+  position: absolute;
+  bottom: 20px;
+  left: 52%;
+  font-weight: 700;
+  font-size: 16px;
+}
+@media(max-width:991px){
+  p.stick-next-left{
+    left: 15px;
+    position: relative;
+    padding-top: 20px;
+  }
+}
+p.stick-next-right{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+p.stick-next a{
+  font-weight: 700;
+  font-size: 15px;
+}
+.psignup-form .form-group {
+    margin-bottom: 20px;
+}
+.p-user-profile {
+  z-index: 9999;
+  position: absolute;
+  top: 41%;
+  left: 46.6%;
+  font-size: 9px;
+  font-family: 'open sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #83BF00;
+}
+.para-userprofile p{
+      font-size: 15px;
+      color: #83BF00;
+      margin-top: 23%;
+}
+.para-optional{
+  margin-bottom: 10px;
+}
+.para-optional p{
+      font-size: 14px;
+      color: #83BF00;
+      margin-bottom: 20px;
+}
+.para-optional p.lead{
+  color: #362ea0;
+  font-size: 16px;
+  font-weight: 400;
+}
+.para-userprofile p.lead{
+      margin-top: 20px;
+      font-weight: 700;
+}
+.form-group{
+      position: relative;
+}
+.fix-right{
+  position: absolute;
+  right: 0px;
+  top: 6px;
+}
+.fix-right i.fa{
+    color: #83BF00;
+}
+.psignup-form .tooltip-inner {
+    min-width: 116px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.choose-file span{
+  color: #83BF00;
+}
+
+.choose-file{
+  padding:5px 10px;
+  background:transparent;
+  border:1px solid #00ad2d;
+  position:relative;
+  color:#333;
+  border-radius:2px;
+  text-align:center;
+  float:left;
+  cursor:pointer;
+}
+.file {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+}
+.clear-me{
+  clear: both;
+  display: table;
+  width: 100%;
+}
+.c-orange{
+      color: #83BF00;
+}
+.label-uo{
+  display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+    float: left;
+    width: 99px;
+    padding-left: 15px;
+    color: #83BF00;
+}
+@media(min-width:992px){
+  .h-490:before{
+      top:-50px;
+      height: 490px;
+  }
+  .h-490{
+    margin-top: 50px;
+  }
+}
+
+.psignup-form i.fa-2x {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+ul.stick-next-uo.list-inline {
+    padding-top: 15px;
+}
+.stick-next-uo li{
+  width: 32%;
+  text-align: left;
+}
+.stick-next-uo li:nth-child(2){
+  text-align: center;
+}
+.stick-next-uo li:last-child a{
+  font-weight: 700;
+}
+.stick-next-uo li:last-child{
+  text-align: right;
+}
+.stick-next-uo li a{
+      font-size: 16px;
+}
+.psignup-form.fg-height .form-group{
+  margin-bottom: 12px;
+}
+.table-pro table tbody tr.no-border td, .table-pro table{
+   border: 0;
+}
+.table-pro table tbody tr.no-border td{
+   border: 0;
+   border-right: 1px solid #83BF00;
+}
+.table-pro > table tbody > tr > td{
+   border-left: 0;
+   /*border-right: 0;*/
+}
+.table-pro > table tbody > tr > td:last-child{
+  border-right: 0;
+}
+.table-pro table tbody tr td{
+  color: #83BF00;
+  border-color: #83BF00;
+}
+.table-pro table tbody tr td:not(:first-child){
+  text-align: center;
+}
+.member-cart{
+
+}
+.member-cart {
+    float: right;
+    clear: both;
+    display: inline;
+    vertical-align: middle;
+    margin-top: -9px;
+    padding-left: 6px;
+}
+.member-cart img{
+  width: 42px;
 }

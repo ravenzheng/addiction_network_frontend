@@ -48,11 +48,16 @@ module.exports = {
     'PAYMENT_DETAILS': 'addListing.paymentDetails',
     'SPONSORED_PAGES': 'addListing.sponsoredPage',
     'CART_DETAILS': 'addListing.cartDetail',
-    'WELCOME':'addListing.welcome'
+    'WELCOME': 'addListing.welcome'
   },
-  'SIGN_UP':{
-    'INDEX':'signUp',
-    'WELCOME':'signUp.Welcome'
+  'SIGN_UP': {
+    'INDEX': 'signUp',
+    'WELCOME': 'signUp.Welcome',
+    'USER_CREATE': 'signUp.userCreate',
+    'USER_PROFILE': 'signUp.userProfile',
+    'TEST_CENTER': 'signUp.testCenter',
+    'OPTIONAL_FIELDS': 'signUp.optionalFields',
+    'UPDATE_MEMBERSHIP': 'signUp.updateMembership'
   },
   'LOGIN': 'login',
   'LOGINHELP': 'loginHelp',
