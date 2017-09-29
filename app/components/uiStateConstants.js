@@ -60,7 +60,8 @@ module.exports = {
     'UPDATE_MEMBERSHIP': 'signUp.updateMembership',
     'SPONSER': 'signUp.sponserPage',
     'PUBLISH_ADS': 'signUp.publish_ads',
-    'PUBLISH_ADS2': 'signUp.publish_ads2'
+    'PUBLISH_ADS2': 'signUp.publish_ads2',
+    'UPDATE_ADS': 'signUp.updateAds'
   },
   'LOGIN': 'login',
   'LOGINHELP': 'loginHelp',

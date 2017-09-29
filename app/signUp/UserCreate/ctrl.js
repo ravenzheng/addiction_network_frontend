@@ -19,9 +19,9 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service) {
     }
     $log.info(formData);
     service.signUp(sigupData).then(function (result) {
-
+      $log.info(result);
     }).catch(function (err) {
-
+      $log.info(err);
     });
   };
 }
