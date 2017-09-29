@@ -2,7 +2,7 @@ module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIStat
 
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState) {
   var vm = this;
-  vm.userCreate = function () {
-    $state.go(UIState.SIGN_UP.USER_PROFILE);
+  vm.sponser = function () {
+    $state.go(UIState.SIGN_UP.SPONSER);
   };
 }

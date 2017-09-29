@@ -12,6 +12,7 @@ angular.module(moduleName, [])
   .factory('FeaturedService', require('./featuredListingService'))
   .factory('ContactUsService', require('./contactUsService'))
   .factory('BlogService', require('./blogService'))
+  .factory('SignUpService', require('./signUpService'))
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(require('./dataInterceptor'));
   }]);

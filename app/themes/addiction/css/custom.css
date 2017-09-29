@@ -2818,9 +2818,11 @@ span.stick-me{
 }
 .lpad0{
   padding-left: 0;
+  z-index: 999;
 }
 .rpad0{
   padding-right: 0;
+  z-index: 999;
 }
 .p-form-desc {
   z-index: 9999;
@@ -2857,6 +2859,9 @@ span.stick-me{
     border-bottom: 1px solid #83BF00;
     border-radius: 0;
     color: #83BF00;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 .psignup-form input:focus {
       box-shadow: none;
@@ -3003,6 +3008,10 @@ p.stick-next a{
   display: table;
   width: 100%;
 }
+.clear{
+    clear: both;
+    display: block;
+}
 .c-orange{
       color: #83BF00;
 }
@@ -3086,4 +3095,49 @@ ul.stick-next-uo.list-inline {
 }
 .member-cart img{
   width: 42px;
+}
+.no-border2 td{
+  border: 0 !important;
+  font-weight: 700;
+  color: #362ea0!important;
+}
+.um-np li{
+  font-size: 16px;
+}
+.um-np li:last-child{
+  float: right;
+}
+
+.show-eye{
+  position: absolute;
+right: 2px;
+z-index: 9999;
+}
+.font-normal{
+  font-weight: 400 !important;
+}
+.ads-block {
+    background-color: #CCED8C;
+    width: 60%;
+    clear: both;
+    display: block;
+    padding: 10px 10px 23px;
+    margin: 39px auto 0;
+}
+.w-full{
+  width: 100%;
+}
+.p-60{
+  padding: 60px 0px;
+}
+.c-blue{
+  color: #362ea0;
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+.ads-block p{
+  color: #83BF00;
+}
+.bottom-5{
+  bottom: -5px !important;
 }
