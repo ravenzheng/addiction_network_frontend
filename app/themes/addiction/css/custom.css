@@ -3118,7 +3118,7 @@ z-index: 9999;
 }
 .ads-block {
     background-color: #CCED8C;
-    width: 60%;
+    width: 66%;
     clear: both;
     display: block;
     padding: 10px 10px 23px;
@@ -3140,4 +3140,28 @@ z-index: 9999;
 }
 .bottom-5{
   bottom: -5px !important;
+}
+.btn-custom {
+    background: #8dad3d;
+    box-shadow: none;
+    text-shadow: none;
+    border: 0;
+    padding: 3px 6px;
+    color: #f1f1f1;
+    font-size: 92%;
+}
+.btn-custom:hover, .btn-custom:active, .btn-custom:focus{
+  background: #8dad3d;
+  color: #f1f1f1;
+  opacity: .75;
+
+}
+.progress-content-one img{
+  max-width: 100%;
+}
+.demo-banner{
+  margin-top: 14px;
+}
+.update-ads .ads-block{
+  margin: 10px 0;
 }
