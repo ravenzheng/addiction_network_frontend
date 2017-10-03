@@ -24,25 +24,35 @@
             <form class="psignup-form">
               <div class="col-md-6 lpad0">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="fname" placeholder="First Name">
+                  <input type="text" class="form-control" id="fname" placeholder="First Name" ng-model="$ctrl.first_name">
                 </div>
               </div>
               <div class="col-md-6 lpad0 rpad0">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                  <input type="text" class="form-control" id="lname" placeholder="Last Name" ng-model="$ctrl.last_name">
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="cname" placeholder="Company Name">
+                <input type="text" class="form-control" id="cname" placeholder="Company Name" ng-model="$ctrl.company_name">
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" id="phone" placeholder="User Phone no">
+                <input type="number" class="form-control" id="phone" placeholder="User Phone no" ng-model="$ctrl.phone_num">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="User Email ID">
+                <input type="email" class="form-control" id="email" placeholder="User Email ID" ng-model="$ctrl.email">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" id="pwd" placeholder="Password">
+                <input type="{{showpassword ? 'text' : 'password'}}" class="form-control" id="pwd" placeholder="Password"  ng-model="$ctrl.password">
+                <span class="fix-right" ><i class="fa fa-eye fa-2x" ng-model="showpassword" ></i></span>
+
+
+
+                <!--  -->
+                <!-- <input ng-show="showpassword" type="text" ng-model="password"> -->
+                <!-- <input ng-hide="showpassword" type="password" ng-model="password"> -->
+                <!-- <input type="{{showpassword ? 'text' : 'password'}}" ng-model="password">
+                <input type="checkbox" ng-model="showpassword" ng-checked="false"> -->
+                <!--  -->
               </div>
             </form>
 
