@@ -21,30 +21,39 @@
       </div>
       <div class="col-md-6">
           <div class="psignup-form">
-            <form class="psignup-form">
+            <form class="psignup-form" name="$ctrl.userCreateForm">
               <div class="col-md-6 lpad0">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="fname" placeholder="First Name" ng-model="$ctrl.first_name">
+                  <input type="text" class="form-control" id="fname" name="firstName" placeholder="First Name" ng-keypress="$ctrl.userCreateFormInit.firstName=0" ng-model="$ctrl.first_name" required>
+                  <span ng-show="$ctrl.userCreateForm.firstName.$invalid && ($ctrl.userCreateFormInit.firstName===0)" class="help-block">Required</span>
                 </div>
               </div>
+
               <div class="col-md-6 lpad0 rpad0">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="lname" placeholder="Last Name" ng-model="$ctrl.last_name">
+
+                  <input type="text" class="form-control" name="lastName" id="lname" placeholder="Last Name" ng-keypress="$ctrl.userCreateFormInit.lastName=0" ng-model="$ctrl.last_name" required>
+                    <span ng-show="$ctrl.userCreateForm.lastName.$invalid && ($ctrl.userCreateFormInit.lastName===0)" class="help-block">Required</span>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="cname" placeholder="Company Name" ng-model="$ctrl.company_name">
+                <input type="text" class="form-control" name="companyName" id="cname" placeholder="Company Name" ng-keypress="$ctrl.userCreateFormInit.companyName=0" ng-model="$ctrl.company_name" required>
+                <span ng-show="$ctrl.userCreateForm.companyName.$invalid && ($ctrl.userCreateFormInit.companyName===0)" class="help-block">Required</span>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" id="phone" placeholder="User Phone no" ng-model="$ctrl.phone_num">
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="User Phone no" ng-keypress="$ctrl.userCreateFormInit.phone=0" ng-model="$ctrl.phone_num" required ng-pattern="/^-?[0-9+]*$/" number="true">
+                <!-- <p ng-show="$ctrl.addCenter.center_phone.$error.pattern || $ctrl.addCenter.center_phone.$error.minlength || $ctrl.addCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p> -->
+                <span ng-show="$ctrl.userCreateForm.phone.$invalid && ($ctrl.userCreateFormInit.phone===0)" class="help-block">Invalid Phone number</span>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="User Email ID" ng-model="$ctrl.email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="User Email ID" ng-keypress="$ctrl.userCreateFormInit.email=0" ng-model="$ctrl.email" email="true" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
+                <span ng-show="$ctrl.userCreateForm.email.$invalid && ($ctrl.userCreateFormInit.email===0)" class="help-block">Required and please enter valid email</span>
               </div>
               <div class="form-group">
-                <input type="{{showpassword ? 'text' : 'password'}}" class="form-control" id="pwd" placeholder="Password"  ng-model="$ctrl.password">
+                <input type="{{showpassword ? 'text' : 'password'}}" name="password" class="form-control" id="pwd" placeholder="Password" required ng-model="$ctrl.password" ng-keypress="$ctrl.userCreateFormInit.password=0">
                 <span class="fix-right" ><i class="fa fa-eye fa-2x" ng-model="showpassword" ></i></span>
-
+                <span ng-show="$ctrl.userCreateForm.password.$error.required && ($ctrl.userCreateFormInit.password===0)" ng-init="$ctrl.pwdRequiredTxt='Required'" class="help-block">{{$ctrl.pwdRequiredTxt}}</span>
+                <span ng-show="($ctrl.userCreateFormInit.password===0)&& $ctrl.pwdRequiredTxt!='Required'"  class="help-block">{{$ctrl.pwdRequiredTxt}}</span>
 
 
                 <!--  -->
@@ -58,6 +67,6 @@
 
           </div>
     </div>
-    <p class="stick-next"><a href="javascript:void(0)" ng-click="$ctrl.userCreate()">Next</a></p>
+    <p class="stick-next"><button  ng-click="$ctrl.userCreate()" ng-disabled="$ctrl.userCreateForm.email.$invalid || $ctrl.userCreateForm.firstName.$invalid || $ctrl.userCreateForm.lastName.$invalid || $ctrl.userCreateForm.companyName.$invalid || $ctrl.userCreateForm.phone.$invalid || $ctrl.userCreateForm.password.$invalid">Next</button></p>
   </div>
 </div>

@@ -2,6 +2,19 @@ module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIStat
 
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status) {
   var vm = this;
+
+  var initStartupVars = function () {
+    vm.userCreateFormInit = {};
+    vm.userCreateFormInit.firstName = 1;
+    vm.userCreateFormInit.lastName = 1;
+    vm.userCreateFormInit.companyName = 1;
+    vm.userCreateFormInit.phone = 1;
+    vm.userCreateFormInit.email = 1;
+    vm.userCreateFormInit.password = 1;
+  };
+
+  initStartupVars();
+
   vm.userCreate = function () {
     var lm = $rootScope; // this;
     var formData = new FormData();
@@ -25,6 +38,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       $log.info(result);
     }).catch(function (err) {
       lm.$emit(Status.FAILED, err.data.error);
+      vm.pwdRequiredTxt = err.data.user.password.errors[0];
       $log.info(err);
     });
   };
