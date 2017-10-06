@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'Status', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'Status', 'localStorageService', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status) {
+function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status, localStorageService) {
   var vm = this;
 
   var initStartupVars = function () {
@@ -11,6 +11,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     vm.userCreateFormInit.phone = 1;
     vm.userCreateFormInit.email = 1;
     vm.userCreateFormInit.password = 1;
+    vm.emailErrorTxt = '';
+    vm.pwdRequiredTxt = 'Required';
   };
 
   initStartupVars();
@@ -34,11 +36,22 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
 
     $log.info(formData);
     service.signUp(formData).then(function (result) {
+      localStorageService.set('signupToken', result.user.auth_token);
       $state.go(UIState.SIGN_UP.USER_PROFILE);
       $log.info(result);
     }).catch(function (err) {
       lm.$emit(Status.FAILED, err.data.error);
-      vm.pwdRequiredTxt = err.data.user.password.errors[0];
+      if (angular.isDefined(err.data.user.password)) {
+        vm.pwdRequiredTxt = err.data.user.password.errors[0];
+      } else {
+        vm.pwdRequiredTxt = 'Required';
+      }
+      if (angular.isDefined(err.data.user.email)) {
+        vm.emailErrorTxt = err.data.user.email.errors[0];
+      } else {
+        vm.emailErrorTxt = '';
+      }
+
       $log.info(err);
     });
   };
