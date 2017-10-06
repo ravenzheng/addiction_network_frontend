@@ -1,4 +1,5 @@
 module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'localStorageService', 'SignUpService', 'Status', ctrl];
+
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService, service, Status) {
   var vm = this;
   var rs = $rootScope;
@@ -14,7 +15,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
   initStartupVars();
 
-
   vm.updateMembership = function () {
     $state.go(UIState.SIGN_UP.UPDATE_MEMBERSHIP);
   };
@@ -22,34 +22,44 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   vm.optionalFieldsSubmit = function () {
     rs.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var logo = rs.logoData;
-    var gallery = rs.galleryData;
+    // var gallery = rs.galleryData;
+
     if (angular.isUndefined(logo)) {
       logo = '';
     }
-    var galleryData = '';
-    if (angular.isDefined(gallery)) {
-      var len = gallery.length;
-      for (var i = 0; i < len; i++) {
-        //  formData.append('treatment_center[image_data][]', imageData.item(i));
-      //  galleryData.push(gallery.item(i));
-        galleryData += gallery.item(i) + ',';
-      }
-      galleryData = galleryData.slice(',', -1);
-    }
+    // var galleryData = '';
+    // if (angular.isDefined(gallery)) {
+    //   var len = gallery.length;
+    //   for (var i = 0; i < len; i++) {
+    //     //  formData.append('treatment_center[image_data][]', imageData.item(i));
+    //     //  galleryData.push(gallery.item(i));
+    //     galleryData += gallery.item(i) + ',';
+    //   }
+    //   galleryData = galleryData.slice(',', -1);
+    // }
 
     var formData = new FormData();
+
+    var imageData = rs.galleryData;
+    if (imageData) {
+      var len = imageData.length;
+      for (var i = 0; i < len; i++) {
+        formData.append('treatment_center[image_data][]', imageData.item(i));
+      }
+    }
+
     var optionalData = {
       'listing_image': logo,
       'description': vm.description,
       'content_1': vm.overview,
       'content_2': vm.treatmentApproach,
-      'content_3': vm.usp,
-      'content_4': '',
-      'heading_1': '',
-      'heading_2': '',
-      'heading_3': '',
-      'heading_4': '',
-      'image_data': '[' + galleryData + ']'
+      'content_3': vm.usp
+      // 'content_4': '',
+      // 'heading_1': '',
+      // 'heading_2': '',
+      // 'heading_3': '',
+      // 'heading_4': '',
+      // 'image_data': galleryData
     };
     for (var key in optionalData) {
       formData.append('treatment_center[' + key + ']', optionalData[key]);
