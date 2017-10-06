@@ -43,7 +43,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   service.getCategories(token).then(function (result) {
     $log.info(result);
     for (var key in result.categories) {
-      var category = {'label': result.categories[key].name, 'id': result.categories[key].id};
+      var category = {
+        'label': result.categories[key].name,
+        'id': result.categories[key].id
+      };
       vm.centerCategories.push(category);
     }
   }).catch(function (err) {
@@ -97,8 +100,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       lm.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {
-      lm.$emit(Status.FAILED, err.data.error);
-      $log.info(err);
+      // lm.$emit(Status.FAILED, err.data.error);
+      vm.error = '';
+      if (angular.isDefined(err.data.treatment_center.email.errors)) {
+        vm.error = err.data.treatment_center.email.errors[0];
+        $log.info(vm.error);
+      }
+      lm.$emit(Status.FAILED, vm.error);
+      // $log.info(err);
     });
   };
 }
