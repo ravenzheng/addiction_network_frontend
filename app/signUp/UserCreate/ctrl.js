@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'Status', 'localStorageService', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'Status', 'localStorageService', '$document', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status, localStorageService) {
+function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status, localStorageService, $document) {
   var vm = this;
 
   var initStartupVars = function () {
@@ -18,17 +18,57 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
 
   initStartupVars();
 
+  // show and hide password
+
+  vm.showpassword = function () {
+    var password = angular.element($document[0].querySelector('#pwd'));
+    var showpassword = angular.element($document[0].querySelector('#showpassword'));
+    showpassword.removeAttr('class');
+    if (password.attr('type') === 'password') {
+      password.attr('type', 'text');
+      showpassword.attr('class', 'fa fa-eye fa-2x');
+    } else {
+      password.attr('type', 'password');
+      showpassword.attr('class', 'fa fa-eye-slash fa-2x');
+    }
+  };
+
   vm.userCreate = function () {
     var lm = $rootScope; // this;
+
+    var firstName = vm.first_name;
+    var lastName = vm.last_name;
+    var company = vm.company_name;
+    var phone = vm.phone_num;
+    var password = vm.password;
+    var username = vm.phone_num + vm.first_name;
+    var email = vm.email;
+
+    if (angular.isUndefined(firstName) || firstName === '') {
+      lm.$emit(Status.FAILED, 'Please enter First name');
+      return;
+    } else if (angular.isUndefined(lastName) || lastName === '') {
+      lm.$emit(Status.FAILED, 'Please enter Last name');
+      return;
+    } else if (angular.isUndefined(company) || company === '') {
+      lm.$emit(Status.FAILED, 'Please enter Company name');
+      return;
+    } else if (angular.isUndefined(phone) || phone === '') {
+      lm.$emit(Status.FAILED, 'Please enter Phone number');
+      return;
+    } else if (angular.isUndefined(email) || email === '') {
+      lm.$emit(Status.FAILED, 'Please enter Email address');
+      return;
+    }
     var formData = new FormData();
     var sigupData = {
-      'first_name': vm.first_name,
-      'last_name': vm.last_name,
-      'company': vm.company_name,
-      'phone': vm.phone_num,
-      'email': vm.email,
-      'password': vm.password,
-      'username': vm.phone_num + vm.first_name
+      'first_name': firstName,
+      'last_name': lastName,
+      'company': company,
+      'phone': phone,
+      'email': email,
+      'password': password,
+      'username': username
     };
 
     for (var key in sigupData) {
@@ -36,6 +76,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     }
     // $log.info(formData);
     service.signUp(formData).then(function (result) {
+      lm.$emit(Status.FAILED, 'User has been successfully created');
       localStorageService.set('signupToken', result.user.auth_token);
       $state.go(UIState.SIGN_UP.USER_PROFILE);
       $log.info(result);

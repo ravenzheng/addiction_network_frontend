@@ -80,6 +80,32 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     }
     catId = catId.slice(',', -1);
 
+    var centerName = vm.centerName;
+    var website = vm.website;
+    var email = vm.email;
+    var phone = vm.phone;
+    var address = vm.address;
+    var tagId = 4;
+
+    if (angular.isUndefined(centerName) || centerName === '') {
+      lm.$emit(Status.FAILED, 'Please enter Center name');
+      return;
+    } else if (angular.isUndefined(catId) || catId === '') {
+      lm.$emit(Status.FAILED, 'Please select Category');
+      return;
+    } else if (angular.isUndefined(website) || website === '') {
+      lm.$emit(Status.FAILED, 'Please enter Website');
+      return;
+    } else if (angular.isUndefined(email) || email === '') {
+      lm.$emit(Status.FAILED, 'Please enter Email address');
+      return;
+    } else if (angular.isUndefined(phone) || phone === '') {
+      lm.$emit(Status.FAILED, 'Please enter Phone number');
+      return;
+    } else if (angular.isUndefined(address) || address === '') {
+      lm.$emit(Status.FAILED, 'Please enter Address');
+      return;
+    }
     var formData = new FormData();
     var centerData = {
       'center_name': vm.centerName,
@@ -87,7 +113,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       'center_web_link': vm.website,
       'email': vm.email,
       'phone': vm.phone,
-      'tag_id': 4,
+      'tag_id': tagId,
       'address_line_1': vm.address
     };
 
