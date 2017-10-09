@@ -6,7 +6,9 @@ function service($log, $http, endPoint) {
     addCenter: addCenter,
     getCategories: getCategories,
     getTagsSelection: getTagsSelection,
-    addOptionalFields: addOptionalFields
+    addOptionalFields: addOptionalFields,
+    upgradeMembership: upgradeMembership,
+    publishAds: publishAds
   };
   // add new user
   function signUp(formdata) {
@@ -61,6 +63,34 @@ function service($log, $http, endPoint) {
   function addOptionalFields(formdata, centerId, token) {
     return $http({
       url: endPoint + '/v2/treatment_center_create_optional/' + centerId,
+      method: 'POST',
+      data: formdata,
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined,
+        'Authorization': token
+      }
+    });
+  }
+
+  // Upgrade membership
+  function upgradeMembership(formdata, token) {
+    return $http({
+      url: endPoint + '/upgrade_membership',
+      method: 'POST',
+      data: formdata,
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined,
+        'Authorization': token
+      }
+    });
+  }
+
+  // publish ads
+  function publishAds(formdata, token) {
+    return $http({
+      url: endPoint + '/v2/treatment_center_publish_ads',
       method: 'POST',
       data: formdata,
       transformRequest: angular.identity,
