@@ -33,9 +33,16 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     }
   };
 
+  function shakeme() {
+    angular.element('.progress-img-wrap').addClass('shake');
+
+    // $setTimeout(function () {
+    //   angular.element('.shake').removeClass('shake');
+    // }, 500);
+  }
+
   vm.userCreate = function () {
     var lm = $rootScope; // this;
-
     var firstName = vm.first_name;
     var lastName = vm.last_name;
     var company = vm.company_name;
@@ -43,21 +50,25 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     var password = vm.password;
     var username = vm.phone_num + vm.first_name;
     var email = vm.email;
-
     if (angular.isUndefined(firstName) || firstName === '') {
       lm.$emit(Status.FAILED, 'Please enter First name');
+      shakeme();
       return;
     } else if (angular.isUndefined(lastName) || lastName === '') {
       lm.$emit(Status.FAILED, 'Please enter Last name');
+      shakeme();
       return;
     } else if (angular.isUndefined(company) || company === '') {
       lm.$emit(Status.FAILED, 'Please enter Company name');
+      shakeme();
       return;
     } else if (angular.isUndefined(phone) || phone === '') {
       lm.$emit(Status.FAILED, 'Please enter Phone number');
+      shakeme();
       return;
     } else if (angular.isUndefined(email) || email === '') {
       lm.$emit(Status.FAILED, 'Please enter Email address');
+      shakeme();
       return;
     }
     var formData = new FormData();
@@ -76,6 +87,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     }
     // $log.info(formData);
     service.signUp(formData).then(function (result) {
+      angular.element('.shake').removeClass('shake');
       lm.$emit(Status.FAILED, 'User has been successfully created');
       localStorageService.set('signupToken', result.user.auth_token);
       $state.go(UIState.SIGN_UP.USER_PROFILE);
@@ -100,6 +112,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       } else {
         vm.phoneErrorTxt = 'Invalid Phone Number';
       }
+      shakeme();
       lm.$emit(Status.FAILED, vm.error);
       //  $log.info(err);
     });
