@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'Status', 'localStorageService', '$document', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'Status', 'localStorageService', '$document', '$timeout', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status, localStorageService, $document) {
+function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Status, localStorageService, $document, $timeout) {
   var vm = this;
 
   var initStartupVars = function () {
@@ -14,10 +14,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     vm.emailErrorTxt = '';
     vm.pwdRequiredTxt = 'Required';
     vm.phoneErrorTxt = 'Invalid Phone Number';
+    vm.displayMsg = 'You are just one step away from listing your center!!';
   };
 
   initStartupVars();
-
   // show and hide password
 
   vm.showpassword = function () {
@@ -33,9 +33,19 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     }
   };
 
+  function shakeme() {
+    angular.element('.progress-img-wrap').addClass('shake');
+
+    // setTimeout(function () {
+    //   angular.element('.shake').removeClass('shake');
+    // }, 500);
+    $timeout(function () {
+      angular.element('.shake').removeClass('shake');
+    }, 500);
+  }
+
   vm.userCreate = function () {
     var lm = $rootScope; // this;
-
     var firstName = vm.first_name;
     var lastName = vm.last_name;
     var company = vm.company_name;
@@ -44,22 +54,47 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     var username = vm.phone_num + vm.first_name;
     var email = vm.email;
 
-    if (angular.isUndefined(firstName) || firstName === '') {
-      lm.$emit(Status.FAILED, 'Please enter First name');
+    vm.emailErrorTxt = '';
+    vm.pwdRequiredTxt = 'Required';
+    vm.phoneErrorTxt = 'Invalid Phone Number';
+
+    // if (angular.isUndefined(firstName) || firstName === '') {
+    if (vm.userCreateForm.firstName.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Firstname cannot be empty ';
       return;
-    } else if (angular.isUndefined(lastName) || lastName === '') {
-      lm.$emit(Status.FAILED, 'Please enter Last name');
+    // } else if (angular.isUndefined(lastName) || lastName === '') {
+    } else if (vm.userCreateForm.lastName.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Lastname cannot be empty ';
       return;
-    } else if (angular.isUndefined(company) || company === '') {
-      lm.$emit(Status.FAILED, 'Please enter Company name');
+    // } else if (angular.isUndefined(company) || company === '') {
+    } else if (vm.userCreateForm.companyName.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Company name cannot be empty ';
       return;
-    } else if (angular.isUndefined(phone) || phone === '') {
-      lm.$emit(Status.FAILED, 'Please enter Phone number');
+    } else if (vm.userCreateForm.phone.$invalid) {
+      shakeme();
+      vm.displayMsg = vm.phoneErrorTxt;
       return;
-    } else if (angular.isUndefined(email) || email === '') {
-      lm.$emit(Status.FAILED, 'Please enter Email address');
+    } else if (vm.userCreateForm.email.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter valid email ';
+      return;
+    } else if (vm.emailErrorTxt !== '') {
+      shakeme();
+      vm.displayMsg = vm.emailErrorTxt;
+      return;
+    }    else if (vm.userCreateForm.password.$error.required) {
+      shakeme();
+      vm.displayMsg = 'Password cannot be empty';
+      return;
+    } else if (vm.pwdRequiredTxt !== 'Required') {
+      shakeme();
+      vm.displayMsg = vm.pwdRequiredTxt;
       return;
     }
+
     var formData = new FormData();
     var sigupData = {
       'first_name': firstName,
@@ -76,6 +111,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     }
     // $log.info(formData);
     service.signUp(formData).then(function (result) {
+      angular.element('.shake').removeClass('shake');
       lm.$emit(Status.FAILED, 'User has been successfully created');
       localStorageService.set('signupToken', result.user.auth_token);
       $state.go(UIState.SIGN_UP.USER_PROFILE);
@@ -85,22 +121,26 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       if (angular.isDefined(err.data.user.password)) {
         vm.pwdRequiredTxt = err.data.user.password.errors[0];
         vm.error = err.data.user.password.errors[0];
+        vm.displayMsg = vm.pwdRequiredTxt;
       } else {
         vm.pwdRequiredTxt = 'Required';
       }
       if (angular.isDefined(err.data.user.email)) {
         vm.emailErrorTxt = err.data.user.email.errors[0];
         vm.error = err.data.user.email.errors[0];
+        vm.displayMsg = vm.emailErrorTxt;
       } else {
         vm.emailErrorTxt = '';
       }
       if (angular.isDefined(err.data.user.phone)) {
         vm.phoneErrorTxt = err.data.user.phone.errors[0];
         vm.error = err.data.user.phone.errors[0];
+        vm.displayMsg = vm.phoneErrorTxt;
       } else {
         vm.phoneErrorTxt = 'Invalid Phone Number';
       }
-      lm.$emit(Status.FAILED, vm.error);
+      shakeme();
+    //  lm.$emit(Status.FAILED, vm.error);
       //  $log.info(err);
     });
   };

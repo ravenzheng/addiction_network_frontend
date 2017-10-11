@@ -16,7 +16,7 @@
         <div class="p-tc-title">Add test center</div>
         <div style="background-image: url('themes/addiction/images/png/illustrations-Woman-Explains.png');" class="progress-img">
         </div>
-        <div class="p-tc-desc">{{$ctrl.explanationField}}</div>
+        <div class="p-tc-desc">{{$ctrl.displayMsg}}</div>
       </div>
     </div>
     <div class="col-md-6">
@@ -27,28 +27,28 @@
       <div class="psignup-form fg-height">
         <form class="psignup-form" name="$ctrl.optionalForm">
           <div class="form-group">
-            <input type="text" class="form-control" name="description" ng-focus="$ctrl.explanationField='Description Explanation'" ng-blur="$ctrl.explanationField=''" ng-keypress="$ctrl.optionalInit.description=0" ng-model="$ctrl.description" required="true" placeholder="Description">
+            <input type="text" class="form-control" name="description" ng-focus="$ctrl.displayMsg='Description Explanation'" ng-blur="$ctrl.displayMsg=''" ng-keypress="$ctrl.optionalInit.description=0" ng-model="$ctrl.description" required="true" placeholder="Description">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
-            <span ng-show="$ctrl.optionalForm.description.$invalid && ($ctrl.optionalInit.description===0)" class="help-block">Required</span>
+            <!-- <span ng-show="$ctrl.optionalForm.description.$invalid && ($ctrl.optionalInit.description===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="overview" ng-model="$ctrl.overview" ng-keypress="$ctrl.optionalInit.overview=0" required="true" placeholder="Overview of the program">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
-            <span ng-show="$ctrl.optionalForm.overview.$invalid && ($ctrl.optionalInit.overview===0)" class="help-block">Required</span>
+            <!-- <span ng-show="$ctrl.optionalForm.overview.$invalid && ($ctrl.optionalInit.overview===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="treatmentApproach" ng-model="$ctrl.treatmentApproach" ng-keypress="$ctrl.optionalInit.treatmentApproach=0" required="true" placeholder="Treatment approach">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
-            <span ng-show="$ctrl.optionalForm.treatmentApproach.$invalid && ($ctrl.optionalInit.treatmentApproach===0)" class="help-block">Required</span>
+            <!-- <span ng-show="$ctrl.optionalForm.treatmentApproach.$invalid && ($ctrl.optionalInit.treatmentApproach===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
-            <span ng-show="$ctrl.optionalForm.usp.$error.required && ($ctrl.optionalInit.usp===0)" class="help-block">Required</span>
-            <span ng-show="$ctrl.optionalForm.usp.$error.pattern && ($ctrl.optionalInit.usp===0)" class="help-block">Invalid Email</span>
+            <!-- <span ng-show="$ctrl.optionalForm.usp.$error.required && ($ctrl.optionalInit.usp===0)" class="help-block">Required</span>
+            <span ng-show="$ctrl.optionalForm.usp.$error.pattern && ($ctrl.optionalInit.usp===0)" class="help-block">Invalid Email</span> -->
 
           </div>
           <div class="form-group clear-me">
@@ -89,7 +89,7 @@
         <!-- <li><p><a href="javascript:void(0)" ng-click="$ctrl.updateMembership()">Done</a></p></li> -->
         <li>
           <p>
-            <a ng-click="$ctrl.optionalFieldsSubmit()" ng-disabled="$ctrl.optionalForm.description.$invalid || $ctrl.optionalForm.overview.$invalid || $ctrl.optionalForm.treatmentApproach.$invalid || $ctrl.optionalForm.usp.$invalid">Done</a>
+            <a href="javascript:void(0);" ng-click="$ctrl.optionalFieldsSubmit()" ng-disabled="$ctrl.optionalForm.description.$invalid || $ctrl.optionalForm.overview.$invalid || $ctrl.optionalForm.treatmentApproach.$invalid || $ctrl.optionalForm.usp.$invalid">Done</a>
           </p>
         </li>
       </ul>

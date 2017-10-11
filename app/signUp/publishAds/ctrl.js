@@ -41,6 +41,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     }
     service.publishAds(formData, token).then(function (result) {
       $log.info(result);
+      lm.$emit(Status.SUCCEEDED, 'Ads submitted');
       if (vm.count >= 3) {
         lm.$emit(Status.SUCCEEDED, 'Ads submitted');
         $state.go(UIState.SIGN_UP.PUBLISH_ADS2);

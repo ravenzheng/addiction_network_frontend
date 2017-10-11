@@ -2844,6 +2844,10 @@ span.stick-me{
   font-family: 'open sans', sans-serif;
   font-weight: 600;
 }
+.p-tc-desc, .p-form-desc{
+  color:#f00;
+
+}
 .p-tc-desc{
   z-index: 9999;
   position: absolute;
@@ -3165,4 +3169,22 @@ z-index: 9999;
 }
 .update-ads .ads-block{
   margin: 10px 0;
+}
+
+/*FOr shake*/
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  20%, 60% {transform: translateX(-8px);}
+  40%, 80% {transform: translateX(8px);}
+}
+
+.animated-shake {
+  animation: shake .5s;
+}
+
+.shake {
+	-webkit-animation-name: shake;
+	-webkit-animation-duration: 0.5s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-timing-function: linear;
 }
