@@ -8,13 +8,13 @@
         <div class="latest_review" ng-repeat="results in $ctrl.result">
           <div class="col-lg-3 col-sm-4 col-md-3 col-xs-3 padding_0 margin_ryt_10">
             <div class="review_img">
-              <a href="/blog/{{results.post_name}}">
+              <a href="/blog/{{results.post_name}}/">
                 <img width="44" height="44" src="{{results.thumbnail}}" class="attachment-footer_img size-footer_img" alt="{{result.post_title}}" sizes="(max-width: 44px) 100vw, 44px" />
               </a>
             </div>
           </div>
           <label style="display:block;">
-            <a href="/blog/{{results.post_name}}">{{results.post_title}}</a>
+            <a href="/blog/{{results.post_name}}/">{{results.post_title}}</a>
           </label>
           <p>{{results.post_content | limitTo:18}}</p>
         </div>
