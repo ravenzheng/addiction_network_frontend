@@ -15,6 +15,11 @@ function service($http, $q, $window, endPoint, localStorageService) {
   _service.emailOtpApi = emailOtpApi;
   _service.phoneOtpApi = phoneOtpApi;
   _service.forgotUsername = forgotUsername;
+  _service.latestPost = latestPost;
+
+  function latestPost() {
+    return $http.get('https://blog.addictionnetwork.com/blog/latest_post.php?blogs=all');
+  }
 
   // sign in with email and password
   function signIn(email, password) {
