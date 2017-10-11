@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'Status', 'UIState', 'SignUpService', 'localStorageService', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'Status', 'UIState', 'SignUpService', 'localStorageService', '$timeout', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, service, localStorageService) {
+function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, service, localStorageService, $timeout) {
   var vm = this;
   var lm = $rootScope;
   var token = localStorageService.get('signupToken');
@@ -13,6 +13,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     vm.centerFormInit.email = 1;
     vm.centerFormInit.phone = 1;
     vm.centerFormInit.address = 1;
+    vm.displayMsg = 'Explaination of each field here?';
   };
   initStartupVars();
 
@@ -71,39 +72,55 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     vm.centerFormInit.categories = 0;
   };
 
+  function shakeme() {
+    angular.element('.progress-img-wrap').addClass('shake');
+    $timeout(function () {
+      angular.element('.shake').removeClass('shake');
+    }, 500);
+  }
+
   vm.addCenter = function () {
-    lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
+  //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var catId = '';
     $log.info(vm.categoryModel);
     for (var key in vm.categoryModel) {
       catId += vm.categoryModel[key].id + ',';
     }
     catId = catId.slice(',', -1);
-
-    var centerName = vm.centerName;
-    var website = vm.website;
-    var email = vm.email;
-    var phone = vm.phone;
-    var address = vm.address;
     var tagId = 4;
 
-    if (angular.isUndefined(centerName) || centerName === '') {
-      lm.$emit(Status.FAILED, 'Please enter Center name');
+    if (vm.centerForm.centerName.$error.required) {
+      // lm.$emit(Status.FAILED, 'Please enter Center name');
+      shakeme();
+      vm.displayMsg = 'Please enter Center name';
       return;
-    } else if (angular.isUndefined(catId) || catId === '') {
-      lm.$emit(Status.FAILED, 'Please select Category');
+    } else if (vm.categoryModel.length === 0) {
+      shakeme();
+      vm.displayMsg = 'Please select Category';
       return;
-    } else if (angular.isUndefined(website) || website === '') {
-      lm.$emit(Status.FAILED, 'Please enter Website');
+    } else if (vm.centerForm.website.$error.required) {
+      shakeme();
+      vm.displayMsg = 'Please enter Website';
       return;
-    } else if (angular.isUndefined(email) || email === '') {
-      lm.$emit(Status.FAILED, 'Please enter Email address');
+    } else if (vm.centerForm.website.$error.pattern) {
+      shakeme();
+      vm.displayMsg = 'Invalid website';
       return;
-    } else if (angular.isUndefined(phone) || phone === '') {
-      lm.$emit(Status.FAILED, 'Please enter Phone number');
+    } else if (vm.centerForm.email.$error.required) {
+      shakeme();
+      vm.displayMsg = 'Please enter Email address';
       return;
-    } else if (angular.isUndefined(address) || address === '') {
-      lm.$emit(Status.FAILED, 'Please enter Address');
+    } else if (vm.centerForm.email.$error.pattern) {
+      shakeme();
+      vm.displayMsg = 'Invalid email';
+      return;
+    } else if (vm.centerForm.phone.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Invalid phone';
+      return;
+    }  else if (vm.centerForm.address.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter Address';
       return;
     }
     var formData = new FormData();
@@ -127,6 +144,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {
       // lm.$emit(Status.FAILED, err.data.error);
+      $log.info(err);
       vm.error = '';
       if (angular.isDefined(err.data.treatment_center.email.errors)) {
         vm.error = err.data.treatment_center.email.errors[0];

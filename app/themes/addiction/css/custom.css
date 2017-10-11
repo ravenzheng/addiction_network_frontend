@@ -2844,6 +2844,10 @@ span.stick-me{
   font-family: 'open sans', sans-serif;
   font-weight: 600;
 }
+.p-tc-desc, .p-form-desc{
+  color:#f00;
+
+}
 .p-tc-desc{
   z-index: 9999;
   position: absolute;

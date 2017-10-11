@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'localStorageService', 'SignUpService', 'Status', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'localStorageService', 'SignUpService', 'Status', '$timeout', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService, service, Status) {
+function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService, service, Status, $timeout) {
   var vm = this;
   var rs = $rootScope;
   var token = localStorageService.get('signupToken');
@@ -11,7 +11,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     vm.optionalInit.overview = 1;
     vm.optionalInit.treatmentApproach = 1;
     vm.optionalInit.usp = 1;
-    vm.explanationField = 'Explaination of each field here?';
+    vm.displayMsg = 'Explaination of each field here?';
   };
   initStartupVars();
 
@@ -20,7 +20,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
 
   vm.optionalFieldsSubmit = function () {
-    rs.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
+    // rs.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var logo = rs.logoData;
     // var gallery = rs.galleryData;
 
@@ -37,6 +37,31 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     //   }
     //   galleryData = galleryData.slice(',', -1);
     // }
+
+    function shakeme() {
+      angular.element('.progress-img-wrap').addClass('shake');
+      $timeout(function () {
+        angular.element('.shake').removeClass('shake');
+      }, 500);
+    }
+
+    if (vm.optionalForm.description.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter description';
+      return;
+    } else if (vm.optionalForm.overview.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter overview';
+      return;
+    } else if (vm.optionalForm.treatmentApproach.$invalid ) {
+      shakeme();
+      vm.displayMsg = 'Please enter treatmentApproach';
+      return;
+    } else if (vm.optionalForm.usp.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter valid email';
+      return;
+    }
 
     var formData = new FormData();
 
