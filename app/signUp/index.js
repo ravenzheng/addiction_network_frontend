@@ -1,20 +1,20 @@
 var moduleName = 'app.SignUpWelcome';
 
 angular.module(moduleName, ['ui.router'])
-.component('welcomesignup', require('./welcomeSignup'))
-.component('usercreate', require('./UserCreate'))
-.component('userprofile', require('./userProfile'))
-.component('testcenter', require('./testCenter'))
-.component('optionalfields', require('./optionalFields'))
-.component('updatemembership', require('./updateMembership'))
-.component('sponserpage', require('./sponserPage'))
-.component('publishads', require('./publishAds'))
-.component('publishads2', require('./publishAds2'))
-.component('updateads', require('./updateAds'))
-.component('signup', {
-  template: require('./view.html'),
-  controller: require('./ctrl')
-})
+  .component('welcomesignup', require('./welcomeSignup'))
+  .component('usercreate', require('./UserCreate'))
+  .component('userprofile', require('./userProfile'))
+  .component('testcenter', require('./testCenter'))
+  .component('optionalfields', require('./optionalFields'))
+  .component('updatemembership', require('./updateMembership'))
+  .component('sponserpage', require('./sponserPage'))
+  .component('publishads', require('./publishAds'))
+  .component('publishads2', require('./publishAds2'))
+  .component('updateads', require('./updateAds'))
+  .component('signup', {
+    template: require('./view.html'),
+    controller: require('./ctrl')
+  })
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.SIGN_UP.INDEX,

@@ -37,8 +37,46 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   };
   vm.centerCategories = [];
   vm.categoryModel = [];
-  vm.tagsOption = [];
-  vm.tagsModel = [];
+  vm.tagsOption = [
+    {
+      'id': 5,
+      'label': 'Cocaine Rehab Centers',
+      'tagGroup': '4'
+    },
+    {
+      'id': 6,
+      'label': 'Opiate Addiction Centers',
+      'tagGroup': '4'
+    },
+    {
+      'id': 14,
+      'label': 'Executive Treatment',
+      'tagGroup': '13'
+    },
+    {
+      'id': 15,
+      'label': 'Rehab for Women',
+      'tagGroup': '13'
+    }
+  ];
+
+  vm.tagsData = [];
+  vm.tagCheckboxModel = [];
+  vm.tagsToggleFun = function () {
+    if (vm.tagsToggle === 1) {
+      vm.tagsToggle = 0;
+    } else {
+      vm.tagsToggle = 1;
+    }
+  };
+  vm.tagToggleDynamic = function (tagsId) {
+    $log.info('tagsid: ' + tagsId);
+    if (vm.tagToggle[tagsId]) {
+      vm.tagToggle[tagsId] = 0;
+    } else {
+      vm.tagToggle[tagsId] = 1;
+    }
+  };
 
   // get categories
   service.getCategories(token).then(function (result) {
@@ -61,6 +99,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     //   var category = {'label': result.tags[key].name, 'id': result.tags[key].id};
     //   vm.centerCategories.push(category);
     // }
+    vm.tagsData = result;
   }).catch(function (err) {
     $log.info(err);
   });
@@ -80,15 +119,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   }
 
   vm.addCenter = function () {
-  //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
+    //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var catId = '';
     $log.info(vm.categoryModel);
     for (var key in vm.categoryModel) {
       catId += vm.categoryModel[key].id + ',';
     }
     catId = catId.slice(',', -1);
-    var tagId = 4;
-
     if (vm.centerForm.centerName.$error.required) {
       // lm.$emit(Status.FAILED, 'Please enter Center name');
       shakeme();
@@ -118,11 +155,25 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       shakeme();
       vm.displayMsg = 'Invalid phone';
       return;
-    }  else if (vm.centerForm.address.$invalid) {
+    } else if (vm.centerForm.address.$invalid) {
       shakeme();
       vm.displayMsg = 'Please enter Address';
       return;
     }
+
+    $log.info(vm.tagCheckboxModel);
+
+    var tagIds = '';
+    if (angular.isDefined(vm.tagCheckboxModel) && vm.tagCheckboxModel.length > 0) {
+      for (key in vm.tagCheckboxModel) {
+        if (vm.tagCheckboxModel[key]) {
+          tagIds += key + ',';
+        }
+        $log.info('key: ' + key + ' value: ' + vm.tagCheckboxModel[key]);
+      }
+    }
+    tagIds = tagIds.slice(0, -1);
+
     var formData = new FormData();
     var centerData = {
       'center_name': vm.centerName,
@@ -130,7 +181,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       'center_web_link': vm.website,
       'email': vm.email,
       'phone': vm.phone,
-      'tag_id': tagId,
+      'tag_id': tagIds,
       'address_line_1': vm.address
     };
 
