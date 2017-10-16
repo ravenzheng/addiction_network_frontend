@@ -160,16 +160,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       vm.displayMsg = 'Please enter Address';
       return;
     }
-
-    $log.info(vm.tagCheckboxModel);
-
     var tagIds = '';
     if (angular.isDefined(vm.tagCheckboxModel) && vm.tagCheckboxModel.length > 0) {
       for (key in vm.tagCheckboxModel) {
         if (vm.tagCheckboxModel[key]) {
           tagIds += key + ',';
         }
-        $log.info('key: ' + key + ' value: ' + vm.tagCheckboxModel[key]);
+        // $log.info('key: ' + key + ' value: ' + vm.tagCheckboxModel[key]);
       }
     }
     tagIds = tagIds.slice(0, -1);
