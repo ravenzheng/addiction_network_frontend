@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'localStorageService', 'SignUpService', 'Status', '$timeout', ctrl];
+module.exports = ['$injector', '$document', '$scope', '$log', '$rootScope', '$state', 'UIState', 'localStorageService', 'SignUpService', 'Status', '$timeout', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService, service, Status, $timeout) {
+function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, localStorageService, service, Status, $timeout) {
   var vm = this;
   var rs = $rootScope;
   var token = localStorageService.get('signupToken');
@@ -19,11 +19,78 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     $state.go(UIState.SIGN_UP.UPDATE_MEMBERSHIP);
   };
 
+  vm.logoPreview = 0;
+  // Uploaded image preview
+  $scope.imagePreview = function (element) {
+    vm.err_type = 0;
+    // vm.previewImg = 'hello';
+    var reader = new FileReader();
+    reader.readAsDataURL(element.files[0]);
+    reader.onload = function (e) {
+      vm.previewImg = e.target.result;
+      // $log.info(rs.testimg);
+      $document[0].getElementById('logo_preview').src = vm.previewImg;
+    };
+    vm.logoPreview = 1;
+  };
+  vm.deleteLogo = function () {
+    $document[0].getElementById('logo_preview').src = '';
+    vm.logoData = '';
+    vm.logoPreview = 0;
+  };
+
+  // ------- MULTIPREVIEW -----//
+  vm.multiPrvElm = [];
+  vm.multiPreview = [];
+  vm.newGallData = [];
+  var removedKeyMulti = [];
+  $scope.imagePreviewMulti = function (element) {
+    removedKeyMulti = [];
+    var reader = new FileReader();
+    var len = element.files.length;
+    $log.info(element.files[0]);
+    for (var key = 0; key < len; key++) {
+      // $log.info(key + '  --file: ' + element.files[key]);
+      vm.multiPrvElm[key] = element.files[key];
+      vm.multiPreview[key] = 1;
+    }
+    vm.loadMultiPrev(reader, element, 0);
+    //  vm.newGallData = vm.galleryData;
+    // for (key in vm.multiPrvElm) {
+    //   reader.readAsDataURL(element.files[key]);
+    //   reader.onload = function (e) {
+    //     $log.info(e.target.result);
+    //     $document[0].getElementById('multi_preview-' + key).src = e.target.result;
+    //   };
+    // }
+  };
+
+  vm.loadMultiPrev = function (reader, element, ik) {
+    var tmp = ik;
+    reader.readAsDataURL(element.files[ik]);
+    reader.onload = function (e) {
+      //  $log.info('test: ' + i + '   ' + e.target.result);
+      $document[0].getElementById('multi_preview-' + ik).src = e.target.result;
+      if (ik < (vm.multiPrvElm.length - 1)) {
+        tmp++;
+        vm.loadMultiPrev(reader, element, tmp);
+      } else {
+        $log.info('return at: ' + ik);
+        return;
+      }
+    };
+  };
+
+  vm.deleteMulti = function (key) {
+    $document[0].getElementById('multi_preview-' + key).src = '';
+    vm.multiPreview[key] = 0;
+    removedKeyMulti.push(key);
+  };
+  // ------- MULTIPREVIEW -----//
   vm.optionalFieldsSubmit = function () {
     // rs.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
-    var logo = rs.logoData;
+    var logo = vm.logoData;
     // var gallery = rs.galleryData;
-
     if (angular.isUndefined(logo)) {
       logo = '';
     }
@@ -37,7 +104,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     //   }
     //   galleryData = galleryData.slice(',', -1);
     // }
-
     function shakeme() {
       angular.element('.progress-img-wrap').addClass('shake');
       $timeout(function () {
@@ -53,7 +119,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
       shakeme();
       vm.displayMsg = 'Please enter overview';
       return;
-    } else if (vm.optionalForm.treatmentApproach.$invalid ) {
+    } else if (vm.optionalForm.treatmentApproach.$invalid) {
       shakeme();
       vm.displayMsg = 'Please enter treatmentApproach';
       return;
@@ -65,10 +131,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
 
     var formData = new FormData();
 
-    var imageData = rs.galleryData;
+    var imageData = vm.galleryData;
     if (imageData) {
       var len = imageData.length;
       for (var i = 0; i < len; i++) {
+        if (removedKeyMulti.indexOf(i) >= 0) {
+          $log.info('image index removed: ' + i + ' ' + imageData.item(i));
+          continue;
+        }
         formData.append('treatment_center[image_data][]', imageData.item(i));
       }
     }
