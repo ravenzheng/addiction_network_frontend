@@ -189,6 +189,24 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     service.addCenter(formData, token).then(function (result) {
       localStorageService.set('signupCenterId', result.treatment_center.id);
       lm.$emit(Status.SUCCEEDED, Status.SIGNUP_CENTER);
+
+      // saving center details for further step
+      if (localStorageService.get('center_added') === null) {
+        var centerDetail = [{
+          'centerId': result.treatment_center.id,
+          'centerName': vm.centerName,
+          'cost': 10
+        }];
+      } else {
+        centerDetail = localStorageService.get('center_added');
+        centerDetail.push({
+          'centerId': result.treatment_center.id,
+          'centerName': vm.centerName,
+          'cost': 10
+        });
+      }
+      localStorageService.set('center_added', centerDetail);
+
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {
       // lm.$emit(Status.FAILED, err.data.error);

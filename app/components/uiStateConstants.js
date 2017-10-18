@@ -61,7 +61,8 @@ module.exports = {
     'SPONSER': 'signUp.sponserPage',
     'PUBLISH_ADS': 'signUp.publish_ads',
     'PUBLISH_ADS2': 'signUp.publish_ads2',
-    'UPDATE_ADS': 'signUp.updateAds'
+    'UPDATE_ADS': 'signUp.updateAds',
+    'DETAILS': 'signUp.productDetails'
   },
   'LOGIN': 'login',
   'LOGINHELP': 'loginHelp',

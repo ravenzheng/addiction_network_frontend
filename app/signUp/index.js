@@ -11,6 +11,7 @@ angular.module(moduleName, ['ui.router'])
   .component('publishads', require('./publishAds'))
   .component('publishads2', require('./publishAds2'))
   .component('updateads', require('./updateAds'))
+  .component('productdetails', require('./productDetails'))
   .component('signup', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -71,6 +72,11 @@ angular.module(moduleName, ['ui.router'])
       name: UIState.SIGN_UP.UPDATE_ADS,
       url: '/update_ads',
       template: '<updateads></updateads>'
+    });
+    $stateProvider.state({
+      name: UIState.SIGN_UP.DETAILS,
+      url: '/details',
+      template: '<productDetails></productDetails>'
     });
   }]);
 

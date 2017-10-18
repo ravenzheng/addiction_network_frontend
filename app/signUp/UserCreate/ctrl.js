@@ -18,8 +18,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
   };
 
   initStartupVars();
-  // show and hide password
 
+  // reset previous localstorage
+  vm.resetLocalstorage = function () {
+    localStorageService.remove('membership', 'center_added');
+  };
+  vm.resetLocalstorage();
+
+  // show and hide password
   vm.showpassword = function () {
     var password = angular.element($document[0].querySelector('#pwd'));
     var showpassword = angular.element($document[0].querySelector('#showpassword'));
@@ -63,12 +69,12 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       shakeme();
       vm.displayMsg = 'Firstname cannot be empty ';
       return;
-    // } else if (angular.isUndefined(lastName) || lastName === '') {
+      // } else if (angular.isUndefined(lastName) || lastName === '') {
     } else if (vm.userCreateForm.lastName.$invalid) {
       shakeme();
       vm.displayMsg = 'Lastname cannot be empty ';
       return;
-    // } else if (angular.isUndefined(company) || company === '') {
+      // } else if (angular.isUndefined(company) || company === '') {
     } else if (vm.userCreateForm.companyName.$invalid) {
       shakeme();
       vm.displayMsg = 'Company name cannot be empty ';
@@ -85,7 +91,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       shakeme();
       vm.displayMsg = vm.emailErrorTxt;
       return;
-    }    else if (vm.userCreateForm.password.$error.required) {
+    } else if (vm.userCreateForm.password.$error.required) {
       shakeme();
       vm.displayMsg = 'Password cannot be empty';
       return;
@@ -112,7 +118,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     // $log.info(formData);
     service.signUp(formData).then(function (result) {
       angular.element('.shake').removeClass('shake');
-      lm.$emit(Status.FAILED, 'User has been successfully created');
+      lm.$emit(Status.SUCCEEDED, 'User has been successfully created');
       localStorageService.set('signupToken', result.user.auth_token);
       $state.go(UIState.SIGN_UP.USER_PROFILE);
       $log.info(result);
@@ -140,7 +146,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
         vm.phoneErrorTxt = 'Invalid Phone Number';
       }
       shakeme();
-    //  lm.$emit(Status.FAILED, vm.error);
+      //  lm.$emit(Status.FAILED, vm.error);
       //  $log.info(err);
     });
   };
