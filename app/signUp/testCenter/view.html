@@ -62,14 +62,35 @@
 
           </div>
           <div class="form-group">
-            <!-- <input type="text" class="form-control" placeholder="Tags/ Labels"> -->
-            <div ng-dropdown-multiselect="" translation-texts="$ctrl.tagsSelectText" options="$ctrl.tagsOption" selected-model="$ctrl.tagsModel" checkboxes="true" extra-settings="$ctrl.multiselectModelSettings" name="tags" required=""></div>
-            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
+            <input type="text" class="form-control" placeholder="Tags/ Labels">
+            <!-- <div ng-dropdown-multiselect="" translation-texts="$ctrl.tagsSelectText" options="$ctrl.tagsOption" selected-model="$ctrl.tagsModel" checkboxes="true" extra-settings="$ctrl.tagsSelectSetting"  name="tags" required=""></div> -->
+            <!-- <div ng-dropdown-multiselect="" options="$ctrl.tagsOption" selected-model="$ctrl.tagsModel" extra-settings="$ctrl.tagsSelectSetting"></div>-->
+            <!-- <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span> -->
+            <span class="fix-right" ng-click="$ctrl.tagsToggleFun()" ng-init="$ctrl.tagsToggle=1" tooltip-placement="right" data-toggle="collapse" data-target="#collapse-tags" uib-tooltip="Show/hide tags"><i class="fa fa-arrow-down fa-2x"></i></span>
+
+          </div>
+          <div id="collapse-tags" class="form-group collapse-tags" ng-if="$ctrl.tagsToggle===1">
+            <div class="col-md-12" id="tags{{tags.id}}" style="padding-bottom:10px;" ng-init="$ctrl.tagToggle[tags.id]=0" ng-repeat="tags in $ctrl.tagsData.tags">
+              <div>
+                <h4>{{tags.name}}</h4>
+                <span style="cursor:pointer;" class="fix-right" ng-click="$ctrl.tagToggleDynamic(tags.id)"><i class="fa fa-caret-square-o-down" uib-tooltip="Show/hide " aria-hidden="true"></i></span>
+              </div>
+              <!-- <input type="checkbox" ng-repeat="child in tags.children" /> test1<br> -->
+              <!-- {{$ctrl.tagCheckboxModel[tags.id]}} -->
+              <div style=" background-color:#a5bf38;" ng-show="$ctrl.tagToggle[tags.id]" ng-repeat="child in tags.children track by $index">
+                <input type="checkbox" id="tag-{{tags.id}}-child-{{child.id}}" name="tag{{tags.id}}[]" ng-model="$ctrl.tagCheckboxModel[child.id]" /> {{child.name}}
+              </div>
+            </div>
           </div>
         </form>
       </div>
     </div>
-    <!-- <p class="stick-next-tc"><a href="javascript:void(0)" ng-click="$ctrl.optional_fields()" ng-disabled="">Next</a></p> -->
-    <p class="stick-next-tc"><a href="javascript:void(0);" ng-click="$ctrl.addCenter()" ng-disabled="$ctrl.centerForm.centerName.$invalid || ($ctrl.categoryModel.length===0) || $ctrl.centerForm.website.$invalid || $ctrl.centerForm.email.$invalid || $ctrl.centerForm.phone.$invalid || $ctrl.centerForm.address.$invalid">Next</a></p>
+    <div class="col-md-12 " style="margin-top:50px;">
+      <p class="stick-next-tc"><a href="javascript:void(0);" ng-click="$ctrl.addCenter()" ng-disabled="$ctrl.centerForm.centerName.$invalid || ($ctrl.categoryModel.length===0) || $ctrl.centerForm.website.$invalid || $ctrl.centerForm.email.$invalid || $ctrl.centerForm.phone.$invalid || $ctrl.centerForm.address.$invalid">Next</a></p>
+
+    </div>
   </div>
+  <!-- <p class="stick-next-tc"><a href="javascript:void(0)" ng-click="$ctrl.optional_fields()" ng-disabled="">Next</a></p> -->
+
+  <!-- <p class="stick-next-tc pull-right"><a href="javascript:void(0);" ng-click="$ctrl.addCenter()" ng-disabled="$ctrl.centerForm.centerName.$invalid || ($ctrl.categoryModel.length===0) || $ctrl.centerForm.website.$invalid || $ctrl.centerForm.email.$invalid || $ctrl.centerForm.phone.$invalid || $ctrl.centerForm.address.$invalid">Next</a></p> -->
 </div>

@@ -8,7 +8,8 @@ function service($log, $http, endPoint) {
     getTagsSelection: getTagsSelection,
     addOptionalFields: addOptionalFields,
     upgradeMembership: upgradeMembership,
-    publishAds: publishAds
+    publishAds: publishAds,
+    getPublishAds: getPublishAds
   };
   // add new user
   function signUp(formdata) {
@@ -93,6 +94,19 @@ function service($log, $http, endPoint) {
       url: endPoint + '/v2/treatment_center_publish_ads',
       method: 'POST',
       data: formdata,
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined,
+        'Authorization': token
+      }
+    });
+  }
+
+  // get published ads details
+  function getPublishAds(centerId, token) {
+    return $http({
+      url: endPoint + '/v2/treatment_center_publish_ads_details/' + centerId,
+      method: 'GET',
       transformRequest: angular.identity,
       headers: {
         'Content-Type': undefined,
