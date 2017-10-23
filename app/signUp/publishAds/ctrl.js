@@ -56,7 +56,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     }
 
     if (angular.isDefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
-      sideImage = '';
       vm.validAds.push('sidebar');
     }
 
