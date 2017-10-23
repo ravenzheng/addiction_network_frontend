@@ -2996,6 +2996,10 @@ p.stick-next a{
   float:left;
   cursor:pointer;
 }
+.choose-file-req{
+  border:1px solid red;
+}
+
 .file {
     position: absolute;
     z-index: 1000;

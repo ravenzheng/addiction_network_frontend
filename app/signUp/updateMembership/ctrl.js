@@ -5,7 +5,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   var rm = $rootScope;
   var token = localStorageService.get('signupToken');
   vm.sponser = function () {
-    localStorageService.set('membershipType', 'skipped', 'sessionStorage');
+    var spn = localStorageService.get('membershipType');
+    if (spn === null) {
+      localStorageService.set('membershipType', 'skipped', 'sessionStorage');
+    }
     $state.go(UIState.SIGN_UP.SPONSER);
   };
   vm.sponsored = function () {
@@ -45,6 +48,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
         'cost': 5
       };
       localStorageService.set('membership', membership);
+      rm.$emit(Status.SUCCEEDED, 'Updated');
       $state.go(UIState.SIGN_UP.SPONSER);
     }).catch(function (err) {
       $log.info(err);

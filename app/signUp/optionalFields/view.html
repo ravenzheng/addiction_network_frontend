@@ -45,7 +45,7 @@
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP">
+            <input type="email" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.usp.$error.required && ($ctrl.optionalInit.usp===0)" class="help-block">Required</span>
             <span ng-show="$ctrl.optionalForm.usp.$error.pattern && ($ctrl.optionalInit.usp===0)" class="help-block">Invalid Email</span> -->

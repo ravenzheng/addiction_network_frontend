@@ -1,4 +1,3 @@
-
 <div class="container progress-content">
   <div class="progressbar">
     <div class="col-md-6 col-md-offset-6">
@@ -27,27 +26,74 @@
       </div>
       <div class="col-md-12 ">
         <div class="row ">
-          <div class="col-md-4 "><label >Center Name</label></div><div class="col-md-4"><label>Product</label></div><div class="col-md-2"><label>Cost</label></div><div class="col-md-2"></div>
+          <div class="col-md-4 ">
+            <label>Center Name</label>
+          </div>
+          <div class="col-md-4">
+            <label>Product</label>
+          </div>
+          <div class="col-md-2">
+            <label>Cost</label>
+          </div>
+          <div class="col-md-2"></div>
         </div>
         <div class="row" ng-repeat="center in $ctrl.centersAdded">
-          <div class="col-md-4"><span >{{center.centerName}}</span></div><div class="col-md-4"><span>Total</span></div><div class="col-md-2"><span>{{center.cost}} $</span></div><div class="col-md-2"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></div>
+          <div class="col-md-4">
+            <span>{{center.centerName}}</span>
+          </div>
+          <div class="col-md-4">
+            <span>Total</span>
+          </div>
+          <div class="col-md-2">
+            <span>{{center.cost}} $</span>
+          </div>
+          <div class="col-md-2">
+            <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+          </div>
 
-      </div>
+        </div>
 
         <div class="row" ng-if="$ctrl.membership!==''" style="padding-top:5px;">
-          <div class="col-md-4"><span ></span></div><div class="col-md-4"><span>Membership<br>{{$ctrl.membership.package}}</span></div><div class="col-md-2"><span><br>{{$ctrl.membership.cost}} $</span></div><div class="col-md-2"><br><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></div>
+          <div class="col-md-4">
+            <span></span>
+          </div>
+          <div class="col-md-4">
+            <span>Membership
+              <br>{{$ctrl.membership.package}}</span>
+          </div>
+          <div class="col-md-2">
+            <span>
+              <br>{{$ctrl.membership.cost}} $</span>
+          </div>
+          <div class="col-md-2">
+            <br>
+            <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+          </div>
           <!-- {{$ctrl.grandTotal = $ctrl.grandTotal + $ctrl.membership.cost;}} -->
         </div>
 
         <div class="row" style="padding-top:10px;padding-bottom:10px;">
-          <div class="col-md-4"><span ></span></div><div class="col-md-4"><br><span>Grand Total</span></div><div class="col-md-2"><label><br>{{$ctrl.grandTotal}} $</label></div><div class="col-md-2"></div>
+          <div class="col-md-4">
+            <span></span>
+          </div>
+          <div class="col-md-4">
+            <br>
+            <span>Grand Total</span>
+          </div>
+          <div class="col-md-2">
+            <label>
+              <br>{{$ctrl.grandTotal}} $</label>
+          </div>
+          <div class="col-md-2"></div>
 
         </div>
 
       </div>
 
     </div>
-    <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.testCenter()">Add Test center</a></p>
-    <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.userCreate()">View my profile</a></p>
+    <div style="margin-top:50px;">
+      <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.testCenter()">Add Test center</a></p>
+      <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.userCreate()">View my profile</a></p>
+    </div>
   </div>
 </div>

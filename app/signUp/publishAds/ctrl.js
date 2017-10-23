@@ -5,7 +5,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   var lm = $rootScope;
   var token = localStorageService.get('signupToken');
   var centerId = localStorageService.get('signupCenterId');
-
   var alreadyPublished = 0;
   // testing if ads are already published for same center id
   service.getPublishAds(centerId, token).then(function (result) {
@@ -19,7 +18,19 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     $log.info(err);
     lm.$emit(Status.SUCCEEDED, 'Something went wrong');
   });
+  vm.fileReqHeader = '';
+  vm.fileReqFooter = '';
+  vm.fileReqSidebar = '';
 
+  $scope.uploadChange = function (position) {
+    if (position === 'footer') {
+      vm.fileReqFooter = '';
+    } else if (position === 'sidebar') {
+      vm.fileReqSidebar = '';
+    } else if (position === 'header') {
+      vm.fileReqHeader = '';
+    }
+  };
   vm.count = 1;
   vm.publish_ads2 = function () {
     //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
@@ -28,27 +39,55 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       lm.$emit(Status.FAILED, 'Ads are already published for this center.');
       return;
     }
-
     var sideImage = vm.sideImage;
     var headerImage = vm.headerImage;
     var footerImage = vm.footerImage;
     vm.validAds = [];
-    if (angular.isUndefined(vm.sideImage) || angular.isUndefined(vm.weblinkSidebar)) {
+
+    if (angular.isUndefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
+      vm.fileReqSidebar = 'choose-file-req';
+      vm.adsFormInit.weblinkSidebar = 0;
+      return;
+      // vm.weblinkFooter = '';
+    } else if (angular.isDefined(vm.sideImage) && angular.isUndefined(vm.weblinkSidebar)) {
+      vm.fileReqSidebar = '';
+      vm.adsFormInit.weblinkSidebar = 1;
+      return;
+    }
+
+    if (angular.isDefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
       sideImage = '';
-      // vm.weblinkSidebar = '';
-    } else {
       vm.validAds.push('sidebar');
     }
-    if (angular.isUndefined(vm.headerImage) || angular.isUndefined(vm.weblinkHeader)) {
+
+    if (angular.isUndefined(vm.headerImage) && angular.isDefined(vm.weblinkHeader)) {
       headerImage = '';
-      // vm.weblinkHeader = '';
-    } else {
-      vm.validAds.push('header');
-    }
-    if (angular.isUndefined(vm.footerImage) || angular.isUndefined(vm.weblinkFooter)) {
-      footerImage = '';
+      vm.fileReqHeader = 'choose-file-req';
+      return;
+      // vm.adsFormInit.weblinkHeader = 0;
       // vm.weblinkFooter = '';
-    } else {
+    } else if (angular.isUndefined(vm.weblinkHeader) && angular.isDefined(vm.headerImage)) {
+      vm.adsFormInit.weblinkHeader = 1;
+      vm.fileReqHeader = '';
+      return;
+    }
+    if (angular.isDefined(vm.headerImage) && angular.isDefined(vm.weblinkHeader)) {
+      vm.validAds.push('header');
+      // vm.weblinkHeader = '';
+    }
+
+    if (angular.isUndefined(vm.footerImage) && angular.isDefined(vm.weblinkFooter)) {
+      footerImage = '';
+      vm.fileReqFooter = 'choose-file-req';
+      return;
+      // vm.adsFormInit.weblinkFooter = 0;
+      // vm.weblinkFooter = '';
+    } else if (angular.isUndefined(vm.weblinkFooter) && angular.isDefined(vm.footerImage)) {
+      vm.adsFormInit.weblinkFooter = 1;
+      vm.fileReqFooter = '';
+      return;
+    }
+    if (angular.isDefined(vm.footerImage) && angular.isDefined(vm.weblinkFooter)) {
       vm.validAds.push('footer');
     }
 
@@ -70,7 +109,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
 
   vm.submitAds = function (content, position, weblink) {
     lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
-
     var formData = new FormData();
     var publishAds = {
       'treatment_center_id': centerId,
