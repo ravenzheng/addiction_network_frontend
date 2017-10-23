@@ -17,6 +17,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   for (var key in vm.centersAdded) {
     vm.grandTotal += vm.centersAdded[key].cost;
   }
-  $log.info(vm.centersAdded);
-  $log.info(vm.membership);
+
+  vm.viewProfile = function () {
+    $state.go(UIState.LOGIN);
+  };
 }

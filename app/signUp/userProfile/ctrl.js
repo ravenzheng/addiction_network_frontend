@@ -5,4 +5,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState) {
   vm.testCenter = function () {
     $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
+  vm.viewProfile = function () {
+    $state.go(UIState.LOGIN);
+  };
 }
