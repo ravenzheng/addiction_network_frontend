@@ -10,6 +10,7 @@ function ctrl($log, UserService, $rootScope, $window, $document, localStorageSer
     UserService.signIn(email, password).then(function () {
       $rootScope.login = 1;
       $rootScope.$emit(Status.SUCCEEDED, 'You are logged in');
+      localStorageService.remove('userInfo');
       // $window.location.href = '/my-profile/profile';
       $state.go(UIState.MY_PROFILE.PROFILE);
     }).catch(function (errors) {

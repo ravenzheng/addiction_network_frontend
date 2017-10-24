@@ -21,7 +21,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
 
   // reset previous localstorage
   vm.resetLocalstorage = function () {
-    localStorageService.remove('membership', 'center_added');
+    localStorageService.remove('membership', 'center_added', 'userInfo');
   };
   vm.resetLocalstorage();
 
@@ -102,7 +102,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
     }
 
     var formData = new FormData();
-    var sigupData = {
+    vm.signupData = {
       'first_name': firstName,
       'last_name': lastName,
       'company': company,
@@ -112,16 +112,21 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       'username': username
     };
 
-    for (var key in sigupData) {
-      formData.append('user[' + key + ']', sigupData[key]);
+    for (var key in vm.signupData) {
+      formData.append('user[' + key + ']', vm.signupData[key]);
     }
     // $log.info(formData);
     service.signUp(formData).then(function (result) {
       angular.element('.shake').removeClass('shake');
       lm.$emit(Status.SUCCEEDED, 'User has been successfully created');
       localStorageService.set('signupToken', result.user.auth_token);
+
+      localStorageService.set('userInfo', {
+        'email': vm.signupData.email,
+        'password': vm.signupData.password
+      }, 'sessionStorage');
+
       $state.go(UIState.SIGN_UP.USER_PROFILE);
-      $log.info(result);
     }).catch(function (err) {
       // lm.$emit(Status.FAILED, err.data.error);
       if (angular.isDefined(err.data.user.password)) {
