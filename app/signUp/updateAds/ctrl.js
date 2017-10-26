@@ -106,6 +106,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   };
   vm.editAds = function () {
     $log.info('update ads');
-    $state.go(UIState.SIGN_UP.DETAILS);
+    //  $state.go(UIState.SIGN_UP.DETAILS);
+    $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
   };
 }

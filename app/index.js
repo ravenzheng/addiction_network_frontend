@@ -12,7 +12,7 @@ angular.module(appName, [
   require('./advertisement'),
   require('./myProfile'),
   require('./featuredTreatmentCenter'),
-  require('./addListing'),
+//  require('./addListing'),
   require('./aboutUs'),
   require('./contactUs'),
   require('./contactThank'),
@@ -33,7 +33,7 @@ angular.module(appName, [
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
-    $locationProvider.hashPrefix('');
+    $locationProvider.hashPrefix('!');
     //  $locationProvider.html5Mode(true);
   }])
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
