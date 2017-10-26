@@ -18,9 +18,9 @@
     "test-single-run": "karma start karma.conf.js --single-run",
     "lint": "eslint app --ext .js --config .eslintrc.yml --cache && htmlhint --config .htmlhintrc app/**/*.html"
   },
-  /*"precommit": [
-    "lint"
-  ],*/
+  "precommit": [
+   //  "lint"
+  ],
   "keywords": [
     "angular"
   ],
