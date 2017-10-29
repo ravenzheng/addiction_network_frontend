@@ -10,10 +10,5 @@ app.configure(function () {
   app.use(app.router);
 });
 
-// This will ensure that all routing is handed over to AngularJS
-app.get('*', function (req, res) {
-  res.sendfile('./app/index.html');
-});
-
 app.listen(3000);
 console.log("Go Prerender Go!");
