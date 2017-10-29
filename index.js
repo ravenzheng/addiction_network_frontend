@@ -14,7 +14,32 @@ app.use(snapsearch.connect(
       // if an exception happens, the middleware is a no-op and passes through to the next stage of your application
     }),
     new snapsearch.Detector()
-  )
+  ),
+  function (data) {
+
+    //optional customised response callback
+    //if intercepted, this allows you to specify what kind of status, headers and html body to return
+    //remember headers is in the format of [ { name: '', value: '' },... ]
+
+    // unless you know what you're doing, the location header is most likely sufficient
+    // if you are setting up gzip compression, see the heroku example https://github.com/SnapSearch/SnapSearch-Client-Node-Heroku-Demo
+    var newHeaders = [];
+    data.headers.forEach(function (header) {
+      if (header.name.toLowerCase() === 'location') {
+        newHeaders.push({
+          name: header.name,
+          value: header.value
+        });
+      }
+    });
+
+    return {
+      status: data.status,
+      headers: newHeaders,
+      html: data.html
+    };
+
+  }
 ));
 
 // app.get('/', function (request, response) {
