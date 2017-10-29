@@ -1,14 +1,9 @@
+var connect_s4a = require('connect-s4a');
+var token = "9b86e9430a14b8bab3a4cac92bc22520";
 var express = require('express');
-
-var app = module.exports = express();
-
-app.configure(function () {
-  // Here we require the prerender middleware that will handle requests from Search Engine crawlers
-  // We set the token only if we're using the Prerender.io service
-  app.use(require('prerender-node').set('prerenderToken', 'iza1QCOe9dkwSczOjldR'));
-  //  app.use(express.static("app"));
-  // app.use(app.router);
+var app = express();
+app.use(connect_s4a(token));
+app.get('/', function (req, res) {
+  res.send('hello world');
 });
-
 app.listen(3000);
-console.log("Go Prerender Go!");
