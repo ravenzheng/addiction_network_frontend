@@ -159,7 +159,7 @@ var devConfig = merge(common, {
   devServer: {
     contentBase: PATHS.build,
     stats: 'errors-only',
-    port: 3000,
+    port: 3001,
     overlay: {
       errors: true,
       warnings: true

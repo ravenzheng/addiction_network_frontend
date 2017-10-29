@@ -3849,7 +3849,7 @@
     },
     "prerender-node": {
       "version": "2.7.4",
-      "from": "prerender-node@latest",
+      "from": "https://registry.npmjs.org/prerender-node/-/prerender-node-2.7.4.tgz",
       "resolved": "https://registry.npmjs.org/prerender-node/-/prerender-node-2.7.4.tgz",
       "dependencies": {
         "caseless": {
