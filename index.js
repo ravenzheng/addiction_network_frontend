@@ -2,10 +2,6 @@ var express = require('express'),
   app = express();
 var snapsearch = require('snapsearch-client-nodejs');
 
-app.set('port', (process.env.PORT || 3000));
-app.use(express.static(__dirname + '/build'));
-// app.use(require('prerender-node'));
-
 app.use(snapsearch.connect(
       new snapsearch.Interceptor(
         new snapsearch.Client('ENTER YOUR EMAIL', 'ENTER YOUR KEY', {}, function (error, debugging) {
@@ -42,7 +38,8 @@ app.use(snapsearch.connect(
         };
 
       }
-    );
+    ); app.set('port', (process.env.PORT || 3000)); app.use(express.static(__dirname + '/build'));
+    // app.use(require('prerender-node'));
 
     app.get('/', function (request, response) {
       response.send('Was not a robot and we are here inside app');
