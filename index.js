@@ -1,5 +1,5 @@
 var express = require('express');
-var snapsearch = require('snapsearch-client-nodejs');
+var connect_s4a = require('connect-s4a');
 var app = express();
 
 app.use(connect_s4a("9b86e9430a14b8bab3a4cac92bc22520"));
