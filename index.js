@@ -17,6 +17,10 @@ app.use(snapsearch.connect(
   )
 ));
 
+app.get('/', function (request, response) {
+  response.send('Was not a robot and we are here inside app');
+});
+
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/build'));
 // app.use(require('prerender-node'));
