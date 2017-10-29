@@ -1,6 +1,6 @@
 var express = require('express'),
   app = express();
-var snapsearch = require('snapsearch-client-nodejs');
+var snapsearch = require('snapsearch-client-nodejsi');
 
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/build'));
