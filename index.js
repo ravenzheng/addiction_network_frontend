@@ -5,7 +5,7 @@ var app = express();
 //by default the it will only intercept and return a response with only status, header location, and html body
 app.use(snapsearch.connect(
   new snapsearch.Interceptor(
-    new snapsearch.Client('ENTER YOUR EMAIL', 'ENTER YOUR KEY', {}, function (error, debugging) {
+    new snapsearch.Client('sanjays442@gmail.com', '7D31zWcJ320Q5GA8sq88BXoycy0vIcBvu1L65N1bqT5kINMgp8', {}, function (error, debugging) {
       //mandatory custom exception handler for Client errors such as HTTP errors or validation errors from the API
       console.log(error);
       // error is a SnapSearchException containing a message and errorDetails which can acquired from `getMessage()` `getErrors()`
