@@ -1,6 +1,10 @@
 var express = require('express');
 var connect_s4a = require('connect-s4a');
 var app = express();
+app.get("*", function (req, res, next) {
+  console.log('S4A', '_escaped_fragment_ is present in', req.url, req.query['_escaped_fragment_'] != null);
+  next();
+});
 
 app.use(connect_s4a("cab3e171563337243b0181a6377ed299"));
 
