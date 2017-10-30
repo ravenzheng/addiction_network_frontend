@@ -8,9 +8,9 @@ app.get("*", function (req, res, next) {
 
 app.use(connect_s4a("cab3e171563337243b0181a6377ed299"));
 
-// app.get('/', function (request, response) {
-//   response.send('Was not a robot and we are here inside app');
-// });
+app.get('/', function (request, response) {
+  response.send('Was not a robot and we are here inside app');
+});
 
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/build'));
