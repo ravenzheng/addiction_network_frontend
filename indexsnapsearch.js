@@ -2,7 +2,7 @@ var express = require('express');
 var snapsearch = require('snapsearch-client-nodejs');
 var app = express();
 
-//by default the it will only intercept and return a response with only status, header location, and html body
+// by default the it will only intercept and return a response with only status, header location, and html body
 app.use(snapsearch.connect(
   new snapsearch.Interceptor(
     new snapsearch.Client('sanjays442@gmail.com', '7D31zWcJ320Q5GA8sq88BXoycy0vIcBvu1L65N1bqT5kINMgp8', {}, function (error, debugging) {
