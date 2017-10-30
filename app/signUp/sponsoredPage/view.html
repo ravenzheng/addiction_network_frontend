@@ -14,7 +14,7 @@
         <!-- <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenters" ng-click="$event.stopPropagation()" selected-model="$ctrl.treatmentCentersModel" extra-settings="$ctrl.multiselectModelSettings" events="{onItemSelect: $root.centerSelect, onItemDeselect: $root.centerDeSelect}" checkboxes="true" translation-texts="$ctrl.treatmentCenter"></div> -->
         <!-- <span ng-show="$root.centerSelected.length===0 " style="color:red;">Select any treatment center.</span> -->
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" ng-show="0">
         Choose Active Cart:
         <!-- <select ng-model="$root.activeCenter" ng-init="$root.activeCenter=$ctrl.treatmentCenters[0].id">
           <option ng-repeat="center in $ctrl.treatmentCenters" value="{{center.id}}">{{center.label}} - {{center.id}}</option>

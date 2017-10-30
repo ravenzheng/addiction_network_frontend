@@ -35,6 +35,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   //     vm.treatmentCentersModel = sponsoredInfo.treatmentCenter;
   //   }
   // }
+
   var token = localStorageService.get('signupToken');
   // load pricing info from api
   $rootScope.sponsorPricingInfo = '';
@@ -44,6 +45,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   // });
 
   vm.skipTo = function () {
+    $state.go(UIState.SIGN_UP.DETAILS);
     // $window.location.href = '/login';
     //  $rootScope.addListingStepDone = 6;
     //  $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
@@ -161,8 +163,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         formData.append('sponsored_ad[' + key + ']', sponsorData[key]);
       }
 
-      console.log(sponsorData);
-      return;
       $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
       //SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
       SponsorService.editSponsorSignup(formData, cenId, token).then(function () {
@@ -174,6 +174,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           // clear sponsoredpage data
           localStorageService.remove('addListingSponsoredPage', 'sessionStorage');
           vm.clearRootscopeData();
+          $state.go(UIState.SIGN_UP.DETAILS);
           //  $state.go(UIState.ADD_LISTING.BANNER_AD);
         } else {
           vm.submitSingle(ci);

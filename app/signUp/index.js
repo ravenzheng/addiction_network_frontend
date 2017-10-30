@@ -15,6 +15,8 @@ angular.module(moduleName, ['ui.router'])
   .component('sponsoredpage', require('./sponsoredPage'))
   .component('sponsorStateSelect', require('./sponsorStateSelect'))
   .component('cartDetail', require('./cartDetail'))
+  .component('payment', require('./payment'))
+  .component('signupcompleted', require('./signupCompleted'))
   .component('signup', {
     template: require('./view.html'),
     controller: require('./ctrl')
@@ -85,6 +87,16 @@ angular.module(moduleName, ['ui.router'])
       name: UIState.SIGN_UP.SPONSORED_PAGE,
       url: '/sponsoredpage',
       template: '<sponsoredPage></sponsoredPage>'
+    });
+    $stateProvider.state({
+      name: UIState.SIGN_UP.PAYMENT,
+      url: '/payment',
+      template: '<payment></payment>'
+    });
+    $stateProvider.state({
+      name: UIState.SIGN_UP.SIGNUP_COMPLETED,
+      url: '/signup_completed',
+      template: '<signupCompleted></signupCompleted>'
     });
 
   }]);

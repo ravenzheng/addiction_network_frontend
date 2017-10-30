@@ -35,31 +35,18 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   vm.tagsSelectText = {
     buttonDefaultText: 'Tags'
   };
+
   vm.centerCategories = [];
   vm.categoryModel = [];
-  vm.tagsOption = [
-    {
-      'id': 5,
-      'label': 'Cocaine Rehab Centers',
-      'tagGroup': '4'
-    },
-    {
-      'id': 6,
-      'label': 'Opiate Addiction Centers',
-      'tagGroup': '4'
-    },
-    {
-      'id': 14,
-      'label': 'Executive Treatment',
-      'tagGroup': '13'
-    },
-    {
-      'id': 15,
-      'label': 'Rehab for Women',
-      'tagGroup': '13'
+  vm.catgsToggleFun = function () {
+    if (vm.catgsToggle === 1) {
+      vm.catgsToggle = 0;
+    } else {
+      vm.catgsToggle = 1;
     }
-  ];
+  };
 
+  //******** Tags Dropdown ********//
   vm.tagsData = [];
   vm.tagCheckboxModel = [];
   vm.tagsToggleFun = function () {
@@ -77,6 +64,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       vm.tagToggle[tagsId] = 1;
     }
   };
+  //******** Tags Dropdown ********//
 
   // get categories
   service.getCategories(token).then(function (result) {
@@ -123,9 +111,12 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     var catId = '';
     $log.info(vm.categoryModel);
     for (var key in vm.categoryModel) {
-      catId += vm.categoryModel[key].id + ',';
+      if (vm.categoryModel[key]) {
+        catId += key + ',';
+      }
     }
     catId = catId.slice(',', -1);
+
     if (vm.centerForm.centerName.$error.required) {
       // lm.$emit(Status.FAILED, 'Please enter Center name');
       shakeme();

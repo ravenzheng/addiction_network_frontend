@@ -32,22 +32,22 @@
           <div class="col-md-4">
             <label>Product</label>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label>Cost</label>
           </div>
-          <div class="col-md-2"></div>
+          <div class="col-md-1"></div>
         </div>
-        <div class="row" ng-repeat="center in $ctrl.centersAdded">
+        <div class="row" ng-repeat="item in $ctrl.cartDetails.items">
           <div class="col-md-4">
-            <span>{{center.centerName}}</span>
+            <span>{{item.name}}</span>
           </div>
           <div class="col-md-4">
             <span>Total</span>
           </div>
-          <div class="col-md-2">
-            <span>{{center.cost}} $</span>
+          <div class="col-md-3">
+            <span>10$</span>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-1">
             <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
           </div>
 
@@ -61,11 +61,11 @@
             <span>Membership
               <br>{{$ctrl.membership.package}}</span>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <span>
               <br>{{$ctrl.membership.cost}} $</span>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-1">
             <br>
             <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
           </div>
@@ -80,11 +80,11 @@
             <br>
             <span>Grand Total</span>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label>
-              <br>{{$ctrl.grandTotal}} $</label>
+              <br>{{$ctrl.cartDetails.total_price}} $</label>
           </div>
-          <div class="col-md-2"></div>
+          <div class="col-md-1"></div>
 
         </div>
 
@@ -93,7 +93,8 @@
     </div>
     <div style="margin-top:50px;">
       <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.testCenter()">Add Test center</a></p>
-      <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.viewProfile()">View my profile</a></p>
+      <!-- <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.viewProfile()">View my profile</a></p> -->
+      <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.gotoPayment()">Next</a></p>
     </div>
   </div>
 </div>
