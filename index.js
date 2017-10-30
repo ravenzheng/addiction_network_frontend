@@ -2,7 +2,7 @@ var express = require('express');
 var connect_s4a = require('connect-s4a');
 var app = express();
 
-app.use(connect_s4a("9b86e9430a14b8bab3a4cac92bc22520"));
+app.use(connect_s4a("cab3e171563337243b0181a6377ed299"));
 
 // app.get('/', function (request, response) {
 //   response.send('Was not a robot and we are here inside app');
