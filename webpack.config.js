@@ -68,6 +68,9 @@ var copyWebpackPlugin = new CopyWebpackPlugin([{
   from: 'node_modules/angular-local-storage/dist',
   to: PATHS.build
 }, {
+  from: 'node_modules/connect-s4a',
+  to: PATHS.build
+}, {
   from: 'app/plugins',
   to: 'plugins'
 }, {
@@ -129,7 +132,8 @@ var jsAssetsPlugin = new HtmlWebpackIncludeAssetsPlugin({
     'angular-ui-router.min.js',
     'ui-bootstrap-tpls.js',
     'angularjs-dropdown-multiselect.min.js',
-    'angular-local-storage.min.js'
+    'angular-local-storage.min.js',
+    'index.js'
   ],
   append: false
 });
