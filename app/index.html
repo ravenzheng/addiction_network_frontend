@@ -7,13 +7,15 @@
 
   <head>
     <meta charset="utf-8">
-    <title>{{$root.title}}</title>
+    <title ng-if="$root.title!=''">{{$root.title}}</title>
+    <title ng-if="$root.title ==''">Addiction Network</title>
     <meta name="description" content="{{$root.description}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="themes/addiction/images/favicon.ico" />
 
     <!-- This site is optimized with the Yoast SEO plugin v3.5 - https://yoast.com/wordpress/plugins/seo/ -->
+    <meta name="google-site-verification" content="71qwDeXtL8ygeMYAm4EepqL3oEIXpGudEfO9QBuS7zM" />
     <link rel="canonical" href="http://www.addictionnetwork.com/" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
