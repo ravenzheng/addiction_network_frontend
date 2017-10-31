@@ -36,7 +36,7 @@ angular.module(appName, [
     $locationProvider.hashPrefix('');
     $locationProvider.html5Mode(true);
   }])
-  .controller(function ($scope, $location, $rootScope) {
+  .controller('rootCtrl', function ($scope, $location, $rootScope) {
     $scope.$on('$stateChangeSuccess', function changedPage() {
       var path = $location.path();
       $rootScope.url = $location.absUrl();
