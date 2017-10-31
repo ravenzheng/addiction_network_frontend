@@ -11,8 +11,8 @@
       <path ng-attr-d="{{$ctrl.config.capitalShadow}}"></path>
     </g>
 
-    <g ng-repeat="state in $ctrl.config.states" href="/state/{{state.image}}-rehab-centers">
-      <path ng-attr-id="{{state.id}}" ng-attr-fill="{{$ctrl.config.upcolor}}" ng-attr-stroke="{{$ctrl.config.statestroke}}" ng-attr-d="{{state.d}}" stroke-width="1" cursor="pointer"></path>
+    <g ng-repeat="state in $ctrl.config.states">
+      <path ng-attr-id="{{state.id}}" ng-attr-fill="{{$ctrl.config.upcolor}}" ng-attr-stroke="{{$ctrl.config.statestroke}}" ng-attr-d="{{state.d}}" stroke-width="1" cursor="pointer" href="/state/{{state.image}}-rehab-centers"></path>
     </g>
   </g>
 
