@@ -7,7 +7,7 @@ function ctrl($scope, $window, service, $log, $state, $sce, $rootScope) {
   vm.singleBlog = $stateParams.single;
   service.getBlogSingle(vm.singleBlog).then(function (result) {
     vm.result = result.data;
-    $rootScope.title = result.data.post_title;
+    $rootScope.title = result.data[0].post_title;
     $rootScope.description = result.data[0].post_content;
     vm.content = $sce.trustAsHtml(result.data[0].post_content);
     //  vm.html = $sce.trustAsHtml('<script>alert(testing)</script>');
