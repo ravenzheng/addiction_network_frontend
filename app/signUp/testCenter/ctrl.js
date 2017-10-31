@@ -14,6 +14,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     vm.centerFormInit.phone = 1;
     vm.centerFormInit.address = 1;
     vm.displayMsg = 'Explaination of each field here?';
+
+    localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
   };
   initStartupVars();
 
@@ -45,6 +47,22 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       vm.catgsToggle = 1;
     }
   };
+  vm.checkedString = [];
+  vm.toggleChecked = function (id, tf) {
+    if (tf === true) {
+      vm.checkedString[id] = 'checked';
+    } else {
+      vm.checkedString[id] = '';
+    }
+  };
+  vm.catgCheckedString = [];
+  vm.catgChecked = function (id, tf) {
+    if (tf === true) {
+      vm.catgCheckedString[id] = 'checked';
+    } else {
+      vm.catgCheckedString[id] = '';
+    }
+  };
 
   //******** Tags Dropdown ********//
   vm.tagsData = [];
@@ -57,7 +75,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     }
   };
   vm.tagToggleDynamic = function (tagsId) {
-    $log.info('tagsid: ' + tagsId);
     if (vm.tagToggle[tagsId]) {
       vm.tagToggle[tagsId] = 0;
     } else {
@@ -109,7 +126,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   vm.addCenter = function () {
     //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var catId = '';
-    $log.info(vm.categoryModel);
     for (var key in vm.categoryModel) {
       if (vm.categoryModel[key]) {
         catId += key + ',';
@@ -190,13 +206,19 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
         }];
       } else {
         centerDetail = localStorageService.get('center_added');
-        centerDetail.push({
-          'centerId': result.treatment_center.id,
-          'centerName': vm.centerName,
-          'cost': 10
-        });
+        // centerDetail.push({
+        //   'centerId': result.treatment_center.id,
+        //   'label': ,
+        //   'centerName': vm.centerName,
+        //   'cost': 10
+        // });
       }
-      localStorageService.set('center_added', centerDetail);
+      //  localStorageService.set('center_added', centerDetail);
+      var centerInfo = [{
+        'id': result.treatment_center.id,
+        'label': vm.centerName
+      }];
+      localStorageService.set('current_center', centerInfo);
 
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {

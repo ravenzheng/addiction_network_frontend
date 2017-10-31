@@ -34,7 +34,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
 
   vm.congrats = function () {
     $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
-    $log.info('test');
   };
 
   vm.count = 1;

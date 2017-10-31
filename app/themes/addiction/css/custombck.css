@@ -3450,9 +3450,6 @@ position: relative;
 /**
  * Create the box for the checkbox
  */
- .checkboxFive2{
-   position: relative;
- }
 .checkboxFive2 label {
   cursor: pointer;
     position: absolute;
@@ -3497,9 +3494,11 @@ opacity: 0.5;
 /**
  * Create the checkbox state for the tick
  */
-.checked:after {
-opacity: 1 !important;
+.checkboxFive2 input[type=checkbox]:checked + label:after {
+opacity: 1;
 }
+
+
 .test-center-bg:last-child{
   padding-bottom: 20px;
 }

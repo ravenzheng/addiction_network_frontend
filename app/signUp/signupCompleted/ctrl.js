@@ -2,7 +2,11 @@ module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIStat
 
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState) {
   var vm = this;
-  vm.signUp = function () {
-    $state.go(UIState.SIGN_UP.USER_CREATE);
+  vm.viewProfile = function () {
+    $state.go(UIState.LOGIN);
   };
+  vm.close = function () {
+    $state.go(UIState.HOME);
+  };
+
 }

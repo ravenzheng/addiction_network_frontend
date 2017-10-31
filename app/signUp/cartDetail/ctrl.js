@@ -8,8 +8,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   function onInit() {
     //  localStorageService.remove('addListingSponsoredPage');
     // get values from localStorageService
-    if (angular.isDefined(localStorageService.get('addListingSponsoredPage', 'sessionStorage'))) {
-      var sponsoredInfo = localStorageService.get('addListingSponsoredPage', 'sessionStorage');
+    if (angular.isDefined(localStorageService.get('signupSponsoredPage', 'sessionStorage'))) {
+      var sponsoredInfo = localStorageService.get('signupSponsoredPage', 'sessionStorage');
       if (sponsoredInfo !== null) {
         if (angular.isDefined(sponsoredInfo.cityModel) && angular.isDefined(sponsoredInfo.countyModel)) {
           $rootScope.cityModel = sponsoredInfo.cityModel;
@@ -17,6 +17,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           $rootScope.statesSel = sponsoredInfo.statesSel;
           $rootScope.statesDetail = sponsoredInfo.statesDetail;
           //  $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
+
           $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
         }
         if (sponsoredInfo.checkedStateModel) {
@@ -567,7 +568,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       'centerWise': vm.centerWise
     };
     if (localStorageService.isSupported) {
-      localStorageService.set('addListingSponsoredPage', sponsoredPage, 'sessionStorage');
+      localStorageService.set('signupSponsoredPage', sponsoredPage, 'sessionStorage');
     }
   };
   vm.continueShop = function () {
