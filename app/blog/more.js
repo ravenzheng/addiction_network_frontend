@@ -1,10 +1,12 @@
-module.exports = ['$scope', 'BlogService', '$log', '$state', '$window',
+module.exports = ['$scope', 'BlogService', '$log', '$state', '$window', '$rootScope',
   ctrl];
 
-function ctrl($scope, service, $log, $state, $window) {
+function ctrl($scope, service, $log, $state, $window, $rootScope) {
   var vm = this;
   var $stateParams = $state.params;
   vm.paged = $stateParams.next;
+  $rootScope.title = 'Blog';
+  $rootScope.description = 'Blog';
   service.getBlogPaged(vm.paged).then(function (result) {
     vm.result = result.data;
     if (vm.paged === '1') {

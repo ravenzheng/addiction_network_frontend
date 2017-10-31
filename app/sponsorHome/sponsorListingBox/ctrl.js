@@ -1,6 +1,6 @@
-module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', 'MapService', '$sce', ctrl];
+module.exports = ['$log', '$state', 'UIState', 'TreatmentCenterService', 'MapService', '$sce', '$rootScope', ctrl];
 
-function ctrl($log, $state, UIState, service, mapService, $sce) {
+function ctrl($log, $state, UIState, service, mapService, $sce, $rootScope) {
   var vm = this;
   vm.$onInit = onInit;
   vm.getShortNameMap = getShortNameMap;
@@ -35,6 +35,8 @@ function ctrl($log, $state, UIState, service, mapService, $sce) {
     }
     service.querySponsoredListings(keyword).then(function (result) {
       vm.entry = result;
+      $rootScope.title = $sce.trustAsHtml(result.heading_1);
+      $rootScope.description = $sce.trustAsHtml(result.content_1);
       vm.content1 = $sce.trustAsHtml(result.content_1);
       vm.content2 = $sce.trustAsHtml(result.content_2);
       vm.displayError = false;

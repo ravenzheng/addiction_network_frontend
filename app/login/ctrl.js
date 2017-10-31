@@ -1,7 +1,8 @@
 function ctrl($log, UserService, $rootScope, $window, $document, localStorageService, Status, $state, UIState) {
   var vm = this;
   var getUserInfo = (localStorageService.get('userInfo', 'sessionStorage') !== null) ? localStorageService.get('userInfo', 'sessionStorage') : localStorageService.get('userLoginInfo', 'sessionStorage');
-
+  $rootScope.title = 'Login';
+  $rootScope.description = 'Login';
   if (getUserInfo !== null) {
     //  alert(getUserInfo.email);
     $rootScope.$emit(Status.SUCCEEDED, 'Please wait while we login you automatically');

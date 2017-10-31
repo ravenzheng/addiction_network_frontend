@@ -2,30 +2,27 @@
 <!--[if IE 7]> <html class="ie ie7" lang="en-US" prefix="og: http://ogp.me/ns#"> <![endif]-->
 <!--[if IE 8]> <html class="ie ie8" lang="en-US" prefix="og: http://ogp.me/ns#"> <![endif]-->
 <!--[if !(IE 7) | !(IE 8) ]><!-->
-<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<html lang="en-US" prefix="og: http://ogp.me/ns#" ng-controller="RootCtrl">
   <!--<![endif]-->
 
   <head>
     <meta charset="utf-8">
-    <title>Addiction Network</title>
-    <meta name="description" content="">
+    <title data-ng-bind="title">Addiction Network</title>
+    <meta name="description" content="{{$root.description}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="promatics">
-
     <link rel="shortcut icon" href="themes/addiction/images/favicon.ico" />
 
     <!-- This site is optimized with the Yoast SEO plugin v3.5 - https://yoast.com/wordpress/plugins/seo/ -->
     <link rel="canonical" href="http://www.addictionnetwork.com/" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Addiction Network" />
-    <meta property="og:url" content="http://www.addictionnetwork.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{$root.title}}" />
+    <meta property="og:url" content="{{$root.url}}" />
     <meta property="og:site_name" content="Addiction Network" />
     <!-- / Yoast SEO plugin. -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <meta name="fragment" content="!" />
-    <meta name="google-site-verification" content="QFi4KoG3EZZWTKMGNVl9DczlKrfxs2henstWBygRbf0" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,700i,800" rel="stylesheet">
     <link rel="dns-prefetch" href="//s.w.org" />
     <link rel="alternate" type="application/rss+xml" title="Addiction Network &raquo; Feed" href="http://www.addictionnetwork.com/feed/" />

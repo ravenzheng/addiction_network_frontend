@@ -1,6 +1,6 @@
-module.exports = ['$log', '$stateParams', 'UIState', 'TreatmentCenterService', ctrl];
+module.exports = ['$log', '$stateParams', 'UIState', 'TreatmentCenterService', '$rootScope', ctrl];
 
-function ctrl($log, $stateParams, UIState, service) {
+function ctrl($log, $stateParams, UIState, service, $rootScope) {
   var vm = this;
   vm.currentPage = 1;
   vm.totalPages = 0;
@@ -10,6 +10,9 @@ function ctrl($log, $stateParams, UIState, service) {
   function onInit() {
     _search();
   }
+
+  $rootScope.title = 'Treatment Center';
+  $rootScope.description = 'Treatment Center';
 
   function onPageUpdate(page) {
     $log.info(page);

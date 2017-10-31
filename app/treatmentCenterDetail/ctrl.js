@@ -1,11 +1,11 @@
-module.exports = ['$anchorScroll', '$log', '$httpParamSerializer', '$sce', '$scope', '$stateParams', 'Status', 'TreatmentCenterService', ctrl];
+module.exports = ['$anchorScroll', '$log', '$httpParamSerializer', '$sce', '$scope', '$stateParams', 'Status', 'TreatmentCenterService', '$rootScope', ctrl];
 
 // center_images: [{
 //  id:
 //  file:
 // }]
 
-function ctrl($anchorScroll, $log, $httpParamSerializer, $sce, $scope, $stateParams, Status, service) {
+function ctrl($anchorScroll, $log, $httpParamSerializer, $sce, $scope, $stateParams, Status, service, $rootScope) {
   var vm = this;
   vm.$onInit = onInit;
   vm.$postLink = postLink;
@@ -15,6 +15,8 @@ function ctrl($anchorScroll, $log, $httpParamSerializer, $sce, $scope, $statePar
     var id = $stateParams.id;
     // service.queryDetail(id).then(function (result) {
     service.queryDetailFront(id).then(function (result) {
+      $rootScope.title = result.center_name;
+      $rootScope.description = result.description;
       result.address = result.address_line_1 + result.address_line_2;
       // result.center_images = [];
       result.center_images = result.center_images;
