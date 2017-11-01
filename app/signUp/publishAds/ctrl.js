@@ -100,7 +100,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
         vm.submitAds(footerImage, 'footer', vm.weblinkFooter);
       }
     }
-
+    $log.info(vm.validAds.length);
     if (vm.validAds.length === 0) {
       $state.go(UIState.SIGN_UP.UPDATE_ADS);
     }
