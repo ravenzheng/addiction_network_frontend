@@ -125,7 +125,7 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, l
       return;
     } else if (vm.optionalForm.usp.$invalid) {
       shakeme();
-      vm.displayMsg = 'Please enter valid email';
+      vm.displayMsg = 'Please enter valid usp';
       return;
     }
 

@@ -208,7 +208,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       controller: function () {
         vm.confirm = 0;
         $rootScope.ok = function () {
-          vm.submitComplete();
+          //  vm.submitComplete();
+          vm.skipTo();
           modalInstance.dismiss('cancel');
           vm.confirm = 1;
           return true;
