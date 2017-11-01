@@ -5,6 +5,20 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   vm.testCenter = function () {
     $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
+  var token = localStorageService.get('signupToken');
+  vm.cartDetails = [];
+  // get cart details using api
+  service.getCartDetails(token).then(function (result) {
+    //  $log.info(result);
+    vm.cartDetails = result.cart_subscription;
+  }).catch(function (err) {
+    $log.info(err);
+  });
+
+  vm.gotoPayment = function () {
+    $state.go(UIState.SIGN_UP.PAYMENT);
+  };
+
   vm.grandTotal = 0;
   vm.membership = '';
   vm.centersAdded = localStorageService.get('center_added');

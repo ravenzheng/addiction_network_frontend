@@ -13,6 +13,7 @@
 
     <g ng-repeat="state in $ctrl.config.states">
       <path ng-attr-id="{{state.id}}" ng-attr-fill="{{$ctrl.config.upcolor}}" ng-attr-stroke="{{$ctrl.config.statestroke}}" ng-attr-d="{{state.d}}" stroke-width="1" cursor="pointer"></path>
+      <a style="display:none;" href="/state/{{state.image}}-rehab-centers"> {{state.fullname}} rehab centers</a>
     </g>
   </g>
 

@@ -3,7 +3,8 @@ module.exports = ['Status', '$log', '$rootScope', 'ContactUsService', '$filter',
 function ctrl(Status, $log, $rootScope, service, $filter, $window, $state, UIState) {
   // initialize
   var vm = this;
-
+  $rootScope.title = 'Insurance';
+  $rootScope.description = 'Insurance';
   var usCodes = [205, 251, 659, 256, 334, 907, 403, 780, 264, 268, 520, 928, 480, 602, 623, 501, 479, 870, 242, 246, 441,
     250, 604, 778, 284, 341, 442, 628, 657, 669, 747, 752, 764, 951, 209, 559, 408, 831, 510, 213, 310, 424, 323, 562, 707, 369, 627,
     530, 714, 949, 626, 909, 916, 760, 619, 858, 935, 818, 415, 925, 661, 805, 650, 600, 809, 345, 670, 211, 720, 970, 303, 719, 203,

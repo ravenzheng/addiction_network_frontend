@@ -4,8 +4,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   var vm = this;
   var rm = $rootScope;
   var token = localStorageService.get('signupToken');
+  vm.currentMembership = '';
+  var spn = localStorageService.get('membershipType');
+  if (spn !== null) {
+    vm.currentMembership = spn;
+  }
+
   vm.sponser = function () {
-    var spn = localStorageService.get('membershipType');
     if (spn === null) {
       localStorageService.set('membershipType', 'skipped', 'sessionStorage');
     }

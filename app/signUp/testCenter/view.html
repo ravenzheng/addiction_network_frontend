@@ -29,11 +29,25 @@
           </div>
           <div class="form-group">
             <!-- <input type="text" class="form-control" placeholder="Category"> -->
-            <div ng-dropdown-multiselect="" translation-texts="$ctrl.categorySelectText" options="$ctrl.centerCategories" selected-model="$ctrl.categoryModel" checkboxes="true" extra-settings="$ctrl.multiselectModelSettings" name="categories" required="" events="{onItemSelect: $ctrl.onCategorySelect, onItemDeselect: $ctrl.onCategoryDeSelect}"></div>
-            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
+            <!-- <div ng-dropdown-multiselect="" translation-texts="$ctrl.categorySelectText" options="$ctrl.centerCategories" selected-model="$ctrl.categoryModel" checkboxes="true" extra-settings="$ctrl.multiselectModelSettings" name="categories" required="" events="{onItemSelect: $ctrl.onCategorySelect, onItemDeselect: $ctrl.onCategoryDeSelect}"></div>
+            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span> -->
             <!-- <span ng-show="$ctrl.categoryModel.length ===0 && ($ctrl.centerFormInit.categories===0)" class="help-block">Required</span> -->
 
           </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Categories">
+            <span class="fix-right" ng-click="$ctrl.catgsToggleFun()" ng-init="$ctrl.catgsToggle=1" tooltip-placement="right" data-toggle="collapse" data-target="#collapse-catg" uib-tooltip="Show/hide Category"><i class="fa fa-arrow-down fa-2x"></i></span>
+          </div>
+
+          <div class="form-group checkboxFive2-category" ng-if="$ctrl.catgsToggle===1">
+            <div ng-repeat="catgs in $ctrl.centerCategories" class="checkboxFive2" style="padding-bottom:7px;padding-left:5px;">
+              <input type="checkbox" id="catgs{{catgs.id}}" {{$ctrl.catgCheckedString[catgs.id]}} ng-init="$ctrl.catgCheckedString[catgs.id]=''"  name="catg[]" ng-model="$ctrl.categoryModel[catgs.id]" ng-click="$ctrl.catgChecked(catgs.id,$ctrl.categoryModel[catgs.id]);" /> <span>{{catgs.label}}</span>
+              <label for="catgs{{catgs.id}}" class="tooltiptext {{$ctrl.catgCheckedString[catgs.id]}}" ></label>
+        
+            </div>
+          </div>
+
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Website" name="website" ng-model="$ctrl.website" ng-keypress="$ctrl.centerFormInit.website=0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
@@ -69,16 +83,18 @@
             <span class="fix-right" ng-click="$ctrl.tagsToggleFun()" ng-init="$ctrl.tagsToggle=1" tooltip-placement="right" data-toggle="collapse" data-target="#collapse-tags" uib-tooltip="Show/hide tags"><i class="fa fa-arrow-down fa-2x"></i></span>
 
           </div>
-          <div id="collapse-tags" class="form-group collapse-tags" ng-if="$ctrl.tagsToggle===1">
-            <div class="col-md-12" id="tags{{tags.id}}" style="padding-bottom:10px;" ng-init="$ctrl.tagToggle[tags.id]=0" ng-repeat="tags in $ctrl.tagsData.tags">
-              <div>
+          <div id="collapse-tags" class="form-group test-center-tm collapse-tags" ng-if="$ctrl.tagsToggle===1">
+            <div class="col-md-12  test-center-tz" id="tags{{tags.id}}"  ng-init="$ctrl.tagToggle[tags.id]=0" ng-repeat="tags in $ctrl.tagsData.tags">
+              <div class="test-center-tp">
                 <h4>{{tags.name}}</h4>
                 <span style="cursor:pointer;" class="fix-right" ng-click="$ctrl.tagToggleDynamic(tags.id)"><i class="fa fa-caret-square-o-down" uib-tooltip="Show/hide " aria-hidden="true"></i></span>
               </div>
               <!-- <input type="checkbox" ng-repeat="child in tags.children" /> test1<br> -->
               <!-- {{$ctrl.tagCheckboxModel[tags.id]}} -->
-              <div style=" background-color:#a5bf38;" ng-show="$ctrl.tagToggle[tags.id]" ng-repeat="child in tags.children track by $index">
-                <input type="checkbox" id="tag-{{tags.id}}-child-{{child.id}}" name="tag{{tags.id}}[]" ng-model="$ctrl.tagCheckboxModel[child.id]" /> {{child.name}}
+              <div class="test-center-bg checkboxFive2" ng-show="$ctrl.tagToggle[tags.id]" ng-repeat="child in tags.children track by $index">
+                <input type="checkbox" id="tag-{{tags.id}}-child-{{child.id}}" name="tag{{tags.id}}[]" {{$ctrl.checkedString[child.id]}} ng-init="$ctrl.checkedString[child.id]=''" ng-model="$ctrl.tagCheckboxModel[child.id]" ng-click="$ctrl.toggleChecked(child.id,$ctrl.tagCheckboxModel[child.id]);"/> <span>{{child.name}}</span>
+
+                <label for="tag-{{tags.id}}-child-{{child.id}}" class="tooltiptext {{$ctrl.checkedString[child.id]}}" ></label>
               </div>
             </div>
           </div>

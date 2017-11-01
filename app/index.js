@@ -12,7 +12,7 @@ angular.module(appName, [
   require('./advertisement'),
   require('./myProfile'),
   require('./featuredTreatmentCenter'),
-  require('./addListing'),
+  // require('./addListing'),
   require('./aboutUs'),
   require('./contactUs'),
   require('./contactThank'),
@@ -37,6 +37,7 @@ angular.module(appName, [
     $locationProvider.html5Mode(true);
   }])
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
+    // .when('/customers', route.resolve('Customers'))
     // $urlRouterProvider.otherwise('');
     $urlRouterProvider.otherwise(function () {
       angular.element(document).ready(function () {
@@ -58,4 +59,4 @@ angular.module(appName, [
   }]);
 
 // eslint-disable-next-line angular/document-service
-angular.bootstrap(document.getElementsByTagName('body')[0], [appName]);
+angular.bootstrap(document.getElementsByTagName('html')[0], [appName]);
