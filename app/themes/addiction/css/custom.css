@@ -3512,3 +3512,7 @@ opacity: 1 !important;
 .checkboxFive2  span{
   margin-left: 20px;
 }
+
+#collapse-tags .test-center-tz:nth-child(even) {
+    background: #DCEEC6;
+}
