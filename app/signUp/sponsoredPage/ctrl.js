@@ -110,36 +110,36 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         }
       }
 
-      // for (key in $rootScope.demographicModel[centerId]) { // demographic ids
-      //   id = String($rootScope.demographicModel[centerId][key].id);
-      //   sponsoredListingIds[i] = id;
-      //   i++;
-      // }
-      // for (key in $rootScope.treatmentApproachModel[centerId]) { // treatment approach ids
-      //   id = String($rootScope.treatmentApproachModel[centerId][key].id);
-      //   sponsoredListingIds[i] = id;
-      //   i++;
-      // }
-      // for (key in $rootScope.settingModel[centerId]) { // setting ids
-      //   id = String($rootScope.settingModel[centerId][key].id);
-      //   sponsoredListingIds[i] = id;
-      //   i++;
-      // }
-      // for (key in $rootScope.additionalServicesModel[centerId]) { // additional service
-      //   id = String($rootScope.additionalServicesModel[centerId][key].id);
-      //   sponsoredListingIds[i] = id;
-      //   i++;
-      // }
-      // for (key in $rootScope.paymentModel[centerId]) { // payemnt
-      //   id = String($rootScope.paymentModel[centerId][key].id);
-      //   sponsoredListingIds[i] = id;
-      //   i++;
-      // }
-      // for (key in $rootScope.byDrugModel[centerId]) { // by drug model
-      //   id = String($rootScope.byDrugModel[centerId][key].id);
-      //   sponsoredListingIds[i] = id;
-      //   i++;
-      // }
+      for (key in $rootScope.demographicModel[centerId]) { // demographic ids
+        id = String($rootScope.demographicModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.treatmentApproachModel[centerId]) { // treatment approach ids
+        id = String($rootScope.treatmentApproachModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.settingModel[centerId]) { // setting ids
+        id = String($rootScope.settingModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.additionalServicesModel[centerId]) { // additional service
+        id = String($rootScope.additionalServicesModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.paymentModel[centerId]) { // payemnt
+        id = String($rootScope.paymentModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
+      for (key in $rootScope.byDrugModel[centerId]) { // by drug model
+        id = String($rootScope.byDrugModel[centerId][key].id);
+        sponsoredListingIds[i] = id;
+        i++;
+      }
 
       if (angular.isDefined($rootScope.centerWise[centerId])) {
         totalItems = $rootScope.centerWise[centerId].totalItems;
@@ -183,8 +183,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         }
 
       }).catch(function (err) {
-        $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG);
+        $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG + ' ' + err.data.error);
+        $state.go(UIState.SIGN_UP.DETAILS);
         throw err;
+
       });
     }
     var ci = 0;
@@ -208,8 +210,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       controller: function () {
         vm.confirm = 0;
         $rootScope.ok = function () {
-          //  vm.submitComplete();
-          vm.skipTo();
+          vm.submitComplete();
+          //  vm.skipTo();
           modalInstance.dismiss('cancel');
           vm.confirm = 1;
           return true;

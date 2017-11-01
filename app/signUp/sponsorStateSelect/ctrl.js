@@ -142,91 +142,91 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
 
   // get other sponsored ids
   if (angular.isUndefined($rootScope.otherIds) || $rootScope.otherIds === null) {
-    //  service.getSponsoredDemographic().then(function (response) {
-    //  $rootScope.otherIds = response;
-    //  setOtherDemography();
-    //  });
+    service.getSponsoredDemographic().then(function (response) {
+      $rootScope.otherIds = response;
+      setOtherDemography();
+    });
   } else {
-    // setOtherDemography();
+    setOtherDemography();
   }
 
-  // function setOtherDemography() {
-  //   if ($rootScope.centerSelected.length === 0) {
-  //     var disabledValue = true;
-  //   } else {
-  //     disabledValue = false;
-  //   }
-  //   var demographic = $rootScope.otherIds.Demographic;
-  //   for (var key in demographic) {
-  //     // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
-  //     $rootScope.demographic[key] = {
-  //       id: demographic[key].id,
-  //       label: demographic[key].name,
-  //       price: demographic[key].price,
-  //       disabled: disabledValue
-  //     };
-  //   }
-  //   var treatmentApproach = $rootScope.otherIds['Treatment Approach'];
-  //   for (key in treatmentApproach) {
-  //     // console.log('slug: ' + slug + ' value: ' + slugs.TreatmentApproach[slug]);
-  //     $rootScope.treatmentApproach[key] = {
-  //       id: treatmentApproach[key].id,
-  //       label: treatmentApproach[key].name,
-  //       price: treatmentApproach[key].price,
-  //       disabled: disabledValue
-  //     };
-  //   }
-  //
-  //   var setting = $rootScope.otherIds.Setting;
-  //   for (key in setting) {
-  //     $rootScope.setting[key] = {
-  //       id: setting[key].id,
-  //       label: setting[key].name,
-  //       price: setting[key].price,
-  //       disabled: disabledValue
-  //     };
-  //   }
-  //
-  //   var additionalServices = $rootScope.otherIds['Additional Services'];
-  //   for (key in additionalServices) {
-  //     $rootScope.additionalServices[key] = {
-  //       id: additionalServices[key].id,
-  //       label: additionalServices[key].name,
-  //       price: additionalServices[key].price,
-  //       disabled: disabledValue
-  //     };
-  //   }
-  //
-  //   var payment = $rootScope.otherIds.Payment;
-  //   for (key in payment) {
-  //     $rootScope.payment[key] = {
-  //       id: payment[key].id,
-  //       label: payment[key].name,
-  //       price: payment[key].price,
-  //       disabled: disabledValue
-  //     };
-  //   }
-  //   var byDrug = $rootScope.otherIds['By Drug'];
-  //   for (key in byDrug) {
-  //     $rootScope.byDrug[key] = {
-  //       id: byDrug[key].id,
-  //       label: byDrug[key].name,
-  //       price: byDrug[key].price,
-  //       disabled: disabledValue
-  //     };
-  //   }
-  // }
+  function setOtherDemography() {
+    if ($rootScope.centerSelected.length === 0) {
+      var disabledValue = true;
+    } else {
+      disabledValue = false;
+    }
+    var demographic = $rootScope.otherIds.Demographic;
+    for (var key in demographic) {
+      // console.log('slug: ' + slug + ' value: ' + slugs.Demographic[slug]);
+      $rootScope.demographic[key] = {
+        id: demographic[key].id,
+        label: demographic[key].name,
+        price: demographic[key].price,
+        disabled: disabledValue
+      };
+    }
+    var treatmentApproach = $rootScope.otherIds['Treatment Approach'];
+    for (key in treatmentApproach) {
+      // console.log('slug: ' + slug + ' value: ' + slugs.TreatmentApproach[slug]);
+      $rootScope.treatmentApproach[key] = {
+        id: treatmentApproach[key].id,
+        label: treatmentApproach[key].name,
+        price: treatmentApproach[key].price,
+        disabled: disabledValue
+      };
+    }
 
-  // vm.onStateSelect = function (state) {
-  //   console.log('state: ' + state);
-  //   // vm.open(state); // testing purpose
-  //   if ($rootScope.treatmentCentersModel.length > 0) {
-  //     vm.open(state);
-  //   } else {
-  //     $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
-  //     return;
-  //   }
-  // };
+    var setting = $rootScope.otherIds.Setting;
+    for (key in setting) {
+      $rootScope.setting[key] = {
+        id: setting[key].id,
+        label: setting[key].name,
+        price: setting[key].price,
+        disabled: disabledValue
+      };
+    }
+
+    var additionalServices = $rootScope.otherIds['Additional Services'];
+    for (key in additionalServices) {
+      $rootScope.additionalServices[key] = {
+        id: additionalServices[key].id,
+        label: additionalServices[key].name,
+        price: additionalServices[key].price,
+        disabled: disabledValue
+      };
+    }
+
+    var payment = $rootScope.otherIds.Payment;
+    for (key in payment) {
+      $rootScope.payment[key] = {
+        id: payment[key].id,
+        label: payment[key].name,
+        price: payment[key].price,
+        disabled: disabledValue
+      };
+    }
+    var byDrug = $rootScope.otherIds['By Drug'];
+    for (key in byDrug) {
+      $rootScope.byDrug[key] = {
+        id: byDrug[key].id,
+        label: byDrug[key].name,
+        price: byDrug[key].price,
+        disabled: disabledValue
+      };
+    }
+  }
+
+  vm.onStateSelect = function (state) {
+    console.log('state: ' + state);
+    // vm.open(state); // testing purpose
+    if ($rootScope.treatmentCentersModel.length > 0) {
+      vm.open(state);
+    } else {
+      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+      return;
+    }
+  };
   $rootScope.countyText = {
     buttonDefaultText: 'Select County'
   };

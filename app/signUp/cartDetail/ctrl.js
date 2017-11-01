@@ -208,125 +208,125 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         }
         totalCenters++;
       }
-      // continue from here add totalItems++ to other demographich then add it to centr wise to chek how many item selected in a cart
+
       // Demographic
-      // for (key in $rootScope.demographicModel[$rootScope.activeCenter]) {
-      //   for (var val in $rootScope.demographic) {
-      //     if ($rootScope.demographic[val].id === $rootScope.demographicModel[$rootScope.activeCenter][key].id) {
-      //       var label = $rootScope.demographic[val].label;
-      //       // var price = $rootScope.demographic[val].price;
-      //       var price = vm.priceSponsored;
-      //       break;
-      //     }
-      //   }
-      //   vm.demographic[key] = {
-      //     'id': $rootScope.demographicModel[$rootScope.activeCenter][key].id,
-      //     'label': label,
-      //     'price': vm.priceSponsored
-      //     // 'price': price
-      //   };
-      //   vm.demographicTotal += price;
-      //   totalItems++;
-      // }
-      //
-      // // Treatment Approach
-      // for (key in $rootScope.treatmentApproachModel[$rootScope.activeCenter]) {
-      //   for (val in $rootScope.treatmentApproach) {
-      //     if ($rootScope.treatmentApproach[val].id === $rootScope.treatmentApproachModel[$rootScope.activeCenter][key].id) {
-      //       label = $rootScope.treatmentApproach[val].label;
-      //       // price = $rootScope.treatmentApproach[val].price;
-      //       price = vm.priceSponsored;
-      //       break;
-      //     }
-      //   }
-      //   vm.treatmentApproach[key] = {
-      //     'id': $rootScope.treatmentApproachModel[$rootScope.activeCenter][key].id,
-      //     'label': label,
-      //     'price': vm.priceSponsored
-      //     // 'price': price
-      //   };
-      //   vm.treatmentApproachTotal += price;
-      //   totalItems++;
-      // }
-      //
-      // // setting
-      // for (key in $rootScope.settingModel[$rootScope.activeCenter]) {
-      //   for (val in $rootScope.setting) {
-      //     if ($rootScope.setting[val].id === $rootScope.settingModel[$rootScope.activeCenter][key].id) {
-      //       label = $rootScope.setting[val].label;
-      //       // price = $rootScope.setting[val].price;
-      //       price = vm.priceSponsored;
-      //       break;
-      //     }
-      //   }
-      //   vm.setting[key] = {
-      //     'id': $rootScope.settingModel[$rootScope.activeCenter][key].id,
-      //     'label': label,
-      //     'price': vm.priceSponsored
-      //     // 'price': price
-      //   };
-      //   vm.settingTotal += price;
-      //   totalItems++;
-      // }
-      //
-      // // Additional services
-      // for (key in $rootScope.additionalServicesModel[$rootScope.activeCenter]) {
-      //   for (val in $rootScope.additionalServices) {
-      //     if ($rootScope.additionalServices[val].id === $rootScope.additionalServicesModel[$rootScope.activeCenter][key].id) {
-      //       label = $rootScope.additionalServices[val].label;
-      //       // price = $rootScope.additionalServices[val].price;
-      //       price = vm.priceSponsored;
-      //       break;
-      //     }
-      //   }
-      //   vm.additionalServices[key] = {
-      //     'id': $rootScope.additionalServicesModel[$rootScope.activeCenter][key].id,
-      //     'label': label,
-      //     'price': vm.priceSponsored
-      //     // 'price': price
-      //   };
-      //   vm.additionalServicesTotal += price;
-      //   totalItems++;
-      // }
-      //
-      // // Payment
-      // for (key in $rootScope.paymentModel[$rootScope.activeCenter]) {
-      //   for (val in $rootScope.payment) {
-      //     if ($rootScope.payment[val].id === $rootScope.paymentModel[$rootScope.activeCenter][key].id) {
-      //       label = $rootScope.payment[val].label;
-      //       // price = $rootScope.payment[val].price;
-      //       price = vm.priceSponsored;
-      //       break;
-      //     }
-      //   }
-      //   vm.payment[key] = {
-      //     'id': $rootScope.paymentModel[$rootScope.activeCenter][key].id,
-      //     'label': label,
-      //     price: vm.priceSponsored
-      //     // 'price': price
-      //   };
-      //   vm.paymentTotal += price;
-      //   totalItems++;
-      // }
-      // // Bydrug
-      // for (key in $rootScope.byDrugModel[$rootScope.activeCenter]) {
-      //   for (val in $rootScope.byDrug) {
-      //     if ($rootScope.byDrug[val].id === $rootScope.byDrugModel[$rootScope.activeCenter][key].id) {
-      //       label = $rootScope.byDrug[val].label;
-      //       // price = $rootScope.byDrug[val].price;
-      //       price = vm.priceSponsored;
-      //       break;
-      //     }
-      //   }
-      //   vm.byDrug[key] = {
-      //     'id': $rootScope.byDrugModel[$rootScope.activeCenter][key].id,
-      //     'label': label,
-      //     'price': vm.priceSponsored
-      //     // 'price': price
-      //   };
-      //   vm.byDrugTotal += price;
-      //   totalItems++;
-      // }
+      for (key in $rootScope.demographicModel[$rootScope.activeCenter]) {
+        for (var val in $rootScope.demographic) {
+          if ($rootScope.demographic[val].id === $rootScope.demographicModel[$rootScope.activeCenter][key].id) {
+            var label = $rootScope.demographic[val].label;
+            // var price = $rootScope.demographic[val].price;
+            var price = vm.priceSponsored;
+            break;
+          }
+        }
+        vm.demographic[key] = {
+          'id': $rootScope.demographicModel[$rootScope.activeCenter][key].id,
+          'label': label,
+          'price': vm.priceSponsored
+          // 'price': price
+        };
+        vm.demographicTotal += price;
+        totalItems++;
+      }
+
+      // Treatment Approach
+      for (key in $rootScope.treatmentApproachModel[$rootScope.activeCenter]) {
+        for (val in $rootScope.treatmentApproach) {
+          if ($rootScope.treatmentApproach[val].id === $rootScope.treatmentApproachModel[$rootScope.activeCenter][key].id) {
+            label = $rootScope.treatmentApproach[val].label;
+            // price = $rootScope.treatmentApproach[val].price;
+            price = vm.priceSponsored;
+            break;
+          }
+        }
+        vm.treatmentApproach[key] = {
+          'id': $rootScope.treatmentApproachModel[$rootScope.activeCenter][key].id,
+          'label': label,
+          'price': vm.priceSponsored
+          // 'price': price
+        };
+        vm.treatmentApproachTotal += price;
+        totalItems++;
+      }
+
+      // setting
+      for (key in $rootScope.settingModel[$rootScope.activeCenter]) {
+        for (val in $rootScope.setting) {
+          if ($rootScope.setting[val].id === $rootScope.settingModel[$rootScope.activeCenter][key].id) {
+            label = $rootScope.setting[val].label;
+            // price = $rootScope.setting[val].price;
+            price = vm.priceSponsored;
+            break;
+          }
+        }
+        vm.setting[key] = {
+          'id': $rootScope.settingModel[$rootScope.activeCenter][key].id,
+          'label': label,
+          'price': vm.priceSponsored
+          // 'price': price
+        };
+        vm.settingTotal += price;
+        totalItems++;
+      }
+
+      // Additional services
+      for (key in $rootScope.additionalServicesModel[$rootScope.activeCenter]) {
+        for (val in $rootScope.additionalServices) {
+          if ($rootScope.additionalServices[val].id === $rootScope.additionalServicesModel[$rootScope.activeCenter][key].id) {
+            label = $rootScope.additionalServices[val].label;
+            // price = $rootScope.additionalServices[val].price;
+            price = vm.priceSponsored;
+            break;
+          }
+        }
+        vm.additionalServices[key] = {
+          'id': $rootScope.additionalServicesModel[$rootScope.activeCenter][key].id,
+          'label': label,
+          'price': vm.priceSponsored
+          // 'price': price
+        };
+        vm.additionalServicesTotal += price;
+        totalItems++;
+      }
+
+      // Payment
+      for (key in $rootScope.paymentModel[$rootScope.activeCenter]) {
+        for (val in $rootScope.payment) {
+          if ($rootScope.payment[val].id === $rootScope.paymentModel[$rootScope.activeCenter][key].id) {
+            label = $rootScope.payment[val].label;
+            // price = $rootScope.payment[val].price;
+            price = vm.priceSponsored;
+            break;
+          }
+        }
+        vm.payment[key] = {
+          'id': $rootScope.paymentModel[$rootScope.activeCenter][key].id,
+          'label': label,
+          price: vm.priceSponsored
+          // 'price': price
+        };
+        vm.paymentTotal += price;
+        totalItems++;
+      }
+      // Bydrug
+      for (key in $rootScope.byDrugModel[$rootScope.activeCenter]) {
+        for (val in $rootScope.byDrug) {
+          if ($rootScope.byDrug[val].id === $rootScope.byDrugModel[$rootScope.activeCenter][key].id) {
+            label = $rootScope.byDrug[val].label;
+            // price = $rootScope.byDrug[val].price;
+            price = vm.priceSponsored;
+            break;
+          }
+        }
+        vm.byDrug[key] = {
+          'id': $rootScope.byDrugModel[$rootScope.activeCenter][key].id,
+          'label': label,
+          'price': vm.priceSponsored
+          // 'price': price
+        };
+        vm.byDrugTotal += price;
+        totalItems++;
+      }
       var totalExtra = vm.totalExtra * totalCenters;
       vm.totalExtra = totalExtra;
       vm.stateTotalCost = totalStates;
