@@ -1,0 +1,220 @@
+<div class="add-treatment-center">
+  <section-heading>Add More Treatment Center</section-heading>
+  <!-- Content Start -->
+  <div class="profile-content">
+    <div class="profile-row">
+      <a href="javascript:history.go(-1);">
+        <span class="btn adn-btn right">
+          <i class="glyphicon glyphicon-hand-left"></i> Back
+        </span>
+      </a>
+    </div>
+    <div class="profile-row">
+      <form name="$ctrl.addCenter" class="form-horizontal" enctype="multipart/form-data">
+
+        <!-- Category -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label for="category">Select Category:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+            <div ng-dropdown-multiselect="" options="$ctrl.treatmentCenterCategories" checkboxes="true" selected-model="$ctrl.multiselectModelCategories" extra-settings="$ctrl.multiselectModelSettings"></div>
+            <p ng-show="$ctrl.multiselectModelCategories.length === 0" class="help-block">Required</p>
+          </div>
+        </div>
+
+        <!-- Center Name -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Center Name:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <input ng-model="$ctrl.center_name" name="center_name" type="text" class="form-control required" required="true" placeholder="Treatment Center Name" />
+            <p ng-show="$ctrl.addCenter.center_name.$invalid" class="help-block">Required</p>
+          </div>
+        </div>
+
+        <!-- Center Website Link -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Website Link:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <input ng-model="$ctrl.center_web_link" ng-init="$ctrl.center_web_link=''" name="center_web_link" type="text" class="form-control required url" ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([a-z 0-9]{2,20})?(?:[\.])+([a-z/.]{2,10})$/" placeholder="www.google.com" />
+            <p ng-show="$ctrl.addCenter.center_web_link.$invalid" class="help-block">Invalid Format(Correct format: www.google.com)</p>
+          </div>
+        </div>
+        <!-- listing type -->
+        <div class="adn-row" ng-if="$ctrl.userType!=='free' || $ctrl.userType===''">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Listing Type:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <select ng-model="$ctrl.listing_type" name="listing_type" required="true">
+              <option value="">Select Listing</option>
+              <option value="free" selected>Free</option>
+              <option value="paid">Paid (${{$ctrl.sponsoredPrice}})</option>
+              <option value="featured">Featured (${{$ctrl.featuredPrice}})</option>
+            </select>
+            <p ng-show="$ctrl.editCenter.listing_type.$invalid">Required</p>
+          </div>
+        </div>
+        <!-- Select State -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Select State:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12 class_for_select">
+            <state-select on-update="$ctrl.onStateUpdate(selected)"></state-select>
+            <p ng-show="$ctrl.addCenter.state.$invalid" class="help-block ng-hide">Required</p>
+          </div>
+        </div>
+
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>City</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <select ng-model="$ctrl.city" name="city" ng-change="$ctrl.testZip()" required="true">
+              <option value="">Select City</option>
+              <option ng-repeat="cities in $ctrl.cities track by $index" value="{{cities.name}}">{{cities.name}}</option>
+            </select>
+            <p class="help-block" ng-show="$ctrl.addCenter.city.$invalid">Required</p>
+          </div>
+        </div>
+
+        <!-- Street Address -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Street Address:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <input ng-model="$ctrl.address_line_1" name="address_line_1" type="text" class="form-control required" required="true" placeholder="" />
+            <input type="hidden" name="centerapprove" value="0" />
+            <p class="help-block" ng-show="$ctrl.addCenter.address_line_1.$invalid">Required</p>
+          </div>
+        </div>
+
+        <!-- Zipcode -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Zipcode:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <input ng-model="$ctrl.pincode" type="text" name="center_zip" ng-change="$ctrl.testZip()" class="form-control required" number="true" minlength="5" maxlength="5" ng-pattern="/^\d{5}$/" required="true" placeholder="14100" />
+            <p ng-show="$ctrl.addCenter.center_zip.$invalid" class="help-block">Required and Zip code must be 5 digits</p>
+            <!-- <p class="help-block" ng-if="($ctrl.zipFound===0 && $ctrl.addCenter.center_zip.$valid)">Invalid zip, doesn't match with selected state.</p> -->
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Phone:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <!-- <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="Intake phone number" number="true" ng-change="$ctrl.testPhone()" class="form-control required" required="true" phone-input restrict="reject" ng-minlength="14" maxlength="14"> -->
+            <input ng-model="$ctrl.phone" type="text" name="center_phone" placeholder="Intake phone number" ng-pattern="/^-?[0-9+]*$/" number="true" class="form-control required" required="true">
+            <!-- <p ng-show="$ctrl.addCenter.center_phone.$error.pattern || $ctrl.addCenter.center_phone.$error.minlength || $ctrl.addCenter.center_phone.$error.maxlength" class="help-block">Invalid US number.</p> -->
+            <p ng-show="$ctrl.addCenter.center_phone.$invalid" class="help-block">Invalid Phone number</p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Email:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <input ng-model="$ctrl.email" type="email" name="center_email" class="form-control required" email="true" required="true" ng-pattern="/^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i" placeholder="Intake Email">
+            <p ng-show="$ctrl.addCenter.center_email.$invalid" class="help-block">Required and please enter valid email</p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Logo:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="">
+              <a href="javascript:void(0)">
+                <input file-model="$ctrl.listing_image" type="file" name="center_image" onchange="angular.element(this).scope().imagePreview(this)" class="center_image" />
+                <img id="logo_preview" ng-src="{{$ctrl.preview_img}}" width="100" name="logo_preview" />
+              </a>
+              <p class="help-block" ng-show="$ctrl.err_type===1" style="float:left;">Please upload an image with exact size of 308*180 KB.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description content_1 -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Description:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <textarea ng-model="$ctrl.description" name="description" rows="3" cols="100%" class="form-control required" required="" placeholder="Brief description"></textarea>
+            <p class="help-block" ng-show="$ctrl.addCenter.description.$error.required">Required</p>
+          </div>
+        </div>
+
+        <!-- About  Facility content_2 -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Overview of Program:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <textarea ng-model="$ctrl.content_1" name="content_1" rows="3" cols="100%" class="form-control required" required="" placeholder="Overview of Program"></textarea>
+            <p class="help-block" ng-show="$ctrl.addCenter.content_1.$error.required">Required</p>
+          </div>
+        </div>
+
+        <!-- Treatment Approach content_3 -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Treatment Approach:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <textarea ng-model="$ctrl.content_2" name="content_2" rows="3" cols="100%" class="form-control required" required="true" placeholder="Treatment Approach"></textarea>
+            <p class="help-block" ng-show="$ctrl.addCenter.content_2.$error.required">Required</p>
+          </div>
+        </div>
+
+        <!-- Unique Selling Points content_4 -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Unique Selling Points:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <textarea ng-model="$ctrl.content_3" name="content_3" required="true" rows="3" cols="100%" class="form-control required" placeholder="Unique Selling Points"></textarea>
+            <p class="help-block" ng-show="$ctrl.addCenter.content_3.$error.required">Required</p>
+          </div>
+        </div>
+
+        <!-- Upload Gallery Images image_data -->
+        <div class="adn-row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label>Upload Gallery Images:</label>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12">
+            <div id="galler_image_wrap">
+              <input file-model="$ctrl.image_data" type="file" multiple name="treatment_center_gallery_images[]" onchange="angular.element(this).scope().imagePreviewMulti(this)" id="galler_image" class="span2 text_file multi center_image" value="" />
+              <img id="logo_preview_multi" ng-src="{{$ctrl.preview_img_multi}}" width="100" name="logo_preview_multi" />
+              <span id="galler_image_wrap_labels"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="adn-row">
+          <div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-md-offset-4 col-sm-12 col-xs-12">
+            <button type="submit" ng-click="$ctrl.submit()" class="btn adn-btn right" ng-disabled="$ctrl.addCenter.center_name.$invalid ||  $ctrl.addCenter.center_web_link.$invalid || $ctrl.addCenter.center_zip.$invalid ||  $ctrl.addCenter.center_phone.$invalid ||
+            $ctrl.addCenter.description.$error.required || $ctrl.addCenter.city.$error.required || $ctrl.addCenter.state.$error.required || $ctrl.addCenter.content_1.$invalid || $ctrl.addCenter.content_2.$invalid || $ctrl.addCenter.content_3.$invalid || $ctrl.addCenter.address_line_1.$invalid || $ctrl.addCenter.center_email.$invalid || ($ctrl.multiselectModelCategories.length === 0)">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Content End -->
+</div>
