@@ -33,8 +33,8 @@ angular.module(appName, [
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
-    $locationProvider.hashPrefix('!');
-    //  $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('');
+    $locationProvider.html5Mode(true);
   }])
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
     // $urlRouterProvider.otherwise('');
