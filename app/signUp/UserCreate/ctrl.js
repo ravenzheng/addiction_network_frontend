@@ -21,7 +21,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
 
   // reset previous localstorage
   vm.resetLocalstorage = function () {
-    localStorageService.remove('membership', 'center_added', 'userInfo', 'signupSponsoredPage');
+    localStorageService.remove('membership', 'center_added', 'userInfo', 'signupSponsoredPage', 'membershipType');
   };
   vm.resetLocalstorage();
 

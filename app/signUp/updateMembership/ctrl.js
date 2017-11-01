@@ -6,7 +6,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   var token = localStorageService.get('signupToken');
   vm.currentMembership = '';
   var spn = localStorageService.get('membershipType');
-  if (spn !== null) {
+  if (spn === 'sponsored' || spn === 'featured') {
     vm.currentMembership = spn;
   }
 
