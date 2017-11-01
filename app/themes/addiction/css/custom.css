@@ -2931,6 +2931,7 @@ p.stick-next a{
 }
 .psignup-form .form-group {
     margin-bottom: 20px;
+    clear: both;
 }
 .p-user-profile {
   z-index: 9999;
@@ -3191,4 +3192,323 @@ z-index: 9999;
 	-webkit-animation-duration: 0.5s;
 	-webkit-transform-origin:50% 50%;
 	-webkit-animation-timing-function: linear;
+}
+
+/*Check box*/
+.styled-checkbox {
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: white;
+  }
+
+  &:hover + label:before {
+    background: #f35429;
+  }
+
+  &:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  &:checked + label:before {
+    background: #f35429;
+  }
+
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow:
+      2px 0 0 white,
+      4px 0 0 white,
+      4px -2px 0 white,
+      4px -4px 0 white,
+      4px -6px 0 white,
+      4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}
+/**
+ * Checkbox Five
+ */
+.checkboxFive {
+width: 25px;
+margin: 20px 100px;
+position: relative;
+}
+/**
+ * Create the box for the checkbox
+ */
+.checkboxFive label {
+  cursor: pointer;
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border: 2px solid #5cb85c;
+    /* background: #5cb85c; */
+    max-width: 35px;
+    border-radius: 5px;
+}
+/**
+ * Display the tick inside the checkbox
+ */
+.checkboxFive label:after {
+  opacity: 0.2;
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 6px;
+      background: transparent;
+      top: 7px;
+      left: 5px;
+      border: 3px solid #5cb85c;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      margin-bottom: 0;
+}
+/**
+ * Create the hover event of the tick
+ */
+.checkboxFive label:hover::after {
+opacity: 0.5;
+}
+/**
+ * Create the checkbox state for the tick
+ */
+.checkboxFive input[type=checkbox]:checked + label:after {
+opacity: 1;
+}
+
+/* Tooltip container */
+.tooltip-1 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip-1 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+        position: absolute;
+    right: 83px;
+    top: 7px;
+}
+
+.tooltip-1 .tooltiptext {
+    width: 136px;
+
+    background-color: #72d272;
+    color: #fff;
+    text-align: center;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+.para-optional .para-optional1{
+  font-size: 130%;
+}
+.tooltip-1 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #72d272 transparent transparent transparent;
+}
+.payment-container {
+    display: table;
+    clear: both;
+    padding-top: 50px;
+}
+.tooltip-1:hover .tooltiptext {
+    visibility: visible;
+}
+
+.p-form-title2 {
+    z-index: 9999;
+    position: absolute;
+    top: 30%;
+    left: 57%;
+    font-size: 13px;
+    font-family: 'open sans', sans-serif;
+    font-weight: 600;
+  }
+  .p-tc-desc2 {
+    z-index: 9999;
+    position: absolute;
+    top: 58%;
+    left: 41%;
+    font-size: 12px;
+    font-family: 'open sans', sans-serif;
+    font-weight: 600;
+    width: 110px;
+}
+
+.payment-success{
+  background-image: -moz-linear-gradient(#83BF00 , #00A7BF);
+background-image: -webkit-linear-gradient(#83BF00 , #00A7BF);
+background-image: linear-gradient(#83BF00 , #00A7BF);
+}
+
+.payment-success{
+  margin: 40px 0;
+}
+.payment-success .col-md-12{
+  padding: 50px  ;
+}
+.payment-btm{
+  padding-bottom: 50px ;
+
+}
+.payment-text p{
+  color: #fff;
+  font-size: 18px;
+  padding-bottom: 50px ;
+}
+.payment-btm p.stick-next-left{
+  left: 12%;
+  padding-bottom: 50px ;
+
+}
+.payment-btm p.stick-next-right{
+  right: 12%;
+  padding-bottom: 50px ;
+}
+.payment-btm p a{
+  color: #fff;
+}
+
+.payment-success .p-user-profile{
+  top: 22%
+}
+
+.test-center-tm {
+  /*background: #DCEEC6;*/
+  padding: 10px;
+  display: table;
+  width: 100%;
+}
+#collapse-tags .test-center-tz:nth-child(odd){
+  background: #DCEEC6;
+}
+.fix-right {
+    right: 5px;
+}
+
+.test-center-tp{
+  padding: 12px;
+}
+
+
+.checkboxFive {
+width: 25px;
+margin: 20px 100px;
+position: relative;
+}
+/**
+ * Create the box for the checkbox
+ */
+ .checkboxFive2{
+   position: relative;
+ }
+.checkboxFive2 label {
+  cursor: pointer;
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border: 2px solid #5cb85c;
+    /* background: #5cb85c; */
+    max-width: 35px;
+    border-radius: 5px;
+}
+/**
+ * Display the tick inside the checkbox
+ */
+.checkboxFive2 label:after {
+  opacity: 0.2;
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 6px;
+      background: transparent;
+      top: 7px;
+      left: 5px;
+      border: 3px solid #5cb85c;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      margin-bottom: 0;
+}
+/**
+ * Create the hover event of the tick
+ */
+.checkboxFive2 label:hover::after {
+opacity: 0.5;
+}
+/**
+ * Create the checkbox state for the tick
+ */
+.checked:after {
+opacity: 1 !important;
+}
+.test-center-bg:last-child{
+  padding-bottom: 20px;
+}
+.test-center-bg.checkboxFive2 {
+      position: relative;
+      width: 100%;
+      margin: 7px 0 12px 0;
+      /* padding-right: 14px; */
+}
+.checkboxFive2  span{
+  margin-left: 20px;
 }

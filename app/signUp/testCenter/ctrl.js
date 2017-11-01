@@ -14,6 +14,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     vm.centerFormInit.phone = 1;
     vm.centerFormInit.address = 1;
     vm.displayMsg = 'Explaination of each field here?';
+    localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
   };
   initStartupVars();
 
@@ -35,31 +36,34 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   vm.tagsSelectText = {
     buttonDefaultText: 'Tags'
   };
+
   vm.centerCategories = [];
   vm.categoryModel = [];
-  vm.tagsOption = [
-    {
-      'id': 5,
-      'label': 'Cocaine Rehab Centers',
-      'tagGroup': '4'
-    },
-    {
-      'id': 6,
-      'label': 'Opiate Addiction Centers',
-      'tagGroup': '4'
-    },
-    {
-      'id': 14,
-      'label': 'Executive Treatment',
-      'tagGroup': '13'
-    },
-    {
-      'id': 15,
-      'label': 'Rehab for Women',
-      'tagGroup': '13'
+  vm.catgsToggleFun = function () {
+    if (vm.catgsToggle === 1) {
+      vm.catgsToggle = 0;
+    } else {
+      vm.catgsToggle = 1;
     }
-  ];
+  };
+  vm.checkedString = [];
+  vm.toggleChecked = function (id, tf) {
+    if (tf === true) {
+      vm.checkedString[id] = 'checked';
+    } else {
+      vm.checkedString[id] = '';
+    }
+  };
+  vm.catgCheckedString = [];
+  vm.catgChecked = function (id, tf) {
+    if (tf === true) {
+      vm.catgCheckedString[id] = 'checked';
+    } else {
+      vm.catgCheckedString[id] = '';
+    }
+  };
 
+  //******** Tags Dropdown ********//
   vm.tagsData = [];
   vm.tagCheckboxModel = [];
   vm.tagsToggleFun = function () {
@@ -70,13 +74,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     }
   };
   vm.tagToggleDynamic = function (tagsId) {
-    $log.info('tagsid: ' + tagsId);
     if (vm.tagToggle[tagsId]) {
       vm.tagToggle[tagsId] = 0;
     } else {
       vm.tagToggle[tagsId] = 1;
     }
   };
+  //******** Tags Dropdown ********//
 
   // get categories
   service.getCategories(token).then(function (result) {
@@ -121,11 +125,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   vm.addCenter = function () {
     //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var catId = '';
-    $log.info(vm.categoryModel);
     for (var key in vm.categoryModel) {
-      catId += vm.categoryModel[key].id + ',';
+      if (vm.categoryModel[key]) {
+        catId += key + ',';
+      }
     }
     catId = catId.slice(',', -1);
+
     if (vm.centerForm.centerName.$error.required) {
       // lm.$emit(Status.FAILED, 'Please enter Center name');
       shakeme();
@@ -199,13 +205,19 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
         }];
       } else {
         centerDetail = localStorageService.get('center_added');
-        centerDetail.push({
-          'centerId': result.treatment_center.id,
-          'centerName': vm.centerName,
-          'cost': 10
-        });
+        // centerDetail.push({
+        //   'centerId': result.treatment_center.id,
+        //   'label': ,
+        //   'centerName': vm.centerName,
+        //   'cost': 10
+        // });
       }
-      localStorageService.set('center_added', centerDetail);
+      //  localStorageService.set('center_added', centerDetail);
+      var centerInfo = [{
+        'id': result.treatment_center.id,
+        'label': vm.centerName
+      }];
+      localStorageService.set('current_center', centerInfo);
 
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {

@@ -12,7 +12,7 @@ angular.module(appName, [
   require('./advertisement'),
   require('./myProfile'),
   require('./featuredTreatmentCenter'),
-  require('./addListing'),
+  // require('./addListing'),
   require('./aboutUs'),
   require('./contactUs'),
   require('./contactThank'),

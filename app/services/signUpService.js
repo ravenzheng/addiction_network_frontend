@@ -9,7 +9,8 @@ function service($log, $http, endPoint) {
     addOptionalFields: addOptionalFields,
     upgradeMembership: upgradeMembership,
     publishAds: publishAds,
-    getPublishAds: getPublishAds
+    getPublishAds: getPublishAds,
+    getCartDetails: getCartDetails
   };
   // add new user
   function signUp(formdata) {
@@ -106,6 +107,18 @@ function service($log, $http, endPoint) {
   function getPublishAds(centerId, token) {
     return $http({
       url: endPoint + '/v2/treatment_center_publish_ads_details/' + centerId,
+      method: 'GET',
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined,
+        'Authorization': token
+      }
+    });
+  }
+  // Get cart details
+  function getCartDetails(token) {
+    return $http({
+      url: endPoint + '/v2/cart/',
       method: 'GET',
       transformRequest: angular.identity,
       headers: {
