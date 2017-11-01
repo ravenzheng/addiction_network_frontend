@@ -2996,6 +2996,8 @@ p.stick-next a{
   text-align:center;
   float:left;
   cursor:pointer;
+  max-width:86px;
+  max-height: 32px;
 }
 .choose-file-req{
   border:1px solid red;
