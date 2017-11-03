@@ -2851,7 +2851,7 @@ span.stick-me{
 .p-tc-desc{
   z-index: 9999;
   position: absolute;
-  top: 60%;
+  top: 59%;
   left: 43%;
   font-size: 12px;
   font-family: 'open sans', sans-serif;
@@ -3454,14 +3454,15 @@ position: relative;
  */
  .checkboxFive2{
    position: relative;
+   display: inline-block;
  }
 .checkboxFive2 label {
   cursor: pointer;
     position: absolute;
-    width: 27px;
-    height: 27px;
-    top: 0;
-    left: 0;
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 7px;
     background: #fff;
     border: 2px solid #5cb85c;
     /* background: #5cb85c; */
@@ -3475,11 +3476,11 @@ position: relative;
   opacity: 0.2;
       content: '';
       position: absolute;
-      width: 14px;
+      width: 8px;
       height: 6px;
       background: transparent;
-      top: 7px;
-      left: 5px;
+      top: 2px;
+      left: 2px;
       border: 3px solid #5cb85c;
       border-top: none;
       border-right: none;
@@ -3512,9 +3513,19 @@ opacity: 1 !important;
       /* padding-right: 14px; */
 }
 .checkboxFive2  span{
-  margin-left: 20px;
+  margin-left:2px;
 }
-
-#collapse-tags .test-center-tz:nth-child(even) {
-    background: #DCEEC6;
+.form-control[readonly]{
+  background-color: #fff !important;
+}
+.checkboxFive2.tags span {
+    margin-left: 5px;
+    font-size: 12px;
+}
+.checkboxFive2.tags label{
+  top: 2px;
+  left: 0px;
+}
+i.fa.fa-plus-square-o{
+  font-weight:bold;
 }

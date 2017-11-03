@@ -13,7 +13,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     vm.centerFormInit.email = 1;
     vm.centerFormInit.phone = 1;
     vm.centerFormInit.address = 1;
-    vm.displayMsg = 'Explaination of each field here?';
+    vm.displayMsg = 'Please enter the details';
     localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
   };
   initStartupVars();
@@ -63,7 +63,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     }
   };
 
-  //******** Tags Dropdown ********//
   vm.tagsData = [];
   vm.tagCheckboxModel = [];
   vm.tagsToggleFun = function () {
@@ -80,7 +79,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       vm.tagToggle[tagsId] = 1;
     }
   };
-  //******** Tags Dropdown ********//
 
   // get categories
   service.getCategories(token).then(function (result) {
@@ -135,15 +133,15 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     if (vm.centerForm.centerName.$error.required) {
       // lm.$emit(Status.FAILED, 'Please enter Center name');
       shakeme();
-      vm.displayMsg = 'Please enter Center name';
+      vm.displayMsg = 'Please enter center name';
       return;
     } else if (vm.categoryModel.length === 0) {
       shakeme();
-      vm.displayMsg = 'Please select Category';
+      vm.displayMsg = 'Click arrow to select categories';
       return;
     } else if (vm.centerForm.website.$error.required) {
       shakeme();
-      vm.displayMsg = 'Please enter Website';
+      vm.displayMsg = 'Please enter website';
       return;
     } else if (vm.centerForm.website.$error.pattern) {
       shakeme();
