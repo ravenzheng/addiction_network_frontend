@@ -5,4 +5,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState) {
   vm.publish_ads = function () {
     $state.go(UIState.SIGN_UP.PUBLISH_ADS);
   };
+  vm.goto_sponsored_page = function () {
+    $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+  };
 }
