@@ -16,6 +16,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   });
 
   vm.gotoPayment = function () {
+    localStorageService.set('cartTotal', vm.cartDetails.total_price);
     $state.go(UIState.SIGN_UP.PAYMENT);
   };
 

@@ -3529,3 +3529,6 @@ opacity: 1 !important;
 i.fa.fa-plus-square-o{
   font-weight:bold;
 }
+p.stick-next-left.font-normal.back-button{
+  left: 86%;
+}

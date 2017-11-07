@@ -51,17 +51,17 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     // $window.location.href = '/login';
     //  $rootScope.addListingStepDone = 6;
     //  $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
-    //$state.go(UIState.ADD_LISTING.BANNER_AD);
+    // $state.go(UIState.ADD_LISTING.BANNER_AD);
   };
   vm.previous = function () {
-    $state.go(UIState.SIGNUP.UPDATE_ADS);
+    $state.go(UIState.SIGN_UP.SPONSER);
   };
 
   vm.submit = function () {
     openPrompt();
   };
   vm.submitComplete = function () {
-    //var centerIds = '';
+    // var centerIds = '';
     var centerIds = [];
     var id = '';
     var i = 0;
@@ -83,7 +83,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       var centerId = String($rootScope.centerSelected[cen].id);
       var totalItems = 0;
 
-      for (key in $rootScope.countyModel[centerId]) { // county ids
+      for (var key in $rootScope.countyModel[centerId]) { // county ids
         id = String($rootScope.countyModel[centerId][key].id);
         sponsoredListingIds[i] = id;
         i++;
@@ -95,14 +95,12 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
 
       if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[cen] === true) {
-
         for (key in $rootScope.statesSel[centerId]) { // state ids
           id = String($rootScope.statesSel[centerId][key].id);
           sponsoredListingIds[i] = id;
           i++;
         }
       } else {
-
         for (key in $rootScope.checkedStateDetail[centerId]) { // state ids
           id = String($rootScope.checkedStateDetail[centerId][key].id);
           sponsoredListingIds[i] = id;
@@ -166,13 +164,13 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       }
 
       $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
-      //SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
+      // SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
       SponsorService.editSponsorSignup(formData, cenId, token).then(function () {
         ci++;
         if (ci > (centerIds.length - 1)) {
           $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
           //    $rootScope.addListingStepDone = 6;
-          //$rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
+          // $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
           // clear sponsoredpage data
           localStorageService.remove('signupSponsoredPage', 'sessionStorage');
           vm.clearRootscopeData();
@@ -181,21 +179,18 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         } else {
           vm.submitSingle(ci);
         }
-
       }).catch(function (err) {
         $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG + ' ' + err.data.error);
         $state.go(UIState.SIGN_UP.DETAILS);
         throw err;
-
       });
-    }
+    };
     var ci = 0;
     if (centerIds.length > 0) {
       vm.submitSingle(ci);
     } else {
       $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
     }
-
   };
 
   function openPrompt() {
@@ -281,7 +276,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     // $rootScope.centerOnchange();
     // saving to localStorageService
     if (angular.isDefined(localStorageService.get('signupSponsoredPage', 'sessionStorage'))) {
-      sponsoredInfo = localStorageService.get('signupSponsoredPage', 'sessionStorage');
+      var sponsoredInfo = localStorageService.get('signupSponsoredPage', 'sessionStorage');
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
         sponsoredInfo.centersValue = $rootScope.treatmentCentersValue;
@@ -300,7 +295,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     // use to prevent selection of demographic boxes without center select
     // $rootScope.centerOnchange();
     if (angular.isDefined(localStorageService.get('signupSponsoredPage', 'sessionStorage'))) {
-      sponsoredInfo = localStorageService.get('signupSponsoredPage', 'sessionStorage');
+      var sponsoredInfo = localStorageService.get('signupSponsoredPage', 'sessionStorage');
       if (sponsoredInfo !== null) {
         sponsoredInfo.treatmentCenter = vm.treatmentCentersModel;
         sponsoredInfo.centersValue = $rootScope.treatmentCentersValue;

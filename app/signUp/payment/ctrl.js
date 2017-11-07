@@ -1,142 +1,179 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', 'Status', ctrl];
+module.exports = ['$injector', '$timeout', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', 'Status', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
+function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
   var vm = this;
   var lm = $rootScope;
   var token = localStorageService.get('signupToken');
   var centerId = localStorageService.get('signupCenterId');
   var alreadyPublished = 0;
-  // testing if ads are already published for same center id
-  service.getPublishAds(centerId, token).then(function (result) {
-    $log.info(result);
-    if (result.banner_ads.length === 0) {
-      alreadyPublished = 0;
-    } else if (result.banner_ads.length > 0) {
-      alreadyPublished = 1;
-    }
-  }).catch(function (err) {
-    $log.info(err);
-    lm.$emit(Status.SUCCEEDED, 'Something went wrong');
-  });
-  vm.fileReqHeader = '';
-  vm.fileReqFooter = '';
-  vm.fileReqSidebar = '';
+  vm.cardType = 'credit';
+  vm.allCards = [];
+  var creditCardType = require('credit-card-type');
 
-  $scope.uploadChange = function (position) {
-    if (position === 'footer') {
-      vm.fileReqFooter = '';
-    } else if (position === 'sidebar') {
-      vm.fileReqSidebar = '';
-    } else if (position === 'header') {
-      vm.fileReqHeader = '';
+  vm.cartTotal = localStorageService.get('cartTotal');
+
+  var initStartupVars = function () {
+    vm.displayMsg = 'You are just one step away from making a difference!!';
+    vm.saveDetails = true;
+  };
+  initStartupVars();
+
+  vm.detectCardType = function (card, event) {
+    if (angular.isDefined(card)) {
+      var cardVal = card.replace(/ /g, '');
+      var cardType = creditCardType(cardVal);
+      if (angular.isDefined(cardType[0])) {
+        if (cardType[0].type === 'master-card') {
+          vm.cardType = 'master';
+        } else if (cardType[0].type === 'visa') {
+          vm.cardType = 'visa';
+        } else if (cardType[0].type === 'american-express') {
+          vm.cardType = 'amex';
+        } else if (cardType[0].type === 'jcb') {
+          vm.cardType = 'jcb';
+        } else if (cardType[0].type === 'discover') {
+          vm.cardType = 'discover';
+        } else if (cardType[0].type === 'diners-club') {
+          vm.cardType = 'diners-club';
+        } else {
+          vm.cardType = 'credit';
+        }
+      }
+
+      vm.totalDigits = card.replace(/ /g, '').length;
+      if (event.keyCode !== 8) {
+        if (vm.totalDigits === 4) {
+          vm.cardNumber = vm.cardNumber + ' ';
+        } else if (vm.totalDigits === 9) {
+          vm.cardNumber = vm.cardNumber + ' ';
+        } else if (vm.totalDigits === 14) {
+          vm.cardNumber = vm.cardNumber + ' ';
+        }
+      }
+    } else {
+      // vm.cardType = null;
+      vm.totalDigits = 0;
+      vm.cardType = 'credit';
     }
   };
 
   vm.congrats = function () {
-    $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
-  };
-
-  vm.count = 1;
-  vm.publish_ads2 = function () {
-    //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
-    //  $state.go(UIState.SIGN_UP.PUBLISH_ADS2);
-    if (alreadyPublished === 1) {
-      lm.$emit(Status.FAILED, 'Ads are already published for this center.');
+    // Validations
+    if (vm.paymentForm.cardName.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter name on card.';
+      return;
+    } else if (vm.paymentForm.cardNumber.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter valid card number.';
+      return;
+    } else if (vm.paymentForm.expiry.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter expiry month/year.';
+      return;
+    } else if (vm.paymentForm.cvv.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Please enter valid security code (cvv).';
+      return;
+    } else if (vm.paymentForm.state.$invalid) {
+      shakeme();
+      vm.displayMsg = 'State cannot be empty.';
+      return;
+    } else if (vm.paymentForm.city.$invalid) {
+      shakeme();
+      vm.displayMsg = 'City cannot be empty.';
+      return;
+    } else if (vm.paymentForm.country.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Country cannot be empty.';
+      return;
+    } else if (vm.paymentForm.zip.$invalid) {
+      shakeme();
+      vm.displayMsg = 'Zip cannot be empty.';
       return;
     }
-    var sideImage = vm.sideImage;
-    var headerImage = vm.headerImage;
-    var footerImage = vm.footerImage;
-    vm.validAds = [];
 
-    if (angular.isUndefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
-      vm.fileReqSidebar = 'choose-file-req';
-      vm.adsFormInit.weblinkSidebar = 0;
-      return;
-      // vm.weblinkFooter = '';
-    } else if (angular.isDefined(vm.sideImage) && angular.isUndefined(vm.weblinkSidebar)) {
-      vm.fileReqSidebar = '';
-      vm.adsFormInit.weblinkSidebar = 1;
-      return;
-    }
-
-    if (angular.isDefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
-      vm.validAds.push('sidebar');
-    }
-
-    if (angular.isUndefined(vm.headerImage) && angular.isDefined(vm.weblinkHeader)) {
-      headerImage = '';
-      vm.fileReqHeader = 'choose-file-req';
-      return;
-      // vm.adsFormInit.weblinkHeader = 0;
-      // vm.weblinkFooter = '';
-    } else if (angular.isUndefined(vm.weblinkHeader) && angular.isDefined(vm.headerImage)) {
-      vm.adsFormInit.weblinkHeader = 1;
-      vm.fileReqHeader = '';
-      return;
-    }
-    if (angular.isDefined(vm.headerImage) && angular.isDefined(vm.weblinkHeader)) {
-      vm.validAds.push('header');
-      // vm.weblinkHeader = '';
-    }
-
-    if (angular.isUndefined(vm.footerImage) && angular.isDefined(vm.weblinkFooter)) {
-      footerImage = '';
-      vm.fileReqFooter = 'choose-file-req';
-      return;
-      // vm.adsFormInit.weblinkFooter = 0;
-      // vm.weblinkFooter = '';
-    } else if (angular.isUndefined(vm.weblinkFooter) && angular.isDefined(vm.footerImage)) {
-      vm.adsFormInit.weblinkFooter = 1;
-      vm.fileReqFooter = '';
-      return;
-    }
-    if (angular.isDefined(vm.footerImage) && angular.isDefined(vm.weblinkFooter)) {
-      vm.validAds.push('footer');
-    }
-
-    for (var cnt in vm.validAds) {
-      // $log.info('cnt' + validAds[cnt]);
-      if (vm.validAds[cnt] === 'sidebar') {
-        vm.submitAds(sideImage, 'sidebar', vm.weblinkSidebar);
-      } else if (vm.validAds[cnt] === 'header') {
-        vm.submitAds(headerImage, 'header', vm.weblinkHeader);
-      } else if (vm.validAds[cnt] === 'footer') {
-        vm.submitAds(footerImage, 'footer', vm.weblinkFooter);
-      }
-    }
-    // return;
-    // vm.submitAds(sideImage, 'sidebar', vm.weblinkSidebar);
-    // vm.submitAds(headerImage, 'header', vm.weblinkHeader);
-    // vm.submitAds(footerImage, 'footer', vm.weblinkFooter);
-  };
-
-  vm.submitAds = function (content, position, weblink) {
-    lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var formData = new FormData();
-    var publishAds = {
-      'treatment_center_id': centerId,
-      'content': content,
-      'position': position,
-      'center_web_link': weblink
-    };
-    for (var key in publishAds) {
-      formData.append('banner_ad[' + key + ']', publishAds[key]);
+    if (angular.isUndefined(vm.expiry)) {
+      var expiry = '12/2021';
     }
-    service.publishAds(formData, token).then(function (result) {
+    expiry = vm.expiry;
+    var splitExpiry = expiry.split('/');
+    var month = splitExpiry[0];
+    var year = splitExpiry[1];
+
+    var splitName = vm.cardName.split(' ');
+    var firstName = splitName[0];
+    var lastName = splitName[1];
+
+    var card = vm.cardNumber.replace(/ /g, '');
+    var paymentData = {
+      'card_no': card,
+      'first_name': firstName,
+      // 'middle_name': vm.middleName,
+      'last_name': lastName,
+      'name': vm.cardName,
+      'expiry_year': year,
+      'expiry_month': month,
+      'card_code': vm.cvv,
+      'address': vm.address,
+      'city': vm.city,
+      'country': vm.country,
+      'zip': vm.zip,
+      'state': vm.state,
+      'default': 'true'
+    };
+    for (var key in paymentData) {
+      formData.append('payment[' + key + ']', paymentData[key]);
+    }
+
+    service.paymentDetailsAddSignup(formData, token).then(function (result) {
       $log.info(result);
-      //  lm.$emit(Status.SUCCEEDED, 'Ads submitted');
-      if (vm.count >= vm.validAds.length) {
-        // if (vm.count >= 3) {
-        lm.$emit(Status.SUCCEEDED, 'Ads submitted');
-        //  $state.go(UIState.SIGN_UP.PUBLISH_ADS2);
-        $state.go(UIState.SIGN_UP.UPDATE_ADS);
-      }
-      vm.count++;
+      // after card saved, select a card
+      var cardId = '';
+      service.getCardsInfo(token).then(function (res) {
+        $log.info('card info: ');
+        $log.info(res);
+        vm.allCards = res;
+        cardId = vm.allCards.payments[0].customer_payment_profile_id;
+        $log.info('selected card id: ' + cardId);
+
+        // select a card and chage it
+        var formData = new FormData();
+        formData.append('payment_card', cardId);
+
+        service.selectCard(formData, token).then(function (res1) {
+          $log.info(res1);
+          // now charging the selected card
+          service.chargeCard(token).then(function (res2) {
+            $log.info('finally charged : ');
+            $log.info(res2);
+          }).catch(function (err) {
+            $log.info(err);
+            $rootScope.$emit(Status.FAILED, err.error);
+          });
+
+        }).catch(function (err) {
+          $log.info(err);
+        });
+
+      }).catch(function (err) {
+        $log.info(err);
+      });
+
+      //  $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
+      //$state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
     }).catch(function (err) {
-      $log.info(err);
-      vm.count--;
-      lm.$emit(Status.FAILED, 'Something went wrong');
+      $log.error(err);
+      $rootScope.$emit(Status.FAILED, err.data.error);
     });
   };
+
+  function shakeme() {
+    angular.element('.progress-img-wrap').addClass('shake');
+    $timeout(function () {
+      angular.element('.shake').removeClass('shake');
+    }, 500);
+  }
+
 }

@@ -218,7 +218,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   }
 
   vm.onStateSelect = function (state) {
-    console.log('state: ' + state);
     // vm.open(state); // testing purpose
     if ($rootScope.treatmentCentersModel.length > 0) {
       vm.open(state);

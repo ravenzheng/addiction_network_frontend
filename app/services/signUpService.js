@@ -10,7 +10,12 @@ function service($log, $http, endPoint) {
     upgradeMembership: upgradeMembership,
     publishAds: publishAds,
     getPublishAds: getPublishAds,
-    getCartDetails: getCartDetails
+    getCartDetails: getCartDetails,
+    getPriceInfo: getPriceInfo,
+    paymentDetailsAddSignup: paymentDetailsAddSignup,
+    getCardsInfo: getCardsInfo,
+    selectCard: selectCard,
+    chargeCard: chargeCard
   };
   // add new user
   function signUp(formdata) {
@@ -124,6 +129,64 @@ function service($log, $http, endPoint) {
       headers: {
         'Content-Type': undefined,
         'Authorization': token
+      }
+    });
+  }
+
+  function getPriceInfo(token) {
+    return $http.get(endPoint + '/pricing', {
+      headers: {
+        'Authorization': token
+      }
+    });
+  }
+
+  function paymentDetailsAddSignup(formdata, token) {
+    return $http({
+      url: endPoint + '/listing_user/payments',
+      method: 'POST',
+      data: formdata,
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
+  }
+
+  function getCardsInfo(token) {
+    return $http({
+      url: endPoint + '/v2/payment_cards_information',
+      method: 'GET',
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
+  }
+
+  function selectCard(formData, token) {
+    return $http({
+      url: endPoint + '/v2/cart/choose_card',
+      method: 'POST',
+      data: formData,
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
+  }
+
+  function chargeCard(token) {
+    return $http({
+      url: endPoint + '/v2/cart/charge',
+      method: 'POST',
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
       }
     });
   }

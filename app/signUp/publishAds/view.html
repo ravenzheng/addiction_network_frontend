@@ -37,10 +37,10 @@
               </div>
             </div>
             <div class="ads-block">
-              <p>Cost:</p>
+              <p>Cost: {{$ctrl.header}}</p>
               <p>Size: 544 PX x 93PX</p>
               <p>Website:
-                <input type="text" name="weblinkHeader" ng-model="$ctrl.weblinkHeader" ng-init="$ctrl.adsFormInit.weblinkHeader=1" ng-keypress="$ctrl.adsFormInit.weblinkHeader = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/"/>
+                <input type="text" name="weblinkHeader" ng-model="$ctrl.weblinkHeader" ng-init="$ctrl.adsFormInit.weblinkHeader=1" ng-keypress="$ctrl.adsFormInit.weblinkHeader = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/" />
               </p>
               <span ng-show="$ctrl.publishAdsForm.weblinkHeader.$error.required && ($ctrl.adsFormInit.weblinkHeader===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkHeader.$error.pattern && ($ctrl.adsFormInit.weblinkHeader===0)" class="help-block">Invalid website</span>
@@ -57,10 +57,10 @@
               </div>
             </div>
             <div class="ads-block">
-              <p>Cost:</p>
+              <p>Cost: {{$ctrl.sidebar}}</p>
               <p>Size: 248PX x 145PX</p>
               <p>Website:
-                <input type="text" name="weblinkSidebar" ng-model="$ctrl.weblinkSidebar" ng-init="$ctrl.adsFormInit.weblinkSidebar=1" ng-keypress="$ctrl.adsFormInit.weblinkSidebar = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/"/>
+                <input type="text" name="weblinkSidebar" ng-model="$ctrl.weblinkSidebar" ng-init="$ctrl.adsFormInit.weblinkSidebar=1" ng-keypress="$ctrl.adsFormInit.weblinkSidebar = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/" />
               </p>
               <span ng-show="$ctrl.publishAdsForm.weblinkSidebar.$error.required && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkSidebar.$error.pattern && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Invalid website</span>
@@ -77,10 +77,10 @@
               </div>
             </div>
             <div class="ads-block">
-              <p>Cost:</p>
+              <p>Cost: {{$ctrl.footer}}</p>
               <p>Size: 646PX x 111PX</p>
               <p>Website:
-                <input type="text" name="weblinkFooter" ng-model="$ctrl.weblinkFooter" ng-init="$ctrl.adsFormInit.weblinkFooter=1" ng-keypress="$ctrl.adsFormInit.weblinkFooter = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/"/>
+                <input type="text" name="weblinkFooter" ng-model="$ctrl.weblinkFooter" ng-init="$ctrl.adsFormInit.weblinkFooter=1" ng-keypress="$ctrl.adsFormInit.weblinkFooter = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/" />
               </p>
               <span ng-show="$ctrl.publishAdsForm.weblinkFooter.$error.required && ($ctrl.adsFormInit.weblinkFooter===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkFooter.$error.pattern && ($ctrl.adsFormInit.weblinkFooter===0)" class="help-block">Invalid website</span>

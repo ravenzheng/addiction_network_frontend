@@ -7,6 +7,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   var centerId = localStorageService.get('signupCenterId');
   var alreadyPublished = 0;
   // testing if ads are already published for same center id
+  service.getPriceInfo(token).then(function (result) {
+    vm.sidebar = result.banner_ads_sidebar;
+    vm.header = result.banner_ads_header;
+    vm.footer = result.banner_ads_footer;
+  }).catch(function (err) {
+    $log.info(err);
+  });
   service.getPublishAds(centerId, token).then(function (result) {
     $log.info(result);
     if (result.banner_ads.length === 0) {
@@ -37,6 +44,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     //  $state.go(UIState.SIGN_UP.PUBLISH_ADS2);
     if (alreadyPublished === 1) {
       lm.$emit(Status.FAILED, 'Ads are already published for this center.');
+      $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
       return;
     }
     var sideImage = vm.sideImage;
@@ -102,7 +110,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     }
     $log.info(vm.validAds.length);
     if (vm.validAds.length === 0) {
-      $state.go(UIState.SIGN_UP.UPDATE_ADS);
+      // $state.go(UIState.SIGN_UP.UPDATE_ADS);
+      $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
     }
     // return;
     // vm.submitAds(sideImage, 'sidebar', vm.weblinkSidebar);
@@ -129,7 +138,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
         // if (vm.count >= 3) {
         lm.$emit(Status.SUCCEEDED, 'Ads submitted');
         //  $state.go(UIState.SIGN_UP.PUBLISH_ADS2);
-        $state.go(UIState.SIGN_UP.UPDATE_ADS);
+        // $state.go(UIState.SIGN_UP.UPDATE_ADS);
+        $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
       }
       vm.count++;
     }).catch(function (err) {
