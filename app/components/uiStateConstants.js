@@ -94,5 +94,6 @@ module.exports = {
     'UPGRADE_ACCOUNT': 'myProfile.upgradeAccount'
   },
   'CENTER_DETAIL': 'treatmentCenterDetail',
-  'FEATURED_CENTER': 'featuredTreatmentCenterPage'
+  'FEATURED_CENTER': 'featuredTreatmentCenterPage',
+  'PRIVACY_POLICY': 'privacyPolicy'
 };

@@ -2,10 +2,10 @@ module.exports = ['$injector', '$timeout', '$scope', '$log', '$rootScope', '$sta
 
 function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
   var vm = this;
-  var lm = $rootScope;
+  // var lm = $rootScope;
   var token = localStorageService.get('signupToken');
-  var centerId = localStorageService.get('signupCenterId');
-  var alreadyPublished = 0;
+  // var centerId = localStorageService.get('signupCenterId');
+  //  var alreadyPublished = 0;
   vm.cardType = 'credit';
   vm.allCards = [];
   var creditCardType = require('credit-card-type');
@@ -139,30 +139,30 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
         $log.info('selected card id: ' + cardId);
 
         // select a card and chage it
-        var formData = new FormData();
+        formData = new FormData();
         formData.append('payment_card', cardId);
 
         service.selectCard(formData, token).then(function (res1) {
           $log.info(res1);
+          $rootScope.$emit(Status.SUCCEEDED, 'Payment Done...');
+          $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
           // now charging the selected card
-          service.chargeCard(token).then(function (res2) {
-            $log.info('finally charged : ');
-            $log.info(res2);
-          }).catch(function (err) {
-            $log.info(err);
-            $rootScope.$emit(Status.FAILED, err.error);
-          });
-
+          // service.chargeCard(token).then(function (res2) {
+          //   $log.info('finally charged : ');
+          //   $log.info(res2);
+          // }).catch(function (err) {
+          //   $log.info(err);
+          //   $rootScope.$emit(Status.FAILED, err.error);
+          // });
         }).catch(function (err) {
           $log.info(err);
         });
-
       }).catch(function (err) {
         $log.info(err);
       });
 
       //  $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
-      //$state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
+      // $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
@@ -175,5 +175,4 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
       angular.element('.shake').removeClass('shake');
     }, 500);
   }
-
 }

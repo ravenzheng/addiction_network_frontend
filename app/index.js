@@ -27,7 +27,8 @@ angular.module(appName, [
   require('./loginHelp'),
   require('./insurance'),
   require('./searchState'),
-  require('./signUp')
+  require('./signUp'),
+  require('./privacyPolicy')
 
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
