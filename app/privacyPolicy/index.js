@@ -15,4 +15,3 @@ angular.module(moduleName, ['ui.router', require('../services')])
 }]);
 
 module.exports = moduleName;
-console.log('pric');
