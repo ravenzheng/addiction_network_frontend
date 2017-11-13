@@ -45,7 +45,7 @@
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP" >
+            <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.usp.$error.required && ($ctrl.optionalInit.usp===0)" class="help-block">Required</span>
             <span ng-show="$ctrl.optionalForm.usp.$error.pattern && ($ctrl.optionalInit.usp===0)" class="help-block">Invalid Email</span> -->
@@ -58,10 +58,9 @@
               <span>Upload <i class="fa fa-arrow-up"></i></span>
               <!-- <input type="file" class="file"> -->
               <input name="logo" id="logo" class="file" type="file" file-model="$ctrl.logoData" onchange="angular.element(this).scope().imagePreview(this)" accept="image/*">
-                <img id="logo_preview"   width="120" name="logo_preview" />
-
-              </div>
-              <i class="fa fa-times" ng-show="$ctrl.logoPreview" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteLogo()" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
+            </div>
+            <img id="logo_preview" width="120" name="logo_preview" />
+            <i class="fa fa-times" ng-show="$ctrl.logoPreview" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteLogo()" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
 
             <div class="pull-right">
               <span class="ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o c-orange fa-2x"></i></span>
@@ -81,13 +80,13 @@
             </div>
           </div>
 
-        <div class="form-group clear-me">
-          <div ng-repeat="(key, file) in $ctrl.multiPrvElm" style="padding-bottom:10px;">
-            <img id="multi_preview-{{key}}"   width="100"  />
-            <i class="fa fa-times" ng-if="$ctrl.multiPreview[key]"  style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteMulti(key)" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
+          <div class="form-group clear-me">
+            <div ng-repeat="(key, file) in $ctrl.multiPrvElm" style="padding-bottom:10px;">
+              <img id="multi_preview-{{key}}" width="100" />
+              <i class="fa fa-times" ng-if="$ctrl.multiPreview[key]" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteMulti(key)" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
 
             </div>
-        </div>
+          </div>
 
         </form>
       </div>

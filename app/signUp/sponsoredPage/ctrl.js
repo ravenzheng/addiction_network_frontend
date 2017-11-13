@@ -56,10 +56,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   vm.previous = function () {
     $state.go(UIState.SIGN_UP.SPONSER);
   };
-
-  vm.submit = function () {
-    openPrompt();
-  };
   vm.submitComplete = function () {
     // var centerIds = '';
     var centerIds = [];
@@ -191,6 +187,11 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     } else {
       $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
     }
+  };
+
+  vm.submit = function () {
+    // openPrompt();
+    vm.submitComplete();
   };
 
   function openPrompt() {
