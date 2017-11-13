@@ -1,0 +1,767 @@
+<style>
+  .header-cta {
+    text-align: center;
+    margin: 40px 0 20px;
+    border-radius: 3px;
+    background-color: #0362ad;
+    color: #fff;
+    font-size: 18px;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+  }
+
+  .center {
+    align: center;
+  }
+
+  .col-xs-12,
+  .quote.full {
+    width: 100%;
+  }
+
+  .img-frame-shadow,
+  .content-area img,
+  .block-img-left img,
+  .img-frame {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 4px;
+    background: #fff;
+    border: 1px solid #aaa;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, .25);
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, .25);
+  }
+
+  .alignright {
+    text-align: right;
+    align: right;
+    float: right;
+    margin: 0px 0px 15px 0px;
+    padding: 0px 0px 00px 0px;
+  }
+
+  .cta-box-link {
+    display: block;
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #eee;
+  }
+
+
+  .shadow-raised-bottom,
+  .list-photos img,
+  .content-legacy .box,
+  .content-legacy .highlight,
+  .text-block,
+  .carousel.flexslider,
+  .cta-box-link {
+    -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .label-phone,
+  .phone-number {
+    padding: 1px 8px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    border-radius: 4px;
+    white-space: nowrap;
+    background: #037ebf;
+    background: -webkit-gradient(linear, left top, left bottom, from(#037ebf), to(#0360ac));
+    background: -webkit-linear-gradient(top, #037ebf 0%, #0360ac 100%);
+    background: linear-gradient(top, #037ebf 0%, #0360ac 100%);
+    border-bottom: 2px solid #024589;
+  }
+
+  .simple-cta.simple.left,
+  .simple.left.half-width-box,
+  .simple.left.full-width-box {
+    margin-right: 20px;
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+  }
+
+  .simple-cta.simple.right,
+  .simple.right.half-width-box,
+  .simple.roght.full-width-box {
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: 1px solid #ccc;
+    float: right;
+    margin: 10px;
+  }
+
+  .simple-cta.simple,
+  .simple.half-width-box,
+  .simple.full-width-box {
+    width: 30%;
+    max-width: 200px;
+    min-width: 140px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .simple-cta.full,
+  .full.half-width-box,
+  .full.full-width-box,
+  .half-width-box.full,
+  .full-width-box.full {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .widget__content,
+  .simple-cta .content,
+  .half-width-box .content,
+  .full-width-box .content,
+  .half-width-box .bullet-accordion,
+  .full-width-box .bullet-accordion {
+    padding: 20px 15px 10px;
+    border-top: none;
+    background: #fff;
+  }
+
+  .simple-cta .h4,
+  .half-width-box .h4,
+  .full-width-box .h4,
+  .half-width-box .h4,
+  .full-width-box .h4 {
+    display: block;
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .widget__header,
+  .simple-cta .h4,
+  .half-width-box .h4,
+  .full-width-box .h4,
+  .accordion .h3,
+  .half-width-box .h3,
+  .full-width-box .h3 {
+    background-image: -webkit-linear-gradient(top, #fff 0%, #f0efeb 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0efeb));
+    background-image: linear-gradient(to bottom, #fff 0%, #f0efeb 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF0EFEB', GradientType=0);
+    position: relative;
+    padding: 5px 15px;
+    border-top: 4px solid #047edf;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    text-shadow: 1px 1px 1px white;
+  }
+
+
+  .quote.right {
+    padding: 15px;
+    margin: 0 0 15px 15px;
+    float: right;
+    min-height: 180px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    line-height: 29px;
+    font-style: italic;
+    color: #666;
+    background: transparent url(/wp-content/themes/rehabs-v2/assets/img/snippets/xquote_full.png.pagespeed.ic.hPBuCSzwWl.png) right bottom no-repeat;
+    text-shadow: 1px 1px 1px white;
+  }
+
+  .simple-cta.full,
+  .full.half-width-box,
+  .full.full-width-box,
+  .half-width-box.full,
+  .full-width-box.full {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .widget,
+  .simple-cta,
+  .half-width-box,
+  .full-width-box {
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, .25);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, .25);
+  }
+
+  .cta--help {
+    border-top: 5px solid #9ab777;
+    border-radius: 0 0 5px 5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#232323));
+    background: -webkit-linear-gradient(top, #555, #232323);
+    background: linear-gradient(to bottom, #555, #232323);
+  }
+
+  main.css?ver=1.0:49 .cta {
+    background-color: #111;
+    background: -webkit-gradient(linear, left top, left bottom, from(#414141), to(#232323));
+    background: -webkit-linear-gradient(top, #414141, #232323);
+    background: linear-gradient(to bottom, #414141, #232323);
+    border-radius: 5px;
+  }
+
+  .cta__header--help {
+    margin: 0;
+    padding: 15px 0;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .25);
+    -webkit-box-shadow: inset 0px -1px 1px 0px #555;
+    box-shadow: inset 0px -1px 1px 0px #555;
+  }
+
+  .cta__header--help {
+    margin: 0;
+    padding: 15px 0;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .25);
+    -webkit-box-shadow: inset 0px -1px 1px 0px #555;
+    box-shadow: inset 0px -1px 1px 0px #555;
+  }
+
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .col-xs-12,
+  .quote.full {
+    width: 100%;
+  }
+
+  main.css?ver=1.0:10 .col-xs-1,
+  .col-xs-2,
+  .col-xs-3,
+  .col-xs-4,
+  .col-xs-5,
+  .col-xs-6,
+  .quote.right,
+  .quote.left,
+  .col-xs-7,
+  .col-xs-8,
+  .col-xs-9,
+  .col-xs-10,
+  .col-xs-11,
+  .col-xs-12,
+  .quote.full {
+    float: left;
+  }
+
+  main.css?ver=1.0:10 .col-xs-1,
+  .col-sm-1,
+  .col-md-1,
+  .col-lg-1,
+  .col-xs-2,
+  .col-sm-2,
+  .col-md-2,
+  .col-lg-2,
+  .col-xs-3,
+  .col-sm-3,
+  .col-md-3,
+  .col-lg-3,
+  .col-xs-4,
+  .col-sm-4,
+  .col-md-4,
+  .col-lg-4,
+  .col-xs-5,
+  .col-sm-5,
+  .col-md-5,
+  .col-lg-5,
+  .col-xs-6,
+  .quote.right,
+  .quote.left,
+  .col-sm-6,
+  .col-md-6,
+  .col-lg-6,
+  .col-xs-7,
+  .col-sm-7,
+  .col-md-7,
+  .col-lg-7,
+  .col-xs-8,
+  .col-sm-8,
+  .col-md-8,
+  .col-lg-8,
+  .col-xs-9,
+  .col-sm-9,
+  .col-md-9,
+  .col-lg-9,
+  .col-xs-10,
+  .col-sm-10,
+  .col-md-10,
+  .col-lg-10,
+  .col-xs-11,
+  .col-sm-11,
+  .col-md-11,
+  .col-lg-11,
+  .col-xs-12,
+  .quote.full,
+  .col-sm-12,
+  .col-md-12,
+  .col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  @media (min-width: 768px) main.css?ver=1.0:49 .cta__request-wrapper--help .cta__request {
+    position: relative;
+    top: 0;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+
+
+  .cta__request-header {
+    margin: 20px 0 10px;
+    color: #fff;
+    font-size: 20px;
+    font-family: Oswald, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    text-align: center;
+  }
+
+  .cta__request-buttons-wrapper {
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .cta__info-header--help {
+    display: inline-block;
+    font: italic 18px/20px Alegreya, Georgia, serif;
+    color: #eee;
+    text-shadow: 0px 2px 1px #555;
+    margin-top: 0;
+  }
+
+  .cta__header--help {
+    margin: 0;
+    padding: 15px 0;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .25);
+    -webkit-box-shadow: inset 0px -1px 1px 0px #555;
+    box-shadow: inset 0px -1px 1px 0px #555;
+  }
+
+  .cta__header--help {
+    margin: 0;
+    padding: 15px 0;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .25);
+    -webkit-box-shadow: inset 0px -1px 1px 0px #555;
+    box-shadow: inset 0px -1px 1px 0px #555;
+  }
+
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .col-xs-12,
+  .quote.full {
+    width: 100%;
+  }
+
+  main.css?ver=1.0:10 .col-xs-1,
+  .col-xs-2,
+  .col-xs-3,
+  .col-xs-4,
+  .col-xs-5,
+  .col-xs-6,
+  .quote.right,
+  .quote.left,
+  .col-xs-7,
+  .col-xs-8,
+  .col-xs-9,
+  .col-xs-10,
+  .col-xs-11,
+  .col-xs-12,
+  .quote.full {
+    float: left;
+  }
+
+  main.css?ver=1.0:10 .col-xs-1,
+  .col-sm-1,
+  .col-md-1,
+  .col-lg-1,
+  .col-xs-2,
+  .col-sm-2,
+  .col-md-2,
+  .col-lg-2,
+  .col-xs-3,
+  .col-sm-3,
+  .col-md-3,
+  .col-lg-3,
+  .col-xs-4,
+  .col-sm-4,
+  .col-md-4,
+  .col-lg-4,
+  .col-xs-5,
+  .col-sm-5,
+  .col-md-5,
+  .col-lg-5,
+  .col-xs-6,
+  .quote.right,
+  .quote.left,
+  .col-sm-6,
+  .col-md-6,
+  .col-lg-6,
+  .col-xs-7,
+  .col-sm-7,
+  .col-md-7,
+  .col-lg-7,
+  .col-xs-8,
+  .col-sm-8,
+  .col-md-8,
+  .col-lg-8,
+  .col-xs-9,
+  .col-sm-9,
+  .col-md-9,
+  .col-lg-9,
+  .col-xs-10,
+  .col-sm-10,
+  .col-md-10,
+  .col-lg-10,
+  .col-xs-11,
+  .col-sm-11,
+  .col-md-11,
+  .col-lg-11,
+  .col-xs-12,
+  .quote.full,
+  .col-sm-12,
+  .col-md-12,
+  .col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cta__request-header {
+    margin: 20px 0 10px;
+    color: #fff;
+    font-size: 20px;
+    font-family: Oswald, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    text-align: center;
+  }
+
+  .cta__request-buttons-wrapper {
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .listing-results-wrapper .listing-results-list li:first-of-type {
+    margin: 0 0 0 0;
+  }
+
+  application-e82…111253b7.css:5 .listing-results-wrapper .listing-results-list li.listing-card {
+    box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    background-color: #fff;
+    margin: 30px 0 0 0;
+    padding-bottom: 20px;
+  }
+
+  application-e82…111253b7.css:5 .listing-card {
+    padding: 10px;
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .listing-results-wrapper .listing-results-list {
+    margin: 0;
+    padding: 0 0 0 30px;
+    list-style: none;
+    width: 100%;
+  }
+
+  .listing-card article .img-container {
+    max-width: 250px;
+    min-width: 175px;
+    padding: 5px;
+    width: 100%;
+  }
+
+  .listing-card article section header .content {
+    overflow: auto;
+  }
+
+  .listing-card .btn-wrapper {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+  }
+
+  .listing-card .learn-more-btn,
+  .listing-card .get-pricing-btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    font-size: 16px;
+    padding: 9px 30px;
+    box-shadow: 0 0 10px #cecece;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .listing-card .get-pricing-btn {
+    background-color: #1073a5;
+    color: #fff;
+  }
+
+  application-e82…111253b7.css:5 .listing-card .learn-more-btn,
+  .listing-card .get-pricing-btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    font-size: 16px;
+    padding: 9px 30px;
+    box-shadow: 0 0 10px #cecece;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .listing-card:hover,
+  .listing-card:active {
+    transition: box-shadow .25s;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.6) !important;
+  }
+</style>
+<div class="container">
+  <div>
+    <div class="row header-cta">
+      <div class="col-xs-12">
+        <span class="font-serif desc">Addiction Network Helps Thousands of Addicts Quit. It Can Help You, Too.</span>
+        <div class="header-cta-phone-wrapper">
+          <a class="tel" href="tel:+18442318663"><i class="glyphicon glyphicon-earphone"></i><span class="cts-tfn-wrap" data-invoca="2100" data-type="main">1-844-231-8663</span></a>
+        </div>
+      </div>
+    </div>
+
+    <h1> How to Find the Best Heroin Addiction Treatment Program </h1>
+
+    Heroin rehab treatment is more important than ever before. Addiction to heroin and other opioid drugs is a medical and mental health crisis that continues to be detrimental to thousands of Americans nationwide and millions of people around the world. About 64,000 people died from drug overdoses in the United States in 2016. Overdoses of heroin and other drugs are now the leading cause of death for Americans under the age of fifty. The most gut-wrenching part of it all, however, is the fact that those deaths were preventable. Addiction is not a death sentence. Heroin addiction treatment rehabs can help. Heroin rehabilitation treatment programs save the lives of many and provide effective rehab treatment to help people end their heroin addictions. There are many approaches to heroin rehab treatment and there are a lot of programs for someone struggling with heroin addiction. At first, a person with a heroin addiction must choose the most suitable rehab treatment setting. These rehab treatment options include inpatient/residential programs or an outpatient treatment program. Many heroin rehab programs offer medical detoxification (detox) programs and other help at the beginning of such addiction treatment. Since heroin addiction is often a family disease, rehab treatment facilities often offer support, help, therapy, and programs for the friends and family members of the individuals in addiction treatment. The first step toward recovery from heroin addiction is finding the right heroin treatment rehab center. Many heroin addicts are afraid of becoming sober, but the right rehab treatment center can create a strong sober support system. This could make sobriety from a heroin addiction possible and even enjoyable.
+
+    <span class="cta-box-link">If you have a drinking problem and would like to receive more information about alcohol rehab centers, call our 24-hour hotline at</span>
+    <a href="tel:+8442318663">
+      <span class="cts-tfn-wrap" data-invoca="2100" data-type="main">
+        <span class="phone-number">1-844-231-8663</span>
+      </span>
+    </a>
+    <span> today to speak with a knowledgeable representative.</span>
+
+
+    <h2> Inpatient/Residential Facilities vs. Outpatient Addiction Facilities </h2>
+
+    <img class="alignright size-medium wp-image-714" title="" src="https://www.eliterehabplacement.com/wp-content/uploads/2016/03/Drug-Detox-300x200.jpg" alt="" width="300"> When it is time to find rehab treatment for a heroin addiction, you have the option between going to an outpatient treatment clinic or an inpatient residential rehab center. There are different benefits to each type of heroin rehab treatment and make sure you do your research before choosing. Heroin is a drug that can be highly physically and mentally addictive. This means that your body will actually suffer from withdrawal symptoms when you quit using heroin. This withdrawal period from addiction can be very uncomfortable. It can feel like the worst flu you have ever had times ten. A huge benefit of inpatient treatment rehab programs is that many residential heroin rehabs have safe detox procedures. Detox programs in a rehab treatment center that offers 24-hour medical care can make the heroin treatment process less painful and reduce the risk of relapse.
+
+    <h3> Outpatient Rehab Treatment Facilities </h3>
+
+    Outpatient rehab facilities can vary widely. Outpatient rehab clinics might offer heroin rehab treatment in the form of education, group therapy, individual therapy, and even psychiatric care or medication-assisted treatment (MAT) to help people end their heroin addiction and use of other drugs. Outpatient treatment plans usually cater to the individual’s needs, meaning that a rehab center develops the intensity of the heroin treatment program on a case-by-case basis. Outpatient treatment rehab facilities follow different guidelines, but typically, outpatient rehab treatment involves three or more days a week and multiple hours for each heroin rehab treatment session. Many outpatient treatment plans for heroin addiction require drug screening along with requirements to attend recovery support group meetings such as Alcoholics Anonymous (AA) and Narcotics Anonymous (NA). People often choose outpatient rehab treatment because many such heroin treatment programs give them the option to live at their own homes and the ability to continue working while seeking help for their addiction. The time commitment needed for effective rehab is one of the main reasons a person might decide to attend an outpatient program at a rehab treatment center.
+
+
+    <h3>Treatment at an Inpatient Heroin Center </h3>
+
+    Heroin is one of the most addictive substances in the world and might be considered the king of narcotics. It should not be surprising that thousands of people need rehab treatment programs for heroin addiction. If you or a loved one is struggling with heroin addiction and are considering a treatment center or outpatient program, you might want to ask yourself the following questions:
+
+    <ul>
+      <li> Is your heroin use making you more isolated? </li>
+      <li> Do you find that your heroin use is causing problems at work, home, or school? </li>
+      <li> Are you struggling financially because of your heroin addiction? </li>
+      <li> Are your relationships crumbling because of your heroin addiction? </li>
+      <li> Have you tried stopping your use of heroin but were unsuccessful? </li>
+      <li> Have you ever stolen anything, including money or jewelry, to buy drugs and support your heroin use? </li>
+    </ul>
+
+    If you answered “yes” to one ore more of the above questions, you might benefit from a residential heroin rehab treatment program. All of the above questions are warning sings of opioid use disorder. (Opioids are drugs such as heroin that can make people high.) Although heroin addiction is a serious condition, it can be treated if rehabs provide the right help.
+
+    <div class="simple-cta simple right">
+      <img class="center" src="https://www.eliterehabplacement.com/wp-content/uploads/2016/02/Teen-Group-Therapy.jpg" alt="therapy" width="200" height="125">
+      <div class="content">
+        <span class="h4">60 Days (Two Months) Program</span>
+        <br> When a loved one has a problem with an addiction or <a href="https://www.eliterehabplacement.com/wp-content/uploads/2016/02/Teen-Group-Therapy.jpg">behavioral disorder</a>, it diminishes their quality of life and destroys interpersonal relationships. Addictions gradually take over the person's life as they begin to neglect job duties or academic performance. <a class="more" href="https://www.eliterehabplacement.com/wp-content/uploads/2016/02/Teen-Group-Therapy.jpg">Read More</a>
+      </div>
+    </div>
+
+    <h2> What Is the Difference Between Heroin Tolerance and Heroin Dependence? </h2>
+
+    Tolerance and dependence are two very different things. Tolerance develops similarly in many types of addiction. People develop tolerances to the effects of heroin or other substances if they use these substances regularly. So, if you develop a tolerance to heroin, the more you use heroin, the more you will have to use to get the same effects. When you abuse heroin, you might never feel as good as the first time you used it. When you use anytime after that, you are chasing that initial feeling and feeding your growing addiction. A dependence to drugs occurs when people who use heroin or other drugs begin to feel that they need to use heroin or other substances in order to function normally. When people who are dependent on heroin stop using the drug, they will frequently experience heroin withdrawal symptoms such as:
+
+    <ul>
+      <li> Nausea </li>
+      <li> Abdominal pain </li>
+      <li> Sweating </li>
+      <li> Shaking </li>
+      <li> Nervousness </li>
+      <li> Agitation </li>
+      <li> Depression </li>
+      <li> Muscle spasms </li>
+      <li> Cravings for drugs </li>
+      <li> Relapse </li>
+      <li> Flu-like symptoms </li>
+    </ul>
+
+    Constantly using and withdrawing from heroin can be painful and dangerous. These behaviors create a gruesome cycle that can be very hard to break. As people continue to use heroin for long periods of time, their tolerance for the drug increases. With that increase in tolerance also comes longer and more severe heroin withdrawal symptoms. A good way to break this cycle is to seek help from a heroin treatment program at a rehab center. This rehab treatment center can help you detox from heroin and rehabilitate you back into society.
+
+
+    <h2> Privacy and Confidentiality in Your Treatment Program </h2>
+
+    One of the biggest concerns people have before entering a heroin treatment center is privacy. Rest assured, it is completely normal to be worried about the privacy and confidentiality of your rehab treatment center. But regardless of the heroin rehab treatment center you choose, all rehabs should offer a level of privacy and confidentially that is mandated by federal regulation known as HIPAA, which stands for the Health Insurance Portability and Accountability Act. The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) classifies addiction as a condition known as a substance use disorder. Heroin treatment rehabs are legally responsible to respect your privacy and keep your personal treatment confidential unless YOU have provided consent to share information or there is a valid reason to do so. Are you looking for a higher level of personal privacy? There are luxury treatment facilities that offer private rooms and even spa facilities. No two heroin treatment rehabs are alike but all rehabs should emphasize the importance of keeping the details of your rehab treatment programs private and confidential.
+
+    <h2> How Long Is a Stay at a Typical Heroin Rehab Center? </h2>
+
+    There is no definitive answer for this question, since the length of time spent at an inpatient heroin rehab center can vary. The length of rehab treatment depends on the individual. The most common treatment programs are around 30 days, but some rehabs offer 60- and 90-day treatment programs. The length of your rehab stay depends on how long people have struggled with their heroin addictions, whether they have other mental or medical disorders, and other factors. Studies show that a 90-day minimum stay in a residential rehab treatment center can be an essential part of a successful recovery from heroin addiction or other drug abuse. But did you know that a rehab treatment program can last longer than 90 days? Some rehabs offer longer treatment programs. Such rehabs provide additional support for those who have completed previous a rehab program but relapsed, individuals with a dual diagnosis (a diagnosis of both addiction and a mental disorder such as anxiety or depression), physical health issues, or those who lack a stable living environment. There are even some drug rehabs that offer treatment programs that can last as long as a year.
+    <br/>
+    <br/>
+    <div class="simple-cta full">
+      <span class="h4">Do Amenities Matter?</span>
+      <p></p>
+      <div class="content">
+        <a href="https://www.eliterehabplacement.com/wp-content/uploads/2016/03/Treatment-Options-for-Alcohol-Abuse-200x300.jpg">
+          <img class="right" src="https://www.eliterehabplacement.com/wp-content/uploads/2016/03/Treatment-Options-for-Alcohol-Abuse-200x300.jpg" alt="Differences in Preferences before and after Treatment" width="300" style="margin-left: 20px; margin-top: 25px;" pagespeed_url_hash="1174710169" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </a>Recovery Brands collected data in 2016 that asked people leaving an addiction rehabilitation facility what center attributes they saw as high priority things to examine when looking at treatment programs. The top-rated priority was the program's monetary policies, like financial support, payment options, and insurance accepted. They also placed a high importance on the program's offerings (facility housing, recreation, food quality, etc.) a lot more upon leaving treatment. Those considering treatment will want to examine a center's financial policies as well as program offerings to inform their final facility choice. <a class="more" href="/wp-content/uploads/Pre-and-Post-Treatment.pdf">Read More</a>
+      </div>
+    </div>
+
+    <h2> The Heroin Treatment Process </h2>
+
+    <h3> The Intake Process at Rehabs </h3>
+
+    Heroin rehab treatment typically starts with an intake appointment at a treatment center. At this time, you will sign formal consent forms for your rehab treatment and staff members will explain the program rules to you. During the intake process at rehabs, the staff will also ask you questions about your physical and mental health and your substance abuse history. Sometimes they will give you a physical exam to determine your general health. After the intake assessment at rehabs, counselors or case managers and other professionals will draft your rehab treatment programs, including estimates on how long your rehab stay might be. You can ask any questions you may have about heroin rehab treatment and your treatment center at this time.
+
+    <h3> Heroin Detox at Rehabs </h3>
+
+    What is it really like to withdraw from heroin? Heroin detox can be a very uncomfortable process. While the withdrawal symptoms usually cannot kill you, many people at rehabs have reported that they feel like they were dying during this time. Detox programs at rehabs can be physically and psychologically stressful. Many drug treatment rehabs have heroin detox programs that are designed to help you wean off the drug and relieve withdrawal symptoms, all while your body adjusts to functioning without heroin or other drugs. You should thus complete heroin detox and other forms of rehab treatment with medical supervision. Heroin detox programs are different depending on which treatment program or rehab center you choose. Some rehab facilities use an on-site medical-assisted program. A medical detox rehab program provides patients with tapering doses of replacement medications such as Suboxone, buprenophine, naloxone, or methadone. Such drugs can help reduce the painful symptoms of heroin withdrawal in the safe and medically monitored settings of rehabs. The other type of detox is an abstinence-only or social detox. An abstinence-only detox program does not use replacement drugs. Instead, this program requires people to stop using heroin without any major medical assistance from rehabs or other sources. Many people find this detox treatment program quite challenging due the painful nature of heroin detox. Because of this, using medication-assisted treatment (MAT) in the detox process is a common way many rehabs manage heroin dependence.
+
+
+    <h3> Therapy at Rehabs </h3>
+
+    After detox, the hard part of heroin rehab treatment is over, right? Not quite. While finishing detox is a significant accomplishment, people who have achieved this milestone at rehabs still have work to do at rehabs and on their own. That is because the physical agony of heroin withdrawal symptoms might last days, but the psychological withdrawal symptoms might last a lot longer. As a consequence, after the detox stage is over, many people enter rehab addiction therapy as the next phase of their rehab treatment. There are many different program options for therapy at heroin treatment facilities. Most rehabs include individual and group therapy and offer general education about addiction. Since heroin addiction is often considered a family disease, many heroin rehabs incorporate family counseling sessions. Rehabs have found that heroin addiction often coexists with a dual diagnosis. Dual diagnosis is the term professionals use when a person has a mental illness such as depression or bipolar disorder along with a problem with addiction. If you or a loved one is struggling with a dual diagnosis, seeking rehab treatment facilities that specialize in dual diagnosis care makes sense, since such treatment facilities use tactics that address both heroin addiction and mental illness.
+
+    <h3> Aftercare after a Rehab Stay </h3>
+
+    Heroin addiction and drug use in general are disorders that have no known cure. Recovery is possible and very achievable but it is a lifelong process. Some say that the real recovery starts outside of rehab treatment, so listen to the professionals at your heroin treatment facilities. If such rehabs believe that you need aftercare, it is something to definitely consider. (Aftercare is continuing care and other help after people leave rehab.) Drug rehab treatment gives you the tools to live life without the aid of drugs or alcohol. For addicts who have just left their rehabs, this might seem impossible at first. Aftercare at rehabs, though, provides the tools people can use to abstain from drugs. During the treatment process at a rehab center, trained counselors work with each individual to develop an aftercare plan. Aftercare options include outpatient treatment, private therapy, 12-step support group meetings such as AA and NA, long-term residential treatment, and sober living housing.
+
+    <div class="simple-cta full">
+      <span class="h4">Alcohol Abuse Rates Among Addiction Treatment Patients</span>
+      <p></p>
+      <div class="content">
+        <img src="https://www.eliterehabplacement.com/wp-content/uploads/2017/05/Optimized-1Marijuana-vs.-Opioids.jpg" alt="most-treated-substances" width="360" height="450" class="alignnone size-full wp-image-44528">
+        <br> Alcohol is abused at a higher rate than any other drug among treatment program attendees, as reported by a 2017 Recovery Brands survey. 68.85% of the entire responding population went to treatment to get help with a drinking problem, and nearly 53% of people sought alcohol abuse treatment more than any other substance. Out of all the substances that people abuse and receive treatment for, alcohol continues to be one of the most troublesome. <a target="_blank" class="more" href="https://www.eliterehabplacement.com/wp-content/uploads/2017/05/Optimized-1Marijuana-vs.-Opioids.jpg">View Large Graph</a>
+      </div>
+    </div>
+
+
+    <h2> Paying for Addiction Rehab Treatment </h2>
+
+    Sure, a rehab treatment program can be expensive, but how much is your or your loved one’s life worth? The costs of rehab treatment facilities vary among rehabs but there are many options to help you cover the costs of treatment. Private insurance, sliding scale fees, loans, or payment plans are all reliable options at many treatment facilities.
+
+
+    <h2> Should I Travel to Heroin Rehab Treatment? </h2>
+
+    The option of traveling to heroin rehab or staying close to home for rehab treatment is completely up to individuals. If people have strong sober communities and the support of friends and family members, staying home for treatment might be their best option. However, many addicts find that traveling away from home to stay at rehab treatment facilities helps them start their recovery journeys. Traveling to heroin rehab treatment facilities might also help separate people from people and situations that triggered their heroin addiction. So, if your heroin addiction developed close to home where you are surrounded by bad influences, we strongly suggest finding rehab treatment facilities in another location. Feeling safe and comfortable enough to focus solely on your recovery should be your top priority.
+
+
+    <h2> Luxury Rehab and Executive Treatment Program Options </h2>
+
+    How does having your own private room in a resort-like setting overlooking the ocean sound? It sounds more like a vacation than an addiction rehab program, right? Many luxury treatment rehabs provide cutting-edge treatment, five-star amenities, and a great deal of privacy. These rehabs help individuals recover from heroin addiction in comfortable facilities that can include exercise facilities, massages, and other luxurious comforts. An executive treatment program might allow individuals to continue working throughout rehab treatment if they desire.
+
+    <span class="cta-box-link">If you have a drinking problem and would like to receive more information about alcohol rehab centers, call our 24-hour hotline at</span>
+
+    <a href="tel:+8442318663">
+      <span class="cts-tfn-wrap" data-invoca="2100" data-type="main">
+        <span class="phone-number">1-844-231-8663</span>
+      </span>
+    </a>
+    <span> today to speak with a knowledgeable representative.</span>
+
+    <h2> Treatment Options After Heroin Rehab Treatment </h2>
+
+    The primary goal of heroin rehab is to help patients become sober and stay that way. After rehab treatment, there are a few options for people trying to fight their addiction and continue their recovery, including:
+
+    <ul>
+
+      <li> Outpatient rehab treatment programs </li>
+      <li> 12-step or self-help meetings </li>
+      <li> Private counseling or therapy sessions </li>
+      <li> Sober houses, three-quarter houses, or halfway houses (temporary housing between rehab treatment and the “real world”) </li>
+
+    </ul>
+
+    Closely following an aftercare treatment agenda will ensure you the best chance at long-term sobriety from your heroin addiction.
+
+
+    <h2> Are You Ready for Rehab Treatment? </h2>
+
+    Determining the right time enter a heroin rehab treatment program may be difficult, but if you are already asking yourself that question, it may be time. Ask yourself if it is time to quit. If you answer “yes,” it is time to seek rehab treatment.
+
+
+    <h2> Interventions </h2>
+
+    We have all seen the television show Intervention and other depictions of interventions. Most people have heard of interventions, but what exactly are they? Interventions are meetings where the participants aim to convince someone to enter rehab treatment for a heroin addiction or other substance abuse problem. A trained interventionist or other professional typically directs such meetings. During interventions, close family members and friends express their love and concern for the person who is abusing drugs or alcohol. The family and friends also vocalize how the individual’s addiction has affected them and typically use such meetings to discuss rehabs and other treatment program options with their loved one.
+
+    <h2> Finding the Right Heroin Rehab Treatment Program </h2>
+
+    Are you sick and tired of being sick and tired? It is never too late to turn your life around and free yourself from the disease of heroin addiction. Recovery is a lifelong process and can be very difficult. But recovery is still easier than addiction. People who find rehab treatment and other help have a greater chance of living in recovery. They are generally healthier, happier, and grateful to such rehabs for their improved lives. NEED CALL TO ACTION HERE Maybe this??? “Trying to find this recovery may seem confusing, even overwhelming, but it does not need to be. By calling ???-???-???? or clicking HERE, our rehab treatment experts can help you place you on this path to recovery and help you each step of the way.
+
+    <br/>
+    <br/>
+    <div class="cta cta--help clearfix">
+      <p class="h4 cta__header--help">
+        Need Help? Contact a AddictionNetwork.com Sponsor Treatment Center Below
+      </p>
+      <div class="row">
+        <div class="col-xs-12 col-sm-7">
+          <div class="cta__info-call-wrapper--help">
+            <span class="h4 cta__info-header--help">
+              Call us toll free 24/7 at
+            </span>
+            <a href="tel:+18888761692" class="h2 cta__info-phone--help">
+<i class="glyphicon glyphicon-earphone"></i> <span class="cts-tfn-wrap" data-invoca="2100" data-type="main">1-888-876-1692</span>   </a>
+          </div>
+        </div>
+        <div class="cta__request-wrapper--help">
+          <div class="col-xs-12 col-sm-5">
+            <div class="cta__request">
+              <div class="h3 cta__request-header">
+                <span class="glyphicon glyphicon-comment text-info"></span>&nbsp; REQUEST A CALL
+                <span class="text-primary">
+                  WE'RE AVAILABLE 24/7
+                </span>
+              </div>
+              <div class="cta__request-buttons-wrapper">
+                <a href="#modal-help" class="btn btn-info btn-lg cta__request-button-call" data-plugin="popup">
+<i class="glyphicon glyphicon-play-circle"></i>
+Request a call
+</a>
+                <a href="#modal-quick-contact" class="btn btn-primary btn-lg cta__request-button-email" data-plugin="popup">
+<i class="glyphicon glyphicon-envelope"></i>
+Email form
+</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

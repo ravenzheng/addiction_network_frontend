@@ -28,7 +28,8 @@ angular.module(appName, [
   require('./insurance'),
   require('./searchState'),
   require('./signUp'),
-  require('./privacyPolicy')
+  require('./privacyPolicy'),
+  require('./adn')
 
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
