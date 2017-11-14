@@ -4,14 +4,8 @@ angular.module(moduleName, ['ui.router'])
   .component('about', {
     template: require('./view.html')
   })
-  .controller('AboutUsCtrl', function ($scope, $location, $rootScope) {
-    $scope.$on('$stateChangeSuccess', function changedPage() {
-      $rootScope.title = 'About Us';
-      $rootScope.description = 'About Us';
-    });
-    // });
-  })
   .component('content', require('./content'))
+  .controller('aboutUsCtrl', require('./ctrl'))
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.ABOUT_US,
