@@ -15,7 +15,7 @@ angular.module(moduleName, ['ui.router'])
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.ABOUT_US,
-      url: '/about',
+      url: '/about-us',
       template: '<about></about>'
     });
   }]);

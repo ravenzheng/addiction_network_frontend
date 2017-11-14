@@ -96,5 +96,7 @@ module.exports = {
   'CENTER_DETAIL': 'treatmentCenterDetail',
   'FEATURED_CENTER': 'featuredTreatmentCenterPage',
   'PRIVACY_POLICY': 'privacyPolicy',
-  'ADN': 'adn'
+  'ADN': 'adn',
+  'ABOUT': 'about',
+  'ABOUTSINGLE': 'aboutsingle'
 };
