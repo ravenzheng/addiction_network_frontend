@@ -176,6 +176,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           totalStates += vm.priceState;
           totalItems++;
         }
+
       } else if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[$rootScope.activeCenter] === false) {
         states = [];
         totalStates = 0;
