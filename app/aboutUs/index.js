@@ -1,7 +1,7 @@
 var moduleName = 'app.aboutUs';
 
 angular.module(moduleName, ['ui.router'])
-  .component('about', {
+  .component('aboutUs', {
     template: require('./view.html')
   })
   .controller('About', function ($scope, $location, $rootScope) {
@@ -15,8 +15,8 @@ angular.module(moduleName, ['ui.router'])
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.ABOUT_US,
-      url: '/about',
-      template: '<about></about>'
+      url: '/about-us',
+      template: '<aboutUs></aboutUs>'
     });
   }]);
 
