@@ -45,8 +45,8 @@ var internalLinksNoAuth = [{
   uiSref: UIState.CONTACT_US,
   name: 'Contact Us'
 }, {
-  // uiSref: UIState.ADD_LISTING.CONTACT_INFO,
-  uiSref: UIState.SIGN_UP.WELCOME,
+  uiSref: UIState.ADD_LISTING.CONTACT_INFO,
+  // uiSref: UIState.SIGN_UP.WELCOME,
   name: 'Signup'
 }, {
   uiSref: UIState.LOGIN,

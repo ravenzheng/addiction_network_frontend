@@ -12,7 +12,7 @@ angular.module(appName, [
   require('./advertisement'),
   require('./myProfile'),
   require('./featuredTreatmentCenter'),
-  // require('./addListing'),
+  require('./addListing'),
   require('./aboutUs'),
   require('./contactUs'),
   require('./contactThank'),
@@ -27,15 +27,15 @@ angular.module(appName, [
   require('./loginHelp'),
   require('./insurance'),
   require('./searchState'),
-  require('./signUp'),
-  require('./privacyPolicy')
+  // require('./signUp'),
+  // require('./privacyPolicy')
 
 ]).component('header', require('./header'))
   .component('footer', require('./footer'))
   .constant('endPoint', require('./endPoint'))
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
-    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
   }])
   .config(['$urlRouterProvider', function ($urlRouterProvider) {
     // .when('/customers', route.resolve('Customers'))
