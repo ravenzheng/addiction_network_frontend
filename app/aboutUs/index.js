@@ -1,10 +1,10 @@
 var moduleName = 'app.aboutUs';
 
 angular.module(moduleName, ['ui.router'])
-  .component('aboutUs', {
+  .component('about', {
     template: require('./view.html')
   })
-  .controller('About', function ($scope, $location, $rootScope) {
+  .controller('AboutUsCtrl', function ($scope, $location, $rootScope) {
     $scope.$on('$stateChangeSuccess', function changedPage() {
       $rootScope.title = 'About Us';
       $rootScope.description = 'About Us';
@@ -15,8 +15,8 @@ angular.module(moduleName, ['ui.router'])
   .config(['$stateProvider', 'UIState', function ($stateProvider, UIState) {
     $stateProvider.state({
       name: UIState.ABOUT_US,
-      url: '/about-us',
-      template: '<aboutUs></aboutUs>'
+      url: '/about',
+      template: '<about></about>'
     });
   }]);
 
