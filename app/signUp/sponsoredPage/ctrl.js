@@ -161,8 +161,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
       $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
       // SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
-      SponsorService.editSponsorSignup(formData, cenId, token).then(function () {
+      SponsorService.editSponsorSignup(formData, cenId, token).then(function (res) {
         ci++;
+        $log.info('result: ');
+        $log.info(res);
         if (ci > (centerIds.length - 1)) {
           $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
           //    $rootScope.addListingStepDone = 6;
@@ -181,8 +183,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         throw err;
       });
     };
+
     var ci = 0;
     if (centerIds.length > 0) {
+      //consoele.log('cen id: ' + );
       vm.submitSingle(ci);
     } else {
       $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
@@ -190,7 +194,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   };
 
   vm.submit = function () {
-    // openPrompt();
+    //openPrompt();
     vm.submitComplete();
   };
 

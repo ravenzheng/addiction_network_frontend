@@ -11,6 +11,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   service.getCartDetails(token).then(function (result) {
     //  $log.info(result);
     vm.cartDetails = result.cart_subscription;
+
   }).catch(function (err) {
     $log.info(err);
   });
