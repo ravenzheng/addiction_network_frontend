@@ -90,7 +90,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         i++;
       }
 
-      if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[cen] === true) {
+      if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[centerId] === true) {
         for (key in $rootScope.statesSel[centerId]) { // state ids
           id = String($rootScope.statesSel[centerId][key].id);
           sponsoredListingIds[i] = id;
@@ -148,7 +148,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
     vm.submitSingle = function (ci) {
       var cenId = String(centerIds[ci]);
-
       var formData = new FormData();
       var sponsorData = {
         // 'sponsored_listing_layout_ids': sponsoredListingIds,
@@ -163,7 +162,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       // SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
       SponsorService.editSponsorSignup(formData, cenId, token).then(function (res) {
         ci++;
-        $log.info('result: ');
         $log.info(res);
         if (ci > (centerIds.length - 1)) {
           $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);

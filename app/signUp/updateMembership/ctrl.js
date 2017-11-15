@@ -17,14 +17,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     $state.go(UIState.SIGN_UP.SPONSER);
   };
   vm.sponsored = function () {
-    localStorageService.set('membershipType', 'sponsored', 'sessionStorage');
     setMembershipType('sponsored');
-
+    // localStorageService.set('membershipType', 'sponsored', 'sessionStorage');
     // $state.go(UIState.ADD_LISTING.CENTER_INFO);
     //  $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
   };
   vm.featured = function () {
-    localStorageService.set('membershipType', 'featured', 'sessionStorage');
+    // localStorageService.set('membershipType', 'featured', 'sessionStorage');
     setMembershipType('featured');
 
     // $state.go(UIState.ADD_LISTING.CENTER_INFO);
@@ -52,6 +51,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
         'package_name': membershipName,
         'cost': 5
       };
+      localStorageService.set('membershipType', type, 'sessionStorage');
       localStorageService.set('membership', membership);
       rm.$emit(Status.SUCCEEDED, 'Updated');
       $state.go(UIState.SIGN_UP.SPONSER);

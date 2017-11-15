@@ -14,7 +14,8 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         if (angular.isDefined(sponsoredInfo.cityModel) && angular.isDefined(sponsoredInfo.countyModel)) {
           $rootScope.cityModel = sponsoredInfo.cityModel;
           $rootScope.countyModel = sponsoredInfo.countyModel;
-          $rootScope.statesSel = sponsoredInfo.statesSel;
+
+          //  $rootScope.statesSel = sponsoredInfo.statesSel;
           $rootScope.statesDetail = sponsoredInfo.statesDetail;
           //  $rootScope.treatmentCentersValue = sponsoredInfo.centersValue;
 
@@ -36,7 +37,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     }
 
     if (angular.isUndefined($rootScope.countyModel) || $rootScope.countyModel === null) {
-      console.log('county, city not def');
+      console.log('--notdef --');
       return;
     }
 
@@ -186,7 +187,14 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         // reset checkall state
         $rootScope.checkedAllStates[$rootScope.activeCenter] = null;
       }
-      $rootScope.statesSel = states; // states
+      //$rootScope.statesSel = states; // states
+      if (angular.isDefined($rootScope.statesSel[$rootScope.activeCenter])) {
+        $rootScope.statesSel[$rootScope.activeCenter] = states
+      } else {
+        // $log.info('not defined');
+        $rootScope.statesSel = {};
+        $rootScope.statesSel[$rootScope.activeCenter] = states;
+      }
 
       vm.treatmentCenters = [];
       vm.demographic = [];
@@ -351,7 +359,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         'paymentTotal': vm.paymentTotal,
         'byDrug': vm.byDrug,
         'byDrugTotal': vm.byDrugTotal,
-        'statesSel': $rootScope.statesSel,
+        'statesSel': $rootScope.statesSel[$rootScope.activeCenter],
         'stateTotalCost': vm.stateTotalCost,
         'cities': $rootScope.cities,
         'cityTotalCost': vm.cityTotalCost,

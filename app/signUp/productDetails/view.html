@@ -25,35 +25,88 @@
         </div>
       </div>
       <div class="col-md-12 ">
-        <div class="row ">
-          <div class="col-md-4 ">
+        <div class="row">
+          <div class="col-md-4">
             <label>Center Name</label>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
             <label>Product</label>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label>Cost</label>
           </div>
           <div class="col-md-1"></div>
         </div>
-        <div class="row" ng-repeat="item in $ctrl.cartDetails.items">
-          <div class="col-md-4">
-            <span>{{item.name}}</span>
-          </div>
-          <div class="col-md-4">
-            <span>Total</span>
-          </div>
-          <div class="col-md-3">
-            <span>10$</span>
-          </div>
-          <div class="col-md-1">
-            <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-          </div>
 
+        <div class="row" ng-repeat="item in $ctrl.cartDetails.items" ng-init="$ctrl.productShow[item.id]=0;$ctrl.centerToggleIconClass[item.id]='fa-plus-square-o';">
+          <div class="col-md-12">
+            <div class="col-md-4">
+              <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.centerToggle(item.id)"><i class="fa {{$ctrl.centerToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i></span>
+              <span>{{item.name}}</span>
+            </div>
+            <div class="col-md-5">
+              <span>Total</span>
+            </div>
+            <div class="col-md-2">
+              <span>10$</span>
+            </div>
+            <div class="col-md-1">
+              <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+            </div>
+          </div>
+          <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.membershipShow[item.id]=0; $ctrl.membershipToggleIconClass[item.id]='fa-plus-square-o';">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-5">
+              <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.membershipToggle(item.id)"><i class="fa {{ $ctrl.membershipToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> Membership</span>
+              <div class="col-md-12" ng-show="$ctrl.membershipShow[item.id]">
+                <span ng-if="item.type==='sponsored'">Gold</span>
+                <span ng-if="item.type==='featured'">Platinum</span>
+                <span ng-if="!item.type">Not available</span>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <br><span ng-show="$ctrl.membershipShow[item.id]">{{item.total_price}}$</span>
+            </div>
+            <div class="col-md-1">
+            </div>
+          </div>
+          <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.sponsorshipShow[item.id]=0; $ctrl.sponsorshipToggleIconClass[item.id]='fa-plus-square-o';">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-5">
+              <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.sponsorshipToggle(item.id)"><i class="fa {{$ctrl.sponsorshipToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> <span>Sponsorship</span></span>
+              <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id]">
+                <span ng-repeat="spons in item.sponsored_layouts"><span style="font-style: italic;">{{spons.name}}</span>,<br></span>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <br>
+              <span ng-show="$ctrl.sponsorshipShow[item.id]" ng-repeat="spons in item.sponsored_layouts"><br><span>{{spons.total_price}}$</span><br></span>
+            </div>
+            <div class="col-md-1">
+            </div>
+          </div>
+          <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.adsShow[item.id]=0;$ctrl.adsToggleIconClass[item.id]='fa-plus-square-o';">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-5">
+
+              <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.adsToggle(item.id)"><i class="fa {{$ctrl.adsToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> <span>Ads</span></span>
+              <div class="col-md-12" ng-show="$ctrl.adsShow[item.id]">
+                <span ng-repeat="ads in item.banner_ads"><span style="font-style: italic;">{{ads.name}}</span>,<br></span>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <br>
+              <span ng-show="$ctrl.adsShow[item.id]" ng-repeat="ads in item.banner_ads"><br><span>{{ads.total_price}}$</span><br></span>
+            </div>
+            <div class="col-md-1">
+            </div>
+          </div>
         </div>
 
-        <div class="row" ng-if="$ctrl.membership!==''" style="padding-top:5px;">
+        <div ng-show="0" class="row" ng-if="$ctrl.membership!==''" style="padding-top:5px;">
           <div class="col-md-4">
             <span></span>
           </div>

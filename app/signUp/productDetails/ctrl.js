@@ -9,7 +9,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   vm.cartDetails = [];
   // get cart details using api
   service.getCartDetails(token).then(function (result) {
-    //  $log.info(result);
     vm.cartDetails = result.cart_subscription;
 
   }).catch(function (err) {
@@ -37,4 +36,45 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   vm.viewProfile = function () {
     $state.go(UIState.LOGIN);
   };
+
+  /*********************** Show/hide functionality for cart details *********************/
+  vm.centerToggle = function (itemId) {
+    if (vm.productShow[itemId]) {
+      vm.productShow[itemId] = 0;
+      vm.centerToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.productShow[itemId] = 1;
+      vm.centerToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+
+  vm.membershipToggle = function (itemId) {
+    if (vm.membershipShow[itemId]) {
+      vm.membershipShow[itemId] = 0;
+      vm.membershipToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.membershipShow[itemId] = 1;
+      vm.membershipToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  vm.sponsorshipToggle = function (itemId) {
+    if (vm.sponsorshipShow[itemId]) {
+      vm.sponsorshipShow[itemId] = 0;
+      vm.sponsorshipToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.sponsorshipShow[itemId] = 1;
+      vm.sponsorshipToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  vm.adsToggle = function (itemId) {
+    if (vm.adsShow[itemId]) {
+      vm.adsShow[itemId] = 0;
+      vm.adsToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.adsShow[itemId] = 1;
+      vm.adsToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  /*********************** End Show/hide functionality for cart details *********************/
+
 }
