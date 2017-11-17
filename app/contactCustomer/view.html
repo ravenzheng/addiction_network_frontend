@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
               <label for="phone">Phone:</label>
-              <input type="text" required="" class="form-control" id="phone" placeholder="Enter phone number" name="phone">
+              <input type="text" required="" class="form-control" id="phone" placeholder="Enter phone number" name="phone" onkeyup="copyTextValue(this);">
             </div>
 
             <div class="form-group">
@@ -40,7 +40,7 @@
             </div>
             <input type="hidden" name="encoding" value="UTF-8">
             <input type="hidden" name="oid" value="00DU0000000YeDn">
-            <input type="hidden" name="00NU0000003ytZM" value="">
+            <input type="hidden" name="00NU0000003ytZM" id="phonecopy">
             <input type="hidden" name="00NU0000003zAxB" value="">
             <input type="hidden" name="lead_source" value="Addiction Network">
             <input type="hidden" name="00N0P0000064oqF" value="Web">
@@ -97,3 +97,8 @@
     <!-- <side-panel></side-panel> -->
   </div>
 </div>
+<script>
+  function copyTextValue(bf) {
+    document.getElementById("phonecopy").value = bf.value;
+  }
+</script>
