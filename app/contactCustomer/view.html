@@ -6,7 +6,52 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <h2 class="contct_heding">Customer</h2>
         </div>
-        <button id="contact-customer" style="visibility:hidden;">Customer</button>
+        <div class="col-sm-9">
+          <form action="https://webto.salesforce.com/servlet/servlet.WebToLead" method="GET">
+            <div class="form-group">
+              <label for="first_name">First Name:</label>
+              <input type="text" class="form-control" id="first_name" placeholder="Enter first name" name="first_name" required="">
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name:</label>
+              <input type="text" class="form-control" id="last_name" placeholder="Enter last name" name="last_name" required="">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email address" name="email" required="">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone:</label>
+              <input type="text" required="" class="form-control" id="phone" placeholder="Enter phone number" name="email">
+            </div>
+
+            <div class="form-group">
+              <label for="pwd">Preferred Contact:</label>
+              <select name="00NU0000003zAxB" class="form-control">
+                <option value="">- Please Select -</option>
+                <option value="Daytime Phone">Daytime Phone</option>
+                <option value="Evening Phone">Evening Phone</option>
+                <option value="Email">Email</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="00NU0000003yqQc">Notes:</label>
+              <textarea name="00NU0000003yqQc" cols="80" rows="5" class="form-control"></textarea>
+            </div>
+            <input type="hidden" name="encoding" value="UTF-8">
+            <input type="hidden" name="oid" value="00DU0000000YeDn">
+            <input type="hidden" name="00NU0000003ytZM" value="">
+            <input type="hidden" name="00NU0000003zAxB" value="">
+            <input type="hidden" name="lead_source" value="Addiction Network">
+            <input type="hidden" name="00N0P0000064oqF" value="Web">
+            <input type="hidden" name="00NU0000005NQc7" value="AN Website">
+            <input type="hidden" name="00N0P0000064psM" value="AN Contact Us Form">
+
+            <input type="hidden" name="retURL" value="https://www.addictionnetwork.com/contactus-thank">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+        <!-- <button id="contact-customer" style="visibility:hidden;">Customer</button>
         <script>
           setTimeout(function () {
             document.getElementById("contact-customer").click();
@@ -25,7 +70,7 @@
             formId: '68b39208-98d3-4cce-8560-eb45d1395417'
           });
         </script>
-        <div class="hubspot"></div>
+        <div class="hubspot"></div> -->
 
       </div>
       <div class="row">
