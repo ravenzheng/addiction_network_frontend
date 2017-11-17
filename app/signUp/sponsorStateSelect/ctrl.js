@@ -314,7 +314,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       }
     }
 
-    if (angular.isUndefined($rootScope.checkedStateModel) || $rootScope.checkedStateModel.length === 0) {
+    if (angular.isUndefined($rootScope.checkedStateModel) || angular.isUndefined($rootScope.checkedStateModel[$rootScope.activeCenter]) || $rootScope.checkedStateModel.length === 0) {
       $rootScope.checkedStateModel = {};
 
       for (cen in $rootScope.treatmentCentersValue) {
@@ -323,14 +323,14 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       }
     }
 
-    if (angular.isUndefined($rootScope.statesSel) || $rootScope.statesSel === null) {
+    if (angular.isUndefined($rootScope.statesSel) || angular.isUndefined($rootScope.statesSel[$rootScope.activeCenter]) || $rootScope.statesSel === null) {
       $rootScope.statesSel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.statesSel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.statesDetail) || $rootScope.statesDetail === null) {
+    if (angular.isUndefined($rootScope.statesDetail) || angular.isUndefined($rootScope.statesDetail[$rootScope.activeCenter]) || $rootScope.statesDetail === null) {
       $rootScope.statesDetail = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
@@ -338,7 +338,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       }
     }
 
-    if (angular.isUndefined($rootScope.checkedStateDetail) || $rootScope.checkedStateDetail === null) {
+    if (angular.isUndefined($rootScope.checkedStateDetail) || angular.isUndefined($rootScope.checkedStateDetail[$rootScope.activeCenter]) || $rootScope.checkedStateDetail === null) {
       $rootScope.checkedStateDetail = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
@@ -346,56 +346,56 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       }
     }
 
-    if (angular.isUndefined($rootScope.cityModel) || $rootScope.cityModel === null) {
+    if (angular.isUndefined($rootScope.cityModel) || angular.isUndefined($rootScope.cityModel[$rootScope.activeCenter]) || $rootScope.cityModel === null) {
       $rootScope.cityModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.cityModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.countyModel) || $rootScope.countyModel === null) {
+    if (angular.isUndefined($rootScope.countyModel) || angular.isUndefined($rootScope.countyModel[$rootScope.activeCenter]) || $rootScope.countyModel === null) {
       $rootScope.countyModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.countyModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.demographicModel) || $rootScope.demographicModel === null) {
+    if (angular.isUndefined($rootScope.demographicModel) || angular.isUndefined($rootScope.demographicModel[$rootScope.activeCenter]) || $rootScope.demographicModel.length === 0 || $rootScope.demographicModel === null) {
       $rootScope.demographicModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.demographicModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.treatmentApproachModel) || $rootScope.treatmentApproachModel === null) {
+    if (angular.isUndefined($rootScope.treatmentApproachModel) || angular.isUndefined($rootScope.treatmentApproachModel[$rootScope.activeCenter]) || $rootScope.treatmentApproachModel === null) {
       $rootScope.treatmentApproachModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.treatmentApproachModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.settingModel) || $rootScope.settingModel === null) {
+    if (angular.isUndefined($rootScope.settingModel) || angular.isUndefined($rootScope.settingModel[$rootScope.activeCenter]) || $rootScope.settingModel === null) {
       $rootScope.settingModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.settingModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.additionalServicesModel) || $rootScope.additionalServicesModel === null) {
+    if (angular.isUndefined($rootScope.additionalServicesModel) || angular.isUndefined($rootScope.additionalServicesModel[$rootScope.activeCenter]) || $rootScope.additionalServicesModel === null) {
       $rootScope.additionalServicesModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.additionalServicesModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.paymentModel) || $rootScope.paymentModel === null) {
+    if (angular.isUndefined($rootScope.paymentModel) || angular.isUndefined($rootScope.paymentModel[$rootScope.activeCenter]) || $rootScope.paymentModel === null) {
       $rootScope.paymentModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.paymentModel[centerId] = [];
       }
     }
-    if (angular.isUndefined($rootScope.byDrugModel) || $rootScope.byDrugModel === null) {
+    if (angular.isUndefined($rootScope.byDrugModel) || angular.isUndefined($rootScope.byDrugModel[$rootScope.activeCenter]) || $rootScope.byDrugModel === null) {
       $rootScope.byDrugModel = {};
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;

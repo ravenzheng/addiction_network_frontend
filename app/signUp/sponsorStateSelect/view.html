@@ -16,9 +16,8 @@
     </div>
   </div>
 <div class="col-sm-12 steps_sponsored step2">Step2: Select various categories for your treatment center</div>
-  <div class="additional_filters">
+  <div class="additional_filters">  
     <div class="col-sm-12">
-
       <div class="col-sm-3">
         <div ng-dropdown-multiselect="" ng-click="$ctrl.checkFirst()" id="demographic" options="$root.demographic" ng-if="$root.demographicModel[$root.activeCenter]" selected-model="$root.demographicModel[$root.activeCenter]" extra-settings="$ctrl.demographic" translation-texts="$ctrl.buttonTxtDemographic" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true">
         </div>

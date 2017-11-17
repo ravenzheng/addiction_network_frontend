@@ -6,7 +6,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   var token = localStorageService.get('signupToken');
   vm.currentMembership = '';
   var spn = localStorageService.get('membershipType');
-  if (spn === 'sponsored' || spn === 'featured') {
+  if (spn === 'paid' || spn === 'featured') {
     vm.currentMembership = spn;
   }
 
@@ -17,7 +17,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     $state.go(UIState.SIGN_UP.SPONSER);
   };
   vm.sponsored = function () {
-    setMembershipType('sponsored');
+    setMembershipType('paid');
     // localStorageService.set('membershipType', 'sponsored', 'sessionStorage');
     // $state.go(UIState.ADD_LISTING.CENTER_INFO);
     //  $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
@@ -31,7 +31,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
 
   function setMembershipType(type) {
-    if (type === 'sponsored') {
+    if (type === 'paid') {
       var membershipName = 'Gold';
     } else if (type === 'featured') {
       membershipName = 'Platinum';

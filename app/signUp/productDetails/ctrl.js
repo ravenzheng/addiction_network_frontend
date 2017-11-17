@@ -5,6 +5,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   vm.testCenter = function () {
     $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
+  vm.goBack = function () {
+    $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+  };
+
   var token = localStorageService.get('signupToken');
   vm.cartDetails = [];
   // get cart details using api
@@ -64,6 +68,42 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     } else {
       vm.sponsorshipShow[itemId] = 1;
       vm.sponsorshipToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  vm.stateToggle = function (itemId) {
+    if (vm.stateShow[itemId]) {
+      vm.stateShow[itemId] = 0;
+      vm.stateToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.stateShow[itemId] = 1;
+      vm.stateToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  vm.cityToggle = function (itemId) {
+    if (vm.cityShow[itemId]) {
+      vm.cityShow[itemId] = 0;
+      vm.cityToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.cityShow[itemId] = 1;
+      vm.cityToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  vm.countyToggle = function (itemId) {
+    if (vm.countyShow[itemId]) {
+      vm.countyShow[itemId] = 0;
+      vm.countyToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.countyShow[itemId] = 1;
+      vm.countyToggleIconClass[itemId] = 'fa-minus-square-o';
+    }
+  };
+  vm.categoryToggle = function (itemId) {
+    if (vm.categoryShow[itemId]) {
+      vm.categoryShow[itemId] = 0;
+      vm.categoryToggleIconClass[itemId] = 'fa-plus-square-o';
+    } else {
+      vm.categoryShow[itemId] = 1;
+      vm.categoryToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.adsToggle = function (itemId) {
