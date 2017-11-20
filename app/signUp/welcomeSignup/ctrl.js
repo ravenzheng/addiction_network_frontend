@@ -5,4 +5,5 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState) {
   vm.signUp = function () {
     $state.go(UIState.SIGN_UP.USER_CREATE);
   };
+
 }

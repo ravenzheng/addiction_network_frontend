@@ -492,7 +492,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
   };
   $timeout(function () {
     dropDownClickOnload($document);
-  }, 1000);
+  }, 1200);
 }
 
 function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {

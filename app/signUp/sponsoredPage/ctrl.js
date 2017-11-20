@@ -168,8 +168,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           //    $rootScope.addListingStepDone = 6;
           // $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
           // clear sponsoredpage data
-          localStorageService.remove('signupSponsoredPage', 'sessionStorage');
-          vm.clearRootscopeData();
+          // localStorageService.remove('signupSponsoredPage', 'sessionStorage');
+          // vm.clearRootscopeData();
           $state.go(UIState.SIGN_UP.DETAILS);
           //  $state.go(UIState.ADD_LISTING.BANNER_AD);
         } else {

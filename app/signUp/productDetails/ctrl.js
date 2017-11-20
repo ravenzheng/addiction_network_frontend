@@ -3,10 +3,30 @@ module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIStat
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, localStorageService) {
   var vm = this;
   vm.testCenter = function () {
+    // removing variables related to sponsored page
+    localStorageService.remove('signupSponsoredPage', 'sessionStorage');
+    vm.clearRootscopeData();
     $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
   vm.goBack = function () {
     $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+  };
+
+  vm.clearRootscopeData = function () {
+    $rootScope.cityModel = {};
+    $rootScope.countyModel = {};
+    $rootScope.statesSel = {};
+    $rootScope.checkedStateModel = {};
+    $rootScope.checkedStateDetail = {};
+    $rootScope.treatmentCentersModel = {};
+    $rootScope.demographicModel = {};
+    $rootScope.treatmentApproachModel = {};
+    $rootScope.settingModel = {};
+    $rootScope.additionalServicesModel = {};
+    $rootScope.paymentModel = {};
+    $rootScope.byDrugModel = {};
+    $rootScope.checkedAllStates = {};
+    $rootScope.centerSelected = {};
   };
 
   var token = localStorageService.get('signupToken');
