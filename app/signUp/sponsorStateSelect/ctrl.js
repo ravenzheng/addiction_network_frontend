@@ -490,9 +490,12 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       $rootScope.checkedStateDetail[$rootScope.activeCenter].splice(index, 1);
     }
   };
-  $timeout(function () {
-    dropDownClickOnload($document);
-  }, 1200);
+  $rootScope.dropDownClickOnload = function () {
+    $timeout(function () {
+      dropDownClickOnload($document);
+    }, 700);
+  };
+
 }
 
 function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {

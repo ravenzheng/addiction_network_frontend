@@ -170,7 +170,17 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           // clear sponsoredpage data
           // localStorageService.remove('signupSponsoredPage', 'sessionStorage');
           // vm.clearRootscopeData();
-          $state.go(UIState.SIGN_UP.DETAILS);
+
+          // setting sponsoredPages as added for current center
+          localStorageService.set('sponsorAdded', '1');
+          // check if bannerads are added or not
+          var bannerAdsVisited = localStorageService.get('bannerAdded');
+          if (angular.isDefined(bannerAdsVisited) && bannerAdsVisited === '0') {
+            $state.go(UIState.SIGN_UP.SPONSER);
+          } else {
+            $state.go(UIState.SIGN_UP.SPONSER);
+            // $state.go(UIState.SIGN_UP.DETAILS);
+          }
           //  $state.go(UIState.ADD_LISTING.BANNER_AD);
         } else {
           vm.submitSingle(ci);
@@ -268,8 +278,8 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       } else {
         $rootScope.activeCenter = vm.currentCenter[0].id; // centers[0].id;
       }
-
       $rootScope.loadModelsCenterwise();
+      $rootScope.dropDownClickOnload(); // after all models loaded, triggering click event for dropdowns
       $rootScope.onInit();
     });
   }

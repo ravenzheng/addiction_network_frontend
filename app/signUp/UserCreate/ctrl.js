@@ -19,12 +19,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
 
   initStartupVars();
 
-  // reset previous localstorage
-  vm.resetLocalstorage = function () {
-    localStorageService.remove('membership', 'center_added', 'userInfo', 'signupSponsoredPage', 'membershipType');
-  };
-  vm.resetLocalstorage();
-
   // show and hide password
   vm.showpassword = function () {
     var password = angular.element($document[0].querySelector('#pwd'));

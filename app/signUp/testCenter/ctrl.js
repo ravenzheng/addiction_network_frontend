@@ -14,9 +14,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     vm.centerFormInit.phone = 1;
     vm.centerFormInit.address = 1;
     vm.displayMsg = 'Please enter the details';
-    localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
   };
   initStartupVars();
+
+  vm.resetNextStepVars = function () {
+    localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
+    localStorageService.remove('bannerAdded', 'sponsorAdded'); // remove previous status
+  };
 
   vm.multiselectModelSettings = {
     scrollableHeight: '160px',
@@ -82,7 +86,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
 
   // get categories
   service.getCategories(token).then(function (result) {
-    $log.info(result);
     for (var key in result.categories) {
       var category = {
         'label': result.categories[key].name,
@@ -96,7 +99,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
 
   // get tags selection
   service.getTagsSelection(token).then(function (result) {
-    $log.info(result);
+    // $log.info(result);
     // for (var key in result.tags) {
     //   var category = {'label': result.tags[key].name, 'id': result.tags[key].id};
     //   vm.centerCategories.push(category);
@@ -203,12 +206,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
         }];
       } else {
         centerDetail = localStorageService.get('center_added');
-        // centerDetail.push({
-        //   'centerId': result.treatment_center.id,
-        //   'label': ,
-        //   'centerName': vm.centerName,
-        //   'cost': 10
-        // });
       }
       //  localStorageService.set('center_added', centerDetail);
       var centerInfo = [{
@@ -216,7 +213,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
         'label': vm.centerName
       }];
       localStorageService.set('current_center', centerInfo);
-
+      vm.resetNextStepVars();
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {
       // lm.$emit(Status.FAILED, err.data.error);
@@ -229,5 +226,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       lm.$emit(Status.FAILED, vm.error);
       // $log.info(err);
     });
+  };
+  vm.skip = function () {
+    $state.go(UIState.SIGN_UP.SPONSER);
   };
 }

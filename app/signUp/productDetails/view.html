@@ -17,14 +17,17 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+
+    <!--- *********************** cart ********************** -->
+    <div class="col-md-6" >
       <div class="col-md-12">
         <div class="para-userprofile">
-          <p>You have registered your treatment center with {{$ctrl.membership.package_name}} membership in Addiction network and are one step awaay from your customers</p>
-          <p class="lead">Please check your bill amount below</p>
+          <p>You have registered your treatment center with <strong >{{$ctrl.membership.package_name}}</strong> membership in Addiction network and are one step awaay from your customers</p>
+          <p class="lead" ng-if="$ctrl.cartDetails.length!==0">Please check your bill amount below</p>
+          <p class="lead" ng-if="$ctrl.cartDetails.length===0">Cart is empty</p>
         </div>
       </div>
-      <div class="col-md-12 ">
+      <div class="col-md-12 " ng-if="$ctrl.cartDetails.length!==0">
         <div class="row">
           <div class="col-md-4">
             <label>Center Name</label>

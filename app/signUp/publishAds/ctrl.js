@@ -15,7 +15,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     $log.info(err);
   });
   service.getPublishAds(centerId, token).then(function (result) {
-    $log.info(result);
+    // $log.info(result);
     if (result.banner_ads.length === 0) {
       alreadyPublished = 0;
     } else if (result.banner_ads.length > 0) {
@@ -44,7 +44,9 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     //  $state.go(UIState.SIGN_UP.PUBLISH_ADS2);
     if (alreadyPublished === 1) {
       lm.$emit(Status.FAILED, 'Ads are already published for this center.');
-      $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+      // check if sponsorAds are added or not
+      vm.checkSponsorGo();
+      // $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
       return;
     }
     var sideImage = vm.sideImage;
@@ -108,10 +110,11 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
         vm.submitAds(footerImage, 'footer', vm.weblinkFooter);
       }
     }
-    $log.info(vm.validAds.length);
+    // $log.info(vm.validAds.length);
     if (vm.validAds.length === 0) {
       // $state.go(UIState.SIGN_UP.UPDATE_ADS);
-      $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+      // $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+      vm.checkSponsorGo();
     }
     // return;
     // vm.submitAds(sideImage, 'sidebar', vm.weblinkSidebar);
@@ -137,9 +140,9 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       if (vm.count >= vm.validAds.length) {
         // if (vm.count >= 3) {
         lm.$emit(Status.SUCCEEDED, 'Ads submitted');
-        //  $state.go(UIState.SIGN_UP.PUBLISH_ADS2);
-        // $state.go(UIState.SIGN_UP.UPDATE_ADS);
-        $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+        // check if sponsorAds are added or not
+        vm.checkSponsorGo();
+        // $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
       }
       vm.count++;
     }).catch(function (err) {
@@ -148,4 +151,17 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       lm.$emit(Status.FAILED, 'Something went wrong');
     });
   };
+
+  vm.checkSponsorGo = function () {
+    // setting publishAds as added for current center
+    localStorageService.set('bannerAdded', '1');
+    var sponsorAdsVisited = localStorageService.get('sponsorAdded');
+    if (angular.isDefined(sponsorAdsVisited) && sponsorAdsVisited === '0') {
+      $state.go(UIState.SIGN_UP.SPONSER);
+    } else {
+      $state.go(UIState.SIGN_UP.SPONSER);
+      //  $state.go(UIState.SIGN_UP.DETAILS);
+    }
+  };
+
 }
