@@ -111,7 +111,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   });
 
   vm.restoreValues = function () {
-    $log.info(signupData.signupStep.testCenter);
     if (angular.isDefined(signupData.signupStep.testCenter) && angular.isDefined(signupData.signupStep.testCenter.center_name)) {
       var testCenter = signupData.signupStep.testCenter;
       //  $log.info(signupData.signupStep.testCenter);
@@ -137,7 +136,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     } else {
       // $log.info('notdef');
     }
-    // if membership step is already done once then skip button will show  
+    // if membership step is already done once then skip button will show
     if (angular.isDefined(localStorageService.get('membership')) && localStorageService.get('membership') !== null) {
       vm.skipShow = 1;
     }
