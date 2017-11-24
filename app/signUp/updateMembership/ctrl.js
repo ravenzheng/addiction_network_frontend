@@ -60,4 +60,8 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
       rm.$emit(Status.FAILED, err.data.error);
     });
   }
+
+  vm.goBack = function () {
+    $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
+  };
 }

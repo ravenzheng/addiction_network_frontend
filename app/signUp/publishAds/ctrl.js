@@ -5,6 +5,9 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   var lm = $rootScope;
   var token = localStorageService.get('signupToken');
   var centerId = localStorageService.get('signupCenterId');
+  // get previous steps localstorage data
+  var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
+
   var alreadyPublished = 0;
   // testing if ads are already published for same center id
   service.getPriceInfo(token).then(function (result) {
@@ -19,7 +22,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     if (result.banner_ads.length === 0) {
       alreadyPublished = 0;
     } else if (result.banner_ads.length > 0) {
-      alreadyPublished = 1;
+      // alreadyPublished = 1;
     }
   }).catch(function (err) {
     $log.info(err);
@@ -38,6 +41,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       vm.fileReqHeader = '';
     }
   };
+
   vm.count = 1;
   vm.publish_ads2 = function () {
     //  lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
@@ -53,51 +57,96 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     var headerImage = vm.headerImage;
     var footerImage = vm.footerImage;
     vm.validAds = [];
-
+    var validation = 1;
+    var noFormEntry = 1;
     if (angular.isUndefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
       vm.fileReqSidebar = 'choose-file-req';
-      vm.adsFormInit.weblinkSidebar = 0;
-      return;
+      vm.fileReqMsgSidebar = 'Upload an image';
+      vm.adsFormInit.weblinkSidebar = 1;
+      validation *= 0;
+      noFormEntry *= 0;
       // vm.weblinkFooter = '';
     } else if (angular.isDefined(vm.sideImage) && angular.isUndefined(vm.weblinkSidebar)) {
       vm.fileReqSidebar = '';
-      vm.adsFormInit.weblinkSidebar = 1;
-      return;
+      vm.fileReqMsgSidebar = '';
+      vm.adsFormInit.weblinkSidebar = 0;
+      //  return;
+      validation *= 0;
+      noFormEntry *= 0;
     }
 
     if (angular.isDefined(vm.sideImage) && angular.isDefined(vm.weblinkSidebar)) {
+      vm.fileReqMsgSidebar = '';
       vm.validAds.push('sidebar');
+      validation *= 1;
+      noFormEntry *= 0;
+    } else if (angular.isUndefined(vm.sideImage) && angular.isUndefined(vm.weblinkSidebar)) {
+      // validation *= 0;
+      noFormEntry *= 1;
     }
 
     if (angular.isUndefined(vm.headerImage) && angular.isDefined(vm.weblinkHeader)) {
       headerImage = '';
+      vm.adsFormInit.weblinkHeader = 1;
       vm.fileReqHeader = 'choose-file-req';
-      return;
+      vm.fileReqMsgHeader = 'Upload an image';
+      //  return;
+      validation *= 0;
+      noFormEntry *= 0;
       // vm.adsFormInit.weblinkHeader = 0;
       // vm.weblinkFooter = '';
     } else if (angular.isUndefined(vm.weblinkHeader) && angular.isDefined(vm.headerImage)) {
-      vm.adsFormInit.weblinkHeader = 1;
+      vm.adsFormInit.weblinkHeader = 0;
       vm.fileReqHeader = '';
-      return;
+      vm.fileReqMsgHeader = '';
+      //  return;
+      validation *= 0;
+      noFormEntry *= 0;
     }
     if (angular.isDefined(vm.headerImage) && angular.isDefined(vm.weblinkHeader)) {
+      vm.fileReqMsgHeader = '';
+      vm.adsFormInit.weblinkHeader = 1;
       vm.validAds.push('header');
+      validation *= 1;
+      noFormEntry *= 0;
       // vm.weblinkHeader = '';
+    } else if (angular.isUndefined(vm.headerImage) && angular.isUndefined(vm.weblinkHeader)) {
+      // validation *= 0;
+      noFormEntry *= 1;
     }
 
     if (angular.isUndefined(vm.footerImage) && angular.isDefined(vm.weblinkFooter)) {
       footerImage = '';
       vm.fileReqFooter = 'choose-file-req';
-      return;
+      vm.fileReqMsgFooter = 'Upload an image';
+      vm.adsFormInit.weblinkFooter = 1;
+      //  return;
+      validation *= 0;
+      noFormEntry *= 0;
       // vm.adsFormInit.weblinkFooter = 0;
       // vm.weblinkFooter = '';
     } else if (angular.isUndefined(vm.weblinkFooter) && angular.isDefined(vm.footerImage)) {
-      vm.adsFormInit.weblinkFooter = 1;
+      vm.adsFormInit.weblinkFooter = 0;
       vm.fileReqFooter = '';
-      return;
+      vm.fileReqMsgFooter = '';
+      //  return;
+      validation *= 0;
+      noFormEntry *= 0;
     }
     if (angular.isDefined(vm.footerImage) && angular.isDefined(vm.weblinkFooter)) {
+      vm.fileReqMsgFooter = '';
+      vm.adsFormInit.weblinkFooter = 1;
       vm.validAds.push('footer');
+      validation *= 1;
+      noFormEntry *= 0;
+    } else if (angular.isUndefined(vm.footerImage) && angular.isUndefined(vm.weblinkFooter)) {
+      // validation *= 0;
+      noFormEntry *= 1;
+    }
+
+    if ((noFormEntry === 0 && validation === 0) || (vm.publishAdsForm.weblinkFooter.$error.pattern === true || vm.publishAdsForm.weblinkSidebar.$error.pattern === true || vm.publishAdsForm.weblinkHeader.$error.pattern === true)) {
+      $log.info('validation error');
+      return;
     }
 
     for (var cnt in vm.validAds) {
@@ -122,6 +171,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     // vm.submitAds(footerImage, 'footer', vm.weblinkFooter);
   };
 
+  var bannerAdded = 0;
   vm.submitAds = function (content, position, weblink) {
     lm.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var formData = new FormData();
@@ -135,11 +185,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       formData.append('banner_ad[' + key + ']', publishAds[key]);
     }
     service.publishAds(formData, token).then(function (result) {
-      $log.info(result);
       //  lm.$emit(Status.SUCCEEDED, 'Ads submitted');
       if (vm.count >= vm.validAds.length) {
         // if (vm.count >= 3) {
         lm.$emit(Status.SUCCEEDED, 'Ads submitted');
+        // saving steps data //
+        signupData.signupStep.publishAds[(vm.count - 1).toString()] = publishAds;
+        localStorageService.set('signupStepsData', signupData, 'sessionStorage');
+        bannerAdded = 1;
         // check if sponsorAds are added or not
         vm.checkSponsorGo();
         // $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
@@ -154,7 +207,9 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
 
   vm.checkSponsorGo = function () {
     // setting publishAds as added for current center
-    localStorageService.set('bannerAdded', '1');
+    if (bannerAdded === 1) {
+      localStorageService.set('bannerAdded', '1');
+    }
     var sponsorAdsVisited = localStorageService.get('sponsorAdded');
     if (angular.isDefined(sponsorAdsVisited) && sponsorAdsVisited === '0') {
       $state.go(UIState.SIGN_UP.SPONSER);
@@ -162,6 +217,31 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       $state.go(UIState.SIGN_UP.SPONSER);
       //  $state.go(UIState.SIGN_UP.DETAILS);
     }
+  };
+
+  vm.restoreValues = function () {
+    if (angular.isDefined(signupData.signupStep.publishAds) && angular.isDefined(signupData.signupStep.publishAds[0])) {
+      var publishAds = signupData.signupStep.publishAds;
+      for (var key in publishAds) {
+        if (publishAds[key].position === 'header') {
+          vm.weblinkHeader = publishAds[key].center_web_link;
+        }
+        if (publishAds[key].position === 'sidebar') {
+          vm.weblinkSidebar = publishAds[key].center_web_link;
+        }
+        if (publishAds[key].position === 'footer') {
+          vm.weblinkFooter = publishAds[key].center_web_link;
+        }
+      }
+    }
+  };
+  vm.restoreValues();
+
+  vm.goBack = function () {
+    $state.go(UIState.SIGN_UP.SPONSER);
+  };
+  vm.goToCart = function () {
+    $state.go(UIState.SIGN_UP.DETAILS);
   };
 
 }

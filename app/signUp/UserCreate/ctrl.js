@@ -114,11 +114,17 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, Sta
       angular.element('.shake').removeClass('shake');
       lm.$emit(Status.SUCCEEDED, 'User has been successfully created');
       localStorageService.set('signupToken', result.user.auth_token);
-
       localStorageService.set('userInfo', {
         'email': vm.signupData.email,
         'password': vm.signupData.password
       }, 'sessionStorage');
+
+      var signup = localStorageService.get('signupStepsData');
+      signup.signupStep.userCreate = {
+        'email': vm.signupData.email,
+        'password': vm.signupData.password
+      };
+      localStorageService.set('signupStepsData', signup, 'sessionStorage');
 
       $state.go(UIState.SIGN_UP.USER_PROFILE);
     }).catch(function (err) {

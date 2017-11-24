@@ -42,10 +42,9 @@
 
           <div class="form-group checkboxFive2-category" ng-if="$ctrl.catgsToggle!==1">
             <div ng-repeat="catgs in $ctrl.centerCategories" class="checkboxFive2" style="padding-bottom:7px;padding-left:11px;padding-right:4px;">
-              <input type="checkbox" id="catgs{{catgs.id}}" {{$ctrl.catgCheckedString[catgs.id]}} ng-init="$ctrl.catgCheckedString[catgs.id]=''" name="catg[]" ng-model="$ctrl.categoryModel[catgs.id]" ng-click="$ctrl.catgChecked(catgs.id,$ctrl.categoryModel[catgs.id]);" />
+              <input type="checkbox" id="catgs{{catgs.id}}" {{$ctrl.catgCheckedString[catgs.id]}}  name="catg[]" ng-model="$ctrl.categoryModel[catgs.id]" ng-click="$ctrl.catgChecked(catgs.id,$ctrl.categoryModel[catgs.id]);" />
               <span> {{catgs.label}}</span>
               <label for="catgs{{catgs.id}}" class="tooltiptext {{$ctrl.catgCheckedString[catgs.id]}}"></label>
-
             </div>
           </div>
 
@@ -94,9 +93,8 @@
               <!-- <input type="checkbox" ng-repeat="child in tags.children" /> test1<br> -->
               <!-- {{$ctrl.tagCheckboxModel[tags.id]}} -->
               <div class="test-center-bg checkboxFive2 tags" ng-show="$ctrl.tagToggle[tags.id]" ng-repeat="child in tags.children track by $index">
-                <input type="checkbox" id="tag-{{tags.id}}-child-{{child.id}}" name="tag{{tags.id}}[]" {{$ctrl.checkedString[child.id]}} ng-init="$ctrl.checkedString[child.id]=''" ng-model="$ctrl.tagCheckboxModel[child.id]" ng-click="$ctrl.toggleChecked(child.id,$ctrl.tagCheckboxModel[child.id]);" />
+                <input type="checkbox" id="tag-{{tags.id}}-child-{{child.id}}" name="tag{{tags.id}}[]" {{$ctrl.checkedString[child.id]}}  ng-model="$ctrl.tagCheckboxModel[child.id]" ng-click="$ctrl.toggleChecked(child.id,$ctrl.tagCheckboxModel[child.id]);" />
                 <span>{{child.name}}</span>
-
                 <label for="tag-{{tags.id}}-child-{{child.id}}" class="tooltiptext {{$ctrl.checkedString[child.id]}}"></label>
               </div>
             </div>
@@ -105,7 +103,7 @@
       </div>
     </div>
     <div class="col-md-12 " style="margin-top:50px;">
-      <p class="stick-next-left font-normal"><a href="javascript:void(0)" ng-click="$ctrl.skip();">Skip</a></p>
+      <p class="stick-next-left font-normal"><a href="javascript:void(0)" ng-show="$ctrl.skipShow" ng-click="$ctrl.skip();">Skip</a></p>
       <p class="stick-next-right"><a href="javascript:void(0);" ng-click="$ctrl.addCenter()" ng-disabled="$ctrl.centerForm.centerName.$invalid || ($ctrl.categoryModel.length===0) || $ctrl.centerForm.website.$invalid || $ctrl.centerForm.email.$invalid || $ctrl.centerForm.phone.$invalid || $ctrl.centerForm.address.$invalid">Next</a></p>
     </div>
   </div>

@@ -4,6 +4,8 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, l
   var vm = this;
   var rs = $rootScope;
   var token = localStorageService.get('signupToken');
+  // get previous steps localstorage data
+  var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
 
   var initStartupVars = function () {
     vm.optionalInit = {};
@@ -87,6 +89,19 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, l
     removedKeyMulti.push(key);
   };
   // ------- MULTIPREVIEW -----//
+
+  // ******************** restore values *************** //
+  vm.restoreValues = function () {
+    if (angular.isDefined(signupData.signupStep.optionalFields) && angular.isDefined(signupData.signupStep.optionalFields.description)) {
+      var optional = signupData.signupStep.optionalFields;
+      vm.description = optional.description;
+      vm.overview = optional.content_1;
+      vm.treatmentApproach = optional.content_2;
+      vm.usp = optional.content_3;
+    }
+  };
+  vm.restoreValues();
+
   vm.optionalFieldsSubmit = function () {
     // rs.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
     var logo = vm.logoData;
@@ -130,7 +145,6 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, l
     }
 
     var formData = new FormData();
-
     var imageData = vm.galleryData;
     if (imageData) {
       var len = imageData.length;
@@ -169,10 +183,17 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, l
     service.addOptionalFields(formData, centerId, token).then(function (result) {
       $log.info(result);
       rs.$emit(Status.SUCCEEDED, 'Optional fields updated');
+
+      // saving steps data //
+      signupData.signupStep.optionalFields = optionalData;
+      localStorageService.set('signupStepsData', signupData, 'sessionStorage');
       $state.go(UIState.SIGN_UP.UPDATE_MEMBERSHIP);
     }).catch(function (err) {
       rs.$emit(Status.FAILED, err.data.error);
       $log.info(err);
     });
+  };
+  vm.goBack = function () {
+    $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
 }
