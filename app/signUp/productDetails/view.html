@@ -25,7 +25,8 @@
           <p>You have registered your treatment center with <strong >{{$ctrl.membership.package_name}}</strong> membership in Addiction network and are one step awaay from your customers</p>
           <p class="lead" ng-if="$ctrl.cartDetails.length!==0">Please check your bill amount below </p>
           <input type="checkbox" ng-model="$ctrl.expandAll" ng-init="$ctrl.expandAll=false" ng-click="$ctrl.expandAllFun($ctrl.expandAll);" /> Expand all
-          <p class="lead" ng-if="$ctrl.cartDetails.length===0">Cart is empty</p>
+          <p class="lead" ng-if="$ctrl.membership===''">Cart is empty</p>
+          <p class="lead" ng-if="$ctrl.cartDetails.length===0 && $ctrl.membership !==''">Cart is loading...</p>
         </div>
       </div>
       <div class="col-md-12 " ng-if="$ctrl.cartDetails.length!==0">

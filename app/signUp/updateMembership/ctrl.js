@@ -57,7 +57,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
       $state.go(UIState.SIGN_UP.SPONSER);
     }).catch(function (err) {
       $log.info(err);
-      rm.$emit(Status.FAILED, err.data.error);
+      if (angular.isDefined(err.data.error)) {
+        rm.$emit(Status.FAILED, err.data.error);
+      }
+      // for paid parameter
+      if (angular.isDefined(err.data)) {
+        rm.$emit(Status.FAILED, err.data.success);
+      }
+
     });
   }
 
