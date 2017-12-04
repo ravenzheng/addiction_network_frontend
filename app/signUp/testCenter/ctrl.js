@@ -4,8 +4,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   var vm = this;
   var lm = $rootScope;
   var token = localStorageService.get('signupToken');
-  // Get localstored data of this step
-  var signupData = localStorageService.get('signupStepsData');
 
   var initStartupVars = function () {
     vm.centerFormInit = {};
@@ -94,54 +92,22 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
         'id': result.categories[key].id
       };
       vm.centerCategories.push(category);
-
-      // initializing
-      //  catgCheckedString[catgs.id]=''
     }
-    vm.restoreValues();
   }).catch(function (err) {
     $log.info(err);
   });
 
   // get tags selection
   service.getTagsSelection(token).then(function (result) {
+    // $log.info(result);
+    // for (var key in result.tags) {
+    //   var category = {'label': result.tags[key].name, 'id': result.tags[key].id};
+    //   vm.centerCategories.push(category);
+    // }
     vm.tagsData = result;
   }).catch(function (err) {
     $log.info(err);
   });
-
-  vm.restoreValues = function () {
-    if (angular.isDefined(signupData.signupStep.testCenter) && angular.isDefined(signupData.signupStep.testCenter.center_name)) {
-      var testCenter = signupData.signupStep.testCenter;
-      //  $log.info(signupData.signupStep.testCenter);
-      vm.centerName = testCenter.center_name;
-      var catg = testCenter.category_id;
-      catg = catg.split(",");
-      for (var key in catg) {
-        var catgId = catg[key];
-        vm.categoryModel[catgId] = true;
-        vm.catgCheckedString[catgId] = 'checked';
-      }
-      vm.website = testCenter.center_web_link;
-      vm.email = testCenter.email;
-      vm.phone = testCenter.phone;
-      vm.address = testCenter.address_line_1;
-      var tagsId = testCenter.tag_id;
-      tagsId = tagsId.split(',');
-      for (key in tagsId) {
-        vm.tagCheckboxModel[tagsId[key]] = true;
-        vm.checkedString[tagsId[key]] = 'checked';
-      }
-
-    } else {
-      // $log.info('notdef');
-    }
-    // if membership step is already done once then skip button will show
-    if (angular.isDefined(localStorageService.get('membership')) && localStorageService.get('membership') !== null) {
-      vm.skipShow = 1;
-    }
-
-  };
 
   vm.onCategorySelect = function () {
     vm.centerFormInit.categories = 0;
@@ -223,23 +189,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       'address_line_1': vm.address
     };
 
-    // test if stored data is same as current data then move forward without adding centers
-    if (angular.isDefined(signupData.signupStep.testCenter)) {
-      var tstCen = signupData.signupStep.testCenter;
-      var sameData = 0;
-      for (key in tstCen) {
-        sameData = 1;
-        if (tstCen[key] !== centerData[key]) {
-          sameData = 0;
-          break;
-        }
-      }
-      if (sameData) {
-        $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
-        return;
-      }
-    }
-
     for (key in centerData) {
       formData.append('treatment_center[' + key + ']', centerData[key]);
     }
@@ -265,15 +214,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       }];
       localStorageService.set('current_center', centerInfo);
       vm.resetNextStepVars();
-
-      // saving steps data //
-      signupData.signupStep.testCenter = centerData;
-      // removing next step previous values
-      signupData.signupStep.optionalFields = {};
-      signupData.signupStep.publishAds = {};
-      // setting final data
-      localStorageService.set('signupStepsData', signupData, 'sessionStorage');
-
       $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
     }).catch(function (err) {
       // lm.$emit(Status.FAILED, err.data.error);

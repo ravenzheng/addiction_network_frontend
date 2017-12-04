@@ -1,13 +1,13 @@
 <div class="container progress-content">
   <div class="progressbar">
     <div class="col-md-6 col-md-offset-6">
-      <span class="member-cart" style="cursor:pointer;" ng-click = "$ctrl.goToCart()">
+      <span class="member-cart">
         <img src="themes/addiction/images/png/Cart-Icon.png" />
       </span>
       <div class="progress progress-grediant">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
           <span class="stick-me">70%</span>
-          <p class="" >
+          <p class="">
             <img src="themes/addiction/images/png/Cart-Icon.png" />
           </p>
         </div>
@@ -33,12 +33,12 @@
         <p ng-if="$ctrl.bannerAdded!=='1'">You can also choose to publish ads for your testcenter on our website to gain more visibility accross all audience.</p>
         <p ng-if="$ctrl.bannerAdded==='1'">Publish Ads: Done</p>
         <p ng-if="$ctrl.sponsorAdded==='1'">Sponsor Ads: Done</p>
-        <p class="lead"  ng-if="$ctrl.bannerAdded!=='1'"><a href="javascript:void(0)" ng-click="$ctrl.publish_ads()">Publish my Ads</a></p>
+        <p class="lead" ng-if="$ctrl.bannerAdded!=='1'"><a href="javascript:void(0)" ng-click="$ctrl.publish_ads()">Publish my Ads</a></p>
       </div>
     </div>
     <p class="stick-next-left font-normal"><a href="javascript:;" ng-click="$ctrl.goBack()">Back</a></p>
     <p class="stick-next-left font-normal" style="left:72%;"><a href="javascript:void(0)" ng-click="$ctrl.goToCart()">Go to cart</a></p>
-    <p class="stick-next-right"><a href="javascript:void(0)" ng-if="$ctrl.sponsorAdded!=='1' " ng-click="$ctrl.add_sponsor()">Next</a></p>
+    <p class="stick-next-right"><a href="javascript:void(0)" ng-if="$ctrl.sponsorAdded!=='1'" ng-click="$ctrl.add_sponsor()">Next</a></p>
     <p class="stick-next-right"><a href="javascript:void(0)" ng-if="$ctrl.bannerAdded!=='1'" ng-click="$ctrl.publish_ads()">Next</a></p>
 
   </div>

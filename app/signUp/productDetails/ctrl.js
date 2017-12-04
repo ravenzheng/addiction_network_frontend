@@ -6,9 +6,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     // removing variables related to sponsored page
     localStorageService.remove('signupSponsoredPage', 'sessionStorage');
     vm.clearRootscopeData();
-    var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
-    signupData.signupStep.testCenter = {};
-    localStorageService.set('signupStepsData', signupData, 'sessionStorage')
     $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
   vm.goBack = function () {
@@ -37,6 +34,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   // get cart details using api
   service.getCartDetails(token).then(function (result) {
     vm.cartDetails = result.cart_subscription;
+
   }).catch(function (err) {
     $log.info(err);
   });
@@ -137,20 +135,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       vm.adsToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
-
-  vm.expandAllFun = function (tf) {
-    for (var key in vm.cartDetails.items) {
-      //  $log.info(key + ' : ' + vm.cartDetails.items[key]);
-      //  $log.info(vm.cartDetails.items[key]);
-      vm.centerToggle(vm.cartDetails.items[key].id);
-    }
-
-  };
-
   /*********************** End Show/hide functionality for cart details *********************/
-
-  vm.publish_ads = function () {
-    $state.go(UIState.SIGN_UP.PUBLISH_ADS);
-  };
 
 }

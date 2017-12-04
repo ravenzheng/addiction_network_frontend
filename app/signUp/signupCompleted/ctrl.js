@@ -1,17 +1,18 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'localStorageService', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService) {
+function ctrl($injector, $scope, $log, $rootScope, $state, UIState) {
   var vm = this;
   vm.viewProfile = function () {
-    vm.resetData();
+    vm.resetRootVars();
     $state.go(UIState.LOGIN);
   };
   vm.close = function () {
-    vm.resetData();
+    vm.resetRootVars();
     $state.go(UIState.HOME);
   };
-  vm.resetData = function () {
+
+  vm.resetRootVars = function () {
     $rootScope.activeCenter = null;
-    localStorageService.remove('signupStepsData', 'sessionStorage', 'signupToken');
   };
+
 }
