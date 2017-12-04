@@ -59,11 +59,11 @@
               <!-- <input type="file" class="file"> -->
               <input name="logo" id="logo" class="file" type="file" file-model="$ctrl.logoData" onchange="angular.element(this).scope().imagePreview(this)" accept="image/*">
             </div>
-			<div class="fix-pos">
-			<img id="logo_preview" width="120" name="logo_preview" />
-            <i class="fa fa-times" ng-show="$ctrl.logoPreview" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteLogo()" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
-			</div>
-            
+            <div class="fix-pos">
+              <img id="logo_preview" width="120" name="logo_preview" />
+              <i class="fa fa-times" ng-show="$ctrl.logoPreview" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteLogo()" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
+            </div>
+
 
             <div class="pull-right">
               <span class="ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o c-orange fa-2x"></i></span>
