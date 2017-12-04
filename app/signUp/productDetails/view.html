@@ -1,4 +1,4 @@
-<div class="container progress-content">
+<div class="container progress-content lg-container">
   <div class="progressbar">
     <div class="col-md-6 col-md-offset-6">
       <div class="progress progress-grediant">
@@ -27,7 +27,7 @@
           <p class="lead" ng-if="$ctrl.cartDetails.length===0">Cart is empty</p>
         </div>
       </div>
-      <div class="col-md-12 " ng-if="$ctrl.cartDetails.length!==0">
+      <div class="col-md-12 table-pay" ng-if="$ctrl.cartDetails.length!==0">
         <div class="row">
           <div class="col-md-4">
             <label>Center Name</label>
@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="col-md-2">
-              <br><span ng-show="$ctrl.membershipShow[item.id]">{{item.total_price}}$</span>
+              <span ng-show="$ctrl.membershipShow[item.id]">{{item.total_price}}$</span>
             </div>
             <div class="col-md-1">
             </div>
@@ -198,12 +198,12 @@
 
               <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.adsToggle(item.id)"><i class="fa {{$ctrl.adsToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> <span>Ads</span></span>
               <div class="col-md-12" ng-show="$ctrl.adsShow[item.id]">
-                <span ng-repeat="ads in item.banner_ads"><span style="font-style: italic;">{{ads.name}}</span>,<br></span>
+                <span ng-repeat="ads in item.banner_ads"><span style="font-style: italic;">{{ads.name}}</span>,</span>
               </div>
             </div>
             <div class="col-md-2">
-              <br>
-              <span ng-show="$ctrl.adsShow[item.id]" ng-repeat="ads in item.banner_ads"><br><span>{{ads.total_price}}$</span><br></span>
+              
+              <span ng-show="$ctrl.adsShow[item.id]" ng-repeat="ads in item.banner_ads"><span>{{ads.total_price}}$</span></span>
             </div>
             <div class="col-md-1">
             </div>
@@ -216,14 +216,14 @@
           </div>
           <div class="col-md-4">
             <span>Membership
-              <br>{{$ctrl.membership.package}}</span>
+              {{$ctrl.membership.package}}</span>
           </div>
           <div class="col-md-3">
             <span>
-              <br>{{$ctrl.membership.cost}} $</span>
+              {{$ctrl.membership.cost}} $</span>
           </div>
           <div class="col-md-1">
-            <br>
+            
             <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
           </div>
           <!-- {{$ctrl.grandTotal = $ctrl.grandTotal + $ctrl.membership.cost;}} -->
@@ -234,12 +234,12 @@
             <span></span>
           </div>
           <div class="col-md-4">
-            <br>
+            
             <span>Grand Total</span>
           </div>
           <div class="col-md-3">
             <label>
-              <br>{{$ctrl.cartDetails.total_price}} $</label>
+              {{$ctrl.cartDetails.total_price}} $</label>
           </div>
           <div class="col-md-1"></div>
 
@@ -249,7 +249,7 @@
 
     </div>
 
-    <div class="col-md-12" style="margin-top:50px;">
+    <div class="col-md-12">
       <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.testCenter()">Add Test center</a></p>
       <p class="stick-next-left font-normal back-button"><a href="javascript:;" ng-click="$ctrl.goBack();">Back</a></p>
       <!-- <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.viewProfile()">View my profile</a></p> -->

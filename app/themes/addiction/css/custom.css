@@ -21,6 +21,19 @@ screen and (-webkit-min-device-pixel-ratio:0) {
   }
 }
 
+@media (min-width: 1250px){
+	.lg-container.container {
+		width: 1200px;
+	}
+	
+}
+@media (min-width: 1500px){
+	.lg-container.container {
+		width: 1300px;
+	}
+	
+}
+
 @media (max-width:1200px) {
   .padding_left_new {
     padding-left: 0px !important;
@@ -2731,7 +2744,7 @@ h2.contct_heding.text-right {
 }
 .progress-img{
   position: relative;
-  height: 400px;
+  height: 470px;
   background-position: center;
   background-size:auto;
   background-repeat: no-repeat;
@@ -2763,6 +2776,7 @@ margin-top: 23%;
   position: relative;
   box-shadow: none;
   border-radius: 5px;
+  margin-bottom: 15px;
 }
 .para-container p {
     font-family: 'Open Sans', sans-serif;
@@ -2777,7 +2791,7 @@ margin-top: 23%;
   clear: both;
   width: 70%;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 5px;
 
 }
 .progressbar .progress-bar-success{
@@ -2810,7 +2824,7 @@ span.stick-me{
 .p-form-title {
     z-index: 9999;
     position: absolute;
-    top: 27%;
+	top: 31%;
     left: 52%;
     font-size: 13px;
     font-family: 'open sans', sans-serif;
@@ -2838,7 +2852,7 @@ span.stick-me{
 .p-tc-title{
   z-index: 9999;
   position: absolute;
-  top: 30%;
+  top: 33%;
   left: 53%;
   font-size: 12px;
   font-family: 'open sans', sans-serif;
@@ -2903,12 +2917,12 @@ p.stick-next-tc{
 }
 @media(min-width: 992px){
   p.stick-next{
-    bottom: 70px;
+    bottom: 0;
   }
 }
 p.stick-next-left{
   position: absolute;
-  bottom: 20px;
+  bottom: 0;
   left: 52%;
   font-weight: 700;
   font-size: 16px;
@@ -2923,7 +2937,8 @@ p.stick-next-left{
 p.stick-next-right{
   position: absolute;
   right: 20px;
-  bottom: 20px;
+  bottom: 0;
+  font-weight: 700;
 }
 p.stick-next a{
   font-weight: 700;
@@ -2936,7 +2951,7 @@ p.stick-next a{
 .p-user-profile {
   z-index: 9999;
   position: absolute;
-  top: 41%;
+  top: 42.5%;
   left: 46.6%;
   font-size: 9px;
   font-family: 'open sans', sans-serif;
@@ -2945,9 +2960,9 @@ p.stick-next a{
   color: #83BF00;
 }
 .para-userprofile p{
-      font-size: 15px;
+      font-size: 21px;
       color: #83BF00;
-      margin-top: 23%;
+      margin-top: 0;
 }
 .para-optional{
   margin-bottom: 10px;
@@ -2959,7 +2974,6 @@ p.stick-next a{
 }
 .para-optional p.lead{
   color: #362ea0;
-  font-size: 16px;
   font-weight: 400;
 }
 .para-userprofile p.lead{
@@ -3051,9 +3065,7 @@ p.stick-next a{
     font-weight: 400;
     cursor:pointer;
 }
-ul.stick-next-uo.list-inline {
-    padding-top: 15px;
-}
+
 .stick-next-uo li{
   width: 32%;
   text-align: left;
@@ -3531,4 +3543,54 @@ i.fa.fa-plus-square-o{
 }
 p.stick-next-left.font-normal.back-button{
   left: 86%;
+}
+.fix-pos{
+    position: relative;
+    clear: both;
+    display: table;
+    padding: 0px;
+   
+}
+.fix-pos img_preview{
+    background: #f1f1f1;
+    padding: 10px;
+	margin-top: 44px;
+}
+.img-option-gallery {
+    display: inline-block;
+    padding: 14px;
+    background: #f1f1f1;
+    margin: 10px;
+}
+.fix-pos {    
+    padding: 6px;
+}
+img#logo_preview {
+    margin-top: 18px;
+    background: #eee;
+}
+.lg-container .progress-content-one {
+	width: 100%
+}
+.lg-container  .progress-img {
+	height: 550px;
+}
+.p-user-profile {
+    top: 43.6%;
+    left: 47.6%;
+}
+.lg-container  .para-userprofile p {
+    text-align: center;
+}
+.table-pay{
+	padding-top: 8px;
+}
+.table-pay label, .table-pay span{
+    font-size: 21px;
+    font-weight: 400;
+    color: #83BF00;
+}
+.table-pay .row{
+	border-bottom: 1px solid #83BF00;
+        padding: 13px 0;
 }
