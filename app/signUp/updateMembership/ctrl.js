@@ -13,11 +13,17 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   vm.sponser = function () {
     if (spn === null) {
       localStorageService.set('membershipType', 'skipped', 'sessionStorage');
+      $state.go(UIState.LOGIN);
+      return false;
+    }
+    if (spn === 'skipped') {
+      $state.go(UIState.LOGIN);
+      return false;
     }
     $state.go(UIState.SIGN_UP.SPONSER);
   };
   vm.sponsored = function () {
-    setMembershipType('paid');
+    setMembershipType('sponsored');
     // localStorageService.set('membershipType', 'sponsored', 'sessionStorage');
     // $state.go(UIState.ADD_LISTING.CENTER_INFO);
     //  $state.go(UIState.ADD_LISTING.PAYMENT_DETAILS);
@@ -31,7 +37,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
 
   function setMembershipType(type) {
-    if (type === 'paid') {
+    if (type === 'sponsored') {
       var membershipName = 'Gold';
     } else if (type === 'featured') {
       membershipName = 'Platinum';
