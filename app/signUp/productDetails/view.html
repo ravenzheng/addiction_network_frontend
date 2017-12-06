@@ -64,7 +64,7 @@
             <div class="col-md-5">
               <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.membershipToggle(item.id)"><i class="fa {{ $ctrl.membershipToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> Membership</span>
               <div class="col-md-12" ng-show="$ctrl.membershipShow[item.id]">
-                <span ng-if="item.type==='paid'">Gold</span>
+                <span ng-if="item.type==='sponsored'">Gold</span>
                 <span ng-if="item.type==='featured'">Platinum</span>
                 <span ng-if="!item.type">Not available</span>
               </div>
