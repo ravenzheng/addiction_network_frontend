@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', 'Status', ctrl];
+module.exports = ['$injector', '$document', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', 'Status', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
+function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
   var vm = this;
   var lm = $rootScope;
   var token = localStorageService.get('signupToken');
@@ -28,8 +28,9 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   vm.fileReqHeader = '';
   vm.fileReqFooter = '';
   vm.fileReqSidebar = '';
-
-  $scope.uploadChange = function (position) {
+  // Uploaded image preview
+  vm.preview_img = {};
+  $scope.uploadChange = function (element, position) {
     if (position === 'footer') {
       vm.fileReqFooter = '';
     } else if (position === 'sidebar') {
@@ -37,6 +38,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     } else if (position === 'header') {
       vm.fileReqHeader = '';
     }
+    var reader = new FileReader();
+    reader.readAsDataURL(element.files[0]);
+    reader.onload = function (e) {
+      vm.preview_img[position] = e.target.result;
+      var elmId = 'logo_preview_' + position;
+      $document[0].getElementById(elmId).src = e.target.result;
+    };
+
   };
   vm.count = 1;
   vm.publish_ads2 = function () {
