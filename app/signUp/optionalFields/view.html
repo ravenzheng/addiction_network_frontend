@@ -28,25 +28,25 @@
         <form class="psignup-form" name="$ctrl.optionalForm">
           <div class="form-group">
             <input type="text" class="form-control" name="description" ng-focus="$ctrl.displayMsg='Description Explanation'" ng-blur="$ctrl.displayMsg=''" ng-keypress="$ctrl.optionalInit.description=0" ng-model="$ctrl.description" required="true" placeholder="Description">
-            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
+            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Enter brief description for your treatment center "><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.description.$invalid && ($ctrl.optionalInit.description===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="overview" ng-model="$ctrl.overview" ng-keypress="$ctrl.optionalInit.overview=0" required="true" placeholder="Overview of the program">
-            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
+            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Please enter program overview with small description"><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.overview.$invalid && ($ctrl.optionalInit.overview===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="treatmentApproach" ng-model="$ctrl.treatmentApproach" ng-keypress="$ctrl.optionalInit.treatmentApproach=0" required="true" placeholder="Treatment approach">
-            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
+            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Enter various treatment approach being taken at center."><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.treatmentApproach.$invalid && ($ctrl.optionalInit.treatmentApproach===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP">
-            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o fa-2x"></i></span>
+            <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="What is the Unique selling points for your treatment center"><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.usp.$error.required && ($ctrl.optionalInit.usp===0)" class="help-block">Required</span>
             <span ng-show="$ctrl.optionalForm.usp.$error.pattern && ($ctrl.optionalInit.usp===0)" class="help-block">Invalid Email</span> -->
 
@@ -61,12 +61,12 @@
             </div>
             <div class="fix-pos">
               <img id="logo_preview" width="120" name="logo_preview" />
-              <i class="fa fa-times" ng-show="$ctrl.logoPreview" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteLogo()" aria-hidden="true" tooltip-placement="right" uib-tooltip="Delete image"></i>
+              <i class="fa fa-times" ng-show="$ctrl.logoPreview" style="padding-left:5px;cursor:pointer;" ng-click="$ctrl.deleteLogo()" aria-hidden="true" tooltip-placement="right" uib-tooltip="Please upload the logo of your company/treatment center"></i>
             </div>
 
 
             <div class="pull-right">
-              <span class="ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o c-orange fa-2x"></i></span>
+              <span class="ng-binding" tooltip-placement="right" uib-tooltip="Please upload the logo of your company/treatment center"><i class="fa fa-question-circle-o c-orange fa-2x"></i></span>
             </div>
           </div>
           <div class="form-group clear-me">
@@ -79,7 +79,7 @@
             </div>
 
             <div class="pull-right">
-              <span class="ng-binding" tooltip-placement="right" uib-tooltip="Explaination of each field here"><i class="fa fa-question-circle-o c-orange fa-2x"></i></span>
+              <span class="ng-binding" tooltip-placement="right" uib-tooltip="Please upload images of your treatment center"><i class="fa fa-question-circle-o c-orange fa-2x"></i></span>
             </div>
           </div>
 
