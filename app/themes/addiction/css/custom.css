@@ -3592,5 +3592,51 @@ img#logo_preview {
 }
 .table-pay .row{
 	border-bottom: 1px solid #83BF00;
-        padding: 13px 0;
+	padding: 13px 0;
+}
+.row .bordered, .test-center-details   .table-pay .row{	
+	padding: 10px;
+	border-bottom: 1px solid #f1f1f1;	
+}
+.test-center-details .table-pay .row {
+	padding: 0;
+	/*text-align: center;*/
+}
+.test-center-details  i.fa-plus, .test-center-details  i.fa-minus{
+	background: #fff;
+    color: #83BF00;
+    font-size: 17px;
+    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    vertical-align: middle;
+}
+.test-center-details   .table-pay label, .test-center-details   .table-pay span {
+    font-size: 17px;
+    font-weight: 400;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+.test-center-details    .bold-th label{
+	font-weight: 600;
+}
+.test-center-footer{
+	display:block;
+	clear: both;
+	text-align: center;
+}
+.test-center-footer {
+    display: table;
+    clear: both;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 25px;
+    color: #fff;
+}
+.test-center-footer  p a{
+	font-size: 16px;
+    color: #fff;
 }
