@@ -39,5 +39,8 @@ function ctrl($rootScope, UIState) {
   }, {
     uiSref: UIState.MY_PROFILE.UPGRADE_ACCOUNT,
     name: 'Upgrade Account'
+  },{
+	uiSref: UIState.MY_PROFILE.TEST_CENTER_DETAILS,
+    name: 'Test Center & Details'  
   }];
 }

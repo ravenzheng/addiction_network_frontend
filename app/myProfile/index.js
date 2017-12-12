@@ -33,6 +33,8 @@ angular.module(moduleName, [
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
   .component('upgradeAccount', require('./upgradeAccount'))
+  .component('testCenterDetails', require('./testCenterDetails'))
+  //.component('testCenterDetails', require('./testCenterDetails'))
   //  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
   //  .component('sponsorAdsSponsoredCart', require('./sponsorAds/sponsoredCart'))
 
@@ -147,6 +149,11 @@ angular.module(moduleName, [
       name: UIState.MY_PROFILE.UPGRADE_ACCOUNT,
       url: '/upgrade-account',
       template: '<upgrade-account></upgrade-account>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.TEST_CENTER_DETAILS,
+      url: '/test-center-details',
+      template: '<test-center-details></test-center-details>'
     });
   }]);
 

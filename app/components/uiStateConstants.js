@@ -91,7 +91,8 @@ module.exports = {
     'PAYMENT_DETAILS_ADD': 'myProfile.paymentDetailsAdd',
     'PAYMENT_DETAILS_EDIT': 'myProfile.paymentDetailsEdit',
     'PAYMENT_DETAILS_VIEW': 'myProfile.paymentDetailsView',
-    'UPGRADE_ACCOUNT': 'myProfile.upgradeAccount'
+    'UPGRADE_ACCOUNT': 'myProfile.upgradeAccount',
+    'TEST_CENTER_DETAILS': 'myProfile.testCenterDetails'
   },
   'CENTER_DETAIL': 'treatmentCenterDetail',
   'FEATURED_CENTER': 'featuredTreatmentCenterPage',
