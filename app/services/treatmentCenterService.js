@@ -20,7 +20,8 @@ function service($http, endPoint, UserService) {
     queryStateName: queryStateName,
     queryDetailFront: queryDetailFront,
     getSignupPriceInfo: getSignupPriceInfo,
-    searchCenter: searchCenter
+    searchCenter: searchCenter,
+    getCartDetails: getCartDetails
   };
 
   // Header search
@@ -187,6 +188,21 @@ function service($http, endPoint, UserService) {
       headers: {
         'Authorization': token
       }
+    });
+  }
+
+  // Get cart details
+  function getCartDetails() {
+    return UserService.getToken().then(function (token) {
+      return $http({
+        url: endPoint + '/v2/cart/',
+        method: 'GET',
+        transformRequest: angular.identity,
+        headers: {
+          'Content-Type': undefined,
+          'Authorization': token
+        }
+      });
     });
   }
 }

@@ -13,12 +13,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   vm.sponser = function () {
     if (spn === null) {
       localStorageService.set('membershipType', 'skipped', 'sessionStorage');
-      $state.go(UIState.LOGIN);
-      return false;
-    }
-    if (spn === 'skipped') {
-      $state.go(UIState.LOGIN);
-      return false;
     }
     $state.go(UIState.SIGN_UP.SPONSER);
   };
@@ -37,7 +31,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
 
   function setMembershipType(type) {
-    if (type === 'sponsored') {
+    if (type === 'paid') {
       var membershipName = 'Gold';
     } else if (type === 'featured') {
       membershipName = 'Platinum';
@@ -63,7 +57,18 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
       $state.go(UIState.SIGN_UP.SPONSER);
     }).catch(function (err) {
       $log.info(err);
-      rm.$emit(Status.FAILED, err.data.error);
+      if (angular.isDefined(err.data.error)) {
+        rm.$emit(Status.FAILED, err.data.error);
+      }
+      // for paid parameter
+      if (angular.isDefined(err.data)) {
+        rm.$emit(Status.FAILED, err.data.success);
+      }
+
     });
   }
+
+  vm.goBack = function () {
+    $state.go(UIState.SIGN_UP.OPTIONAL_FIELDS);
+  };
 }

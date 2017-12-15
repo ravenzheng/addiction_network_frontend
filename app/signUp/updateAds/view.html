@@ -80,8 +80,8 @@
                 <p>Website:
                   <input type="text" name="weblinkSidebar" ng-model="$ctrl.weblinkSidebar" ng-init="$ctrl.adsFormInit.weblinkSidebar=1" ng-keypress="$ctrl.adsFormInit.weblinkSidebar = 0" required/>
                 </p>
-                <span ng-show="$ctrl.updateAdsForm.weblinkSidebar.$error.required && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Required</span>
-                <span ng-show="$ctrl.updateAdsForm.weblinkSidebar.$error.pattern && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Invalid website</span>
+                  <span ng-show="$ctrl.updateAdsForm.weblinkSidebar.$error.required && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Required</span>
+                  <span ng-show="$ctrl.updateAdsForm.weblinkSidebar.$error.pattern && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Invalid website</span>
 
               </div>
             </div>

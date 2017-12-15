@@ -1,7 +1,7 @@
 <div class="container progress-content">
   <div class="progressbar">
     <div class="col-md-6 col-md-offset-6">
-      <span class="member-cart">
+      <span class="member-cart" style="cursor:pointer;" ng-click = "$ctrl.goToCart()">
         <img src="themes/addiction/images/png/Cart-Icon.png" />
       </span>
       <div class="progress progress-grediant">
@@ -16,7 +16,6 @@
   </div>
   <div class="clearfix"></div>
   <div class="progress-content-one">
-
     <div class="col-md-6">
       <div class="progress-img-wrap p-60">
         <div style="background-image: url('themes/addiction/images/png/illustrations-Ads.png');" class="progress-img">
@@ -34,10 +33,9 @@
                 <span>Upload <i class="fa fa-arrow-up"></i></span>
                 <!-- <input type="file" class="file"> -->
                 <input name="headerImage" id="headerImage" class="file" type="file" file-model="$ctrl.headerImage" onchange="angular.element(this).scope().uploadChange(this,'header')" accept="image/*">
-
+                <span ng-show="$ctrl.fileReqMsgHeader!=''" ng-init="$ctrl.fileReqMsgHeader='';" class="help-block">{{$ctrl.fileReqMsgHeader}}</span>
               </div>
             </div>
-
             <div class="ads-block">
               <p>Cost: {{$ctrl.header}}</p>
               <p>Size: 544 PX x 93PX</p>
@@ -52,6 +50,7 @@
               </p>
             </div>
           </div>
+
           <div class="form-group clear-me">
             <label class="label-uo">Side:</label>
             <div class="pull-right">
@@ -59,6 +58,8 @@
                 <span>Upload <i class="fa fa-arrow-up"></i></span>
                 <!-- <input type="file" class="file"> -->
                 <input name="sideImage" id="sideImage" class="file" type="file" file-model="$ctrl.sideImage" onchange="angular.element(this).scope().uploadChange(this,'sidebar')" accept="image/*">
+                <span ng-show="$ctrl.fileReqMsgSidebar!==''" ng-init="$ctrl.fileReqMsgSidebar='';" class="help-block">{{$ctrl.fileReqMsgSidebar}}</span>
+
               </div>
             </div>
             <div class="ads-block">
@@ -82,6 +83,8 @@
                 <span>Upload <i class="fa fa-arrow-up"></i></span>
                 <!-- <input type="file" class="file"> -->
                 <input name="footerImage" id="footerImage" class="file" type="file" file-model="$ctrl.footerImage" onchange="angular.element(this).scope().uploadChange(this,'footer')" accept="image/*" required>
+                <span ng-show="$ctrl.fileReqMsgFooter!=''" ng-init="$ctrl.fileReqMsgFooter='';" class="help-block">{{$ctrl.fileReqMsgFooter}}</span>
+
               </div>
             </div>
             <div class="ads-block">
@@ -90,6 +93,7 @@
               <p>Website:
                 <input type="text" name="weblinkFooter" ng-model="$ctrl.weblinkFooter" ng-init="$ctrl.adsFormInit.weblinkFooter=1" ng-keypress="$ctrl.adsFormInit.weblinkFooter = 0" required ng-pattern="/^(?:(ftp|http|https):\/\/)?(?:([\w]{3})+\.)+([0-9 a-z]{2,30})?(?:[\.])+([a-z/.]{2,10})$/" />
               </p>
+
               <span ng-show="$ctrl.publishAdsForm.weblinkFooter.$error.required && ($ctrl.adsFormInit.weblinkFooter===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkFooter.$error.pattern && ($ctrl.adsFormInit.weblinkFooter===0)" class="help-block">Invalid website</span>
               <br>
@@ -102,7 +106,7 @@
       </div>
 
     </div>
-    <p class="stick-next-left font-normal"><a href="javascript:window.history.back();" ng-click="$ctrl.testCenter()">Back</a></p>
+    <p class="stick-next-left font-normal"><a href="javascript:;" ng-click="$ctrl.goBack()">Back</a></p>
     <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.publish_ads2()">Next</a></p>
     <!-- <p class="stick-next-right"><button ng-click="$ctrl.publish_ads2()">Next</button></p> -->
   </div>

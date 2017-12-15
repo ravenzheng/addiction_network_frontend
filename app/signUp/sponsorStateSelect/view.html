@@ -1,7 +1,7 @@
 <!-- <section-heading>Select State</section-heading> -->
 <!--- Map content  Start   -->
 <div class="col-sm-12 steps_sponsored">Step1: Click on the map to select state, county and city or <b>{{$ctrl.checkAllText[$root.activeCenter]}}</b>
-  <input type="checkbox" name="" ng-model="$root.checkedAllStates[$root.activeCenter]" ng-change="$ctrl.selectStateAll()" ng-click="$ctrl.checkboxCheck()" /> </div>
+  <input type="checkbox" name="" ng-model="$root.checkedAllStates[$root.activeCenter]" ng-change="$ctrl.selectStateAll()"  ng-click="$ctrl.checkboxCheck()" /> </div>
 <div onselectstart="return false;" class="unselectable col-sm-12">
   <div id="mapwrapper" class="col-sm-12">
     <div id="map_base">
@@ -15,8 +15,8 @@
       <!-- <input type="checkbox" name="" ng-model="$root.checkedAllStates" ng-change="$ctrl.selectStateAll()" ng-init="$ctrl.checkAllText=' Select all states'" /> {{$ctrl.checkAllText}} -->
     </div>
   </div>
-  <div class="col-sm-12 steps_sponsored step2">Step2: Select various categories for your treatment center</div>
-  <div class="additional_filters">
+<div class="col-sm-12 steps_sponsored step2">Step2: Select various categories for your treatment center</div>
+  <div class="additional_filters">  
     <div class="col-sm-12">
       <div class="col-sm-3">
         <div ng-dropdown-multiselect="" ng-click="$ctrl.checkFirst()" id="demographic" options="$root.demographic" ng-if="$root.demographicModel[$root.activeCenter]" selected-model="$root.demographicModel[$root.activeCenter]" extra-settings="$ctrl.demographic" translation-texts="$ctrl.buttonTxtDemographic" events="{onItemSelect: $ctrl.updateCart, onItemDeselect: $ctrl.updateCart}" checkboxes="true">
