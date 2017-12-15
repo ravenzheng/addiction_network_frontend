@@ -2,10 +2,131 @@
   <div class="row contact_us_otr">
     <div class="col-lg-7 col-sm-7 col-md-7 col-xs-12">
       <div class="col-md-12 col-sm-12 pading_0">
-        <div id="success" style="color: green; display: none;" ;=""></div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <h2 class="contct_heding">Insurance</h2>
+        <div class="container">
+          <div class="row contact_us_otr">
+            <div class="col-lg-9 col-sm-9 col-md-9 col-xs-12">
+              <div class="col-md-12 col-sm-12 pading_0">
+                <div id="success" style="color: green; display: none;" ;=""></div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <h2 class="contct_heding">Insurance</h2>
+                </div>
+                <div class="col-sm-9">
+                  <form action="https://webto.salesforce.com/servlet/servlet.WebToLead" method="GET">
+                    <h2>Contact Info</h2>
+                    <br>
+                    <div class="clearfix" style="margin-bottom: 10px;">
+                      <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0%;">
+                        <label>First Name</label>
+                        <input placeholder="First Name" id="first_name" name="user_first_name" class="form-control" type="text" required="true">
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0%;padding-left:10px;">
+                        <label>Last Name:</label>
+                        <input placeholder="Last Name" id="last_name" name="user_last_name" class="form-control required" type="text" required="true">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" class="form-control" id="email" placeholder="Enter email address" name="email" required="">
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone:</label>
+                      <input type="text" required="" class="form-control" id="phone" placeholder="Enter phone number" name="phone" onkeyup="copyTextValue(this);">
+                    </div>
+                    <h2>Patient Info</h2>
+                    <div class="clearfix" style="margin-bottom: 10px;margin-top:10px;">
+                      <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0%;">
+                        <label>First Name</label>
+                        <input placeholder="First Name" name="user_first_name" class="form-control" type="text" required="true">
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0%;padding-left:10px;">
+                        <label>Last Name:</label>
+                        <input placeholder="Last Name" name="user_last_name" class="form-control required" type="text" required="true">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Client DOB:</label>
+                      <input type="email" class="form-control" placeholder="Date of birth" name="email" required="">
+                    </div>
+
+                    <h2>Insurance Info</h2>
+
+                    <div class="clearfix" style="margin-bottom: 10px;margin-top:10px;">
+                      <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0%;">
+                        <label>Subscriber First Name</label>
+                        <input placeholder="Subscriber First Name" name="user_first_name" class="form-control" type="text" required="true">
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0%;padding-left:10px;">
+                        <label>Subscriber Last Name:</label>
+                        <input placeholder="Subscriber Last Name" name="user_last_name" class="form-control required" type="text" required="true">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Subscriber DOB:</label>
+                      <input type="email" class="form-control" placeholder="Subscriber Date of birth" name="email" required="">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">SSN (Last 4)</label>
+                      <input type="email" class="form-control" placeholder="SSN (Last 4)" name="email" required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Insurance Providers</label>
+                      <input type="email" class="form-control" placeholder="Insurance Providers" name="email" required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Insurance Policy #</label>
+                      <input type="email" class="form-control" placeholder="Insurance Policy #" name="email" required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Group Number</label>
+                      <input type="email" class="form-control" placeholder="Group Number" name="email" required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Insurance Provider Phone Number</label>
+                      <input type="email" class="form-control" placeholder="Insurance Provider Phone Number" name="email" required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Additional Notes Submit</label>
+                      <textarea name="00NU0000003yqQc" cols="80" rows="5" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+                </div>
+                <!-- <button id="contact-customer" style="visibility:hidden;">Customer</button>
+                <script>
+                  setTimeout(function () {
+                    document.getElementById("contact-customer").click();
+                  }, 100);
+                </script>
+                <script>
+                  jQuery(document).ready(function () {
+                    jQuery("button").click(function () {
+                      jQuery(".hbspt-form").prependTo(".hubspot");
+                    });
+                  });
+                </script>
+                <script>
+                  hbspt.forms.create({
+                    portalId: '2502193',
+                    formId: '68b39208-98d3-4cce-8560-eb45d1395417'
+                  });
+                </script>
+                <div class="hubspot"></div> -->
+
+              </div>
+            </div>
+            <!-- <side-panel></side-panel> -->
+          </div>
         </div>
+        <script>
+          function copyTextValue(bf) {
+            document.getElementById("phonecopy").value = bf.value;
+          }
+        </script>
         <!-- BEGIN FORM-->
         <!-- <script>
           var j = document.createElement('script');
@@ -13,8 +134,8 @@
           j.src = 'https://js.hsforms.net/forms/v2.js';
           document.getElementsByTagName('head')[0].appendChild(j);
         </script> -->
-        <button id="insurance-button" style="visibility:hidden;">insurance</button>
-        <script>
+        <!-- <button id="insurance-button" style="visibility:hidden;">insurance</button> -->
+        <!-- <script>
           setTimeout(function () {
             document.getElementById("insurance-button").click();
           }, 100);
@@ -31,8 +152,8 @@
             portalId: '2502193',
             formId: '21867f46-4555-424d-b345-59ddcd02ee84'
           });
-        </script>
-        <div class="hubspot"></div>
+        </script> -->
+        <!-- <div class="hubspot"></div> -->
         <!-- END FORM-->
       </div>
       <div class="row">
