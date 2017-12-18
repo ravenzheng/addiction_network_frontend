@@ -2,7 +2,7 @@ module.exports = ['$rootScope', 'UIState', ctrl];
 
 function ctrl($rootScope, UIState) {
   var vm = this;
-  vm.linksFree = [{
+  vm.linksPaid = [{
     uiSref: UIState.MY_PROFILE.PROFILE,
     name: 'My Profile'
   }, {
@@ -16,7 +16,7 @@ function ctrl($rootScope, UIState) {
     name: 'Test Center & Details'
   }];
 
-  vm.linksPaid = [{
+  vm.linksFree = [{
     uiSref: UIState.MY_PROFILE.PROFILE,
     name: 'My Profile'
   }, {
