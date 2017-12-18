@@ -11,9 +11,9 @@ angular.module(moduleName, [
   .component('centerTable', require('./sub/centerTable'))
   .component('profileNavSection', require('./profileNavSection'))
   .component('profileMain', require('./profileMain'))
-  .component('accountSettings', require('./accountSettings'))
+  // .component('accountSettings', require('./accountSettings'))
   .component('changePassword', require('./changePassword'))
-  .component('myTreatmentCenters', require('./myTreatmentCenters'))
+  // .component('myTreatmentCenters', require('./myTreatmentCenters'))
   .component('addTreatmentCenter', require('./addTreatmentCenter'))
   .component('editTreatmentCenter', require('./editTreatmentCenter'))
   .component('bannerAds', require('./bannerAds'))
@@ -54,21 +54,13 @@ angular.module(moduleName, [
       url: '/profile',
       template: '<profile-main profile="$ctrl.profile"></profile-main>'
     });
-    $stateProvider.state({
-      name: UIState.MY_PROFILE.ACCOUNT_SETTING,
-      url: '/account-settings',
-      template: '<account-settings profile="$ctrl.profile"></account-settings>'
-    });
+
     $stateProvider.state({
       name: UIState.MY_PROFILE.CHANGE_PASSWORD,
       url: '/change-password',
       template: '<change-password></change-password>'
     });
-    $stateProvider.state({
-      name: UIState.MY_PROFILE.MY_CENTERS,
-      url: '/my-treatment-centers',
-      template: '<my-treatment-centers></my-treatment-centers>'
-    });
+
     $stateProvider.state({
       name: UIState.MY_PROFILE.ADD_CENTER,
       url: '/add-treatment-center',

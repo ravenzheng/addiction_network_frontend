@@ -83,7 +83,7 @@ function service($log, $http, endPoint) {
   // Upgrade membership
   function upgradeMembership(formdata, token) {
     return $http({
-      url: endPoint + '/upgrade_membership',
+      url: endPoint + '/upgrade_membership',    
       method: 'POST',
       data: formdata,
       transformRequest: angular.identity,
