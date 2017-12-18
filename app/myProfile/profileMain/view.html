@@ -226,7 +226,7 @@
       <div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-md-offset-4 col-sm-12 col-xs-12">
         <button type="submit" ng-show="$ctrl.editOnly===1" ng-click="$ctrl.submit()" class="btn adn-btn right" ng-disabled="$ctrl.accountSetting.last_name.$invalid ||
         $ctrl.accountSetting.last_name.$invalid || $ctrl.accountSetting.phone.$invalid">Save</button>
-        <button type="submit" ng-click="$ctrl.viewOnly=0;$ctrl.editOnly=1;" class="btn adn-btn right" >Edit</button>
+        <button type="submit" ng-click="$ctrl.viewOnly=0;$ctrl.editOnly=1; $ctrl.initEditProfData();" class="btn adn-btn right" >Edit</button>
         <button type="submit" ng-click="$ctrl.viewOnly=1;$ctrl.editOnly=0;" class="btn adn-btn right">Back</button>
         <!-- <button type="submit" class="btn adn-btn right" ng-disabled="$ctrl.accountSetting.phone.$invalid || ($ctrl.zipFound === 0) || $ctrl.accountSetting.city.$invalid || $ctrl.accountSetting.last_name.$invalid || $ctrl.accountSetting.first_name.$invalid">Submit</button> -->
       </div>

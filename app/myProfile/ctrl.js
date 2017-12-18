@@ -8,13 +8,12 @@ function ctrl($state, $rootScope, $log, $window, UserService, localStorageServic
   var profileData = localStorageService.get('profileData', 'sessionStorage');
   if (profileData !== null) {
     vm.profile = profileData;
-    localStorageService.remove('profileData');
+     localStorageService.remove('profileData');
   }
 
   // $state.reload();
   UserService.queryProfile().then(function (result) {
     vm.profile = result.user;
-    // console.log('profile data from api: ' + vm.profile);
     $rootScope.profileData = result.user;
     localStorageService.set('profileData', result.user, 'sessionStorage');
   }).catch(function (error) {

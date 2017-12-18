@@ -11,10 +11,15 @@ function ctrl($log, $rootScope, Status, service, mapService, centerService, loca
     for (var key in vm.profile) {
       vm[key] = vm.profile[key];
     }
-    getCities(vm.state);
+  //  getCities(vm.state);
   };
   vm.country = 'USA';
 
+vm.initEditProfData = function(){
+  for (var key in $rootScope.profileData) {
+    vm[key] = vm.profile[key];
+  }
+};
   function getCities(state) {
     mapService.getCitiesByState(state).then(function (response) {
       vm.cities = response;

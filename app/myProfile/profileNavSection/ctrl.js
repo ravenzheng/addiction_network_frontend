@@ -2,18 +2,12 @@ module.exports = ['$rootScope', 'UIState', ctrl];
 
 function ctrl($rootScope, UIState) {
   var vm = this;
-  vm.linksPaid = [{
+  vm.linksFree = [{
     uiSref: UIState.MY_PROFILE.PROFILE,
     name: 'My Profile'
   }, {
     uiSref: UIState.MY_PROFILE.CHANGE_PASSWORD,
     name: 'Change Password'
-  }, {
-    uiSref: UIState.MY_PROFILE.SPONSOR_ADS,
-    name: 'Sponsor Pages'
-  }, {
-    uiSref: UIState.MY_PROFILE.BANNER_ADS,
-    name: 'Banner Ads'
   }, {
     uiSref: UIState.MY_PROFILE.PAYMENT_DETAILS,
     name: 'Payment Details'
@@ -22,7 +16,7 @@ function ctrl($rootScope, UIState) {
     name: 'Test Center & Details'
   }];
 
-  vm.linksFree = [{
+  vm.linksPaid = [{
     uiSref: UIState.MY_PROFILE.PROFILE,
     name: 'My Profile'
   }, {
