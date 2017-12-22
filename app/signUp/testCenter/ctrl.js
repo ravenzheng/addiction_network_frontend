@@ -21,7 +21,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
 
   vm.resetNextStepVars = function () {
     localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
-    localStorageService.remove('bannerAdded', 'sponsorAdded'); // remove previous status
+    localStorageService.remove('bannerAdded', 'sponsorAdded', 'cartMode'); // remove previous status
   };
 
   vm.multiselectModelSettings = {
@@ -116,7 +116,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       //  $log.info(signupData.signupStep.testCenter);
       vm.centerName = testCenter.center_name;
       var catg = testCenter.category_id;
-      catg = catg.split(",");
+      catg = catg.split(',');
       for (var key in catg) {
         var catgId = catg[key];
         vm.categoryModel[catgId] = true;
@@ -132,7 +132,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
         vm.tagCheckboxModel[tagsId[key]] = true;
         vm.checkedString[tagsId[key]] = 'checked';
       }
-
     } else {
       // $log.info('notdef');
     }
@@ -140,7 +139,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     if (angular.isDefined(localStorageService.get('membership')) && localStorageService.get('membership') !== null) {
       vm.skipShow = 1;
     }
-
   };
 
   vm.onCategorySelect = function () {

@@ -1,6 +1,6 @@
-module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'localStorageService', 'Status', '$timeout', 'MapService', ctrl];
+module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'SignUpService', 'localStorageService', 'Status', '$timeout', 'MapService', ctrl];
 
-function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status, $timeout, mapService) {
+function ctrl($document, $rootScope, $injector, $state, UIState, service, signupService, localStorageService, Status, $timeout, mapService) {
   var vm = this;
   var value = 0;
   vm.checkFirst = function () {
@@ -140,6 +140,70 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     vm.centerwise = {};
   }
 
+  // pre load from cart item
+  vm.setCategoryCartData = function (cartMode) {
+    var actCen = cartMode.data.id;
+
+    var catgs = [];
+    for (var key in cartMode.data.sponsored_layouts.categories) {
+    //  $rootScope.treatmentApproachModel[actCen].push();
+      catgs.push(cartMode.data.sponsored_layouts.categories[key].name);
+    }
+
+    var demographic = $rootScope.otherIds.Demographic;
+    $rootScope.demographicModel = {};
+    $rootScope.demographicModel[actCen] = [];
+    for (var key in demographic) {
+      if (catgs.indexOf(demographic[key].name) >= 0) {
+        $rootScope.demographicModel[actCen].push({'id': demographic[key].id});
+      }
+    }
+
+    var treatmentApproach = $rootScope.otherIds['Treatment Approach'];
+    $rootScope.treatmentApproachModel = {};
+    $rootScope.treatmentApproachModel[actCen] = [];
+    for (key in treatmentApproach) {
+      if (catgs.indexOf(treatmentApproach[key].name) >= 0) {
+        $rootScope.treatmentApproachModel[actCen].push({'id': treatmentApproach[key].id});
+      }
+    }
+
+    var setting = $rootScope.otherIds.Setting;
+    $rootScope.settingModel = {};
+    $rootScope.settingModel[actCen] = [];
+    for (key in setting) {
+      if (catgs.indexOf(setting[key].name) >= 0) {
+        $rootScope.settingModel[actCen].push({'id': setting[key].id});
+      }
+    }
+
+    var additionalServices = $rootScope.otherIds['Additional Services'];
+    $rootScope.additionalServicesModel = {};
+    $rootScope.additionalServicesModel[actCen] = [];
+    for (key in additionalServices) {
+      if (catgs.indexOf(additionalServices[key].name) >= 0) {
+        $rootScope.additionalServicesModel[actCen].push({'id': additionalServices[key].id});
+      }
+    }
+
+    var payment = $rootScope.otherIds.Payment;
+    $rootScope.paymentModel = {};
+    $rootScope.paymentModel[actCen] = [];
+    for (key in payment) {
+      if (catgs.indexOf(payment[key].name) >= 0) {
+        $rootScope.paymentModel[actCen].push({'id': payment[key].id});
+      }
+    }
+    var byDrug = $rootScope.otherIds['By Drug'];
+    $rootScope.byDrugModel = {};
+    $rootScope.byDrugModel[actCen] = [];
+    for (key in byDrug) {
+      if (catgs.indexOf(byDrug[key].name) >= 0) {
+        $rootScope.byDrugModel[actCen].push({'id': byDrug[key].id});
+      }
+    }
+  };
+
   // get other sponsored ids
   if (angular.isUndefined($rootScope.otherIds) || $rootScope.otherIds === null) {
     service.getSponsoredDemographic().then(function (response) {
@@ -215,6 +279,19 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
         disabled: disabledValue
       };
     }
+
+    // test if cartmode
+    // --------------check if edit/delete/add mode -------------------//
+    var cartMode = localStorageService.get('cartMode');
+    if (angular.isDefined(cartMode) && cartMode !== null) {
+      if (cartMode.mode === 'edit' && cartMode.item === 'sponsored_layouts') {
+        vm.setCategoryCartData(cartMode);
+        // localStorageService.remove('cartMode');
+        // vm.updateCart();
+        saveToLocalStorage($rootScope, localStorageService);
+        $rootScope.onInit();
+      }
+    }
   }
 
   vm.onStateSelect = function (state) {
@@ -270,7 +347,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     vm.updateCart();
   };
 
-  // localStorageService.remove('signupSponsoredPage');
   // get values from localStorageService
   if (angular.isDefined(localStorageService.get('signupSponsoredPage', 'sessionStorage'))) {
     var sponsoredInfo = localStorageService.get('signupSponsoredPage', 'sessionStorage');
@@ -316,7 +392,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
 
     if (angular.isUndefined($rootScope.checkedStateModel) || angular.isUndefined($rootScope.checkedStateModel[$rootScope.activeCenter]) || $rootScope.checkedStateModel.length === 0) {
       $rootScope.checkedStateModel = {};
-
       for (cen in $rootScope.treatmentCentersValue) {
         centerId = $rootScope.treatmentCentersValue[cen].id;
         $rootScope.checkedStateModel[centerId] = [];
@@ -473,7 +548,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     if (angular.isDefined($rootScope.checkedStateModel[$rootScope.activeCenter])) {
       index = $rootScope.checkedStateModel[$rootScope.activeCenter].indexOf(stateSelectedData.shortname);
     }
-
     if (stateCheck === true) {
       if (index === -1) {
         $rootScope.checkedStateModel[$rootScope.activeCenter].push(stateSelectedData.shortname);
@@ -495,7 +569,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       dropDownClickOnload($document);
     }, 700);
   };
-
 }
 
 function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {
@@ -612,6 +685,69 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
     $rootScope.width = 'three_columns';
     $rootScope.city = modifiedCitySelect;
     $rootScope.county = modifiedCountySelect;
+
+    // ---------- if cart edit mode ----------------//
+    cartMode = localStorageService.get('cartMode');
+    if (angular.isDefined(cartMode) && cartMode !== null) {
+      if (cartMode.mode === 'edit' && cartMode.item === 'sponsored_layouts') {
+        // localStorageService.remove('cartMode');
+        // vm.updateCart();
+        // saveToLocalStorage($rootScope, localStorageService);
+        // $rootScope.onInit();
+        actCen = cartMode.data.id;
+        var cits = [];
+        var counts = [];
+        var stats = [];
+        for (var key in cartMode.data.sponsored_layouts.city) {
+        //  $rootScope.treatmentApproachModel[actCen].push();
+          cits.push(cartMode.data.sponsored_layouts.city[key].name);
+        }
+        for (var key in cartMode.data.sponsored_layouts.county) {
+        //  $rootScope.treatmentApproachModel[actCen].push();
+          counts.push(cartMode.data.sponsored_layouts.county[key].name);
+        }
+        for (var key in cartMode.data.sponsored_layouts.state) {
+        //  $rootScope.treatmentApproachModel[actCen].push();
+          stats.push(cartMode.data.sponsored_layouts.state[key].name);
+        }
+        $rootScope.cityModel = {};
+        $rootScope.cityModel[actCen] = [];
+        for (key in modifiedCitySelect) {
+          if (cits.indexOf(modifiedCitySelect[key].label) >= 0) {
+            $rootScope.cityModel[actCen].push({'id': modifiedCitySelect[key].id});
+          }
+        }
+        $rootScope.countyModel = {};
+        $rootScope.countyModel[actCen] = [];
+        for (key in modifiedCountySelect) {
+          if (counts.indexOf(modifiedCountySelect[key].label) >= 0) {
+            $rootScope.countyModel[actCen].push({'id': modifiedCountySelect[key].id});
+          }
+        }
+        if (angular.isUndefined($rootScope.checkedStateDetail)) {
+          $rootScope.checkedStateDetail = {};
+        }
+
+        $rootScope.checkedStateModel = {};
+        $rootScope.checkedStateModel[actCen] = [];
+        $rootScope.checkedStateDetail = {};
+        $rootScope.checkedStateDetail[actCen] = [];
+        for (key in $rootScope.stateIds) {
+          if (stats.indexOf($rootScope.stateIds[key].name) >= 0) {
+            stateSelectedData = {
+              'id': $rootScope.stateIds[key].id,
+              'shortname': $rootScope.stateIds[key].name,
+              'state': $rootScope.stateIds[key].name
+            };
+            $rootScope.checkedStateModel[actCen].push($rootScope.stateIds[key].name);
+            $rootScope.checkedStateDetail[actCen].push(stateSelectedData);
+          }
+        }
+        saveToLocalStorage($rootScope, localStorageService);
+        $rootScope.onInit();
+      }
+    }
+
     var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect=""  options="$root.city" checkboxes="true" selected-model="$root.cityModel[$root.activeCenter]" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity, onItemSelect: citySelectFun, onItemDeselect: deSelectCityFun}" ></div>';
     var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect=""  options="$root.county" checkboxes="true" selected-model="$root.countyModel[$root.activeCenter]" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeSelect: deSelectCountyFun }"></div>';
 
@@ -663,7 +799,6 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         };
 
         $rootScope.cancel = function () {
-
           if (angular.isDefined(vmModal.stateSelectCheck)) {
             vmModal.stateSelectCheck = true;
           }

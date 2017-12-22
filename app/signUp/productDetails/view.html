@@ -24,10 +24,10 @@
         <div class="para-userprofile">
           <p>You have registered your treatment center with
             <strong>{{$ctrl.membership.package_name}}</strong> membership in Addiction network and are one step awaay from your customers</p>
-            <p class="lead" ng-if="$ctrl.cartDetails.length!==0">Please check your bill amount below </p>
-            <input type="checkbox" ng-model="$ctrl.expandAll" ng-init="$ctrl.expandAll=false" ng-click="$ctrl.expandAllFun($ctrl.expandAll);" /> Expand all
-            <p class="lead" ng-if="$ctrl.membership===''">Cart is empty</p>
-            <p class="lead" ng-if="$ctrl.cartDetails.length===0 && $ctrl.membership !==''">Cart is loading...</p>
+          <p class="lead" ng-if="$ctrl.cartDetails.length!==0">Please check your bill amount below </p>
+          <input type="checkbox" ng-model="$ctrl.expandAll" ng-init="$ctrl.expandAll=false" ng-click="$ctrl.expandAllFun($ctrl.expandAll);" /> Expand all
+          <p class="lead" ng-if="$ctrl.membership===''">Cart is empty</p>
+          <p class="lead" ng-if="$ctrl.cartDetails.length===0 && $ctrl.membership !==''">Cart is loading...</p>
         </div>
       </div>
       <div class="col-md-12 table-pay" ng-if="$ctrl.cartDetails.length!==0">
@@ -57,7 +57,7 @@
               <span>10$</span>
             </div>
             <div class="col-md-1">
-              <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              <span style="cursor:pointer;" ng-click="$ctrl.editCenter(item.id, item.name,item);"><i class="fa fa-pencil" aria-hidden="true"></i></span>
             </div>
           </div>
           <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.membershipShow[item.id]=0; $ctrl.membershipToggleIconClass[item.id]='fa-plus-square-o';">

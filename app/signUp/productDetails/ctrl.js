@@ -63,6 +63,21 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     $state.go(UIState.LOGIN);
   };
 
+  vm.editCenter = function (cenId, cenName, item) {
+    var centerInfo = [{
+      'id': cenId,
+      'label': cenName
+    }];
+    localStorageService.set('current_center', centerInfo);
+    var cartMode = {
+      'mode': 'edit',
+      'item': 'sponsored_layouts',
+      'data': item
+    };
+    localStorageService.set('cartMode', cartMode);
+    $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+  };
+
   /*********************** Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
     if (vm.productShow[itemId]) {
