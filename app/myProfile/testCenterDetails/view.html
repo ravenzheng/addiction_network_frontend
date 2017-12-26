@@ -106,7 +106,7 @@
                     <span><i class="fa fa-pencil"></i></span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(state.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
 
@@ -134,7 +134,7 @@
                     <span><i class="fa fa-pencil"></i></span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(city.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
 
@@ -162,7 +162,7 @@
                     <span><i class="fa fa-pencil"></i></span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(county.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
 
@@ -190,7 +190,7 @@
                     <span><i class="fa fa-pencil"></i></span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(category.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
           <div class="col-md-12 bordered">
@@ -295,7 +295,7 @@
                   <p class="font-normal"><a href="javascript:;" ng-click="$ctrl.goBack()">Back</a></p>
                 </div>
                 <div class="col-md-4">
-                  <p class="font-normal" style="left:72%;"><a href="javascript:void(0)">Add another test center</a></p>
+                  <p class="font-normal" style="left:72%;"><a href="javascript:void(0)" ng-click="$ctrl.addTestCenter();">Add another test center</a></p>
                 </div>
                 <div class="col-md-4">
                   <p class=""><a href="javascript:void(0)" class="ng-scope">Delete</a></p>

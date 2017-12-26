@@ -17,41 +17,65 @@ function ctrl($state, UIState, $log, $rootScope, localStorageService, service) {
   // get cart details using api
   service.getCartDetails().then(function (result) {
     vm.cartDetails = result.cart_subscription;
-    $log.info(result);
-    // demo data inserting
-    vm.cartDetails.items[0].sponsored_layouts.state = [{
-      'name': 'state1'
-    }, {
-      'name': 'state2'
-    }, {
-      'name': 'state3'
-    }];
-    vm.cartDetails.items[0].sponsored_layouts.county = [{
-      'name': 'county1'
-    }, {
-      'name': 'county2'
-    }, {
-      'name': 'county3'
-    }];
-    vm.cartDetails.items[0].sponsored_layouts.city = [{
-      'name': 'city1'
-    }, {
-      'name': 'city1'
-    }, {
-      'name': 'city1'
-    }];
-    vm.cartDetails.items[0].sponsored_layouts.categories = [{
-      'name': 'at1'
-    }, {
-      'name': 'county2'
-    }, {
-      'name': 'county3'
-    }];
+    // $log.info(result);
+    // // demo data inserting
+    // vm.cartDetails.items[0].sponsored_layouts.state = [{
+    //   'name': 'state1'
+    // }, {
+    //   'name': 'state2'
+    // }, {
+    //   'name': 'state3'
+    // }];
+    // vm.cartDetails.items[0].sponsored_layouts.county = [{
+    //   'name': 'county1'
+    // }, {
+    //   'name': 'county2'
+    // }, {
+    //   'name': 'county3'
+    // }];
+    // vm.cartDetails.items[0].sponsored_layouts.city = [{
+    //   'name': 'city1'
+    // }, {
+    //   'name': 'city1'
+    // }, {
+    //   'name': 'city1'
+    // }];
+    // vm.cartDetails.items[0].sponsored_layouts.categories = [{
+    //   'name': 'at1'
+    // }, {
+    //   'name': 'county2'
+    // }, {
+    //   'name': 'county3'
+    // }];
   }).catch(function (err) {
     $log.info(err);
   });
 
-  /*********************** Show/hide functionality for cart details *********************/
+  vm.deleteSponsorAds = function (itemId) {
+    $log.info(itemId);
+    // delete sponsored ads using itemId
+    service.deleteSponsorAds(itemId).then(function (result) {
+      $log.info(result);
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+
+  // start process of adding another treatment center //
+  vm.addTestCenter = function () {
+    $log.info('start testcenter add');
+    // *************initial steps*************//
+      // reset previous localstorage
+    localStorageService.remove('membership', 'center_added', 'userInfo', 'signupSponsoredPage', 'membershipType', 'bannerAdded', 'sponsorAdded', 'signupToken');
+
+    var signUp = {
+      'signupStep': {}
+    };
+    localStorageService.set('signupStepsData', signUp, 'sessionStorage');
+    $state.go(UIState.MY_PROFILE.ADD_TEST_CENTER);
+  };
+
+  /** ********************* Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
     if (vm.productShow[itemId]) {
       vm.productShow[itemId] = 0;
@@ -123,9 +147,7 @@ function ctrl($state, UIState, $log, $rootScope, localStorageService, service) {
     for (var key in vm.cartDetails.items) {
       vm.centerToggle(vm.cartDetails.items[key].id);
     }
-
   };
 
-  /*********************** End Show/hide functionality for cart details *********************/
-
+  /** ********************* End Show/hide functionality for cart details *********************/
 }

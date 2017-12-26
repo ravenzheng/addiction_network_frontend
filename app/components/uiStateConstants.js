@@ -92,7 +92,12 @@ module.exports = {
     'PAYMENT_DETAILS_EDIT': 'myProfile.paymentDetailsEdit',
     'PAYMENT_DETAILS_VIEW': 'myProfile.paymentDetailsView',
     'UPGRADE_ACCOUNT': 'myProfile.upgradeAccount',
-    'TEST_CENTER_DETAILS': 'myProfile.testCenterDetails'
+    'TEST_CENTER_DETAILS': 'myProfile.testCenterDetails',
+    'ADD_TEST_CENTER': 'myProfile.addTestCenter',
+    'OPTIONAL_FIELDS': 'myProfile.optionalfields',
+    'UPDATE_MEMBERSHIP': 'myProfile.updateMembership',
+    'SPONSER': 'myProfile.sponserPage',
+    'PUBLISH_ADS': 'myProfile.publishAds'
   },
   'CENTER_DETAIL': 'treatmentCenterDetail',
   'FEATURED_CENTER': 'featuredTreatmentCenterPage',

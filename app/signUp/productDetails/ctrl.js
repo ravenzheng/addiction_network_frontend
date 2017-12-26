@@ -8,7 +8,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     vm.clearRootscopeData();
     var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
     signupData.signupStep.testCenter = {};
-    localStorageService.set('signupStepsData', signupData, 'sessionStorage')
+    localStorageService.set('signupStepsData', signupData, 'sessionStorage');
     $state.go(UIState.SIGN_UP.TEST_CENTER);
   };
   vm.goBack = function () {
@@ -78,7 +78,17 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
   };
 
-  /*********************** Show/hide functionality for cart details *********************/
+  vm.deleteSponsorAds = function (itemId) {
+    $log.info(itemId);
+    // delete sponsored ads using itemId
+    service.deleteSponsorAds(itemId, token).then(function (result) {
+      $log.info(result);
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+
+  /** ********************* Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
     if (vm.productShow[itemId]) {
       vm.productShow[itemId] = 0;
@@ -163,14 +173,12 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       if (vm.productShow[vm.cartDetails.items[key].id] === 1 && tf === false) {
         vm.centerToggle(vm.cartDetails.items[key].id);
       }
-
     }
   };
 
-  /*********************** End Show/hide functionality for cart details *********************/
+  /** ********************* End Show/hide functionality for cart details *********************/
 
   vm.publish_ads = function () {
     $state.go(UIState.SIGN_UP.PUBLISH_ADS);
   };
-
 }

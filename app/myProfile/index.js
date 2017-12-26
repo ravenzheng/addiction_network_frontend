@@ -34,9 +34,15 @@ angular.module(moduleName, [
   .component('paymentDetailsView', require('./paymentDetails/view'))
   .component('upgradeAccount', require('./upgradeAccount'))
   .component('testCenterDetails', require('./testCenterDetails'))
-  //.component('testCenterDetails', require('./testCenterDetails'))
+  // .component('testCenterDetails', require('./testCenterDetails'))
   //  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
   //  .component('sponsorAdsSponsoredCart', require('./sponsorAds/sponsoredCart'))
+
+  .component('addTestCenter', require('./addTestCenter'))
+  .component('optionalFields', require('./addTestCenter/optionalFields'))
+  .component('updateMembership', require('./addTestCenter/updateMembership'))
+  .component('sponserPage', require('./addTestCenter/sponserPage'))
+  .component('publishAds', require('./addTestCenter/publishAds'))
 
   .component('myProfile', {
     template: require('./view.html'),
@@ -146,6 +152,31 @@ angular.module(moduleName, [
       name: UIState.MY_PROFILE.TEST_CENTER_DETAILS,
       url: '/test-center-details',
       template: '<test-center-details></test-center-details>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.ADD_TEST_CENTER,
+      url: '/add-test-center',
+      template: '<add-test-center></add-test-center>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.OPTIONAL_FIELDS,
+      url: '/optional-fields',
+      template: '<optional-fields></optional-fields>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.UPDATE_MEMBERSHIP,
+      url: '/update-membership',
+      template: '<update-membership></update-membership>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.SPONSER,
+      url: '/sponser-page',
+      template: '<sponser-page></sponser-page>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.PUBLISH_ADS,
+      url: '/publish-ads',
+      template: '<publish-ads></publish-ads>'
     });
   }]);
 

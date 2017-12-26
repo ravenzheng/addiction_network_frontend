@@ -15,7 +15,8 @@ function service($log, $http, endPoint) {
     paymentDetailsAddSignup: paymentDetailsAddSignup,
     getCardsInfo: getCardsInfo,
     selectCard: selectCard,
-    chargeCard: chargeCard
+    chargeCard: chargeCard,
+    deleteSponsorAds: deleteSponsorAds
   };
   // add new user
   function signUp(formdata) {
@@ -83,7 +84,7 @@ function service($log, $http, endPoint) {
   // Upgrade membership
   function upgradeMembership(formdata, token) {
     return $http({
-      url: endPoint + '/upgrade_membership',    
+      url: endPoint + '/upgrade_membership',
       method: 'POST',
       data: formdata,
       transformRequest: angular.identity,
@@ -183,6 +184,17 @@ function service($log, $http, endPoint) {
     return $http({
       url: endPoint + '/v2/cart/charge',
       method: 'POST',
+      transformRequest: angular.identity,
+      headers: {
+        'Authorization': token,
+        'Content-Type': undefined
+      }
+    });
+  }
+  function deleteSponsorAds(id, token) {
+    return $http({
+      url: endPoint + '/v2/sponsored_ads/' + id,
+      method: 'DELETE',
       transformRequest: angular.identity,
       headers: {
         'Authorization': token,
