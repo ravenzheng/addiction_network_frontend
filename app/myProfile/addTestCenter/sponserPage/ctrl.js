@@ -2,12 +2,10 @@ module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIStat
 
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService) {
   var vm = this;
-
   // var curCenter = localStorageService.get('current_center');
   //  if(angular.isDefined(curCenter)){
   //    curCenter = curCenter.id;
   //  localStorageService.set('sponsorPages','0');
-
   //  }
   vm.sponsorAdded = localStorageService.get('sponsorAdded');
   vm.bannerAdded = localStorageService.get('bannerAdded');

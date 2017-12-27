@@ -1,4 +1,4 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', ctrl];
+module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'TreatmentCenterService', 'localStorageService', ctrl];
 
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, localStorageService) {
   var vm = this;
@@ -9,10 +9,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
     signupData.signupStep.testCenter = {};
     localStorageService.set('signupStepsData', signupData, 'sessionStorage');
-    $state.go(UIState.SIGN_UP.TEST_CENTER);
+    $state.go(UIState.MY_PROFILE.TEST_CENTER);
   };
   vm.goBack = function () {
-    $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+    $state.go(UIState.MY_PROFILE.SPONSORED_PAGE);
   };
 
   vm.clearRootscopeData = function () {
@@ -32,10 +32,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     $rootScope.centerSelected = {};
   };
 
-  var token = localStorageService.get('signupToken');
+//  var token = localStorageService.get('signupToken');
   vm.cartDetails = [];
   // get cart details using api
-  service.getCartDetails(token).then(function (result) {
+  service.getCartDetails().then(function (result) {
     vm.cartDetails = result.cart_subscription;
   }).catch(function (err) {
     $log.info(err);
@@ -43,7 +43,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
 
   vm.gotoPayment = function () {
     localStorageService.set('cartTotal', vm.cartDetails.total_price);
-    $state.go(UIState.SIGN_UP.PAYMENT);
+    $state.go(UIState.MY_PROFILE.CENTER_PAYMENT);
   };
 
   vm.grandTotal = 0;
@@ -75,13 +75,13 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
       'data': item
     };
     localStorageService.set('cartMode', cartMode);
-    $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
+    $state.go(UIState.MY_PROFILE.SPONSORED_PAGE);
   };
 
   vm.deleteSponsorAds = function (itemId) {
     $log.info(itemId);
     // delete sponsored ads using itemId
-    service.deleteSponsorAds(itemId, token).then(function (result) {
+    service.deleteSponsorAds(itemId).then(function (result) {
       $log.info(result);
     }).catch(function (err) {
       $log.info(err);
@@ -179,6 +179,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   /** ********************* End Show/hide functionality for cart details *********************/
 
   vm.publish_ads = function () {
-    $state.go(UIState.SIGN_UP.PUBLISH_ADS);
+    $state.go(UIState.MY_PROFILE.PUBLISH_ADS);
   };
 }

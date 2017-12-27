@@ -114,7 +114,7 @@ function service($log, $http, endPoint, UserService) {
   function editSponsor(formdata, id) {
     return UserService.getToken().then(function (token) {
       return $http({
-        url: endPoint + '/v1/listing_user/sponsored_ads/' + id,
+        url: endPoint + '/v2/sponsored_ads/' + id,
         method: 'PATCH',
         data: formdata,
         transformRequest: angular.identity,

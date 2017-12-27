@@ -24,8 +24,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         if (sponsoredInfo.checkedStateModel) {
           $rootScope.checkedStateModel = sponsoredInfo.checkedStateModel;
         }
-        if (angular.isDefined(sponsoredInfo.centerWise))
-          vm.centerWise = sponsoredInfo.centerWise;
+        if (angular.isDefined(sponsoredInfo.centerWise))          {vm.centerWise = sponsoredInfo.centerWise;}
       }
     }
 
@@ -60,7 +59,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       i++;
     }
     // get signup token
-    var token = localStorageService.get('signupToken');
+    // var token = localStorageService.get('signupToken');
 
     vm.priceState = 0;
     vm.priceCounty = 0;
@@ -70,7 +69,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     vm.totalExtra = 0;
     // get price info
     if ($rootScope.sponsorPricingInfo === '') {
-      CartDetailService.getSignupPriceInfo(token).then(function (response) {
+      CartDetailService.getPriceInfo().then(function (response) {
         $rootScope.sponsorPricingInfo = response;
         vm.priceState = response.price_state;
         vm.priceCounty = response.price_county;
@@ -177,7 +176,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           totalStates += vm.priceState;
           totalItems++;
         }
-
       } else if (angular.isDefined($rootScope.checkedAllStates) && $rootScope.checkedAllStates[$rootScope.activeCenter] === false) {
         states = [];
         totalStates = 0;
@@ -187,9 +185,9 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         // reset checkall state
         $rootScope.checkedAllStates[$rootScope.activeCenter] = null;
       }
-      //$rootScope.statesSel = states; // states
+      // $rootScope.statesSel = states; // states
       if (angular.isDefined($rootScope.statesSel[$rootScope.activeCenter])) {
-        $rootScope.statesSel[$rootScope.activeCenter] = states
+        $rootScope.statesSel[$rootScope.activeCenter] = states;
       } else {
         // $log.info('not defined');
         $rootScope.statesSel = {};
@@ -387,7 +385,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
   }
 
   vm.deleteCartItem = function (key, centerId, item) {
-
     if ($rootScope.activeCenter !== centerId) {
       return;
     }
@@ -441,7 +438,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      //$rootScope.cities.splice(key, 1);
+      // $rootScope.cities.splice(key, 1);
       vm.centerWise[centerId].cities.splice(key, 1);
     } else if (item === 'demographic') {
       // vm.totalCost -= $rootScope.demographic[key].price;
@@ -459,7 +456,6 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       }
       //  vm.demographic.splice(key, 1);
       vm.centerWise[centerId].demographic.splice(key, 1);
-
     } else if (item === 'treatmentApproach') {
       // vm.totalCost -= $rootScope.treatmentApproach[key].price;
       // vm.treatmentApproachTotal -= $rootScope.treatmentApproach[key].price;
@@ -474,7 +470,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      //vm.treatmentApproach.splice(key, 1);
+      // vm.treatmentApproach.splice(key, 1);
       vm.centerWise[centerId].treatmentApproach.splice(key, 1);
     } else if (item === 'setting') {
       // vm.totalCost -= $rootScope.setting[key].price;
@@ -491,7 +487,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
           break;
         }
       }
-      //vm.setting.splice(key, 1);
+      // vm.setting.splice(key, 1);
       vm.centerWise[centerId].setting.splice(key, 1);
     } else if (item === 'additionalServices') {
       // vm.totalCost -= $rootScope.additionalServices[key].price;
@@ -545,7 +541,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
     // updating total items
     if (angular.isDefined($rootScope.centerWise[centerId])) {
       $rootScope.centerWise[centerId].totalItems--;
-      //vm.centerWise[centerId].totalItems--;
+      // vm.centerWise[centerId].totalItems--;
     }
 
     var grandTotal = 0;

@@ -37,12 +37,17 @@ angular.module(moduleName, [
   // .component('testCenterDetails', require('./testCenterDetails'))
   //  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
   //  .component('sponsorAdsSponsoredCart', require('./sponsorAds/sponsoredCart'))
-
   .component('addTestCenter', require('./addTestCenter'))
   .component('optionalFields', require('./addTestCenter/optionalFields'))
   .component('updateMembership', require('./addTestCenter/updateMembership'))
   .component('sponserPage', require('./addTestCenter/sponserPage'))
   .component('publishAds', require('./addTestCenter/publishAds'))
+  .component('sponsoredPage', require('./addTestCenter/sponsoredPage'))
+  .component('myprofileSponsorStateSelect', require('./addTestCenter/myprofileSponsorStateSelect'))
+  .component('myprofileCartDetail', require('./addTestCenter/myprofileCartDetail'))
+  .component('productDetails', require('./addTestCenter/productDetails'))
+  .component('centerPayment', require('./addTestCenter/centerPayment'))
+  .component('signupCompleted', require('./addTestCenter/signupCompleted'))
 
   .component('myProfile', {
     template: require('./view.html'),
@@ -177,6 +182,26 @@ angular.module(moduleName, [
       name: UIState.MY_PROFILE.PUBLISH_ADS,
       url: '/publish-ads',
       template: '<publish-ads></publish-ads>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.SPONSORED_PAGE,
+      url: '/sponsored-page',
+      template: '<sponsored-page></sponsored-page>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.DETAILS,
+      url: '/product-details',
+      template: '<product-details></product-details>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.CENTER_PAYMENT,
+      url: '/center-payment',
+      template: '<center-payment></center-payment>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.SIGNUP_COMPLETED,
+      url: '/signup-completed',
+      template: '<signup-completed></signup-completed>'
     });
   }]);
 

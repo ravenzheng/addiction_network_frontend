@@ -36,7 +36,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   //   }
   // }
 
-  var token = localStorageService.get('signupToken');
+  // var token = localStorageService.get('signupToken');
   // load pricing info from api
   $rootScope.sponsorPricingInfo = '';
   // SponsorService.getSignupPriceInfo(token).then(function (response) {
@@ -46,7 +46,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
   vm.skipTo = function () {
     vm.clearRootscopeData();
-    $state.go(UIState.SIGN_UP.DETAILS);
+    $state.go(UIState.MY_PROFILE.DETAILS);
 
     // $window.location.href = '/login';
     //  $rootScope.addListingStepDone = 6;
@@ -54,7 +54,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     // $state.go(UIState.ADD_LISTING.BANNER_AD);
   };
   vm.previous = function () {
-    $state.go(UIState.SIGN_UP.SPONSER);
+    $state.go(UIState.MY_PROFILE.SPONSER);
   };
   vm.submitComplete = function () {
     // var centerIds = '';
@@ -160,12 +160,11 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
       $rootScope.$emit(Status.PROCESSING, Status.PROCESSING_MSG);
       // SponsorService.editSponsorSignup(formData, centerIds, token).then(function () {
-      SponsorService.editSponsorSignup(formData, cenId, token).then(function (res) {
+      SponsorService.editSponsor(formData, cenId).then(function (res) {
         ci++;
-        $log.info(res);
         if (ci > (centerIds.length - 1)) {
           $rootScope.$emit(Status.SUCCEEDED, Status.SPONSOR_EDIT_SUCCEESS_MSG);
-          //    $rootScope.addListingStepDone = 6;
+          // $rootScope.addListingStepDone = 6;
           // $rootScope.doneSteps = $rootScope.doneSteps.concat(['sponsoredPage']);
           // clear sponsoredpage data
           // localStorageService.remove('signupSponsoredPage', 'sessionStorage');
@@ -176,10 +175,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           // check if bannerads are added or not
           var bannerAdsVisited = localStorageService.get('bannerAdded');
           if (angular.isDefined(bannerAdsVisited) && bannerAdsVisited === '0') {
-            $state.go(UIState.SIGN_UP.SPONSER);
+            $state.go(UIState.MY_PROFILE.SPONSER);
           } else {
-            $state.go(UIState.SIGN_UP.SPONSER);
-            // $state.go(UIState.SIGN_UP.DETAILS);
+            $state.go(UIState.MY_PROFILE.SPONSER);
+            // $state.go(UIState.MY_PROFILE.DETAILS);
           }
           //  $state.go(UIState.ADD_LISTING.BANNER_AD);
         } else {
@@ -187,14 +186,14 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
         }
       }).catch(function (err) {
         $rootScope.$emit(Status.FAILED, Status.FAILURE_MSG + ' ' + err.data.error);
-        $state.go(UIState.SIGN_UP.DETAILS);
+        $state.go(UIState.MY_PROFILE.DETAILS);
         throw err;
       });
     };
 
     var ci = 0;
     if (centerIds.length > 0) {
-      //consoele.log('cen id: ' + );
+      // consoele.log('cen id: ' + );
       vm.submitSingle(ci);
     } else {
       $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
@@ -202,7 +201,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   };
 
   vm.submit = function () {
-    //openPrompt();
+    // openPrompt();
     vm.submitComplete();
   };
 
@@ -257,7 +256,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   vm.currentCenter = localStorageService.get('current_center');
   // getting data
   function sponsorList(page) {
-    SponsorService.sponsorListSignup(page, token).then(function (response) {
+    SponsorService.sponsorList(page).then(function (response) {
       var sponsoredAds = response.sponsored_ads;
       var centers = [];
       for (var key in sponsoredAds) {
@@ -270,7 +269,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       $rootScope.treatmentCentersValue = vm.currentCenter; // centers;
       // preselect all treatmentcenter saving values in treatmentCentersModel //
       vm.treatmentCentersModel = vm.currentCenter; // centers;
-
       // ------------ //
       $rootScope.centerSelect();
       if (angular.isDefined($rootScope.centerSelected) && $rootScope.centerSelected.length > 0) {

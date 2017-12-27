@@ -2,9 +2,9 @@ module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIStat
 
 function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorageService) {
   var vm = this;
-  vm.viewProfile = function () {
+  vm.viewCenterDetails = function () {
     vm.resetData();
-    $state.go(UIState.LOGIN);
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
   };
   vm.close = function () {
     vm.resetData();

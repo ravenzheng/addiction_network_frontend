@@ -1,9 +1,9 @@
-module.exports = ['$injector', '$timeout', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', 'Status', ctrl];
+module.exports = ['$injector', '$timeout', '$scope', '$log', '$rootScope', '$state', 'UIState', 'TreatmentCenterService', 'localStorageService', 'Status', ctrl];
 
 function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
   var vm = this;
   // var lm = $rootScope;
-  var token = localStorageService.get('signupToken');
+//  var token = localStorageService.get('signupToken');
   // get previous steps localstorage data
   var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
 
@@ -130,11 +130,11 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
       formData.append('payment[' + key + ']', paymentData[key]);
     }
 
-    service.paymentDetailsAddSignup(formData, token).then(function (result) {
+    service.paymentDetailsAdd(formData).then(function (result) {
       $log.info(result);
       // after card saved, select a card
       var cardId = '';
-      service.getCardsInfo(token).then(function (res) {
+      service.getCardsInfo().then(function (res) {
         $log.info('card info: ');
         $log.info(res);
         vm.allCards = res;
@@ -145,7 +145,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
         formData = new FormData();
         formData.append('payment_card', cardId);
 
-        service.selectCard(formData, token).then(function (res1) {
+        service.selectCard(formData).then(function (res1) {
           $log.info(res1);
           $rootScope.$emit(Status.SUCCEEDED, 'Payment Done...');
 
@@ -153,7 +153,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
           signupData.signupStep.payment = paymentData;
           localStorageService.set('signupStepsData', signupData, 'sessionStorage');
 
-          $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
+          $state.go(UIState.MY_PROFILE.SIGNUP_COMPLETED);
           // now charging the selected card
           // service.chargeCard(token).then(function (res2) {
           //   $log.info('finally charged : ');
@@ -170,7 +170,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
       });
 
       //  $rootScope.$emit(Status.SUCCEEDED, Status.PAYMENT_ADD_SUCCEESS_MSG);
-      // $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
+      // $state.go(UIState.MY_PROFILE.SIGNUP_COMPLETED);
     }).catch(function (err) {
       $log.error(err);
       $rootScope.$emit(Status.FAILED, err.data.error);
@@ -201,7 +201,6 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
   vm.restoreValues();
 
   vm.goToCart = function () {
-    $state.go(UIState.SIGN_UP.DETAILS);
+    $state.go(UIState.MY_PROFILE.DETAILS);
   };
-
 }

@@ -97,7 +97,11 @@ module.exports = {
     'OPTIONAL_FIELDS': 'myProfile.optionalfields',
     'UPDATE_MEMBERSHIP': 'myProfile.updateMembership',
     'SPONSER': 'myProfile.sponserPage',
-    'PUBLISH_ADS': 'myProfile.publishAds'
+    'PUBLISH_ADS': 'myProfile.publishAds',
+    'SPONSORED_PAGE': 'myProfile.sponsoredPage',
+    'DETAILS': 'myProfile.productDetails',
+    'CENTER_PAYMENT': 'myProfile.centerPayment',
+    'SIGNUP_COMPLETED': 'myProfile.signupCompleted'
   },
   'CENTER_DETAIL': 'treatmentCenterDetail',
   'FEATURED_CENTER': 'featuredTreatmentCenterPage',

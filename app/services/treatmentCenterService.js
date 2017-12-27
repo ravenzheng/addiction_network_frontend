@@ -30,9 +30,8 @@ function service($http, endPoint, UserService) {
     upgradeMembership: upgradeMembership,
     publishAds: publishAds,
     getPublishAds: getPublishAds,
-    getCartDetails: getCartDetails,
     getPriceInfo: getPriceInfo,
-    paymentDetailsAddSignup: paymentDetailsAddSignup,
+    paymentDetailsAdd: paymentDetailsAdd,
     getCardsInfo: getCardsInfo,
     selectCard: selectCard,
     chargeCard: chargeCard
@@ -205,20 +204,20 @@ function service($http, endPoint, UserService) {
     });
   }
 
-  // Get cart details
-  function getCartDetails() {
-    return UserService.getToken().then(function (token) {
-      return $http({
-        url: endPoint + '/v2/cart/',
-        method: 'GET',
-        transformRequest: angular.identity,
-        headers: {
-          'Content-Type': undefined,
-          'Authorization': token
-        }
-      });
-    });
-  }
+  // // Get cart details
+  // function getCartDetails() {
+  //   return UserService.getToken().then(function (token) {
+  //     return $http({
+  //       url: endPoint + '/v2/cart/',
+  //       method: 'GET',
+  //       transformRequest: angular.identity,
+  //       headers: {
+  //         'Content-Type': undefined,
+  //         'Authorization': token
+  //       }
+  //     });
+  //   });
+  // }
   function deleteSponsorAds(id) {
     return UserService.getToken().then(function (token) {
       return $http({
@@ -361,7 +360,7 @@ function service($http, endPoint, UserService) {
     });
   }
 
-  function paymentDetailsAddSignup(formdata) {
+  function paymentDetailsAdd(formdata) {
     return UserService.getToken().then(function (token) {
       return $http({
         url: endPoint + '/listing_user/payments',
