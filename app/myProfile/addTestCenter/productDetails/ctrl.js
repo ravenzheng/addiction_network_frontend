@@ -14,6 +14,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   vm.goBack = function () {
     $state.go(UIState.MY_PROFILE.SPONSORED_PAGE);
   };
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
 
   vm.clearRootscopeData = function () {
     $rootScope.cityModel = {};

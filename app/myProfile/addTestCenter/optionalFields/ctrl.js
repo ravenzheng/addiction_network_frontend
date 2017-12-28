@@ -17,6 +17,11 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, l
   };
   initStartupVars();
 
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
+
   vm.updateMembership = function () {
     $state.go(UIState.MY_PROFILE.UPDATE_MEMBERSHIP);
   };

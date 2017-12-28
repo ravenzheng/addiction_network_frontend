@@ -82,10 +82,22 @@ function service($log, $http, endPoint) {
   }
 
   // Upgrade membership
-  function upgradeMembership(formdata, token) {
+  // function upgradeMembership(formdata, token) {
+  //   return $http({
+  //     url: endPoint + '/upgrade_membership',
+  //     method: 'POST',
+  //     data: formdata,
+  //     transformRequest: angular.identity,
+  //     headers: {
+  //       'Content-Type': undefined,
+  //       'Authorization': token
+  //     }
+  //   });
+  // }
+  function upgradeMembership(formdata, cenId, token) {
     return $http({
-      url: endPoint + '/upgrade_membership',
-      method: 'POST',
+      url: endPoint + '/v2/treatment_center_subscriptions/' + cenId,
+      method: 'PATCH',
       data: formdata,
       transformRequest: angular.identity,
       headers: {
@@ -193,7 +205,7 @@ function service($log, $http, endPoint) {
   }
   function deleteSponsorAds(id, token) {
     return $http({
-      url: endPoint + '/v2/sponsored_ads/' + id,
+      url: endPoint + '/v2/cart_subscriptions/' + id,
       method: 'DELETE',
       transformRequest: angular.identity,
       headers: {

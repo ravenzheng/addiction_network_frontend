@@ -15,6 +15,12 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
     // selectionLimit: 1
   };
+
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
+
   vm.treatmentCenter = {
     buttonDefaultText: 'Select Treatment Center'
   };

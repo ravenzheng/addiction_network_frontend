@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', ctrl];
+module.exports = ['$injector', '$scope', '$log', 'Status', '$rootScope', '$state', 'UIState', 'SignUpService', 'localStorageService', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, localStorageService) {
+function ctrl($injector, $scope, $log, Status, $rootScope, $state, UIState, service, localStorageService) {
   var vm = this;
   vm.testCenter = function () {
     // removing variables related to sponsored page
@@ -35,11 +35,14 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   var token = localStorageService.get('signupToken');
   vm.cartDetails = [];
   // get cart details using api
-  service.getCartDetails(token).then(function (result) {
-    vm.cartDetails = result.cart_subscription;
-  }).catch(function (err) {
-    $log.info(err);
-  });
+  vm.loadCart = function () {
+    service.getCartDetails(token).then(function (result) {
+      vm.cartDetails = result.cart_subscription;
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+  vm.loadCart();
 
   vm.gotoPayment = function () {
     localStorageService.set('cartTotal', vm.cartDetails.total_price);
@@ -79,14 +82,15 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
   };
 
   vm.deleteSponsorAds = function (itemId) {
-    $log.info(itemId);
     // delete sponsored ads using itemId
     service.deleteSponsorAds(itemId, token).then(function (result) {
-      $log.info(result);
+      $rootScope.$emit(Status.SUCCEEDED, 'Item Removed');
+      vm.loadCart();
     }).catch(function (err) {
       $log.info(err);
     });
   };
+
 
   /** ********************* Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
@@ -96,6 +100,30 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     } else {
       vm.productShow[itemId] = 1;
       vm.centerToggleIconClass[itemId] = 'fa-minus-square-o';
+      vm.openCenterSubItems(itemId);
+    }
+  };
+  vm.openCenterSubItems = function (itemId) {
+    if (vm.membershipShow[itemId] === 0 ) {
+      vm.membershipToggle(itemId);
+    }
+    if (vm.sponsorshipShow[itemId] === 0 ) {
+      vm.sponsorshipToggle(itemId);
+    }
+    if (vm.stateShow[itemId] === 0 ) {
+      vm.stateToggle(itemId);
+    }
+    if (vm.cityShow[itemId] === 0 ) {
+      vm.cityToggle(itemId);
+    }
+    if (vm.countyShow[itemId] === 0 ) {
+      vm.countyToggle(itemId);
+    }
+    if (vm.categoryShow[itemId] === 0 ) {
+      vm.categoryToggle(itemId);
+    }
+    if (vm.adsShow[itemId] === 0 ) {
+      vm.adsToggle(itemId);
     }
   };
 

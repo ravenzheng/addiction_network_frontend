@@ -21,6 +21,11 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
   };
   initStartupVars();
 
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
+
   vm.detectCardType = function (card, event) {
     if (angular.isDefined(card)) {
       var cardVal = card.replace(/ /g, '');

@@ -1,6 +1,6 @@
-module.exports = ['$state', 'UIState', '$log', '$rootScope', 'localStorageService', 'TreatmentCenterService', ctrl];
+module.exports = ['$state', 'UIState', '$log', 'Status', '$rootScope', 'localStorageService', 'TreatmentCenterService', ctrl];
 
-function ctrl($state, UIState, $log, $rootScope, localStorageService, service) {
+function ctrl($state, UIState, $log, Status, $rootScope, localStorageService, service) {
   var vm = this;
   var membershipType = localStorageService.get('membershipType', 'sessionStorage');
   // alert(membershipType);
@@ -15,59 +15,60 @@ function ctrl($state, UIState, $log, $rootScope, localStorageService, service) {
 
   vm.cartDetails = [];
   // get cart details using api
-  service.getCartDetails().then(function (result) {
-    vm.cartDetails = result.cart_subscription;
-    // $log.info(result);
-    // // demo data inserting
-    // vm.cartDetails.items[0].sponsored_layouts.state = [{
-    //   'name': 'state1'
-    // }, {
-    //   'name': 'state2'
-    // }, {
-    //   'name': 'state3'
-    // }];
-    // vm.cartDetails.items[0].sponsored_layouts.county = [{
-    //   'name': 'county1'
-    // }, {
-    //   'name': 'county2'
-    // }, {
-    //   'name': 'county3'
-    // }];
-    // vm.cartDetails.items[0].sponsored_layouts.city = [{
-    //   'name': 'city1'
-    // }, {
-    //   'name': 'city1'
-    // }, {
-    //   'name': 'city1'
-    // }];
-    // vm.cartDetails.items[0].sponsored_layouts.categories = [{
-    //   'name': 'at1'
-    // }, {
-    //   'name': 'county2'
-    // }, {
-    //   'name': 'county3'
-    // }];
-  }).catch(function (err) {
-    $log.info(err);
-  });
+  vm.loadCart = function () {
+    service.getCartDetails().then(function (result) {
+      vm.cartDetails = result.cart_subscription;
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+  vm.loadCart();
 
   vm.deleteSponsorAds = function (itemId) {
     $log.info(itemId);
     // delete sponsored ads using itemId
     service.deleteSponsorAds(itemId).then(function (result) {
-      $log.info(result);
+      $rootScope.$emit(Status.SUCCEEDED, 'Item Removed');
+      vm.loadCart();
     }).catch(function (err) {
       $log.info(err);
     });
   };
 
+  vm.upgradeMembership = function (currentMembership, targetMembership, cenId) {
+    $log.info(currentMembership + '  -- ' + targetMembership + '  ' + cenId);
+
+    var newMembership = '';
+    if (currentMembership ===  targetMembership) {
+      $rootScope.$emit(Status.FAILED, 'Already taken');
+    } else if (targetMembership === 'paid') {
+      newMembership = 'sponsored';
+    } else if (targetMembership === 'featured') {
+      newMembership = 'featured';
+    }
+    var formData = new FormData();
+    var membership = {
+      'package': newMembership
+    };
+    for (var key in membership) {
+      formData.append(key, membership[key]);
+    }
+    if (newMembership !== '') {
+      service.upgradeMembership(formData, cenId).then(function (result) {
+        $rootScope.$emit(Status.SUCCEEDED, result.success);
+        vm.loadCart();
+      }).catch(function (err) {
+        $log.info(err);
+      });
+    }
+  };
+
   // start process of adding another treatment center //
   vm.addTestCenter = function () {
-    $log.info('start testcenter add');
     // *************initial steps*************//
       // reset previous localstorage
     localStorageService.remove('membership', 'center_added', 'userInfo', 'signupSponsoredPage', 'membershipType', 'bannerAdded', 'sponsorAdded', 'signupToken');
-
+    $rootScope.addCenterInitialize = 1;
     var signUp = {
       'signupStep': {}
     };

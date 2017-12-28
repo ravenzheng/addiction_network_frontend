@@ -31,7 +31,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
 
   function setMembershipType(type) {
-    if (type === 'paid') {
+    if (type === 'sponsored') {
       var membershipName = 'Gold';
     } else if (type === 'featured') {
       membershipName = 'Platinum';
@@ -44,7 +44,12 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     for (var key in membership) {
       formData.append(key, membership[key]);
     }
-    service.upgradeMembership(formData, token).then(function () {
+    var curCent = localStorageService.get('current_center');
+    if (curCent === null) {
+      $log.info('couldnot get center info...');
+      return;
+    }
+    service.upgradeMembership(formData, curCent[0].id, token).then(function () {
       // saving membership details for further step
       membership = {
         'package': type,
@@ -64,7 +69,6 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
       if (angular.isDefined(err.data)) {
         rm.$emit(Status.FAILED, err.data.success);
       }
-
     });
   }
 

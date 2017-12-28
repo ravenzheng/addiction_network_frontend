@@ -14,6 +14,11 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     localStorageService.set('bannerAdded', '0');
   }
 
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
+
   vm.publish_ads = function () {
     $state.go(UIState.MY_PROFILE.PUBLISH_ADS);
   };

@@ -19,6 +19,11 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
   };
   initStartupVars();
 
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
+
   vm.resetNextStepVars = function () {
     localStorageService.remove('signupSponsoredPage'); // it will remove previous values from sponsored page test centers to prevent errors for multiple center
     localStorageService.remove('bannerAdded', 'sponsorAdded', 'cartMode'); // remove previous status

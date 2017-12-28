@@ -8,6 +8,11 @@ function ctrl($injector, $document, $scope, $log, $rootScope, $state, UIState, s
   // get previous steps localstorage data
   var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
 
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
+
   var alreadyPublished = 0;
   // testing if ads are already published for same center id
   service.getPriceInfo().then(function (result) {

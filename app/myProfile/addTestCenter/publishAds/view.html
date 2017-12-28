@@ -1,7 +1,7 @@
 <div class="container progress-content">
   <div class="progressbar">
     <div class="col-md-6 col-md-offset-6">
-      <span class="member-cart" style="cursor:pointer;" ng-click = "$ctrl.goToCart()">
+      <span class="member-cart" style="cursor:pointer;" ng-click="$ctrl.goToCart()">
         <img src="themes/addiction/images/png/Cart-Icon.png" />
       </span>
       <div class="progress progress-grediant">
@@ -45,7 +45,7 @@
               <span ng-show="$ctrl.publishAdsForm.weblinkHeader.$error.required && ($ctrl.adsFormInit.weblinkHeader===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkHeader.$error.pattern && ($ctrl.adsFormInit.weblinkHeader===0)" class="help-block">Invalid website</span>
               <br>
-              <p >
+              <p>
                 <img id="logo_preview_header" ng-src="{{$ctrl.preview_img.header}}" width="130" name="logo_preview" />
               </p>
             </div>
@@ -71,7 +71,7 @@
               <span ng-show="$ctrl.publishAdsForm.weblinkSidebar.$error.required && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkSidebar.$error.pattern && ($ctrl.adsFormInit.weblinkSidebar===0)" class="help-block">Invalid website</span>
               <br>
-              <p >
+              <p>
                 <img id="logo_preview_sidebar" ng-src="{{$ctrl.preview_img.sidebar}}" width="130" name="logo_preview" />
               </p>
             </div>
@@ -97,7 +97,7 @@
               <span ng-show="$ctrl.publishAdsForm.weblinkFooter.$error.required && ($ctrl.adsFormInit.weblinkFooter===0)" class="help-block">Required</span>
               <span ng-show="$ctrl.publishAdsForm.weblinkFooter.$error.pattern && ($ctrl.adsFormInit.weblinkFooter===0)" class="help-block">Invalid website</span>
               <br>
-              <p >
+              <p>
                 <img id="logo_preview_footer" ng-src="{{$ctrl.preview_img.footer}}" width="130" name="logo_preview" />
               </p>
             </div>
@@ -106,6 +106,7 @@
       </div>
 
     </div>
+    <p class="stick-next-left font-normal"><a href="javascript:void(0)" ng-click="$ctrl.goHome();">Home</a></p>
     <p class="stick-next-left font-normal"><a href="javascript:;" ng-click="$ctrl.goBack()">Back</a></p>
     <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.publish_ads2()">Next</a></p>
     <!-- <p class="stick-next-right"><button ng-click="$ctrl.publish_ads2()">Next</button></p> -->

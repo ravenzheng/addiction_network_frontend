@@ -9,6 +9,10 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   if (spn === 'paid' || spn === 'featured') {
     vm.currentMembership = spn;
   }
+  vm.goHome = function () {
+    $rootScope.addCenterInitialize = 0; // show left panel navigations
+    $state.go(UIState.MY_PROFILE.TEST_CENTER_DETAILS);
+  };
 
   vm.sponser = function () {
     if (spn === null) {
@@ -31,7 +35,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
   };
 
   function setMembershipType(type) {
-    if (type === 'paid') {
+    if (type === 'sponsored') {
       var membershipName = 'Gold';
     } else if (type === 'featured') {
       membershipName = 'Platinum';
@@ -44,7 +48,12 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, localStorage
     for (var key in membership) {
       formData.append(key, membership[key]);
     }
-    service.upgradeMembership(formData).then(function () {
+    var curCent = localStorageService.get('current_center');
+    if (curCent === null) {
+      $log.info('couldnot get center info...');
+      return;
+    }
+    service.upgradeMembership(formData, curCent[0].id).then(function () {
       // saving membership details for further step
       membership = {
         'package': type,

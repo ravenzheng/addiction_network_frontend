@@ -221,7 +221,7 @@ function service($http, endPoint, UserService) {
   function deleteSponsorAds(id) {
     return UserService.getToken().then(function (token) {
       return $http({
-        url: endPoint + '/v2/sponsored_ads/' + id,
+        url: endPoint + '/v2/cart_subscriptions/' + id,
         method: 'DELETE',
         transformRequest: angular.identity,
         headers: {
@@ -290,11 +290,11 @@ function service($http, endPoint, UserService) {
     });
   }
   // Upgrade membership
-  function upgradeMembership(formdata, token) {
+  function upgradeMembership(formdata, cenId) {
     return UserService.getToken().then(function (token) {
       return $http({
-        url: endPoint + '/upgrade_membership',
-        method: 'POST',
+        url: endPoint + '/v2/treatment_center_subscriptions/' + cenId,
+        method: 'PATCH',
         data: formdata,
         transformRequest: angular.identity,
         headers: {
