@@ -10,7 +10,7 @@ angular.module(appName, [
   require('./treatmentCenterDetail'),
   require('./treatmentCenterMap'),
   require('./advertisement'),
-  // require('./myProfile'),
+  require('./myProfile'),
   require('./featuredTreatmentCenter'),
   // require('./addListing'),
   require('./aboutUs'),
@@ -27,7 +27,7 @@ angular.module(appName, [
   require('./loginHelp'),
   require('./insurance'),
   require('./searchState'),
-  require('./signUp'),
+  // require('./signUp'),
   require('./privacyPolicy'),
   require('./adn'),
   require('./about')
