@@ -1,4 +1,4 @@
-function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, localStorageService) {
+function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, localStorageService, $timeout) {
   var vm = this;
 
   vm.multiselectModelLayoutIds = [];
@@ -194,7 +194,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
     var ci = 0;
     if (centerIds.length > 0) {
-      //consoele.log('cen id: ' + );
+      // consoele.log('cen id: ' + );
       vm.submitSingle(ci);
     } else {
       $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
@@ -202,7 +202,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
   };
 
   vm.submit = function () {
-    //openPrompt();
+    // openPrompt();
     vm.submitComplete();
   };
 

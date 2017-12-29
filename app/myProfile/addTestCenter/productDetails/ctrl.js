@@ -39,10 +39,10 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
 //  var token = localStorageService.get('signupToken');
   vm.cartDetails = [];
   // get cart details using api
-  vm.loadCart = function (cenId='') {
+  vm.loadCart = function (cenId) {
     service.getCartDetails().then(function (result) {
       vm.cartDetails = result.cart_subscription;
-      if(cenId!==''){
+      if (cenId !== '') {
         $timeout(function () {
           vm.centerToggle(cenId);
         }, 800);
@@ -100,7 +100,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
     });
   };
   vm.deleteConfirm = function (itemId, cenId) {
-    var deleteConfHtml = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Do you confirm?</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok(' + itemId + ','+cenId+')">Yes</button><button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+    var deleteConfHtml = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Do you confirm?</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok(' + itemId + ',' + cenId + ')">Yes</button><button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
 
     var modalInstance = $injector.get('$uibModal').open({
       animation: vm.animationsEnabled,
