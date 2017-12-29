@@ -4,7 +4,7 @@ angular.module(moduleName, ['ui.router'])
   .component('welcomesignup', require('./welcomeSignup'))
   .component('usercreate', require('./UserCreate'))
   .component('userprofile', require('./userProfile'))
-  .component('testcenter', require('./testCenter'))
+  // .component('testcenter', require('./testCenter'))
   .component('optionalfields', require('./optionalFields'))
   .component('updatemembership', require('./updateMembership'))
   .component('sponserpage', require('./sponserPage'))
@@ -98,7 +98,6 @@ angular.module(moduleName, ['ui.router'])
       url: '/signup_completed',
       template: '<signupCompleted></signupCompleted>'
     });
-
   }]);
 
 module.exports = moduleName;

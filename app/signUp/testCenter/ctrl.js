@@ -59,7 +59,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     } else {
       vm.checkedString[id] = '';
     }
-    if (labelClick === 'label_click' && tf != true) {
+    if (labelClick === 'label_click' && tf !== true) {
       vm.tagCheckboxModel[id] = true;
       vm.checkedString[id] = 'checked';
     } else if (labelClick === 'label_click' && tf === true) {
@@ -74,7 +74,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     } else {
       vm.catgCheckedString[id] = '';
     }
-    if (labelClick === 'label_click' && tf != true) {
+    if (labelClick === 'label_click' && tf !== true) {
       vm.categoryModel[id] = true;
       vm.catgCheckedString[id] = 'checked';
     } else if (labelClick === 'label_click' && tf === true) {
@@ -152,7 +152,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       // $log.info('notdef');
     }
     // if membership step is already done once then skip button will show
-    if (angular.isDefined(localStorageService.get('membership')) && localStorageService.get('membership') != null) {
+    if (angular.isDefined(localStorageService.get('membership')) && localStorageService.get('membership') !== null) {
       vm.skipShow = 1;
     }
   };
@@ -243,7 +243,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       var sameData = 0;
       for (key in tstCen) {
         sameData = 1;
-        if (tstCen[key] != centerData[key]) {
+        if (tstCen[key] !== centerData[key]) {
           sameData = 0;
           break;
         }
