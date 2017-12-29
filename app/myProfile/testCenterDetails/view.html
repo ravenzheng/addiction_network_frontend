@@ -28,8 +28,9 @@
                   <div class="col-md-4">
                     <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.centerToggle(item.id)">
                       <i class="fa {{$ctrl.centerToggleIconClass[item.id]}}" uib-tooltip="Show/hide "></i>
+                      <span>{{item.name}}</span>
                     </span>
-                    <span>{{item.name}}</span>
+
                   </div>
                   <div class="col-md-4">
                     <span ng-if="item.type==='paid'">Gold Membership</span>
@@ -46,7 +47,7 @@
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer;" ng-click="$ctrl.sponsorshipToggle(item.id)"><i class="fa {{$ctrl.sponsorshipToggleIconClass[item.id]}}"></i> Sponsorship</span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.sponsorshipToggle(item.id)">Sponsorship</span>
                     <!-- <div class="col-md-12">
                                         <span>California</span>
                                     </div>
@@ -72,14 +73,14 @@
                   </div>
                 </div>
                 <!-- state toggle -->
-                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.stateShow[item.id]=0; $ctrl.stateToggleIconClass[item.id]='fa-plus'">
+                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.stateShow[item.id]=0; ">
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer;margin-left:10px;" class="fix-left" ng-click="$ctrl.stateToggle(item.id)"><i class="fa {{$ctrl.stateToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> State</span>
+                    <span style="cursor:pointer;margin-left:8px;" class="fix-left" ng-click="$ctrl.stateToggle(item.id)">State</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span>
+                    <!-- <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span> -->
 
                   </div>
                   <div class="col-md-2 text-center">
@@ -99,26 +100,26 @@
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer; margin-left:35px;font-size:13px;" class="fix-left"> {{state.name}}</span>
+                    <span style="cursor:pointer; margin-left:15px;font-size:13px;" class="fix-left"> {{state.name}}</span>
                   </div>
                   <div class="col-md-2 text-center">
                     <!-- <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{state.total_price}}$</span> -->
-                    <span><i class="fa fa-pencil"></i></span>
+                    <!-- <span><i class="fa fa-pencil"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
-                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(state.id);"><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(state.id,item.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
 
                 <!-- City toggle -->
-                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.cityShow[item.id]=0;$ctrl.cityToggleIconClass[item.id]='fa-plus';">
+                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.cityShow[item.id]=0;">
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer;margin-left:10px;" class="fix-left" ng-click="$ctrl.cityToggle(item.id)"><i class="fa {{$ctrl.cityToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> City</span>
+                    <span style="cursor:pointer;margin-left:8px;" class="fix-left" ng-click="$ctrl.cityToggle(item.id)">City</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span>
+                    <!-- <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
                   </div>
@@ -128,25 +129,25 @@
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer; margin-left:35px;font-size:13px;" class="fix-left"> {{city.name}}</span>
+                    <span style="cursor:pointer; margin-left:15px;font-size:13px;" class="fix-left"> {{city.name}}</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-pencil"></i></span>
+                    <!-- <span><i class="fa fa-pencil"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
-                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(city.id);"><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(city.id, item.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
 
                 <!-- County toggle -->
-                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.countyShow[item.id]=0; $ctrl.countyToggleIconClass[item.id]='fa-plus';">
+                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.countyShow[item.id]=0; ">
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer; margin-left:10px;" class="fix-left" ng-click="$ctrl.countyToggle(item.id)"><i class="fa {{$ctrl.countyToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> County</span>
+                    <span style="cursor:pointer; margin-left:8px;" class="fix-left" ng-click="$ctrl.countyToggle(item.id)">County</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span>
+                    <!-- <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
                   </div>
@@ -156,25 +157,25 @@
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span class="fix-left" style="cursor:pointer; margin-left:35px;font-size:13px;"> {{county.name}}</span>
+                    <span class="fix-left" style="cursor:pointer; margin-left:15px;font-size:13px;"> {{county.name}}</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-pencil"></i></span>
+                    <!-- <span><i class="fa fa-pencil"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
-                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(county.id);"><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(county.id, item.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
 
                 <!-- Categories toggle -->
-                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.categoryShow[item.id]=0; $ctrl.categoryToggleIconClass[item.id]='fa-plus';">
+                <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.categoryShow[item.id]=0; ">
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer;margin-left:10px;" class="fix-left" ng-click="$ctrl.categoryToggle(item.id)"><i class="fa {{$ctrl.categoryToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> Categories</span>
+                    <span style="cursor:pointer;margin-left:8px;" class="fix-left" ng-click="$ctrl.categoryToggle(item.id)">Categories</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span>
+                    <!-- <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
                   </div>
@@ -184,26 +185,27 @@
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span class="fix-left" style="cursor:pointer; margin-left:35px;font-size:13px;"> {{category.name}}</span>
+                    <span class="fix-left" style="cursor:pointer; margin-left:15px;font-size:13px;"> {{category.name}}</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-pencil"></i></span>
+                    <!-- <span><i class="fa fa-pencil"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
-                    <span style="cursor:pointer;" ng-click="$ctrl.deleteSponsorAds(category.id);"><i class="fa fa-trash"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(category.id, item.id);"><i class="fa fa-trash"></i></span>
                   </div>
                 </div>
           <div class="col-md-12 bordered">
                   </div>
                 <!-- Ads toggle -->
-                <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.adsShow[item.id]=0;$ctrl.adsToggleIconClass[item.id]='fa-plus';">
+                <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.adsShow[item.id]=0;">
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.adsToggle(item.id)"><i class="fa {{$ctrl.adsToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i> Ads</span>
+                    <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.adsToggle(item.id)">Ads</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span>
+                    <!-- <span><i class="fa fa-plus" style="background: transparent;color: #fff;"></i></span> -->
+                    <span><i class="fa fa-pencil"></i></span>
                   </div>
                   <div class="col-md-2 text-center">
                   </div>
@@ -214,10 +216,10 @@
                   <div class="col-md-4">
                   </div>
                   <div class="col-md-4">
-                    <span class="fix-left" style="cursor:pointer; margin-left:35px;font-size:13px; font-style: italic;">{{ads.name}}</span>
+                    <span class="fix-left" style="cursor:pointer; margin-left:15px;font-size:13px; font-style: italic;">{{ads.name}}</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span><i class="fa fa-pencil"></i></span>
+                    <!-- <span><i class="fa fa-pencil"></i></span> -->
                   </div>
                   <div class="col-md-2 text-center">
                     <span><i class="fa fa-trash"></i></span>
@@ -298,7 +300,7 @@
                   <p class="font-normal" style="left:72%;"><a href="javascript:void(0)" ng-click="$ctrl.addTestCenter();">Add another test center</a></p>
                 </div>
                 <div class="col-md-4">
-                  <p class=""><a href="javascript:void(0)" class="ng-scope">Delete</a></p>
+                  <!-- <p class=""><a href="javascript:void(0)" class="ng-scope">Delete</a></p> -->
                 </div>
               </div>
 

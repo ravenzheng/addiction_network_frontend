@@ -1,6 +1,6 @@
-module.exports = ['$state', 'UIState', '$log', 'Status', '$rootScope', 'localStorageService', 'TreatmentCenterService', ctrl];
+module.exports = ['$injector', '$timeout', '$state', 'UIState', '$log', 'Status', '$rootScope', 'localStorageService', 'TreatmentCenterService', ctrl];
 
-function ctrl($state, UIState, $log, Status, $rootScope, localStorageService, service) {
+function ctrl($injector,$timeout, $state, UIState, $log, Status, $rootScope, localStorageService, service) {
   var vm = this;
   var membershipType = localStorageService.get('membershipType', 'sessionStorage');
   // alert(membershipType);
@@ -15,29 +15,60 @@ function ctrl($state, UIState, $log, Status, $rootScope, localStorageService, se
 
   vm.cartDetails = [];
   // get cart details using api
-  vm.loadCart = function () {
+  vm.loadCart = function (cenId='') {
     service.getCartDetails().then(function (result) {
       vm.cartDetails = result.cart_subscription;
+      if(cenId!==''){
+            $timeout(function () {
+              vm.centerToggle(cenId);
+            }, 800);
+      }
     }).catch(function (err) {
       $log.info(err);
     });
   };
-  vm.loadCart();
+  vm.loadCart('');
 
-  vm.deleteSponsorAds = function (itemId) {
-    $log.info(itemId);
+  vm.deleteSponsorAds = function (itemId, cenId) {
     // delete sponsored ads using itemId
     service.deleteSponsorAds(itemId).then(function (result) {
       $rootScope.$emit(Status.SUCCEEDED, 'Item Removed');
-      vm.loadCart();
+      vm.loadCart(cenId);
     }).catch(function (err) {
       $log.info(err);
+    });
+  };
+
+  vm.deleteConfirm = function (itemId, cenId) {
+    var deleteConfHtml = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Do you confirm?</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok(' + itemId + ',' + cenId + ')">Yes</button><button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+
+    var modalInstance = $injector.get('$uibModal').open({
+      animation: vm.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      size: 'md',
+      template: deleteConfHtml,
+      controllerAs: 'vmModalCtrl',
+      controller: function () {
+        var vmModal = this;
+        // if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
+        //   vmModal.stateSelectCheck = true;
+        // }
+        $rootScope.ok = function (itemId, cenId) {
+          vm.deleteSponsorAds(itemId, cenId);
+          modalInstance.dismiss('cancel');
+          return true;
+        };
+        $rootScope.cancel = function () {
+          modalInstance.dismiss('cancel');
+          return true;
+        };
+      },
+      bindToController: true
     });
   };
 
   vm.upgradeMembership = function (currentMembership, targetMembership, cenId) {
-    $log.info(currentMembership + '  -- ' + targetMembership + '  ' + cenId);
-
     var newMembership = '';
     if (currentMembership ===  targetMembership) {
       $rootScope.$emit(Status.FAILED, 'Already taken');
@@ -76,6 +107,7 @@ function ctrl($state, UIState, $log, Status, $rootScope, localStorageService, se
     $state.go(UIState.MY_PROFILE.ADD_TEST_CENTER);
   };
 
+
   /** ********************* Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
     if (vm.productShow[itemId]) {
@@ -86,62 +118,74 @@ function ctrl($state, UIState, $log, Status, $rootScope, localStorageService, se
       vm.productShow[itemId] = 1;
       //  vm.centerToggleIconClass[itemId] = 'fa-minus-square-o';
       vm.centerToggleIconClass[itemId] = 'fa-minus';
+      vm.openCenterSubItems(itemId);
+    }
+  };
+
+  vm.openCenterSubItems = function (itemId) {
+    if (vm.sponsorshipShow[itemId] === 0 ) {
+      vm.sponsorshipToggle(itemId);
+    }
+    if (vm.stateShow[itemId] === 0 ) {
+      vm.stateToggle(itemId);
+    }
+    if (vm.cityShow[itemId] === 0 ) {
+      vm.cityToggle(itemId);
+    }
+    if (vm.countyShow[itemId] === 0 ) {
+      vm.countyToggle(itemId);
+    }
+    if (vm.categoryShow[itemId] === 0 ) {
+      vm.categoryToggle(itemId);
+    }
+    if (vm.adsShow[itemId] === 0 ) {
+      vm.adsToggle(itemId);
     }
   };
 
   vm.sponsorshipToggle = function (itemId) {
     if (vm.sponsorshipShow[itemId]) {
       vm.sponsorshipShow[itemId] = 0;
-      vm.sponsorshipToggleIconClass[itemId] = 'fa-plus';
+      // vm.sponsorshipToggleIconClass[itemId] = 'fa-plus';
     } else {
       vm.sponsorshipShow[itemId] = 1;
-      vm.sponsorshipToggleIconClass[itemId] = 'fa-minus';
+      // vm.sponsorshipToggleIconClass[itemId] = 'fa-minus';
     }
   };
 
   vm.stateToggle = function (itemId) {
     if (vm.stateShow[itemId]) {
       vm.stateShow[itemId] = 0;
-      vm.stateToggleIconClass[itemId] = 'fa-plus';
     } else {
       vm.stateShow[itemId] = 1;
-      vm.stateToggleIconClass[itemId] = 'fa-minus';
     }
   };
   vm.cityToggle = function (itemId) {
     if (vm.cityShow[itemId]) {
       vm.cityShow[itemId] = 0;
-      vm.cityToggleIconClass[itemId] = 'fa-plus';
     } else {
       vm.cityShow[itemId] = 1;
-      vm.cityToggleIconClass[itemId] = 'fa-minus';
     }
   };
   vm.countyToggle = function (itemId) {
     if (vm.countyShow[itemId]) {
       vm.countyShow[itemId] = 0;
-      vm.countyToggleIconClass[itemId] = 'fa-plus';
     } else {
       vm.countyShow[itemId] = 1;
-      vm.countyToggleIconClass[itemId] = 'fa-minus';
     }
   };
   vm.categoryToggle = function (itemId) {
     if (vm.categoryShow[itemId]) {
       vm.categoryShow[itemId] = 0;
-      vm.categoryToggleIconClass[itemId] = 'fa-plus';
     } else {
       vm.categoryShow[itemId] = 1;
-      vm.categoryToggleIconClass[itemId] = 'fa-minus';
     }
   };
   vm.adsToggle = function (itemId) {
     if (vm.adsShow[itemId]) {
       vm.adsShow[itemId] = 0;
-      vm.adsToggleIconClass[itemId] = 'fa-plus';
     } else {
       vm.adsShow[itemId] = 1;
-      vm.adsToggleIconClass[itemId] = 'fa-minus';
     }
   };
   vm.expandAllFun = function (tf) {

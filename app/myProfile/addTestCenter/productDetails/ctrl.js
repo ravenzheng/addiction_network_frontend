@@ -1,6 +1,6 @@
-module.exports = ['$injector', '$scope', '$log', '$rootScope', '$state', 'UIState', 'TreatmentCenterService', 'localStorageService', ctrl];
+module.exports = ['$injector', '$timeout', '$scope', '$log', '$rootScope', '$state', 'Status', 'UIState', 'TreatmentCenterService', 'localStorageService', ctrl];
 
-function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, localStorageService) {
+function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIState, service, localStorageService) {
   var vm = this;
   vm.testCenter = function () {
     // removing variables related to sponsored page
@@ -9,7 +9,7 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
     signupData.signupStep.testCenter = {};
     localStorageService.set('signupStepsData', signupData, 'sessionStorage');
-    $state.go(UIState.MY_PROFILE.TEST_CENTER);
+    $state.go(UIState.MY_PROFILE.ADD_TEST_CENTER);
   };
   vm.goBack = function () {
     $state.go(UIState.MY_PROFILE.SPONSORED_PAGE);
@@ -39,11 +39,19 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
 //  var token = localStorageService.get('signupToken');
   vm.cartDetails = [];
   // get cart details using api
-  service.getCartDetails().then(function (result) {
-    vm.cartDetails = result.cart_subscription;
-  }).catch(function (err) {
-    $log.info(err);
-  });
+  vm.loadCart = function (cenId='') {
+    service.getCartDetails().then(function (result) {
+      vm.cartDetails = result.cart_subscription;
+      if(cenId!==''){
+        $timeout(function () {
+          vm.centerToggle(cenId);
+        }, 800);
+      }
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+  vm.loadCart('');
 
   vm.gotoPayment = function () {
     localStorageService.set('cartTotal', vm.cartDetails.total_price);
@@ -82,13 +90,41 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     $state.go(UIState.MY_PROFILE.SPONSORED_PAGE);
   };
 
-  vm.deleteSponsorAds = function (itemId) {
-    $log.info(itemId);
+  vm.deleteSponsorAds = function (itemId, cenId) {
     // delete sponsored ads using itemId
     service.deleteSponsorAds(itemId).then(function (result) {
-      $log.info(result);
+      $rootScope.$emit(Status.SUCCEEDED, 'Item Removed');
+      vm.loadCart(cenId);
     }).catch(function (err) {
       $log.info(err);
+    });
+  };
+  vm.deleteConfirm = function (itemId, cenId) {
+    var deleteConfHtml = '<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Do you confirm?</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok(' + itemId + ','+cenId+')">Yes</button><button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>';
+
+    var modalInstance = $injector.get('$uibModal').open({
+      animation: vm.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      size: 'md',
+      template: deleteConfHtml,
+      controllerAs: 'vmModalCtrl',
+      controller: function () {
+        var vmModal = this;
+        // if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
+        //   vmModal.stateSelectCheck = true;
+        // }
+        $rootScope.ok = function (itemId, cenId) {
+          vm.deleteSponsorAds(itemId, cenId);
+          modalInstance.dismiss('cancel');
+          return true;
+        };
+        $rootScope.cancel = function () {
+          modalInstance.dismiss('cancel');
+          return true;
+        };
+      },
+      bindToController: true
     });
   };
 
@@ -100,70 +136,85 @@ function ctrl($injector, $scope, $log, $rootScope, $state, UIState, service, loc
     } else {
       vm.productShow[itemId] = 1;
       vm.centerToggleIconClass[itemId] = 'fa-minus-square-o';
+      vm.openCenterSubItems(itemId);
+    }
+  };
+
+  vm.openCenterSubItems = function (itemId) {
+    if (vm.membershipShow[itemId] === 0 ) {
+      vm.membershipToggle(itemId);
+    }
+    if (vm.sponsorshipShow[itemId] === 0 ) {
+      vm.sponsorshipToggle(itemId);
+    }
+    if (vm.stateShow[itemId] === 0 ) {
+      vm.stateToggle(itemId);
+    }
+    if (vm.cityShow[itemId] === 0 ) {
+      vm.cityToggle(itemId);
+    }
+    if (vm.countyShow[itemId] === 0 ) {
+      vm.countyToggle(itemId);
+    }
+    if (vm.categoryShow[itemId] === 0 ) {
+      vm.categoryToggle(itemId);
+    }
+    if (vm.adsShow[itemId] === 0 ) {
+      vm.adsToggle(itemId);
     }
   };
 
   vm.membershipToggle = function (itemId) {
     if (vm.membershipShow[itemId]) {
       vm.membershipShow[itemId] = 0;
-      vm.membershipToggleIconClass[itemId] = 'fa-plus-square-o';
+      // vm.membershipToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.membershipShow[itemId] = 1;
-      vm.membershipToggleIconClass[itemId] = 'fa-minus-square-o';
+    //  vm.membershipToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.sponsorshipToggle = function (itemId) {
     if (vm.sponsorshipShow[itemId]) {
       vm.sponsorshipShow[itemId] = 0;
-      vm.sponsorshipToggleIconClass[itemId] = 'fa-plus-square-o';
+    //  vm.sponsorshipToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.sponsorshipShow[itemId] = 1;
-      vm.sponsorshipToggleIconClass[itemId] = 'fa-minus-square-o';
+      // vm.sponsorshipToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.stateToggle = function (itemId) {
     if (vm.stateShow[itemId]) {
       vm.stateShow[itemId] = 0;
-      vm.stateToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.stateShow[itemId] = 1;
-      vm.stateToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.cityToggle = function (itemId) {
     if (vm.cityShow[itemId]) {
       vm.cityShow[itemId] = 0;
-      vm.cityToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.cityShow[itemId] = 1;
-      vm.cityToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.countyToggle = function (itemId) {
     if (vm.countyShow[itemId]) {
       vm.countyShow[itemId] = 0;
-      vm.countyToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.countyShow[itemId] = 1;
-      vm.countyToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.categoryToggle = function (itemId) {
     if (vm.categoryShow[itemId]) {
       vm.categoryShow[itemId] = 0;
-      vm.categoryToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.categoryShow[itemId] = 1;
-      vm.categoryToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.adsToggle = function (itemId) {
     if (vm.adsShow[itemId]) {
       vm.adsShow[itemId] = 0;
-      vm.adsToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.adsShow[itemId] = 1;
-      vm.adsToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
 
