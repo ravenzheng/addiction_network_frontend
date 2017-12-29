@@ -53,32 +53,31 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
     }
   };
   vm.checkedString = [];
-  vm.toggleChecked = function (id, tf, labelClick='') {
+  vm.toggleChecked = function (id, tf, labelClick) {
     if (tf === true) {
       vm.checkedString[id] = 'checked';
     } else {
       vm.checkedString[id] = '';
     }
-    if(labelClick==='label_click' && tf !== true){
+    if (labelClick === 'label_click' && tf !== true) {
       vm.tagCheckboxModel[id] = true;
       vm.checkedString[id] = 'checked';
-    }else if(labelClick==='label_click' && tf===true){
+    } else if (labelClick === 'label_click' && tf === true) {
       vm.tagCheckboxModel[id] = false;
       vm.checkedString[id] = '';
     }
-
   };
   vm.catgCheckedString = [];
-  vm.catgChecked = function (id, tf, labelClick='') {
+  vm.catgChecked = function (id, tf, labelClick) {
     if (tf === true) {
       vm.catgCheckedString[id] = 'checked';
     } else {
       vm.catgCheckedString[id] = '';
     }
-    if(labelClick==='label_click' && tf !== true){
+    if (labelClick === 'label_click' && tf !== true) {
       vm.categoryModel[id] = true;
       vm.catgCheckedString[id] = 'checked';
-    }else if(labelClick==='label_click' && tf===true){
+    } else if (labelClick === 'label_click' && tf === true) {
       vm.categoryModel[id] = false;
       vm.catgCheckedString[id] = '';
     }

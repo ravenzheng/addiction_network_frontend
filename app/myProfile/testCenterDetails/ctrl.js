@@ -1,6 +1,6 @@
 module.exports = ['$injector', '$timeout', '$state', 'UIState', '$log', 'Status', '$rootScope', 'localStorageService', 'TreatmentCenterService', ctrl];
 
-function ctrl($injector,$timeout, $state, UIState, $log, Status, $rootScope, localStorageService, service) {
+function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, localStorageService, service) {
   var vm = this;
   var membershipType = localStorageService.get('membershipType', 'sessionStorage');
   // alert(membershipType);
@@ -15,13 +15,13 @@ function ctrl($injector,$timeout, $state, UIState, $log, Status, $rootScope, loc
 
   vm.cartDetails = [];
   // get cart details using api
-  vm.loadCart = function (cenId='') {
+  vm.loadCart = function (cenId) {
     service.getCartDetails().then(function (result) {
       vm.cartDetails = result.cart_subscription;
-      if(cenId!==''){
-            $timeout(function () {
-              vm.centerToggle(cenId);
-            }, 800);
+      if (cenId !== '') {
+        $timeout(function () {
+          vm.centerToggle(cenId);
+        }, 800);
       }
     }).catch(function (err) {
       $log.info(err);
