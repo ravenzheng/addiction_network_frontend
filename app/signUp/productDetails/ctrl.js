@@ -232,4 +232,5 @@ function ctrl($injector, $timeout, $scope, $log, Status, $rootScope, $state, UIS
   vm.publish_ads = function () {
     $state.go(UIState.SIGN_UP.PUBLISH_ADS);
   };
+
 }
