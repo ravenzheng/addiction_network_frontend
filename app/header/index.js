@@ -54,7 +54,7 @@ var internalLinksNoAuth = [{
 }];
 
 var socialLinks = [{
-  href: 'https://www.facebook.com/theaddictionnetwork',
+  href: 'https://www.facebook.com/addictionnet1',
   img: 'themes/addiction/images/fb-2.png'
 }, {
   href: 'https://twitter.com/AddictionNet1',
