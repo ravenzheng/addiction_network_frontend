@@ -70,7 +70,7 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
 
   vm.upgradeMembership = function (currentMembership, targetMembership, cenId) {
     var newMembership = '';
-    if (currentMembership ===  targetMembership) {
+    if (currentMembership === targetMembership) {
       $rootScope.$emit(Status.FAILED, 'Already taken');
     } else if (targetMembership === 'paid') {
       newMembership = 'sponsored';
@@ -97,7 +97,7 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
   // start process of adding another treatment center //
   vm.addTestCenter = function () {
     // *************initial steps*************//
-      // reset previous localstorage
+    // reset previous localstorage
     localStorageService.remove('membership', 'center_added', 'userInfo', 'signupSponsoredPage', 'membershipType', 'bannerAdded', 'sponsorAdded', 'signupToken');
     $rootScope.addCenterInitialize = 1;
     var signUp = {
@@ -107,6 +107,29 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
     $state.go(UIState.MY_PROFILE.ADD_TEST_CENTER);
   };
 
+  vm.editAds = function (ads) {
+    $rootScope.addCenterInitialize = 1;
+    $rootScope.bannerAdsInfo = ads;
+    $state.go(UIState.MY_PROFILE.PUBLISH_ADS_EDIT);
+  };
+
+  vm.editSponsor = function (cenId, cenName, item) {
+    var centerInfo = [{
+      'id': cenId,
+      'label': cenName
+    }];
+    localStorageService.set('current_center_edit', centerInfo);
+    $rootScope.editSponsorCurCenter = centerInfo;
+    var cartMode = {
+      'mode': 'edit',
+      'item': 'sponsored_layouts',
+      'data': item
+    };
+    $rootScope.editSponsorCartMode = cartMode;
+    $rootScope.addCenterInitialize = 1;
+    localStorageService.set('cartModeEdit', cartMode);
+    $state.go(UIState.MY_PROFILE.SPONSORED_PAGE_EDIT);
+  };
 
   /** ********************* Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
@@ -123,22 +146,22 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
   };
 
   vm.openCenterSubItems = function (itemId) {
-    if (vm.sponsorshipShow[itemId] === 0 ) {
+    if (vm.sponsorshipShow[itemId] === 0) {
       vm.sponsorshipToggle(itemId);
     }
-    if (vm.stateShow[itemId] === 0 ) {
+    if (vm.stateShow[itemId] === 0) {
       vm.stateToggle(itemId);
     }
-    if (vm.cityShow[itemId] === 0 ) {
+    if (vm.cityShow[itemId] === 0) {
       vm.cityToggle(itemId);
     }
-    if (vm.countyShow[itemId] === 0 ) {
+    if (vm.countyShow[itemId] === 0) {
       vm.countyToggle(itemId);
     }
-    if (vm.categoryShow[itemId] === 0 ) {
+    if (vm.categoryShow[itemId] === 0) {
       vm.categoryToggle(itemId);
     }
-    if (vm.adsShow[itemId] === 0 ) {
+    if (vm.adsShow[itemId] === 0) {
       vm.adsToggle(itemId);
     }
   };

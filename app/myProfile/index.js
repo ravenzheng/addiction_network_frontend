@@ -16,14 +16,14 @@ angular.module(moduleName, [
   // .component('myTreatmentCenters', require('./myTreatmentCenters'))
   .component('addTreatmentCenter', require('./addTreatmentCenter'))
   .component('editTreatmentCenter', require('./editTreatmentCenter'))
-//  .component('bannerAds', require('./bannerAds'))
-//  .component('bannerAdsAdd', require('./bannerAds/add'))
-//  .component('bannerAdsEdit', require('./bannerAds/edit'))
-//  .component('bannerAdsView', require('./bannerAds/view'))
-//  .component('sponsorAds', require('./sponsorAds'))
+  //  .component('bannerAds', require('./bannerAds'))
+  //  .component('bannerAdsAdd', require('./bannerAds/add'))
+  //  .component('bannerAdsEdit', require('./bannerAds/edit'))
+  //  .component('bannerAdsView', require('./bannerAds/view'))
+  //  .component('sponsorAds', require('./sponsorAds'))
   // .component('sponsorAdsAdd', require('./sponsorAds/add'))
-//  .component('sponsorAdsEdit', require('./sponsorAds/edit'))
-//  .component('sponsorAdsView', require('./sponsorAds/view'))
+  //  .component('sponsorAdsEdit', require('./sponsorAds/edit'))
+  //  .component('sponsorAdsView', require('./sponsorAds/view'))
   .component('sponsorStateSelectView', require('./sponsorAds/view/sponsoredAdsStateSelect'))
   .component('sponsorCartView', require('./sponsorAds/view/sponsoredCart'))
   .component('sponsorStateSelectEdit', require('./sponsorAds/edit/sponsoredAdsStateSelect'))
@@ -48,6 +48,12 @@ angular.module(moduleName, [
   .component('productDetails', require('./addTestCenter/productDetails'))
   .component('centerPayment', require('./addTestCenter/centerPayment'))
   .component('signupCompleted', require('./addTestCenter/signupCompleted'))
+
+  // .component('editTestCenter', require('./editTestCenter'))
+  .component('editPublishAds', require('./editTestCenter/editPublishAds'))
+  .component('editSponsoredPage', require('./editTestCenter/editSponsoredPage'))
+  .component('myprofileEditSponsorStateSelect', require('./editTestCenter/myprofileEditSponsorStateSelect'))
+  .component('myprofileEditCartDetail', require('./editTestCenter/myprofileEditCartDetail'))
 
   .component('myProfile', {
     template: require('./view.html'),
@@ -202,6 +208,16 @@ angular.module(moduleName, [
       name: UIState.MY_PROFILE.SIGNUP_COMPLETED,
       url: '/signup-completed',
       template: '<signup-completed></signup-completed>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.PUBLISH_ADS_EDIT,
+      url: '/edit-banner-ads',
+      template: '<edit-publish-ads></edit-publish-ads>'
+    });
+    $stateProvider.state({
+      name: UIState.MY_PROFILE.SPONSORED_PAGE_EDIT,
+      url: '/edit-sponsored-page',
+      template: '<edit-sponsored-page></edit-sponsored-page>'
     });
   }]);
 

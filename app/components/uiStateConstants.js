@@ -101,7 +101,9 @@ module.exports = {
     'SPONSORED_PAGE': 'myProfile.sponsoredPage',
     'DETAILS': 'myProfile.productDetails',
     'CENTER_PAYMENT': 'myProfile.centerPayment',
-    'SIGNUP_COMPLETED': 'myProfile.signupCompleted'
+    'SIGNUP_COMPLETED': 'myProfile.signupCompleted',
+    'PUBLISH_ADS_EDIT': 'myProfile.editPublishAds',
+    'SPONSORED_PAGE_EDIT': 'myProfile.editSponsoredPage'
   },
   'CENTER_DETAIL': 'treatmentCenterDetail',
   'FEATURED_CENTER': 'featuredTreatmentCenterPage',
