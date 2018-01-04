@@ -71,7 +71,7 @@ function ctrl($injector, $timeout, $scope, $log, Status, $rootScope, $state, UIS
     $state.go(UIState.LOGIN);
   };
 
-  vm.editCenter = function (cenId, cenName, item) {
+  vm.editCenter = function (cenId, cenName, item, index) {
     var centerInfo = [{
       'id': cenId,
       'label': cenName
@@ -80,7 +80,8 @@ function ctrl($injector, $timeout, $scope, $log, Status, $rootScope, $state, UIS
     var cartMode = {
       'mode': 'edit',
       'item': 'sponsored_layouts',
-      'data': item
+      'data': item,
+      'index': index
     };
     localStorageService.set('cartMode', cartMode);
     $state.go(UIState.SIGN_UP.SPONSORED_PAGE);
@@ -125,7 +126,6 @@ function ctrl($injector, $timeout, $scope, $log, Status, $rootScope, $state, UIS
     });
   };
 
-
   /** ********************* Show/hide functionality for cart details *********************/
   vm.centerToggle = function (itemId) {
     if (vm.productShow[itemId]) {
@@ -139,25 +139,25 @@ function ctrl($injector, $timeout, $scope, $log, Status, $rootScope, $state, UIS
   };
 
   vm.openCenterSubItems = function (itemId) {
-    if (vm.membershipShow[itemId] === 0 ) {
+    if (vm.membershipShow[itemId] === 0) {
       vm.membershipToggle(itemId);
     }
-    if (vm.sponsorshipShow[itemId] === 0 ) {
+    if (vm.sponsorshipShow[itemId] === 0) {
       vm.sponsorshipToggle(itemId);
     }
-    if (vm.stateShow[itemId] === 0 ) {
+    if (vm.stateShow[itemId] === 0) {
       vm.stateToggle(itemId);
     }
-    if (vm.cityShow[itemId] === 0 ) {
+    if (vm.cityShow[itemId] === 0) {
       vm.cityToggle(itemId);
     }
-    if (vm.countyShow[itemId] === 0 ) {
+    if (vm.countyShow[itemId] === 0) {
       vm.countyToggle(itemId);
     }
-    if (vm.categoryShow[itemId] === 0 ) {
+    if (vm.categoryShow[itemId] === 0) {
       vm.categoryToggle(itemId);
     }
-    if (vm.adsShow[itemId] === 0 ) {
+    if (vm.adsShow[itemId] === 0) {
       vm.adsToggle(itemId);
     }
   };

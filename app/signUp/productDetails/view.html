@@ -56,8 +56,8 @@
             <div class="col-md-2">
               <span></span>
             </div>
-            <div class="col-md-1">
-              <span style="cursor:pointer;" ng-click="$ctrl.editCenter(item.id, item.name,item);"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+            <div class="col-md-1">            
+              <span style="cursor:pointer;" ng-click="$ctrl.editCenter(item.id, item.name,item, $index);"><i class="fa fa-pencil" aria-hidden="true"></i></span>
             </div>
           </div>
           <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.membershipShow[item.id]=0; $ctrl.membershipToggleIconClass[item.id]='fa-plus-square-o';">
