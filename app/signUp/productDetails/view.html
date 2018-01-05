@@ -47,8 +47,10 @@
         <div class="row" ng-repeat="item in $ctrl.cartDetails.items" ng-init="$ctrl.productShow[item.id]=0;$ctrl.centerToggleIconClass[item.id]='fa-plus-square-o';">
           <div class="col-md-12">
             <div class="col-md-4">
-              <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.centerToggle(item.id)"><i class="fa {{$ctrl.centerToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i></span>
-              <span>{{item.name}}</span>
+              <span style="cursor:pointer;" class="fix-left" ng-click="$ctrl.centerToggle(item.id)"><i class="fa {{$ctrl.centerToggleIconClass[item.id]}}" uib-tooltip="Show/hide " aria-hidden="true"></i>
+                <span>{{item.name}}</span>
+              </span>
+
             </div>
             <div class="col-md-5">
               <span>Total</span>
@@ -56,7 +58,7 @@
             <div class="col-md-2">
               <span></span>
             </div>
-            <div class="col-md-1">            
+            <div class="col-md-1">
               <span style="cursor:pointer;" ng-click="$ctrl.editCenter(item.id, item.name,item, $index);"><i class="fa fa-pencil" aria-hidden="true"></i></span>
             </div>
           </div>

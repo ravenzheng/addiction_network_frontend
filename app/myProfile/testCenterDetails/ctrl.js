@@ -94,6 +94,35 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
     }
   };
 
+  vm.upgradeMembershipConfirm = function (currentMembership, targetMembership, cenId) {
+    var upgradeConfHtml = `<div class="col-sm-12"><div class="modal-header"><div class="col-sm-12 text-center"><h3 class="modal-title" id="modal-title">Do you confirm?</h3></div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"></div></div><div class="modal-footer map_popup_footer"><div class="col-sm-12 text-right"><button type="button" class="btn btn-primary" ng-click="ok('` + currentMembership + `','` + targetMembership + `',` + cenId + `)">Yes</button><button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button></div><div ng-click="cancel()"><i class="fa fa-times fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%; margin-left:-10px;cursor: pointer;"></i></div>`;
+
+    var modalInstance = $injector.get('$uibModal').open({
+      animation: vm.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      size: 'md',
+      template: upgradeConfHtml,
+      controllerAs: 'vmModalCtrl',
+      controller: function () {
+        var vmModal = this;
+        // if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
+        //   vmModal.stateSelectCheck = true;
+        // }
+        $rootScope.ok = function (currentMembership, targetMembership, cenId) {
+          vm.upgradeMembership(currentMembership, targetMembership, cenId);
+          modalInstance.dismiss('cancel');
+          return true;
+        };
+        $rootScope.cancel = function () {
+          modalInstance.dismiss('cancel');
+          return true;
+        };
+      },
+      bindToController: true
+    });
+  };
+
   // start process of adding another treatment center //
   vm.addTestCenter = function () {
     // *************initial steps*************//

@@ -143,7 +143,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
   // pre load from cart item
   vm.setCategoryCartData = function (cartMode) {
     var actCen = cartMode.data.id;
-
     var catgs = [];
     for (var key in cartMode.data.sponsored_layouts.categories) {
       //  $rootScope.treatmentApproachModel[actCen].push();
@@ -301,6 +300,7 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
         vm.setCategoryCartData(cartMode);
         // localStorageService.remove('cartMode');
         // vm.updateCart();
+        $log.info(cartMode.data);
         saveToLocalStorage($rootScope, localStorageService);
         $rootScope.onInit();
       }
@@ -309,12 +309,20 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
 
   vm.onStateSelect = function (state) {
     // vm.open(state); // testing purpose
-    if ($rootScope.treatmentCentersModel.length > 0) {
+    if (angular.isDefined($rootScope.treatmentCentersModel) && $rootScope.treatmentCentersModel.length > 0) {
+      vm.open(state);
+    } else if (angular.isDefined($rootScope.centerSelected.length) && $rootScope.centerSelected.length > 0) {
       vm.open(state);
     } else {
       $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
       return;
     }
+    // if ($rootScope.centerSelected.length > 0) {
+    //   vm.open(state);
+    // } else {
+    //   $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+    //   return;
+    // }
   };
   $rootScope.countyText = {
     buttonDefaultText: 'Select County'
@@ -492,16 +500,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
     }
   };
 
-  vm.onStateSelect = function (state) {
-    // vm.open(state); // testing purpose
-    if ($rootScope.centerSelected.length > 0) {
-      vm.open(state);
-    } else {
-      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
-      return;
-    }
-  };
-
   var token = localStorageService.get('signupToken');
   vm.open = function (state) {
     vm.activeState = {
@@ -533,6 +531,7 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
     vm.countySelCount--;
   };
 
+  // item deselect events
   vm.itemDeselectState = function (item) {
     vm.deleteItemType = 'state';
     vm.deleteFromCart(item); // delete item from cart, when deselected any item
@@ -603,23 +602,21 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
         break;
       }
     }
-    console.log('state check: ' + stateCheck);
+
     var index = 0;
     if (angular.isDefined($rootScope.checkedStateModel[$rootScope.activeCenter])) {
       index = $rootScope.checkedStateModel[$rootScope.activeCenter].indexOf(stateSelectedData.shortname);
     }
-    if (stateCheck === true) {
-      if (index === -1) {
-        $rootScope.checkedStateModel[$rootScope.activeCenter].push(stateSelectedData.shortname);
-        if (angular.isUndefined($rootScope.checkedStateDetail)) {
-          $rootScope.checkedStateDetail = {};
-        }
-        $rootScope.checkedStateDetail[$rootScope.activeCenter].push(stateSelectedData);
+    if (stateCheck === true && index === -1) {
+      $rootScope.checkedStateModel[$rootScope.activeCenter].push(stateSelectedData.shortname);
+      if (angular.isUndefined($rootScope.checkedStateDetail)) {
+        $rootScope.checkedStateDetail = {};
       }
+      $rootScope.checkedStateDetail[$rootScope.activeCenter].push(stateSelectedData);
+
     } else if (index >= 0 && stateCheck === false) {
       // trigger delete function for state, if it is in cart
-      $log.info('testing: statae: ');
-      $log.info(state);
+      vm.itemDeselectState(stateSelectedData.id);
 
       $rootScope.checkedStateModel[$rootScope.activeCenter].splice(index, 1);
       if (angular.isUndefined($rootScope.checkedStateDetail)) {
@@ -639,7 +636,10 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
       $log.info('stopped: could not get delete item type.');
       return;
     }
-    $log.info('item ty: ' + vm.deleteItemType + '  item: ' + item);
+    if (angular.isUndefined(item) || item.id === '' || item.id === null) {
+      $log.info('stopped: could not get item id.');
+      return;
+    }
     var itemInfo = '';
     if (vm.deleteItemType === 'demographic') {
       demographic = $rootScope.otherIds.Demographic;
@@ -715,9 +715,9 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
     } else if (vm.deleteItemType === 'state') {
       var state = $rootScope.stateIds;
       for (key in state) {
-        if (state[key].id === item.id) {
+        if (state[key].id === item) {
           itemInfo = {
-            'id': item.id,
+            'id': item,
             'name': state[key].name
           };
           break;
@@ -822,8 +822,10 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
               'data': itemData,
               'index': vm.cartMode.index
             };
-
             localStorageService.set('cartMode', cartMode);
+            // refresh cart item count
+            $rootScope.calculateItems(result.cart_subscription.items);
+
           }).catch(function (err) {
             $log.info(err);
           });
@@ -1043,6 +1045,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         // if (angular.isDefined($rootScope.checkedStateModel) && $rootScope.checkedStateModel.indexOf(state.shortname) >= 0) {
         //   vmModal.stateSelectCheck = true;
         // }
+
         var statefull = state.fullname;
         var stateName = '';
         for (key in statefull) {
@@ -1060,11 +1063,11 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
         if (angular.isDefined($rootScope.checkedStateModel) && angular.isDefined($rootScope.checkedStateModel[$rootScope.activeCenter]) && ($rootScope.checkedStateModel[$rootScope.activeCenter].indexOf(state.shortname) >= 0 || $rootScope.checkedStateModel[$rootScope.activeCenter].indexOf(stateName) >= 0)) {
           vmModal.stateSelectCheck = true;
         }
-
         $rootScope.ok = function () {
           if (angular.isDefined(vmModal.stateSelectCheck)) {
-            vmModal.stateSelectCheck = true;
+            // vmModal.stateSelectCheck = true;
           }
+          console.log('test state select checkbox: ' + vmModal.stateSelectCheck);
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);

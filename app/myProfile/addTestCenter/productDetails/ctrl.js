@@ -36,7 +36,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
     $rootScope.centerSelected = {};
   };
 
-//  var token = localStorageService.get('signupToken');
+  //  var token = localStorageService.get('signupToken');
   vm.cartDetails = [];
   // get cart details using api
   vm.loadCart = function (cenId) {
@@ -75,7 +75,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
     $state.go(UIState.LOGIN);
   };
 
-  vm.editCenter = function (cenId, cenName, item) {
+  vm.editCenter = function (cenId, cenName, item, index) {
     var centerInfo = [{
       'id': cenId,
       'label': cenName
@@ -84,7 +84,8 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
     var cartMode = {
       'mode': 'edit',
       'item': 'sponsored_layouts',
-      'data': item
+      'data': item,
+      'index': index
     };
     localStorageService.set('cartMode', cartMode);
     $state.go(UIState.MY_PROFILE.SPONSORED_PAGE);
@@ -141,25 +142,25 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
   };
 
   vm.openCenterSubItems = function (itemId) {
-    if (vm.membershipShow[itemId] === 0 ) {
+    if (vm.membershipShow[itemId] === 0) {
       vm.membershipToggle(itemId);
     }
-    if (vm.sponsorshipShow[itemId] === 0 ) {
+    if (vm.sponsorshipShow[itemId] === 0) {
       vm.sponsorshipToggle(itemId);
     }
-    if (vm.stateShow[itemId] === 0 ) {
+    if (vm.stateShow[itemId] === 0) {
       vm.stateToggle(itemId);
     }
-    if (vm.cityShow[itemId] === 0 ) {
+    if (vm.cityShow[itemId] === 0) {
       vm.cityToggle(itemId);
     }
-    if (vm.countyShow[itemId] === 0 ) {
+    if (vm.countyShow[itemId] === 0) {
       vm.countyToggle(itemId);
     }
-    if (vm.categoryShow[itemId] === 0 ) {
+    if (vm.categoryShow[itemId] === 0) {
       vm.categoryToggle(itemId);
     }
-    if (vm.adsShow[itemId] === 0 ) {
+    if (vm.adsShow[itemId] === 0) {
       vm.adsToggle(itemId);
     }
   };
@@ -170,13 +171,13 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, Status, UIS
       // vm.membershipToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.membershipShow[itemId] = 1;
-    //  vm.membershipToggleIconClass[itemId] = 'fa-minus-square-o';
+      //  vm.membershipToggleIconClass[itemId] = 'fa-minus-square-o';
     }
   };
   vm.sponsorshipToggle = function (itemId) {
     if (vm.sponsorshipShow[itemId]) {
       vm.sponsorshipShow[itemId] = 0;
-    //  vm.sponsorshipToggleIconClass[itemId] = 'fa-plus-square-o';
+      //  vm.sponsorshipToggleIconClass[itemId] = 'fa-plus-square-o';
     } else {
       vm.sponsorshipShow[itemId] = 1;
       // vm.sponsorshipToggleIconClass[itemId] = 'fa-minus-square-o';

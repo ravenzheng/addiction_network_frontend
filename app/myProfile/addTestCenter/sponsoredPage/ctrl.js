@@ -1,4 +1,4 @@
-function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, localStorageService) {
+function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, centerService, localStorageService) {
   var vm = this;
 
   vm.multiselectModelLayoutIds = [];
@@ -327,5 +327,32 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
     $rootScope.onInit();
   };
+  // count cart total items
+  vm.loadCart = function () {
+    // get cart details using api
+    centerService.getCartDetails().then(function (result) {
+      vm.cartInfo = result.cart_subscription;
+      $rootScope.calculateItems(vm.cartInfo.items);
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+  $rootScope.calculateItems = function (items) {
+    $rootScope.totalCartItems = 0;
+    for (var cn in items) {
+      var stateCount = (items[cn].sponsored_layouts.state).length;
+      var countyCount = (items[cn].sponsored_layouts.county).length;
+      var cityCount = (items[cn].sponsored_layouts.city).length;
+      var categoryCount = (items[cn].sponsored_layouts.categories).length;
+      var adsCount = (items[cn].banner_ads).length;
+      var memShip = 0;
+      if (items[cn].type === 'featured' || items[cn].type === 'paid') {
+        memShip = 1;
+      }
+      $rootScope.totalCartItems += stateCount + countyCount + cityCount + categoryCount + adsCount + memShip;
+    }
+  };
+  vm.loadCart();
+
 }
-module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'localStorageService', '$timeout', ctrl];
+module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'TreatmentCenterService', 'localStorageService', '$timeout', ctrl];

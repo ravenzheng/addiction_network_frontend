@@ -1,4 +1,4 @@
-function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, localStorageService, $timeout) {
+function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope, $window, $document, Status, SponsorService, signUpService, localStorageService, $timeout) {
   var vm = this;
 
   vm.multiselectModelLayoutIds = [];
@@ -72,7 +72,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     //   i++;
     // }
     //  console.log(centerIds);
-
+    console.log($rootScope.centerSelected);
     for (var cen in $rootScope.centerSelected) {
       var sponsoredListingIds = [];
       i = 0;
@@ -97,6 +97,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           i++;
         }
       } else {
+        console.log($rootScope.checkedStateDetail);
         for (key in $rootScope.checkedStateDetail[centerId]) { // state ids
           id = String($rootScope.checkedStateDetail[centerId][key].id);
           sponsoredListingIds[i] = id;
@@ -140,6 +141,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       } else {
         totalItems = 0;
       }
+      console.log($rootScope.centerWise);
       if (totalItems > 0) {
         centerIds.push(centerId);
         listingIds[centerId] = sponsoredListingIds;
@@ -194,7 +196,7 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
     var ci = 0;
     if (centerIds.length > 0) {
-      // consoele.log('cen id: ' + );
+      console.log('cen id: ' + ci);
       vm.submitSingle(ci);
     } else {
       $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
@@ -323,5 +325,33 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
     $rootScope.onInit();
   };
+
+  // count cart total items
+  vm.loadCart = function () {
+    // get cart details using api
+    signUpService.getCartDetails(token).then(function (result) {
+      vm.cartInfo = result.cart_subscription;
+      $rootScope.calculateItems(vm.cartInfo.items);
+    }).catch(function (err) {
+      $log.info(err);
+    });
+  };
+  $rootScope.calculateItems = function (items) {
+    $rootScope.totalCartItems = 0;
+    for (var cn in items) {
+      var stateCount = (items[cn].sponsored_layouts.state).length;
+      var countyCount = (items[cn].sponsored_layouts.county).length;
+      var cityCount = (items[cn].sponsored_layouts.city).length;
+      var categoryCount = (items[cn].sponsored_layouts.categories).length;
+      var adsCount = (items[cn].banner_ads).length;
+      var memShip = 0;
+      if (items[cn].type === 'featured' || items[cn].type === 'paid') {
+        memShip = 1;
+      }
+      $rootScope.totalCartItems += stateCount + countyCount + cityCount + categoryCount + adsCount + memShip;
+    }
+  };
+  vm.loadCart();
+
 }
-module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'localStorageService', '$timeout', ctrl];
+module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'SignUpService', 'localStorageService', '$timeout', ctrl];

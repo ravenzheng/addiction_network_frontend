@@ -186,6 +186,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
         $rootScope.checkedStateDetail[$rootScope.activeCenter] = [];
         // reset checkall state
         $rootScope.checkedAllStates[$rootScope.activeCenter] = null;
+        totalItems++;
       }
       //$rootScope.statesSel = states; // states
       if (angular.isDefined($rootScope.statesSel[$rootScope.activeCenter])) {
@@ -372,6 +373,7 @@ function ctrl($log, $rootScope, Status, $window, localStorageService, $state, UI
       if ($rootScope.activeCenter !== false && $rootScope.activeCenter !== '') {
         vm.centerWise[$rootScope.activeCenter] = centerwise;
         $rootScope.centerWise[$rootScope.activeCenter] = centerwise;
+
       }
       var grandTotal = 0;
 

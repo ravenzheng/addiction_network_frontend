@@ -4,7 +4,7 @@ function ctrl($injector, $timeout, $scope, $log, Status, $rootScope, $state, UIS
   var vm = this;
   vm.testCenter = function () {
     // removing variables related to sponsored page
-    localStorageService.remove('signupSponsoredPage', 'sessionStorage');
+    localStorageService.remove('cartMode', 'signupSponsoredPage', 'sessionStorage');
     vm.clearRootscopeData();
     var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
     signupData.signupStep.testCenter = {};

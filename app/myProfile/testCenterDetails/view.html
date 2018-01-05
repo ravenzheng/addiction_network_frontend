@@ -37,10 +37,10 @@
                     <span ng-if="item.type==='featured'">Platinum Membership</span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span style="cursor:pointer;" ng-click="$ctrl.upgradeMembership(item.type, 'featured', item.id);"><i class="fa fa-long-arrow-up"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.upgradeMembershipConfirm(item.type, 'featured', item.id);"><i class="fa fa-long-arrow-up"></i></span>
                   </div>
                   <div class="col-md-2 text-center">
-                    <span style="cursor:pointer;" ng-click="$ctrl.upgradeMembership(item.type, 'paid', item.id);"><i class="fa fa-long-arrow-down"></i></span>
+                    <span style="cursor:pointer;" ng-click="$ctrl.upgradeMembershipConfirm(item.type, 'paid', item.id);"><i class="fa fa-long-arrow-down"></i></span>
                   </div>
                 </div>
                 <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.sponsorshipShow[item.id]=0; $ctrl.sponsorshipToggleIconClass[item.id]='fa-plus'; $ctrl.stateShow[item.id]=0;">

@@ -1,6 +1,6 @@
-module.exports = ['$document', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService',  'localStorageService', 'Status', '$timeout', 'MapService', ctrl];
+module.exports = ['$document', '$log', '$rootScope', '$injector', '$state', 'UIState', 'SponsorService', 'TreatmentCenterService', 'localStorageService', 'Status', '$timeout', 'MapService', ctrl];
 
-function ctrl($document, $rootScope, $injector, $state, UIState, service, localStorageService, Status, $timeout, mapService) {
+function ctrl($document, $log, $rootScope, $injector, $state, UIState, service, centerService, localStorageService, Status, $timeout, mapService) {
   var vm = this;
   var value = 0;
 
@@ -147,7 +147,7 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
 
     var catgs = [];
     for (var key in cartMode.data.sponsored_layouts.categories) {
-    //  $rootScope.treatmentApproachModel[actCen].push();
+      //  $rootScope.treatmentApproachModel[actCen].push();
       catgs.push(cartMode.data.sponsored_layouts.categories[key].name);
     }
 
@@ -156,7 +156,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.demographicModel[actCen] = [];
     for (var key in demographic) {
       if (catgs.indexOf(demographic[key].name) >= 0) {
-        $rootScope.demographicModel[actCen].push({'id': demographic[key].id});
+        $rootScope.demographicModel[actCen].push({
+          'id': demographic[key].id
+        });
       }
     }
 
@@ -165,7 +167,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.treatmentApproachModel[actCen] = [];
     for (key in treatmentApproach) {
       if (catgs.indexOf(treatmentApproach[key].name) >= 0) {
-        $rootScope.treatmentApproachModel[actCen].push({'id': treatmentApproach[key].id});
+        $rootScope.treatmentApproachModel[actCen].push({
+          'id': treatmentApproach[key].id
+        });
       }
     }
 
@@ -174,7 +178,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.settingModel[actCen] = [];
     for (key in setting) {
       if (catgs.indexOf(setting[key].name) >= 0) {
-        $rootScope.settingModel[actCen].push({'id': setting[key].id});
+        $rootScope.settingModel[actCen].push({
+          'id': setting[key].id
+        });
       }
     }
 
@@ -183,7 +189,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.additionalServicesModel[actCen] = [];
     for (key in additionalServices) {
       if (catgs.indexOf(additionalServices[key].name) >= 0) {
-        $rootScope.additionalServicesModel[actCen].push({'id': additionalServices[key].id});
+        $rootScope.additionalServicesModel[actCen].push({
+          'id': additionalServices[key].id
+        });
       }
     }
 
@@ -192,7 +200,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.paymentModel[actCen] = [];
     for (key in payment) {
       if (catgs.indexOf(payment[key].name) >= 0) {
-        $rootScope.paymentModel[actCen].push({'id': payment[key].id});
+        $rootScope.paymentModel[actCen].push({
+          'id': payment[key].id
+        });
       }
     }
     var byDrug = $rootScope.otherIds['By Drug'];
@@ -200,7 +210,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     $rootScope.byDrugModel[actCen] = [];
     for (key in byDrug) {
       if (catgs.indexOf(byDrug[key].name) >= 0) {
-        $rootScope.byDrugModel[actCen].push({'id': byDrug[key].id});
+        $rootScope.byDrugModel[actCen].push({
+          'id': byDrug[key].id
+        });
       }
     }
   };
@@ -284,11 +296,13 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     // test if cartmode
     // --------------check if edit/delete/add mode -------------------//
     var cartMode = localStorageService.get('cartMode');
+    vm.cartMode = localStorageService.get('cartMode');
     if (angular.isDefined(cartMode) && cartMode !== null) {
       if (cartMode.mode === 'edit' && cartMode.item === 'sponsored_layouts') {
         vm.setCategoryCartData(cartMode);
         // localStorageService.remove('cartMode');
         // vm.updateCart();
+        $log.info(cartMode.data);
         saveToLocalStorage($rootScope, localStorageService);
         $rootScope.onInit();
       }
@@ -297,12 +311,20 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
 
   vm.onStateSelect = function (state) {
     // vm.open(state); // testing purpose
-    if ($rootScope.treatmentCentersModel.length > 0) {
+    if (angular.isDefined($rootScope.treatmentCentersModel) && $rootScope.treatmentCentersModel.length > 0) {
+      vm.open(state);
+    } else if (angular.isDefined($rootScope.centerSelected.length) && $rootScope.centerSelected.length > 0) {
       vm.open(state);
     } else {
       $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
       return;
     }
+    // if ($rootScope.centerSelected.length > 0) {
+    //   vm.open(state);
+    // } else {
+    //   $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
+    //   return;
+    // }
   };
   $rootScope.countyText = {
     buttonDefaultText: 'Select County'
@@ -480,16 +502,6 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     }
   };
 
-  vm.onStateSelect = function (state) {
-    // vm.open(state); // testing purpose
-    if ($rootScope.centerSelected.length > 0) {
-      vm.open(state);
-    } else {
-      $rootScope.$emit(Status.FAILED, 'Select any treatment center.');
-      return;
-    }
-  };
-
   // var token = localStorageService.get('signupToken');
   vm.open = function (state) {
     vm.activeState = {
@@ -507,7 +519,8 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     vm.citySelCount++;
   };
 
-  $rootScope.deSelectCityFun = function () {
+  $rootScope.deSelectCityFun = function (item) {
+    vm.itemDeselectCity(item);
     vm.citySelCount--;
   };
 
@@ -516,8 +529,55 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
     vm.countySelCount++;
   };
 
-  $rootScope.deSelectCountyFun = function () {
+  $rootScope.deSelectCountyFun = function (item) {
+    vm.itemDeselectCounty(item);
     vm.countySelCount--;
+  };
+
+  // item deselect events
+  vm.itemDeselectState = function (item) {
+    vm.deleteItemType = 'state';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    //vm.updateCart();
+  };
+  vm.itemDeselectCity = function (item) {
+    vm.deleteItemType = 'city';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+  };
+  vm.itemDeselectCounty = function (item) {
+    vm.deleteItemType = 'county';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+
+  };
+  vm.itemDeselectDemographic = function (item) {
+    vm.deleteItemType = 'demographic';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    vm.updateCart();
+  };
+  vm.itemDeselectTreatment = function (item) {
+    vm.deleteItemType = 'treatmentApproach';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    vm.updateCart();
+  };
+  vm.itemDeselectPayment = function (item) {
+    vm.deleteItemType = 'payment';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    vm.updateCart();
+  };
+  vm.itemDeselectAdditional = function (item) {
+    vm.deleteItemType = 'additionalServices';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    vm.updateCart();
+  };
+  vm.itemDeselectSetting = function (item) {
+    vm.deleteItemType = 'setting';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    vm.updateCart();
+  };
+  vm.itemDeselectBydrug = function (item) {
+    vm.deleteItemType = 'byDrug';
+    vm.deleteFromCart(item); // delete item from cart, when deselected any item
+    vm.updateCart();
   };
 
   vm.updateCart = function () {
@@ -558,6 +618,9 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
         $rootScope.checkedStateDetail[$rootScope.activeCenter].push(stateSelectedData);
       }
     } else if (index >= 0 && stateCheck === false) {
+      // trigger delete function for state, if it is in cart
+      vm.itemDeselectState(stateSelectedData.id);
+
       $rootScope.checkedStateModel[$rootScope.activeCenter].splice(index, 1);
       if (angular.isUndefined($rootScope.checkedStateDetail)) {
         $rootScope.checkedStateDetail = {};
@@ -570,6 +633,217 @@ function ctrl($document, $rootScope, $injector, $state, UIState, service, localS
       dropDownClickOnload($document);
     }, 700);
   };
+
+  vm.deleteFromCart = function (item) {
+    if (angular.isUndefined(vm.deleteItemType) || vm.deleteItemType === '' || vm.deleteItemType === null) {
+      $log.info('stopped: could not get delete item type.');
+      return;
+    }
+    if (angular.isUndefined(item) || item.id === '' || item.id === null) {
+      $log.info('stopped: could not get item id.');
+      return;
+    }
+    var itemInfo = '';
+    if (vm.deleteItemType === 'demographic') {
+      demographic = $rootScope.otherIds.Demographic;
+      for (key in demographic) {
+        if (demographic[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': demographic[key].name
+          };
+          break;
+        }
+      }
+    } else if (vm.deleteItemType === 'treatmentApproach') {
+      treatmentApproach = $rootScope.otherIds['Treatment Approach'];
+      for (key in treatmentApproach) {
+        if (treatmentApproach[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': treatmentApproach[key].name
+          };
+          break;
+        }
+      }
+
+    } else if (vm.deleteItemType === 'payment') {
+      payment = $rootScope.otherIds.Payment;
+      for (key in payment) {
+        if (payment[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': payment[key].name
+          };
+          break;
+        }
+      }
+
+    } else if (vm.deleteItemType === 'additionalServices') {
+      additionalServices = $rootScope.otherIds['Additional Services'];
+      for (key in additionalServices) {
+        if (additionalServices[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': additionalServices[key].name
+          };
+          break;
+        }
+      }
+
+    } else if (vm.deleteItemType === 'setting') {
+      setting = $rootScope.otherIds.Setting;
+      for (key in setting) {
+        if (setting[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': setting[key].name
+          };
+          break;
+        }
+      }
+
+    } else if (vm.deleteItemType === 'byDrug') {
+      byDrug = $rootScope.otherIds['By Drug'];
+      for (key in byDrug) {
+        if (byDrug[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': byDrug[key].name
+          };
+          break;
+        }
+      }
+
+    } else if (vm.deleteItemType === 'state') {
+      var state = $rootScope.stateIds;
+      for (key in state) {
+        if (state[key].id === item) {
+          itemInfo = {
+            'id': item,
+            'name': state[key].name
+          };
+          break;
+        }
+      }
+
+    } else if (vm.deleteItemType === 'city') {
+      var city = $rootScope.city;
+      for (key in city) {
+        if (city[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': city[key].label
+          };
+          break;
+        }
+      }
+    } else if (vm.deleteItemType === 'county') {
+      var county = $rootScope.county;
+      for (key in county) {
+        if (county[key].id === item.id) {
+          itemInfo = {
+            'id': item.id,
+            'name': county[key].label
+          };
+          break;
+        }
+      }
+    }
+
+    var actualDelItemInfo = '';
+    // get cart data
+    centerService.getCartDetails().then(function (result) {
+      vm.cartDetails = result.cart_subscription.items;
+      for (var key in vm.cartDetails) {
+        var sponsoredLayouts = vm.cartDetails[key].sponsored_layouts;
+        if (vm.deleteItemType === 'state') {
+          var cartState = sponsoredLayouts.state;
+          for (var sts in cartState) {
+            if (cartState[sts].name === itemInfo.name) {
+              actualDelItemInfo = {
+                'id': cartState[sts].id,
+                'name': cartState[sts].name
+              };
+              break;
+            }
+          }
+        }
+        if (vm.deleteItemType === 'city') {
+          var cartCity = sponsoredLayouts.city;
+          for (var cty in cartCity) {
+            if (cartCity[cty].name === itemInfo.name) {
+              actualDelItemInfo = {
+                'id': cartCity[cty].id,
+                'name': cartCity[cty].name
+              };
+              break;
+            }
+          }
+        }
+        if (vm.deleteItemType === 'county') {
+          var cartCounty = sponsoredLayouts.county;
+          for (var cnt in cartCounty) {
+            if (cartCounty[cnt].name === itemInfo.name) {
+              actualDelItemInfo = {
+                'id': cartCounty[cnt].id,
+                'name': cartCounty[cnt].name
+              };
+              break;
+            }
+          }
+        }
+        if (vm.deleteItemType.indexOf(['treatmentApproach', 'demographic', 'payment', 'additionalServices', 'setting', 'byDrug'])) {
+          var cartCatg = sponsoredLayouts.categories;
+          for (var catg in cartCatg) {
+            if (cartCatg[catg].name === itemInfo.name) {
+              actualDelItemInfo = {
+                'id': cartCatg[catg].id,
+                'name': cartCatg[catg].name
+              };
+              break;
+            }
+          }
+        }
+
+        if (actualDelItemInfo !== '') {
+          break;
+        }
+      }
+      if (actualDelItemInfo !== '') {
+        $log.info('actual item id: ' + actualDelItemInfo.id);
+        // delete sponsored ads using itemId
+        centerService.deleteSponsorAds(actualDelItemInfo.id).then(function (result) {
+          $rootScope.$emit(Status.SUCCEEDED, 'Item Removed: ' + actualDelItemInfo.name);
+
+          centerService.getCartDetails().then(function (result) {
+            itemData = result.cart_subscription.items[vm.cartMode.index];
+            // updating current selected cart data (ref: productDetails ctrl > vm.editCenter )
+            var cartMode = {
+              'mode': 'edit',
+              'item': 'sponsored_layouts',
+              'data': itemData,
+              'index': vm.cartMode.index
+            };
+            localStorageService.set('cartMode', cartMode);
+            // refresh cart item count
+            $rootScope.calculateItems(result.cart_subscription.items);
+
+          }).catch(function (err) {
+            $log.info(err);
+          });
+
+        }).catch(function (err) {
+          $log.info(err);
+        });
+      }
+
+    }).catch(function (err) {
+      $log.info(err);
+    });
+
+  };
+
 }
 
 function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, localStorageService) {
@@ -700,29 +974,33 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
         var counts = [];
         var stats = [];
         for (var key in cartMode.data.sponsored_layouts.city) {
-        //  $rootScope.treatmentApproachModel[actCen].push();
+          //  $rootScope.treatmentApproachModel[actCen].push();
           cits.push(cartMode.data.sponsored_layouts.city[key].name);
         }
         for (var key in cartMode.data.sponsored_layouts.county) {
-        //  $rootScope.treatmentApproachModel[actCen].push();
+          //  $rootScope.treatmentApproachModel[actCen].push();
           counts.push(cartMode.data.sponsored_layouts.county[key].name);
         }
         for (var key in cartMode.data.sponsored_layouts.state) {
-        //  $rootScope.treatmentApproachModel[actCen].push();
+          //  $rootScope.treatmentApproachModel[actCen].push();
           stats.push(cartMode.data.sponsored_layouts.state[key].name);
         }
         $rootScope.cityModel = {};
         $rootScope.cityModel[actCen] = [];
         for (key in modifiedCitySelect) {
           if (cits.indexOf(modifiedCitySelect[key].label) >= 0) {
-            $rootScope.cityModel[actCen].push({'id': modifiedCitySelect[key].id});
+            $rootScope.cityModel[actCen].push({
+              'id': modifiedCitySelect[key].id
+            });
           }
         }
         $rootScope.countyModel = {};
         $rootScope.countyModel[actCen] = [];
         for (key in modifiedCountySelect) {
           if (counts.indexOf(modifiedCountySelect[key].label) >= 0) {
-            $rootScope.countyModel[actCen].push({'id': modifiedCountySelect[key].id});
+            $rootScope.countyModel[actCen].push({
+              'id': modifiedCountySelect[key].id
+            });
           }
         }
         if (angular.isUndefined($rootScope.checkedStateDetail)) {
@@ -750,7 +1028,7 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
     }
 
     var citySelect = '<div class="' + widthCity + '" ng-dropdown-multiselect=""  options="$root.city" checkboxes="true" selected-model="$root.cityModel[$root.activeCenter]" extra-settings="$root.multiselectModelSettingsCity" translation-texts="$root.cityText" events="{ onSelectAll: onSelectAllCity, onItemSelect: citySelectFun, onItemDeselect: deSelectCityFun}" ></div>';
-    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect=""  options="$root.county" checkboxes="true" selected-model="$root.countyModel[$root.activeCenter]" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeSelect: deSelectCountyFun }"></div>';
+    var countySelect = '<div class="' + widthCounty + '" ng-dropdown-multiselect=""  options="$root.county" checkboxes="true" selected-model="$root.countyModel[$root.activeCenter]" extra-settings="$root.multiselectModelSettingsCounty" translation-texts="$root.countyText" events="{ onSelectAll: onSelectAllCounty, onItemSelect: countySelectFun, onItemDeselect: deSelectCountyFun }"></div>';
 
     // var displayStateMap = '<div class="col-sm-12"><div class="modal-header header_state_map"><div class="col-sm-4">' + countySelect + '</div><div class="col-sm-4 text-center"><h3 class="modal-title" id="modal-title">' + state.fullname + '</h3></div><div class="col-sm-4 text-right">' + citySelect + '</div></div></div></div></div><div class="modal-body map_body_state" id="modal-body"><div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">' + stateMap + '</div></div><div class="modal-footer map_popup_footer"><div style="position: absolute;top: 10px;text-align: right;width: 95%;cursor: pointer;border-radius: 100%;" ng-click="cancel()"><i class="fa fa-window-close fa-1" aria-hidden="true" style="position: absolute;top: 0px; font-size: 24px;border-radius: 100%;"></i></div>';
 
@@ -789,7 +1067,7 @@ function getCountyCity(vm, state, stateMap, service, $injector, $rootScope, loca
 
         $rootScope.ok = function () {
           if (angular.isDefined(vmModal.stateSelectCheck)) {
-            vmModal.stateSelectCheck = true;
+            // vmModal.stateSelectCheck = true;
           } //  vm.updateStateSelect(state, vmModal.stateSelectCheck);
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
