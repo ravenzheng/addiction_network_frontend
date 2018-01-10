@@ -202,7 +202,10 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       // consoele.log('cen id: ' + );
       vm.submitSingle(ci);
     } else {
-      $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+      // $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+      // temporarily commented so that wihtout any item select user can go forward
+      // $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+      vm.skipTo();
     }
   };
 
@@ -353,6 +356,5 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
   };
   vm.loadCart();
-
 }
 module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'TreatmentCenterService', 'localStorageService', '$timeout', ctrl];

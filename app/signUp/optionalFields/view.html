@@ -27,25 +27,25 @@
       <div class="psignup-form fg-height">
         <form class="psignup-form" name="$ctrl.optionalForm">
           <div class="form-group">
-            <input type="text" class="form-control" name="description" ng-focus="$ctrl.displayMsg='Description Explanation'" ng-blur="$ctrl.displayMsg=''" ng-keypress="$ctrl.optionalInit.description=0" ng-model="$ctrl.description" required="true" placeholder="Description">
+            <input type="text" class="form-control" name="description" ng-focus="$ctrl.displayMsg='Description'" ng-blur="$ctrl.displayMsg=''" ng-keypress="$ctrl.optionalInit.description=0" ng-model="$ctrl.description" required="true" placeholder="Description">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Enter brief description for your treatment center "><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.description.$invalid && ($ctrl.optionalInit.description===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="overview" ng-model="$ctrl.overview" ng-keypress="$ctrl.optionalInit.overview=0" required="true" placeholder="Overview of the program">
+            <input type="text" class="form-control" name="overview" ng-focus="$ctrl.displayMsg='Overview of the program'" ng-model="$ctrl.overview" ng-keypress="$ctrl.optionalInit.overview=0" required="true" placeholder="Overview of the program">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Please enter program overview with small description"><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.overview.$invalid && ($ctrl.optionalInit.overview===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="treatmentApproach" ng-model="$ctrl.treatmentApproach" ng-keypress="$ctrl.optionalInit.treatmentApproach=0" required="true" placeholder="Treatment approach">
+            <input type="text" class="form-control" name="treatmentApproach" ng-focus="$ctrl.displayMsg='Treatment Approach'" ng-model="$ctrl.treatmentApproach" ng-keypress="$ctrl.optionalInit.treatmentApproach=0" required="true" placeholder="Treatment approach">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="Enter various treatment approach being taken at center."><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.treatmentApproach.$invalid && ($ctrl.optionalInit.treatmentApproach===0)" class="help-block">Required</span> -->
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP">
+            <input type="text" class="form-control" name="usp" ng-model="$ctrl.usp" ng-focus="$ctrl.displayMsg='USP'" ng-keypress="$ctrl.optionalInit.usp=0" required="true" placeholder="USP">
             <span class="fix-right ng-binding" tooltip-placement="right" uib-tooltip="What is the Unique selling points for your treatment center"><i class="fa fa-question-circle-o fa-2x"></i></span>
             <!-- <span ng-show="$ctrl.optionalForm.usp.$error.required && ($ctrl.optionalInit.usp===0)" class="help-block">Required</span>
             <span ng-show="$ctrl.optionalForm.usp.$error.pattern && ($ctrl.optionalInit.usp===0)" class="help-block">Invalid Email</span> -->

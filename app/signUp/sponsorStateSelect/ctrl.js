@@ -535,7 +535,7 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
   vm.itemDeselectState = function (item) {
     vm.deleteItemType = 'state';
     vm.deleteFromCart(item); // delete item from cart, when deselected any item
-    //vm.updateCart();
+    // vm.updateCart();
   };
   vm.itemDeselectCity = function (item) {
     vm.deleteItemType = 'city';
@@ -544,7 +544,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
   vm.itemDeselectCounty = function (item) {
     vm.deleteItemType = 'county';
     vm.deleteFromCart(item); // delete item from cart, when deselected any item
-
   };
   vm.itemDeselectDemographic = function (item) {
     vm.deleteItemType = 'demographic';
@@ -613,7 +612,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
         $rootScope.checkedStateDetail = {};
       }
       $rootScope.checkedStateDetail[$rootScope.activeCenter].push(stateSelectedData);
-
     } else if (index >= 0 && stateCheck === false) {
       // trigger delete function for state, if it is in cart
       vm.itemDeselectState(stateSelectedData.id);
@@ -663,7 +661,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
           break;
         }
       }
-
     } else if (vm.deleteItemType === 'payment') {
       payment = $rootScope.otherIds.Payment;
       for (key in payment) {
@@ -675,7 +672,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
           break;
         }
       }
-
     } else if (vm.deleteItemType === 'additionalServices') {
       additionalServices = $rootScope.otherIds['Additional Services'];
       for (key in additionalServices) {
@@ -687,7 +683,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
           break;
         }
       }
-
     } else if (vm.deleteItemType === 'setting') {
       setting = $rootScope.otherIds.Setting;
       for (key in setting) {
@@ -699,7 +694,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
           break;
         }
       }
-
     } else if (vm.deleteItemType === 'byDrug') {
       byDrug = $rootScope.otherIds['By Drug'];
       for (key in byDrug) {
@@ -711,7 +705,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
           break;
         }
       }
-
     } else if (vm.deleteItemType === 'state') {
       var state = $rootScope.stateIds;
       for (key in state) {
@@ -723,7 +716,6 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
           break;
         }
       }
-
     } else if (vm.deleteItemType === 'city') {
       var city = $rootScope.city;
       for (key in city) {
@@ -825,22 +817,17 @@ function ctrl($log, $document, $rootScope, $injector, $state, UIState, service, 
             localStorageService.set('cartMode', cartMode);
             // refresh cart item count
             $rootScope.calculateItems(result.cart_subscription.items);
-
           }).catch(function (err) {
             $log.info(err);
           });
-
         }).catch(function (err) {
           $log.info(err);
         });
       }
-
     }).catch(function (err) {
       $log.info(err);
     });
-
   };
-
 }
 
 function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScope, localStorageService) {
@@ -1067,7 +1054,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           if (angular.isDefined(vmModal.stateSelectCheck)) {
             // vmModal.stateSelectCheck = true;
           }
-          console.log('test state select checkbox: ' + vmModal.stateSelectCheck);
+        //  console.log('test state select checkbox: ' + vmModal.stateSelectCheck);
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);

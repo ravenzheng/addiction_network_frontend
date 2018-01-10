@@ -32,7 +32,7 @@ angular.module(moduleName, [
   .component('paymentDetailsAdd', require('./paymentDetails/add'))
   .component('paymentDetailsEdit', require('./paymentDetails/edit'))
   .component('paymentDetailsView', require('./paymentDetails/view'))
-  .component('upgradeAccount', require('./upgradeAccount'))
+  // .component('upgradeAccount', require('./upgradeAccount'))
   .component('testCenterDetails', require('./testCenterDetails'))
   // .component('testCenterDetails', require('./testCenterDetails'))
   //  .component('sponsoredAdsStateSelect', require('./sponsoredAdsStateSelect'))
@@ -154,11 +154,11 @@ angular.module(moduleName, [
       url: '/payment-details/view-payment/:id',
       template: '<payment-details-view></payment-details-view>'
     });
-    $stateProvider.state({
-      name: UIState.MY_PROFILE.UPGRADE_ACCOUNT,
-      url: '/upgrade-account',
-      template: '<upgrade-account></upgrade-account>'
-    });
+    // $stateProvider.state({
+    //   name: UIState.MY_PROFILE.UPGRADE_ACCOUNT,
+    //   url: '/upgrade-account',
+    //   template: '<upgrade-account></upgrade-account>'
+    // });
     $stateProvider.state({
       name: UIState.MY_PROFILE.TEST_CENTER_DETAILS,
       url: '/test-center-details',

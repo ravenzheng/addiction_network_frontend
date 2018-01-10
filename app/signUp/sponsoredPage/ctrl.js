@@ -72,7 +72,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     //   i++;
     // }
     //  console.log(centerIds);
-    console.log($rootScope.centerSelected);
     for (var cen in $rootScope.centerSelected) {
       var sponsoredListingIds = [];
       i = 0;
@@ -97,7 +96,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
           i++;
         }
       } else {
-        console.log($rootScope.checkedStateDetail);
         for (key in $rootScope.checkedStateDetail[centerId]) { // state ids
           id = String($rootScope.checkedStateDetail[centerId][key].id);
           sponsoredListingIds[i] = id;
@@ -141,7 +139,6 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
       } else {
         totalItems = 0;
       }
-      console.log($rootScope.centerWise);
       if (totalItems > 0) {
         centerIds.push(centerId);
         listingIds[centerId] = sponsoredListingIds;
@@ -196,10 +193,11 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
 
     var ci = 0;
     if (centerIds.length > 0) {
-      console.log('cen id: ' + ci);
       vm.submitSingle(ci);
     } else {
-      $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+      // temporarily commented so that wihtout any item select user can go forward
+      // $rootScope.$emit(Status.FAILED, 'Cart is empty, please select some items.');
+      vm.skipTo();
     }
   };
 
@@ -352,6 +350,5 @@ function ctrl($injector, $log, $scope, $state, UIState, $stateParams, $rootScope
     }
   };
   vm.loadCart();
-
 }
 module.exports = ['$injector', '$log', '$scope', '$state', 'UIState', '$stateParams', '$rootScope', '$window', '$document', 'Status', 'SponsorService', 'SignUpService', 'localStorageService', '$timeout', ctrl];
