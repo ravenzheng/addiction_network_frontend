@@ -1,5 +1,9 @@
 var moduleName = 'app.SignUpWelcome';
 
+window.onbeforeunload = function () {
+  return 'Are you sure you want to leave?';
+};
+
 angular.module(moduleName, ['ui.router'])
   .component('welcomesignup', require('./welcomeSignup'))
   .component('usercreate', require('./UserCreate'))

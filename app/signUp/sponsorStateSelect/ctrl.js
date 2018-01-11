@@ -1054,7 +1054,7 @@ function getCountyCity(vm, state, stateMap, token, service, $injector, $rootScop
           if (angular.isDefined(vmModal.stateSelectCheck)) {
             // vmModal.stateSelectCheck = true;
           }
-        //  console.log('test state select checkbox: ' + vmModal.stateSelectCheck);
+          //  console.log('test state select checkbox: ' + vmModal.stateSelectCheck);
           vm.updateStateSelect(state, vmModal.stateSelectCheck);
           // save to localStorageService
           saveToLocalStorage($rootScope, localStorageService);
