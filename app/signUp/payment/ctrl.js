@@ -64,7 +64,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
     // Validations
     if (vm.paymentForm.cardName.$invalid) {
       shakeme();
-      vm.displayMsg = 'Please enter name on card.';
+      vm.displayMsg = 'Please enter name as on card.';
       return;
     } else if (vm.paymentForm.cardNumber.$invalid) {
       shakeme();
@@ -155,13 +155,13 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
 
           $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
           // now charging the selected card
-          // service.chargeCard(token).then(function (res2) {
-          //   $log.info('finally charged : ');
-          //   $log.info(res2);
-          // }).catch(function (err) {
-          //   $log.info(err);
-          //   $rootScope.$emit(Status.FAILED, err.error);
-          // });
+          service.chargeCard(token).then(function (res2) {
+            $log.info('finally charged : ');
+            $log.info(res2);
+          }).catch(function (err) {
+            $log.info(err);
+            $rootScope.$emit(Status.FAILED, err.error);
+          });
         }).catch(function (err) {
           $log.info(err);
         });

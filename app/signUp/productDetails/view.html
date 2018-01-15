@@ -97,37 +97,39 @@
 
           <!-- state toggle -->
           <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.stateShow[item.id]=0;">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-5">
-              <span style="cursor:pointer; margin-left:11px;" class="fix-left" ng-click="$ctrl.stateToggle(item.id)">
-                <span>State</span>
-              </span>
-            </div>
-            <div class="col-md-2">
-              <!-- <span ng-show="$ctrl.sponsorshipShow[item.id]" ng-repeat="spons in item.sponsored_layouts"><br><span>{{spons.total_price}}$</span><br></span> -->
-              <!-- <span style="cursor:pointer;" class="fix-left" >{{state.total_price}}</span> -->
-            </div>
-            <div class="col-md-1">
-            </div>
-          </div>
-          <!-- States -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.stateShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="state in item.sponsored_layouts.state">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-5">
-              <span style="cursor:pointer; margin-left:23px;font-size:13px;" class="fix-left"> {{state.name}}</span>
-            </div>
-            <div class="col-md-2">
-              <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{state.total_price}}$</span>
-            </div>
-            <div class="col-md-1">
-              <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(state.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
+            <div style="max-height:200px;overflow:scroll;">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-5">
+                <span style="cursor:pointer; margin-left:11px;" class="fix-left" ng-click="$ctrl.stateToggle(item.id)">
+                  <span>State</span>
+                </span>
+              </div>
+              <div class="col-md-2">
+                <!-- <span ng-show="$ctrl.sponsorshipShow[item.id]" ng-repeat="spons in item.sponsored_layouts"><br><span>{{spons.total_price}}$</span><br></span> -->
+                <!-- <span style="cursor:pointer;" class="fix-left" >{{state.total_price}}</span> -->
+              </div>
+              <div class="col-md-1">
+              </div>
+              <!-- States -->
+              <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.stateShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="state in item.sponsored_layouts.state">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-5">
+                  <span style="cursor:pointer; margin-left:23px;font-size:13px;" class="fix-left"> {{state.name}}</span>
+                </div>
+                <div class="col-md-2">
+                  <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{state.total_price}}$</span>
+                </div>
+                <div class="col-md-1">
+                  <span style="cursor:pointer;vertical-align: top;" ng-click="$ctrl.deleteConfirm(state.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
 
+                </div>
+              </div>
             </div>
           </div>
           <!-- city toggle -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.cityShow[item.id]=0;">
+          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.cityShow[item.id]=0;" style="max-height:200px;overflow:scroll;">
             <div class="col-md-4">
             </div>
             <div class="col-md-5">
@@ -139,23 +141,23 @@
             </div>
             <div class="col-md-1">
             </div>
-          </div>
-          <!-- Cities -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.cityShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="city in item.sponsored_layouts.city">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-5">
-              <span style="cursor:pointer; margin-left:23px;font-size:13px;" class="fix-left"> {{city.name}}</span>
-            </div>
-            <div class="col-md-2">
-              <span style="cursor:pointer;font-size:13px;" class="fix-left"> {{city.total_price}}$</span>
-            </div>
-            <div class="col-md-1">
-              <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(city.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
+            <!-- Cities -->
+            <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.cityShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="city in item.sponsored_layouts.city">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-5">
+                <span style="cursor:pointer; margin-left:23px;font-size:13px;" class="fix-left"> {{city.name}}</span>
+              </div>
+              <div class="col-md-2">
+                <span style="cursor:pointer;font-size:13px;" class="fix-left"> {{city.total_price}}$</span>
+              </div>
+              <div class="col-md-1">
+                <span style="cursor:pointer;vertical-align: top;" ng-click="$ctrl.deleteConfirm(city.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
+              </div>
             </div>
           </div>
           <!-- County toggle -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.countyShow[item.id]=0;">
+          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.countyShow[item.id]=0;" style="max-height:200px;overflow:scroll;">
             <div class="col-md-4">
             </div>
             <div class="col-md-5">
@@ -167,24 +169,24 @@
             </div>
             <div class="col-md-1">
             </div>
-          </div>
-          <!-- counties -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.countyShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="county in item.sponsored_layouts.county">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-5">
-              <span style="cursor:pointer; margin-left:23px;font-size:13px;" class="fix-left"> {{county.name}}</span>
-            </div>
-            <div class="col-md-2">
-              <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{county.total_price}}$</span>
-            </div>
-            <div class="col-md-1">
-              <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(county.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
+            <!-- counties -->
+            <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.countyShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="county in item.sponsored_layouts.county">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-5">
+                <span style="cursor:pointer; margin-left:23px;font-size:13px;" class="fix-left"> {{county.name}}</span>
+              </div>
+              <div class="col-md-2">
+                <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{county.total_price}}$</span>
+              </div>
+              <div class="col-md-1">
+                <span style="cursor:pointer;vertical-align: top;" ng-click="$ctrl.deleteConfirm(county.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
 
+              </div>
             </div>
           </div>
           <!-- Categories toggle -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.categoryShow[item.id]=0; ">
+          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.productShow[item.id]" ng-init="$ctrl.categoryShow[item.id]=0;" style="max-height:200px;overflow:scroll;">
             <div class="col-md-4">
             </div>
             <div class="col-md-5">
@@ -196,25 +198,24 @@
             </div>
             <div class="col-md-1">
             </div>
-          </div>
-          <!-- Categories -->
-          <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.categoryShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="category in item.sponsored_layouts.categories">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-5">
-              <span style="cursor:pointer;margin-left:23px; font-size:13px;" class="fix-left">
-                {{category.name}}
-              </span>
-            </div>
-            <div class="col-md-2">
-              <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{category.total_price}}$</span>
-            </div>
-            <div class="col-md-1">
-              <span style="cursor:pointer;" ng-click="$ctrl.deleteConfirm(category.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
+            <!-- Categories -->
+            <div class="col-md-12" ng-show="$ctrl.sponsorshipShow[item.id] && $ctrl.categoryShow[item.id] && $ctrl.productShow[item.id]" ng-repeat="category in item.sponsored_layouts.categories">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-5">
+                <span style="cursor:pointer;margin-left:23px; font-size:13px;" class="fix-left">
+                  {{category.name}}
+                </span>
+              </div>
+              <div class="col-md-2">
+                <span style="cursor:pointer; font-size:13px;" class="fix-left"> {{category.total_price}}$</span>
+              </div>
+              <div class="col-md-1">
+                <span style="cursor:pointer;vertical-align: top;" ng-click="$ctrl.deleteConfirm(category.id, item.id);"><i class="fa fa-trash" style="font-size:15px;" aria-hidden="true"></i></span>
 
+              </div>
             </div>
           </div>
-
           <div class="col-md-12" ng-show="$ctrl.productShow[item.id]" ng-init="$ctrl.adsShow[item.id]=0;">
             <div class="col-md-4">
             </div>
@@ -229,7 +230,6 @@
               </div>
             </div>
             <div class="col-md-2">
-
               <span ng-show="$ctrl.adsShow[item.id]" ng-repeat="ads in item.banner_ads">
                 <span>{{ads.total_price}}$</span>
               </span>
@@ -278,13 +278,12 @@
 
     </div>
 
-    <div class="col-md-12">
-      <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.testCenter()">Add Test center</a></p>
-      <p class="stick-next-left font-normal " style="margin-left:20%;"><a href="javascript:void(0)" ng-click="$ctrl.publish_ads()">Publish Ads</a></p>
-      <!-- <p class="stick-next-left font-normal back-button"><a href="javascript:;" ng-click="$ctrl.goBack();">Back</a></p> -->
-      <!-- <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.viewProfile()">View my profile</a></p> -->
-      <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.gotoPayment()">Next</a></p>
-    </div>
-
   </div>
+</div>
+<div class="col-md-12" style="margin-top: 3%;">
+  <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.testCenter()">Add Test center</a></p>
+  <p class="stick-next-left font-normal " style="margin-left:20%;"><a href="javascript:void(0)" ng-click="$ctrl.publish_ads()">Publish Ads</a></p>
+  <!-- <p class="stick-next-left font-normal back-button"><a href="javascript:;" ng-click="$ctrl.goBack();">Back</a></p> -->
+  <!-- <p class="stick-next-left"><a href="javascript:void(0)" ng-click="$ctrl.viewProfile()">View my profile</a></p> -->
+  <p class="stick-next-right"><a href="javascript:void(0)" ng-click="$ctrl.gotoPayment()">Next</a></p>
 </div>

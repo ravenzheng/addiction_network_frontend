@@ -3,7 +3,7 @@ module.exports = ['$injector', '$timeout', '$scope', '$log', '$rootScope', '$sta
 function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, service, localStorageService, Status) {
   var vm = this;
   // var lm = $rootScope;
-//  var token = localStorageService.get('signupToken');
+  //  var token = localStorageService.get('signupToken');
   // get previous steps localstorage data
   var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
 
@@ -69,7 +69,7 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
     // Validations
     if (vm.paymentForm.cardName.$invalid) {
       shakeme();
-      vm.displayMsg = 'Please enter name on card.';
+      vm.displayMsg = 'Please enter name as on card.';
       return;
     } else if (vm.paymentForm.cardNumber.$invalid) {
       shakeme();
