@@ -60,6 +60,5 @@ angular.module(appName, [
       });
     });
   }]);
-
 // eslint-disable-next-line angular/document-service
 angular.bootstrap(document.getElementsByTagName('html')[0], [appName]);
