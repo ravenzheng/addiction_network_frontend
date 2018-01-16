@@ -152,21 +152,19 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
 
         service.selectCard(formData).then(function (res1) {
           $log.info(res1);
-          $rootScope.$emit(Status.SUCCEEDED, 'Payment Done...');
-
           // saving this step data //
           signupData.signupStep.payment = paymentData;
           localStorageService.set('signupStepsData', signupData, 'sessionStorage');
-
-          $state.go(UIState.MY_PROFILE.SIGNUP_COMPLETED);
           // now charging the selected card
-          // service.chargeCard(token).then(function (res2) {
-          //   $log.info('finally charged : ');
-          //   $log.info(res2);
-          // }).catch(function (err) {
-          //   $log.info(err);
-          //   $rootScope.$emit(Status.FAILED, err.error);
-          // });
+          service.chargeCard().then(function (res2) {
+            $log.info('finally charged : ');
+            $log.info(res2);
+            $rootScope.$emit(Status.SUCCEEDED, 'Payment Done...');
+            $state.go(UIState.MY_PROFILE.SIGNUP_COMPLETED);
+          }).catch(function (err) {
+            $log.info(err);
+            $rootScope.$emit(Status.FAILED, err.error);
+          });
         }).catch(function (err) {
           $log.info(err);
         });

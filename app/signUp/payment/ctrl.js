@@ -6,7 +6,6 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
   var token = localStorageService.get('signupToken');
   // get previous steps localstorage data
   var signupData = localStorageService.get('signupStepsData', 'sessionStorage');
-
   // var centerId = localStorageService.get('signupCenterId');
   //  var alreadyPublished = 0;
   vm.cardType = 'credit';
@@ -147,17 +146,17 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
 
         service.selectCard(formData, token).then(function (res1) {
           $log.info(res1);
-          $rootScope.$emit(Status.SUCCEEDED, 'Payment Done...');
 
           // saving this step data //
           signupData.signupStep.payment = paymentData;
           localStorageService.set('signupStepsData', signupData, 'sessionStorage');
 
-          $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
           // now charging the selected card
           service.chargeCard(token).then(function (res2) {
             $log.info('finally charged : ');
             $log.info(res2);
+            $rootScope.$emit(Status.SUCCEEDED, 'Payment Done...');
+            $state.go(UIState.SIGN_UP.SIGNUP_COMPLETED);
           }).catch(function (err) {
             $log.info(err);
             $rootScope.$emit(Status.FAILED, err.error);
@@ -203,5 +202,4 @@ function ctrl($injector, $timeout, $scope, $log, $rootScope, $state, UIState, se
   vm.goToCart = function () {
     $state.go(UIState.SIGN_UP.DETAILS);
   };
-
 }

@@ -73,7 +73,8 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
     if (currentMembership === targetMembership) {
       $rootScope.$emit(Status.FAILED, 'Already taken');
     } else if (targetMembership === 'paid') {
-      newMembership = 'sponsored';
+      newMembership = 'paid';
+      //  newMembership = 'sponsored';
     } else if (targetMembership === 'featured') {
       newMembership = 'featured';
     }
@@ -84,6 +85,7 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
     for (var key in membership) {
       formData.append(key, membership[key]);
     }
+
     if (newMembership !== '') {
       service.upgradeMembership(formData, cenId).then(function (result) {
         $rootScope.$emit(Status.SUCCEEDED, result.success);
