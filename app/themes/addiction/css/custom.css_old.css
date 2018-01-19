@@ -5,18 +5,13 @@
   font-weight: normal;
   font-style: normal;
 }
+
 screen and (-webkit-min-device-pixel-ratio:0) {
   .new_class_for_label input {
     box-shadow: none !important;
   }
   #img_upload {
     padding-top: 10px;
-  }
-}
-
-@media (min-width: 1367px){
-  .container.progress-content {
-      width: 1030px;
   }
 }
 
@@ -129,13 +124,14 @@ screen and (-webkit-min-device-pixel-ratio:0) {
 }
 
 
-/*
+/*  toggle navbar-collapse at specific width   */
 
-@media (min-width:1200px) {
+@media (min-width:1200px;
+) {
   .width_adjust_header {
     width: 1154px !important;
   }
-} */
+}
 
 @media (max-width:320px) and (min-width: 240px) {
   #no-more-tables td {
@@ -2736,19 +2732,19 @@ h2.contct_heding.text-right {
   z-index: 99999;
 }
 /*progress bar*/
+.progress-content-one a, .progress-content-one p, .progress-content-one input, .progress-content-one span{
+  font-family: 'Open Sans', sans-serif;
+}
 .progress-content-one {
   position: relative;
   display: table;
   margin: 0 auto;
-  width: 100%;
+  width: 90%;
   font-family: 'open sans', sans-serif;
-}
-.progress-content-one a, .progress-content-one p, .progress-content-one input, .progress-content-one span{
-  font-family: 'Open Sans', sans-serif;
 }
 .progress-img{
   position: relative;
-  height: 520px;
+  height: 470px;
   background-position: center;
   background-size:auto;
   background-repeat: no-repeat;
@@ -2763,9 +2759,9 @@ h2.contct_heding.text-right {
   width: 100%;
   height: 100%;
   content: '';
-  /* background-image: -moz-linear-gradient(#83BF00 , #00A7BF);
-  background-image: -webkit-linear-gradient(#83BF00 , #00A7BF); */
-  background-image: linear-gradient(135deg, #83BF00, #2eb07c);
+  background-image: -moz-linear-gradient(#83BF00 , #00A7BF);
+  background-image: -webkit-linear-gradient(#83BF00 , #00A7BF);
+  background-image: linear-gradient(#83BF00 , #00A7BF);
   top: 0;
 	right: 0;
 	bottom: 0;
@@ -2774,17 +2770,13 @@ h2.contct_heding.text-right {
 }
 .para-container{
   display: block;
-  width: 85%;
-  display: block;
-  margin: 23% auto 0;
+margin-top: 23%;
 }
 .progressbar .progress{
   position: relative;
   box-shadow: none;
-  border-radius: 2px;
+  border-radius: 5px;
   margin-bottom: 15px;
-  width: 80%;
-  margin: 35px auto 30px;
 }
 .para-container p {
     font-family: 'Open Sans', sans-serif;
@@ -2797,7 +2789,7 @@ h2.contct_heding.text-right {
 
 .progressbar{
   clear: both;
-  width: 100%;
+  width: 70%;
   margin: 0 auto;
   margin-top: 5px;
 
@@ -2811,12 +2803,10 @@ span.stick-me{
   position: absolute;
   left: 48%;
   color: #83BF00;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 17px;
-  line-height: 1;
 }
 .progress-grediant {
-  border: 1px solid #83BF00;
+  border-left: 1px solid #83BF00;
+  border-right: 1px solid #00A7BF;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2825,12 +2815,16 @@ span.stick-me{
   -webkit-background-size: 100% 1px;
   -moz-background-size: 100% 1px;
   background-size: 100% 1px;
-  height: 19px;
+  background-image: -webkit-linear-gradient(left, #3acfd5 0%, #00A7BF 100%), -webkit-linear-gradient(left, #83BF00 0%, #3a4ed5 100%);
+  background-image: -moz-linear-gradient(left, #83BF00 0%, #00A7BF 100%), -moz-linear-gradient(left, #83BF00 0%, #3a4ed5 100%);
+  background-image: -o-linear-gradient(left, #83BF00 0%, #00A7BF 100%), -o-linear-gradient(left, #83BF00 0%, #00A7BF 100%);
+  background-image: linear-gradient(to right, #83BF00 0%, #00A7BF 100%), linear-gradient(to right, #83BF00 0%, #00A7BF 100%);
+  height: 22px;
 }
 .p-form-title {
     z-index: 9999;
     position: absolute;
-	top: 33%;
+	top: 31%;
     left: 52%;
     font-size: 13px;
     font-family: 'open sans', sans-serif;
@@ -2847,8 +2841,8 @@ span.stick-me{
 .p-form-desc {
   z-index: 9999;
   position: absolute;
-  top: 57%;
-  left: 41%;
+  top: 58%;
+  left: 38%;
   font-size: 12px;
   font-size: 11.4px;
   font-family: 'open sans', sans-serif;
@@ -2858,8 +2852,8 @@ span.stick-me{
 .p-tc-title{
   z-index: 9999;
   position: absolute;
-  top: 34%;
-  left: 52.4%;
+  top: 33%;
+  left: 53%;
   font-size: 12px;
   font-family: 'open sans', sans-serif;
   font-weight: 600;
@@ -2906,9 +2900,7 @@ span.stick-me{
   font-family: 'Open sans', sans-serif;
 }
 .psignup-form{
-  width: 90%;
-  display: block;
-  margin: 0 auto;
+    /*position: relative;*/
 }
 
 p.stick-next, .stick-next-right{
@@ -2953,7 +2945,7 @@ p.stick-next a{
   font-size: 15px;
 }
 .psignup-form .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     clear: both;
 }
 .p-user-profile {
@@ -2968,7 +2960,7 @@ p.stick-next a{
   color: #83BF00;
 }
 .para-userprofile p{
-      font-size: 18px;
+      font-size: 21px;
       color: #83BF00;
       margin-top: 0;
 }
@@ -3218,8 +3210,9 @@ z-index: 9999;
 
 /*Check box*/
 .styled-checkbox {
-  position: absolute;
-  opacity: 0;
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
   & + label {
     position: relative;
     cursor: pointer;
@@ -3495,35 +3488,38 @@ position: relative;
  }
 .checkboxFive2 label {
   cursor: pointer;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 7px;
-  background: #fff;
-  border: 2px solid #5cb85c;
-  max-width: 35px;
-  border-radius: 5px;
-  background: #83BF00;
-  color: #fff;
-  top: 2px;
-  left: 7px;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 7px;
+    background: #fff;
+    border: 2px solid #5cb85c;
+    /* background: #5cb85c; */
+    max-width: 35px;
+    border-radius: 5px;
 }
 /**
  * Display the tick inside the checkbox
  */
 .checkboxFive2 label:after {
-  opacity: 0.1;
-  position: absolute;
-  background: transparent;
-  top: 3px;
-  left: 4px;
-  border: 0;
-  border-top: none;
-  border-right: none;
-  margin-bottom: 0;
-  content: "\f111";
-  font-family: fontAwesome;
-  font-size: 8px;
+  opacity: 0.2;
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 6px;
+      background: transparent;
+      top: 2px;
+      left: 2px;
+      border: 3px solid #5cb85c;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      margin-bottom: 0;
 }
 /**
  * Create the hover event of the tick
@@ -3543,7 +3539,7 @@ opacity: 1 !important;
 .test-center-bg.checkboxFive2 {
       position: relative;
       width: 100%;
-      margin: 0px 0 5px 0;
+      margin: 7px 0 12px 0;
       /* padding-right: 14px; */
 }
 .checkboxFive2  span{
@@ -3553,9 +3549,8 @@ opacity: 1 !important;
   background-color: #fff !important;
 }
 .checkboxFive2.tags span {
-    margin-left: 9px;
-    font-size: 14px;
-    color: #83BF00;
+    margin-left: 5px;
+    font-size: 12px;
 }
 .checkboxFive2.tags label{
   top: 2px;
@@ -3599,7 +3594,7 @@ img#logo_preview {
 	height: 550px;
 }
 .p-user-profile {
-    top: 43.2%;
+    top: 43.6%;
     left: 47.6%;
 }
 .lg-container  .para-userprofile p {
@@ -3609,7 +3604,7 @@ img#logo_preview {
 	padding-top: 8px;
 }
 .table-pay label, .table-pay span{
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 400;
     color: #83BF00;
 }
@@ -3658,50 +3653,8 @@ img#logo_preview {
     position: absolute;
     bottom: 25px;
     color: #fff;
-  }
+}
 .test-center-footer  p a{
 	font-size: 16px;
     color: #fff;
 }
-.progress-content-one .col-md-6:first-child{
-    padding: 0;
-}
-.test-center-tp {
-    padding: 0;
-}
-.test-center-tp p{
-  margin: 10px !important;
-  line-height: 1;
-  color: #83BF00;
-  font-size: 14px;
-}
-.test-center-tz {
-    border-radius: 5px;
-}
-.fix-right {
-    right: 10px;
-}
-.fa-plus-square-o:before {
-    content: "\f067" !important;
-}
-.test-center-tm {
-    padding: 0;
-}
-.fa-minus-square-o:before{
-  content: "\f068" !important;
-}
-.table-pay1 span {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-}
-.table-pay1 span i.fa {
-    padding-right: 5px;
-}
-.table-pay1 .row.bold-th1 {
-    margin-bottom: 10px;
-}
-.table-pay1 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-/**/
