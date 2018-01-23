@@ -46,20 +46,21 @@ function ctrl($injector, $scope, $log, $rootScope, $state, Status, UIState, serv
       vm.catgsToggle = 1;
     }
   };
-  vm.checkedString = [];
+  vm.checkedstring = [];
   vm.toggleChecked = function (id, tf) {
     if (tf === true) {
-      vm.checkedString[id] = 'checked';
+      vm.checkedstring[id] = 'checked';
     } else {
-      vm.checkedString[id] = '';
+      vm.checkedstring[id] = '';
     }
   };
-  vm.catgCheckedString = [];
+  vm.catgcheckedstring = [];
+  // vm.catgCheckedString = [];
   vm.catgChecked = function (id, tf) {
     if (tf === true) {
-      vm.catgCheckedString[id] = 'checked';
+      vm.catgcheckedstring[id] = 'checked';
     } else {
-      vm.catgCheckedString[id] = '';
+      vm.catgcheckedstring[id] = '';
     }
   };
 

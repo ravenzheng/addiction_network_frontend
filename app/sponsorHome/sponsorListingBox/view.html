@@ -39,6 +39,7 @@
         <div class="rehab_content" ng-bind-html="$ctrl.content2">
         </div>
       </div>
+
       <!-- Layout links -->
       <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" ng-if="$ctrl.entry.layout_links.length>0">
         <section-heading>{{ $ctrl.entry.heading_3 }}</section-heading>
@@ -50,11 +51,23 @@
                 <span class="glyphicon"></span>
                 {{lists.name}}
               </a>
-              <a href="/counties/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='county'">
+              <a href ng-click="$ctrl.goToCounty({countyName: lists.name})" class="ng-binding" ng-if="lists.type==='county'">
                 <span class="glyphicon"></span>
                 {{lists.name}}
               </a>
-              <a href="/cities/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='city'">
+              <!-- <a href="/counties/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='county'">
+                <span class="glyphicon"></span>
+                {{lists.name}}
+              </a> -->
+              <!-- <a href="/cities/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='city'">
+                <span class="glyphicon"></span>
+                {{lists.name}}
+              </a> -->
+              <!-- <a href="/state/{{$ctrl.stateName}}-rehab-centers/{{lists.name|createSlug}}" class="ng-binding" ng-if="lists.type==='city'">
+                <span class="glyphicon"></span>
+                {{lists.name}}
+              </a> -->
+              <a href ng-click="$ctrl.goToCity({cityName: lists.name})" class="ng-binding" ng-if="lists.type==='city'">
                 <span class="glyphicon"></span>
                 {{lists.name}}
               </a>

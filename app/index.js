@@ -26,7 +26,7 @@ angular.module(appName, [
   require('./contactTreatmentThank'),
   require('./loginHelp'),
   require('./insurance'),
-  require('./searchState'),
+  require('./searchState')
   // require('./signUp'),
   // require('./privacyPolicy')
 
