@@ -72,8 +72,8 @@ function ctrl($injector, $timeout, $state, UIState, $log, Status, $rootScope, lo
     var newMembership = '';
     if (currentMembership === targetMembership) {
       $rootScope.$emit(Status.FAILED, 'Already taken');
-    } else if (targetMembership === 'paid') {
-      newMembership = 'paid';
+    } else if (targetMembership === 'sponsored') {
+      newMembership = 'sponsored';
       //  newMembership = 'sponsored';
     } else if (targetMembership === 'featured') {
       newMembership = 'featured';
