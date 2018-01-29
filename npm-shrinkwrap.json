@@ -1512,8 +1512,7 @@
     "ctype": {
       "version": "0.5.3",
       "resolved": "https://registry.npmjs.org/ctype/-/ctype-0.5.3.tgz",
-      "integrity": "sha1-gsGMJGH3QRTvFsE1IkrQuRRMoS8=",
-      "optional": true
+      "integrity": "sha1-gsGMJGH3QRTvFsE1IkrQuRRMoS8="
     },
     "custom-event": {
       "version": "1.0.1",

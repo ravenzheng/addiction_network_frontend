@@ -1,0 +1,41 @@
+<div class="edit-sponsor-ad">
+  <section-heading>{{$ctrl.treatmentCenter}}</section-heading>
+  <div class="profile-content">
+    <div class="profile-row">
+
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding_0 listing_wrapper_inner">
+
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+          <!-- <div class="col-md-2 col-sm-2 col-xs-12">
+            <!-- <label for="tname">Treatment Center: </label>
+        </div> -->
+          <div class="col-sm-8">
+            <!-- {{$ctrl.treatmentCenter}} -->
+            <!-- <span ng-show="$root.centerSelected.length===0 " style="color:red;">Select any treatment center.</span> -->
+          </div>
+          <div class="col-sm-4">
+            <a ui-sref="myProfile.sponsorAds">
+              <span class="btn adn-btn right">
+                <i class="glyphicon glyphicon-hand-left"></i> Back
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- Search By State Section -->
+        <sponsor-state-select-edit></sponsor-state-select-edit>
+        <sponsor-cart-edit></sponsor-cart-edit>
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_0 main_wrap_form_inner_sub">
+          <div class="text-right col-md-12 col-sm-12 col-xs-12 col-lg-12 main_wrap_form_inner_sub sub">
+            <input type="button" ng-click="$ctrl.submit()" class="btn modal_btn btn_size pull-right" value="Submit" id="submit" ng-disabled="$ctrl.treatmentCentersModel.length===0 || $root.centerSelected.length===0">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
